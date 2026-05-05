@@ -14,8 +14,9 @@ function getLocale(request: NextRequest): Locale {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Skip API routes, static files, and admin
+  // Skip API routes, static files, admin, and root (served by route handler)
   if (
+    pathname === '/' ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/admin') ||
     pathname.startsWith('/_next') ||
