@@ -1,0 +1,58 @@
+{
+  "site": {
+    "name": "Profitia",
+    "tagline": "Profitia - Doradztwo w zakupach",
+    "description": "Profitia to firma doradcza specjalizująca się w optymalizacji zakupów, negocjacjach z dostawcami i budowaniu przewagi kosztowej."
+  },
+  "nav": {
+    "home": "Strona główna",
+    "services": "Usługi",
+    "about": "O nas",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "cta": "Umów spotkanie"
+  },
+  "home": {
+    "hero": {
+      "title": "Lepsze zakupy. Lepsze negocjacje. Lepszy wynik.",
+      "subtitle": "Pomagamy firmom obniżać koszty zakupów i budować przewagę w negocjacjach z dostawcami.",
+      "cta": "Porozmawiajmy"
+    },
+    "services": {
+      "title": "Co robimy",
+      "items": [
+        {
+          "title": "Optymalizacja zakupów",
+          "description": "Analizujemy kategorie kosztowe i identyfikujemy potencjał oszczędnościowy w Twojej firmie."
+        },
+        {
+          "title": "Negocjacje z dostawcami",
+          "description": "Przygotowujemy i prowadzimy negocjacje, które przekładają się na realne oszczędności."
+        },
+        {
+          "title": "Strategia sourcingowa",
+          "description": "Budujemy strategie zakupowe dopasowane do modelu i skali Twojego biznesu."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Imię i nazwisko",
+      "email": "Adres e-mail",
+      "phone": "Telefon (opcjonalnie)",
+      "company": "Firma (opcjonalnie)",
+      "message": "Wiadomość",
+      "submit": "Wyślij wiadomość"
+    }
+  },
+  "blog": {
+    "empty": "Nie ma jeszcze żadnych artykułów. Zajrzyj tu wkrótce."
+  },
+  "footer": {
+    "navigation": "Nawigacja",
+    "contact": "Kontakt",
+    "rights": "Wszelkie prawa zastrzeżone.",
+    "privacy": "Polityka prywatności"
+  }
+}

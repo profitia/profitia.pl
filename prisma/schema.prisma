@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Contact form submissions
+// ---------------------------------------------------------------------------
+model Contact {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name    String
+  email   String
+  phone   String?
+  company String?
+  message String   @db.Text
+
+  // Processing state
+  read      Boolean  @default(false)
+  repliedAt DateTime?
+
+  @@map("contacts")
+}
+
+// ---------------------------------------------------------------------------
+// Newsletter subscribers
+// ---------------------------------------------------------------------------
+model Subscriber {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  email String  @unique
+  name  String?
+
+  active        Boolean  @default(true)
+  confirmedAt   DateTime?
+  unsubscribedAt DateTime?
+
+  // TODO: link to Mailchimp contact ID when integration is ready
+  mailchimpId String?
+
+  @@map("subscribers")
+}
+
+// ---------------------------------------------------------------------------
+// Blog articles (CMS)
+// ---------------------------------------------------------------------------
+model Article {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  slug      String  @unique
+  title     String
+  excerpt   String? @db.Text
+  content   String  @db.Text
+
+  published    Boolean  @default(false)
+  publishedAt  DateTime?
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+
+  // Authorship
+  author   AdminUser? @relation(fields: [authorId], references: [id])
+  authorId String?
+
+  @@map("articles")
+}
+
+// ---------------------------------------------------------------------------
+// Admin users (CMS access)
+// ---------------------------------------------------------------------------
+model AdminUser {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email        String  @unique
+  name         String
+  passwordHash String
+
+  active Boolean @default(true)
+
+  articles Article[]
+
+  @@map("admin_users")
+}

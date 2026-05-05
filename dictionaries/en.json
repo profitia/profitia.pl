@@ -1,0 +1,58 @@
+{
+  "site": {
+    "name": "Profitia",
+    "tagline": "Profitia - Procurement Consulting",
+    "description": "Profitia is a consulting firm specialising in procurement optimisation, supplier negotiations and cost advantage building."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "cta": "Book a meeting"
+  },
+  "home": {
+    "hero": {
+      "title": "Better procurement. Better negotiations. Better results.",
+      "subtitle": "We help companies reduce procurement costs and build a competitive edge in supplier negotiations.",
+      "cta": "Let's talk"
+    },
+    "services": {
+      "title": "What we do",
+      "items": [
+        {
+          "title": "Procurement optimisation",
+          "description": "We analyse cost categories and identify savings potential across your organisation."
+        },
+        {
+          "title": "Supplier negotiations",
+          "description": "We prepare and lead negotiations that translate into real, measurable savings."
+        },
+        {
+          "title": "Sourcing strategy",
+          "description": "We build procurement strategies tailored to your business model and scale."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone (optional)",
+      "company": "Company (optional)",
+      "message": "Message",
+      "submit": "Send message"
+    }
+  },
+  "blog": {
+    "empty": "No articles yet. Check back soon."
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy policy"
+  }
+}
