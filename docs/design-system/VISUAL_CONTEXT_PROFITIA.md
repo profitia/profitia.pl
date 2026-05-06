@@ -1265,3 +1265,485 @@ Ochrona jest **obowiązkowa** w:
 
 *Sekcja dodana: May 2026 | Contact Data Exposure Standard — obowiązuje od tego momentu we wszystkich komponentach i stronach.*
 
+---
+
+## SECTION 23 — CANONICAL HEADER SYSTEM
+
+> **Source of truth.** Header osiągnął canonical state w maju 2026. Implementacja: `components/layout/Header.tsx`. Wszelkie zmiany wymagają explicit authorization i aktualizacji tej sekcji.
+
+---
+
+### A. HEADER PHILOSOPHY
+
+Header reprezentuje pierwszy i najbardziej persistentny punkt kontaktu użytkownika z marką Profitia. Musi komunikować:
+
+- **Strategic intelligence firm** — nie agencja, nie startup, nie SaaS
+- **Restrained authority** — pewność siebie bez nadmiernej ekspresji
+- **Editorial calm** — spokojny, wyselekcjonowany, nie krzykliwy
+- **Institutional presence** — premium consulting, doradztwo strategiczne
+
+**Personality attributes:**
+Restrained · Editorial · Strategic · Premium consulting · Calm · Non-startup · Non-SaaS
+
+**Anti-patterns (forbidden):**
+- Dashboard navbar
+- Startup bright hero header
+- Agency marketing site navigation
+- Flashy animated navbar
+- Over-spaced mobile-app style header
+
+---
+
+### B. HEADER STRUCTURE
+
+```
+[ Logo ]  ·  [ Primary Nav | separator | Secondary Nav ]  ·  [ PL · EN ] [ CTA ] [ ☰ ]
+```
+
+**Layout hierarchy:**
+- **Logo** — left anchor, flex-shrink-0, no crowding
+- **Navigation** — centered visual weight, hidden on mobile
+- **Utility cluster** — right: lang switcher → CTA → hamburger
+
+**Container:** `container-base` = `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
+
+**Two-state sticky behavior:**
+| State | Height | Background | Border | Shadow |
+|-------|--------|------------|--------|--------|
+| Top (unscrolled) | `h-[88px]` | `bg-white/0 backdrop-blur-[2px]` | `border-transparent` | none |
+| Scrolled (>20px) | `h-[72px]` | `bg-white/96 backdrop-blur-md` | `border-gray-100/80` | `shadow-[0_1px_16px_0_rgba(0,0,0,0.04)]` |
+
+**Transition:** `transition-all duration-[260ms] ease-out` — smooth, not jarring, not instant.
+
+---
+
+### C. DESKTOP NAV RULES
+
+**Nav structure — two tiers, one visual line:**
+
+```
+primaryNav: Usługi · Blog          (font-medium, gray-500 → gray-900)
+─── separator (w-px h-3.5 bg-gray-200) ───
+secondaryNav: O nas · Kontakt      (font-normal, gray-400 → gray-700)
+```
+
+**Typography:**
+- Font size: `text-[13.5px]`
+- Letter spacing: `tracking-[-0.01em]`
+- Primary: `font-medium` | Secondary: `font-normal`
+
+**Active state:**
+- Primary active: `text-gray-900` + `<span>` underline indicator (`h-px bg-gray-800 opacity-30 rounded-full absolute -bottom-1`)
+- Secondary active: `text-gray-700 font-medium`
+- No background fills, no pills, no boxes
+
+**Hover state (canonical):**
+- Primary: `text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out`
+- Secondary: `text-gray-400 hover:text-gray-700 transition-colors duration-200 ease-out`
+
+**Forbidden in nav:**
+- Scale transforms
+- Background color fills on hover
+- Underline on all states (only active)
+- Bright color transitions
+- Opacity jumps
+
+---
+
+### D. LANGUAGE SWITCHER STANDARD
+
+**Format:** `PL · EN` — dot separator, no full names, no flags, no dropdown.
+
+**Canonical implementation:**
+```tsx
+<button>PL</button>
+<span aria-hidden>·</span>
+<button>EN</button>
+```
+
+**Typography:** `text-[11.5px]`, `gap-[2px]` between elements
+
+**Active locale:** `text-gray-900 font-semibold`
+**Inactive locale:** `text-gray-400 font-normal hover:text-gray-700`
+**Transition:** `transition-colors duration-150 ease-out`
+
+**Locale persistence:** cookie `PROFITIA_LOCALE`, `max-age=31536000`, `path=/`, `samesite=lax`
+
+**Forbidden:**
+- Country flags
+- "PL — Polski" / "EN — English" labels
+- Dropdown menu
+- Globe icon
+- Heavy border/background style
+
+---
+
+### E. CTA BUTTON STANDARD
+
+**Color:** `bg-[#1C1C1E]` (dark graphite) — advisory, authoritative, not SaaS blue
+
+**Hover:** `hover:bg-[#2D2D30]` — subtle lightening, never white/light
+
+**Desktop:** `px-4 py-[9px] text-[13px] font-medium tracking-[-0.01em] rounded-lg`
+
+**Mobile:** `w-full py-4 text-sm font-medium rounded-xl` — full width, taller tap target
+
+**Transition:** `transition-colors duration-200` (no ease-out addition needed on bg-only)
+
+**Forbidden:**
+- Gradient backgrounds
+- Shadow effects on CTA
+- Outline/ghost variant in nav context
+- Brand color (non-dark) CTA
+
+---
+
+### F. LOGO INTERACTION
+
+**Default:** full opacity (`opacity-100`)
+**Hover:** `hover:opacity-70 transition-opacity duration-200 ease-out`
+**Forbidden:** color shift, scale, rotation, any transform
+
+---
+
+### G. MOBILE NAV RULES
+
+**Approach:** Fullscreen overlay — not drawer, not dropdown, not slide-in panel.
+
+**Overlay spec:**
+- `fixed inset-0 z-40` — covers full viewport
+- `bg-white` — pure white, not frosted, not dark
+- Fade in: `opacity-0 → opacity-100 transition-all duration-300 ease-out`
+- Translate: `-translate-y-3 → translate-y-0` (subtle upward drift on open)
+
+**Open/close behavior:**
+- Hamburger → X toggle (animated, `duration-200`)
+- ESC key closes (keyboard listener)
+- Route change closes (pathname effect)
+- Body scroll locked (`document.body.style.overflow = 'hidden'`)
+
+**Nav links typography:**
+- All links (primary + secondary merged): `text-2xl font-medium tracking-tight`
+- Vertical rhythm: `py-3` per link, `space-y-0` container
+- Active: `text-gray-900` | Inactive: `text-gray-700 hover:text-gray-900`
+- Transition: `duration-150 ease-out`
+
+**Single link map (canonical):**
+```tsx
+[...primaryNav, ...secondaryNav].map(link => <Link ... />)
+```
+No separate primary/secondary rendering on mobile. Unified list.
+
+**Bottom bar (below nav):**
+- `border-t border-gray-100`, `pt-8`
+- Language switcher: `text-xs`, same `PL · EN` format
+- CTA: full-width dark graphite button
+- Contact email: `text-xs text-gray-400` — plain fallback (institutional address)
+
+**Accessibility:**
+- `role="dialog" aria-modal="true" aria-label="Menu nawigacyjne"`
+- `aria-hidden={!mobileOpen}` on overlay
+- `aria-expanded` on hamburger button
+- `aria-controls="mobile-nav-panel"` on trigger
+
+---
+
+### H. RESPONSIVENESS
+
+| Breakpoint | Nav | Lang Switcher | CTA | Hamburger |
+|------------|-----|--------------|-----|-----------|
+| `< md` (mobile) | Hidden | Hidden | Hidden | Visible |
+| `≥ md` (desktop) | Visible | Visible | Visible | Hidden |
+
+Mobile breakpoint: Tailwind `md` = 768px
+
+---
+
+### I. HEADER LOCK RULES
+
+**LOCKED — requires explicit authorization to change:**
+- Two-state sticky behavior and timing (`260ms`)
+- Logo position (always left)
+- Nav structure (primary/separator/secondary split)
+- CTA color `#1C1C1E`
+- Mobile fullscreen overlay approach
+- Language switcher format (`PL · EN`)
+- Canonical hover timing (`duration-200 ease-out`)
+
+**CONDITIONALLY CHANGEABLE (with justification):**
+- Nav link labels (driven by dictionary — localization OK)
+- CTA label text (dictionary key)
+- Logo file (brand update OK, keep same sizing)
+- Header height values (if brand evolution requires)
+
+**FORBIDDEN:**
+- Dropdown mega-menu
+- Animated logo
+- Bright/colored nav hover states
+- Nav underlines on all states (only active)
+- Scale transforms anywhere in header
+- Dark header background (non-scrolled state)
+- Background fills on nav links
+- Country flag language switcher
+- Additional nav items without authorization
+
+*Cross-ref: Section 21 (CANONICAL INTERACTION SYSTEM)*
+
+---
+
+## SECTION 24 — CANONICAL FOOTER SYSTEM
+
+> **Source of truth.** Footer osiągnął canonical state w maju 2026. Implementacja: `components/layout/Footer.tsx`. Kontakty chronione przez canonical security system (Section 22). Wszelkie zmiany wymagają explicit authorization i aktualizacji tej sekcji.
+
+---
+
+### A. FOOTER PHILOSOPHY
+
+Footer jest institutionalną warstwą informacyjną — nie konwersyjną. Musi komunikować:
+
+- **Institutional authority** — pełna informacja, zorganizowana, czytelna
+- **Trust architecture** — certyfikaty, dane kontaktowe, adres, zasoby
+- **Editorial density** — informacja gęsta ale spokojna, nie przytłaczająca
+- **Premium consulting** — nie startup, nie SaaS, nie marketing-heavy
+
+**Personality attributes:**
+Institutional · Editorial · Trust-oriented · Premium consulting · Strategic · Calm
+
+**Anti-patterns (forbidden):**
+- Dark flashy SaaS footer
+- Marketing-heavy "Get started today" footer
+- App-like minimalist footer (tylko copyright)
+- Startup-style pastel/gradient footer
+- Icon-grid social media wall
+
+---
+
+### B. FOOTER ARCHITECTURE
+
+Trzy warstwy, zawsze w tej kolejności:
+
+```
+┌──────────────────────────────────────────────────────┐
+│ 1. NEWSLETTER LAYER        (border-b border-gray-100) │
+├──────────────────────────────────────────────────────┤
+│ 2. MAIN INFORMATION GRID   (4-column, py-16)          │
+├──────────────────────────────────────────────────────┤
+│ 3. LEGAL LAYER             (border-t border-gray-100) │
+└──────────────────────────────────────────────────────┘
+```
+
+**Background:** `bg-white` — nigdy dark, nigdy gradient
+
+**Section dividers:** `border-gray-100` — delikatne, niewidoczne z daleka
+
+---
+
+### C. NEWSLETTER STANDARD
+
+**Philosophy:** Editorial newsletter invite — nie marketing popup, nie conversion banner.
+
+**Grid:** `md:grid-cols-[1fr_1.1fr]` — lekka asymetria na korzyść formularza, `gap-6 lg:gap-10`
+
+**Left (copy):**
+- Eyebrow: `text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400`
+- Heading: `text-xl font-semibold tracking-tight text-gray-900 max-w-sm`
+- Sub: `text-sm text-gray-500 mt-3 max-w-xs leading-relaxed`
+
+**Right (form):**
+- Input + button w jednej linii (`flex gap-2`)
+- Input: `px-4 py-3.5 text-sm border border-gray-200 rounded-lg focus:border-gray-500`
+- Button: `bg-[#1C1C1E] hover:bg-[#2D2D30] px-5 py-3.5 text-sm font-medium rounded-lg`
+- No `max-w` constraint on form — fills column
+
+**Input interaction:**
+- Focus: `focus:border-gray-500 focus:outline-none transition-colors duration-200 ease-out`
+- No glow, no shadow, no ring
+
+**Forbidden:**
+- `rounded-full` (SaaS/startup style)
+- Aggressive conversion copy ("Join 10,000+ subscribers!")
+- Background color change on hover
+- Separate submit arrow icon (text label only)
+
+---
+
+### D. INFORMATION GRID STANDARD
+
+**Grid:** `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8`
+
+**Column headings (all 4 columns):**
+`text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-5`
+
+---
+
+#### Column 1: Brand / Trust
+
+**Purpose:** Institutional identity + credentials
+
+**Contents (canonical order):**
+1. Logo link — `hover:opacity-70 transition-opacity duration-200 ease-out`
+2. Legal company name — `text-[10px] font-bold tracking-[0.12em] uppercase text-gray-600` (institutional feel)
+3. Tagline/descriptor — `text-[11px] text-gray-400 leading-relaxed`
+4. Address — `text-[11px] text-gray-400 leading-relaxed`
+5. CIPS logo — `grayscale opacity-50 hover:opacity-80 transition-opacity duration-200 ease-out`
+
+**Hierarchy rationale:** Company name gets `font-bold + text-gray-600` (darker than other body) — institutional authority signal.
+
+---
+
+#### Column 2: Navigation
+
+**Purpose:** Redundant navigation for discoverability + SEO
+
+**Contents:** All main nav links + privacy link
+**Typography:** `text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out`
+**Spacing:** `space-y-2.5`
+
+---
+
+#### Column 3: Contact
+
+**Purpose:** Full contact directory — protected by canonical security system
+
+**Sub-sections (canonical order):**
+1. **Main contact** — phone + email (`space-y-1`)
+2. **Training & conferences** (sub-label) — name + email + phone (`space-y-0.5`)
+3. **SpendGuru** (sub-label) — name + email + phone (`space-y-0.5`)
+
+**Sub-section labels:** `text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5`
+
+**Person name:** `text-gray-700 font-medium text-xs mb-1`
+
+**Contact links:** `text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out`
+
+**Spacing between sub-sections:** `space-y-5` (parent container)
+
+**SECURITY:** All emails, phones, and names MUST use `ProtectedEmail`, `ProtectedPhone`, `ProtectedPerson` from `@/components/security`. See Section 22.
+
+---
+
+#### Column 4: Resources + Social
+
+**Purpose:** Knowledge assets + minimal social presence
+
+**Resources:** `text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out`
+- External links: `↗` suffix, `target="_blank" rel="noopener noreferrer"`
+- `space-y-3 mb-10`
+
+**Social icons:**
+- No label above icons (no "SOCIAL" heading)
+- Icons: `w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-900 transition-colors duration-200 ease-out`
+- `flex items-center gap-3 mt-2`
+- SVG icons inline (no external icon library dependency)
+- Current: LinkedIn + Facebook
+
+---
+
+### E. LEGAL LAYER STANDARD
+
+**Layout:** Left-aligned only — no right-side content
+
+**Copyright:**
+`text-xs text-gray-400`
+`© {year} Profitia Management Consultants. {dict.footer.rights}`
+
+**Why no privacy link here:** Privacy link exists in Column 2 (Navigation). Duplication removed — canonical rule is single occurrence.
+
+**Container padding:** `py-5`
+
+**Forbidden:**
+- Right-side links in legal bar (privacy already in nav column)
+- Legal entity details in legal bar (belongs in brand column)
+- Large font size legal text
+
+---
+
+### F. MOBILE FOOTER RULES
+
+**Approach:** Editorial stacking — controlled collapse, consistent rhythm.
+
+**Stack order on mobile (sm → lg breakpoints):**
+```
+Newsletter (full width)
+↓
+Brand column
+↓
+Navigation column
+↓
+Contact column
+↓
+Resources + Social column
+↓
+Legal bar
+```
+
+**Grid breakpoints:**
+- Mobile: `grid-cols-1` (single column stack)
+- Tablet: `grid-cols-2` (2-column layout)
+- Desktop: `grid-cols-4`
+
+**Spacing:** `gap-10` maintained on all breakpoints — prevents compression artifacts
+
+**Forbidden:**
+- Giant whitespace between stacked columns
+- Horizontal scroll
+- Collapsed accordion mobile footer
+- Different content on mobile (same content, same structure)
+
+---
+
+### G. HOVER CONSISTENCY
+
+All interactive footer elements use canonical interaction system:
+
+| Element | Hover state | Transition |
+|---------|-------------|------------|
+| Logo | `opacity-70` | `duration-200 ease-out` |
+| Nav links | `text-gray-900` | `duration-200 ease-out` |
+| Contact links | `text-gray-900` | `duration-200 ease-out` |
+| Resource links | `text-gray-900` | `duration-200 ease-out` |
+| Social icons | `text-gray-900` | `duration-200 ease-out` |
+| CIPS logo | `opacity-80` | `duration-200 ease-out` |
+| Newsletter CTA | `bg-[#2D2D30]` | `duration-200` |
+| Newsletter input focus | `border-gray-500` | `duration-200 ease-out` |
+
+*Cross-ref: Section 21 (CANONICAL INTERACTION SYSTEM)*
+
+---
+
+### H. FOOTER LOCK RULES
+
+**LOCKED — requires explicit authorization to change:**
+- Three-section architecture (newsletter / grid / legal)
+- Four-column grid structure
+- Column assignment and ordering
+- Background: `bg-white`
+- Section dividers: `border-gray-100`
+- No social label above icons
+- No privacy link in legal bar
+- Contact protection (Section 22) — all personal data must be protected
+- Canonical hover timing (`duration-200 ease-out`)
+
+**CONDITIONALLY CHANGEABLE (with justification):**
+- Newsletter copy (dictionary-driven — localization OK)
+- Resource links (add/remove PDF assets)
+- Social platform links (add LinkedIn/Facebook/Twitter)
+- Contact sub-sections (add/remove named contacts)
+- Address data (if company moves)
+
+**FORBIDDEN:**
+- Dark footer background
+- Gradient footer background
+- Marketing-heavy conversion copy in newsletter section
+- Raw `mailto:` / `tel:` links for personal contact data
+- "SOCIAL" label above icon cluster
+- Duplicate privacy link in legal bar
+- Scale or opacity jump interactions on text links
+- Icon library imports (use inline SVG)
+
+*Cross-ref: Section 21 (CANONICAL INTERACTION SYSTEM) | Section 22 (CONTACT DATA EXPOSURE STANDARD)*
+
+---
+
+*Sekcja dodana: May 2026 | Canonical Header + Footer System — source of truth dla globalnego shell Profitia.*
+
