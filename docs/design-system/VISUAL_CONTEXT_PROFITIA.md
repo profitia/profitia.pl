@@ -842,4 +842,127 @@ Poniżej zidentyfikowane miejsca wymagające refactoru dla pełnej spójności:
 ---
 
 *Ten dokument jest żywym artefaktem — aktualizuj go gdy design system ewoluuje.*
-*Wersja: 1.0 | Ostatnia aktualizacja: May 2026*
+*Wersja: 1.1 | Ostatnia aktualizacja: May 2026*
+
+---
+
+## 20. HOMEPAGE CANONICAL STRUCTURE
+
+> **Status: LOCKED** — Kanoniczny układ strony głównej. Chroniony. Nie modyfikować bez wyraźnej instrukcji użytkownika.
+
+### Czym jest homepage Profitii
+
+Homepage (`app/(public)/page.tsx`) **nie jest** zwykłą podstroną, template page, generic landing page ani systemem reusable bloków.
+
+Homepage **jest** SIGNATURE EXPERIENCE.
+
+Definiuje:
+- brand perception całego produktu,
+- strategic positioning Profitii,
+- premium feeling i tonal DNA,
+- narrative pacing i dramaturgię,
+- executive experience C-suite,
+- visual DNA rozciągający się na wszystkie podstrony.
+
+Homepage jest bardziej:
+- **art-directed** niż inne strony,
+- **editorial** — każda sekcja wnosi narrację,
+- **cinematic** — sekcje mają dramaturgię, rytm, napięcie,
+- **narrative-driven** — nie showcase komponentów, lecz opowieść,
+- **strategic** — journey zakupowy użytkownika jest zaplanowany,
+- **premium** — wrażenie jakości droższe niż koszt.
+
+---
+
+### HOMEPAGE STRUCTURE LOCK
+
+Poniższa struktura jest **kanoniczna i zablokowana**.
+
+#### Kolejność sekcji — LOCKED
+
+| # | Sekcja | ID / opis | Klucz kompozycyjny |
+|---|--------|-----------|-------------------|
+| 1 | **Hero** | — | 2 kolumny: tekst L + visual R; badge "+20%" |
+| 2 | **Problem** | `#bzze51` | Szare tło; 7 punktów bólowych w 2 kolumnach; quote block z lewym borderem |
+| 3 | **Insight** | `#3hhwq4` | Timeline; 3 numerowane punkty w kółkach; szara linia pionowa |
+| 4 | **Pillars** | `#pillars-section` | 3 kolumny full-height; hover reveal image; efekt przyciemniania sąsiadów |
+| 5 | **Process** | `#b5xg0q` | Kroki 01–05; duże blade numery; editorial divide-y |
+| 6 | **Impact** | `#vqj89m` | Dark section `bg-gray-900`; 6 kart ze strzałkami; tonal break |
+| 7 | **Use Cases** | `#p8800w` | 4 karty; hover invert na `bg-gray-900`; kontekstowe triggery |
+| 8 | **Proof** | `#d31qlk` | Szare tło; 3 statystyki (+20%, 3–6 tyg., 12+); grid sektorów |
+| 9 | **Cases** | `#io58to` | Obraz + 3 bloki (Problem / Działanie / Efekt) |
+| 10 | **CTA** | `#g6lvxh` | Czarne tło; finalna konwersja; kanoniczne zamknięcie |
+
+---
+
+### HOMEPAGE MODIFICATION CHECKLIST
+
+Przed każdą zmianą w `app/(public)/page.tsx` odpowiedz:
+
+- [ ] Czy zmieniam kolejność sekcji? → **NIE WOLNO**
+- [ ] Czy usuwam sekcję? → **NIE WOLNO**
+- [ ] Czy dodaję nową sekcję? → **NIE WOLNO** bez wyraźnej akceptacji użytkownika
+- [ ] Czy zmieniam narrative flow? → **NIE WOLNO**
+- [ ] Czy refactoruję homepage na template/modularny system? → **NIE WOLNO**
+- [ ] Czy zmieniam tekst / copy? → **Dozwolone**
+- [ ] Czy zmieniam obrazy / placeholdery? → **Dozwolone**
+- [ ] Czy dodaję animacje / hover effects? → **Dozwolone**
+- [ ] Czy poprawiam responsiveness / accessibility? → **Dozwolone**
+- [ ] Czy zmieniam mikrospacing? → **Dozwolone**
+- [ ] Czy poprawiam SEO / semantic HTML? → **Dozwolone**
+
+**Złota zasada:**
+
+> „Czy ta zmiana narusza canonical homepage structure?"
+>
+> Jeśli TAK → NIE wdrażaj bez wyraźnej instrukcji użytkownika.
+
+---
+
+### HOMEPAGE ARCHITECTURE PROTECTION RULES
+
+#### Co jest chronione
+
+| Element | Status |
+|---------|--------|
+| Liczba sekcji (10) | LOCKED |
+| Kolejność sekcji | LOCKED |
+| Strategic flow i narrative pacing | LOCKED |
+| 3-filarowa architektura (Pillars section) | LOCKED |
+| Overall dramaturgiczny rytm | LOCKED |
+| Tonal progression sekcji | LOCKED |
+| Identyfikatory sekcji (`#bzze51`, `#b5xg0q` itd.) | LOCKED |
+| Hero 2-kolumnowy układ | LOCKED |
+| CTA `bg-black` jako domknięcie | LOCKED |
+
+#### Co można zmieniać
+
+| Element | Status |
+|---------|--------|
+| Teksty i copy | DOZWOLONE |
+| Obrazy i placeholdery | DOZWOLONE |
+| Animacje i motion polish | DOZWOLONE |
+| Hover effects | DOZWOLONE |
+| Responsiveness | DOZWOLONE |
+| Accessibility | DOZWOLONE |
+| Performance | DOZWOLONE |
+| Semantic HTML | DOZWOLONE |
+| SEO (meta, alt, headings) | DOZWOLONE |
+| Mikrospacing | DOZWOLONE |
+| Implementacja komponentów wewnętrznych | DOZWOLONE* |
+
+*Uwaga: użycie reusable components / shell / wrappers wewnątrz sekcji jest dozwolone, o ile NIE zmienia struktury, pacingu, flow ani dramaturgii strony.
+
+#### Override — kiedy wolno zmienić strukturę
+
+Zmiana struktury homepage jest dozwolona WYŁĄCZNIE gdy użytkownik:
+1. Wyraźnie i świadomie o to prosi,
+2. Zatwierdza zmianę architecture,
+3. Akceptuje zmianę narrative flow.
+
+Przypadkowe, automatyczne lub "improvement"-driven zmiany struktury są **bezwzględnie zakazane**.
+
+---
+
+*Sekcja dodana: May 2026 | Bazuje na wersji page.tsx zatwierdzonej po przywróceniu układu z referencyjnego HTML Profitii.*
+
