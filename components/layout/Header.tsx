@@ -115,7 +115,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ${
+                className={`relative text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isActive(link.href)
                     ? 'text-gray-900'
                     : 'text-gray-500 hover:text-gray-900'
@@ -139,7 +139,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[13.5px] tracking-[-0.01em] transition-colors duration-200 ${
+                className={`text-[13.5px] tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isActive(link.href)
                     ? 'text-gray-700 font-medium'
                     : 'text-gray-400 hover:text-gray-700 font-normal'
@@ -163,7 +163,7 @@ export default function Header() {
                 onClick={() => switchLocale('pl')}
                 aria-label="Przełącz na język polski"
                 aria-pressed={currentLocale === 'pl'}
-                className={`px-1 py-0.5 transition-all duration-150 leading-none ${
+                className={`px-1 py-0.5 transition-colors duration-150 ease-out leading-none ${
                   currentLocale === 'pl'
                     ? 'text-gray-900 font-semibold'
                     : 'text-gray-400 hover:text-gray-700 font-normal'
@@ -176,7 +176,7 @@ export default function Header() {
                 onClick={() => switchLocale('en')}
                 aria-label="Switch to English"
                 aria-pressed={currentLocale === 'en'}
-                className={`px-1 py-0.5 transition-all duration-150 leading-none ${
+                className={`px-1 py-0.5 transition-colors duration-150 ease-out leading-none ${
                   currentLocale === 'en'
                     ? 'text-gray-900 font-semibold'
                     : 'text-gray-400 hover:text-gray-700 font-normal'
@@ -261,7 +261,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block py-3 text-2xl font-medium tracking-tight leading-tight transition-colors duration-150 ${
+                  className={`block py-3 text-2xl font-medium tracking-tight leading-tight transition-colors duration-150 ease-out ${
                     isActive(link.href)
                       ? 'text-gray-900'
                       : 'text-gray-700 hover:text-gray-900'
@@ -281,7 +281,7 @@ export default function Header() {
                 onClick={() => switchLocale('pl')}
                 aria-pressed={currentLocale === 'pl'}
                 aria-label="Przełącz na język polski"
-                className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ${
+                className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ease-out ${
                   currentLocale === 'pl' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-gray-700 font-normal'
                 }`}
               >
@@ -292,7 +292,7 @@ export default function Header() {
                 onClick={() => switchLocale('en')}
                 aria-pressed={currentLocale === 'en'}
                 aria-label="Switch to English"
-                className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ${
+                className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ease-out ${
                   currentLocale === 'en' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-gray-700 font-normal'
                 }`}
               >

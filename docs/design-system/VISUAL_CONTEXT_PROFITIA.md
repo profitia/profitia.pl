@@ -1033,3 +1033,167 @@ NIE wolno bez wyraźnej instrukcji:
 
 *Sekcja dodana: May 2026 | Bazuje na wersji page.tsx zatwierdzonej po przywróceniu układu z referencyjnego HTML Profitii.*
 
+---
+
+## 21. CANONICAL INTERACTION SYSTEM
+
+> **Status: LOCKED** — Kanoniczny system interakcji. Obowiązuje we WSZYSTKICH komponentach platformy.
+
+### Filozofia interakcji
+
+Profitia to:
+- premium strategic advisory
+- executive editorial product
+- boutique consulting brand
+
+Interakcje mają:
+- **wzmacniać spokój** — nie dramatyzować
+- **dawać feedback** — nie przyciągać uwagi
+- **czuć się premium** — nie startupowo
+
+---
+
+### GLOBALNE REGUŁY HOVER
+
+#### Dozwolone
+
+| Zachowanie | Opis |
+|-----------|------|
+| Subtle opacity shift | Zmiana opacity: 70–90% → 100% lub odwrotnie |
+| Subtle color darkening | gray-400 → gray-700 → gray-900 (progresja) |
+| Border transition | border-gray-200 → border-gray-400 |
+| Background transition | transparent → gray-50 lub gray-900 (invert cards) |
+| Underline reveal | opacity-0 → opacity-30/50, height 1px |
+| translateY (-1px max) | Wyłącznie dla card-level hovers |
+
+#### Zakazane
+
+| Zachowanie | Powód |
+|-----------|-------|
+| `scale` hover | Za agresywne, psuje rytm |
+| `bounce` / `spring` | Playful — nie pasuje do tonu |
+| Dramatic translate | Traci spokój editorial |
+| Glow / glow shadow | Neon/gaming feel |
+| Colorful hover states | Dekoncentruje |
+| `transition-all` bez powodu | Niekonkretne, może powodować jitter |
+| Hover chaos między komponentami | Powoduje incoherent UX |
+
+---
+
+### STANDARD TIMING
+
+```
+Micro interactions (color, opacity):   180ms – 220ms  → preferred: 200ms
+Card-level transitions (bg, shadow):   260ms – 320ms  → preferred: 300ms
+Section/overlay animations:            260ms – 360ms  → preferred: 300ms
+Reveal animations:                     500ms – 600ms  → preferred: 550ms
+```
+
+### CANONICAL EASING
+
+```
+Wszystkie hover + color:   ease-out
+Reveal scroll animations:  ease (standard)
+Overlay open/close:        ease-out
+```
+
+---
+
+### HOVER STANDARDS PER ELEMENT TYPE
+
+#### Navigation links (desktop)
+
+```
+Base:   text-gray-500  font-medium
+Hover:  text-gray-900
+Active: text-gray-900 + hairline underline (opacity-30, h-px)
+Timing: duration-200 ease-out
+```
+
+#### Navigation links (mobile overlay)
+
+```
+Base:   text-gray-700  font-medium
+Hover:  text-gray-900
+Active: text-gray-900
+Timing: duration-150 ease-out
+NO movement, NO scale
+```
+
+#### Language switcher (desktop + mobile)
+
+```
+Active:   text-gray-900 font-semibold
+Inactive: text-gray-400
+Hover:    text-gray-700
+Timing:   duration-150 ease-out
+```
+
+#### CTA buttons
+
+```
+Base:   bg-[#1C1C1E] text-white
+Hover:  bg-[#2D2D30]
+Timing: duration-200 ease-out
+NO scale, NO glow
+```
+
+#### Cards (PremiumCard / hover-invert)
+
+```
+Base:   border-gray-200 bg-white
+Hover:  bg-gray-900 border-gray-900 text-white shadow-lg
+Timing: duration-300 ease-out
+translateY: none (reserved only if explicitly added to specific card)
+```
+
+#### Article / Insights cards
+
+```
+Image hover:  scale-105 + brightness-75
+Timing:       duration-700 ease-out (cinematic, slow and refined)
+Text/link:    color transition duration-200
+```
+
+#### Logo
+
+```
+Hover:  opacity-70
+Timing: duration-200 ease-out
+```
+
+---
+
+### IMPLEMENTATION REFERENCE
+
+Motion tokens: `styles/tokens/motion.ts`
+
+Canonical token mapping:
+
+| Token | Tailwind equivalent | Used for |
+|-------|-------------------|---------|
+| `hover.soft` | `hover:text-gray-900 transition-colors duration-200` | Nav links, text links |
+| `hover.button` | `transition-colors duration-200` | CTA buttons |
+| `hover.card` | `hover:bg-gray-900 ... transition-all duration-300` | PremiumCards |
+| `hover.icon` | `hover:text-gray-600 transition-colors duration-200` | Icons, small elements |
+| `transition.standard` | `transition-colors duration-200` | Default |
+| `transition.premium` | `transition-all duration-300` | Cards, surfaces |
+
+---
+
+### CONSISTENCY RULE
+
+> Każdy nowy komponent MUSI używać kanonicznych timing/easing z tej sekcji.
+> Komponenty z niezgodnym hover są traktowane jako defekt, nie feature.
+
+Przed commitowaniem nowego komponentu:
+- [ ] Hover timing: 150–220ms (micro) lub 260–320ms (card)?
+- [ ] Easing: ease-out?
+- [ ] Brak scale / bounce / glow?
+- [ ] Color progression zgodna z paletą (gray-400 → gray-700 → gray-900)?
+- [ ] Spójne z innymi komponentami tego samego typu?
+
+---
+
+*Sekcja dodana: May 2026 | Canonical interaction standard — obowiązuje od tego momentu we wszystkich komponentach.*
+
