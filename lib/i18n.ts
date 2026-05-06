@@ -1,4 +1,4 @@
-import type { Locale } from '@/middleware'
+export type Locale = 'pl' | 'en'
 
 export type Dictionary = typeof import('@/dictionaries/pl.json')
 

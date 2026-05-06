@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
-import type { Locale } from '@/middleware'
 
 export const dynamic = 'force-dynamic'
 
 type Props = {
-  params: Promise<{ lang: Locale; slug: string }>
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -23,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ArticlePage({ params }: Props) {
-  const { lang, slug } = await params
+  const { slug } = await params
 
   const article = await prisma.article.findUnique({
     where: { slug, published: true },
@@ -35,9 +34,9 @@ export default async function ArticlePage({ params }: Props) {
     <article className="py-20">
       <div className="container-base max-w-3xl">
         <time className="text-sm text-gray-400">
-          {new Date(article.createdAt).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-GB')}
+          {new Date(article.createdAt).toLocaleDateString('pl-PL')}
         </time>
-        <h1 className="text-4xl font-heading font-bold text-brand-primary mt-4 mb-8">
+        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mt-4 mb-8">
           {article.title}
         </h1>
         {/* Content rendered as HTML — sanitization to be added before production */}

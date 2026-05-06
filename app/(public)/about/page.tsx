@@ -1,19 +1,8 @@
 import type { Metadata } from 'next'
-import { getDictionary } from '@/lib/i18n'
-import type { Locale } from '@/middleware'
 
-type Props = { params: Promise<{ lang: Locale }> }
+export const metadata: Metadata = { title: 'O nas' }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { lang } = await params
-  const dict = await getDictionary(lang)
-  return { title: dict.nav.about }
-}
-
-export default async function AboutPage({ params }: Props) {
-  const { lang } = await params
-  const dict = await getDictionary(lang)
-
+export default function AboutPage() {
   return (
     <section className="py-28">
       <div className="container-base max-w-3xl">
@@ -21,7 +10,7 @@ export default async function AboutPage({ params }: Props) {
           O firmie
         </p>
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mb-8">
-          {dict.nav.about}
+          O nas
         </h1>
         {/* Content placeholder */}
         <p className="text-gray-500 text-lg leading-relaxed">— Treść sekcji &quot;O nas&quot; —</p>

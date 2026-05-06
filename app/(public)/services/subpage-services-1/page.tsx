@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import type { Locale } from '@/middleware'
 
 import HeroSection from '@/components/services/subpage-services-1/HeroSection'
 import OverviewSection from '@/components/services/subpage-services-1/OverviewSection'
@@ -26,7 +25,7 @@ const PAGE_CONTENT = {
     headline: 'Zakupy, które realnie poprawiają wynik',
     subtitle:
       'Analizujemy Twoje kategorie zakupowe, identyfikujemy ukryty potencjał i pomagamy go zrealizować — od diagnozy po wdrożenie.',
-    ctaPrimary: { label: 'Umów rozmowę', href: '/pl/contact' },
+    ctaPrimary: { label: 'Umów rozmowę', href: '/contact' },
     ctaSecondary: { label: 'Zobacz podejście', href: '#overview' },
     imageSrc: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=80',
     imageAlt: 'Spotkanie strategiczne — doradztwo zakupowe',
@@ -181,7 +180,7 @@ const PAGE_CONTENT = {
         ),
         title: 'Szkolenia zakupowe',
         description: 'Warsztaty negocjacyjne i szkolenia dla zespołów zakupowych oparte na realnych case studies.',
-        href: '/pl/services',
+        href: '/services',
       },
       {
         icon: (
@@ -191,7 +190,7 @@ const PAGE_CONTENT = {
         ),
         title: 'SpendGuru — narzędzie analityczne',
         description: 'Platforma do analizy wydatków i monitorowania rynku w czasie rzeczywistym.',
-        href: '/pl/services',
+        href: '/services',
       },
       {
         icon: (
@@ -201,22 +200,20 @@ const PAGE_CONTENT = {
         ),
         title: 'Strategia sourcingowa',
         description: 'Budowanie długoterminowej strategii zakupowej dopasowanej do skali i modelu biznesowego.',
-        href: '/pl/services',
+        href: '/services',
       },
     ],
   },
   cta: {
     headline: 'Gotowy na lepsze wyniki zakupowe?',
     subtitle: 'Zacznijmy od jednej kategorii. Pokażemy potencjał zanim podejmiesz decyzję.',
-    ctaPrimary: { label: 'Umów bezpłatną konsultację', href: '/pl/contact' },
+    ctaPrimary: { label: 'Umów bezpłatną konsultację', href: '/contact' },
     ctaSecondary: { label: 'Napisz do nas', href: 'mailto:kontakt@profitia.pl' },
     note: 'Bez zobowiązań. Odpowiadamy w ciągu 24 godzin.',
   },
 } as const
 
 // ─────────────────────────────────────────────────────────────────────────────
-
-type Props = { params: Promise<{ lang: Locale }> }
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -225,19 +222,17 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function SubpageServices1({ params }: Props) {
-  const { lang } = await params
+export default function SubpageServices1() {
   const c = PAGE_CONTENT
 
   return (
     <>
       <HeroSection
-        lang={lang}
         breadcrumb={c.hero.breadcrumb}
         label={c.hero.label}
         headline={c.hero.headline}
         subtitle={c.hero.subtitle}
-        ctaPrimary={{ ...c.hero.ctaPrimary, href: `/${lang}/contact` }}
+        ctaPrimary={c.hero.ctaPrimary}
         ctaSecondary={c.hero.ctaSecondary}
         imageSrc={c.hero.imageSrc}
         imageAlt={c.hero.imageAlt}
@@ -293,7 +288,6 @@ export default async function SubpageServices1({ params }: Props) {
       />
 
       <RelatedServicesSection
-        lang={lang}
         label={c.relatedServices.label}
         headline={c.relatedServices.headline}
         services={[...c.relatedServices.services]}
@@ -302,7 +296,7 @@ export default async function SubpageServices1({ params }: Props) {
       <CtaSection
         headline={c.cta.headline}
         subtitle={c.cta.subtitle}
-        ctaPrimary={{ ...c.cta.ctaPrimary, href: `/${lang}/contact` }}
+        ctaPrimary={c.cta.ctaPrimary}
         ctaSecondary={c.cta.ctaSecondary}
         note={c.cta.note}
       />

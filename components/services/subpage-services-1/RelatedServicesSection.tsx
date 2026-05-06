@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import type { Locale } from '@/middleware'
 import RevealWrapper from './RevealWrapper'
 
 interface ServiceCard {
@@ -10,7 +9,6 @@ interface ServiceCard {
 }
 
 interface Props {
-  lang: Locale
   label: string
   headline: string
   services: ServiceCard[]

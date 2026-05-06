@@ -1,10 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Locale } from '@/middleware'
 import RevealWrapper from './RevealWrapper'
 
 interface Props {
-  lang: Locale
   breadcrumb: string
   label: string
   headline: string
@@ -16,7 +14,6 @@ interface Props {
 }
 
 export default function HeroSection({
-  lang,
   breadcrumb,
   label,
   headline,
@@ -38,11 +35,11 @@ export default function HeroSection({
               className="flex items-center gap-2 text-xs text-gray-400 mb-10"
               aria-label="Breadcrumb"
             >
-              <Link href={`/${lang}`} className="hover:text-gray-600 transition-colors duration-200">
+              <Link href="/" className="hover:text-gray-600 transition-colors duration-200">
                 Strona główna
               </Link>
               <span>/</span>
-              <Link href={`/${lang}/services`} className="hover:text-gray-600 transition-colors duration-200">
+              <Link href="/services" className="hover:text-gray-600 transition-colors duration-200">
                 Usługi
               </Link>
               <span>/</span>

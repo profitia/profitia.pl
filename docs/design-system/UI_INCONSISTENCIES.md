@@ -1,6 +1,6 @@
 # UI INCONSISTENCIES — Profitia Frontend Audit
 > **Status:** Living document | Version 2.0 | May 2026
-> **Last audited:** 6 May 2026 (Sprint 2)
+> **Last audited:** 7 May 2026 (Sprint 3)
 > **Scope:** All files under `app/`, `components/`, `styles/`
 > **Reference:** `docs/design-system/VISUAL_CONTEXT_PROFITIA.md`
 
@@ -271,6 +271,60 @@ Each entry has:
 
 **Sprint May 2026 resolved:** 9/22 issues (all P1 + I-01, I-02, I-05)
 **Sprint 2 May 2026 resolved:** Composition system created (not issue-resolution — architecture build)
+**Sprint 3 May 2026 resolved:** Architecture Alignment — global app shell consolidation (see below)
+
+---
+
+## SPRINT 3 — ARCHITECTURE ALIGNMENT (7 May 2026)
+
+Goal: stitch the entire app into one coherent system. Not redesign — consolidation.
+
+### ✅ S3-01 — Locale routing flattened
+- **What:** Removed `/pl/` and `/en/` URL prefixes. Renamed `app/[lang]/` → `app/(public)/` route group.
+- **URLs before:** `/pl/contact`, `/pl/services`, `/en/about` etc.
+- **URLs now:** `/contact`, `/services`, `/about`, `/blog`, `/`
+- **middleware.ts:** Simplified — no locale detection/redirect. Exports nothing.
+- **lib/i18n.ts:** Now owns `Locale` type (was imported from `@/middleware` everywhere — now fixed).
+- **types/index.ts:** Updated to import `Locale` from `@/lib/i18n`.
+- **All `app/(public)/` pages:** Removed `lang` params, `getDictionary` calls, hardcoded Polish content.
+
+### ✅ S3-02 — Header unified (static hrefs + mobile nav added)
+- **File:** `components/layout/Header.tsx`
+- **Changes:**
+  - Removed `lang: Locale` and `dict: Dictionary` props — component is now standalone
+  - `NAV_LINKS` array: static hrefs (`/`, `/services`, `/about`, `/blog`, `/contact`)
+  - Added `usePathname()` for active link highlighting
+  - Added responsive hamburger menu with mobile nav panel (previously `hidden md:flex`, no mobile nav at all)
+  - Mobile panel: slide-in via conditional render, closes on link click, ARIA attributes
+  - `'use client'` directive added (needed for useState/usePathname)
+
+### ✅ S3-03 — Footer unified (static hrefs)
+- **File:** `components/layout/Footer.tsx`
+- **Changes:**
+  - Removed `lang: Locale` and `dict: Dictionary` props
+  - Static hrefs, hardcoded Polish content
+  - Contact info added: biuro@profitia.pl, +48 787 417 293
+  - Background `#242F44` preserved, spacing improved (py-16, gap-12)
+
+### ✅ S3-04 — Shell wrapper system created
+- **Path:** `components/shell/index.tsx`
+- **Exports:** `PageWrapper`, `SectionWrapper`, `DarkSectionWrapper`, `ContentWrapper`, `CTAWrapper`, `HeroWrapper`
+- **Purpose:** Canonical layout primitives enforcing consistent spacing, container widths, tonal rhythm
+- **Tonal rhythm documented:** `white → gray-50 → white → gray-900 → black CTA → navy footer`
+
+### ✅ S3-05 — Service subpage lang cleanup
+- **Files:** `components/services/subpage-services-1/HeroSection.tsx`, `RelatedServicesSection.tsx`, `app/(public)/services/subpage-services-1/page.tsx`
+- **Changes:** Removed `lang: Locale` prop from HeroSection + RelatedServicesSection. Breadcrumb hrefs now static (`/`, `/services`). All `/pl/contact` and `/pl/services` hrefs fixed to `/contact`, `/services`.
+
+### ✅ S3-06 — Blog legacy CSS classes fixed
+- **Files:** `app/(public)/blog/page.tsx`, `app/(public)/blog/[slug]/page.tsx`
+- **What:** Removed Sprint 1 leftovers: `font-heading`, `font-bold`, `text-brand-primary`. Now using `font-semibold tracking-tight text-gray-900` per design system. Date locale hardcoded to `'pl-PL'`.
+
+### ✅ S3-07 — EditorialPlaceholder component
+- **File:** `components/ui/EditorialPlaceholder.tsx`
+- **Exported from:** `components/ui/index.ts`
+- **Props:** `aspect` (16/9, 4/3, 3/2, 1/1, square, portrait), `label`, `size`, `tone` (subtle/deep/warm)
+- **Design:** Gradient base + subtle grid texture + corner ratio mark. Intentionally premium — not a gray box.
 
 ---
 
@@ -350,7 +404,17 @@ Sprint 2 was architectural, not issue-resolution. Created the full modular compo
 5. ✅ Image Art Direction — `docs/design-system/IMAGE_ART_DIRECTION.md`
 6. ✅ Service Page System — 8 components in `components/templates/services/`
 
-### Sprint 3 — First Real Pages Using the System (P3 items)
+### Sprint 3 ✅ — Architecture Alignment (completed 7 May 2026)
+1. ✅ Locale routing flattened — `app/[lang]/` → `app/(public)/`, clean `/services`, `/about` etc. URLs
+2. ✅ Header unified — static hrefs, mobile hamburger nav added
+3. ✅ Footer unified — static hrefs, real contact info
+4. ✅ Shell wrapper system — `PageWrapper`, `SectionWrapper`, `DarkSectionWrapper`, `ContentWrapper`, `HeroWrapper`
+5. ✅ Service subpage lang cleanup — `HeroSection` + `RelatedServicesSection` props cleaned
+6. ✅ Blog legacy CSS fixed — `font-heading`, `text-brand-primary` removed
+7. ✅ `EditorialPlaceholder` component — premium cinematic placeholder in `components/ui/`
+8. ✅ TypeScript: 0 errors after cleanup
+
+### Sprint 4 — First Real Pages Using the System (P3 items)
 **Goal:** Build actual content pages using Section Library + Templates.
 No custom layouts — only system composition.
 

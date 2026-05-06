@@ -1,19 +1,8 @@
 import type { Metadata } from 'next'
-import { getDictionary } from '@/lib/i18n'
-import type { Locale } from '@/middleware'
 
-type Props = { params: Promise<{ lang: Locale }> }
+export const metadata: Metadata = { title: 'Kontakt' }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { lang } = await params
-  const dict = await getDictionary(lang)
-  return { title: dict.nav.contact }
-}
-
-export default async function ContactPage({ params }: Props) {
-  const { lang } = await params
-  const dict = await getDictionary(lang)
-
+export default function ContactPage() {
   return (
     <section className="py-28">
       <div className="container-base max-w-2xl">
@@ -21,13 +10,13 @@ export default async function ContactPage({ params }: Props) {
           Kontakt
         </p>
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mb-8">
-          {dict.nav.contact}
+          Kontakt
         </h1>
         {/* Contact form — placeholder, form logic added later */}
         <form className="space-y-6" aria-label="Formularz kontaktowy">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              {dict.contact.form.name}
+              Imię i nazwisko
             </label>
             <input
               id="name"
@@ -39,7 +28,7 @@ export default async function ContactPage({ params }: Props) {
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              {dict.contact.form.email}
+              Adres e-mail
             </label>
             <input
               id="email"
@@ -51,7 +40,7 @@ export default async function ContactPage({ params }: Props) {
           </div>
           <div>
             <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-              {dict.contact.form.message}
+              Wiadomość
             </label>
             <textarea
               id="message"
@@ -62,7 +51,7 @@ export default async function ContactPage({ params }: Props) {
             />
           </div>
           <button type="submit" className="btn-primary w-full">
-            {dict.contact.form.submit}
+            Wyślij wiadomość
           </button>
         </form>
       </div>

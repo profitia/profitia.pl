@@ -1,6 +1,6 @@
 // Shared TypeScript types for the Profitia application
 
-import type { Locale } from '@/middleware'
+import type { Locale } from '@/lib/i18n'
 
 // Re-export for convenience
 export type { Locale }
