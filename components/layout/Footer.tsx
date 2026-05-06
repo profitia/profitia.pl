@@ -44,7 +44,7 @@ export default function Footer() {
           SECTION 1 — NEWSLETTER
           ══════════════════════════════════════════════════ */}
       <div className="border-b border-gray-100">
-        <div className="container-base py-14 grid md:grid-cols-2 gap-10 items-center">
+        <div className="container-base py-12 grid md:grid-cols-[1fr_1.1fr] gap-6 lg:gap-10 items-center">
           <div>
             <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-4">
               {dict.footer.newsletter.eyebrow}
@@ -59,7 +59,7 @@ export default function Footer() {
           <div>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="flex gap-2 max-w-md"
+              className="flex gap-2"
               aria-label="Newsletter"
             >
               <input
@@ -67,11 +67,11 @@ export default function Footer() {
                 required
                 placeholder={dict.footer.newsletter.placeholder}
                 aria-label={dict.footer.newsletter.placeholder}
-                className="flex-1 min-w-0 px-4 py-3 text-sm bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-400 transition-colors duration-200 ease-out"
+                className="flex-1 min-w-0 px-4 py-3.5 text-sm bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 transition-colors duration-200 ease-out"
               />
               <button
                 type="submit"
-                className="px-5 py-3 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
+                className="px-5 py-3.5 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
               >
                 {dict.footer.newsletter.button}
               </button>
@@ -101,7 +101,7 @@ export default function Footer() {
                 className="h-9 w-auto"
               />
             </Link>
-            <p className="text-[10.5px] font-semibold tracking-wide uppercase text-gray-400 leading-relaxed mb-3">
+            <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-gray-600 leading-relaxed mb-3">
               Profitia Management Consultants<br />
               Mazurowski i Wspólnicy Sp. J.
             </p>
@@ -153,10 +153,10 @@ export default function Footer() {
             <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-5">
               {dict.footer.contact}
             </p>
-            <div className="space-y-7 text-sm">
+            <div className="space-y-5 text-sm">
 
               {/* Main contact */}
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <a
                   href="tel:+48533747340"
                   className="block text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
@@ -173,11 +173,11 @@ export default function Footer() {
 
               {/* Training */}
               <div>
-                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-2">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
                   {dict.footer.contactTraining}
                 </p>
-                <p className="text-gray-800 font-medium mb-1">Agnieszka Tworzyńska</p>
-                <div className="space-y-1">
+                <p className="text-gray-700 font-medium text-xs mb-1">Agnieszka Tworzyńska</p>
+                <div className="space-y-0.5">
                   <a
                     href="mailto:agnieszka.tworzynska@profitia.pl"
                     className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
@@ -195,11 +195,11 @@ export default function Footer() {
 
               {/* SpendGuru */}
               <div>
-                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-2">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
                   {dict.footer.contactSpendGuru}
                 </p>
-                <p className="text-gray-800 font-medium mb-1">Tomasz Uściński</p>
-                <div className="space-y-1">
+                <p className="text-gray-700 font-medium text-xs mb-1">Tomasz Uściński</p>
+                <div className="space-y-0.5">
                   <a
                     href="mailto:tomasz.uscinski@profitia.pl"
                     className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
@@ -241,10 +241,7 @@ export default function Footer() {
               </a>
             </div>
 
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-4">
-              Social
-            </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mt-2">
               <a
                 href="https://www.linkedin.com/company/profitia-management-consultants"
                 target="_blank"
@@ -272,18 +269,10 @@ export default function Footer() {
           SECTION 3 — LEGAL BAR
           ══════════════════════════════════════════════════ */}
       <div className="border-t border-gray-100">
-        <div className="container-base py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div className="container-base py-5">
           <span className="text-xs text-gray-400">
             © {new Date().getFullYear()} Profitia Management Consultants. {dict.footer.rights}
           </span>
-          <div className="flex gap-5">
-            <Link
-              href={`${prefix}/privacy`}
-              className="text-xs text-gray-400 hover:text-gray-700 transition-colors duration-200 ease-out"
-            >
-              {dict.footer.privacy}
-            </Link>
-          </div>
         </div>
       </div>
 
