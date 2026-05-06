@@ -1,8 +1,16 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
 // Locale routing is intentionally disabled — all routes live at the root level.
-// This middleware is a required pass-through for the Next.js runtime.
-export function middleware(_request: NextRequest) {
+// /en redirect is a temporary compatibility shim; locale routing is a future sprint.
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
+
+  // Redirect /en and /en/* to the root (English locale sprint is future work)
+  if (pathname === '/en' || pathname.startsWith('/en/')) {
+    const destination = pathname.slice(3) || '/'
+    return NextResponse.redirect(new URL(destination, request.url), 308)
+  }
+
   return NextResponse.next()
 }
 
