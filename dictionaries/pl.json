@@ -17,11 +17,22 @@
     "en": "EN"
   },
   "footer": {
-    "tagline": "Doradztwo zakupowe i negocjacyjne dla firm, które chcą budować trwałą przewagę kosztową.",
+    "tagline": "Doradztwo zakupowe i negocjacyjne dla organizacji, które chcą budować trwałą przewagę kosztową.",
     "navigation": "Nawigacja",
     "contact": "Kontakt",
-    "rights": "Wszelkie prawa zastrzeżone.",
-    "privacy": "Polityka prywatności"
+    "rights": "Wszystkie prawa zastrzeżone.",
+    "privacy": "Polityka prywatności",
+    "career": "Kariera",
+    "resources": "Materiały",
+    "contactTraining": "Szkolenia i konferencje",
+    "contactSpendGuru": "SpendGuru",
+    "newsletter": {
+      "eyebrow": "Insights",
+      "heading": "Otrzymuj analizy dotyczące zakupów, negocjacji i rynku dostawców.",
+      "sub": "Bez marketingu. Tylko wartościowe obserwacje dla osób odpowiedzialnych za zakupy i koszty.",
+      "placeholder": "Twój adres e-mail",
+      "button": "Zapisz się"
+    }
   },
   "contact": {
     "form": {

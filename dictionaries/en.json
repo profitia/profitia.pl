@@ -21,7 +21,18 @@
     "navigation": "Navigation",
     "contact": "Contact",
     "rights": "All rights reserved.",
-    "privacy": "Privacy policy"
+    "privacy": "Privacy policy",
+    "career": "Careers",
+    "resources": "Resources",
+    "contactTraining": "Training & conferences",
+    "contactSpendGuru": "SpendGuru",
+    "newsletter": {
+      "eyebrow": "Insights",
+      "heading": "Receive analysis on procurement, negotiation and supplier markets.",
+      "sub": "No marketing. Only valuable perspectives for procurement and cost decision-makers.",
+      "placeholder": "Your email address",
+      "button": "Subscribe"
+    }
   },
   "contact": {
     "form": {
