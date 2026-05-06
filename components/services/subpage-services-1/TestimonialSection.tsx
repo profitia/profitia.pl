@@ -10,37 +10,30 @@ interface Props {
 
 export default function TestimonialSection({ quote, author, role, metric, metricLabel }: Props) {
   return (
-    <section className="py-24 bg-white border-t border-gray-100">
+    <section className="py-28 bg-gray-900 text-white border-t border-gray-800">
       <div className="container-base">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl">
           <RevealWrapper>
-            {/* Quote mark */}
-            <svg
-              className="w-10 h-10 text-brand-light mx-auto mb-8"
-              fill="currentColor"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <path d="M10 8H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4l-2 6h4l2-6a2 2 0 0 0 0-1V10a2 2 0 0 0-2-2zm18 0h-6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4l-2 6h4l2-6a2 2 0 0 0 0-1V10a2 2 0 0 0-2-2z" />
-            </svg>
+            <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-500 mb-12">
+              Opinia klienta
+            </p>
 
-            <blockquote className="text-xl md:text-2xl font-heading font-semibold text-brand-primary leading-relaxed tracking-tight mb-8">
+            <blockquote className="text-2xl md:text-3xl font-semibold tracking-tight leading-snug text-white mb-10">
               &ldquo;{quote}&rdquo;
             </blockquote>
 
-            <div className="flex items-center justify-center gap-4">
-              <div className="w-10 h-px bg-gray-300" />
-              <div className="text-center">
-                <p className="text-sm font-semibold text-brand-dark">{author}</p>
+            <div className="flex items-center gap-5">
+              <div className="w-8 h-px bg-gray-700" />
+              <div>
+                <p className="text-sm font-medium text-white">{author}</p>
                 <p className="text-xs text-gray-500 mt-0.5">{role}</p>
               </div>
-              <div className="w-10 h-px bg-gray-300" />
             </div>
 
             {metric && (
-              <div className="mt-12 inline-block px-8 py-5 bg-brand-light border border-blue-200 rounded-xl">
-                <p className="text-3xl font-heading font-bold text-brand-primary mb-1">{metric}</p>
-                <p className="text-xs text-gray-500">{metricLabel}</p>
+              <div className="mt-16 pt-12 border-t border-gray-800 flex items-baseline gap-5">
+                <p className="text-5xl font-semibold tracking-tight text-white">{metric}</p>
+                <p className="text-sm text-gray-400 max-w-[200px] leading-relaxed">{metricLabel}</p>
               </div>
             )}
           </RevealWrapper>

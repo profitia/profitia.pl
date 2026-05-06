@@ -18,34 +18,41 @@ interface Props {
 
 export default function RelatedServicesSection({ label, headline, services }: Props) {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-28 bg-white border-t border-gray-100">
       <div className="container-base">
         <RevealWrapper>
-          <p className="text-xs font-medium tracking-[0.22em] uppercase text-brand-secondary mb-5 text-center">
+          <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">
             {label}
           </p>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-primary leading-tight tracking-tight mb-16 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 leading-tight mb-16">
             {headline}
           </h2>
         </RevealWrapper>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {services.map((service, i) => (
-            <RevealWrapper key={i} delay={((i + 1) as 1 | 2 | 3)}>
+            <RevealWrapper key={i} delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}>
               <Link
                 href={service.href}
-                className="group block h-full p-6 border border-gray-200 rounded-xl bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                className="group block h-full border border-gray-200 rounded-xl p-8 transition-all duration-300 hover:bg-gray-900 hover:border-gray-900 hover:shadow-lg"
               >
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-brand-light text-brand-secondary mb-5 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-200">
+                <div className="mb-5 text-gray-400 group-hover:text-gray-500 transition-colors">
                   {service.icon}
                 </div>
-                <h3 className="text-lg font-heading font-semibold text-brand-primary mb-2 group-hover:text-brand-secondary transition-colors duration-200">
+                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-white mb-3 transition-colors tracking-tight">
                   {service.title}
                 </h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-5">{service.description}</p>
-                <span className="text-sm font-medium text-brand-secondary group-hover:text-brand-primary transition-colors duration-200 flex items-center gap-1">
+                <p className="text-sm text-gray-600 group-hover:text-gray-300 leading-relaxed transition-colors mb-6">
+                  {service.description}
+                </p>
+                <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors flex items-center gap-1.5">
                   Dowiedz się więcej
-                  <svg className="w-3.5 h-3.5 translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-3.5 h-3.5 translate-x-0 group-hover:translate-x-1 transition-transform duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </span>

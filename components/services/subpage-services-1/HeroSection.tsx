@@ -27,69 +27,81 @@ export default function HeroSection({
   imageAlt,
 }: Props) {
   return (
-    <section className="bg-brand-primary text-white pt-16 pb-0 overflow-hidden">
-      <div className="container-base">
-        {/* Breadcrumb */}
-        <RevealWrapper>
-          <nav className="text-sm text-blue-300 mb-10 flex items-center gap-2" aria-label="Breadcrumb">
-            <Link href={`/${lang}`} className="hover:text-white transition-colors duration-200">
-              Strona główna
-            </Link>
-            <span className="text-blue-500">/</span>
-            <Link href={`/${lang}/services`} className="hover:text-white transition-colors duration-200">
-              Usługi
-            </Link>
-            <span className="text-blue-500">/</span>
-            <span className="text-white">{breadcrumb}</span>
-          </nav>
-        </RevealWrapper>
+    <section className="bg-white overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
-          {/* Left: content */}
-          <div className="pb-16 lg:pb-24">
-            <RevealWrapper delay={1}>
-              <p className="text-xs font-medium tracking-[0.22em] uppercase text-blue-300 mb-6">
-                {label}
-              </p>
-            </RevealWrapper>
-            <RevealWrapper delay={2}>
-              <h1 className="text-4xl md:text-5xl lg:text-[3.25rem] font-heading font-bold leading-[1.08] tracking-tight mb-7">
-                {headline}
-              </h1>
-            </RevealWrapper>
-            <RevealWrapper delay={3}>
-              <p className="text-blue-200 text-lg leading-relaxed mb-10 max-w-lg">
-                {subtitle}
-              </p>
-            </RevealWrapper>
-            <RevealWrapper delay={4}>
-              <div className="flex flex-wrap gap-4">
-                <Link href={ctaPrimary.href} className="btn-primary bg-white text-brand-primary hover:bg-brand-light border-0">
-                  {ctaPrimary.label}
-                </Link>
-                <Link
-                  href={ctaSecondary.href}
-                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-blue-400 text-blue-200 font-medium rounded-lg hover:border-white hover:text-white transition-colors duration-200"
-                >
-                  {ctaSecondary.label}
-                </Link>
-              </div>
-            </RevealWrapper>
-          </div>
+        {/* Left: content */}
+        <div className="flex flex-col justify-center px-6 md:px-10 lg:px-14 py-20 lg:py-0 lg:min-h-[calc(100vh-64px)]">
 
-          {/* Right: image */}
-          <RevealWrapper delay={2} className="relative h-[340px] md:h-[420px] lg:h-[480px] rounded-t-2xl overflow-hidden">
-            <Image
-              src={imageSrc}
-              alt={imageAlt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/40 to-transparent" />
+          <RevealWrapper>
+            <nav
+              className="flex items-center gap-2 text-xs text-gray-400 mb-10"
+              aria-label="Breadcrumb"
+            >
+              <Link href={`/${lang}`} className="hover:text-gray-600 transition-colors duration-200">
+                Strona główna
+              </Link>
+              <span>/</span>
+              <Link href={`/${lang}/services`} className="hover:text-gray-600 transition-colors duration-200">
+                Usługi
+              </Link>
+              <span>/</span>
+              <span className="text-gray-600">{breadcrumb}</span>
+            </nav>
+          </RevealWrapper>
+
+          <RevealWrapper delay={1}>
+            <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-6">
+              {label}
+            </p>
+          </RevealWrapper>
+
+          <RevealWrapper delay={2}>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mb-7 max-w-lg">
+              {headline}
+            </h1>
+          </RevealWrapper>
+
+          <RevealWrapper delay={3}>
+            <p className="text-lg text-gray-600 leading-relaxed mb-10 max-w-md">
+              {subtitle}
+            </p>
+          </RevealWrapper>
+
+          <RevealWrapper delay={4}>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href={ctaPrimary.href}
+                className="inline-block bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
+              >
+                {ctaPrimary.label}
+              </Link>
+              <Link
+                href={ctaSecondary.href}
+                className="inline-block border border-gray-300 text-gray-700 rounded-xl px-6 py-3.5 font-medium text-sm hover:border-gray-900 hover:text-gray-900 transition-colors duration-200"
+              >
+                {ctaSecondary.label}
+              </Link>
+            </div>
           </RevealWrapper>
         </div>
+
+        {/* Right: image — full bleed, cinematic */}
+        <RevealWrapper
+          delay={2}
+          className="relative w-full h-[60vh] lg:h-[calc(100vh-64px)] overflow-hidden"
+        >
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent" />
+        </RevealWrapper>
+
       </div>
     </section>
   )

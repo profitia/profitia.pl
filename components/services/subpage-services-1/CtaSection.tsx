@@ -11,34 +11,37 @@ interface Props {
 
 export default function CtaSection({ headline, subtitle, ctaPrimary, ctaSecondary, note }: Props) {
   return (
-    <section className="bg-brand-primary text-white py-24">
+    <section className="py-24 lg:py-32 bg-black text-white">
       <div className="container-base text-center">
         <RevealWrapper>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight tracking-tight mb-6 max-w-2xl mx-auto">
+          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gray-600 mb-7">
+            Następny krok
+          </p>
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-7 max-w-2xl mx-auto leading-tight">
             {headline}
           </h2>
-          <p className="text-blue-200 text-lg leading-relaxed mb-10 max-w-lg mx-auto">
+          <p className={`text-gray-400 text-lg max-w-lg mx-auto leading-relaxed ${note ? 'mb-4' : 'mb-12'}`}>
             {subtitle}
           </p>
+          {note && (
+            <p className="text-gray-600 text-sm mb-12">{note}</p>
+          )}
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href={ctaPrimary.href}
-              className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-brand-primary font-medium rounded-lg hover:bg-brand-light transition-colors duration-200"
+              className="inline-block bg-white text-black rounded-xl px-8 py-4 font-medium text-base hover:bg-gray-100 transition-colors duration-200"
             >
               {ctaPrimary.label}
             </Link>
             {ctaSecondary && (
               <Link
                 href={ctaSecondary.href}
-                className="inline-flex items-center justify-center px-7 py-3.5 border-2 border-blue-400 text-blue-200 font-medium rounded-lg hover:border-white hover:text-white transition-colors duration-200"
+                className="inline-block border border-gray-700 text-gray-300 rounded-xl px-8 py-4 font-medium text-base hover:border-gray-400 hover:text-white transition-colors duration-200"
               >
                 {ctaSecondary.label}
               </Link>
             )}
           </div>
-          {note && (
-            <p className="text-blue-400 text-sm mt-8">{note}</p>
-          )}
         </RevealWrapper>
       </div>
     </section>
