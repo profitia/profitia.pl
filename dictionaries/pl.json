@@ -1,8 +1,8 @@
 {
   "site": {
     "name": "Profitia",
-    "tagline": "Profitia - Doradztwo w zakupach",
-    "description": "Profitia to firma doradcza specjalizująca się w optymalizacji zakupów, negocjacjach z dostawcami i budowaniu przewagi kosztowej."
+    "tagline": "Profitia — Doradztwo zakupowe",
+    "description": "Profitia — doradztwo zakupowe. Pomagamy organizacjom podejmować lepsze decyzje zakupowe, łącząc doświadczenie, dane i technologię."
   },
   "nav": {
     "home": "Strona główna",
@@ -12,29 +12,13 @@
     "contact": "Kontakt",
     "cta": "Umów spotkanie"
   },
-  "home": {
-    "hero": {
-      "title": "Lepsze zakupy. Lepsze negocjacje. Lepszy wynik.",
-      "subtitle": "Pomagamy firmom obniżać koszty zakupów i budować przewagę w negocjacjach z dostawcami.",
-      "cta": "Porozmawiajmy"
-    },
-    "services": {
-      "title": "Co robimy",
-      "items": [
-        {
-          "title": "Optymalizacja zakupów",
-          "description": "Analizujemy kategorie kosztowe i identyfikujemy potencjał oszczędnościowy w Twojej firmie."
-        },
-        {
-          "title": "Negocjacje z dostawcami",
-          "description": "Przygotowujemy i prowadzimy negocjacje, które przekładają się na realne oszczędności."
-        },
-        {
-          "title": "Strategia sourcingowa",
-          "description": "Budujemy strategie zakupowe dopasowane do modelu i skali Twojego biznesu."
-        }
-      ]
-    }
+  "lang": { "pl": "PL", "en": "EN" },
+  "footer": {
+    "tagline": "Doradztwo zakupowe i negocjacyjne dla firm, które chcą budować trwałą przewagę kosztową.",
+    "navigation": "Nawigacja",
+    "contact": "Kontakt",
+    "rights": "Wszelkie prawa zastrzeżone.",
+    "privacy": "Polityka prywatności"
   },
   "contact": {
     "form": {
@@ -46,13 +30,119 @@
       "submit": "Wyślij wiadomość"
     }
   },
-  "blog": {
-    "empty": "Nie ma jeszcze żadnych artykułów. Zajrzyj tu wkrótce."
-  },
-  "footer": {
-    "navigation": "Nawigacja",
-    "contact": "Kontakt",
-    "rights": "Wszelkie prawa zastrzeżone.",
-    "privacy": "Polityka prywatności"
+  "blog": { "empty": "Nie ma jeszcze żadnych artykułów. Zajrzyj tu wkrótce." },
+  "homepage": {
+    "meta": {
+      "title": "Zakupy, które realnie wpływają na wynik firmy",
+      "description": "Profitia — doradztwo zakupowe. Pomagamy organizacjom podejmować lepsze decyzje zakupowe, łącząc doświadczenie, dane i technologię."
+    },
+    "hero": {
+      "eyebrow": "Profitia",
+      "h1": "Zakupy, które realnie\u00a0wpływają na\u00a0wynik\u00a0firmy",
+      "sub1a": "Nie chodzi o to, żeby negocjować więcej.",
+      "sub1b": "Chodzi o to, żeby podejmować lepsze decyzje — zanim usiądziesz do rozmowy.",
+      "sub2": "Łączymy doświadczenie, dane i narzędzia, żeby zakupy przestały być reaktywne i zaczęły realnie wpływać na marżę.",
+      "cta": "Umów rozmowę",
+      "statLabel": "Średnia poprawa warunków zakupowych",
+      "imgAlt": "Spotkanie negocjacyjne — doradztwo zakupowe Profitia"
+    },
+    "problem": {
+      "eyebrow": "Kontekst",
+      "h2": "Zakupy przestały być funkcją operacyjną",
+      "items": [
+        { "title": "Wpływ na marżę", "desc": "Decyzje zakupowe coraz bezpośredniej przekładają się na rentowność. Każdy punkt marży wymaga precyzji, nie przybliżeń." },
+        { "title": "Ciągłość działania", "desc": "Przerwy w łańcuchu dostaw mają realny koszt. Zakupy muszą zarządzać ryzykiem, nie tylko ceną." },
+        { "title": "Ryzyko dostawców", "desc": "Koncentracja, zależność, płynność finansowa kontrahentów — to teraz elementarz funkcji zakupów." },
+        { "title": "Zmienność rynku", "desc": "Ceny surowców, kursy walut, dostępność — zmienne, których nie można ignorować przy podejmowaniu decyzji." },
+        { "title": "Więcej danych, mniej jasności", "desc": "Dane są wszędzie — ale zamiana ich w konkretną decyzję zakupową wymaga czegoś więcej niż Excela i intuicji." },
+        { "title": "Presja czasu", "desc": "Negocjacje, renegocjacje, zapytania ofertowe — tempo pracy nie pozwala na głębszą analizę wtedy, gdy jest najbardziej potrzebna." },
+        { "title": "Większa odpowiedzialność", "desc": "Zakupy odpowiadają za więcej — często bez odpowiedniego wsparcia merytorycznego ani narzędzi." }
+      ],
+      "quote": "Zakupy stają się funkcją strategiczną — ale nadal działają reaktywnie."
+    },
+    "insight": {
+      "eyebrow": "Diagnoza",
+      "h2": "To nie jest problem jednego obszaru",
+      "items": [
+        { "n": "1", "title": "Nie chodzi tylko o negocjacje", "desc": "Nawet najlepsza negocjacja nie zastąpi złej strategii kategorii, braku danych czy nieprzygotowanego zespołu. Wynik negocjacji zależy od tego, co dzieje się przed i po." },
+        { "n": "2", "title": "Nie chodzi tylko o dane", "desc": "Dane bez interpretacji to koszt. Kluczowe jest wiedzieć, jakich danych szukać, skąd je brać i jak przekształcić je w konkretną decyzję zakupową." },
+        { "n": "3", "title": "Nie chodzi tylko o kompetencje", "desc": "Wykształcony zespół bez właściwego podejścia i narzędzi nadal będzie działał reaktywnie. Kompetencje potrzebują struktury, żeby działać efektywnie." }
+      ],
+      "callout1": "Decyzje nie wynikają z danych.",
+      "callout2": "Wynikają z tego, jak je wykorzystasz."
+    },
+    "pillars": {
+      "items": [
+        { "n": "01", "title": "Doradztwo", "desc": "Rozwiązanie konkretnych problemów zakupowych i wdrożenie rekomendacji w praktyce.", "img": "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80", "alt": "Doradztwo zakupowe — spotkanie konsultacyjne" },
+        { "n": "02", "title": "Kompetencje", "desc": "Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.", "img": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80", "alt": "Rozwój kompetencji zakupowych — szkolenie zespołu" },
+        { "n": "03", "title": "Narzędzia", "desc": "Dane i narzędzia, które zamieniają przeczucia w uzasadnione decyzje.", "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", "alt": "Narzędzia analityczne — dane zakupowe" }
+      ],
+      "seeMore": "Zobacz więcej →"
+    },
+    "process": {
+      "eyebrow": "Jak działamy",
+      "h2": "Jak wygląda lepsze podejmowanie decyzji zakupowych",
+      "steps": [
+        { "n": "01", "title": "Diagnoza sytuacji", "desc": "Rozumiemy punkt wyjścia — jakie kategorie, jakie napięcia, jakie dane już masz. Nie zaczynamy od rozwiązania, które mamy w katalogu." },
+        { "n": "02", "title": "Analiza i kontekst rynkowy", "desc": "Identyfikujemy możliwości i ryzyka w oparciu o dane rynkowe, benchmarki i historię zakupową. Łączymy dane zewnętrzne z Twoim kontekstem wewnętrznym." },
+        { "n": "03", "title": "Konkretna rekomendacja", "desc": "Nie raport — plan działania. Co zrobić, w jakiej kolejności, z jakim uzasadnieniem. Rekomendacja gotowa do prezentacji zarządowi i wdrożenia z zespołem." },
+        { "n": "04", "title": "Wdrożenie z zespołem", "desc": "Realizujemy razem z Twoim zespołem — żeby wiedza i podejście zostały w organizacji. Nie robimy za Was; robimy razem, z transferem kompetencji." },
+        { "n": "05", "title": "Weryfikacja efektów", "desc": "Mierzymy, co się zmieniło. Korekta tam, gdzie potrzeba — ciągłe doskonalenie, nie jednorazowy projekt z raportem końcowym." }
+      ],
+      "footer1": "Nie chodzi o ilość danych —",
+      "footer2": "tylko o ich właściwe wykorzystanie."
+    },
+    "impact": {
+      "eyebrow": "Efekt",
+      "h2": "Co się zmienia, gdy zakupy działają strategicznie",
+      "cards": [
+        { "title": "Kontrola kosztów", "desc": "Wiesz, skąd pochodzi każda złotówka kosztu i masz argumenty, żeby ją negocjować lub uzasadnić." },
+        { "title": "Mniej chaosu", "desc": "Zamiast reagować na każdą zmianę, wyprzedzasz je. Decyzje stają się przewidywalne i uzasadnione." },
+        { "title": "Lepszy zespół", "desc": "Twoi ludzie rozumieją nie tylko co robić, ale dlaczego — i potrafią samodzielnie uzasadnić decyzje." },
+        { "title": "Spójność", "desc": "Jeden sposób myślenia o zakupach w całej organizacji — zamiast różnych podejść w każdym departamencie." },
+        { "title": "Przewidywalność", "desc": "Zamiast niespodzianek od dostawców — terminarz renegocjacji, monitoring rynku i gotowość na zmianę." },
+        { "title": "Realny wynik", "desc": "Zakupy przestają być centrum kosztów. Stają się funkcją, która aktywnie chroni i buduje marżę." }
+      ]
+    },
+    "usecases": {
+      "eyebrow": "Kiedy warto się odezwać",
+      "h2": "Sytuacje, w których pomagamy działać szybciej i pewniej",
+      "items": [
+        { "n": "01", "title": "Podwyżka od dostawcy", "desc": "Dostawca przysłał notyfikację o wzroście cen. Masz 2 tygodnie. Czy podwyżka jest uzasadniona? Jak negocjować? Jaka jest Twoja realna siła przetargowa?" },
+        { "n": "02", "title": "Brak benchmarków", "desc": "Nie wiesz, czy płacisz właściwą cenę. Negocjujesz bez punktu odniesienia. Decyzje opierasz na przeczuciu lub historii, nie na danych rynkowych." },
+        { "n": "03", "title": "Trudne decyzje zakupowe", "desc": "Zmiana dostawcy, konsolidacja kategorii, decyzja make-or-buy. Wysokie stawki, wiele zmiennych i presja czasu — potrzebujesz zewnętrznego punktu widzenia." },
+        { "n": "04", "title": "Chaos w kategoriach", "desc": "Każdy kupiec działa po swojemu. Brak strategii kategorii, brak spójności. Trudno powiedzieć, co faktycznie kupujesz, od kogo i na jakich warunkach." }
+      ],
+      "footer": "Masz podobną sytuację?",
+      "footerLink": "→ Umów rozmowę"
+    },
+    "proof": {
+      "eyebrow": "Wiarygodność",
+      "h2": "Efekty, nie obietnice",
+      "stats": [
+        { "val": "+20%", "label": "średnia poprawa warunków zakupowych w pierwszym cyklu renegocjacji" },
+        { "val": "3–6\u00a0tyg.", "label": "czas od diagnozy do pierwszych konkretnych wyników w terenie" },
+        { "val": "12+", "label": "lat doświadczenia w zakupach i doradztwie dla firm różnej skali" }
+      ],
+      "sectorsLabel": "Pracowaliśmy z organizacjami z sektorów"
+    },
+    "cases": {
+      "eyebrow": "Przypadek",
+      "h2": "Jak to wygląda w praktyce",
+      "imgAlt": "Analiza danych zakupowych — przypadek firmy produkcyjnej",
+      "blocks": [
+        { "label": "Problem", "text": "Firma produkcyjna, 4 kluczowe kategorie zakupowe — każda zarządzana przez inny dział, inaczej. Brak benchmarków, brak strategii. Dwóch kluczowych dostawców wysyła podwyżki w tym samym kwartale o łącznie 14%." },
+        { "label": "Działanie", "text": "Analiza kosztów kategorii, zestawienie z danymi rynkowymi, opracowanie pozycji negocjacyjnej dla obu dostawców. 3-tygodniowy sprint: diagnoza, dane zewnętrzne, rekomendacja, przygotowanie zespołu do rozmów." },
+        { "label": "Efekt", "text": "Negocjacje zakończone przy 6% wzroście zamiast 14% — połowiczne przejęcie podwyżki. Strategia na kolejne 18 miesięcy dla obu kategorii. Zespół z modelem pracy gotowym do samodzielnego stosowania." }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Następny krok",
+      "h2": "Zacznij od jednego konkretnego przypadku",
+      "sub1": "Możemy przejść przez jedną sytuację i pokazać lepsze podejście — bez zobowiązań i bez ogólnikowych propozycji.",
+      "sub2a": "Bez zobowiązań. Bez sprzedaży.",
+      "sub2b": "Konkretna rozmowa o Twojej sytuacji.",
+      "button": "Umów rozmowę"
+    }
   }
 }

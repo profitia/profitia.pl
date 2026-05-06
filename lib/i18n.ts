@@ -1,6 +1,9 @@
 export type Locale = 'pl' | 'en'
 
 export type Dictionary = typeof import('@/dictionaries/pl.json')
+export type HomepageDictionary = Dictionary['homepage']
+
+export const LOCALES: Locale[] = ['pl', 'en']
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
   pl: () => import('@/dictionaries/pl.json').then((m) => m.default),

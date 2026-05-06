@@ -3,12 +3,12 @@ import { getDictionary } from '@/lib/i18n'
 import HomePageContent from '@/components/pages/HomePageContent'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary('pl')
+  const dict = await getDictionary('en')
   return {
     title: dict.homepage.meta.title,
     description: dict.homepage.meta.description,
     alternates: {
-      canonical: 'https://www.profitia.pl',
+      canonical: 'https://www.profitia.pl/en',
       languages: {
         'pl': 'https://www.profitia.pl',
         'en': 'https://www.profitia.pl/en',
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function HomePage() {
-  const dict = await getDictionary('pl')
+export default async function EnHomePage() {
+  const dict = await getDictionary('en')
   return <HomePageContent dict={dict} />
 }

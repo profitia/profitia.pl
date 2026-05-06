@@ -1,8 +1,8 @@
 {
   "site": {
     "name": "Profitia",
-    "tagline": "Profitia - Procurement Consulting",
-    "description": "Profitia is a consulting firm specialising in procurement optimisation, supplier negotiations and cost advantage building."
+    "tagline": "Profitia — Procurement Advisory",
+    "description": "Profitia — procurement advisory. We help organisations make better procurement decisions by combining experience, data and technology."
   },
   "nav": {
     "home": "Home",
@@ -12,29 +12,16 @@
     "contact": "Contact",
     "cta": "Book a meeting"
   },
-  "home": {
-    "hero": {
-      "title": "Better procurement. Better negotiations. Better results.",
-      "subtitle": "We help companies reduce procurement costs and build a competitive edge in supplier negotiations.",
-      "cta": "Let's talk"
-    },
-    "services": {
-      "title": "What we do",
-      "items": [
-        {
-          "title": "Procurement optimisation",
-          "description": "We analyse cost categories and identify savings potential across your organisation."
-        },
-        {
-          "title": "Supplier negotiations",
-          "description": "We prepare and lead negotiations that translate into real, measurable savings."
-        },
-        {
-          "title": "Sourcing strategy",
-          "description": "We build procurement strategies tailored to your business model and scale."
-        }
-      ]
-    }
+  "lang": {
+    "pl": "PL",
+    "en": "EN"
+  },
+  "footer": {
+    "tagline": "Procurement advisory and negotiation for organisations that want to build lasting cost advantages.",
+    "navigation": "Navigation",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy policy"
   },
   "contact": {
     "form": {
@@ -49,10 +36,241 @@
   "blog": {
     "empty": "No articles yet. Check back soon."
   },
-  "footer": {
-    "navigation": "Navigation",
-    "contact": "Contact",
-    "rights": "All rights reserved.",
-    "privacy": "Privacy policy"
+  "homepage": {
+    "meta": {
+      "title": "Procurement that genuinely impacts your bottom line | Profitia",
+      "description": "Profitia — procurement advisory. We help organisations make better procurement decisions by combining experience, data and technology."
+    },
+    "hero": {
+      "eyebrow": "Profitia",
+      "h1": "Procurement that genuinely impacts your bottom line",
+      "sub1a": "It's not about negotiating more.",
+      "sub1b": "It's about making better decisions — before you sit down to negotiate.",
+      "sub2": "We combine experience, data and tools so procurement stops being reactive and starts actively driving margin.",
+      "cta": "Schedule a conversation",
+      "statLabel": "Average improvement in procurement terms",
+      "imgAlt": "Business negotiation meeting — Profitia procurement advisory"
+    },
+    "problem": {
+      "eyebrow": "Context",
+      "h2": "Procurement is no longer just an operational function",
+      "items": [
+        {
+          "title": "Margin impact",
+          "desc": "Procurement decisions increasingly translate directly into profitability. Every margin point requires precision, not approximation."
+        },
+        {
+          "title": "Business continuity",
+          "desc": "Supply chain disruptions have a real cost. Procurement must manage risk, not just price."
+        },
+        {
+          "title": "Supplier risk",
+          "desc": "Concentration, dependency, counterparty liquidity — these are now the fundamentals of any procurement function."
+        },
+        {
+          "title": "Market volatility",
+          "desc": "Commodity prices, exchange rates, availability — variables that can no longer be ignored in decision-making."
+        },
+        {
+          "title": "More data, less clarity",
+          "desc": "Data is everywhere — but turning it into a concrete procurement decision requires more than Excel and intuition."
+        },
+        {
+          "title": "Time pressure",
+          "desc": "Negotiations, renegotiations, RFQs — the pace of work leaves no room for the deep analysis needed most."
+        },
+        {
+          "title": "Growing accountability",
+          "desc": "Procurement is responsible for more — often without adequate knowledge support or tools."
+        }
+      ],
+      "quote": "Procurement is becoming a strategic function — yet still operates reactively."
+    },
+    "insight": {
+      "eyebrow": "Diagnosis",
+      "h2": "This isn't a single-area problem",
+      "items": [
+        {
+          "n": "1",
+          "title": "It's not just about negotiations",
+          "desc": "Even the best negotiation can't replace a weak category strategy, missing data, or an unprepared team. Negotiation outcomes depend on what happens before and after."
+        },
+        {
+          "n": "2",
+          "title": "It's not just about data",
+          "desc": "Data without interpretation is just cost. The key is knowing what data to seek, where to find it, and how to turn it into a concrete procurement decision."
+        },
+        {
+          "n": "3",
+          "title": "It's not just about competence",
+          "desc": "A skilled team without the right approach and tools will still act reactively. Competence needs structure to be effective."
+        }
+      ],
+      "callout1": "Decisions don't come from data.",
+      "callout2": "They come from how you use it."
+    },
+    "pillars": {
+      "items": [
+        {
+          "n": "01",
+          "title": "Advisory",
+          "desc": "Solving specific procurement challenges and implementing recommendations in practice.",
+          "img": "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80",
+          "alt": "Procurement advisory — consulting meeting"
+        },
+        {
+          "n": "02",
+          "title": "Competence",
+          "desc": "We strengthen procurement teams so they make better decisions in real situations.",
+          "img": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
+          "alt": "Procurement competence development — team training"
+        },
+        {
+          "n": "03",
+          "title": "Tools",
+          "desc": "Data and tools that turn intuition into well-founded decisions.",
+          "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+          "alt": "Analytical tools — procurement data"
+        }
+      ],
+      "seeMore": "Learn more →"
+    },
+    "process": {
+      "eyebrow": "How we work",
+      "h2": "What better procurement decision-making looks like",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Situation diagnosis",
+          "desc": "We understand the starting point — what categories, what tensions, what data you already have. We don't start from a solution in our catalogue."
+        },
+        {
+          "n": "02",
+          "title": "Analysis & market context",
+          "desc": "We identify opportunities and risks based on market data, benchmarks and procurement history. We combine external data with your internal context."
+        },
+        {
+          "n": "03",
+          "title": "Concrete recommendation",
+          "desc": "Not a report — an action plan. What to do, in what order, with what rationale. A recommendation ready to present to the board and implement with your team."
+        },
+        {
+          "n": "04",
+          "title": "Implementation with your team",
+          "desc": "We execute together with your team — so that knowledge and approach stay in the organisation. We don't do it for you; we do it with you, with knowledge transfer."
+        },
+        {
+          "n": "05",
+          "title": "Results verification",
+          "desc": "We measure what changed. Correction where needed — continuous improvement, not a one-off project with a final report."
+        }
+      ],
+      "footer1": "It's not about how much data —",
+      "footer2": "only how you use it."
+    },
+    "impact": {
+      "eyebrow": "Effect",
+      "h2": "What changes when procurement operates strategically",
+      "cards": [
+        {
+          "title": "Cost control",
+          "desc": "You know where every cost comes from and have the arguments to negotiate or justify it."
+        },
+        {
+          "title": "Less chaos",
+          "desc": "Instead of reacting to every change, you anticipate them. Decisions become predictable and well-grounded."
+        },
+        {
+          "title": "Better team",
+          "desc": "Your people understand not just what to do, but why — and can independently justify their decisions."
+        },
+        {
+          "title": "Consistency",
+          "desc": "One way of thinking about procurement across the entire organisation — instead of different approaches in every department."
+        },
+        {
+          "title": "Predictability",
+          "desc": "Instead of supplier surprises — a renegotiation schedule, market monitoring and readiness for change."
+        },
+        {
+          "title": "Real results",
+          "desc": "Procurement stops being a cost centre. It becomes a function that actively protects and builds margin."
+        }
+      ]
+    },
+    "usecases": {
+      "eyebrow": "When to reach out",
+      "h2": "Situations where we help you act faster and with more confidence",
+      "items": [
+        {
+          "n": "01",
+          "title": "Supplier price increase",
+          "desc": "Your supplier sent a price increase notification. You have 2 weeks. Is the increase justified? How do you negotiate? What is your real bargaining power?"
+        },
+        {
+          "n": "02",
+          "title": "No benchmarks",
+          "desc": "You don't know if you're paying the right price. You're negotiating without a reference point. Decisions are based on intuition or history, not market data."
+        },
+        {
+          "n": "03",
+          "title": "Difficult procurement decisions",
+          "desc": "Changing supplier, consolidating a category, make-or-buy decision. High stakes, many variables and time pressure — you need an external perspective."
+        },
+        {
+          "n": "04",
+          "title": "Category chaos",
+          "desc": "Every buyer operates differently. No category strategy, no consistency. It's hard to say what you're actually buying, from whom and on what terms."
+        }
+      ],
+      "footer": "Facing a similar situation?",
+      "footerLink": "→ Schedule a conversation"
+    },
+    "proof": {
+      "eyebrow": "Credibility",
+      "h2": "Results, not promises",
+      "stats": [
+        {
+          "val": "+20%",
+          "label": "average improvement in procurement terms in the first renegotiation cycle"
+        },
+        {
+          "val": "3–6 wks.",
+          "label": "time from diagnosis to first concrete results in the field"
+        },
+        {
+          "val": "12+",
+          "label": "years of experience in procurement and advisory for organisations of all scales"
+        }
+      ],
+      "sectorsLabel": "We have worked with organisations from the following sectors"
+    },
+    "cases": {
+      "eyebrow": "Case study",
+      "h2": "What this looks like in practice",
+      "imgAlt": "Procurement data analysis — manufacturing company case study",
+      "blocks": [
+        {
+          "label": "Challenge",
+          "text": "A manufacturing company with 4 key procurement categories — each managed by a different department, differently. No benchmarks, no strategy. Two key suppliers send price increases in the same quarter, totalling 14%."
+        },
+        {
+          "label": "Action",
+          "text": "Category cost analysis, cross-referenced with market data, development of negotiation positions for both suppliers. A 3-week sprint: diagnosis, external data, recommendation, team preparation for the negotiations."
+        },
+        {
+          "label": "Outcome",
+          "text": "Negotiations concluded at a 6% increase instead of 14% — the increase was partially absorbed. An 18-month strategy for both categories. A team equipped with a working model ready to apply independently."
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "Next step",
+      "h2": "Start with one concrete case",
+      "sub1": "We can walk through one situation and show you a better approach — with no commitment and no generic proposals.",
+      "sub2a": "No commitment. No sales pitch.",
+      "sub2b": "A concrete conversation about your situation.",
+      "button": "Schedule a conversation"
+    }
   }
 }
