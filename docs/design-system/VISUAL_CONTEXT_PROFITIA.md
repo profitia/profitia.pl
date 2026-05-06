@@ -889,9 +889,10 @@ Poniższa struktura jest **kanoniczna i zablokowana**.
 | 5 | **Process** | `#b5xg0q` | Kroki 01–05; duże blade numery; editorial divide-y |
 | 6 | **Impact** | `#vqj89m` | Dark section `bg-gray-900`; 6 kart ze strzałkami; tonal break |
 | 7 | **Use Cases** | `#p8800w` | 4 karty; hover invert na `bg-gray-900`; kontekstowe triggery |
-| 8 | **Proof** | `#d31qlk` | Szare tło; 3 statystyki (+20%, 3–6 tyg., 12+); grid sektorów |
-| 9 | **Cases** | `#io58to` | Obraz + 3 bloki (Problem / Działanie / Efekt) |
-| 10 | **CTA** | `#g6lvxh` | Czarne tło; finalna konwersja; kanoniczne zamknięcie |
+| 8 | **Insights / Articles** | `#insights-section` | Editorial grid 3 kolumny; cinematic card images; strategic perspectives layer |
+| 9 | **Proof** | `#d31qlk` | Szare tło; 3 statystyki (+20%, 3–6 tyg., 12+); grid sektorów |
+| 10 | **Cases** | `#io58to` | Obraz + 3 bloki (Problem / Działanie / Efekt) |
+| 11 | **CTA** | `#g6lvxh` | Czarne tło; finalna konwersja; kanoniczne zamknięcie |
 
 ---
 
@@ -925,7 +926,7 @@ Przed każdą zmianą w `app/(public)/page.tsx` odpowiedz:
 
 | Element | Status |
 |---------|--------|
-| Liczba sekcji (10) | LOCKED |
+| Liczba sekcji (11) | LOCKED |
 | Kolejność sekcji | LOCKED |
 | Strategic flow i narrative pacing | LOCKED |
 | 3-filarowa architektura (Pillars section) | LOCKED |
@@ -934,6 +935,7 @@ Przed każdą zmianą w `app/(public)/page.tsx` odpowiedz:
 | Identyfikatory sekcji (`#bzze51`, `#b5xg0q` itd.) | LOCKED |
 | Hero 2-kolumnowy układ | LOCKED |
 | CTA `bg-black` jako domknięcie | LOCKED |
+| Insights / Articles jako sekcja #8 (między Use Cases a Proof) | LOCKED |
 
 #### Co można zmieniać
 
@@ -961,6 +963,71 @@ Zmiana struktury homepage jest dozwolona WYŁĄCZNIE gdy użytkownik:
 3. Akceptuje zmianę narrative flow.
 
 Przypadkowe, automatyczne lub "improvement"-driven zmiany struktury są **bezwzględnie zakazane**.
+
+---
+
+### INSIGHTS / ARTICLES SECTION — LOCKED
+
+> **Dodana: May 2026** | Autoryzowana zmiana kanonicznej struktury homepage.
+
+#### Cel sekcji
+
+Sekcja **Insights / Articles** to editorial authority layer homepage Profitii.
+
+- **NIE jest** content marketingiem, blogiem startupowym, portalem newsowym ani "latest posts feed"
+- **JEST** strategic intelligence layer, executive editorial section, curated featured insights
+
+Buduje:
+- credibility ekspercką Profitii,
+- topical authority SEO (procurement, negotiation, cost strategy),
+- trust u C-suite i Dyrektorów Zakupów.
+
+#### Placement
+
+```
+Use Cases (#p8800w)
+↓
+Insights / Articles (#insights-section)   ← LOCKED position
+↓
+Proof (#d31qlk)
+```
+
+#### Architektura techniczna
+
+| Element | Ścieżka |
+|---------|---------|
+| Section wrapper | `components/sections/insights/FeaturedArticles.tsx` |
+| Card component | `components/sections/insights/FeaturedArticleCard.tsx` |
+| Barrel export | `components/sections/insights/index.ts` |
+| Dictionary key | `homepage.insights` (pl.json + en.json) |
+
+#### Visual rules
+
+- `bg-white` — spokojny editorial background
+- `py-28` — standard section spacing
+- Grid: 3 kolumny desktop / 2 tablet / 1 mobile
+- Card image: `aspect-[16/10]`, `rounded-xl`, hover zoom + brightness dim
+- Meta: uppercase, tracked, `text-[10px]`, gray-400
+- Title: `text-xl font-semibold`, 2–3 linie max
+- CTA: inline text link (NIE button), `→` suffix
+
+#### Editorial direction
+
+Obrazy: cinematic, muted, strategic — procurement, manufacturing, supply chain, analytics, boardroom, industrial.
+NIE: startup stock photos, uśmiechnięci ludzie w biurze, generic corporate.
+
+#### Override — modyfikacja sekcji
+
+Dozwolone:
+- Dodanie/zmiana artykułów w słowniku
+- Zmiana obrazów w słowniku
+- Stylizacja hover / animacje
+
+NIE wolno bez wyraźnej instrukcji:
+- Usuwać sekcji
+- Zmieniać placement (między Use Cases a Proof)
+- Zmieniać na "latest posts" dynamiczny feed
+- Przepisywać komponentów na inny design system
 
 ---
 

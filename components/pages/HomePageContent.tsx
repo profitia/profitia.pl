@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Dictionary } from '@/lib/i18n'
+import { FeaturedArticles } from '@/components/sections/insights'
 
 export default function HomePageContent({ dict }: { dict: Dictionary }) {
   const d = dict.homepage
@@ -247,6 +248,18 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           </div>
         </div>
       </section>
+
+      {/* ════════════════════════════════════
+          INSIGHTS / ARTICLES  [CANONICAL #8]
+          ════════════════════════════════════ */}
+      <FeaturedArticles
+        copy={{
+          eyebrow: d.insights.eyebrow,
+          h2: d.insights.h2,
+          body: d.insights.body,
+        }}
+        articles={d.insights.articles}
+      />
 
       {/* ════════════════════════════════════
           PROOF
