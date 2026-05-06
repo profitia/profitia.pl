@@ -15,17 +15,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <body className="bg-gray-100 min-h-screen font-sans antialiased">
         <div className="flex h-screen">
           {/* Sidebar — placeholder */}
-          <aside className="w-64 bg-brand-primary text-white flex flex-col p-6 hidden md:flex">
+          <aside className="w-64 text-white flex flex-col p-6 hidden md:flex" style={{ backgroundColor: '#242F44' }}>
             <div className="text-xl font-bold mb-10">Profitia Admin</div>
             <nav className="space-y-2 flex-1">
-              <Link href="/admin/dashboard" className="block px-4 py-2 rounded hover:bg-brand-secondary transition-colors">
+              <Link href="/admin/dashboard" className="block px-4 py-2 rounded text-sm hover:bg-white/10 transition-colors">
                 Dashboard
               </Link>
-              <Link href="/admin/articles" className="block px-4 py-2 rounded hover:bg-brand-secondary transition-colors">
+              <Link href="/admin/articles" className="block px-4 py-2 rounded text-sm hover:bg-white/10 transition-colors">
                 Artykuły
               </Link>
             </nav>
-            <Link href="/" className="text-sm text-blue-200 hover:text-white">
+            <Link href="/" className="text-sm text-gray-400 hover:text-white transition-colors">
               ← Wróć do strony
             </Link>
           </aside>

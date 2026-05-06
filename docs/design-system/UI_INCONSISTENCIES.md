@@ -1,0 +1,301 @@
+# UI INCONSISTENCIES — Profitia Frontend Audit
+> **Status:** Living document | Version 1.0 | May 2026
+> **Last audited:** 6 May 2026
+> **Scope:** All files under `app/`, `components/`, `styles/`
+> **Reference:** `docs/design-system/VISUAL_CONTEXT_PROFITIA.md`
+
+---
+
+## HOW TO READ THIS DOCUMENT
+
+Each entry has:
+- **File** — exact path
+- **Line(s)** — approximate line reference
+- **Problem** — what violates the design system
+- **Fix** — exact action required
+- **Priority** — P1 (critical) → P4 (low/future)
+- **Status** — open / in-progress / resolved
+
+---
+
+## PRIORITY 1 — CRITICAL (blocks visual consistency)
+
+### ✅ C-01 — tailwind.config.ts: placeholder brand colors
+- **File:** `tailwind.config.ts`
+- **Lines:** 12–18
+- **Problem:** `brand.primary: #1a365d` was a non-brandbook placeholder. `brand.secondary: #2b6cb0` same. `brand.accent: #ed8936` (orange) had no brand basis.
+- **Fix:** Updated to full brandbook palette (`#242F44`, `#006D9E`, `#0092D9`, `#48103F`, `#8E0055`). Legacy aliases now point to correct values.
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+### ✅ C-02 — globals.css: h1–h6 forced to Poppins (`font-heading`)
+- **File:** `styles/globals.css`
+- **Lines:** 14–16
+- **Problem:** `h1, h2, h3, h4, h5, h6 { @apply font-heading }` applied Poppins to all headings globally. Profitia uses Inter-only.
+- **Fix:** Changed to `@apply font-sans font-semibold tracking-tight`. `font-heading` config now outputs Inter (shim).
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+### ✅ C-03 — globals.css: btn-primary / btn-secondary using wrong tokens
+- **File:** `styles/globals.css`
+- **Lines:** 22–32
+- **Problem:** `.btn-primary` used `bg-brand-primary` (navy #1a365d), `rounded-lg` (not `rounded-xl`), `px-6 py-3` (not premium sizing). `.btn-secondary` used `border-2 border-brand-primary`, `hover:bg-brand-light`.
+- **Fix:** Completely rewritten. `.btn-primary` → `bg-black rounded-xl px-6 py-3.5`. `.btn-secondary` → `border border-gray-300 rounded-xl`. Added `.btn-primary-dark`, `.btn-secondary-dark`, `.btn-brand`.
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+### ✅ C-04 — Header.tsx: text-based logo (no SVG)
+- **File:** `components/layout/Header.tsx`
+- **Lines:** 25–27
+- **Problem:** Logo was `<Link>Profitia</Link>` with `font-heading font-bold text-brand-primary`. No SVG asset, Poppins, wrong color.
+- **Fix:** Replaced with `<Image src="/logo/profitia-default.svg" width={120} height={32} />`.
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+### ✅ C-05 — Footer.tsx: wrong background + text colors
+- **File:** `components/layout/Footer.tsx`
+- **Lines:** 14, 20, 38, 53
+- **Problem:** `bg-brand-primary` (was #1a365d, wrong navy). `text-blue-200` for all body/nav text (Tailwind blue, not brand neutral). `border-blue-800` divider. `font-heading font-bold` logo text.
+- **Fix:** `style={{ backgroundColor: '#242F44' }}`, text → `text-gray-400`, divider → `border-white/10`, SVG logo via `<Image>`.
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+### ✅ C-06 — app/[lang]/page.tsx: hero uses bg-brand-primary (corporate)
+- **File:** `app/[lang]/page.tsx`
+- **Lines:** 21–31
+- **Problem:** Hero was `bg-brand-primary text-white` — navy corporate feel. `font-heading font-bold` on H1. `text-blue-200` subtitle. Service cards: `hover:shadow-md` only (no dark hover).
+- **Fix:** Hero → `bg-white`, H1 → Inter semibold, subtitle → `text-gray-600`, CTAs → `btn-primary` / `btn-secondary`. Service cards → `PremiumCard` component with `hover:bg-gray-900`.
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+### ✅ C-07 — Logo files not accessible to Next.js Image
+- **File:** `Logotypy/` (root, not public)
+- **Problem:** SVG logo files were in `Logotypy/` — outside `public/` directory, inaccessible to browser.
+- **Fix:** Copied to `public/logo/profitia-default.svg`, `public/logo/profitia-white.svg`, `public/logo/profitia-black.svg`.
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+## PRIORITY 2 — IMPORTANT (visible inconsistency)
+
+### 🔴 I-01 — contact/page.tsx: form inputs wrong radius + focus ring
+- **File:** `app/[lang]/contact/page.tsx`
+- **Lines:** 35, 44, 53
+- **Problem:** `rounded-lg` (not `rounded-xl`). `focus:ring-brand-primary` (was wrong color).
+- **Fix:** Updated to `rounded-xl`, `focus:ring-gray-900`. *(Partially resolved in May 2026 sprint)*
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+### 🔴 I-02 — about/page.tsx + services/page.tsx: `font-heading font-bold text-brand-primary`
+- **File:** `app/[lang]/about/page.tsx`, `app/[lang]/services/page.tsx`
+- **Lines:** 17, 17
+- **Problem:** H1 used `font-heading font-bold text-brand-primary` — Poppins + wrong color + too heavy weight.
+- **Fix:** Updated to Inter semibold, gray-900, label tag above H1. *(Resolved in May 2026 sprint)*
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+### 🔴 I-03 — RevealWrapper duplicated in two locations
+- **File:** `components/services/subpage-services-1/RevealWrapper.tsx` (original)
+- **Created:** `components/ui/RevealWrapper.tsx` (canonical)
+- **Problem:** Same component exists twice. Service subpage components import from `./RevealWrapper` (local), not from `@/components/ui`.
+- **Fix:** Future refactor — update imports in 8 service subpage components to use `@/components/ui/RevealWrapper`.
+- **Priority:** P2
+- **Status:** 🔴 Open — canonical exists, imports not updated
+
+---
+
+### 🔴 I-04 — service subpage CtaSection vs global CTASection
+- **File:** `components/services/subpage-services-1/CtaSection.tsx`
+- **Created:** `components/ui/CTASection.tsx` (canonical global)
+- **Problem:** Two CTA implementations. Page-specific one is correct visually but isolated.
+- **Fix:** Update `subpage-services-1/page.tsx` to import from `@/components/ui/CTASection`.
+- **Priority:** P2
+- **Status:** 🔴 Open — global component exists, subpage not migrated
+
+---
+
+### 🟡 I-05 — admin/layout.tsx: brand-secondary hover on nav
+- **File:** `app/admin/layout.tsx`
+- **Lines:** 21, 24
+- **Problem:** `hover:bg-brand-secondary` (was wrong blue). `text-blue-200` footer link.
+- **Fix:** Updated to `hover:bg-white/10`, `text-gray-400`. *(Resolved in May 2026 sprint)*
+- **Status:** ✅ Resolved (May 2026 sprint)
+
+---
+
+## PRIORITY 3 — MEDIUM (polish / debt)
+
+### 🟡 M-01 — blog pages: no design
+- **Files:** `app/[lang]/blog/page.tsx`, `app/[lang]/blog/[slug]/page.tsx`
+- **Problem:** Blog pages have zero visual design — placeholder only.
+- **Fix:** Design editorial blog layout using design system (article list, article detail).
+- **Priority:** P3
+- **Status:** 🔴 Open — future sprint
+
+---
+
+### 🟡 M-02 — contact form: no real submission handler
+- **File:** `app/api/contact/route.ts`, `app/[lang]/contact/page.tsx`
+- **Problem:** Form submits to nowhere (no fetch/server action). API route exists but form doesn't call it.
+- **Fix:** Wire up form → `/api/contact` endpoint → Office365 Graph API (existing setup in `Integracja z Office365/`).
+- **Priority:** P3
+- **Status:** 🔴 Open
+
+---
+
+### 🟡 M-03 — Header: no mobile nav (hamburger menu missing)
+- **File:** `components/layout/Header.tsx`
+- **Lines:** 23–32
+- **Problem:** Nav is `hidden md:flex` — mobile users see logo + lang switcher + CTA button only. No mobile menu.
+- **Fix:** Add hamburger button + slide-down mobile nav panel.
+- **Priority:** P3
+- **Status:** 🔴 Open
+
+---
+
+### 🟡 M-04 — services/page.tsx: placeholder only
+- **File:** `app/[lang]/services/page.tsx`
+- **Problem:** Placeholder text, no actual services content or cards.
+- **Fix:** Build full services overview page with `PremiumCard` grid, hero, CTA.
+- **Priority:** P3
+- **Status:** 🔴 Open
+
+---
+
+### 🟡 M-05 — about/page.tsx: placeholder only
+- **File:** `app/[lang]/about/page.tsx`
+- **Problem:** Placeholder text, no content.
+- **Fix:** Build full About page — team, mission, values, editorial layout.
+- **Priority:** P3
+- **Status:** 🔴 Open
+
+---
+
+### 🟡 M-06 — service subpage components: local RevealWrapper imports
+- **Files:** All 8 files in `components/services/subpage-services-1/`
+- **Problem:** Import `./RevealWrapper` (local) instead of `@/components/ui/RevealWrapper` (canonical).
+- **Fix:** Update import in each file. Then deprecate local copy.
+- **Priority:** P3
+- **Status:** 🔴 Open
+
+---
+
+### 🟡 M-07 — service subpage CtaSection not using global CTASection
+- **File:** `components/services/subpage-services-1/CtaSection.tsx`, `app/[lang]/services/subpage-services-1/page.tsx`
+- **Problem:** Page-specific CTA component duplicates global one.
+- **Fix:** Replace import with `@/components/ui/CTASection`.
+- **Priority:** P3
+- **Status:** 🔴 Open
+
+---
+
+## PRIORITY 4 — LOW / FUTURE
+
+### ⚪ L-01 — tailwind.config.ts: `font-heading` shim to Inter
+- **File:** `tailwind.config.ts`
+- **Lines:** 43
+- **Problem:** `font-heading` key still exists (outputs Inter). Leaves door open for accidental Poppins assumption.
+- **Fix:** Remove `font-heading` key entirely once all `font-heading` usages are confirmed gone from codebase.
+- **Status:** ⚪ Open — after full audit of all font-heading usage
+
+---
+
+### ⚪ L-02 — globals.css: `.btn-primary` still uses `bg-black` (opinionated)
+- **File:** `styles/globals.css`
+- **Problem:** Global `.btn-primary` is `bg-black`. On dark sections, this is wrong (needs `bg-white`). Requires per-context override.
+- **Fix:** Consider CSS custom properties or Tailwind `data-*` variants. Or use `Button` component always.
+- **Status:** ⚪ Open — long-term architecture
+
+---
+
+### ⚪ L-03 — No `og:image` or structured metadata
+- **Files:** `app/layout.tsx`, all page files
+- **Problem:** No OpenGraph images defined. `generateMetadata` only sets `title`.
+- **Fix:** Add `og:image`, `og:description`, `twitter:card` to page metadata.
+- **Status:** ⚪ Open
+
+---
+
+### ⚪ L-04 — `app/admin/*` pages: no real data
+- **Files:** `app/admin/dashboard/page.tsx`, `app/admin/articles/page.tsx`
+- **Problem:** Admin UI is placeholder. Connected to Prisma/DB but no real articles flow.
+- **Fix:** Implement full CRUD article management with Prisma.
+- **Status:** ⚪ Open
+
+---
+
+### ⚪ L-05 — ChatWidget: visual alignment check
+- **File:** `components/ChatWidget.tsx`
+- **Problem:** Widget was added in earlier sprint — visual tokens not audited against new design system.
+- **Fix:** Audit ChatWidget button/panel colors against brandbook.
+- **Status:** ⚪ Open — low urgency
+
+---
+
+## SUMMARY TABLE
+
+| ID | Description | Priority | Status |
+|----|-------------|----------|--------|
+| C-01 | tailwind.config.ts placeholder colors | P1 | ✅ Resolved |
+| C-02 | globals.css font-heading on all headings | P1 | ✅ Resolved |
+| C-03 | globals.css btn-primary/secondary wrong tokens | P1 | ✅ Resolved |
+| C-04 | Header text logo (no SVG) | P1 | ✅ Resolved |
+| C-05 | Footer wrong bg + text colors | P1 | ✅ Resolved |
+| C-06 | Homepage corporate navy hero | P1 | ✅ Resolved |
+| C-07 | Logo files outside public/ | P1 | ✅ Resolved |
+| I-01 | Contact form wrong radius + focus ring | P2 | ✅ Resolved |
+| I-02 | about + services font-heading H1 | P2 | ✅ Resolved |
+| I-03 | RevealWrapper duplicated | P2 | 🔴 Open |
+| I-04 | CtaSection vs CTASection duplication | P2 | 🔴 Open |
+| I-05 | admin hover:bg-brand-secondary | P2 | ✅ Resolved |
+| M-01 | Blog pages no design | P3 | 🔴 Open |
+| M-02 | Contact form no submission handler | P3 | 🔴 Open |
+| M-03 | Header no mobile nav | P3 | 🔴 Open |
+| M-04 | services/page.tsx placeholder | P3 | 🔴 Open |
+| M-05 | about/page.tsx placeholder | P3 | 🔴 Open |
+| M-06 | Subpage components local RevealWrapper | P3 | 🔴 Open |
+| M-07 | Subpage CtaSection not using global | P3 | 🔴 Open |
+| L-01 | font-heading shim cleanup | P4 | ⚪ Open |
+| L-02 | btn-primary on dark sections | P4 | ⚪ Open |
+| L-03 | No og:image metadata | P4 | ⚪ Open |
+| L-04 | Admin pages placeholder | P4 | ⚪ Open |
+| L-05 | ChatWidget visual audit | P4 | ⚪ Open |
+
+**Sprint May 2026 resolved:** 9/22 issues (all P1 + I-01, I-02, I-05)
+
+---
+
+## FUTURE REFACTOR ROADMAP
+
+### Sprint 2 — Visual Foundation Completion (P2 items)
+1. Migrate service subpage components to `@/components/ui/RevealWrapper`
+2. Replace page-specific `CtaSection` with global `CTASection`
+3. Verify no remaining `font-heading` class usage (`grep -r "font-heading" app/ components/`)
+4. Audit `ChatWidget.tsx` colors
+
+### Sprint 3 — Page Content Build-out (P3 items)
+1. Services overview page — full design with `PremiumCard` grid
+2. About page — editorial layout, team section, mission
+3. Blog list + article detail — editorial design
+4. Contact form — wire to Office365 Graph API
+5. Header — mobile hamburger menu
+
+### Sprint 4 — Polish & Production (P4 items)
+1. OpenGraph / Twitter metadata for all pages
+2. Admin CRUD articles flow
+3. `font-heading` final cleanup from config
+4. Performance audit (LCP, CLS)
+5. Accessibility audit (WCAG 2.1 AA)
+
+---
+
+*Update this document after every sprint. Mark items resolved immediately, don't batch.*
+*Reference: `docs/design-system/VISUAL_CONTEXT_PROFITIA.md`*

@@ -15,9 +15,12 @@ export default async function ContactPage({ params }: Props) {
   const dict = await getDictionary(lang)
 
   return (
-    <section className="py-20">
+    <section className="py-28">
       <div className="container-base max-w-2xl">
-        <h1 className="text-4xl font-heading font-bold text-brand-primary mb-8">
+        <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-6">
+          Kontakt
+        </p>
+        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mb-8">
           {dict.nav.contact}
         </h1>
         {/* Contact form — placeholder, form logic added later */}
@@ -31,7 +34,7 @@ export default async function ContactPage({ params }: Props) {
               name="name"
               type="text"
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
             />
           </div>
           <div>
@@ -43,7 +46,7 @@ export default async function ContactPage({ params }: Props) {
               name="email"
               type="email"
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
             />
           </div>
           <div>
@@ -55,7 +58,7 @@ export default async function ContactPage({ params }: Props) {
               name="message"
               rows={5}
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
             />
           </div>
           <button type="submit" className="btn-primary w-full">

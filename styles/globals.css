@@ -8,32 +8,99 @@
   }
 
   body {
-    @apply text-brand-dark bg-white font-sans antialiased;
+    @apply bg-white font-sans antialiased;
+    color: #3B3838; /* brand-dark */
   }
 
+  /*
+   * Typography: Inter is the sole typeface for Profitia UI.
+   * Headings use Inter with font-semibold + tracking-tight.
+   * Do NOT apply font-heading (legacy Poppins shim) in new components.
+   */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-sans font-semibold tracking-tight;
   }
 }
 
 @layer components {
+  /* ─── Layout ──────────────────────────────────────────────── */
+
   .container-base {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
+  /* Standard section padding — py-28 is the default rhythm */
+  .section-standard {
+    @apply py-28 border-t border-gray-100;
+  }
+
+  .section-alt {
+    @apply py-28 bg-gray-50 border-t border-gray-100;
+  }
+
+  /* ─── Buttons ─────────────────────────────────────────────── */
+
+  /*
+   * Primary: bg-black on light backgrounds.
+   * Use bg-white text-black variant inside dark/black sections.
+   */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 
-           bg-brand-primary text-white font-medium rounded-lg 
-           hover:bg-brand-secondary transition-colors duration-200;
+    @apply inline-flex items-center justify-center
+           px-6 py-3.5 bg-black text-white font-medium text-sm
+           rounded-xl hover:bg-gray-800
+           transition-colors duration-200;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 
-           border-2 border-brand-primary text-brand-primary font-medium rounded-lg 
-           hover:bg-brand-light transition-colors duration-200;
+    @apply inline-flex items-center justify-center
+           px-6 py-3.5 border border-gray-300 text-gray-700 font-medium text-sm
+           rounded-xl hover:border-gray-900 hover:text-gray-900
+           transition-colors duration-200;
   }
 
-  /* Scroll reveal — consistent z landing page */
+  /* Inside dark/black sections (bg-black, bg-gray-900) */
+  .btn-primary-dark {
+    @apply inline-flex items-center justify-center
+           px-8 py-4 bg-white text-black font-medium text-base
+           rounded-xl hover:bg-gray-100
+           transition-colors duration-200;
+  }
+
+  .btn-secondary-dark {
+    @apply inline-flex items-center justify-center
+           px-8 py-4 border border-gray-700 text-gray-300 font-medium text-base
+           rounded-xl hover:border-gray-400 hover:text-white
+           transition-colors duration-200;
+  }
+
+  /* Brand CTA — use sparingly for highest-priority brand moments */
+  .btn-brand {
+    @apply inline-flex items-center justify-center
+           px-6 py-3.5 text-white font-medium text-sm
+           rounded-xl transition-colors duration-200;
+    background-color: #242F44;
+  }
+  .btn-brand:hover {
+    background-color: #006D9E;
+  }
+
+  /* ─── Typography utilities ────────────────────────────────── */
+
+  /* Section label — above every H2 */
+  .label-tag {
+    @apply text-xs font-medium tracking-[0.25em] uppercase text-gray-400;
+  }
+
+  /* ─── Cards ───────────────────────────────────────────────── */
+
+  .card-premium {
+    @apply border border-gray-200 rounded-xl p-8
+           hover:bg-gray-900 hover:border-gray-900 hover:text-white hover:shadow-lg
+           transition-all duration-300;
+  }
+
+  /* ─── Scroll reveal — IntersectionObserver-driven ─────────── */
+
   .reveal {
     opacity: 0;
     transform: translateY(24px);
