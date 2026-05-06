@@ -255,32 +255,30 @@ export default function Header() {
             className="flex-1 flex flex-col justify-center"
             aria-label="Nawigacja mobilna"
           >
-            <div className="space-y-1 mb-8">
+            <div className="space-y-0">
               {primaryNav.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block py-3 text-[2.1rem] font-semibold tracking-tight leading-none transition-colors duration-150 ${
+                  className={`block py-3 text-[2rem] font-semibold tracking-tight leading-tight transition-colors duration-150 ${
                     isActive(link.href)
                       ? 'text-gray-900'
-                      : 'text-gray-300 hover:text-gray-900'
+                      : 'text-gray-400 hover:text-gray-900'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
-            </div>
-            <div className="space-y-0.5">
               {secondaryNav.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block py-2.5 text-xl font-normal tracking-tight transition-colors duration-150 ${
+                  className={`block py-3 text-[2rem] font-medium tracking-tight leading-tight transition-colors duration-150 ${
                     isActive(link.href)
                       ? 'text-gray-700'
-                      : 'text-gray-400 hover:text-gray-700'
+                      : 'text-gray-300 hover:text-gray-700'
                   }`}
                 >
                   {link.label}
@@ -292,24 +290,27 @@ export default function Header() {
           {/* Bottom bar */}
           <div className="mt-auto space-y-5 pt-8 border-t border-gray-100">
             {/* Language switcher */}
-            <div className="flex items-center gap-6" role="group" aria-label="Wybór języka">
+            <div className="flex items-center gap-[3px]" role="group" aria-label="Wybór języka">
               <button
                 onClick={() => switchLocale('pl')}
                 aria-pressed={currentLocale === 'pl'}
-                className={`text-sm font-medium transition-colors duration-150 ${
-                  currentLocale === 'pl' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-700'
+                aria-label="Przełącz na język polski"
+                className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ${
+                  currentLocale === 'pl' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-gray-700 font-normal'
                 }`}
               >
-                PL — Polski
+                PL
               </button>
+              <span className="text-gray-300 select-none text-xs" aria-hidden="true">·</span>
               <button
                 onClick={() => switchLocale('en')}
                 aria-pressed={currentLocale === 'en'}
-                className={`text-sm font-medium transition-colors duration-150 ${
-                  currentLocale === 'en' ? 'text-gray-900' : 'text-gray-400 hover:text-gray-700'
+                aria-label="Switch to English"
+                className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ${
+                  currentLocale === 'en' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-gray-700 font-normal'
                 }`}
               >
-                EN — English
+                EN
               </button>
             </div>
 
