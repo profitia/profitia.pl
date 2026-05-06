@@ -1,351 +1,378 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { CTASection } from '@/components/ui'
 
 export const metadata: Metadata = {
-  title: 'Lepsze zakupy. Lepsze negocjacje. Lepszy wynik.',
+  title: 'Zakupy, które realnie wpływają na wynik firmy',
   description:
-    'Profitia to firma doradcza specjalizująca się w optymalizacji zakupów i negocjacjach z dostawcami. Pomagamy firmom obniżać koszty i budować trwałą przewagę kosztową.',
+    'Profitia — doradztwo zakupowe. Pomagamy organizacjom podejmować lepsze decyzje zakupowe, łącząc doświadczenie, dane i technologię.',
 }
-
-// ─── Content data ──────────────────────────────────────────────────────────
-
-const PILLARS = [
-  {
-    num: '01',
-    label: 'Fundament',
-    title: 'Diagnoza i analiza',
-    description:
-      'Analizujemy rzeczywiste dane zakupowe — faktury, umowy, historię transakcji. Identyfikujemy gdzie Twoja firma przepłaca i dlaczego. Mapujemy siłę przetargową wobec kluczowych dostawców.',
-    outcome: 'Pełna mapa potencjału oszczędnościowego po 2 tygodniach',
-  },
-  {
-    num: '02',
-    label: 'Dźwignia',
-    title: 'Strategia i przygotowanie',
-    description:
-      'Budujemy pozycję negocjacyjną opartą na danych rynkowych i benchmarkach. Przygotowujemy argumentację, BATNA i scenariusze. Nie wchodzimy na salę negocjacyjną bez pełnego przygotowania.',
-    outcome: 'Gotowa strategia negocjacyjna dla każdej kluczowej kategorii',
-  },
-  {
-    num: '03',
-    label: 'Rezultat',
-    title: 'Wdrożenie i wyniki',
-    description:
-      'Towarzyszymy we wdrożeniu — od rozmów z dostawcami po finalizację warunków umów. Weryfikujemy czy wypracowane warunki faktycznie funkcjonują i mierzą wyniki w czasie.',
-    outcome: 'Średnio +18% poprawa warunków w pierwszym cyklu renegocjacji',
-  },
-]
-
-const METRICS = [
-  { value: '+18%', label: 'Średnia poprawa warunków zakupowych w pierwszym cyklu' },
-  { value: '3–6 tyg.', label: 'Czas od diagnozy do pierwszych mierzalnych wyników' },
-  { value: '100%', label: 'Klientów wdraża co najmniej 2 rekomendacje w 3 miesiące' },
-  { value: '12–18%', label: 'Wartości zakupowej traconej rocznie przez nieprzygotowane firmy' },
-]
-
-const APPROACH_POINTS = [
-  {
-    title: 'Dane transakcyjne',
-    desc: 'Analiza 12–24 miesięcy rzeczywistych danych zakupowych Twojej firmy',
-  },
-  {
-    title: 'Benchmarki rynkowe',
-    desc: 'Porównanie z realnymi warunkami rynkowymi — nie szacunkami z innej branży',
-  },
-  {
-    title: 'Plan wdrożeniowy',
-    desc: 'Priorytetyzacja działań z właścicielami, harmonogramem i mierzalnymi KPI',
-  },
-]
 
 // ─── Page ──────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
   return (
     <>
-      {/* ═══════════════════════════════════════════════════════════════════
-          1. HERO — cinematic asymmetric split
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-[58fr_42fr] min-h-[calc(100vh-64px)]">
+      {/* ════════════════════════════════════
+          HERO
+          ════════════════════════════════════ */}
+      <section className="bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
 
-          {/* ── Left: content ── */}
-          <div className="flex flex-col justify-center px-6 sm:px-10 lg:pl-16 xl:pl-24 py-24 lg:py-20">
-
-            {/* Label with accent line */}
-            <div className="flex items-center gap-4 mb-10">
-              <span className="block w-8 h-[1.5px] bg-[#242F44]" aria-hidden="true" />
-              <p className="text-[11px] font-medium tracking-[0.35em] uppercase text-gray-400">
-                Negotiation Intelligence
-              </p>
-            </div>
-
-            {/* Headline */}
-            <h1 className="text-5xl md:text-6xl xl:text-[72px] font-semibold tracking-tight text-gray-900 leading-[1.01] mb-8 max-w-xl">
-              Lepsze zakupy.<br />
-              Lepsze negocjacje.<br />
-              <span className="text-[#242F44]">Lepszy&nbsp;wynik.</span>
+          {/* LEFT: text */}
+          <div className="flex flex-col justify-center h-auto md:h-[calc(100vh-80px)] px-6 md:px-12 py-16 md:py-0">
+            <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">Profitia</p>
+            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mt-6">
+              Zakupy, które realnie&nbsp;wpływają na&nbsp;wynik&nbsp;firmy
             </h1>
-
-            {/* Subtitle */}
-            <p className="text-lg text-gray-600 leading-relaxed mb-12 max-w-md">
-              Pomagamy firmom obniżać koszty zakupów i budować trwałą przewagę
-              w negocjacjach z dostawcami.
+            <p className="text-lg text-gray-600 leading-relaxed mt-6">
+              Nie chodzi o to, żeby negocjować więcej.<br />
+              Chodzi o to, żeby podejmować lepsze decyzje &mdash; zanim usiądziesz do rozmowy.
             </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 mb-16">
-              <Link href="/contact" className="btn-primary">
+            <p className="text-gray-500 leading-relaxed mt-4">
+              Łączymy doświadczenie, dane i narzędzia, żeby zakupy przestały być reaktywne
+              i zaczęły realnie wpływać na marżę.
+            </p>
+            <div className="mt-8">
+              <Link
+                href="#g6lvxh"
+                className="inline-block bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
+              >
                 Umów rozmowę
               </Link>
-              <Link href="/services" className="btn-secondary">
-                Nasze usługi
-              </Link>
-            </div>
-
-            {/* Editorial metrics footer */}
-            <div className="border-t border-gray-100 pt-8 flex flex-wrap items-center gap-8">
-              <div>
-                <div className="text-2xl font-semibold text-gray-900 tracking-tight leading-none">+18%</div>
-                <div className="text-xs text-gray-400 mt-1">średnia poprawa warunków</div>
-              </div>
-              <span className="block w-px h-8 bg-gray-200" aria-hidden="true" />
-              <div>
-                <div className="text-2xl font-semibold text-gray-900 tracking-tight leading-none">3–6 tyg.</div>
-                <div className="text-xs text-gray-400 mt-1">czas do pierwszych wyników</div>
-              </div>
-              <span className="block w-px h-8 bg-gray-200" aria-hidden="true" />
-              <div>
-                <div className="text-2xl font-semibold text-gray-900 tracking-tight leading-none">100%</div>
-                <div className="text-xs text-gray-400 mt-1">klientów wdraża rekomendacje</div>
-              </div>
             </div>
           </div>
 
-          {/* ── Right: dark editorial panel ── */}
-          <div className="hidden lg:block relative bg-[#242F44] overflow-hidden">
-            {/* Grid texture */}
-            <svg
-              className="absolute inset-0 w-full h-full opacity-[0.06]"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <defs>
-                <pattern id="hero-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-                  <path d="M 48 0 L 0 0 0 48" fill="none" stroke="white" strokeWidth="0.75" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#hero-grid)" />
-            </svg>
+          {/* RIGHT: image placeholder */}
+          <div className="relative w-full h-[60vh] md:h-[calc(100vh-80px)] bg-gray-200">
+            <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
+            <div className="absolute bottom-8 left-8 bg-white px-4 py-3 rounded-lg shadow-md">
+              <div className="text-xs text-gray-500">Średnia poprawa warunków zakupowych</div>
+              <div className="text-xl font-semibold text-gray-900 mt-0.5">+20%</div>
+            </div>
+          </div>
 
-            {/* Framework list */}
-            <div className="absolute inset-0 flex flex-col justify-center px-12 xl:px-16">
-              <p className="text-[10px] font-medium tracking-[0.35em] uppercase text-white/25 mb-12">
-                Framework
-              </p>
-              <div className="space-y-8">
-                {['01 — Diagnoza i analiza', '02 — Strategia i przygotowanie', '03 — Wdrożenie i wyniki'].map(
-                  (item, i) => (
-                    <div key={i} className="flex items-center gap-4" style={{ opacity: 1 - i * 0.2 }}>
-                      <span className="block w-5 h-px bg-[#0092D9]" aria-hidden="true" />
-                      <span className="text-sm font-medium text-white/60 tracking-wide">{item}</span>
-                    </div>
-                  )
-                )}
-              </div>
+        </div>
+      </section>
 
-              {/* Decorative large stat */}
-              <div className="mt-auto pt-16">
-                <div className="text-[80px] font-semibold text-white/10 tracking-tighter leading-none select-none">
-                  +18%
+      {/* ════════════════════════════════════
+          PROBLEM
+          ════════════════════════════════════ */}
+      <section id="bzze51" className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <div className="mb-16">
+            <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">Kontekst</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight text-gray-900">
+              Zakupy przestały być funkcją operacyjną
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-x-16 gap-y-10">
+            <div className="space-y-10">
+              {[
+                { title: 'Wpływ na marżę', desc: 'Decyzje zakupowe coraz bezpośredniej przekładają się na rentowność. Każdy punkt marży wymaga precyzji, nie przybliżeń.' },
+                { title: 'Ciągłość działania', desc: 'Przerwy w łańcuchu dostaw mają realny koszt. Zakupy muszą zarządzać ryzykiem, nie tylko ceną.' },
+                { title: 'Ryzyko dostawców', desc: 'Koncentracja, zależność, płynność finansowa kontrahentów &mdash; to teraz elementarz funkcji zakupów.' },
+                { title: 'Zmienność rynku', desc: 'Ceny surowców, kursy walut, dostępność &mdash; zmienne, których nie można ignorować przy podejmowaniu decyzji.' },
+              ].map((item) => (
+                <div key={item.title} className="space-y-2">
+                  <p className="font-medium text-lg text-gray-900">{item.title}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
                 </div>
-                <p className="text-[11px] text-white/25 mt-2 tracking-widest uppercase">
-                  średnia poprawa warunków
-                </p>
+              ))}
+            </div>
+
+            <div className="space-y-10">
+              {[
+                { title: 'Więcej danych, mniej jasności', desc: 'Dane są wszędzie &mdash; ale zamiana ich w konkretną decyzję zakupową wymaga czegoś więcej niż Excela i intuicji.' },
+                { title: 'Presja czasu', desc: 'Negocjacje, renegocjacje, zapytania ofertowe &mdash; tempo pracy nie pozwala na głębszą analizę wtedy, gdy jest najbardziej potrzebna.' },
+                { title: 'Większa odpowiedzialność', desc: 'Zakupy odpowiadają za więcej &mdash; często bez odpowiedniego wsparcia merytorycznego ani narzędzi.' },
+              ].map((item) => (
+                <div key={item.title} className="space-y-2">
+                  <p className="font-medium text-lg text-gray-900">{item.title}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-20 max-w-3xl border-l-4 border-gray-900 pl-6">
+            <p className="text-2xl font-medium text-gray-900 leading-relaxed">
+              Zakupy stają się funkcją strategiczną &mdash; ale nadal działają reaktywnie.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════
+          INSIGHT
+          ════════════════════════════════════ */}
+      <section id="3hhwq4" className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+
+          <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">Diagnoza</p>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-16 leading-tight text-gray-900">
+            To nie jest problem jednego obszaru
+          </h2>
+
+          <div className="relative">
+            <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-200" />
+            {[
+              { n: '1', title: 'Nie chodzi tylko o negocjacje', desc: 'Nawet najlepsza negocjacja nie zastąpi złej strategii kategorii, braku danych czy nieprzygotowanego zespołu. Wynik negocjacji zależy od tego, co dzieje się przed i po.' },
+              { n: '2', title: 'Nie chodzi tylko o dane', desc: 'Dane bez interpretacji to koszt. Kluczowe jest wiedzieć, jakich danych szukać, skąd je brać i jak przekształcić je w konkretną decyzję zakupową.' },
+              { n: '3', title: 'Nie chodzi tylko o kompetencje', desc: 'Wykształcony zespół bez właściwego podejścia i narzędzi nadal będzie działał reaktywnie. Kompetencje potrzebują struktury, żeby działać efektywnie.' },
+            ].map((item) => (
+              <div key={item.n} className="relative pl-12 mb-12">
+                <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center text-sm font-medium">
+                  {item.n}
+                </div>
+                <p className="text-lg font-medium text-gray-900">{item.title}</p>
+                <p className="text-gray-600 text-sm leading-relaxed mt-2">{item.desc}</p>
               </div>
-            </div>
+            ))}
+          </div>
+
+          <div className="mt-16 p-8 bg-gray-50 rounded-xl">
+            <p className="text-lg font-medium text-gray-900 leading-relaxed">
+              Decyzje nie wynikają z danych.<br />
+              Wynikają z tego, jak je wykorzystasz.
+            </p>
           </div>
 
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          2. TENSION STATEMENT — tonal break, creates narrative drama
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 xl:py-24 bg-[#242F44]">
-        <div className="container-base">
-          <div className="max-w-4xl">
-            <p className="text-[10px] font-medium tracking-[0.35em] uppercase text-[#CAD2E3]/40 mb-8">
-              Realia rynku
-            </p>
-            <p className="text-2xl md:text-3xl lg:text-[38px] font-medium text-white leading-[1.25] tracking-tight">
-              Polska firma traci średnio{' '}
-              <span className="text-[#0092D9]">12–18%</span>{' '}
-              wartości zakupowej przez brak właściwego przygotowania
-              do negocjacji z dostawcami.
-            </p>
-            <div className="mt-8 flex items-center gap-4">
-              <span className="block w-6 h-px bg-[#0092D9]" aria-hidden="true" />
-              <p className="text-gray-400 text-base leading-relaxed">
-                To nie jest problem techniczny. To jest problem strategiczny —
-                i rozwiązujemy go w 3–6 tygodni.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          3. THREE PILLARS — editorial numbered composition
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-28 xl:py-36 bg-white">
-        <div className="container-base">
-
-          {/* Section header — asymmetric two-column intro */}
-          <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-24 mb-20">
-            <div className="max-w-lg">
-              <p className="text-[11px] font-medium tracking-[0.35em] uppercase text-gray-400 mb-5">
-                Framework działania
-              </p>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 leading-tight">
-                Trzy filary trwałej przewagi zakupowej
-              </h2>
-            </div>
-            <div className="lg:max-w-sm lg:pb-1">
-              <p className="text-gray-500 text-base leading-relaxed">
-                Każdy projekt przebiega według sprawdzonego frameworku — od diagnozy
-                po konkretne wyniki wdrożone w Twojej organizacji.
-              </p>
-            </div>
-          </div>
-
-          {/* Pillars — editorial horizontal rows */}
-          {PILLARS.map((pillar) => (
+      {/* ════════════════════════════════════
+          PILLARS
+          ════════════════════════════════════ */}
+      <style>{`
+        #pillars-section:hover .pillar { opacity: 0.4; }
+        #pillars-section .pillar:hover { opacity: 1 !important; }
+      `}</style>
+      <section id="pillars-section" className="flex flex-col md:flex-row md:h-[calc(100vh-80px)] overflow-hidden">
+        {[
+          { n: '01', title: 'Doradztwo', desc: 'Rozwiązanie konkretnych problemów zakupowych i wdrożenie rekomendacji w praktyce.', bg: '#334155' },
+          { n: '02', title: 'Kompetencje', desc: 'Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.', bg: '#1e293b' },
+          { n: '03', title: 'Narzędzia', desc: 'Dane i narzędzia, które zamieniają przeczucia w uzasadnione decyzje.', bg: '#1e3a5f' },
+        ].map((pillar, i) => (
+          <div
+            key={pillar.n}
+            className={`pillar group relative flex flex-col justify-end p-6 md:p-8 md:flex-1 h-[60vh] md:h-auto ${i < 2 ? 'border-b md:border-b-0 md:border-r border-gray-200' : ''} overflow-hidden cursor-pointer transition-opacity duration-500`}
+          >
             <div
-              key={pillar.num}
-              className="group grid grid-cols-1 lg:grid-cols-[80px_1fr_2fr] gap-0 border-t border-gray-200 py-12 hover:bg-gray-50/50 transition-colors duration-300 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8"
-            >
-              {/* Number — large decorative */}
-              <div className="text-5xl font-semibold text-gray-100 group-hover:text-gray-200 transition-colors duration-300 tracking-tighter leading-none select-none mb-5 lg:mb-0">
-                {pillar.num}
-              </div>
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{ backgroundColor: pillar.bg }}
+            />
+            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative z-10">
+              <div className="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 group-hover:text-white/50 mb-4 transition-colors duration-300">{pillar.n}</div>
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">{pillar.title}</h3>
+              <p className="text-sm md:text-base text-gray-500 mt-3 group-hover:text-gray-200 max-w-xs leading-relaxed transition-colors duration-300">{pillar.desc}</p>
+              <span className="inline-block mt-5 text-sm text-gray-900 group-hover:text-white transition-colors duration-300">Zobacz więcej &rarr;</span>
+            </div>
+          </div>
+        ))}
+      </section>
 
-              {/* Title + label */}
-              <div className="lg:pr-10 mb-5 lg:mb-0">
-                <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#006D9E] mb-2">
-                  {pillar.label}
-                </p>
-                <h3 className="text-xl font-semibold text-gray-900 tracking-tight leading-snug">
-                  {pillar.title}
-                </h3>
-              </div>
-
-              {/* Description + outcome */}
-              <div>
-                <p className="text-base text-gray-600 leading-relaxed max-w-prose mb-5">
-                  {pillar.description}
-                </p>
-                <div className="flex items-center gap-3">
-                  <span className="block w-4 h-px bg-[#242F44]" aria-hidden="true" />
-                  <span className="text-sm font-medium text-gray-600">{pillar.outcome}</span>
+      {/* ════════════════════════════════════
+          PROCESS
+          ════════════════════════════════════ */}
+      <section id="b5xg0q" className="py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">Jak działamy</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
+              Jak wygląda lepsze podejmowanie decyzji zakupowych
+            </h2>
+          </div>
+          <div className="divide-y divide-gray-100">
+            {[
+              { n: '01', title: 'Diagnoza sytuacji', desc: 'Rozumiemy punkt wyjścia &mdash; jakie kategorie, jakie napięcia, jakie dane już masz. Nie zaczynamy od rozwiązania, które mamy w katalogu.' },
+              { n: '02', title: 'Analiza i kontekst rynkowy', desc: 'Identyfikujemy możliwości i ryzyka w oparciu o dane rynkowe, benchmarki i historię zakupową. Łączymy dane zewnętrzne z Twoim kontekstem wewnętrznym.' },
+              { n: '03', title: 'Konkretna rekomendacja', desc: 'Nie raport &mdash; plan działania. Co zrobić, w jakiej kolejności, z jakim uzasadnieniem. Rekomendacja gotowa do prezentacji zarządowi i wdrożenia z zespołem.' },
+              { n: '04', title: 'Wdrożenie z zespołem', desc: 'Realizujemy razem z Twoim zespołem &mdash; żeby wiedza i podejście zostały w organizacji. Nie robimy za Was; robimy razem, z transferem kompetencji.' },
+              { n: '05', title: 'Weryfikacja efektów', desc: 'Mierzymy, co się zmieniło. Korekta tam, gdzie potrzeba &mdash; ciągłe doskonalenie, nie jednorazowy projekt z raportem końcowym.' },
+            ].map((step) => (
+              <div key={step.n} className="grid md:grid-cols-[100px_1fr] gap-6 md:gap-10 py-10 group hover:bg-gray-50 rounded-xl px-4 -mx-4 transition-colors duration-200">
+                <div className="text-5xl font-thin text-gray-100 group-hover:text-gray-200 transition-colors leading-none pt-1 select-none">{step.n}</div>
+                <div>
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed max-w-xl">{step.desc}</p>
                 </div>
               </div>
-            </div>
-          ))}
-          <div className="border-t border-gray-200" />
-
-          {/* Link to services */}
-          <div className="mt-12 flex justify-end">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-sm font-medium text-gray-900 border-b border-gray-300 pb-px hover:border-gray-900 transition-colors duration-200"
-            >
-              Poznaj szczegóły każdego filaru
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+            ))}
+          </div>
+          <div className="mt-14 pt-10 border-t border-gray-100">
+            <p className="text-xl font-medium leading-relaxed">
+              Nie chodzi o ilość danych &mdash;{' '}
+              <span className="text-gray-400">tylko o ich właściwe wykorzystanie.</span>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          4. METRICS STRIP — data-confidence moment
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-gray-50 border-t border-gray-100">
-        <div className="container-base">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-0 lg:divide-x lg:divide-gray-200">
-            {METRICS.map((m) => (
-              <div key={m.value} className="lg:px-10 first:lg:pl-0 last:lg:pr-0">
-                <div className="text-4xl font-semibold tracking-tight text-gray-900 leading-none mb-2">
-                  {m.value}
-                </div>
-                <div className="text-sm text-gray-500 leading-snug">{m.label}</div>
+      {/* ════════════════════════════════════
+          IMPACT
+          ════════════════════════════════════ */}
+      <section id="vqj89m" className="py-28 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-5">Efekt</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
+              Co się zmienia, gdy zakupy działają strategicznie
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: 'Kontrola kosztów', desc: 'Wiesz, skąd pochodzi każda złotówka kosztu i masz argumenty, żeby ją negocjować lub uzasadnić.' },
+              { title: 'Mniej chaosu', desc: 'Zamiast reagować na każdą zmianę, wyprzedzasz je. Decyzje stają się przewidywalne i uzasadnione.' },
+              { title: 'Lepszy zespół', desc: 'Twoi ludzie rozumieją nie tylko co robić, ale dlaczego &mdash; i potrafią samodzielnie uzasadnić decyzje.' },
+              { title: 'Spójność', desc: 'Jeden sposób myślenia o zakupach w całej organizacji &mdash; zamiast różnych podejść w każdym departamencie.' },
+              { title: 'Przewidywalność', desc: 'Zamiast niespodzianek od dostawców &mdash; terminarz renegocjacji, monitoring rynku i gotowość na zmianę.' },
+              { title: 'Realny wynik', desc: 'Zakupy przestają być centrum kosztów. Stają się funkcją, która aktywnie chroni i buduje marżę.' },
+            ].map((card) => (
+              <div key={card.title} className="border border-white/10 rounded-lg p-6 transition-all duration-300 hover:border-white/30 hover:bg-white/5">
+                <div className="text-white/40 mb-4">&rarr;</div>
+                <h4 className="text-lg font-medium text-white mb-2">{card.title}</h4>
+                <p className="text-white/60 text-sm leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          5. APPROACH — executive editorial split
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-28 xl:py-36 bg-white border-t border-gray-100">
-        <div className="container-base">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 xl:gap-24 items-start">
-
-            {/* Left column */}
-            <div>
-              <p className="text-[11px] font-medium tracking-[0.35em] uppercase text-gray-400 mb-5">
-                Nasze podejście
-              </p>
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-tight mb-8">
-                Pracujemy na Twoich danych — nie na ogólnych rekomendacjach.
-              </h2>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 text-sm font-medium text-gray-900 border-b border-gray-300 pb-px hover:border-gray-900 transition-colors duration-200"
-              >
-                Zobacz jak działamy
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-
-            {/* Right column — pull quote + approach points */}
-            <div>
-              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed font-light max-w-prose mb-12">
-                &ldquo;Każdy projekt zaczynamy od analizy rzeczywistych danych zakupowych —
-                faktur, umów, historii transakcji. Nie od prezentacji
-                z benchmarkami dla innej branży.&rdquo;
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {APPROACH_POINTS.map((pt) => (
-                  <div key={pt.title} className="border-l-2 border-[#242F44] pl-4">
-                    <div className="text-sm font-semibold text-gray-900">{pt.title}</div>
-                    <div className="text-xs text-gray-500 mt-1 leading-relaxed">{pt.desc}</div>
-                  </div>
-                ))}
+      {/* ════════════════════════════════════
+          USE-CASES
+          ════════════════════════════════════ */}
+      <section id="p8800w" className="py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">Kiedy warto się odezwać</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
+              Sytuacje, w których pomagamy działać szybciej i pewniej
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              { n: '01', title: 'Podwyżka od dostawcy', desc: 'Dostawca przysłał notyfikację o wzroście cen. Masz 2 tygodnie. Czy podwyżka jest uzasadniona? Jak negocjować? Jaka jest Twoja realna siła przetargowa?' },
+              { n: '02', title: 'Brak benchmarków', desc: 'Nie wiesz, czy płacisz właściwą cenę. Negocjujesz bez punktu odniesienia. Decyzje opierasz na przeczuciu lub historii, nie na danych rynkowych.' },
+              { n: '03', title: 'Trudne decyzje zakupowe', desc: 'Zmiana dostawcy, konsolidacja kategorii, decyzja make-or-buy. Wysokie stawki, wiele zmiennych i presja czasu &mdash; potrzebujesz zewnętrznego punktu widzenia.' },
+              { n: '04', title: 'Chaos w kategoriach', desc: 'Każdy kupiec działa po swojemu. Brak strategii kategorii, brak spójności. Trudno powiedzieć, co faktycznie kupujesz, od kogo i na jakich warunkach.' },
+            ].map((uc) => (
+              <div key={uc.n} className="group border border-gray-200 rounded-xl p-8 transition-all duration-300 hover:bg-gray-900 hover:text-white hover:shadow-lg">
+                <p className="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 group-hover:text-gray-500 mb-5 transition-colors">{uc.n}</p>
+                <h3 className="font-semibold text-xl text-gray-900 group-hover:text-white mb-4 transition-colors tracking-tight">{uc.title}</h3>
+                <p className="text-gray-600 group-hover:text-gray-300 text-sm leading-relaxed transition-colors">{uc.desc}</p>
               </div>
-            </div>
-
+            ))}
+          </div>
+          <div className="mt-12 pt-8 border-t border-gray-100">
+            <p className="text-gray-600">
+              Masz podobną sytuację?{' '}
+              <Link href="#g6lvxh" className="text-gray-900 font-medium hover:underline">
+                &rarr; Umów rozmowę
+              </Link>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          6. CTA — closing moment
-      ═══════════════════════════════════════════════════════════════════ */}
-      <CTASection
-        headline="Gotowy na lepsze wyniki zakupowe?"
-        subtitle="Zacznijmy od jednej kategorii. Pokażemy potencjał zanim podejmiesz decyzję."
-        ctaPrimary={{ label: 'Umów rozmowę', href: '/contact' }}
-        ctaSecondary={{ label: 'Nasze usługi', href: '/services' }}
-        note="Bez zobowiązań. Odpowiadamy w ciągu 24 godzin."
-      />
+      {/* ════════════════════════════════════
+          PROOF
+          ════════════════════════════════════ */}
+      <section id="d31qlk" className="py-28 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">Wiarygodność</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
+              Efekty, nie obietnice
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-px bg-gray-200 rounded-2xl overflow-hidden mb-20">
+            {[
+              { val: '+20%', label: 'średnia poprawa warunków zakupowych w pierwszym cyklu renegocjacji' },
+              { val: '3\u20136\u00a0tyg.', label: 'czas od diagnozy do pierwszych konkretnych wyników w terenie' },
+              { val: '12+', label: 'lat doświadczenia w zakupach i doradztwie dla firm różnej skali' },
+            ].map((stat) => (
+              <div key={stat.val} className="bg-white p-10 text-center">
+                <p className="text-5xl font-semibold text-gray-900 mb-3">{stat.val}</p>
+                <p className="text-sm text-gray-500 leading-relaxed max-w-[200px] mx-auto">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          <div>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-8">
+              Pracowaliśmy z organizacjami z sektorów
+            </p>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="flex items-center justify-center p-4 bg-white rounded-xl h-14 shadow-sm">
+                  <div className="w-16 h-5 bg-gray-200 rounded opacity-50" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════
+          CASES
+          ════════════════════════════════════ */}
+      <section id="io58to" className="py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">Przypadek</p>
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
+              Jak to wygląda w praktyce
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div>
+              <div className="w-full rounded-2xl shadow-sm aspect-[4/3] bg-[#cbd5e1]" />
+            </div>
+            <div className="space-y-10 pt-4">
+              {[
+                { label: 'Problem', text: 'Firma produkcyjna, 4 kluczowe kategorie zakupowe &mdash; każda zarządzana przez inny dział, inaczej. Brak benchmarków, brak strategii. Dwóch kluczowych dostawców wysyła podwyżki w tym samym kwartale o łącznie 14%.' },
+                { label: 'Działanie', text: 'Analiza kosztów kategorii, zestawienie z danymi rynkowymi, opracowanie pozycji negocjacyjnej dla obu dostawców. 3-tygodniowy sprint: diagnoza, dane zewnętrzne, rekomendacja, przygotowanie zespołu do rozmów.' },
+                { label: 'Efekt', text: 'Negocjacje zakończone przy 6% wzroście zamiast 14% &mdash; połowiczne przejęcie podwyżki. Strategia na kolejne 18 miesięcy dla obu kategorii. Zespół z modelem pracy gotowym do samodzielnego stosowania.' },
+              ].map((item, idx) => (
+                <div key={item.label} className={idx > 0 ? 'border-t border-gray-100 pt-10' : ''}>
+                  <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-gray-400 mb-3">{item.label}</p>
+                  <p className="text-gray-700 leading-relaxed text-sm">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════
+          CTA
+          ════════════════════════════════════ */}
+      <section id="g6lvxh" className="py-24 lg:py-32 bg-black text-white">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-600 mb-7">Następny krok</p>
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-7 max-w-2xl mx-auto leading-tight">
+            Zacznij od jednego konkretnego przypadku
+          </h2>
+          <p className="text-gray-400 text-lg mb-4 max-w-lg mx-auto leading-relaxed">
+            Możemy przejść przez jedną sytuację i pokazać lepsze podejście &mdash; bez zobowiązań i bez ogólnikowych propozycji.
+          </p>
+          <p className="text-gray-600 text-sm mb-12">
+            Bez zobowiązań. Bez sprzedaży.<br />Konkretna rozmowa o Twojej sytuacji.
+          </p>
+          <a
+            href="mailto:kontakt@profitia.pl"
+            className="inline-block bg-white text-black rounded-xl px-8 py-4 font-medium text-base hover:bg-gray-100 transition-colors duration-200"
+          >
+            Umów rozmowę
+          </a>
+        </div>
+      </section>
     </>
   )
 }
+
+
 
