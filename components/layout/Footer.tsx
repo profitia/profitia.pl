@@ -21,9 +21,9 @@ export default function Footer() {
               <Image
                 src="/logo/profitia-white.svg"
                 alt="Profitia"
-                width={110}
-                height={30}
-                className="h-7 w-auto"
+                width={165}
+                height={45}
+                className="h-[42px] w-auto"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-[220px]">
