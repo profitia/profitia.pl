@@ -1,6 +1,6 @@
 # UI INCONSISTENCIES — Profitia Frontend Audit
-> **Status:** Living document | Version 1.0 | May 2026
-> **Last audited:** 6 May 2026
+> **Status:** Living document | Version 2.0 | May 2026
+> **Last audited:** 6 May 2026 (Sprint 2)
 > **Scope:** All files under `app/`, `components/`, `styles/`
 > **Reference:** `docs/design-system/VISUAL_CONTEXT_PROFITIA.md`
 
@@ -270,31 +270,120 @@ Each entry has:
 | L-05 | ChatWidget visual audit | P4 | ⚪ Open |
 
 **Sprint May 2026 resolved:** 9/22 issues (all P1 + I-01, I-02, I-05)
+**Sprint 2 May 2026 resolved:** Composition system created (not issue-resolution — architecture build)
+
+---
+
+## SPRINT 2 — COMPOSITION SYSTEM (6 May 2026)
+
+Sprint 2 was architectural, not issue-resolution. Created the full modular composition framework.
+
+### ✅ S2-01 — Section Library created
+- **Path:** `components/sections/`
+- **What:** 17 canonical section components across 4 categories (hero, features, proof, content, cta)
+- **Sections:**
+  - `hero/HeroEditorial`, `hero/HeroSplit`, `hero/HeroMinimal`
+  - `features/FeatureGrid`, `features/FeatureSplit`, `features/FeatureStats`, `features/FeatureEditorial`
+  - `proof/LogoCloud`, `proof/StatsStrip`, `proof/TestimonialSection`, `proof/QuoteHighlight`
+  - `content/ContentSplit`, `content/EditorialContent`, `content/ComparisonGrid`
+  - `cta/CTADark`, `cta/CTAMinimal`, `cta/CTAInline`
+- **Import:** `import { HeroEditorial, FeatureGrid, CTADark } from '@/components/sections'`
+- **Status:** ✅ Resolved
+
+---
+
+### ✅ S2-02 — Page Template System created
+- **Path:** `components/templates/`
+- **What:** 6 typed composition templates for all page types
+  - `ServicePageTemplate` — 8-section service page composition
+  - `AboutPageTemplate` — mission + values + stats + CTA
+  - `ContactPageTemplate` — form slot + contact info + logo cloud
+  - `InsightArticleTemplate` — editorial blog/insight article
+  - `CaseStudyTemplate` — structured proof narrative
+  - `LandingPageTemplate` — conversion-optimized campaign page
+- **Import:** `import { ServicePageTemplate } from '@/components/templates'`
+- **Status:** ✅ Resolved
+
+---
+
+### ✅ S2-03 — Spacing Token System created
+- **Path:** `styles/tokens/spacing.ts`
+- **What:** Canonical spacing constants (section, gap, width, stack, card, grid, bg)
+- **Import:** `import { section, gap, width } from '@/styles/tokens/spacing'`
+- **Status:** ✅ Resolved
+
+---
+
+### ✅ S2-04 — Motion Token System created
+- **Path:** `styles/tokens/motion.ts`
+- **What:** Canonical motion constants (reveal, hover, transition, delay, easing)
+- **Import:** `import { hover, transition, delay } from '@/styles/tokens/motion'`
+- **Status:** ✅ Resolved
+
+---
+
+### ✅ S2-05 — Image Art Direction created
+- **Path:** `docs/design-system/IMAGE_ART_DIRECTION.md`
+- **What:** Complete image style guide (photography direction, crop rules, overlay, saturation, mockup rules, sourcing, technical specs, litmus test)
+- **Status:** ✅ Resolved
+
+---
+
+### ✅ S2-06 — Service Page System created
+- **Path:** `components/templates/services/`
+- **What:** 8 modular service page components
+  - `ServiceHero`, `ServiceOverview`, `ServiceFeatures`, `ServiceStats`
+  - `ServiceProcess`, `ServiceProof`, `RelatedServices`, `ServiceCTA`
+- **Import:** `import { ServiceHero, ServiceCTA } from '@/components/templates/services'`
+- **Canonical order:** Hero → Overview → Features → Stats → Process → Proof → Related → CTA
+- **Status:** ✅ Resolved
 
 ---
 
 ## FUTURE REFACTOR ROADMAP
 
-### Sprint 2 — Visual Foundation Completion (P2 items)
-1. Migrate service subpage components to `@/components/ui/RevealWrapper`
-2. Replace page-specific `CtaSection` with global `CTASection`
-3. Verify no remaining `font-heading` class usage (`grep -r "font-heading" app/ components/`)
-4. Audit `ChatWidget.tsx` colors
+### Sprint 2 ✅ — Composition System Architecture (completed 6 May 2026)
+1. ✅ Section Library — 17 sections in `components/sections/`
+2. ✅ Page Templates — 6 templates in `components/templates/`
+3. ✅ Spacing Token System — `styles/tokens/spacing.ts`
+4. ✅ Motion Token System — `styles/tokens/motion.ts`
+5. ✅ Image Art Direction — `docs/design-system/IMAGE_ART_DIRECTION.md`
+6. ✅ Service Page System — 8 components in `components/templates/services/`
 
-### Sprint 3 — Page Content Build-out (P3 items)
-1. Services overview page — full design with `PremiumCard` grid
-2. About page — editorial layout, team section, mission
-3. Blog list + article detail — editorial design
-4. Contact form — wire to Office365 Graph API
-5. Header — mobile hamburger menu
+### Sprint 3 — First Real Pages Using the System (P3 items)
+**Goal:** Build actual content pages using Section Library + Templates.
+No custom layouts — only system composition.
 
-### Sprint 4 — Polish & Production (P4 items)
-1. OpenGraph / Twitter metadata for all pages
-2. Admin CRUD articles flow
-3. `font-heading` final cleanup from config
-4. Performance audit (LCP, CLS)
+1. **Services overview page** (`app/[lang]/services/page.tsx`)
+   - Use `LandingPageTemplate` or compose from `HeroEditorial + FeatureGrid + CTADark`
+   - Data: all services as `PremiumCard` items with links to subpages
+
+2. **About page** (`app/[lang]/about/page.tsx`)
+   - Use `AboutPageTemplate` with real content
+   - Mission statement, values grid, team section
+
+3. **Blog list + article** (`app/[lang]/blog/`)
+   - Blog list: `HeroMinimal` + article cards grid
+   - Article detail: `InsightArticleTemplate` with real content
+
+4. **Contact form wired** (`app/[lang]/contact/page.tsx`)
+   - Use `ContactPageTemplate` with real form
+   - Wire form → `/api/contact` → Office365 Graph API
+
+5. **Mobile header nav** (`components/layout/Header.tsx`)
+   - Hamburger + slide-down panel
+   - Uses design system colors only (`bg-white`, `text-gray-900`, `border-gray-100`)
+
+6. **Migrate subpage components** (I-03, I-06)
+   - Update 8 files in `components/services/subpage-services-1/` to import `RevealWrapper` from `@/components/ui`
+   - Replace local `CtaSection` with `@/components/ui/CTASection`
+
+### Sprint 4 — Polish & Production
+1. OpenGraph / Twitter metadata for all pages (`og:image`, `og:description`)
+2. Admin CRUD articles flow (Prisma)
+3. `font-heading` final cleanup from `tailwind.config.ts`
+4. Performance audit (LCP, CLS, INP)
 5. Accessibility audit (WCAG 2.1 AA)
-
 ---
 
 *Update this document after every sprint. Mark items resolved immediately, don't batch.*
