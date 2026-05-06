@@ -29,8 +29,8 @@ export default function Header() {
           <Image
             src="/logo/profitia-default.svg"
             alt="Profitia"
-            width={120}
-            height={32}
+            width={180}
+            height={48}
             priority
             className="h-8 w-auto"
           />
