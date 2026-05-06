@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import plDict from '@/dictionaries/pl.json'
 import enDict from '@/dictionaries/en.json'
+import { ProtectedEmail, ProtectedPhone, ProtectedPerson } from '@/components/security'
 
 function IconLinkedIn() {
   return (
@@ -157,18 +158,16 @@ export default function Footer() {
 
               {/* Main contact */}
               <div className="space-y-1">
-                <a
-                  href="tel:+48533747340"
+                <ProtectedPhone
+                  parts={['+48', '533', '747', '340']}
+                  display="+48 533 747 340"
                   className="block text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
-                >
-                  +48 533 747 340
-                </a>
-                <a
-                  href="mailto:kontakt@profitia.pl"
+                />
+                <ProtectedEmail
+                  user="kontakt"
+                  domain="profitia.pl"
                   className="block text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
-                >
-                  kontakt@profitia.pl
-                </a>
+                />
               </div>
 
               {/* Training */}
@@ -176,20 +175,21 @@ export default function Footer() {
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
                   {dict.footer.contactTraining}
                 </p>
-                <p className="text-gray-700 font-medium text-xs mb-1">Agnieszka Tworzyńska</p>
+                <ProtectedPerson
+                  name="Agnieszka Tworzyńska"
+                  className="text-gray-700 font-medium text-xs mb-1"
+                />
                 <div className="space-y-0.5">
-                  <a
-                    href="mailto:agnieszka.tworzynska@profitia.pl"
+                  <ProtectedEmail
+                    user="agnieszka.tworzynska"
+                    domain="profitia.pl"
                     className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
-                  >
-                    agnieszka.tworzynska@profitia.pl
-                  </a>
-                  <a
-                    href="tel:+48572001381"
+                  />
+                  <ProtectedPhone
+                    parts={['+48', '572', '001', '381']}
+                    display="+48 572 001 381"
                     className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
-                  >
-                    +48 572 001 381
-                  </a>
+                  />
                 </div>
               </div>
 
@@ -198,20 +198,21 @@ export default function Footer() {
                 <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
                   {dict.footer.contactSpendGuru}
                 </p>
-                <p className="text-gray-700 font-medium text-xs mb-1">Tomasz Uściński</p>
+                <ProtectedPerson
+                  name="Tomasz Uściński"
+                  className="text-gray-700 font-medium text-xs mb-1"
+                />
                 <div className="space-y-0.5">
-                  <a
-                    href="mailto:tomasz.uscinski@profitia.pl"
+                  <ProtectedEmail
+                    user="tomasz.uscinski"
+                    domain="profitia.pl"
                     className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
-                  >
-                    tomasz.uscinski@profitia.pl
-                  </a>
-                  <a
-                    href="tel:+48787417293"
+                  />
+                  <ProtectedPhone
+                    parts={['+48', '787', '417', '293']}
+                    display="+48 787 417 293"
                     className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
-                  >
-                    +48 787 417 293
-                  </a>
+                  />
                 </div>
               </div>
             </div>

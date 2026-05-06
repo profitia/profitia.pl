@@ -1197,3 +1197,71 @@ Przed commitowaniem nowego komponentu:
 
 *Sekcja dodana: May 2026 | Canonical interaction standard — obowiązuje od tego momentu we wszystkich komponentach.*
 
+---
+
+## SECTION 22 — CONTACT DATA EXPOSURE STANDARD
+
+### REGUŁA KANONICZNA
+
+Każde wystąpienie następujących danych osobowych/kontaktowych na stronie MUSI być renderowane przez kanoniczny protection system (`components/security/`):
+
+- imiona i nazwiska osób
+- adresy email
+- numery telefonów
+- dane kontaktowe konkretnych ludzi
+
+**Nigdy:**
+- inline `<a href="mailto:...">` w SSR HTML
+- inline `<a href="tel:...">` w SSR HTML
+- surowy tekst emaila/telefonu rendorowany po stronie serwera
+- ręczna implementacja ochrony poza komponentami kanonicznymi
+
+### CANONICAL COMPONENTS
+
+| Komponent | Plik | Zastosowanie |
+|-----------|------|-------------|
+| `<ProtectedEmail user domain className />` | `components/security/ProtectedEmail.tsx` | Każdy email |
+| `<ProtectedPhone parts display className />` | `components/security/ProtectedPhone.tsx` | Każdy numer telefonu |
+| `<ProtectedPerson name className />` | `components/security/ProtectedPerson.tsx` | Imię i nazwisko osoby |
+
+Import zawsze przez barrel: `import { ProtectedEmail, ProtectedPhone, ProtectedPerson } from '@/components/security'`
+
+### MECHANIZM
+
+- SSR renderuje pusty `<span aria-hidden="true" />` — żadnych danych w HTML source
+- Po hydration (`useEffect` → `mounted`) renderuje pełny semantyczny element:
+  - `<a href="mailto:user@domain">` dla emaila
+  - `<a href="tel:+48...">` dla telefonu
+  - `<span>` dla nazwiska
+- Dane przekazywane jako split props (user + domain osobno) — niewidoczne w source
+
+### WYJĄTKI (nie wymagają ochrony)
+
+- Adres siedziby firmy (instytucjonalny, publiczny)
+- NIP / REGON / KRS firmy
+- Publiczne dane rejestrowe spółki
+- Telefon główny firmy (opcjonalnie — do decyzji per-project)
+
+### GDZIE STOSOWAĆ
+
+Ochrona jest **obowiązkowa** w:
+- Footerze (`Footer.tsx`) ✅ wdrożone May 2026
+- Stronie kontaktowej
+- Stronie O nas (sekcje z ludźmi)
+- Stronie kariery
+- Stronach autorów bloga
+- Formularzach kontaktowych
+- Landing pages z danymi osób
+- Oknach modalnych z kontaktem
+
+### CHECKLIST PRZED COMMITEM
+
+- [ ] Żaden `href="mailto:"` w statycznym SSR HTML?
+- [ ] Żaden `href="tel:"` w statycznym SSR HTML?
+- [ ] Żadne nazwisko w SSR HTML?
+- [ ] Dane renderowane przez `ProtectedEmail` / `ProtectedPhone` / `ProtectedPerson`?
+- [ ] Import z `@/components/security` (nie inline)?
+- [ ] TS: zero błędów?
+
+*Sekcja dodana: May 2026 | Contact Data Exposure Standard — obowiązuje od tego momentu we wszystkich komponentach i stronach.*
+
