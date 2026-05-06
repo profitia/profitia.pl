@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -42,8 +43,15 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT: image placeholder */}
-          <div className="relative w-full h-[60vh] md:h-[calc(100vh-80px)] bg-gray-200">
+          {/* RIGHT: image */}
+          <div className="relative w-full h-[60vh] md:h-[calc(100vh-80px)] overflow-hidden">
+            <Image
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80"
+              alt="Spotkanie negocjacyjne — doradztwo zakupowe Profitia"
+              fill
+              className="object-cover"
+              priority
+            />
             <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
             <div className="absolute bottom-8 left-8 bg-white px-4 py-3 rounded-lg shadow-md">
               <div className="text-xs text-gray-500">Średnia poprawa warunków zakupowych</div>
@@ -152,18 +160,22 @@ export default function HomePage() {
       `}</style>
       <section id="pillars-section" className="flex flex-col md:flex-row md:h-[calc(100vh-80px)] overflow-hidden">
         {[
-          { n: '01', title: 'Doradztwo', desc: 'Rozwiązanie konkretnych problemów zakupowych i wdrożenie rekomendacji w praktyce.', bg: '#334155' },
-          { n: '02', title: 'Kompetencje', desc: 'Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.', bg: '#1e293b' },
-          { n: '03', title: 'Narzędzia', desc: 'Dane i narzędzia, które zamieniają przeczucia w uzasadnione decyzje.', bg: '#1e3a5f' },
+          { n: '01', title: 'Doradztwo', desc: 'Rozwiązanie konkretnych problemów zakupowych i wdrożenie rekomendacji w praktyce.', img: 'https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80', alt: 'Doradztwo zakupowe — spotkanie konsultacyjne' },
+          { n: '02', title: 'Kompetencje', desc: 'Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.', img: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80', alt: 'Rozwój kompetencji zakupowych — szkolenie zespołu' },
+          { n: '03', title: 'Narzędzia', desc: 'Dane i narzędzia, które zamieniają przeczucia w uzasadnione decyzje.', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80', alt: 'Narzędzia analityczne — dane zakupowe' },
         ].map((pillar, i) => (
           <div
             key={pillar.n}
             className={`pillar group relative flex flex-col justify-end p-6 md:p-8 md:flex-1 h-[60vh] md:h-auto ${i < 2 ? 'border-b md:border-b-0 md:border-r border-gray-200' : ''} overflow-hidden cursor-pointer transition-opacity duration-500`}
           >
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ backgroundColor: pillar.bg }}
-            />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <Image
+                src={pillar.img}
+                alt={pillar.alt}
+                fill
+                className="object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+              />
+            </div>
             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10">
               <div className="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 group-hover:text-white/50 mb-4 transition-colors duration-300">{pillar.n}</div>
@@ -329,7 +341,14 @@ export default function HomePage() {
           </div>
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
             <div>
-              <div className="w-full rounded-2xl shadow-sm aspect-[4/3] bg-[#cbd5e1]" />
+              <div className="relative w-full rounded-2xl shadow-sm aspect-[4/3] overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80"
+                  alt="Analiza danych zakupowych — przypadek firmy produkcyjnej"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
             <div className="space-y-10 pt-4">
               {[
