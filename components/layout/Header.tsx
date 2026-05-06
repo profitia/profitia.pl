@@ -256,29 +256,15 @@ export default function Header() {
             aria-label="Nawigacja mobilna"
           >
             <div className="space-y-0">
-              {primaryNav.map((link) => (
+              {[...primaryNav, ...secondaryNav].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block py-3 text-[2rem] font-semibold tracking-tight leading-tight transition-colors duration-150 ${
+                  className={`block py-3 text-2xl font-medium tracking-tight leading-tight transition-colors duration-150 ${
                     isActive(link.href)
                       ? 'text-gray-900'
-                      : 'text-gray-400 hover:text-gray-900'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              {secondaryNav.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`block py-3 text-[2rem] font-medium tracking-tight leading-tight transition-colors duration-150 ${
-                    isActive(link.href)
-                      ? 'text-gray-700'
-                      : 'text-gray-300 hover:text-gray-700'
+                      : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
                   {link.label}
