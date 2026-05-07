@@ -34,7 +34,7 @@ export function InsightBlock({
   source,
 }: InsightBlockProps) {
   return (
-    <div className={`${TYPE_STYLES[type]} pl-6 py-4 my-10 rounded-r-sm`}>
+    <div className={`${TYPE_STYLES[type]} pl-6 py-5 pr-6 my-12 rounded-r-sm`}>
       {type === 'stat' && value && (
         <>
           <p className="text-4xl font-semibold tracking-tight text-gray-900 mb-1">{value}</p>
@@ -45,7 +45,7 @@ export function InsightBlock({
         <>
           <p className="text-[15px] text-gray-700 leading-[1.75] font-medium">{text}</p>
           {source && (
-            <p className="mt-2 text-[12px] text-gray-400">{source}</p>
+            <p className="mt-2 text-[12px] text-gray-500">{source}</p>
           )}
         </>
       )}

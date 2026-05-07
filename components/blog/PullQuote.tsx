@@ -15,10 +15,10 @@ interface PullQuoteProps {
 
 export function PullQuote({ text, attribution }: PullQuoteProps) {
   return (
-    <blockquote className="border-l-[3px] border-gray-300 pl-6 my-10">
-      <p className="text-[17px] italic text-gray-500 leading-[1.8] mb-2">{text}</p>
+    <blockquote className="border-l-[3px] border-gray-300 pl-7 my-14">
+      <p className="text-[18px] italic text-gray-500 leading-[1.85] mb-2">{text}</p>
       {attribution && (
-        <cite className="text-[12px] not-italic text-gray-400 tracking-wide">
+        <cite className="text-[12px] not-italic text-gray-500 tracking-wide">
           {attribution}
         </cite>
       )}

@@ -83,7 +83,7 @@ export function ArticleLayout({ content }: ArticleLayoutProps) {
   const { processedHtml, tocItems } = prepareContent(content)
 
   return (
-    <div className="container-base pt-10 pb-32 lg:pb-44">
+    <div className="container-base pt-12 pb-36 lg:pb-52">
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] lg:gap-16 lg:items-start">
 
         {/* ── TOC Sidebar (Client Component) ──────────────── */}
@@ -94,24 +94,24 @@ export function ArticleLayout({ content }: ArticleLayoutProps) {
           <div
             className={[
               // Paragraph
-              '[&>p]:text-[16px] [&>p]:text-gray-600 [&>p]:leading-[1.85] [&>p]:mb-6',
+              '[&>p]:text-[16px] [&>p]:text-gray-600 [&>p]:leading-[1.9] [&>p]:mb-7',
               // Headings — scroll-mt-28 for sticky header offset
-              '[&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-gray-900 [&>h2]:leading-snug [&>h2]:mt-14 [&>h2]:mb-5 [&>h2]:pt-8 [&>h2]:border-t [&>h2]:border-gray-100 [&>h2]:scroll-mt-28',
-              '[&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-gray-900 [&>h3]:mt-9 [&>h3]:mb-3 [&>h3]:scroll-mt-28',
-              '[&>h4]:text-base [&>h4]:font-semibold [&>h4]:text-gray-800 [&>h4]:mt-7 [&>h4]:mb-2',
+              '[&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-gray-900 [&>h2]:leading-snug [&>h2]:mt-16 [&>h2]:mb-6 [&>h2]:pt-10 [&>h2]:border-t [&>h2]:border-gray-100 [&>h2]:scroll-mt-28',
+              '[&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-gray-900 [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:scroll-mt-28',
+              '[&>h4]:text-base [&>h4]:font-semibold [&>h4]:text-gray-800 [&>h4]:mt-8 [&>h4]:mb-3',
               // Lists
-              '[&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:space-y-2',
-              '[&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-6 [&>ol]:space-y-2',
-              '[&>ul>li]:text-[15px] [&>ul>li]:text-gray-600 [&>ul>li]:leading-[1.8]',
-              '[&>ol>li]:text-[15px] [&>ol>li]:text-gray-600 [&>ol>li]:leading-[1.8]',
+              '[&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-7 [&>ul]:space-y-2.5',
+              '[&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-7 [&>ol]:space-y-2.5',
+              '[&>ul>li]:text-[15px] [&>ul>li]:text-gray-600 [&>ul>li]:leading-[1.85]',
+              '[&>ol>li]:text-[15px] [&>ol>li]:text-gray-600 [&>ol>li]:leading-[1.85]',
               // Inline
               '[&_strong]:font-semibold [&_strong]:text-gray-800',
               '[&_em]:italic',
               '[&_a]:text-gray-900 [&_a]:underline [&_a]:underline-offset-2 [&_a]:decoration-gray-300 [&_a:hover]:decoration-gray-600 [&_a]:transition-colors [&_a]:duration-200',
               // Pull quote / blockquote
-              '[&>blockquote]:border-l-[3px] [&>blockquote]:border-gray-200 [&>blockquote]:pl-6 [&>blockquote]:my-10 [&>blockquote]:italic [&>blockquote]:text-[17px] [&>blockquote]:text-gray-500 [&>blockquote]:leading-[1.75]',
+              '[&>blockquote]:border-l-[3px] [&>blockquote]:border-gray-200 [&>blockquote]:pl-7 [&>blockquote]:my-12 [&>blockquote]:italic [&>blockquote]:text-[18px] [&>blockquote]:text-gray-500 [&>blockquote]:leading-[1.78]',
               // HR / divider
-              '[&>hr]:border-0 [&>hr]:border-t [&>hr]:border-gray-100 [&>hr]:my-10',
+              '[&>hr]:border-0 [&>hr]:border-t [&>hr]:border-gray-100 [&>hr]:my-12',
               // Tables
               '[&>table]:w-full [&>table]:text-sm [&>table]:mb-8 [&>table]:border-collapse',
               '[&>table>thead>tr>th]:text-left [&>table>thead>tr>th]:text-[11px] [&>table>thead>tr>th]:font-semibold [&>table>thead>tr>th]:tracking-[0.1em] [&>table>thead>tr>th]:uppercase [&>table>thead>tr>th]:text-gray-500 [&>table>thead>tr>th]:pb-3 [&>table>thead>tr>th]:border-b [&>table>thead>tr>th]:border-gray-200',

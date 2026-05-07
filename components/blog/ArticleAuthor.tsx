@@ -20,7 +20,7 @@ export function ArticleAuthor({ article, locale }: ArticleAuthorProps) {
   return (
     <div className="container-base">
       <div className="max-w-[68ch] border-t border-gray-100 pt-10 pb-12">
-        <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-5">
+        <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-5">
           {LABEL[locale]}
         </p>
         <div className="flex items-start gap-4">

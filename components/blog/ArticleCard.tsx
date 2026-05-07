@@ -37,7 +37,7 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
               alt={article.title}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+              className="object-cover group-hover:scale-[1.015] transition-transform duration-500 ease-out"
               priority={priority}
             />
           ) : (
@@ -50,8 +50,8 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
           <CategoryBadge category={article.category} locale={locale} />
           {article.readingTime && (
             <>
-              <span className="text-gray-200" aria-hidden="true">·</span>
-              <span className="text-[10px] font-medium text-gray-400">
+              <span className="text-gray-300" aria-hidden="true">·</span>
+              <span className="text-[10px] font-medium text-gray-500">
                 {formatReadingTime(article.readingTime, locale)}
               </span>
             </>
@@ -65,13 +65,13 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
 
         {/* Excerpt */}
         {article.excerpt && (
-          <p className="text-[14px] text-gray-500 leading-[1.7] line-clamp-3 mb-4">
+          <p className="text-[14px] text-gray-600 leading-[1.7] line-clamp-3 mb-4">
             {article.excerpt}
           </p>
         )}
 
         {/* Footer: author + date */}
-        <div className="flex items-center gap-3 text-[12px] text-gray-400">
+        <div className="flex items-center gap-3 text-[12px] text-gray-500">
           {article.authorName && (
             <span className="font-medium">{article.authorName}</span>
           )}

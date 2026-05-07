@@ -19,7 +19,7 @@ export function CategoryBadge({ category, locale, className = '' }: CategoryBadg
 
   return (
     <span
-      className={`inline-block text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 ${className}`}
+      className={`inline-block text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-600 ${className}`}
     >
       {label}
     </span>

@@ -27,8 +27,8 @@ function TOCItem({
   return (
     <li
       className={[
-        'border-l-[1.5px] pl-2.5 transition-colors duration-200 ease-out',
-        isActive ? 'border-gray-700' : 'border-gray-100',
+        'border-l-[1.5px] pl-2.5 transition-colors duration-300 ease-out',
+        isActive ? 'border-gray-700' : 'border-gray-200',
         item.level === 3 ? 'ml-3' : '',
       ].join(' ')}
     >
@@ -45,9 +45,9 @@ function TOCItem({
           }
         }}
         className={[
-          'block transition-colors duration-200 ease-out',
+          'block transition-colors duration-300 ease-out',
           item.level === 2 ? 'text-[13.5px] leading-[1.5]' : 'text-[12.5px] leading-[1.5]',
-          isActive ? 'text-gray-900 font-medium' : 'text-gray-400 hover:text-gray-600',
+          isActive ? 'text-gray-900 font-medium' : 'text-gray-500 hover:text-gray-700',
         ].join(' ')}
       >
         {item.label}

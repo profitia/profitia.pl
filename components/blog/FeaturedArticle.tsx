@@ -28,36 +28,36 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
   const href = `${prefix}/blog/${article.slug}`
 
   return (
-    <section className="container-base py-16 lg:py-20">
+    <section className="container-base py-20 lg:py-28">
       <Link href={href} className="group block" aria-label={article.title}>
-        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-10 lg:gap-16 lg:items-center">
+<div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20 lg:items-center">
 
           {/* ── Content column ───────────────────────────────── */}
           <div className="order-2 lg:order-1">
             {/* Eyebrow: featured label + category */}
-            <div className="flex items-center gap-4 mb-5">
-              <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-300">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400">
                 {FEATURED[locale]}
               </span>
               <CategoryBadge category={article.category} locale={locale} />
             </div>
 
             {/* Title */}
-            <h2 className="text-2xl md:text-3xl lg:text-[2rem] font-semibold tracking-tight text-gray-900 leading-[1.12] mb-4 group-hover:text-gray-700 transition-colors duration-200 ease-out">
+            <h2 className="text-[1.75rem] md:text-[2.25rem] lg:text-[2.75rem] font-semibold tracking-tight text-gray-900 leading-[1.08] mb-5 group-hover:text-gray-700 transition-colors duration-300 ease-out">
               {article.title}
             </h2>
 
             {/* Subtitle / excerpt */}
             {(article.subtitle || article.excerpt) && (
-              <p className="text-base text-gray-500 leading-[1.75] mb-7 max-w-[52ch]">
+              <p className="text-[17px] text-gray-500 leading-[1.75] mb-9 max-w-[52ch]">
                 {article.subtitle ?? article.excerpt}
               </p>
             )}
 
             {/* Meta: author + date + reading time */}
-            <div className="flex items-center gap-4 text-[12px] text-gray-400 mb-8">
+            <div className="flex items-center gap-4 text-[12px] text-gray-500 mb-9">
               {article.authorName && (
-                <span className="font-medium text-gray-500">{article.authorName}</span>
+                <span className="font-medium text-gray-600">{article.authorName}</span>
               )}
               {article.publishedAt && (
                 <span>{formatPublishDate(article.publishedAt, locale)}</span>
@@ -68,7 +68,7 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
             </div>
 
             {/* CTA */}
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-gray-900 group-hover:gap-3 transition-all duration-200 ease-out">
+            <span className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-gray-900 group-hover:gap-3 transition-all duration-300 ease-out">
               {CTA[locale]}
               <svg
                 width="14"
@@ -90,7 +90,7 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
           </div>
 
           {/* ── Image column ─────────────────────────────────── */}
-          <div className="order-1 lg:order-2 overflow-hidden rounded-xl aspect-[16/10] bg-gray-100 relative">
+          <div className="order-1 lg:order-2 overflow-hidden rounded-2xl aspect-[16/9] bg-gray-100 relative">
             {article.coverImage ? (
               <Image
                 src={article.coverImage}

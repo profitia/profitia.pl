@@ -29,12 +29,12 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
   const prefix = locale === 'en' ? '/en' : ''
 
   return (
-    <header className="container-base pt-12 pb-10 lg:pt-16 lg:pb-12">
+    <header className="container-base pt-14 pb-12 lg:pt-24 lg:pb-16">
 
       {/* Back link */}
       <Link
         href={`${prefix}/blog`}
-        className="inline-flex items-center gap-1.5 text-[12px] text-gray-400 hover:text-gray-700 transition-colors duration-200 ease-out mb-8"
+        className="inline-flex items-center gap-1.5 text-[12px] text-gray-500 hover:text-gray-800 transition-colors duration-200 ease-out mb-8"
       >
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path
@@ -49,19 +49,19 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
       </Link>
 
       {/* Metadata row */}
-      <div className="flex items-center gap-4 mb-6 flex-wrap">
+      <div className="flex items-center gap-4 mb-8 flex-wrap">
         <CategoryBadge category={article.category} locale={locale} />
         {article.readingTime && (
-          <span className="text-[12px] text-gray-400">
+          <span className="text-[12px] text-gray-500">
             {formatReadingTime(article.readingTime, locale)}
           </span>
         )}
         {article.publishedAt && (
           <>
-            <span className="text-gray-200" aria-hidden="true">·</span>
+            <span className="text-gray-300" aria-hidden="true">·</span>
             <time
               dateTime={new Date(article.publishedAt as Date | string).toISOString()}
-              className="text-[12px] text-gray-400"
+              className="text-[12px] text-gray-500"
             >
               {formatPublishDate(article.publishedAt, locale)}
             </time>
@@ -70,20 +70,20 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
       </div>
 
       {/* Title */}
-      <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight text-gray-900 leading-[1.1] mb-5 max-w-[38rem]">
+      <h1 className="text-[2rem] md:text-[2.75rem] lg:text-[3.25rem] font-semibold tracking-tight text-gray-900 leading-[1.06] mb-6 max-w-[44rem]">
         {article.title}
       </h1>
 
       {/* Subtitle / standfirst */}
       {article.subtitle && (
-        <p className="text-lg text-gray-500 leading-[1.7] max-w-[52ch] mb-8">
+        <p className="text-xl text-gray-500 leading-[1.7] max-w-[58ch] mb-10">
           {article.subtitle}
         </p>
       )}
 
       {/* Author */}
       {article.authorName && (
-        <div className="flex items-center gap-3 mb-10">
+        <div className="flex items-center gap-3 mb-12">
           <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0">
             <span className="text-[11px] font-semibold text-gray-500" aria-hidden="true">
               {article.authorName.charAt(0)}
@@ -92,7 +92,7 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
           <div>
             <p className="text-sm font-medium text-gray-900">{article.authorName}</p>
             {article.authorRole && (
-              <p className="text-[12px] text-gray-400">{article.authorRole}</p>
+              <p className="text-[12px] text-gray-500">{article.authorRole}</p>
             )}
           </div>
         </div>
@@ -100,7 +100,7 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
 
       {/* Cover image */}
       {article.coverImage ? (
-        <div className="relative w-full aspect-[16/8] rounded-xl overflow-hidden bg-gray-100">
+        <div className="relative w-full aspect-[16/7] rounded-2xl overflow-hidden bg-gray-100">
           <Image
             src={article.coverImage}
             alt={article.title}
@@ -111,7 +111,7 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
           />
         </div>
       ) : (
-        <div className="w-full aspect-[16/8] rounded-xl bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200" />
+        <div className="w-full aspect-[16/7] rounded-2xl bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200" />
       )}
 
     </header>
