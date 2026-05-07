@@ -3005,3 +3005,355 @@ The editorial platform architecture is designed to support the following without
 
 *Sekcja zaktualizowana: May 2026 | CANONICAL EDITORIAL PLATFORM SYSTEM — source of truth dla warstwy editorial Profitia. Zastępuje poprzednią wersję sekcji z May 2026. Wdrożona po editorial polish pass: contrast refinement, hero polish, immersion improvements, motion refinement, newsletter policy, article footer variant.*
 
+---
+
+## SECTION 30 — CANONICAL ABOUT PAGE + TEAM SYSTEM
+
+Ta sekcja staje się source of truth dla wszystkich obecnych i przyszłych:
+- stron About,
+- leadership pages,
+- expert pages,
+- advisor systems,
+- author profiles,
+- institutional trust sections,
+- executive presentation layers.
+
+System NIE może być traktowany jako klasyczna „team page".  
+To jest: **institutional trust architecture.**
+
+---
+
+### A. PHILOSOPHY
+
+Canonical About Page ma komunikować:
+- kompetencję,
+- spokój,
+- doświadczenie,
+- strategiczne myślenie,
+- institutional confidence.
+
+NIE:
+- startup energy,
+- culture marketing,
+- „poznaj nasz zespół",
+- employer branding,
+- playful interactions,
+- team showcase.
+
+Strona ma wyglądać bardziej jak:
+- McKinsey Insights,
+- Stripe Editorial,
+- Linear,
+- annual report institution,
+- advisory intelligence firm,
+
+niż:
+- SaaS startup,
+- agency website,
+- WordPress corporate page.
+
+---
+
+### B. CANONICAL PAGE STRUCTURE
+
+Canonical About Page składa się z 7 sekcji:
+
+1. HERO
+2. FOUNDATION
+3. CAPABILITIES
+4. PHILOSOPHY
+5. LEADERSHIP
+6. CREDENTIALS
+7. QUIET CTA
+
+Każda sekcja posiada własny spacing cadence.  
+Rytm NIE może być uniform.
+
+---
+
+### C. SECTION PACING SYSTEM
+
+| Sekcja | Mobile | Tablet | Desktop |
+|---|---|---|---|
+| Hero | `pt-20 pb-20` | — | `pt-40 pb-32` |
+| Foundation | `py-16` | — | `py-20` |
+| Capabilities | `py-20` | — | `py-28` |
+| Philosophy | `py-20` | `py-28` | `py-36` |
+| Leadership | `py-24` | — | `py-32` |
+| Credentials | `py-16` | — | `py-24` |
+| Quiet CTA | `py-24` | `py-32` | `py-48` |
+
+Philosophy jest zawsze najgłębszą sekcją. To jest intencjonalne.
+
+---
+
+### D. HERO SYSTEM
+
+Hero musi działać jak institutional cover statement.
+
+**Zasady:**
+- restrained width,
+- high whitespace,
+- no visual overload,
+- no decorative assets,
+- no marketing claims.
+
+**Canonical values:**
+- `max-w-[54rem]` — headline container
+- `max-w-[46ch]` — subtitle width
+- `leading-[1.85]` — subtitle line height
+- `leading-[1.04]` — desktop headline (`lg:`)
+- `mb-8 lg:mb-12` — eyebrow spacing (asymmetric)
+
+**Forbidden:**
+- centered hero,
+- gradients,
+- illustrations,
+- animated backgrounds,
+- team collage,
+- marketing badges,
+- excessive CTA pressure.
+
+---
+
+### E. FOUNDATION SYSTEM
+
+Foundation section = institutional grounding layer.
+
+Stats MUST feel like annual report data — not dashboard widgets.
+
+**Canonical pattern:**
+- `border-t border-gray-100` separator above stats grid,
+- `pt-8` breathing after separator,
+- uppercase `tracking-[0.22em]` labels,
+- `mb-3` between number and label,
+- no cards, no shadows, no colored metrics.
+
+**Forbidden:**
+- KPI cards,
+- charts,
+- animated counters,
+- colorful statistics,
+- icon-driven layout.
+
+---
+
+### F. CAPABILITIES SYSTEM
+
+Capabilities section MUST feel analytical, structured, understated.
+
+**Canonical:**
+- numbered rows (`01`, `02`…),
+- `divide-y divide-gray-100` separators,
+- `py-10 lg:py-12` per row,
+- prose-first hierarchy.
+
+**Forbidden:**
+- icon grids,
+- feature cards,
+- marketing feature lists,
+- hover-heavy interactions.
+
+---
+
+### G. PHILOSOPHY SYSTEM
+
+Philosophy is the most spacious section. This is by design.
+
+Reason: this is the intellectual core of the institution.
+
+**Canonical:**
+- deepest breathing (see pacing table),
+- essay cadence,
+- quote system with subtle left border,
+- minimal decoration,
+- slow reading rhythm.
+
+**Quote styling:**
+- subtle left border (`border-l-2 border-gray-200`),
+- restrained typography,
+- no oversized quotation marks,
+- no colored callouts.
+
+**Forbidden:**
+- large decorative quotes,
+- colored callouts,
+- animated reveals.
+
+---
+
+### H. LEADERSHIP SYSTEM
+
+Leadership section is NOT a people gallery. It is: **executive advisory layer.**
+
+---
+
+#### H1. TEAM DATA ARCHITECTURE
+
+```
+lib/team/
+  types.ts     — TeamMember interface, TeamMemberType union
+  data.ts      — canonical team data, FEATURED_TEAM export
+  utils.ts     — getInitials, getRole, getBio, getAreas, sortByOrder, filterByType
+  index.ts     — barrel export
+
+components/team/
+  TeamProfileImage   — portrait + grayscale treatment + initials fallback
+  TeamMeta           — name + credentials badge + role eyebrow + experience + areas
+  TeamMemberCard     — vertical card (grid contexts)
+  TeamMemberRow      — horizontal editorial row (leadership contexts)
+  TeamGrid           — responsive grid wrapper
+  LeadershipSection  — maps featured members to TeamMemberRow
+  AdvisorySection    — advisory board context
+  TeamQuote          — editorial quote attribution
+  TeamSection        — generic section wrapper
+  index.ts           — barrel export
+```
+
+System MUST remain reusable for: leadership, advisors, experts, article authors, conference speakers, institutional profiles.
+
+---
+
+#### H2. LEADERSHIP LAYOUT
+
+**Canonical row:** portrait + prose layout. NOT profile cards.
+
+**Desktop grid:** `grid-cols-[240px_1fr]`  
+**Mobile grid:** `grid-cols-[180px_1fr]`
+
+**Canonical spacing:**
+- `py-16 lg:py-20` per row,
+- `border-b border-gray-100 last:border-b-0 first:pt-0`.
+
+**Bio rules:**
+- `max-w-[58ch]`
+- `leading-[1.88]`
+- `text-gray-600` (executive reading contrast — NOT gray-500)
+- `mt-7` (separation between meta and bio)
+
+**Expertise tags:**
+- `showAreas={false}` — hidden on executive/leadership pages,
+- allowed in expert / author contexts.
+
+---
+
+#### H3. PORTRAIT TREATMENT
+
+**Canonical:**
+- `[filter:grayscale(10%)_contrast(1.03)]` — base
+- `[filter:grayscale(2%)_contrast(1.03)]` — hover
+- `rounded-2xl`
+- `object-cover object-top`
+- `transition-[filter] duration-300 ease-out`
+
+**Forbidden:**
+- circular avatars (`rounded-full`),
+- bright / colorful portraits,
+- glow effects,
+- shadows (`drop-shadow`),
+- floating cards,
+- social-profile aesthetics.
+
+---
+
+### I. CREDENTIALS SYSTEM
+
+Credentials section = institutional proof layer.
+
+CIPS logo MUST behave as: **accreditation seal.**
+
+**Canonical:**
+- `mt-10 pt-8 border-t border-gray-100` wrapper,
+- `opacity-50 grayscale`,
+- `h-12 w-auto`,
+- prose-first hierarchy — logo follows text, not leads it.
+
+**Forbidden:**
+- badge wall,
+- certification carousel,
+- partner logos grid,
+- colorful certifications.
+
+**Active logo URL:**  
+`https://cipsdistancelearning.com/wp-content/uploads/2022/07/CIPS_Centre-Excellence_Logo_2022.png`  
+(PNG — nie SVG. SVG z tego domenu jest broken.)
+
+---
+
+### J. QUIET CTA SYSTEM
+
+Final CTA is NOT conversion pressure. It is: **editorial closing invitation.**
+
+**Canonical:**
+- understated typography,
+- editorial text link — `text-[11px] font-semibold tracking-[0.18em] uppercase`,
+- `text-gray-400 hover:text-gray-700 transition-colors duration-200 ease-out`,
+- calm spacing (deepest after Philosophy),
+- low-pressure interaction.
+
+**Forbidden:**
+- large conversion CTA,
+- aggressive sales copy,
+- growth marketing patterns,
+- countdowns,
+- urgency mechanics.
+
+---
+
+### K. ABOUT PAGE FOOTER VARIANT
+
+About page uses dedicated footer behavior.
+
+**Rules:**
+- newsletter hidden,
+- `py-14` main grid (compressed vs default `py-16`),
+- `py-4` legal bar (same as article variant),
+- softer transition after Quiet CTA.
+
+**Detection regex:** `/^(\/en)?\/about\/?$/`
+
+**Reason:** newsletter after Quiet CTA breaks institutional cadence.
+
+---
+
+### L. VISUAL LANGUAGE LOCK RULES
+
+**LOCKED — nie zmieniać:**
+- grayscale portrait treatment,
+- editorial spacing cadence,
+- quiet CTA logic,
+- leadership row architecture (horizontal, NOT cards),
+- philosophy spacing dominance,
+- restrained institutional palette,
+- prose-first hierarchy,
+- `border-gray-100` separators.
+
+**FORBIDDEN:**
+- shadows,
+- gradients,
+- colorful cards,
+- startup culture visuals,
+- playful interactions,
+- card-heavy layouts,
+- centered executive cards,
+- icon overload,
+- marketing animations.
+
+**CONDITIONALLY CHANGEABLE:**
+- copy,
+- number of leadership members,
+- capabilities content,
+- credentials content,
+- quote content,
+- advisor categories.
+
+---
+
+### M. SYSTEM STATUS
+
+**Status: CANONICAL FREEZE APPROVED**
+
+This system becomes the default institutional trust layer for the entire Profitia platform.
+
+*Sekcja dodana: May 2026 | Commit: c25e9dd | TSC clean | Wdrożona po: team system build (18 files), editorial refinement pass, CIPS logo fix, final institutional micro-polish pass.*
+
