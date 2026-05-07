@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import plDict from '@/dictionaries/pl.json'
 import enDict from '@/dictionaries/en.json'
 import { ProtectedEmail, ProtectedPhone, ProtectedPerson } from '@/components/security'
+import { useConsent } from '@/components/consent'
 
 function IconLinkedIn() {
   return (
@@ -28,6 +29,7 @@ export default function Footer() {
   const isEN = pathname.startsWith('/en')
   const dict = isEN ? enDict : plDict
   const prefix = isEN ? '/en' : ''
+  const { openModal } = useConsent()
 
   // ── Legal pages skip the newsletter section ────────────────────
   const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
@@ -277,10 +279,16 @@ export default function Footer() {
           SECTION 3 — LEGAL BAR
           ══════════════════════════════════════════════════ */}
       <div className="border-t border-gray-100">
-        <div className="container-base py-5">
+        <div className="container-base py-5 flex items-center justify-between gap-4 flex-wrap">
           <span className="text-xs text-gray-400">
             © {new Date().getFullYear()} Profitia Management Consultants. {dict.footer.rights}
           </span>
+          <button
+            onClick={openModal}
+            className="text-xs text-gray-400 hover:text-gray-700 transition-colors duration-200 ease-out whitespace-nowrap"
+          >
+            {dict.footer.privacySettings}
+          </button>
         </div>
       </div>
 
