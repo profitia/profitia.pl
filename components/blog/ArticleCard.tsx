@@ -79,7 +79,7 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
             <span aria-hidden="true">·</span>
           )}
           {article.publishedAt && (
-            <time dateTime={article.publishedAt.toISOString()}>
+            <time dateTime={new Date(article.publishedAt as Date | string).toISOString()}>
               {formatPublishDate(article.publishedAt, locale)}
             </time>
           )}

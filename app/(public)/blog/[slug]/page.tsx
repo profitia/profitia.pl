@@ -56,11 +56,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function getArticle(slug: string): Promise<ArticleDetailData | null> {
-  const row = await prisma.article.findUnique({
+  const row = await prisma.article.findFirst({
     where: { slug, published: true },
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      excerpt: true,
+      subtitle: true,
+      category: true,
+      readingTime: true,
+      coverImage: true,
+      featured: true,
+      publishedAt: true,
+      authorName: true,
+      authorRole: true,
+      content: true,
+      authorBio: true,
+      relatedSlugs: true,
+      metaTitle: true,
+      metaDescription: true,
+    },
   })
   if (!row) return null
-  return row as unknown as ArticleDetailData
+  return row as ArticleDetailData
 }
 
 async function getRelated(slugs: string[]): Promise<ArticlePreviewData[]> {

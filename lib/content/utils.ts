@@ -54,11 +54,21 @@ export function formatPublishDate(
   locale: 'pl' | 'en'
 ): string {
   if (!date) return ''
-  return new Date(date).toLocaleDateString(locale === 'en' ? 'en-GB' : 'pl-PL', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  try {
+    return new Date(date).toLocaleDateString(locale === 'en' ? 'en-GB' : 'pl-PL', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  } catch {
+    // Fallback for environments with limited ICU data
+    const d = new Date(date)
+    const months = {
+      pl: ['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'],
+      en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    }
+    return `${d.getDate()} ${months[locale][d.getMonth()]} ${d.getFullYear()}`
+  }
 }
 
 // ── Reading time display ──────────────────────────────────────────────────────

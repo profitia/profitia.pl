@@ -13,6 +13,7 @@ export { BlogNewsletter } from './BlogNewsletter'
 // Article page
 export { ArticleHero } from './ArticleHero'
 export { ArticleLayout } from './ArticleLayout'
+export { ArticleTOCSidebar } from './ArticleTOCSidebar'
 export { ArticleAuthor } from './ArticleAuthor'
 export { ArticleNewsletter } from './ArticleNewsletter'
 export { ArticleRelated } from './ArticleRelated'

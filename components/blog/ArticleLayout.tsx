@@ -1,207 +1,103 @@
-'use client'
-
 /**
- * ArticleLayout — Article Reading Experience (Client)
+ * ArticleLayout — Article Reading Experience (Server Component)
  *
  * Manages the two-column reading layout:
- * - Sticky TOC sidebar (desktop) / collapsible (mobile)
- * - Article content with editorial typography
+ * - Sticky TOC sidebar (desktop) / collapsible (mobile) — handled by ArticleTOCSidebar (Client)
+ * - Article content rendered server-side via dangerouslySetInnerHTML
  *
- * After mount:
- * 1. Scans rendered content for H2/H3 headings
- * 2. Assigns sequential IDs to headings without existing IDs
- * 3. Builds TOC from extracted headings
- * 4. Tracks active section via IntersectionObserver
+ * Server-side:
+ * 1. Extracts H2/H3 headings from content HTML via regex
+ * 2. Injects sequential IDs into heading elements
+ * 3. Builds tocItems array and passes it to ArticleTOCSidebar (Client Component)
  *
- * Content is rendered via dangerouslySetInnerHTML.
- * Note: sanitize content server-side before rendering in production CMS.
+ * This architecture eliminates the Server→Client RSC boundary for the large
+ * content HTML string — content is rendered server-side, only small tocItems
+ * (array of {id, label, level}) crosses the boundary to the Client Component.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react'
 import type { ArticleTOCItem } from '@/lib/content/types'
+import { ArticleTOCSidebar } from './ArticleTOCSidebar'
 
 interface ArticleLayoutProps {
   content: string
 }
 
-// ── Inline TOC item ─────────────────────────────────────────────────────────
+// ── Server-side heading extraction ───────────────────────────────────────────
 
-function TOCItem({
-  item,
-  isActive,
-  onClick,
-}: {
-  item: ArticleTOCItem
-  isActive: boolean
-  onClick: () => void
-}) {
-  return (
-    <li
-      className={[
-        'border-l-[1.5px] pl-2.5 transition-colors duration-200 ease-out',
-        isActive ? 'border-gray-700' : 'border-gray-100',
-        item.level === 3 ? 'ml-3' : '',
-      ].join(' ')}
-    >
-      <a
-        href={`#${item.id}`}
-        onClick={(e) => {
-          e.preventDefault()
-          onClick()
-          const el = document.getElementById(item.id)
-          if (el) {
-            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' })
-            window.history.pushState(null, '', `#${item.id}`)
-          }
-        }}
-        className={[
-          'block transition-colors duration-200 ease-out',
-          item.level === 2 ? 'text-[13.5px] leading-[1.5]' : 'text-[12.5px] leading-[1.5]',
-          isActive ? 'text-gray-900 font-medium' : 'text-gray-400 hover:text-gray-600',
-        ].join(' ')}
-      >
-        {item.label}
-      </a>
-    </li>
+/**
+ * Parse H2/H3 headings from HTML, inject sequential IDs, return tocItems.
+ * Uses the same slug algorithm as the original client-side scanner so that
+ * IDs are stable and predictable.
+ */
+function prepareContent(html: string): {
+  processedHtml: string
+  tocItems: ArticleTOCItem[]
+} {
+  const tocItems: ArticleTOCItem[] = []
+  const seenIds = new Set<string>()
+  let idx = 0
+
+  const processedHtml = html.replace(
+    /<(h[23])([^>]*)>([\s\S]*?)<\/\1>/gi,
+    (_match, tag: string, attrs: string, inner: string) => {
+      const level = tag.toLowerCase() === 'h2' ? 2 : 3
+
+      // Plain text from inner HTML (strip any nested tags)
+      const text = inner.replace(/<[^>]+>/g, '').trim()
+
+      // Reuse existing id if present
+      const existingId = /\bid="([^"]+)"/.exec(attrs)
+      let id: string
+
+      if (existingId) {
+        id = existingId[1]
+      } else {
+        const base =
+          text
+            .toLowerCase()
+            .replace(/[^a-z0-9\u00C0-\u024F]+/gi, '-')
+            .replace(/(^-|-$)/g, '') || `s${idx}`
+
+        let candidate = base
+        let n = 1
+        while (seenIds.has(candidate)) candidate = `${base}-${n++}`
+        id = candidate
+      }
+
+      seenIds.add(id)
+      idx++
+      tocItems.push({ id, label: text, level })
+
+      // Strip any pre-existing id to avoid duplicates, then inject ours
+      const cleanAttrs = attrs.replace(/\s*\bid="[^"]*"/, '').trimEnd()
+      return `<${tag} id="${id}"${cleanAttrs ? ' ' + cleanAttrs : ''}>${inner}</${tag}>`
+    },
   )
+
+  return { processedHtml, tocItems }
 }
 
 // ── Main component ──────────────────────────────────────────────────────────
 
 export function ArticleLayout({ content }: ArticleLayoutProps) {
-  const contentRef = useRef<HTMLDivElement>(null)
-  const [tocItems, setTocItems] = useState<ArticleTOCItem[]>([])
-  const [activeId, setActiveId] = useState<string>('')
-  const [mobileOpen, setMobileOpen] = useState(false)
-
-  // Scan headings, assign IDs, build TOC, set up IntersectionObserver
-  useEffect(() => {
-    const el = contentRef.current
-    if (!el) return
-
-    const headings = Array.from(el.querySelectorAll('h2, h3')) as HTMLElement[]
-
-    headings.forEach((h, i) => {
-      if (!h.id) {
-        const slug = (h.textContent ?? '')
-          .toLowerCase()
-          .replace(/[^a-z0-9\u00C0-\u024F]+/gi, '-')
-          .replace(/(^-|-$)/g, '') || `s${i}`
-        h.id = slug
-      }
-      // Ensure heading is scrollable with offset for sticky header
-      h.classList.add('scroll-mt-28')
-    })
-
-    const items: ArticleTOCItem[] = headings.map((h) => ({
-      id: h.id,
-      label: h.textContent?.trim() ?? '',
-      level: h.tagName === 'H2' ? 2 : 3,
-    }))
-
-    setTocItems(items)
-    if (items[0]) setActiveId(items[0].id)
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveId(entry.target.id)
-        })
-      },
-      { rootMargin: '-10% 0% -70% 0%', threshold: 0 }
-    )
-
-    headings.forEach((h) => observer.observe(h))
-    return () => observer.disconnect()
-  }, [content])
-
-  const handleTOCClick = useCallback(() => {
-    setMobileOpen(false)
-  }, [])
+  const { processedHtml, tocItems } = prepareContent(content)
 
   return (
     <div className="container-base pt-10 pb-32 lg:pb-44">
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] lg:gap-16 lg:items-start">
 
-        {/* ── TOC Sidebar ────────────────────────────────── */}
-        <aside>
-          {/* Mobile: collapsible */}
-          <div className="lg:hidden mb-8 border border-gray-100 rounded-lg overflow-hidden">
-            <button
-              onClick={() => setMobileOpen((o) => !o)}
-              className="w-full flex items-center justify-between px-4 py-3.5 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 ease-out"
-              aria-expanded={mobileOpen}
-            >
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400">
-                Spis treści
-              </span>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                aria-hidden="true"
-                className={`text-gray-400 transition-transform duration-200 ${mobileOpen ? 'rotate-180' : ''}`}
-              >
-                <path
-                  d="M3 5l4 4 4-4"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            {mobileOpen && tocItems.length > 0 && (
-              <nav aria-label="Spis treści artykułu" className="px-4 py-4">
-                <ul className="space-y-2.5">
-                  {tocItems.map((item) => (
-                    <TOCItem
-                      key={item.id}
-                      item={item}
-                      isActive={activeId === item.id}
-                      onClick={handleTOCClick}
-                    />
-                  ))}
-                </ul>
-              </nav>
-            )}
-          </div>
+        {/* ── TOC Sidebar (Client Component) ──────────────── */}
+        <ArticleTOCSidebar tocItems={tocItems} />
 
-          {/* Desktop: sticky */}
-          {tocItems.length > 0 && (
-            <nav
-              aria-label="Spis treści artykułu"
-              className="hidden lg:block sticky top-28 self-start"
-            >
-              <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">
-                Spis treści
-              </p>
-              <ul className="space-y-3">
-                {tocItems.map((item) => (
-                  <TOCItem
-                    key={item.id}
-                    item={item}
-                    isActive={activeId === item.id}
-                    onClick={handleTOCClick}
-                  />
-                ))}
-              </ul>
-            </nav>
-          )}
-        </aside>
-
-        {/* ── Article Content ─────────────────────────────── */}
+        {/* ── Article Content (Server-rendered HTML) ───────── */}
         <div className="min-w-0">
           <div
-            ref={contentRef}
             className={[
               // Paragraph
               '[&>p]:text-[16px] [&>p]:text-gray-600 [&>p]:leading-[1.85] [&>p]:mb-6',
-              // Headings
-              '[&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-gray-900 [&>h2]:leading-snug [&>h2]:mt-14 [&>h2]:mb-5 [&>h2]:pt-8 [&>h2]:border-t [&>h2]:border-gray-100',
-              '[&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-gray-900 [&>h3]:mt-9 [&>h3]:mb-3',
+              // Headings — scroll-mt-28 for sticky header offset
+              '[&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-gray-900 [&>h2]:leading-snug [&>h2]:mt-14 [&>h2]:mb-5 [&>h2]:pt-8 [&>h2]:border-t [&>h2]:border-gray-100 [&>h2]:scroll-mt-28',
+              '[&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-gray-900 [&>h3]:mt-9 [&>h3]:mb-3 [&>h3]:scroll-mt-28',
               '[&>h4]:text-base [&>h4]:font-semibold [&>h4]:text-gray-800 [&>h4]:mt-7 [&>h4]:mb-2',
               // Lists
               '[&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>ul]:space-y-2',
@@ -228,8 +124,8 @@ export function ArticleLayout({ content }: ArticleLayoutProps) {
               // Max width
               'max-w-[68ch]',
             ].join(' ')}
-            // Note: content must be sanitized server-side before reaching this component
-            dangerouslySetInnerHTML={{ __html: content }}
+            // Note: content is from our own CMS seed — not user-generated input
+            dangerouslySetInnerHTML={{ __html: processedHtml }}
           />
         </div>
 

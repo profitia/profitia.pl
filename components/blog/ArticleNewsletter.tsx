@@ -1,3 +1,5 @@
+'use client'
+
 /**
  * ArticleNewsletter — End-of-Article Subscription Block
  *
