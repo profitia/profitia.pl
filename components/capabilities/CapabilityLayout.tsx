@@ -93,7 +93,7 @@ export default function CapabilityLayout({
               />
               {editorialBreak && (
                 <div className="pt-20 pb-16">
-                  <p className="text-[11.5px] text-gray-300 leading-relaxed max-w-[28rem]">
+                  <p className="text-[11px] text-gray-200 leading-[1.9] max-w-[22rem]">
                     {editorialBreak[locale]}
                   </p>
                 </div>

@@ -94,18 +94,18 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
           </div>
         )}
 
-        {/* Where organisations get stuck */}
-        <div className="border-t border-gray-100 pt-24 pb-16">
+        {/* Where organisations get stuck — compressed, weighted, tension */}
+        <div className="border-t border-gray-100 pt-24 pb-14">
           <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-16">
             <div className="lg:pt-1">
-              <p className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-300 mb-3">
+              <p className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-3">
                 {c.whatItSolves.eyebrow}
               </p>
-              <h2 className="text-base font-medium text-gray-700 leading-snug">
+              <h2 className="text-[15px] font-medium text-gray-800 leading-snug">
                 {c.whatItSolves.title}
               </h2>
             </div>
-            <ol className="space-y-6 lg:pt-1">
+            <ol className="space-y-5 lg:pt-1">
               {capability.whatItSolves.map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
                   <span
@@ -114,7 +114,7 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <p className="text-[15px] text-gray-600 leading-[1.75]">
+                  <p className="text-[15px] text-gray-600 leading-[1.65]">
                     {t(item, locale)}
                   </p>
                 </li>

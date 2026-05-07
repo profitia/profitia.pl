@@ -135,7 +135,7 @@ export default function Footer() {
 
           {/* Column 2: Navigation */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-5">
+            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-5">
               {dict.footer.navigation}
             </p>
             <nav className="space-y-2.5" aria-label={isEN ? 'Footer navigation' : 'Nawigacja stopki'}>
@@ -153,7 +153,7 @@ export default function Footer() {
 
           {/* Column 3: Contact */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-5">
+            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-5">
               {dict.footer.contact}
             </p>
             <div className="space-y-5 text-sm">
@@ -222,7 +222,7 @@ export default function Footer() {
 
           {/* Column 4: Resources + Social */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-5">
+            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-5">
               {dict.footer.resources}
             </p>
             <div className="space-y-3 mb-10">
@@ -273,12 +273,12 @@ export default function Footer() {
           ══════════════════════════════════════════════════ */}
       <div className="border-t border-gray-100">
           <div className={`container-base ${isCapabilityPage ? 'py-6' : isArticlePage || isAboutPage ? 'py-4' : 'py-5'} flex items-center justify-between gap-4 flex-wrap`}>
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-gray-500">
             © {new Date().getFullYear()} Profitia Management Consultants. {dict.footer.rights}
           </span>
           <button
             onClick={openModal}
-            className="text-xs text-gray-400 hover:text-gray-700 transition-colors duration-200 ease-out whitespace-nowrap"
+            className="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200 ease-out whitespace-nowrap"
           >
             {dict.footer.privacySettings}
           </button>

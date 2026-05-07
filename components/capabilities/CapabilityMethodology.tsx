@@ -30,7 +30,7 @@ export default function CapabilityMethodology({ steps, locale, eyebrow, title }:
             <span className="flex-shrink-0 text-[9px] font-semibold text-gray-200 tabular-nums mt-[4px] w-5 text-right">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <div className="border-l border-gray-100 pl-5">
+            <div className="border-l border-gray-200 pl-5">
               <p className="text-[15px] text-gray-700 leading-[1.75]">
                 {t(step, locale)}
               </p>

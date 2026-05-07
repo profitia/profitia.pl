@@ -86,13 +86,14 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
 
         {/* Right: capability rows */}
         <div className={isDominant ? 'lg:pt-4' : isFeatured ? 'lg:pt-2' : ''}>
-          {capabilities.map((cap) => (
+          {capabilities.map((cap, index) => (
             <CapabilityCard
               key={cap.slug}
               capability={cap}
               locale={locale}
               prefix={prefix}
               variant="row"
+              isFirst={index === 0}
             />
           ))}
         </div>

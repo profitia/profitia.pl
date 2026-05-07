@@ -9,6 +9,12 @@ interface Props {
   prefix: 'services' | 'education'
   /** Whether to render as a border-bottom row (list) vs a boxed card */
   variant?: 'row' | 'card'
+  /**
+   * First item in its section. Slightly more present: semibold title,
+   * extra bottom pause — creates reading hierarchy inside the section,
+   * reduces spreadsheet feel without redesigning the row.
+   */
+  isFirst?: boolean
 }
 
 const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
@@ -22,7 +28,7 @@ const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
  *        Description intentionally omitted — belongs on the detail page.
  * card — contained tile for Related section and grids.
  */
-export default function CapabilityCard({ capability, locale, prefix, variant = 'row' }: Props) {
+export default function CapabilityCard({ capability, locale, prefix, variant = 'row', isFirst = false }: Props) {
   const href = `${LOCALE_PREFIX[locale]}/${prefix}/${capability.slug}`
   const title = t(capability.title, locale)
   const eyebrow = t(capability.eyebrow, locale)
@@ -30,9 +36,9 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
 
   if (variant === 'row') {
     return (
-      <div className="group border-b border-gray-100 py-6 flex items-start justify-between gap-6">
+      <div className={`group border-b border-gray-100 flex items-start justify-between gap-6 ${isFirst ? 'pt-6 pb-9' : 'py-6'}`}>
         <div className="min-w-0">
-          <h3 className="text-[15px] font-medium tracking-tight text-gray-900 leading-snug">
+          <h3 className={`text-[15px] tracking-tight text-gray-900 leading-snug ${isFirst ? 'font-semibold' : 'font-medium'}`}>
             {title}
           </h3>
           <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400 mt-1">
@@ -41,7 +47,7 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
         </div>
         <Link
           href={href}
-          className="flex-shrink-0 text-xs text-gray-400 hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5"
+          className={`flex-shrink-0 text-xs hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
           aria-label={`${title} — ${cta}`}
         >
           {cta} →

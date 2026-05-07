@@ -27,24 +27,24 @@ export default function CapabilityEngagement({ capability, locale, eyebrow }: Pr
 
   return (
     <div className="border-t border-gray-100 pt-16 pb-14">
-      <p className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-300 mb-8">
+      <p className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-200 mb-8">
         {eyebrow}
       </p>
       <dl className="grid sm:grid-cols-2 gap-x-16 gap-y-8 max-w-2xl">
         <div>
-          <dt className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-300 mb-3">
+          <dt className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-200 mb-3">
             {c.format}
           </dt>
-          <dd className="text-[15px] text-gray-700 leading-[1.75]">
+          <dd className="text-[15px] text-gray-600 leading-[1.75]">
             {t(capability.engagement, locale)}
           </dd>
         </div>
         {catText && (
           <div>
-            <dt className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-300 mb-3">
+            <dt className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-200 mb-3">
               {c.area}
             </dt>
-            <dd className="text-[15px] text-gray-700 leading-[1.75]">
+            <dd className="text-[15px] text-gray-600 leading-[1.75]">
               {catText}
             </dd>
           </div>
