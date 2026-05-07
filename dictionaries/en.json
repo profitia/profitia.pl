@@ -290,28 +290,28 @@
       "body": "Analysis, observations and strategic perspectives on procurement,\nnegotiation and cost decisions.",
       "articles": [
         {
-          "slug": "dlaczego-wiekszos-negocjacji-zaczyna-sie-za-pozno",
-          "meta": "12 MIN READ · NEGOTIATION",
-          "title": "Why most negotiations start too late",
-          "cta": "Read article →",
-          "img": "https://images.unsplash.com/photo-1605792657660-596af9009e82?w=900&q=80",
-          "imgAlt": "Procurement negotiation — focused executive at conference table"
-        },
-        {
           "slug": "cena-to-opinia-koszt-to-fakt",
-          "meta": "9 MIN READ · PROCUREMENT STRATEGY",
+          "meta": "9 MIN READ · COST INTELLIGENCE",
           "title": "Price is an opinion. Cost is a fact.",
           "cta": "Read article →",
-          "img": "https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?w=900&q=80",
-          "imgAlt": "Cost analysis — financial data on screen"
+          "img": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80",
+          "imgAlt": "Cost analysis — should-cost model structure"
         },
         {
-          "slug": "ryzyko-dostawcy-zanim-lancuch-sie-zerwie",
-          "meta": "8 MIN READ · RISK MANAGEMENT",
-          "title": "What supplier risk actually looks like before a disruption",
+          "slug": "dzien-z-zycia-kupca-kiedy-stala-cena-przegrywa-z-faktami",
+          "meta": "11 MIN READ · COST INTELLIGENCE",
+          "title": "A buyer's day: when a fixed price loses to the facts",
           "cta": "Read article →",
-          "img": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80",
-          "imgAlt": "Supply chain — industrial logistics operations"
+          "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
+          "imgAlt": "Procurement negotiation — should-cost analysis at the table"
+        },
+        {
+          "slug": "analiza-finansowa-dostawcow",
+          "meta": "7 MIN READ · SUPPLIER RISK",
+          "title": "Financial analysis of suppliers",
+          "cta": "Read article →",
+          "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80",
+          "imgAlt": "Financial analysis — supplier health indicators"
         }
       ]
     }
