@@ -27,8 +27,8 @@ function TOCItem({
   return (
     <li
       className={[
-        'border-l-[1.5px] pl-2.5 transition-colors duration-300 ease-out',
-        isActive ? 'border-gray-700' : 'border-gray-200',
+        'border-l-2 pl-2.5 transition-colors duration-300 ease-out',
+        isActive ? 'border-gray-900' : 'border-gray-200',
         item.level === 3 ? 'ml-3' : '',
       ].join(' ')}
     >

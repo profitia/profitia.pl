@@ -241,7 +241,7 @@ export function AboutPage({ locale }: AboutPageProps) {
     <div>
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
       <div className="container-base pt-20 pb-20 lg:pt-40 lg:pb-32 border-b border-gray-100">
-        <div className="max-w-[54rem]">
+        <div className="max-w-[44rem]">
           <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-8 lg:mb-12">
             {t.hero.eyebrow}
           </p>

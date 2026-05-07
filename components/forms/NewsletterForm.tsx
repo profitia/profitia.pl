@@ -149,7 +149,7 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-5 py-3.5 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 ease-out whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-5 py-3.5 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg border border-transparent transition-colors duration-200 ease-out whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? t.submitting : t.button}
         </button>
@@ -162,8 +162,11 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
         </p>
       )}
 
-      {/* GDPR consent checkbox */}
-      <div className="mt-3 flex gap-2.5 items-start">
+      {/* GDPR consent checkbox — full label wrapping for correct click UX */}
+      <label
+        htmlFor={consentId}
+        className="mt-2 flex gap-2.5 items-start cursor-pointer select-none"
+      >
         <span className="relative mt-[2px] flex-shrink-0 w-4 h-4">
           <input
             id={consentId}
@@ -199,19 +202,17 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
             )}
           </span>
         </span>
-        <label
-          htmlFor={consentId}
-          className="text-[11px] text-gray-400 leading-[1.6] cursor-pointer select-none"
-        >
+        <span className="text-[11px] text-gray-500 leading-[1.6]">
           {t.consent}{' '}
           <a
             href={privacyHref}
-            className="underline underline-offset-2 hover:text-gray-600 transition-colors duration-200"
+            className="underline underline-offset-2 hover:text-gray-700 transition-colors duration-200"
+            onClick={(e) => e.stopPropagation()}
           >
             {t.consentLink}
           </a>
-        </label>
-      </div>
+        </span>
+      </label>
 
       {/* Consent error */}
       {errors.consentGdpr && (

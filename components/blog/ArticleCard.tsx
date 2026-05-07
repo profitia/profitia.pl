@@ -30,7 +30,7 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
       <Link href={href} className="group block">
 
         {/* Image */}
-        <div className="overflow-hidden rounded-lg aspect-[16/10] bg-gray-100 relative mb-5">
+        <div className="overflow-hidden rounded-lg aspect-[16/10] bg-gray-100 relative mb-6">
           {article.coverImage ? (
             <Image
               src={article.coverImage}
@@ -46,7 +46,7 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
         </div>
 
         {/* Metadata */}
-        <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center gap-3 mb-4">
           <CategoryBadge category={article.category} locale={locale} />
           {article.readingTime && (
             <>
@@ -65,7 +65,7 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
 
         {/* Excerpt */}
         {article.excerpt && (
-          <p className="text-[14px] text-gray-600 leading-[1.7] line-clamp-3 mb-4">
+          <p className="text-[14px] text-gray-600 leading-[1.7] line-clamp-2 mb-5">
             {article.excerpt}
           </p>
         )}

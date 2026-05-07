@@ -67,7 +67,7 @@ export function TeamProfileImage({
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 280px, 240px"
         className="
-          object-cover object-top
+          object-cover object-[50%_12%]
           [filter:grayscale(10%)_contrast(1.03)]
           transition-[filter] duration-300 ease-out
           group-hover:[filter:grayscale(2%)_contrast(1.03)]

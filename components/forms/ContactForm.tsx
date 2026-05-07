@@ -238,7 +238,7 @@ export function ContactForm({ locale = 'pl' }: ContactFormProps) {
       />
 
       {/* Consent block */}
-      <div className="pt-2 border-t border-gray-100 space-y-4">
+      <div className="pt-6 border-t border-gray-100 space-y-4">
         <FormConsent
           id="consentGdpr"
           description={t.consents.gdpr}

@@ -41,10 +41,10 @@ export function ReadingProgress() {
   return (
     <div
       aria-hidden="true"
-      className="fixed top-0 left-0 right-0 z-[100] h-[2px] bg-gray-100"
+      className="fixed top-0 left-0 right-0 z-[100] h-px bg-gray-100"
     >
       <div
-        className="h-full bg-gray-900 transition-[width] duration-75 ease-linear"
+        className="h-full bg-gray-800 transition-[width] duration-75 ease-linear"
         style={{ width: `${progress}%` }}
       />
     </div>
