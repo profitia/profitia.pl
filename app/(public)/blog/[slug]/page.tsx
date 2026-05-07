@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       type: 'article',
-      ...(article.publishedAt && { publishedTime: article.publishedAt.toISOString() }),
+      ...(article.publishedAt && { publishedTime: new Date(article.publishedAt as Date | string).toISOString() }),
       ...(article.authorName && { authors: [article.authorName] }),
       ...(article.coverImage && { images: [article.coverImage] }),
     },

@@ -60,7 +60,7 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
           <>
             <span className="text-gray-200" aria-hidden="true">·</span>
             <time
-              dateTime={article.publishedAt.toISOString()}
+              dateTime={new Date(article.publishedAt as Date | string).toISOString()}
               className="text-[12px] text-gray-400"
             >
               {formatPublishDate(article.publishedAt, locale)}

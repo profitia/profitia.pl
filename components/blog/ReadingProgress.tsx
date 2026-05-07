@@ -12,8 +12,6 @@
  * - Respects prefers-reduced-motion (hidden if motion preference is reduce)
  */
 
-'use client'
-
 import { useEffect, useState } from 'react'
 
 export function ReadingProgress() {
