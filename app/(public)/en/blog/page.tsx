@@ -13,24 +13,22 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Procurement Intelligence | Profitia',
   description:
-    'Analizy, strategie i inteligencja dla osób odpowiedzialnych za zakupy, koszty i negocjacje.',
+    'Analysis, strategy and intelligence for procurement, cost and negotiation leaders.',
   alternates: {
-    canonical: 'https://profitia.pl/blog',
-    languages: { en: 'https://profitia.pl/en/blog' },
+    canonical: 'https://profitia.pl/en/blog',
+    languages: { pl: 'https://profitia.pl/blog' },
   },
   openGraph: {
     title: 'Procurement Intelligence | Profitia',
-    description:
-      'Analizy zakupowe, strategie negocjacyjne i inteligencja rynkowa od Profitia.',
+    description: 'Procurement analysis, negotiation strategy and supplier market intelligence.',
     type: 'website',
   },
 }
 
-const GRID_LABEL = 'Pozostałe materiały'
-const EMPTY_HEADING = 'Pierwsze analizy wkrótce.'
-const EMPTY_SUB =
-  'Przygotowujemy pierwsze materiały. Zapisz się, aby otrzymać je bezpośrednio.'
-const COMING_SOON = 'Wkrótce'
+const GRID_LABEL = 'Latest articles'
+const EMPTY_HEADING = 'First intelligence briefs coming soon.'
+const EMPTY_SUB = 'We are preparing the first analyses. Subscribe to receive them directly.'
+const COMING_SOON = 'Upcoming'
 
 async function getArticles(): Promise<ArticlePreviewData[]> {
   const rows = await prisma.article.findMany({
@@ -54,19 +52,17 @@ async function getArticles(): Promise<ArticlePreviewData[]> {
   return rows as ArticlePreviewData[]
 }
 
-export default async function BlogPage() {
+export default async function EnBlogPage() {
   const articles = await getArticles()
   const featured = articles.find((a) => a.featured) ?? articles[0] ?? null
   const rest = featured ? articles.filter((a) => a.id !== featured.id) : []
-  const locale = 'pl' as const
+  const locale = 'en' as const
 
   return (
     <>
-      {/* ── Publication introduction ───────────────────── */}
       <PublicationHero locale={locale} articleCount={articles.length} />
 
       {articles.length === 0 ? (
-        /* ── Empty state ─────────────────────────────── */
         <div className="container-base py-24">
           <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-5">
             {COMING_SOON}
@@ -80,14 +76,11 @@ export default async function BlogPage() {
         </div>
       ) : (
         <>
-          {/* ── Featured article ─────────────────────── */}
           {featured && (
             <div className="border-b border-gray-100">
               <FeaturedArticle article={featured} locale={locale} />
             </div>
           )}
-
-          {/* ── Article grid ─────────────────────────── */}
           {rest.length > 0 && (
             <section className="container-base py-16 lg:py-20">
               <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-10">
@@ -108,7 +101,6 @@ export default async function BlogPage() {
         </>
       )}
 
-      {/* ── Newsletter ───────────────────────────────── */}
       <BlogNewsletter locale={locale} />
     </>
   )

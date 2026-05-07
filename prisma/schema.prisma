@@ -74,6 +74,26 @@ model Article {
   author   AdminUser? @relation(fields: [authorId], references: [id])
   authorId String?
 
+  // ── Editorial System ────────────────────────────────────────────────────
+  // Category slug — must match ArticleCategorySlug in lib/content/types.ts
+  category    String?
+  // Estimated reading time in minutes
+  readingTime Int?
+  // Cover image — public path (e.g. /images/articles/...) or absolute URL
+  coverImage  String?
+  // Whether this article is the featured/lead article on the index
+  featured    Boolean @default(false)
+  // Subtitle / standfirst — shown in article hero below title
+  subtitle    String? @db.Text
+
+  // Author (denormalized — supplements AdminUser relation for editorial display)
+  authorName String?
+  authorRole String?
+  authorBio  String? @db.Text
+
+  // Related content — slugs resolved at query time
+  relatedSlugs String[] @default([])
+
   @@map("articles")
 }
 

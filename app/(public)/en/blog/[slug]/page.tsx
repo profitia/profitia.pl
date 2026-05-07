@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       coverImage: true,
       publishedAt: true,
       authorName: true,
-      category: true,
     },
   })
   if (!article) return { title: 'Not Found' }
@@ -41,8 +40,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: {
-      canonical: `https://profitia.pl/blog/${slug}`,
-      languages: { en: `https://profitia.pl/en/blog/${slug}` },
+      canonical: `https://profitia.pl/en/blog/${slug}`,
+      languages: { pl: `https://profitia.pl/blog/${slug}` },
     },
     openGraph: {
       title,
@@ -85,32 +84,21 @@ async function getRelated(slugs: string[]): Promise<ArticlePreviewData[]> {
   return rows as ArticlePreviewData[]
 }
 
-export default async function ArticlePage({ params }: Props) {
+export default async function EnArticlePage({ params }: Props) {
   const { slug } = await params
   const article = await getArticle(slug)
   if (!article) notFound()
 
   const related = await getRelated(article.relatedSlugs ?? [])
-  const locale = 'pl' as const
+  const locale = 'en' as const
 
   return (
     <>
-      {/* Reading progress — fixed top bar, client-side */}
       <ReadingProgress />
-
-      {/* Article hero — category, time, date, title, subtitle, author, image */}
       <ArticleHero article={article} locale={locale} />
-
-      {/* Two-column: sticky TOC sidebar + editorial content (client) */}
       <ArticleLayout content={article.content} />
-
-      {/* Author bio */}
       <ArticleAuthor article={article} locale={locale} />
-
-      {/* Newsletter subscription */}
       <ArticleNewsletter locale={locale} />
-
-      {/* Related articles */}
       <ArticleRelated articles={related} locale={locale} />
     </>
   )
