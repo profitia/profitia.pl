@@ -1,0 +1,56 @@
+import type { Locale } from '@/lib/capabilities'
+import { SERVICE_SECTIONS } from '@/lib/capabilities'
+import { CapabilityLayout } from '@/components/capabilities'
+
+interface Props {
+  locale: Locale
+}
+
+const COPY = {
+  pl: {
+    hero: {
+      eyebrow: 'Advisory · Negocjacje · Analityka',
+      title: 'Budujemy przewagę zakupową poprzez dane, negocjacje i transformację funkcji zakupowej.',
+      subtitle:
+        'Projekt doradczy, wsparcie negocjacyjne, analityka spend lub transformacja organizacji zakupowej — podejście dopasowane do skali wyzwania.',
+    },
+    cta: {
+      note: 'Następny krok',
+      label: 'Umów rozmowę',
+      href: '/contact',
+    },
+  },
+  en: {
+    hero: {
+      eyebrow: 'Advisory · Negotiations · Analytics',
+      title: 'We help procurement teams build leverage through intelligence, negotiations and operating transformation.',
+      subtitle:
+        'Advisory projects, negotiation support, spend analytics or procurement transformation — an approach matched to the scale of the challenge.',
+    },
+    cta: {
+      note: 'Next step',
+      label: 'Schedule a conversation',
+      href: '/en/contact',
+    },
+  },
+}
+
+/**
+ * ServicesPage
+ * ─────────────────────────────────────────────────────────────
+ * Institutional advisory capabilities listing.
+ * Not a service catalogue. Not a sales landing page.
+ * Server Component.
+ */
+export default function ServicesPage({ locale }: Props) {
+  const c = COPY[locale]
+  return (
+    <CapabilityLayout
+      locale={locale}
+      prefix="services"
+      sections={SERVICE_SECTIONS}
+      hero={c.hero}
+      cta={c.cta}
+    />
+  )
+}

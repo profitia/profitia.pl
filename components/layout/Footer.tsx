@@ -41,9 +41,12 @@ export default function Footer() {
   const isArticlePage = /^(\/en)?\/blog\/[^/]+/.test(pathname)
   // About page: quiet CTA → footer transition — suppress newsletter, compressed rhythm
   const isAboutPage = /^(\/en)?\/about\/?$/.test(pathname)
+  // Capability listing pages (services, education root): no newsletter
+  const isCapabilityListingPage = /^(\/en)?\/(services|education)\/?$/.test(pathname)
   const NAV_LINKS = [
     { href: isEN ? '/en' : '/', label: dict.nav.home },
     { href: `${prefix}/services`, label: dict.nav.services },
+    { href: `${prefix}/education`, label: dict.nav.education },
     { href: `${prefix}/blog`, label: dict.nav.blog },
     { href: `${prefix}/about`, label: dict.nav.about },
     { href: `${prefix}/contact`, label: dict.nav.contact },
@@ -56,7 +59,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 1 — NEWSLETTER
           ══════════════════════════════════════════════════ */}
-      {!isLegalPage && !isArticlePage && !isAboutPage && (
+      {!isLegalPage && !isArticlePage && !isAboutPage && !isCapabilityListingPage && (
       <div className="border-b border-gray-100">
         <div className="container-base py-12 grid md:grid-cols-[1fr_1.1fr] gap-6 lg:gap-10 items-center">
           <div>
