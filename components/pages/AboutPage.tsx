@@ -396,11 +396,11 @@ export function AboutPage({ locale }: AboutPageProps) {
             </p>
             <div className="inline-block">
               <Image
-                src="https://cipsdistancelearning.com/wp-content/uploads/2024/01/CIPS_logo_Primary_RGB.svg"
-                alt="CIPS — Chartered Institute of Procurement & Supply"
-                width={140}
-                height={46}
-                className="opacity-55 grayscale"
+                src="https://cipsdistancelearning.com/wp-content/uploads/2022/07/CIPS_Centre-Excellence_Logo_2022.png"
+                alt="CIPS Centre of Excellence"
+                width={120}
+                height={48}
+                className="opacity-55 grayscale h-12 w-auto"
                 unoptimized
               />
             </div>
