@@ -30,7 +30,7 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
 
   if (variant === 'row') {
     return (
-      <div className="group border-b border-gray-100 py-5 flex items-start justify-between gap-6">
+      <div className="group border-b border-gray-100 py-6 flex items-start justify-between gap-6">
         <div className="min-w-0">
           <h3 className="text-[15px] font-medium tracking-tight text-gray-900 leading-snug">
             {title}

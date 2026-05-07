@@ -1,5 +1,5 @@
 import type { Capability, Locale } from '@/lib/capabilities'
-import { t, getRelatedCapabilities } from '@/lib/capabilities'
+import { t, getRelatedCapabilities, CAPABILITY_THESIS } from '@/lib/capabilities'
 import CapabilityDetail from './CapabilityDetail'
 import CapabilityOutcome from './CapabilityOutcome'
 import CapabilityMethodology from './CapabilityMethodology'
@@ -77,6 +77,7 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
   const c = COPY[locale]
   const related = getRelatedCapabilities(capability.slug)
   const ctaLabel = t(capability.ctaLabel, locale)
+  const thesis = CAPABILITY_THESIS[capability.slug]
 
   return (
     <>
@@ -84,8 +85,17 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
 
       <div className="container-base">
 
+        {/* Institutional thesis — expert observation, not a slogan */}
+        {thesis && (
+          <div className="pt-16 pb-14 border-b border-gray-100">
+            <p className="text-[16px] text-gray-600 leading-relaxed max-w-[40rem]">
+              {thesis[locale]}
+            </p>
+          </div>
+        )}
+
         {/* Where organisations get stuck */}
-        <div className="border-t border-gray-100 pt-16 pb-12">
+        <div className="border-t border-gray-100 pt-20 pb-14">
           <div className="grid lg:grid-cols-[200px_1fr] gap-8 lg:gap-16">
             <div className="lg:pt-1">
               <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-3">

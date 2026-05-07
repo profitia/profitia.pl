@@ -69,6 +69,7 @@ export default function ServicesPage({ locale }: Props) {
       sections={SERVICE_SECTIONS}
       hero={c.hero}
       cta={c.cta}
+      heroVariant="services"
       editorialBreaks={EDITORIAL_BREAKS}
     />
   )

@@ -71,6 +71,7 @@ export default function EducationPage({ locale }: Props) {
       sections={EDUCATION_SECTIONS}
       hero={c.hero}
       cta={c.cta}
+      heroVariant="education"
       philosophyStatement={PHILOSOPHY}
       editorialBreaks={EDITORIAL_BREAKS}
     />

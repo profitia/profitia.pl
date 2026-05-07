@@ -20,6 +20,10 @@ interface Props {
     href: string
   }
   /**
+   * Controls CapabilityHero variant (pacing + subtitle width differentiation).
+   */
+  heroVariant?: 'services' | 'education'
+  /**
    * Optional institutional statement rendered between the hero and sections.
    * Used for Education's learning philosophy block.
    */
@@ -50,6 +54,7 @@ export default function CapabilityLayout({
   sections,
   hero,
   cta,
+  heroVariant,
   philosophyStatement,
   editorialBreaks,
 }: Props) {
@@ -60,13 +65,14 @@ export default function CapabilityLayout({
         eyebrow={hero.eyebrow}
         title={hero.title}
         subtitle={hero.subtitle}
+        variant={heroVariant}
       />
 
       <div className="container-base">
 
         {/* Learning philosophy — Education only */}
         {philosophyStatement && (
-          <div className="py-12 border-b border-gray-100">
+          <div className="py-14 border-b border-gray-100">
             <p className="text-[15px] text-gray-500 leading-relaxed max-w-[44rem]">
               {philosophyStatement[locale]}
             </p>
@@ -86,8 +92,8 @@ export default function CapabilityLayout({
                 prefix={prefix}
               />
               {editorialBreak && (
-                <div className="py-10">
-                  <p className="text-[13px] text-gray-400 leading-relaxed max-w-[38rem]">
+                <div className="py-14">
+                  <p className="text-[13.5px] text-gray-400 leading-relaxed max-w-[38rem]">
                     {editorialBreak[locale]}
                   </p>
                 </div>

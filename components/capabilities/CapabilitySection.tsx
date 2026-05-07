@@ -31,7 +31,7 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
     <section
       className={
         isFeatured
-          ? 'border-t border-gray-100 pt-20 pb-12'
+          ? 'border-t border-gray-100 pt-24 pb-14'
           : 'border-t border-gray-100 pt-12 pb-4'
       }
     >
@@ -50,7 +50,7 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
           <h2
             className={
               isFeatured
-                ? 'text-2xl font-semibold tracking-tight text-gray-900 leading-snug mb-5'
+                ? 'text-2xl font-semibold tracking-tight text-gray-900 leading-snug mb-6'
                 : 'text-lg font-semibold tracking-tight text-gray-900 leading-snug mb-4'
             }
           >

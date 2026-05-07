@@ -41,8 +41,9 @@ export default function Footer() {
   const isArticlePage = /^(\/en)?\/blog\/[^/]+/.test(pathname)
   // About page: quiet CTA → footer transition — suppress newsletter, compressed rhythm
   const isAboutPage = /^(\/en)?\/about\/?$/.test(pathname)
-  // Capability listing pages (services, education root): no newsletter
-  const isCapabilityListingPage = /^(\/en)?\/(services|education)\/?$/.test(pathname)
+  // Capability pages (services/education — both listing and detail): no newsletter.
+  // Detail pages already close with CapabilityCTA; stacking newsletter creates too many endings.
+  const isCapabilityPage = /^(\/en)?\/(services|education)(\/[^/]+)?\/?$/.test(pathname)
   const NAV_LINKS = [
     { href: isEN ? '/en' : '/', label: dict.nav.home },
     { href: `${prefix}/services`, label: dict.nav.services },
@@ -59,7 +60,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 1 — NEWSLETTER
           ══════════════════════════════════════════════════ */}
-      {!isLegalPage && !isArticlePage && !isAboutPage && !isCapabilityListingPage && (
+      {!isLegalPage && !isArticlePage && !isAboutPage && !isCapabilityPage && (
       <div className="border-b border-gray-100">
         <div className="container-base py-12 grid md:grid-cols-[1fr_1.1fr] gap-6 lg:gap-10 items-center">
           <div>
