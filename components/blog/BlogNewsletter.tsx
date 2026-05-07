@@ -1,3 +1,5 @@
+'use client'
+
 /**
  * BlogNewsletter — Editorial Subscription Section
  *
