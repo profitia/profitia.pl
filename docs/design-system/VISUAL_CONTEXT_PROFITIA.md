@@ -11,10 +11,11 @@
 |----------|-------|--------|
 | VISUAL_CONTEXT_PROFITIA.md | Brand DNA, color system, global design rules | Source of Truth |
 | CAPABILITY_EDITORIAL_SYSTEM.md | Services, Education, detail pages — editorial doctrine | Source of Truth |
+| RECRUITMENT_EDITORIAL_SYSTEM.md | Career listing, job detail pages, application form, consent architecture | Source of Truth |
 | LEGAL_SYSTEM.md | Legal, privacy, policy pages | Source of Truth |
 | IMAGE_ART_DIRECTION.md | Photography, image editorial rules | Source of Truth |
 
-For all capability platform work (Services, Education, detail pages), **CAPABILITY_EDITORIAL_SYSTEM.md** takes precedence on editorial and rhythm decisions. This document governs global visual language.
+For all capability platform work (Services, Education, detail pages), **CAPABILITY_EDITORIAL_SYSTEM.md** takes precedence on editorial and rhythm decisions. For all recruitment and application surfaces, **RECRUITMENT_EDITORIAL_SYSTEM.md** takes precedence. This document governs global visual language.
 
 ---
 
