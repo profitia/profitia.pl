@@ -17,6 +17,7 @@ import React, {
   useEffect,
   useState,
 } from 'react'
+import { usePathname } from 'next/navigation'
 
 import type {
   ConsentCategories,
@@ -69,7 +70,11 @@ interface ConsentProviderProps {
   locale?: string
 }
 
-export function ConsentProvider({ children, locale = 'pl' }: ConsentProviderProps) {
+export function ConsentProvider({ children, locale: localeProp }: ConsentProviderProps) {
+  // Derive locale from URL path — /en/* → 'en', everything else → 'pl'
+  // Overrides the prop fallback so layouts don't need to thread locale down
+  const pathname = usePathname()
+  const locale = localeProp ?? (pathname.startsWith('/en') ? 'en' : 'pl')
   const [record, setRecord] = useState<ConsentRecord | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [bannerVisible, setBannerVisible] = useState(false)

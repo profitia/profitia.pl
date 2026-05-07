@@ -99,7 +99,7 @@ export default function Header() {
           <Link
             href={isEN ? '/en' : '/'}
             className="flex items-center flex-shrink-0 opacity-100 hover:opacity-70 transition-opacity duration-200"
-            aria-label="Profitia — strona główna"
+            aria-label={isEN ? 'Profitia — home' : 'Profitia — strona główna'}
           >
             <Image
               src="/logo/profitia-default.svg"
@@ -114,7 +114,7 @@ export default function Header() {
           {/* Desktop nav */}
           <nav
             className="hidden md:flex items-center gap-6"
-            aria-label="Nawigacja główna"
+            aria-label={isEN ? 'Main navigation' : 'Nawigacja główna'}
           >
             {/* Primary links */}
             {primaryNav.map((link) => (
@@ -163,11 +163,11 @@ export default function Header() {
             <div
               className="hidden md:flex items-center gap-[2px] text-[11.5px]"
               role="group"
-              aria-label="Wybór języka"
+              aria-label={isEN ? 'Language selection' : 'Wybór języka'}
             >
               <button
                 onClick={() => switchLocale('pl')}
-                aria-label="Przełącz na język polski"
+                aria-label={isEN ? 'Switch to Polish' : 'Przełącz na język polski'}
                 aria-pressed={currentLocale === 'pl'}
                 className={`px-1 py-0.5 transition-colors duration-150 ease-out leading-none ${
                   currentLocale === 'pl'
@@ -207,7 +207,7 @@ export default function Header() {
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav-panel"
-              aria-label={mobileOpen ? 'Zamknij menu' : 'Otwórz menu'}
+              aria-label={mobileOpen ? (isEN ? 'Close menu' : 'Zamknij menu') : (isEN ? 'Open menu' : 'Otwórz menu')}
             >
               {/* Hamburger lines */}
               <svg
@@ -243,7 +243,7 @@ export default function Header() {
         id="mobile-nav-panel"
         role="dialog"
         aria-modal="true"
-        aria-label="Menu nawigacyjne"
+        aria-label={isEN ? 'Navigation menu' : 'Menu nawigacyjne'}
         aria-hidden={!mobileOpen}
         className={`fixed inset-0 z-40 md:hidden flex flex-col bg-white transition-all duration-300 ease-out ${
           mobileOpen
@@ -259,7 +259,7 @@ export default function Header() {
           {/* Primary nav links — large editorial typography */}
           <nav
             className="flex-1 flex flex-col justify-center"
-            aria-label="Nawigacja mobilna"
+            aria-label={isEN ? 'Mobile navigation' : 'Nawigacja mobilna'}
           >
             <div className="space-y-0">
               {[...primaryNav, ...secondaryNav].map((link) => (
@@ -282,11 +282,11 @@ export default function Header() {
           {/* Bottom bar */}
           <div className="mt-auto space-y-5 pt-8 border-t border-gray-100">
             {/* Language switcher */}
-            <div className="flex items-center gap-[3px]" role="group" aria-label="Wybór języka">
+            <div className="flex items-center gap-[3px]" role="group" aria-label={isEN ? 'Language selection' : 'Wybór języka'}>
               <button
                 onClick={() => switchLocale('pl')}
                 aria-pressed={currentLocale === 'pl'}
-                aria-label="Przełącz na język polski"
+                aria-label={isEN ? 'Switch to Polish' : 'Przełącz na język polski'}
                 className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ease-out ${
                   currentLocale === 'pl' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-gray-700 font-normal'
                 }`}

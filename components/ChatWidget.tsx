@@ -1,13 +1,40 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 interface Message {
   role: 'user' | 'ai'
   text: string
 }
 
+const COPY = {
+  pl: {
+    openLabel: 'Otwórz chat',
+    title: 'Asystent Profitia',
+    closeLabel: 'Zamknij chat',
+    empty: 'Cześć! Jak mogę Ci pomóc w zakupach lub negocjacjach z dostawcami?',
+    typing: 'Piszę...',
+    noReply: 'Brak odpowiedzi.',
+    error: 'Błąd połączenia. Spróbuj ponownie.',
+    placeholder: 'Napisz wiadomość...',
+  },
+  en: {
+    openLabel: 'Open chat',
+    title: 'Profitia Assistant',
+    closeLabel: 'Close chat',
+    empty: 'Hello! How can I help you with procurement or supplier negotiations?',
+    typing: 'Typing...',
+    noReply: 'No reply received.',
+    error: 'Connection error. Please try again.',
+    placeholder: 'Type a message...',
+  },
+} as const
+
 export default function ChatWidget() {
+  const pathname = usePathname()
+  const t = COPY[pathname.startsWith('/en') ? 'en' : 'pl']
+
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -33,9 +60,9 @@ export default function ChatWidget() {
         body: JSON.stringify({ message: text }),
       })
       const data = await res.json()
-      setMessages((prev) => [...prev, { role: 'ai', text: data.reply ?? 'Brak odpowiedzi' }])
+      setMessages((prev) => [...prev, { role: 'ai', text: data.reply ?? t.noReply }])
     } catch {
-      setMessages((prev) => [...prev, { role: 'ai', text: 'Błąd połączenia. Spróbuj ponownie.' }])
+      setMessages((prev) => [...prev, { role: 'ai', text: t.error }])
     } finally {
       setLoading(false)
     }
@@ -61,7 +88,7 @@ export default function ChatWidget() {
             cursor: 'pointer',
             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
           }}
-          aria-label="Otwórz chat"
+          aria-label={t.openLabel}
         >
           💬
         </button>
@@ -94,11 +121,11 @@ export default function ChatWidget() {
               fontWeight: 600,
             }}
           >
-            <span>Asystent Profitia</span>
+            <span>{t.title}</span>
             <button
               onClick={() => setOpen(false)}
               style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: 18 }}
-              aria-label="Zamknij chat"
+              aria-label={t.closeLabel}
             >
               ×
             </button>
@@ -108,7 +135,7 @@ export default function ChatWidget() {
           <div style={{ flex: 1, overflowY: 'auto', padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
             {messages.length === 0 && (
               <p style={{ color: '#718096', fontSize: 13, margin: 0 }}>
-                Cześć! Jak mogę Ci pomóc w zakupach lub negocjacjach z dostawcami?
+                {t.empty}
               </p>
             )}
             {messages.map((m, i) => (
@@ -131,7 +158,7 @@ export default function ChatWidget() {
             ))}
             {loading && (
               <div style={{ alignSelf: 'flex-start', color: '#718096', fontSize: 13 }}>
-                Piszę...
+                {t.typing}
               </div>
             )}
             <div ref={bottomRef} />
@@ -143,7 +170,7 @@ export default function ChatWidget() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Napisz wiadomość..."
+              placeholder={t.placeholder}
               disabled={loading}
               style={{
                 flex: 1,

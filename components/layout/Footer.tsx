@@ -100,15 +100,17 @@ export default function Footer() {
             </Link>
             <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-gray-600 leading-relaxed mb-3">
               Profitia Management Consultants<br />
-              Mazurowski i Wspólnicy Sp. J.
+              {isEN ? 'Mazurowski & Partners General Partnership' : 'Mazurowski i Wspólnicy Sp. J.'}
             </p>
             <p className="text-[11px] text-gray-400 leading-relaxed mb-4">
-              Negotiations Intelligence · Data-driven Procurement ·{' '}
-              Certyfikowany Partner CIPS w Polsce · Doradztwo · Szkolenia · Analityka zakupowa
+              {isEN
+                ? 'Negotiations Intelligence · Data-driven Procurement · Certified CIPS Partner in Poland · Advisory · Training · Procurement Analytics'
+                : 'Negotiations Intelligence · Data-driven Procurement · Certyfikowany Partner CIPS w Polsce · Doradztwo · Szkolenia · Analityka zakupowa'}
             </p>
             <p className="text-[11px] text-gray-400 leading-relaxed mb-6">
-              02-715 Warszawa, Villa Metro<br />
-              ul. Puławska 145, V p.
+              {isEN
+                ? <>Villa Metro, 145 Puławska Street, 5th Floor<br />02-715 Warsaw, Poland</>
+                : <>02-715 Warszawa, Villa Metro<br />ul. Puławska 145, V p.</>}
             </p>
             <a
               href="https://cipsdistancelearning.com"
@@ -132,7 +134,7 @@ export default function Footer() {
             <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-5">
               {dict.footer.navigation}
             </p>
-            <nav className="space-y-2.5" aria-label="Nawigacja stopki">
+            <nav className="space-y-2.5" aria-label={isEN ? 'Footer navigation' : 'Nawigacja stopki'}>
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -243,7 +245,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/company/profitia-management-consultants"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Profitia na LinkedIn"
+                aria-label={isEN ? 'Profitia on LinkedIn' : 'Profitia na LinkedIn'}
                 className="flex items-center justify-center w-8 h-8 text-gray-400 hover:text-gray-900 transition-colors duration-200 ease-out"
               >
                 <IconLinkedIn />
@@ -252,7 +254,7 @@ export default function Footer() {
                 href="https://www.facebook.com/profitiakariera/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Profitia na Facebook"
+                aria-label={isEN ? 'Profitia on Facebook' : 'Profitia na Facebook'}
                 className="flex items-center justify-center w-8 h-8 text-gray-400 hover:text-gray-900 transition-colors duration-200 ease-out"
               >
                 <IconFacebook />
