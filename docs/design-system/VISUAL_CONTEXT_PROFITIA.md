@@ -1747,3 +1747,319 @@ All interactive footer elements use canonical interaction system:
 
 *Sekcja dodana: May 2026 | Canonical Header + Footer System — source of truth dla globalnego shell Profitia.*
 
+---
+
+## SECTION 25 — CANONICAL LEGAL SYSTEM
+
+> **Status:** Stable | Production-grade | Canonical
+> **Cross-ref:** Section 21 (Interaction System) · Section 23 (Header System) · Section 24 (Footer System) · `docs/design-system/LEGAL_SYSTEM.md`
+
+Legal pages constitute a distinct experience system — not a page type, not a template category. They implement a dedicated **editorial + institutional reading architecture** that prioritizes trust, readability, and cognitive calm over conversion, engagement, or aesthetics.
+
+---
+
+### A. PHILOSOPHY
+
+Legal pages serve a different function than every other page on the site. They exist to:
+
+- Build **institutional trust** — the reader is evaluating whether this company can be trusted
+- Support **sustained long-form reading** — sections run to hundreds of words
+- **Reduce visual fatigue** — dense legal text requires exceptional typographic care
+- Project **institutional character** — calm, restrained, authoritative
+
+**What legal pages are:**
+- Editorial-quality long-form reading experiences
+- Institutional trust signals
+- Architecture-first, content-second
+
+**What legal pages are not:**
+- Marketing pages
+- SaaS settings screens
+- CMS-generated policy dumps
+- Startup legal screens with developer-grade formatting
+
+**Tone of the system:**
+- Calm
+- Restrained
+- Editorial
+- Typographic
+- Highly readable
+
+No element on a legal page should compete with the text. No decoration, no illustration, no animation should distract from reading.
+
+---
+
+### B. ARCHITECTURE
+
+The Legal System is composed of 8 canonical components:
+
+| Component | Type | Role |
+|-----------|------|------|
+| `LegalLayout` | Server | Two-column grid shell — sidebar + content |
+| `LegalSidebar` | Client | Sticky desktop TOC wrapper / collapsible mobile |
+| `LegalTOC` | Client | IntersectionObserver-based active-section TOC |
+| `LegalContent` | Server | Prose container with manual Tailwind arbitrary variants |
+| `LegalSection` | Server | Individually scrollable section with `id` and `scroll-mt-28` |
+| `LegalHero` | Server | Restrained hero with eyebrow, H1, intro, and metadata chips |
+| `LegalMeta` | Server | Metadata chip strip (date, jurisdiction, version) |
+| `LegalAnchorLink` | Client | Smooth-scroll anchor with `prefers-reduced-motion` support |
+
+**Layout behavior:**
+
+- **Desktop:** Two-column grid — `240px` sticky sidebar + fluid content column (`max-w-[65ch]`)
+- **Mobile:** Single column — collapsible TOC above content
+- **Sidebar:** `sticky top-28 self-start` on desktop; accordion pattern on mobile
+- **Content width:** Constrained to `max-w-[65ch]` — optimal for long-form reading
+- **Spacing:** Deep decompression at page bottom (`pb-32 lg:pb-44`) — reading should end with calm, not collision with footer
+
+**Navigation:**
+
+- TOC tracks the active section using `IntersectionObserver` with `rootMargin: '-10% 0% -70% 0%'`
+- Anchor links use smooth scroll with `prefers-reduced-motion` fallback to `behavior: 'auto'`
+- URL hash updates on anchor click via `history.pushState` (no Next.js navigation triggered)
+
+---
+
+### C. COMPONENT LOCK RULES
+
+**LOCKED — requires explicit authorization to change:**
+- Legal layout two-column grid structure
+- Sidebar position (left, `240px`, sticky desktop)
+- TOC active tracking logic (IntersectionObserver)
+- Content column width (`max-w-[65ch]`)
+- Typography rhythm (heading scale, body scale, spacing)
+- Section spacing (`scroll-mt-28`, `mt-12`, `pt-6`, `border-t border-gray-100`)
+- Bottom decompression spacing (`pb-32 lg:pb-44`)
+- `prefers-reduced-motion` smooth-scroll fallback
+
+**CONDITIONALLY CHANGEABLE (with justification):**
+- Metadata chip content (dates, jurisdiction labels, version numbers)
+- Section count (add/remove sections as legal copy evolves)
+- Legal copy and translations
+- Language variants (`/en/privacy`, `/en/cookies`, `/en/terms`)
+
+**FORBIDDEN on legal pages:**
+- Marketing hero sections
+- Illustrations or decorative imagery
+- Conversion CTA sections
+- Aggressive or brand accent colors
+- Dark / cyber aesthetic
+- Entrance animations or scroll-triggered effects
+- Dense multi-column content layouts
+- Modal-based reading flows
+- Newsletter or promotional sections (→ Footer Variant, Section 26)
+
+---
+
+### D. TYPOGRAPHY RULES
+
+Legal typography is optimized for long-form reading, not scanning.
+
+| Element | Spec |
+|---------|------|
+| Body text | `text-[15px] text-gray-600 leading-[1.8]` |
+| Paragraph gap | `mb-5` |
+| H2 (section) | `text-xl font-semibold tracking-tight text-gray-900 leading-snug mt-12 mb-4` |
+| H3 (sub-section) | `text-[15px] font-semibold text-gray-800 mt-7 mb-3` |
+| Lists | `list-disc pl-5 mb-5`, item `leading-[1.8] mb-1.5` |
+| Strong | `font-semibold text-gray-800` |
+| Links | `text-gray-900 underline` with `hover:text-gray-600` |
+| Blockquote | `border-l-2 border-gray-200 pl-4 text-gray-500` |
+| H1 (hero) | `text-3xl md:text-[2.25rem] font-semibold tracking-tight leading-[1.08]` |
+| Hero intro | `text-base text-gray-500 leading-[1.75] max-w-[60ch]` |
+| Eyebrow | `text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400` |
+
+**Principles:**
+- Line length hard-capped at `max-w-[65ch]` — no sprawling legal text
+- Contrast is **restrained** — body is `text-gray-600`, not `text-gray-900` — reduces fatigue on long reads
+- Heading hierarchy is strict: H1 → H2 → H3. No skipping.
+- Section borders (`border-t border-gray-100`) provide visual pacing without heavy dividers
+
+---
+
+### E. ACCESSIBILITY
+
+| Rule | Implementation |
+|------|----------------|
+| Reduced motion | `LegalAnchorLink` checks `window.matchMedia('(prefers-reduced-motion: reduce)')` — uses `behavior: 'auto'` when true |
+| Keyboard navigation | All TOC links are native `<a>` elements — fully keyboard-reachable |
+| Anchor accessibility | TOC `<nav>` has `aria-label="Spis treści"` |
+| Heading hierarchy | H1 in `LegalHero` → H2 in `LegalSection` → H3 in `LegalContent` — no skips |
+| Mobile reading | Single-column layout, collapsible TOC, `scroll-mt-28` anchor offset |
+| TOC nav label | `aria-label` present — screen reader can navigate directly to TOC |
+
+---
+
+*Sekcja dodana: May 2026 | Canonical Legal System — source of truth dla legal reading architecture.*
+
+---
+
+## SECTION 26 — LEGAL FOOTER VARIANT
+
+> **Cross-ref:** Section 24 (Canonical Footer System)
+
+Legal pages use an **institutional footer variant** — the standard newsletter section is suppressed. This is not an option or override; it is the canonical behavior for all legal pages.
+
+---
+
+### A. BEHAVIOR
+
+| Context | Newsletter section | Grid section | Legal bar |
+|---------|-------------------|--------------|-----------|
+| Standard pages | Visible | Visible | Visible |
+| Legal pages | **Hidden** | Visible | Visible |
+
+**Rationale:**
+
+Legal reading is a focused, high-trust activity. A newsletter CTA immediately after reading a Privacy Policy creates:
+- A jarring tonal shift (institutional → promotional)
+- An impression of data harvesting at exactly the wrong moment
+- A disruption of the decompression rhythm at page end
+
+Legal reading ≠ content browsing. The footer should close the experience quietly.
+
+---
+
+### B. CANONICAL IMPLEMENTATION
+
+Auto-detection via `usePathname()` inside `Footer.tsx`:
+
+```tsx
+const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
+  (p) => pathname === p || pathname === `/en${p}`
+)
+```
+
+The newsletter `<div>` is conditionally rendered:
+
+```tsx
+{!isLegalPage && (
+  <div className="border-b border-gray-100">
+    {/* Newsletter section */}
+  </div>
+)}
+```
+
+No prop required. No layout modification needed. Detection is automatic.
+
+---
+
+### C. LOCK RULES
+
+**LOCKED:**
+- Newsletter section hidden on all legal paths (PL + EN)
+- Legal paths: `/privacy`, `/cookies`, `/terms`, `/en/privacy`, `/en/cookies`, `/en/terms`
+- Grid section and legal bar always visible on legal pages
+
+**FORBIDDEN on legal pages:**
+- Newsletter / email capture CTA
+- Promotional sections of any kind
+- Conversion-oriented footer content
+- Marketing tone in footer copy
+
+**CONDITIONALLY CHANGEABLE:**
+- Legal path list (add new legal pages — update the detection array)
+- Grid content (consistent with Section 24 rules)
+
+---
+
+*Sekcja dodana: May 2026 | Legal Footer Variant — institutional footer behavior for legal reading.*
+
+---
+
+## SECTION 27 — LEGAL READING UX RULES
+
+> **Cross-ref:** Section 21 (Interaction System) · Section 23 (Header System) · Section 25 (Legal System)
+
+This section defines the **UX doctrine** governing the reading experience on all legal pages. Implementation details live in `LEGAL_SYSTEM.md` and component files. This section defines the *why* and the *what* at system level.
+
+---
+
+### A. READING RHYTHM
+
+Legal text is cognitively demanding. The spacing system exists to reduce fatigue, not to fill space.
+
+**Principles:**
+
+- **Breathing room first** — sections are separated by both spacing and a subtle `border-t border-gray-100`; the eye gets a rest between topics
+- **Section rhythm** — each section opens with an H2, body text immediately follows at the same scale; no decorative sub-headers before content begins
+- **Decompression spacing** — the page does not end abruptly; `pb-32 lg:pb-44` gives the reader a soft landing before the footer
+- **Visual fatigue reduction** — `text-gray-600` (not `text-gray-900`) for body text; `leading-[1.8]` for generous line height
+- **Cognitive pacing** — section borders (`border-t`) act as visual chapter breaks that signal "this topic is complete"
+
+---
+
+### B. TOC EXPERIENCE
+
+The Table of Contents is an editorial navigation system, not a utility widget.
+
+| Property | Rule |
+|----------|------|
+| Font size | `text-[13.5px]` — readable without competing with content |
+| Line height | `leading-[1.5]` — prevents cramping on multi-word entries |
+| Vertical rhythm | `space-y-3` — entries have room to breathe |
+| Active state | Left border rail `border-l-[1.5px] border-gray-700` + `text-gray-900 font-medium` |
+| Inactive state | `text-gray-400` — clearly secondary |
+| Hover | `hover:text-gray-600 transition-colors duration-200 ease-out` — restrained, no jump |
+| Inactive border | `border-gray-100` — barely visible, maintains alignment |
+| Mobile | Collapsible accordion above content — open by default on first load |
+| Tracking | `IntersectionObserver` with `rootMargin: '-10% 0% -70% 0%'` — activates upper-viewport section |
+
+The TOC never dominates. It is always clearly secondary to the content column.
+
+---
+
+### C. HEADER BEHAVIOR ON LEGAL PAGES
+
+Legal pages **always render the stabilized (scrolled) header state** — from the very first pixel, regardless of scroll position.
+
+| State | Standard pages | Legal pages |
+|-------|---------------|-------------|
+| At top of page | `bg-white/0 backdrop-blur-[2px] border-transparent h-[88px]` | `bg-white/96 backdrop-blur-md border-gray-100/80 h-[72px]` |
+| Scrolled | `bg-white/96 backdrop-blur-md border-gray-100/80 h-[72px]` | same |
+
+**Rationale:**
+A transparent, shifting header creates visual noise during reading. Legal pages need a stable, anchored top bar — a consistent reference point while scrolling through long text. The solid header signals institutional stability and removes the distraction of a header changing state mid-read.
+
+**Implementation:** `Header.tsx` detects legal paths via `usePathname()` and applies `showScrolled = scrolled || isLegalPage`.
+
+*Cross-ref: Section 23 (CANONICAL HEADER SYSTEM)*
+
+---
+
+### D. MOBILE LEGAL UX
+
+| Rule | Implementation |
+|------|----------------|
+| Spacing | Single-column layout with standard `container-base` horizontal padding |
+| Bullet indentation | `pl-5` — clear indentation without excessive nesting |
+| Paragraph rhythm | `mb-5` paragraph gaps maintained on all viewport sizes |
+| Anchor offset | `scroll-mt-28` on all `LegalSection` — accounts for sticky header height |
+| TOC behavior | Collapsible accordion (`mb-8`) above content on mobile |
+| Safe area | Standard Next.js app shell handles safe-area-inset via `container-base` |
+| Reading width | No artificial narrowing on mobile — full-width within container is appropriate at small sizes |
+| H2 spacing | `mt-12 pt-6` — sections breathe even on narrow screens |
+
+---
+
+### E. FORBIDDEN PATTERNS
+
+No exception is valid for any of the following on legal pages:
+
+| Pattern | Reason banned |
+|---------|---------------|
+| Flashy entrance/scroll transitions | Disrupts reading focus |
+| Floating CTA button | Competes with text; inappropriate tone |
+| Popup or modal interruptions | Destroys institutional trust during legal reading |
+| Animated illustrations | Wrong tone category entirely |
+| Oversized hero typography | Marketing energy incompatible with legal context |
+| Dark-theme-first legal pages | Legibility and institutional character both suffer |
+| Aggressive sticky bars | Reduces reading area; creates visual noise |
+| Oversized hero sections | Legal pages open immediately into reading, not marketing |
+| Newsletter CTA anywhere on page | Trust contradiction at the wrong moment |
+| Parallax or scroll effects | Conflict with accessibility + reading focus |
+
+---
+
+*Sekcja dodana: May 2026 | Legal Reading UX Rules — high-level doctrine for institutional reading experience.*
+
