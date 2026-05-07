@@ -58,7 +58,7 @@ export function TeamMemberRow({
           />
 
           {bio && (
-            <p className="mt-6 text-[15px] text-gray-500 leading-[1.88] max-w-[58ch]">
+            <p className="mt-7 text-[15px] text-gray-600 leading-[1.88] max-w-[58ch]">
               {bio}
             </p>
           )}

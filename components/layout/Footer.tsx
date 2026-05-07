@@ -97,7 +97,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 2 — MAIN FOOTER GRID
           ══════════════════════════════════════════════════ */}
-      <div className={`container-base ${isArticlePage ? 'py-10' : isAboutPage ? 'py-12' : 'py-16'}`}>
+      <div className={`container-base ${isArticlePage ? 'py-10' : isAboutPage ? 'py-14' : 'py-16'}`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
           {/* Column 1: Brand / Trust */}

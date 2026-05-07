@@ -242,13 +242,13 @@ export function AboutPage({ locale }: AboutPageProps) {
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
       <div className="container-base pt-20 pb-20 lg:pt-40 lg:pb-32 border-b border-gray-100">
         <div className="max-w-[54rem]">
-          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-12">
+          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-8 lg:mb-12">
             {t.hero.eyebrow}
           </p>
-          <h1 className="text-[2.25rem] md:text-[3rem] lg:text-[3.75rem] font-semibold tracking-tight text-gray-900 leading-[1.06] mb-8 lg:mb-10">
+          <h1 className="text-[2.25rem] md:text-[3rem] lg:text-[3.75rem] font-semibold tracking-tight text-gray-900 leading-[1.06] lg:leading-[1.04] mb-8 lg:mb-10">
             {t.hero.h1}
           </h1>
-          <p className="text-[1.125rem] md:text-xl text-gray-500 leading-[1.82] max-w-[46ch]">
+          <p className="text-[1.125rem] md:text-xl text-gray-500 leading-[1.85] max-w-[46ch]">
             {t.hero.subtitle}
           </p>
         </div>
@@ -262,13 +262,13 @@ export function AboutPage({ locale }: AboutPageProps) {
             <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-10">
               {t.foundation.eyebrow}
             </p>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-10">
+            <div className="border-t border-gray-100 pt-8 grid grid-cols-2 gap-x-8 gap-y-8">
               {t.foundation.stats.map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-[2.5rem] font-semibold tracking-tight text-gray-900 leading-none mb-2">
+                  <div className="text-[2.5rem] font-semibold tracking-tight text-gray-900 leading-none mb-3">
                     {stat.value}
                   </div>
-                  <div className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400">
+                  <div className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400">
                     {stat.label}
                   </div>
                 </div>
@@ -296,7 +296,7 @@ export function AboutPage({ locale }: AboutPageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20">
           {/* Left: heading */}
           <div className="lg:pt-1">
-            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-4">
+            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-5">
               {t.capabilities.eyebrow}
             </p>
             <h2 className="text-3xl md:text-[2.25rem] font-semibold tracking-tight text-gray-900 leading-[1.1]">
@@ -326,7 +326,7 @@ export function AboutPage({ locale }: AboutPageProps) {
       </section>
 
       {/* ── 4. PHILOSOPHY ────────────────────────────────────────── */}
-      <section className="container-base py-28 lg:py-36 border-b border-gray-100">
+      <section className="container-base py-20 sm:py-28 lg:py-36 border-b border-gray-100">
         <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-10">
           {t.philosophy.eyebrow}
         </p>
@@ -365,7 +365,7 @@ export function AboutPage({ locale }: AboutPageProps) {
       {/* ── 5. LEADERSHIP ────────────────────────────────────────── */}
       <section className="container-base py-24 lg:py-32 border-b border-gray-100">
         <div className="mb-16 lg:mb-20">
-          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-4">
+          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-5">
             {t.leadership.eyebrow}
           </p>
           <h2 className="text-3xl md:text-[2.25rem] font-semibold tracking-tight text-gray-900 leading-[1.1] max-w-lg">
@@ -394,13 +394,13 @@ export function AboutPage({ locale }: AboutPageProps) {
             <p className="text-[14.5px] text-gray-500 leading-[1.82] mb-8">
               {t.credentials.cipsDesc}
             </p>
-            <div className="inline-block">
+            <div className="mt-10 pt-8 border-t border-gray-100">
               <Image
                 src="https://cipsdistancelearning.com/wp-content/uploads/2022/07/CIPS_Centre-Excellence_Logo_2022.png"
                 alt="CIPS Centre of Excellence"
                 width={120}
                 height={48}
-                className="opacity-55 grayscale h-12 w-auto"
+                className="opacity-50 grayscale h-12 w-auto"
                 unoptimized
               />
             </div>
