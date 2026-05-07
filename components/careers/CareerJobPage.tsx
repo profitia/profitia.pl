@@ -17,9 +17,8 @@ const COPY = {
     workingModel:{ eyebrow: 'Model pracy', title: 'Forma i organizacja pracy' },
     development: { eyebrow: 'Rozwój', title: 'Jak wygląda rozwój w tej roli' },
     cta: {
-      invitation: 'Jeżeli ta rola odpowiada temu, czego szukasz — porozmawiajmy.',
+      invitation: 'Jeżeli ta rola odpowiada temu, czego szukasz — prześlij aplikację.',
       label: 'Prześlij CV',
-      href: '/contact',
     },
   },
   en: {
@@ -30,9 +29,8 @@ const COPY = {
     workingModel:{ eyebrow: 'Working model', title: 'Format and working arrangement' },
     development: { eyebrow: 'Development', title: 'How development looks in this role' },
     cta: {
-      invitation: 'If this role matches what you are looking for — let\'s talk.',
-      label: 'Send your CV',
-      href: '/en/contact',
+      invitation: 'If this role matches what you are looking for — submit an application.',
+      label: 'Submit your CV',
     },
   },
 }
@@ -182,7 +180,7 @@ export default function CareerJobPage({ job, locale }: Props) {
           locale={locale}
           invitation={c.cta.invitation}
           label={c.cta.label}
-          href={c.cta.href}
+          href={`${locale === 'en' ? '/en' : ''}/career/apply?role=${job.slug}`}
         />
 
       </div>
