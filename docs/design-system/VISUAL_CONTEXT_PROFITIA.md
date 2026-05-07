@@ -2388,40 +2388,440 @@ No exception is valid without an explicit architectural decision and documentati
 
 ---
 
-## SECTION 29 — CANONICAL EDITORIAL INTELLIGENCE PUBLICATION SYSTEM
+## SECTION 29 — CANONICAL EDITORIAL PLATFORM SYSTEM
 
-> **Cross-ref:** Section 7 (Card System) · Section 8 (Button System) · Section 21 (Interaction System) · Section 23 (Header System) · `prisma/schema.prisma`
-
-This section defines the **editorial architecture** governing all publication surfaces on profitia.pl. The blog is positioned as a Procurement Intelligence publication — not a marketing blog. Every design and content decision follows from this positioning.
+> **Status: CANONICAL** — Procurement Intelligence Publication Layer. Osiągnął canonical state w maju 2026 po editorial polish pass. Obowiązuje we wszystkich surface'ach editorial: `/blog`, `/blog/[slug]`, `/en/blog`, `/en/blog/[slug]`.
+> **Cross-ref:** Section 7 (Card System) · Section 8 (Button System) · Section 21 (Interaction System) · Section 23 (Header System) · Section 24 (Footer System) · `prisma/schema.prisma` · `components/blog/`
 
 ---
 
-### A. PUBLICATION PHILOSOPHY
+### A. EDITORIAL PHILOSOPHY
 
-**Positioning:** Procurement Intelligence — not a marketing blog, not a company news feed.
+#### Czym jest ten system
 
-**Editorial promise:** "Wiedza zakupowa. Bez szumu. Tylko substancja."
+Profitia editorial platform to **Procurement Intelligence Publication** — instytucjonalna warstwa wiedzy zakupowej.
 
-**Authority model:** Each article builds institutional credibility by being:
-- Written by named, credentialed authors with roles
-- Anchored in a specific procurement domain (category)
-- Structured for professional readers who scan, then read deeply
-- Cross-linked to related analyses (relatedSlugs)
+**NIE jest:**
+- marketing blogiem firmy consultingowej
+- startup SaaS content hubem z artykułami o produktywności
+- WordPress-style publication z agresywnymi CTA
+- company news feed
+- thought leadership feed dla szerokiej publiczności
 
-**7 canonical categories:**
-| Category key | Label |
+**Jest:**
+- procurement intelligence publication — publikacja dla praktyków zakupów na poziomie decyzyjnym
+- institutional editorial layer — warstwa autorytetu i wiedzy, nie sprzedaży
+- strategic knowledge platform — każdy artykuł to analiza, nie ogłoszenie
+- quiet authority system — nie krzyczy, nie konwertuje agresywnie, przekonuje głębią
+
+#### Inspiracje formalne
+
+| Inspiracja | Co zostało przeniesione |
 |---|---|
-| `negotiations` | Negocjacje |
-| `procurement-strategy` | Strategia zakupów |
-| `cost-intelligence` | Analiza kosztów |
-| `supplier-risk` | Ryzyko dostawcy |
-| `supply-chain` | Łańcuch dostaw |
-| `market-analysis` | Analiza rynku |
-| `spend-management` | Spend management |
+| **Stripe Editorial** | Long-form typographic confidence, heading hierarchy, breathing room |
+| **McKinsey Insights** | Institutional authority tone, analytics-first structure, author credibility |
+| **Linear Essays** | Prose rhythm, whitespace discipline, heading-to-content ratio |
+| **Notion editorial** | Content-first layout, clean reading column, calm component density |
+
+#### Personality attributes
+
+- **Quiet** — żaden element nie krzyczy, nie atakuje wzroku
+- **Editorial** — hierarchia treści ważniejsza niż dekoracja
+- **Intelligent** — zakłada kompetentnego czytelnika
+- **Premium** — każdy piksel ma uzasadnienie
+- **Restrained** — mniej to więcej; nic bez powodu
+- **Institutional** — styl bliższy FT/McKinsey niż Hubspot/G2
+
+#### Canonical promise
+
+> "Wiedza zakupowa. Bez szumu. Tylko substancja."
 
 ---
 
-### B. DATA MODEL — Article (Prisma)
+### B. BLOG INDEX ARCHITECTURE
+
+#### Canonical page structure
+
+```
+┌────────────────────────────────────────────────────────────┐
+│  PublicationHero                                           │
+│  (masthead — title + tagline, no image, no CTA)           │
+├────────────────────────────────────────────────────────────┤
+│  FeaturedArticle (Cover Story)                             │
+│  (full-width section, asymmetric grid: 5/12 copy + 7/12   │
+│   cinematic image, py-20 lg:py-28)                        │
+├────────────────────────────────────────────────────────────┤
+│  Article Grid (non-featured articles)                      │
+│  (3-column on desktop, 2-column tablet, 1-column mobile)  │
+├────────────────────────────────────────────────────────────┤
+│  BlogNewsletter                                            │
+│  (Intelligence Brief subscription — editorial tone)        │
+└────────────────────────────────────────────────────────────┘
+│  Footer (full canonical — with newsletter section)         │
+└────────────────────────────────────────────────────────────┘
+```
+
+#### Metadata hierarchy (per card / featured)
+
+Order of visual weight:
+1. **Category** — eyebrow, `text-[10px] tracking-[0.22em] uppercase text-gray-600` — always first
+2. **Reading time** — `text-gray-500`, dot separator
+3. **Title** — dominant, `font-semibold tracking-tight text-gray-900`
+4. **Subtitle / excerpt** — secondary, `text-gray-500 leading-[1.75]`
+5. **Author + date** — `text-gray-500 text-[12px]`, bottom of card
+
+#### FeaturedArticle — Cover Story rules (LOCKED)
+
+- Grid: `5fr 7fr` (copy 42% / image 58%) on desktop
+- Outer padding: `py-20 lg:py-28`
+- Column gap: `gap-12 lg:gap-20`
+- Title: `text-[1.75rem] md:text-[2.25rem] lg:text-[2.75rem]`, `leading-[1.08]`, `font-semibold`
+- Subtitle: `text-[17px]`, `leading-[1.75]`, `max-w-[52ch]`
+- Meta spacing between elements: `mb-6` (eyebrow) → `mb-5` (title) → `mb-9` (subtitle) → `mb-9` (meta) → CTA
+- Image: `aspect-[16/9]`, `rounded-2xl`, image scale `1.02` on group-hover
+- CTA: `text-[13.5px] font-semibold`, arrow gap expands on hover via `group-hover:gap-3`
+
+**LOCK: Copy leads. Image supports.** Image column never dominates copy column at the information level. Image is cinematic context; copy is the argument.
+
+#### Newsletter relationship on blog index
+
+- `BlogNewsletter` renders after the article grid — always visible
+- Footer also shows newsletter section on `/blog` — this is intentional and correct
+- **ONLY on article pages** is footer newsletter suppressed (see §29.G — Newsletter Policy)
+
+---
+
+### C. ARTICLE PAGE ARCHITECTURE
+
+#### Canonical page structure (ordered)
+
+```
+┌────────────────────────────────────────────────────────────┐
+│  ReadingProgress (fixed top, Client Component)             │
+│  (2px bar, z-[100], appears after 80px scroll)            │
+├────────────────────────────────────────────────────────────┤
+│  ArticleHero (Server Component)                            │
+│  back link → metadata row → H1 → subtitle → author        │
+│  → cinematic cover image (aspect-[16/7])                   │
+├────────────────────────────────────────────────────────────┤
+│  ArticleLayout (Server Component)                          │
+│  ┌──────────────────────┬───────────────────────────────┐  │
+│  │ ArticleTOCSidebar    │ Prose Column (max-w-[68ch])   │  │
+│  │ (Client Component)   │                               │  │
+│  │ sticky, lg+          │ [H2] → [p] → [PullQuote]     │  │
+│  │ collapsible mobile   │ → [InsightBlock] → [H2] ...  │  │
+│  └──────────────────────┴───────────────────────────────┘  │
+├────────────────────────────────────────────────────────────┤
+│  ArticleAuthor (Server Component)                          │
+├────────────────────────────────────────────────────────────┤
+│  ArticleNewsletter (Client Component — inline)             │
+├────────────────────────────────────────────────────────────┤
+│  ArticleRelated (Server Component)                         │
+└────────────────────────────────────────────────────────────┘
+│  Footer — COMPRESSED VARIANT (no newsletter section)       │
+└────────────────────────────────────────────────────────────┘
+```
+
+#### What is LOCKED on article pages
+
+| Element | Lock rule |
+|---|---|
+| `ReadingProgress` | Always present. Never animated except `transition-[width] duration-75 ease-linear`. Never hidden until 80px scroll. |
+| `ArticleHero` structure | back → meta → H1 → subtitle → author → image. Sequence must not change. |
+| Prose column max-width | `max-w-[68ch]`. Never wider. Reading line length is a readability commitment. |
+| TOC sidebar | `240px` at `lg+`. Hidden on mobile; collapsible panel instead. Never inline. |
+| Author block | Always shown when `authorName` is present. Never omit. Credibility layer. |
+| `ArticleNewsletter` | Always inline, after author, before related. Never moved to top of page. |
+| Footer newsletter | Always hidden on article pages (see §29.G). |
+
+#### What is conditionally changeable
+
+| Element | Condition |
+|---|---|
+| `ArticleHero` image | Shown only when `coverImage` is set. Fallback: gradient placeholder. |
+| `ArticleAuthor` block | Shown only when `authorName` is set. If null: block does not render. |
+| `ArticleRelated` | Shown only when `relatedSlugs` is non-empty. |
+| TOC sidebar | Shown only when `tocItems.length > 0`. If empty: renders empty `<aside />`. |
+| Subtitle (standfirst) | Shown only when `subtitle` is set. Not a required field. |
+
+#### What is FORBIDDEN on article pages
+
+- Floating CTA buttons during reading
+- Progress-gated content popups
+- Scroll-triggered modals
+- Sidebar advertising or promotional blocks
+- "Related products" widgets
+- Author social media follow buttons
+- Comment sections
+- Star ratings / social proof widgets
+- "Share to social" inline blocks (only in footer if ever added)
+- Marketing CTAs mid-article
+
+---
+
+### D. TYPOGRAPHY + READING RHYTHM
+
+#### Max-width doctrine
+
+- **Prose column:** `max-w-[68ch]` — canonical and immovable. Based on optimal typographic line length for professional reading. 45–75 characters per line is the academic standard; 68ch places us in the premium editorial range.
+- **Subtitle / standfirst:** `max-w-[58ch]` — slightly shorter than body, creates visual containment
+- **Hero title:** `max-w-[44rem]` — allows multi-line without runaway wrap on large viewports
+- **Author bio:** `max-w-[52ch]` — personal, intimate, not sprawling
+
+**RULE:** Never use full container width for reading text. Prose that stretches `container-base` full width fails the readability contract.
+
+#### Line-height doctrine
+
+| Element | Line height | Why |
+|---|---|---|
+| H1 (hero title) | `leading-[1.06]` | Tight but elegant — editorial display heading |
+| H2 (section heading) | `leading-snug` | Scans well, clearly hierarchical |
+| Subtitle / standfirst | `leading-[1.7]` | Comfortable introductory read |
+| Body paragraph | `leading-[1.9]` | Maximum reading comfort for long-form |
+| List items | `leading-[1.85]` | Dense but not squeezed |
+| Blockquote | `leading-[1.78]` | Slower, deliberate reading — matches italic tone |
+| Excerpt (cards) | `leading-[1.7]` | Scannable, not deep-read |
+
+#### Whitespace cadence (prose)
+
+| Element | Top margin | Bottom margin | Notes |
+|---|---|---|---|
+| Paragraph | — | `mb-7` | 28px bottom — breathing between thoughts |
+| H2 | `mt-16` | `mb-6` | 64px top for section break rhythm |
+| H2 top padding | `pt-10` | — | Adds visual separation from preceding text |
+| H3 | `mt-10` | `mb-4` | 40px top — sub-section cadence |
+| H4 | `mt-8` | `mb-3` | Compact but distinct |
+| Blockquote | `my-12` | — | 48px vertical — pause moment |
+| HR | `my-12` | — | 48px — section transition signal |
+| List | — | `mb-7` | Same as paragraph |
+| PullQuote component | `my-14` | — | 56px — most prominent pause element |
+| InsightBlock component | `my-12` | — | 48px — equals blockquote weight |
+
+**RULE: Readability > Density.** This publication is not a data sheet or newsletter. The reader is a procurement professional reading for insight, not speed. Every extra pixel of whitespace is an investment in comprehension and trust. Compressing prose to fit "above the fold" is explicitly forbidden — there is no fold in long-form editorial reading.
+
+#### Heading hierarchy
+
+```
+H1 — Article title — text-[2rem] md:text-[2.75rem] lg:text-[3.25rem] font-semibold
+H2 — Major section — text-2xl font-semibold (with border-t divider)
+H3 — Sub-section   — text-lg font-semibold
+H4 — Minor point   — text-base font-semibold
+```
+
+All headings: `tracking-tight text-gray-900`. H2 has `border-t border-gray-100` as visual section cadence marker.
+
+#### Scroll offset
+
+All H2 and H3 headings: `scroll-mt-28` — compensates for the sticky header height. Without this, TOC clicks land behind the header.
+
+---
+
+### E. EDITORIAL MOTION SYSTEM
+
+> **Cross-ref:** Section 21 — Canonical Interaction System. All motion on editorial surfaces obeys §21 rules. This subsection defines editorial-specific constraints within that system.
+
+#### Restrained hover philosophy
+
+Editorial surfaces use **institutional hover** — motion that confirms interaction, not motion that entertains. No motion should attract attention away from the text being read.
+
+**Scale principle:**
+- Maximum image hover scale: `scale-[1.015]` (ArticleCard) — barely perceptible, confirms interactivity
+- Maximum image hover scale on featured: `scale-[1.02]` (FeaturedArticle) — slightly more prominent because it's a showcase element
+- **Never exceed `scale-[1.02]`** on editorial surfaces
+- **Never use `translateY`** for card lift on editorial surfaces — forbidden (see §29.I)
+
+**Title hover:**
+- ArticleCard, ArticleRelated: `group-hover:text-gray-600` — darkens slightly, `duration-200 ease-out`
+- FeaturedArticle title: `group-hover:text-gray-700` — subtler shift, `duration-300 ease-out`
+- Never changes font weight on hover
+
+**CTA arrow:**
+- FeaturedArticle CTA: `group-hover:gap-3` (gap expands from `gap-2`) — arrow slides right
+- `transition-all duration-300 ease-out`
+
+#### TOC active section transitions
+
+- Border color: `border-gray-200` (inactive) → `border-gray-700` (active), `duration-300 ease-out`
+- Text: `text-gray-500 hover:text-gray-700` (inactive) → `text-gray-900 font-medium` (active), `duration-300 ease-out`
+- No transform or scale transitions on TOC items — text/color only
+
+#### Reading progress behavior
+
+- Fixed to top of viewport, `z-[100]`, height `2px`
+- Background track: `bg-gray-100`
+- Fill bar: `bg-gray-900`
+- Width transition: `transition-[width] duration-75 ease-linear` — smooth but near-real-time, no lag
+- Visibility: appears at `scrollY > 80px`, disappears at top
+- Respects `prefers-reduced-motion: reduce` — does not render if reduced motion is preferred
+
+#### Transition timing reference (editorial surfaces)
+
+| Interaction | Duration | Easing |
+|---|---|---|
+| Image scale hover | `duration-500` | `ease-out` |
+| Title color hover | `duration-200–300` | `ease-out` |
+| TOC border/text | `duration-300` | `ease-out` |
+| CTA gap expand | `duration-300` | `ease-out` |
+| Reading progress width | `duration-75` | `ease-linear` |
+| Back link hover | `duration-200` | `ease-out` |
+| Mobile TOC open/close | `duration-200` | default |
+
+**Forbidden on editorial surfaces:**
+- `bounce` easing
+- Spring physics
+- `duration > 500ms` on interactive elements
+- Glow, shadow pulse, or color flash effects
+- `translateY > 2px` card lift
+
+---
+
+### F. CONTRAST SYSTEM (EDITORIAL)
+
+#### Institutional contrast philosophy
+
+Profitia editorial UI uses **institutional editorial contrast** — not ultra-light gray minimalism, not high-contrast startup SaaS.
+
+The doctrine: every piece of text must be **readable by design**, not merely detectable. Ultra-light gray (< `gray-400`) on white creates washed-out UI that signals insufficient craft. Institutional publications (FT, McKinsey, The Economist) never use ultra-light copy for supporting text.
+
+#### Contrast ladder for editorial surfaces
+
+| Role | Color | Context |
+|---|---|---|
+| Primary text (body, H2, H3, H4) | `text-gray-900` | Always |
+| Secondary text (subtitle, excerpt, author bio) | `text-gray-600` or `text-gray-500` | Long-form reading |
+| Meta text (date, reading time, author role) | `text-gray-500` | Metadata rows |
+| Helper text (labels, captions, attribution) | `text-gray-500` | Eyebrow labels, TOC inactive, section labels |
+| Category badge | `text-gray-600` | Higher contrast — identity element |
+| TOC inactive | `text-gray-500 hover:text-gray-700` | Restrained, not invisible |
+| TOC active | `text-gray-900 font-medium` | Clear active state |
+| Separator dots | `text-gray-300` | Present but not dominant |
+
+**RULE: Minimum `gray-500` for all visible supporting text on editorial pages.** `gray-400` and below is permitted only for decorative or purely structural elements with zero reading expectation. Using `gray-400` for meta text that a user might actually read is a quality failure.
+
+#### Why ultra-light gray is forbidden for editorial copy
+
+`text-gray-300` or `text-gray-400` on white (#fff) at small sizes fails:
+1. WCAG AA readability standards for body copy
+2. Editorial softness ≠ editorial illegibility
+3. It creates washed-out UI that signals template aesthetics, not institutional craft
+
+---
+
+### G. NEWSLETTER POLICY + ARTICLE FOOTER VARIANT
+
+#### Newsletter duplication is forbidden on article pages
+
+Article pages contain `ArticleNewsletter` — an inline subscription block that appears after the author bio, before related articles. This is the **canonical newsletter touchpoint** within the reading experience.
+
+**Duplication rule:**
+- On `/blog/[slug]` and `/en/blog/[slug]`: **footer newsletter section is hidden**
+- Detection: `Footer.tsx` checks `isArticlePage = /^(\/en)?\/blog\/[^/]+/.test(pathname)`
+- On `/blog` and `/en/blog`: footer newsletter renders normally
+- On legal pages: footer newsletter is suppressed (existing rule, unchanged)
+
+**Why:**
+- Two newsletter prompts in close proximity (inline → footer) creates pressure, not invitation
+- Inline newsletter is contextually appropriate — it appears after the reader has finished the article
+- Footer newsletter after inline newsletter is redundant and reduces institutional tone
+
+#### Article footer variant — compressed rhythm
+
+After a long-form article, the full canonical footer creates visual overload. The article footer variant is **the same component**, with compressed spacing:
+
+| Property | Default footer | Article footer variant |
+|---|---|---|
+| Newsletter section | Visible | **Hidden** (see above) |
+| Main grid padding | `py-16` | `py-10` |
+| Legal bar padding | `py-5` | `py-4` |
+
+**Implementation:** `Footer.tsx` applies Tailwind class conditional via `isArticlePage` boolean. No separate component. Single source of truth.
+
+**RULE:** The article footer variant is NOT a separate component. It is a **conditional variant of the canonical Footer**. Never create a separate `ArticleFooter.tsx` component.
+
+---
+
+### H. MOBILE EDITORIAL RULES
+
+#### Mobile reading doctrine
+
+The editorial experience on mobile must preserve the **reading immersion** of desktop, adapted to the touch context. Mobile is not a degraded version of desktop — it is the canonical reading context for many professional readers (commute, offsite, meetings).
+
+**Principle:** Compress spacing, not content. Never hide editorial elements for mobile; adapt their presentation.
+
+#### Hero on mobile
+
+- Title: `text-[2rem]` (20% smaller than lg) — readable, dominant
+- Subtitle: same size as desktop, same `max-w-[58ch]` — may wrap; this is correct
+- Metadata row: wraps naturally via `flex-wrap` — never truncated
+- Cover image: `aspect-[16/7]` maintained — cinematic even on mobile
+
+#### TOC on mobile
+
+- Desktop sticky sidebar collapses to **collapsible panel** (`lg:hidden`)
+- Panel opens via chevron button — `bg-gray-50`, `rounded-lg`, `border border-gray-100`
+- Toggle button: `text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-500`
+- TOC links in panel: same size and color rules as desktop
+- Panel closes on link click (`handleClick` callback)
+- **Never:** inline TOC forced before content on mobile without collapsing
+
+#### Prose on mobile
+
+- Body text `text-[16px]` — same as desktop. Never reduce below `15px` for body copy.
+- Line height maintained at `leading-[1.9]` — same as desktop. Never compress.
+- Horizontal padding: handled by `container-base` (mobile: `px-5`)
+- Max-width `max-w-[68ch]` becomes full-width on small viewports — this is correct and expected
+
+#### FeaturedArticle on mobile
+
+- Stacks vertically: image top, copy below (`order-1`/`order-2` swap at `lg+`)
+- Image: `aspect-[16/9]` — remains cinematic in vertical stack
+- Title font size: `text-[1.75rem]` on mobile — strong, still hierarchical
+- CTA gap animation: preserved on mobile via CSS group-hover (touch devices: static state shown)
+
+#### Spacing compression rules
+
+On mobile, some vertical padding is compressed automatically via responsive Tailwind suffixes:
+- Hero: `pt-14 pb-12` (vs `lg:pt-24 lg:pb-16`)
+- Featured: `py-20 lg:py-28`
+- ArticleLayout: `pt-12 pb-36 lg:pb-52`
+
+**RULE:** Never compress paragraph `mb-*` values for mobile. Reading rhythm must be preserved. Only container-level padding may be reduced.
+
+#### Touch rhythm
+
+- All tap targets: minimum `44px` height (iOS HIG) — TOC links, cards, CTA buttons
+- TOC sidebar panel: full viewport-width on mobile (not partial panel)
+- No hover-only states without touch equivalent
+
+---
+
+### I. FORBIDDEN PATTERNS
+
+| Pattern | Why forbidden |
+|---|---|
+| Marketing-style card with "Learn more ›" button | Editorial cards have no explicit button — the whole card is the CTA |
+| Aggressive hover (scale > 1.02, translateY > 2px, shadow lift) | Creates startup SaaS feel, breaks institutional tone |
+| Colorful category badges (colored chips, gradient labels) | CategoryBadge is uppercase gray text only — color = noise |
+| Narrow prose column (< 58ch) | Reading lines too short — exhausting for long-form |
+| Dense layout (compressed whitespace, paragraph mb < 4) | Destroys reading immersion, signals newsletter not publication |
+| Animated progress bar (spring, bounce, overshooting) | ReadingProgress is informational only — `duration-75 ease-linear` |
+| Popups during reading | Reading mode must never be interrupted |
+| Sidebar ads or promotional blocks | This is not a media publication supported by advertising |
+| Floating CTA buttons during scroll | Editorial reading must not be interrupted by conversion pressure |
+| WordPress-style author widget with follow button | Author block is credential display, not social follow prompt |
+| Infinite scroll | Deliberate article list — the reader chooses what to read |
+| Two newsletter prompts on same page | Inline newsletter + footer newsletter = duplication. Article pages: inline only. |
+| `@tailwindcss/typography` plugin | Removed intentionally — all prose via explicit Tailwind arbitrary variants |
+| Full-width prose text | `max-w-[68ch]` is non-negotiable — wide prose destroys reading comfort |
+| Cover images from non-Unsplash domains | Only Unsplash is domain-whitelisted in `next.config.mjs` |
+| `featured: true` on more than one article | One featured slot — the cover story. Multiple featured = undefined behavior. |
+| `'use client'` on `ArticleLayout` | ArticleLayout is a Server Component — RSC boundary for large HTML string |
+| Dark background editorial surface | All editorial surfaces: white background, no exceptions |
+| Non-italic blockquotes | Blockquote rhythm requires italic — signals quotation, not assertion |
+
+---
+
+### J. DATA MODEL — Article (Prisma)
 
 All editorial fields are nullable — safe to add to existing articles without migration pain.
 
@@ -2444,42 +2844,60 @@ relatedSlugs String[] @default([])  // slugs to display in ArticleRelated
 
 **Schema applied:** `npx prisma db push` run against Neon production DB (May 2026).
 
+**7 canonical categories:**
+
+| Category key | Label PL | Label EN |
+|---|---|---|
+| `negotiations` | Negocjacje | Negotiations |
+| `procurement-strategy` | Strategia zakupów | Procurement Strategy |
+| `cost-intelligence` | Analiza kosztów | Cost Intelligence |
+| `supplier-risk` | Ryzyko dostawcy | Supplier Risk |
+| `supply-chain` | Łańcuch dostaw | Supply Chain |
+| `market-analysis` | Analiza rynku | Market Analysis |
+| `spend-management` | Spend management | Spend Management |
+
 ---
 
-### C. COMPONENT LIBRARY — `components/blog/`
+### K. COMPONENT LIBRARY — `components/blog/`
 
 All components are in `components/blog/`. Barrel export via `components/blog/index.ts`.
 
-#### Index page components
-| Component | Type | Purpose |
+> **Architecture note (May 2026):** `ArticleLayout` was refactored from a Client Component to a **Server Component**. The RSC boundary for large content HTML strings caused production 500 errors. Server-side heading extraction now produces `tocItems[]`, which crosses the boundary as a small array to `ArticleTOCSidebar` (Client Component).
+
+#### Blog index page components
+
+| Component | RSC type | Purpose |
 |---|---|---|
-| `PublicationHero` | Server | Masthead — title + tagline. No image. |
-| `FeaturedArticle` | Server | Full-width hero card for `featured=true` article |
+| `PublicationHero` | Server | Masthead — publication title + tagline. No image. No CTA. |
+| `FeaturedArticle` | Server | Cover story slot for `featured=true` article |
 | `ArticleCard` | Server | Grid card for non-featured articles |
-| `BlogNewsletter` | **Client** | Email capture form (`onSubmit` handler) |
-| `CategoryBadge` | Server | Pill label for category display |
-| `ReadingProgress` | **Client** | Scroll-based reading progress bar (top of viewport) |
+| `BlogNewsletter` | **Client** | Intelligence Brief email capture (`onSubmit`) |
+| `CategoryBadge` | Server | Uppercase gray category label |
 
 #### Article page components
-| Component | Type | Purpose |
+
+| Component | RSC type | Purpose |
 |---|---|---|
-| `ArticleHero` | Server | Title + subtitle + meta (category, date, reading time) |
-| `ArticleLayout` | **Client** | TOC sidebar + prose column. IntersectionObserver for active section. |
-| `ArticleAuthor` | Server | Author card: name, role, bio, avatar initial |
-| `ArticleNewsletter` | **Client** | In-article email capture (`onSubmit` handler) |
-| `ArticleRelated` | Server | Related articles grid from `relatedSlugs` |
+| `ReadingProgress` | **Client** | Fixed `2px` top progress bar — scroll-driven |
+| `ArticleHero` | Server | back link + metadata row + H1 + subtitle + author + cover image |
+| `ArticleLayout` | **Server** | Server-side TOC extraction + prose render via `dangerouslySetInnerHTML` |
+| `ArticleTOCSidebar` | **Client** | TOC UI + IntersectionObserver for active section tracking |
+| `ArticleAuthor` | Server | Author credential block — name, role, bio, initial avatar |
+| `ArticleNewsletter` | **Client** | Inline Intelligence Brief subscription form |
+| `ArticleRelated` | Server | Up to 3 related articles from `relatedSlugs` |
 
 #### Editorial block components
-| Component | Type | Purpose |
-|---|---|---|
-| `PullQuote` | Server | Large-format callout quote — breaks prose rhythm |
-| `InsightBlock` | Server | Highlighted analytical insight box |
 
-**Critical rule:** Any component with event handlers MUST have `'use client'` as first line. Without it, Next.js 15 App Router throws a 500 at runtime (not build time).
+| Component | RSC type | Purpose |
+|---|---|---|
+| `PullQuote` | Server | Large callout quote — `border-l-[3px]`, `text-[18px] italic`, `my-14` |
+| `InsightBlock` | Server | Analytical highlight — stat / insight / finding variants |
+
+**Critical rule:** Components with event handlers MUST have `'use client'` as first line. Without it, Next.js 15 App Router throws a 500 at **runtime** (not build time — silent failure at build).
 
 ---
 
-### D. ROUTES
+### L. ROUTES
 
 | Route | File | Notes |
 |---|---|---|
@@ -2488,91 +2906,102 @@ All components are in `components/blog/`. Barrel export via `components/blog/ind
 | `/en/blog` | `app/(public)/en/blog/page.tsx` | EN publication index |
 | `/en/blog/[slug]` | `app/(public)/en/blog/[slug]/page.tsx` | EN article page |
 
-All blog pages use `export const dynamic = 'force-dynamic'` — required for Prisma DB queries at runtime.
+All blog pages: `export const dynamic = 'force-dynamic'` — required for Prisma DB queries at runtime. Remove only if moving to ISR with explicit revalidation strategy.
+
+**DB query pattern:** `prisma.article.findFirst({ where: { slug, published: true }, select: { ...explicitFields } })`. Never use `findUnique` on article pages — use `findFirst` with `published: true` guard.
 
 ---
 
-### E. ARTICLE LAYOUT SYSTEM
+### M. UTILITY LAYER — `lib/content/`
 
-The article page uses a **two-column editorial layout**:
+| File | Exports |
+|---|---|
+| `lib/content/types.ts` | `ArticlePreviewData`, `ArticleDetailData`, `ArticleTOCItem`, `ArticleCategory` |
+| `lib/content/utils.ts` | `estimateReadingTime`, `getCategoryLabel`, `getAllCategories`, `formatPublishDate`, `formatReadingTime` |
 
-```
-┌─────────────────────────────────────┬────────────────────┐
-│  PROSE COLUMN (max-w ~680px)        │  TOC SIDEBAR       │
-│                                     │  (sticky, lg+)     │
-│  ArticleHero                        │                    │
-│  [H2] Section heading               │  ● Section heading │  ← active highlight
-│  [p] Body text                      │  ○ Another section │
-│  [PullQuote]                        │  ○ Third section   │
-│  [InsightBlock]                     │                    │
-│  [H2] Another section               │                    │
-│                                     │                    │
-│  ArticleAuthor                      │                    │
-│  ArticleNewsletter                  │                    │
-│  ArticleRelated                     │                    │
-└─────────────────────────────────────┴────────────────────┘
-```
-
-**TOC extraction:** `ArticleLayout` parses `content` HTML at runtime, extracts all `<h2>` tags, builds TOC items with generated IDs. Active section tracked via `IntersectionObserver`.
-
-**Prose rendering:** `ArticleLayout` uses Tailwind arbitrary variants — NO `@tailwindcss/typography` plugin. All prose styles are explicit:
-```
-[&>p]:text-[17px] [&>p]:leading-[1.8] [&>p]:text-gray-700
-[&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-gray-900
-[&>h3]:text-xl [&>h3]:font-semibold ...
-```
+`formatPublishDate` uses try/catch with manual ICU fallback — required for Render.com's Node environment robustness.
 
 ---
 
-### F. CONTENT MIGRATION — EDITORIAL ADAPTATION STANDARD
+### N. CONTENT MIGRATION — EDITORIAL ADAPTATION STANDARD
 
 **RULE: No copy-paste migration.** Every article migrated from the old blog must undergo full editorial adaptation:
 
 1. **Structure rewrite** — flat text → H2/H3 hierarchy
-2. **Pull quotes extracted** — 1-2 per article, placed at narrative peak moments
+2. **Pull quotes extracted** — 1–2 per article, placed at narrative peak moments
 3. **Insight blocks added** — key analytical conclusions surfaced visually
-4. **Author profile completed** — name, role, bio
+4. **Author profile completed** — name, role, bio (all three fields)
 5. **Category assigned** — from the 7 canonical keys
-6. **relatedSlugs cross-linked** — minimum 2 articles linked to each other
-7. **Cover image assigned** — Unsplash URL, editorially appropriate (not stock-business)
-8. **Reading time set** — manual estimation at 200 wpm
+6. **`relatedSlugs` cross-linked** — minimum 2 articles linked bidirectionally
+7. **Cover image assigned** — Unsplash URL, editorially appropriate (not stock-business-handshake)
+8. **Reading time set** — manual estimation at 200 wpm Polish / 250 wpm English
 
-**Seed script:** `scripts/seed-articles.ts` — `npx tsx scripts/seed-articles.ts`. Uses `prisma.article.upsert` — idempotent, safe to re-run.
+**Seed script:** `scripts/seed-articles.ts` — `npx tsx scripts/seed-articles.ts`. Uses `prisma.article.upsert` — idempotent, safe to re-run. This script is the **authoritative migration record**.
 
 ---
 
-### G. ARTICLES MIGRATED (May 2026)
+### O. ARTICLES IN CANONICAL STATE (May 2026)
 
 | Slug | Category | Featured | Author | Reading |
 |---|---|---|---|---|
-| `cena-to-opinia-koszt-to-fakt` | cost-intelligence | true | Tomasz Uściński | 9 min |
-| `dzien-z-zycia-kupca-kiedy-stala-cena-przegrywa-z-faktami` | cost-intelligence | false | Tomasz Uściński | 11 min |
-| `analiza-finansowa-dostawcow` | supplier-risk | false | Rafał Gilatowski | 7 min |
+| `cena-to-opinia-koszt-to-fakt` | cost-intelligence | ✓ | Tomasz Uściński | 9 min |
+| `dzien-z-zycia-kupca-kiedy-stala-cena-przegrywa-z-faktami` | cost-intelligence | — | Tomasz Uściński | 11 min |
+| `analiza-finansowa-dostawcow` | supplier-risk | — | Rafał Gilatowski | 7 min |
 
-**FeaturedArticle slot:** `cena-to-opinia-koszt-to-fakt` — "Cena to opinia. Koszt to fakt." renders as the full-width hero on `/blog`.
+**FeaturedArticle slot:** `cena-to-opinia-koszt-to-fakt` — "Cena to opinia. Koszt to fakt." renders as the cover story on `/blog`.
 
 ---
 
-### H. UTILITY LAYER — `lib/content/`
+### P. FUTURE EXTENSIBILITY
 
-| File | Exports |
+The editorial platform architecture is designed to support the following without architectural refactoring:
+
+#### Content types (addable without schema migration)
+
+| Content type | How to add |
 |---|---|
-| `lib/content/types.ts` | `ArticlePreviewData`, `ArticleDetailData`, `ArticleTOCItem`, category type |
-| `lib/content/utils.ts` | `estimateReadingTime`, `getCategoryLabel`, `getAllCategories`, `formatPublishDate`, `formatReadingTime` |
+| Research PDFs | `pdfUrl String?` nullable field + download CTA in `ArticleHero` |
+| Executive summaries | `executiveSummary String? @db.Text` + `SummaryBlock` component |
+| Embedded charts | `chartsData Json?` field + Client Component chart renderer |
+| Procurement Intelligence Reports | New `reportType` enum + gated download flow |
+| Citations / footnotes | `citations Json?` field + `CitationBlock` component |
+| Analyst briefings | New category key `analyst-briefing` |
+
+#### Access control (addable without UI refactor)
+
+| Pattern | Implementation path |
+|---|---|
+| Gated content | `gated Boolean @default(false)` + `ConsentGate` pattern (see §28) |
+| Lead-gen before PDF | Form before download — existing form system |
+| Newsletter-gated access | `subscriptionRequired Boolean?` + email verification flow |
+
+#### Component extension points
+
+- `ArticleLayout`: heading extraction regex can be extended to H4, custom `[data-*]` blocks
+- `InsightBlock`: new `type` variants — `chart`, `quote-stat`, `matrix`
+- `ArticleHero`: `reportType` badge variant for reports vs articles
+- `ArticleRelated`: can accommodate cross-content-type related items
+
+**RULE:** All extensions must preserve the editorial doctrine. New component variants must pass the character test: Quiet · Editorial · Intelligent · Premium · Restrained · Institutional. If a proposed addition would push the platform toward marketing SaaS aesthetics — it does not belong here.
 
 ---
 
-### I. SYSTEM LOCK RULES
+### Q. SYSTEM LOCK RULES
 
-1. **NO `@tailwindcss/typography`** — ever. All prose via arbitrary Tailwind variants in `ArticleLayout`.
-2. **All editorial DB fields nullable** — new fields MUST be nullable to preserve backward compatibility with legacy articles.
+1. **NO `@tailwindcss/typography`** — ever. All prose via arbitrary Tailwind variants in `ArticleLayout`. This is a permanent architectural decision.
+2. **All editorial DB fields nullable** — new fields MUST be nullable to preserve backward compatibility with existing articles.
 3. **Cover images: Unsplash only** — domain whitelisted in `next.config.mjs`. No other image domains for editorial content.
-4. **`'use client'` on all interactive components** — `BlogNewsletter`, `ArticleNewsletter`, `ArticleLayout`, `ReadingProgress`. Build succeeds without it, runtime fails.
-5. **`force-dynamic` on all blog pages** — required for server-side DB queries. Remove only if moving to ISR with explicit revalidation.
-6. **Featured slot = exactly one article** — `featured: true` on exactly one article at any time. If none: empty state renders. If multiple: first returned by `orderBy` wins.
-7. **Seed script is the migration record** — `scripts/seed-articles.ts` is the authoritative source for all migrated content. Keep updated when adding articles.
+4. **`ArticleLayout` is a Server Component** — never add `'use client'`. Content HTML is rendered server-side. TOC interaction lives in `ArticleTOCSidebar` (Client).
+5. **`'use client'` only on true interactive components** — `BlogNewsletter`, `ArticleNewsletter`, `ArticleTOCSidebar`, `ReadingProgress`. Build succeeds without it; runtime fails.
+6. **`force-dynamic` on all blog pages** — required for Prisma DB queries. Remove only if moving to ISR.
+7. **Featured slot = exactly one article** — `featured: true` on exactly one article at any time. If none: empty state. If multiple: first by `orderBy` wins.
+8. **Minimum `gray-500` for all readable supporting text** — editorial contrast doctrine. Never use `gray-400` for text a user might actually read.
+9. **Prose max-width: `max-w-[68ch]`** — canonical and immovable. Line length is a readability commitment.
+10. **Article pages: no footer newsletter** — inline `ArticleNewsletter` is the canonical touchpoint. Footer newsletter on article pages is duplication and is forbidden.
+11. **Article footer: compressed variant only** — `py-10` main grid, `py-4` legal bar. Same component, conditional class via `isArticlePage`.
+12. **Seed script is the migration record** — `scripts/seed-articles.ts` is the authoritative source for all migrated content. Update when adding articles.
 
 ---
 
-*Sekcja dodana: May 2026 | Editorial Intelligence Publication System — canonical architecture for Procurement Intelligence publication layer.*
+*Sekcja zaktualizowana: May 2026 | CANONICAL EDITORIAL PLATFORM SYSTEM — source of truth dla warstwy editorial Profitia. Zastępuje poprzednią wersję sekcji z May 2026. Wdrożona po editorial polish pass: contrast refinement, hero polish, immersion improvements, motion refinement, newsletter policy, article footer variant.*
 
