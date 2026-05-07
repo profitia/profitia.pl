@@ -2386,3 +2386,193 @@ No exception is valid without an explicit architectural decision and documentati
 
 *Sekcja dodana: May 2026 | Canonical Consent Infrastructure System — source of truth dla GDPR-grade consent layer Profitia.*
 
+---
+
+## SECTION 29 — CANONICAL EDITORIAL INTELLIGENCE PUBLICATION SYSTEM
+
+> **Cross-ref:** Section 7 (Card System) · Section 8 (Button System) · Section 21 (Interaction System) · Section 23 (Header System) · `prisma/schema.prisma`
+
+This section defines the **editorial architecture** governing all publication surfaces on profitia.pl. The blog is positioned as a Procurement Intelligence publication — not a marketing blog. Every design and content decision follows from this positioning.
+
+---
+
+### A. PUBLICATION PHILOSOPHY
+
+**Positioning:** Procurement Intelligence — not a marketing blog, not a company news feed.
+
+**Editorial promise:** "Wiedza zakupowa. Bez szumu. Tylko substancja."
+
+**Authority model:** Each article builds institutional credibility by being:
+- Written by named, credentialed authors with roles
+- Anchored in a specific procurement domain (category)
+- Structured for professional readers who scan, then read deeply
+- Cross-linked to related analyses (relatedSlugs)
+
+**7 canonical categories:**
+| Category key | Label |
+|---|---|
+| `negotiations` | Negocjacje |
+| `procurement-strategy` | Strategia zakupów |
+| `cost-intelligence` | Analiza kosztów |
+| `supplier-risk` | Ryzyko dostawcy |
+| `supply-chain` | Łańcuch dostaw |
+| `market-analysis` | Analiza rynku |
+| `spend-management` | Spend management |
+
+---
+
+### B. DATA MODEL — Article (Prisma)
+
+All editorial fields are nullable — safe to add to existing articles without migration pain.
+
+**Core fields (legacy):**
+- `id`, `slug`, `title`, `content` (HTML), `excerpt`, `published`, `publishedAt`
+- `metaTitle`, `metaDescription`, `authorId`
+
+**Editorial extension fields:**
+```prisma
+category     String?           // one of 7 canonical keys
+readingTime  Int?              // minutes, estimated or manual
+coverImage   String?           // Unsplash URL only
+featured     Boolean @default(false)  // drives FeaturedArticle slot on index
+subtitle     String? @db.Text  // displayed under H1 in ArticleHero
+authorName   String?           // denormalized — no join needed
+authorRole   String?           // e.g. "Senior Client Partner | Procurement Technology"
+authorBio    String? @db.Text  // shown in ArticleAuthor block
+relatedSlugs String[] @default([])  // slugs to display in ArticleRelated
+```
+
+**Schema applied:** `npx prisma db push` run against Neon production DB (May 2026).
+
+---
+
+### C. COMPONENT LIBRARY — `components/blog/`
+
+All components are in `components/blog/`. Barrel export via `components/blog/index.ts`.
+
+#### Index page components
+| Component | Type | Purpose |
+|---|---|---|
+| `PublicationHero` | Server | Masthead — title + tagline. No image. |
+| `FeaturedArticle` | Server | Full-width hero card for `featured=true` article |
+| `ArticleCard` | Server | Grid card for non-featured articles |
+| `BlogNewsletter` | **Client** | Email capture form (`onSubmit` handler) |
+| `CategoryBadge` | Server | Pill label for category display |
+| `ReadingProgress` | **Client** | Scroll-based reading progress bar (top of viewport) |
+
+#### Article page components
+| Component | Type | Purpose |
+|---|---|---|
+| `ArticleHero` | Server | Title + subtitle + meta (category, date, reading time) |
+| `ArticleLayout` | **Client** | TOC sidebar + prose column. IntersectionObserver for active section. |
+| `ArticleAuthor` | Server | Author card: name, role, bio, avatar initial |
+| `ArticleNewsletter` | **Client** | In-article email capture (`onSubmit` handler) |
+| `ArticleRelated` | Server | Related articles grid from `relatedSlugs` |
+
+#### Editorial block components
+| Component | Type | Purpose |
+|---|---|---|
+| `PullQuote` | Server | Large-format callout quote — breaks prose rhythm |
+| `InsightBlock` | Server | Highlighted analytical insight box |
+
+**Critical rule:** Any component with event handlers MUST have `'use client'` as first line. Without it, Next.js 15 App Router throws a 500 at runtime (not build time).
+
+---
+
+### D. ROUTES
+
+| Route | File | Notes |
+|---|---|---|
+| `/blog` | `app/(public)/blog/page.tsx` | PL publication index |
+| `/blog/[slug]` | `app/(public)/blog/[slug]/page.tsx` | PL article page |
+| `/en/blog` | `app/(public)/en/blog/page.tsx` | EN publication index |
+| `/en/blog/[slug]` | `app/(public)/en/blog/[slug]/page.tsx` | EN article page |
+
+All blog pages use `export const dynamic = 'force-dynamic'` — required for Prisma DB queries at runtime.
+
+---
+
+### E. ARTICLE LAYOUT SYSTEM
+
+The article page uses a **two-column editorial layout**:
+
+```
+┌─────────────────────────────────────┬────────────────────┐
+│  PROSE COLUMN (max-w ~680px)        │  TOC SIDEBAR       │
+│                                     │  (sticky, lg+)     │
+│  ArticleHero                        │                    │
+│  [H2] Section heading               │  ● Section heading │  ← active highlight
+│  [p] Body text                      │  ○ Another section │
+│  [PullQuote]                        │  ○ Third section   │
+│  [InsightBlock]                     │                    │
+│  [H2] Another section               │                    │
+│                                     │                    │
+│  ArticleAuthor                      │                    │
+│  ArticleNewsletter                  │                    │
+│  ArticleRelated                     │                    │
+└─────────────────────────────────────┴────────────────────┘
+```
+
+**TOC extraction:** `ArticleLayout` parses `content` HTML at runtime, extracts all `<h2>` tags, builds TOC items with generated IDs. Active section tracked via `IntersectionObserver`.
+
+**Prose rendering:** `ArticleLayout` uses Tailwind arbitrary variants — NO `@tailwindcss/typography` plugin. All prose styles are explicit:
+```
+[&>p]:text-[17px] [&>p]:leading-[1.8] [&>p]:text-gray-700
+[&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-gray-900
+[&>h3]:text-xl [&>h3]:font-semibold ...
+```
+
+---
+
+### F. CONTENT MIGRATION — EDITORIAL ADAPTATION STANDARD
+
+**RULE: No copy-paste migration.** Every article migrated from the old blog must undergo full editorial adaptation:
+
+1. **Structure rewrite** — flat text → H2/H3 hierarchy
+2. **Pull quotes extracted** — 1-2 per article, placed at narrative peak moments
+3. **Insight blocks added** — key analytical conclusions surfaced visually
+4. **Author profile completed** — name, role, bio
+5. **Category assigned** — from the 7 canonical keys
+6. **relatedSlugs cross-linked** — minimum 2 articles linked to each other
+7. **Cover image assigned** — Unsplash URL, editorially appropriate (not stock-business)
+8. **Reading time set** — manual estimation at 200 wpm
+
+**Seed script:** `scripts/seed-articles.ts` — `npx tsx scripts/seed-articles.ts`. Uses `prisma.article.upsert` — idempotent, safe to re-run.
+
+---
+
+### G. ARTICLES MIGRATED (May 2026)
+
+| Slug | Category | Featured | Author | Reading |
+|---|---|---|---|---|
+| `cena-to-opinia-koszt-to-fakt` | cost-intelligence | true | Tomasz Uściński | 9 min |
+| `dzien-z-zycia-kupca-kiedy-stala-cena-przegrywa-z-faktami` | cost-intelligence | false | Tomasz Uściński | 11 min |
+| `analiza-finansowa-dostawcow` | supplier-risk | false | Rafał Gilatowski | 7 min |
+
+**FeaturedArticle slot:** `cena-to-opinia-koszt-to-fakt` — "Cena to opinia. Koszt to fakt." renders as the full-width hero on `/blog`.
+
+---
+
+### H. UTILITY LAYER — `lib/content/`
+
+| File | Exports |
+|---|---|
+| `lib/content/types.ts` | `ArticlePreviewData`, `ArticleDetailData`, `ArticleTOCItem`, category type |
+| `lib/content/utils.ts` | `estimateReadingTime`, `getCategoryLabel`, `getAllCategories`, `formatPublishDate`, `formatReadingTime` |
+
+---
+
+### I. SYSTEM LOCK RULES
+
+1. **NO `@tailwindcss/typography`** — ever. All prose via arbitrary Tailwind variants in `ArticleLayout`.
+2. **All editorial DB fields nullable** — new fields MUST be nullable to preserve backward compatibility with legacy articles.
+3. **Cover images: Unsplash only** — domain whitelisted in `next.config.mjs`. No other image domains for editorial content.
+4. **`'use client'` on all interactive components** — `BlogNewsletter`, `ArticleNewsletter`, `ArticleLayout`, `ReadingProgress`. Build succeeds without it, runtime fails.
+5. **`force-dynamic` on all blog pages** — required for server-side DB queries. Remove only if moving to ISR with explicit revalidation.
+6. **Featured slot = exactly one article** — `featured: true` on exactly one article at any time. If none: empty state renders. If multiple: first returned by `orderBy` wins.
+7. **Seed script is the migration record** — `scripts/seed-articles.ts` is the authoritative source for all migrated content. Keep updated when adding articles.
+
+---
+
+*Sekcja dodana: May 2026 | Editorial Intelligence Publication System — canonical architecture for Procurement Intelligence publication layer.*
+
