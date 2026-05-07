@@ -13,15 +13,15 @@ interface LegalHeroProps {
  */
 export function LegalHero({ eyebrow, title, intro, meta }: LegalHeroProps) {
   return (
-    <div className="mb-12 pb-12 border-b border-gray-100">
-      <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-5">
+    <div className="mb-14 pb-14 border-b border-gray-100">
+      <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-6">
         {eyebrow}
       </p>
-      <h1 className="text-3xl md:text-[2.25rem] font-semibold tracking-tight text-gray-900 leading-[1.08] mb-4">
+      <h1 className="text-3xl md:text-[2.25rem] font-semibold tracking-tight text-gray-900 leading-[1.08] mb-5">
         {title}
       </h1>
       {intro && (
-        <p className="text-base text-gray-500 leading-[1.75] max-w-[60ch] mb-6">
+        <p className="text-base text-gray-500 leading-[1.75] max-w-[60ch] mb-8">
           {intro}
         </p>
       )}

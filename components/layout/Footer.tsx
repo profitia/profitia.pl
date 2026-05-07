@@ -29,6 +29,11 @@ export default function Footer() {
   const dict = isEN ? enDict : plDict
   const prefix = isEN ? '/en' : ''
 
+  // ── Legal pages skip the newsletter section ────────────────────
+  const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
+    (p) => pathname === p || pathname === `/en${p}`
+  )
+
   const NAV_LINKS = [
     { href: isEN ? '/en' : '/', label: dict.nav.home },
     { href: `${prefix}/services`, label: dict.nav.services },
@@ -44,6 +49,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 1 — NEWSLETTER
           ══════════════════════════════════════════════════ */}
+      {!isLegalPage && (
       <div className="border-b border-gray-100">
         <div className="container-base py-12 grid md:grid-cols-[1fr_1.1fr] gap-6 lg:gap-10 items-center">
           <div>
@@ -80,6 +86,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      )}
 
       {/* ══════════════════════════════════════════════════
           SECTION 2 — MAIN FOOTER GRID

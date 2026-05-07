@@ -44,15 +44,20 @@ export function LegalTOC({ items }: LegalTOCProps) {
 
   return (
     <nav aria-label="Spis treści">
-      <ul className="space-y-2.5">
+      <ul className="space-y-3">
         {items.map(({ id, label }) => (
-          <li key={id}>
+          <li
+            key={id}
+            className={`border-l-[1.5px] pl-2.5 transition-colors duration-200 ease-out ${
+              activeId === id ? 'border-gray-700' : 'border-gray-100'
+            }`}
+          >
             <LegalAnchorLink
               href={`#${id}`}
-              className={`block text-[13px] leading-snug transition-colors duration-200 ease-out ${
+              className={`block text-[13.5px] leading-[1.5] transition-colors duration-200 ease-out ${
                 activeId === id
                   ? 'text-gray-900 font-medium'
-                  : 'text-gray-400 hover:text-gray-700'
+                  : 'text-gray-400 hover:text-gray-600'
               }`}
             >
               {label}

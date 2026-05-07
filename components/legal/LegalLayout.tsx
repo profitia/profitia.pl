@@ -18,7 +18,7 @@ interface LegalLayoutProps {
  */
 export function LegalLayout({ toc, children }: LegalLayoutProps) {
   return (
-    <div className="container-base pt-16 pb-24 lg:pt-24 lg:pb-32">
+    <div className="container-base pt-16 pb-32 lg:pt-24 lg:pb-44">
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] lg:gap-16 lg:items-start">
 
         {/* Sidebar — first in DOM → stacks above content on mobile */}

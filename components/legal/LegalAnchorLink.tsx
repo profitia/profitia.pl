@@ -19,7 +19,8 @@ export function LegalAnchorLink({ href, className, children }: LegalAnchorLinkPr
     const id = href.replace('#', '')
     const el = document.getElementById(id)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' })
       window.history.pushState(null, '', href)
     }
   }

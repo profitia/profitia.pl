@@ -20,6 +20,12 @@ export default function Header() {
   const dict = isEN ? enDict : plDict
   const prefix = isEN ? '/en' : ''
 
+  // ── Legal pages always show the scrolled (stable) header ──────
+  const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
+    (p) => pathname === p || pathname === `/en${p}`
+  )
+  const showScrolled = scrolled || isLegalPage
+
   // ── Scroll detection ──────────────────────────────────────────
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -79,14 +85,14 @@ export default function Header() {
           ══════════════════════════════════════════════════ */}
       <header
         className={`sticky top-0 z-50 transition-all duration-[260ms] ease-out ${
-          scrolled
+          showScrolled
             ? 'bg-white/96 backdrop-blur-md border-b border-gray-100/80 shadow-[0_1px_16px_0_rgba(0,0,0,0.04)]'
             : 'bg-white/0 backdrop-blur-[2px] border-b border-transparent'
         }`}
       >
         <div
           className={`container-base flex items-center justify-between transition-all duration-[260ms] ease-out ${
-            scrolled ? 'h-[72px]' : 'h-[88px]'
+            showScrolled ? 'h-[72px]' : 'h-[88px]'
           }`}
         >
           {/* Logo */}
