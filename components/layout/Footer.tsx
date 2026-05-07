@@ -7,6 +7,7 @@ import plDict from '@/dictionaries/pl.json'
 import enDict from '@/dictionaries/en.json'
 import { ProtectedEmail, ProtectedPhone, ProtectedPerson } from '@/components/security'
 import { useConsent } from '@/components/consent'
+import { NewsletterForm } from '@/components/forms'
 
 function IconLinkedIn() {
   return (
@@ -70,25 +71,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="flex gap-2"
-              aria-label="Newsletter"
-            >
-              <input
-                type="email"
-                required
-                placeholder={dict.footer.newsletter.placeholder}
-                aria-label={dict.footer.newsletter.placeholder}
-                className="flex-1 min-w-0 px-4 py-3.5 text-sm bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 transition-colors duration-200 ease-out"
-              />
-              <button
-                type="submit"
-                className="px-5 py-3.5 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
-              >
-                {dict.footer.newsletter.button}
-              </button>
-            </form>
+            <NewsletterForm variant="footer" locale={isEN ? 'en' : 'pl'} />
           </div>
         </div>
       </div>

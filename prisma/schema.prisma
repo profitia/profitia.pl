@@ -21,7 +21,19 @@ model Contact {
   email   String
   phone   String?
   company String?
+  topic   String?  // inquiry topic — maps to ContactTopic
   message String   @db.Text
+
+  // Submission metadata
+  locale  String?  // 'pl' | 'en'
+  source  String?  // pathname the form was submitted from
+
+  // Consent metadata (GDPR Article 6(1)(a) audit trail)
+  consentGdpr       Boolean   @default(false)
+  consentNewsletter Boolean   @default(false)
+  consentVersion    String?   // consent schema version
+  consentAt         DateTime? // ISO timestamp of consent
+  lawfulBasis       String?   @default("consent")
 
   // Processing state
   read      Boolean  @default(false)
@@ -40,11 +52,20 @@ model Subscriber {
   email String  @unique
   name  String?
 
-  active        Boolean  @default(true)
-  confirmedAt   DateTime?
+  active         Boolean   @default(true)
+  confirmedAt    DateTime?
   unsubscribedAt DateTime?
 
-  // TODO: link to Mailchimp contact ID when integration is ready
+  // Consent metadata (GDPR audit trail)
+  consentVersion String?   // consent schema version
+  consentAt      DateTime? // ISO timestamp of consent
+  lawfulBasis    String?   @default("consent")
+
+  // Submission metadata
+  locale String? // 'pl' | 'en'
+  source String? // pathname
+
+  // TODO: link to Mailchimp / Brevo contact ID when integration is ready
   mailchimpId String?
 
   @@map("subscribers")
