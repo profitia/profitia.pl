@@ -9,7 +9,7 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
     id: 'advisory',
     type: 'service',
     order: 1,
-    featured: true,
+    dominant: true,
     eyebrow: { pl: 'Sekcja I', en: 'Section I' },
     title: {
       pl: 'Doradztwo i Transformacja',

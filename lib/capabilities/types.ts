@@ -69,4 +69,10 @@ export interface CapabilitySectionDef {
   description: LocalizedString
   /** Anchor practice section — rendered with larger type and more whitespace */
   featured?: boolean
+  /**
+   * Primary anchor — the single most commanding section on the page.
+   * Creates hierarchy narrative: one dominant, others supporting.
+   * Only one section per page should carry this.
+   */
+  dominant?: boolean
 }

@@ -84,7 +84,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 2 — MAIN FOOTER GRID
           ══════════════════════════════════════════════════ */}
-      <div className={`container-base ${isArticlePage ? 'py-10' : isAboutPage ? 'py-14' : 'py-16'}`}>
+      <div className={`container-base ${isArticlePage ? 'py-10' : isAboutPage ? 'py-14' : isCapabilityPage ? 'py-20' : 'py-16'}`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
           {/* Column 1: Brand / Trust */}
@@ -272,7 +272,7 @@ export default function Footer() {
           SECTION 3 — LEGAL BAR
           ══════════════════════════════════════════════════ */}
       <div className="border-t border-gray-100">
-        <div className={`container-base ${isArticlePage || isAboutPage ? 'py-4' : 'py-5'} flex items-center justify-between gap-4 flex-wrap`}>
+          <div className={`container-base ${isCapabilityPage ? 'py-6' : isArticlePage || isAboutPage ? 'py-4' : 'py-5'} flex items-center justify-between gap-4 flex-wrap`}>
           <span className="text-xs text-gray-400">
             © {new Date().getFullYear()} Profitia Management Consultants. {dict.footer.rights}
           </span>

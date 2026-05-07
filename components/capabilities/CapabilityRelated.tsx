@@ -29,11 +29,11 @@ export default function CapabilityRelated({ capabilities, locale, eyebrow, title
   if (capabilities.length === 0) return null
 
   return (
-    <div className="border-t border-gray-100 pt-16 pb-8">
-      <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-3">
+    <div className="border-t border-gray-100 pt-20 pb-10">
+      <p className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-300 mb-3">
         {eyebrow}
       </p>
-      <h2 className="text-lg font-semibold tracking-tight text-gray-900 mb-6">
+      <h2 className="text-base font-medium text-gray-700 mb-10">
         {title}
       </h2>
       <div>
@@ -46,7 +46,7 @@ export default function CapabilityRelated({ capabilities, locale, eyebrow, title
           return (
             <div
               key={cap.slug}
-              className="border-b border-gray-100 py-5 flex items-start justify-between gap-6"
+              className="border-b border-gray-100 py-7 flex items-start justify-between gap-6"
             >
               <div className="min-w-0">
                 <h3 className="text-[15px] font-medium tracking-tight text-gray-900 leading-snug">

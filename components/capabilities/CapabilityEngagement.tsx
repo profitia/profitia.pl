@@ -26,25 +26,25 @@ export default function CapabilityEngagement({ capability, locale, eyebrow }: Pr
   const catText = categoryLabel ? t(categoryLabel, locale) : null
 
   return (
-    <div className="border-t border-gray-100 pt-14 pb-12">
-      <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-8">
+    <div className="border-t border-gray-100 pt-16 pb-14">
+      <p className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-300 mb-8">
         {eyebrow}
       </p>
       <dl className="grid sm:grid-cols-2 gap-x-16 gap-y-8 max-w-2xl">
         <div>
-          <dt className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-3">
+          <dt className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-300 mb-3">
             {c.format}
           </dt>
-          <dd className="text-[15px] text-gray-700 leading-relaxed">
+          <dd className="text-[15px] text-gray-700 leading-[1.75]">
             {t(capability.engagement, locale)}
           </dd>
         </div>
         {catText && (
           <div>
-            <dt className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-3">
+            <dt className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-300 mb-3">
               {c.area}
             </dt>
-            <dd className="text-[15px] text-gray-700 leading-relaxed">
+            <dd className="text-[15px] text-gray-700 leading-[1.75]">
               {catText}
             </dd>
           </div>

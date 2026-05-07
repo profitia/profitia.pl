@@ -21,14 +21,14 @@ interface Props {
  * Variant controls pacing — not visual language.
  */
 export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Props) {
-  // Services: more commanding top space, narrower subtitle (terse strategic statement)
+  // Services: commanding opening statement — more top gravity, terse subtitle
   // Education: current pacing, wider subtitle (expansive academy statement)
   const section = variant === 'services'
-    ? 'pt-24 pb-20 border-b border-gray-100'
+    ? 'pt-28 pb-24 border-b border-gray-100'
     : 'pt-20 pb-16 border-b border-gray-100'
 
   const subtitleMaxW = variant === 'services'
-    ? 'max-w-[28rem]'
+    ? 'max-w-[22rem]'
     : variant === 'education'
     ? 'max-w-[42rem]'
     : 'max-w-[36rem]'
@@ -36,10 +36,10 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
   return (
     <section className={section}>
       <div className="container-base">
-        <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-8">
+        <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-10">
           {eyebrow}
         </p>
-        <h1 className="text-4xl md:text-5xl lg:text-[3.25rem] font-semibold tracking-tight text-gray-900 leading-[1.08] max-w-[42rem] mb-8">
+        <h1 className="text-4xl md:text-5xl lg:text-[3.25rem] font-semibold tracking-tight text-gray-900 leading-[1.08] max-w-[42rem] mb-10">
           {title}
         </h1>
         {subtitle && (
