@@ -14,6 +14,15 @@ interface Props {
 const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
 
 /**
+ * Navigation labels — type-derived, not ctaLabel.
+ * Related rows navigate to detail pages; they do not convert.
+ */
+const NAV_LABEL: Record<'service' | 'education', { pl: string; en: string }> = {
+  service:   { pl: 'Zobacz usługę', en: 'Explore service' },
+  education: { pl: 'Zobacz program', en: 'Explore programme' },
+}
+
+/**
  * CapabilityRelated
  * ─────────────────────────────────────────────────────────────
  * Adjacent expertise references — editorial reading continuation.
@@ -42,7 +51,7 @@ export default function CapabilityRelated({ capabilities, locale, eyebrow, title
           const href = `${LOCALE_PREFIX[locale]}/${capType}/${cap.slug}`
           const capTitle = t(cap.title, locale)
           const capEyebrow = t(cap.eyebrow, locale)
-          const ctaLabel = t(cap.ctaLabel, locale)
+          const navLabel = NAV_LABEL[cap.type][locale]
           return (
             <div
               key={cap.slug}
@@ -59,9 +68,9 @@ export default function CapabilityRelated({ capabilities, locale, eyebrow, title
               <Link
                 href={href}
                 className="flex-shrink-0 text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5"
-                aria-label={`${capTitle} — ${ctaLabel}`}
+                aria-label={`${capTitle} — ${navLabel}`}
               >
-                {ctaLabel} →
+                {navLabel} →
               </Link>
             </div>
           )

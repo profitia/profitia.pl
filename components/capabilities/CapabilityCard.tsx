@@ -17,6 +17,16 @@ interface Props {
   isFirst?: boolean
 }
 
+/**
+ * Navigation labels for listing rows and related rows.
+ * CTA language is only for the final conversion section on detail pages.
+ * Listing rows navigate — they do not convert.
+ */
+const NAV_LABEL: Record<'service' | 'education', { pl: string; en: string }> = {
+  service:   { pl: 'Zobacz usługę', en: 'Explore service' },
+  education: { pl: 'Zobacz program', en: 'Explore programme' },
+}
+
 const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
 
 /**
@@ -32,6 +42,9 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
   const href = `${LOCALE_PREFIX[locale]}/${prefix}/${capability.slug}`
   const title = t(capability.title, locale)
   const eyebrow = t(capability.eyebrow, locale)
+  // Navigation label — derived from type, not ctaLabel.
+  // ctaLabel is reserved for the final conversion CTA on detail pages.
+  const navLabel = NAV_LABEL[capability.type][locale]
   const cta = t(capability.ctaLabel, locale)
 
   if (variant === 'row') {
@@ -48,9 +61,9 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
         <Link
           href={href}
           className={`flex-shrink-0 text-xs hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
-          aria-label={`${title} — ${cta}`}
+          aria-label={`${title} — ${navLabel}`}
         >
-          {cta} →
+          {navLabel} →
         </Link>
       </div>
     )
