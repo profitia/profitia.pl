@@ -67,4 +67,6 @@ export interface CapabilitySectionDef {
   eyebrow: LocalizedString
   title: LocalizedString
   description: LocalizedString
+  /** Anchor practice section — rendered with larger type and more whitespace */
+  featured?: boolean
 }

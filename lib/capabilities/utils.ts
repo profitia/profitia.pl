@@ -1,6 +1,6 @@
 import type { Capability, CapabilityType, CapabilityCategory, Locale } from './types'
 import { CAPABILITIES } from './data'
-import { SECTION_CATEGORIES } from './categories'
+import { SECTION_CATEGORIES, SERVICE_SECTIONS, EDUCATION_SECTIONS } from './categories'
 
 /**
  * All capabilities of a given type, sorted by order.
@@ -11,11 +11,17 @@ export function getCapabilitiesByType(type: CapabilityType): Capability[] {
 
 /**
  * Capabilities belonging to a specific listing section ID.
- * Uses SECTION_CATEGORIES mapping.
+ * Filters by both category AND the section's own type, so service and
+ * education sections don't bleed into each other even when they share
+ * overlapping categories (e.g. 'analytics', 'intelligence').
  */
 export function getCapabilitiesForSection(sectionId: string): Capability[] {
   const cats = SECTION_CATEGORIES[sectionId] ?? []
-  return CAPABILITIES.filter((c) => cats.includes(c.category)).sort((a, b) => a.order - b.order)
+  const section = [...SERVICE_SECTIONS, ...EDUCATION_SECTIONS].find((s) => s.id === sectionId)
+  const sectionType = section?.type
+  return CAPABILITIES
+    .filter((c) => cats.includes(c.category) && (!sectionType || c.type === sectionType))
+    .sort((a, b) => a.order - b.order)
 }
 
 /**

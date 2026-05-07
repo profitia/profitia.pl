@@ -1,5 +1,5 @@
 import type { Capability, Locale } from '@/lib/capabilities'
-import { t } from '@/lib/capabilities'
+import { t, CATEGORY_LABELS } from '@/lib/capabilities'
 
 interface Props {
   capability: Capability
@@ -8,24 +8,48 @@ interface Props {
   title: string
 }
 
+const COPY = {
+  pl: { format: 'Format współpracy', area: 'Obszar kompetencji' },
+  en: { format: 'Engagement format', area: 'Capability area' },
+}
+
 /**
  * CapabilityEngagement
  * ─────────────────────────────────────────────────────────────
- * Single-line engagement format note.
- * Restrained — metadata, not hero copy.
+ * Institutional metadata grid — 2 columns, no icons, no colours.
+ * Shows engagement format and capability area as a dl grid.
+ * Feels like document metadata, not a feature list.
  */
-export default function CapabilityEngagement({ capability, locale, eyebrow, title }: Props) {
+export default function CapabilityEngagement({ capability, locale, eyebrow }: Props) {
+  const c = COPY[locale]
+  const categoryLabel = CATEGORY_LABELS[capability.category]
+  const catText = categoryLabel ? t(categoryLabel, locale) : null
+
   return (
-    <div className="border-t border-gray-100 pt-14 pb-10">
-      <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-5">
+    <div className="border-t border-gray-100 pt-14 pb-12">
+      <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-8">
         {eyebrow}
       </p>
-      <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-4">
-        {title}
-      </h2>
-      <p className="text-base text-gray-600 leading-relaxed max-w-xl">
-        {t(capability.engagement, locale)}
-      </p>
+      <dl className="grid sm:grid-cols-2 gap-x-16 gap-y-8 max-w-2xl">
+        <div>
+          <dt className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-3">
+            {c.format}
+          </dt>
+          <dd className="text-[15px] text-gray-700 leading-relaxed">
+            {t(capability.engagement, locale)}
+          </dd>
+        </div>
+        {catText && (
+          <div>
+            <dt className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-3">
+              {c.area}
+            </dt>
+            <dd className="text-[15px] text-gray-700 leading-relaxed">
+              {catText}
+            </dd>
+          </div>
+        )}
+      </dl>
     </div>
   )
 }

@@ -3,17 +3,25 @@ import type { Locale } from '@/lib/capabilities'
 
 interface Props {
   locale: Locale
-  /** CTA label to display */
+  /** CTA label to display on the button */
   label: string
   /** CTA href */
   href: string
-  /** Optional context note above the label */
+  /** Retained for backwards compatibility — not rendered visually */
   note?: string
 }
 
 const COPY = {
-  pl: { or: 'lub wyślij wiadomość przez', contactLink: 'formularz kontaktowy' },
-  en: { or: 'or send a message via', contactLink: 'contact form' },
+  pl: {
+    invitation: 'Porozmawiajmy o tym, jak to wygląda w Państwa organizacji.',
+    or: 'lub wyślij wiadomość przez',
+    contactLink: 'formularz kontaktowy',
+  },
+  en: {
+    invitation: "Let's talk about what this looks like in your organisation.",
+    or: 'or send a message via',
+    contactLink: 'contact form',
+  },
 }
 
 const CONTACT_HREF: Record<Locale, string> = {
@@ -24,19 +32,18 @@ const CONTACT_HREF: Record<Locale, string> = {
 /**
  * CapabilityCTA
  * ─────────────────────────────────────────────────────────────
- * Quiet, understated CTA block. Not a hero, not a banner.
- * Restrained institutional close.
+ * Quiet institutional invitation — not a hero banner, not a conversion block.
+ * Leads with a human statement, then a simple action.
+ * Restrained close that fits both listing and detail pages.
  */
-export default function CapabilityCTA({ locale, label, href, note }: Props) {
+export default function CapabilityCTA({ locale, label, href }: Props) {
   const c = COPY[locale]
 
   return (
-    <div className="border-t border-gray-100 pt-14 pb-14">
-      {note && (
-        <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-6">
-          {note}
-        </p>
-      )}
+    <div className="border-t border-gray-100 pt-16 pb-16">
+      <p className="text-[17px] text-gray-800 font-medium tracking-tight leading-snug mb-8 max-w-[34rem]">
+        {c.invitation}
+      </p>
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         <Link
           href={href}

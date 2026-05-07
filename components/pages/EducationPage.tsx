@@ -36,10 +36,30 @@ const COPY = {
 }
 
 /**
+ * Academy learning philosophy — rendered once, between hero and first track.
+ * Positions the education offer as institutional capability development,
+ * not a training catalogue.
+ */
+const PHILOSOPHY = {
+  pl: 'Nowoczesne zakupy wymagają nie tylko wiedzy operacyjnej, ale zdolności podejmowania decyzji w środowisku zmienności, presji kosztowej i ryzyka dostaw.',
+  en: 'Modern procurement demands not just operational knowledge, but the capacity to make decisions in environments of volatility, cost pressure and supply risk.',
+}
+
+/**
+ * Editorial breaks — signal strategic transitions between learning tracks.
+ */
+const EDITORIAL_BREAKS = [
+  {
+    afterIndex: 1,
+    pl: 'Technika negocjacji jest narzędziem. Jej wartość zależy od głębokości analizy, którą ją poprzedza.',
+    en: 'Negotiation technique is a tool. Its value depends on the depth of analysis that precedes it.',
+  },
+]
+
+/**
  * EducationPage
  * ─────────────────────────────────────────────────────────────
- * Executive procurement education platform listing.
- * Not a course catalogue. Not a training menu.
+ * Executive procurement academy — not a course catalogue.
  * Server Component.
  */
 export default function EducationPage({ locale }: Props) {
@@ -51,6 +71,8 @@ export default function EducationPage({ locale }: Props) {
       sections={EDUCATION_SECTIONS}
       hero={c.hero}
       cta={c.cta}
+      philosophyStatement={PHILOSOPHY}
+      editorialBreaks={EDITORIAL_BREAKS}
     />
   )
 }

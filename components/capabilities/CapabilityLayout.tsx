@@ -1,5 +1,6 @@
-import type { Capability, Locale, CapabilitySectionDef } from '@/lib/capabilities'
-import { t, getCapabilitiesForSection } from '@/lib/capabilities'
+import { Fragment } from 'react'
+import type { Locale, CapabilitySectionDef } from '@/lib/capabilities'
+import { getCapabilitiesForSection } from '@/lib/capabilities'
 import CapabilityHero from './CapabilityHero'
 import CapabilitySection from './CapabilitySection'
 import CapabilityCTA from './CapabilityCTA'
@@ -18,16 +19,40 @@ interface Props {
     label: string
     href: string
   }
+  /**
+   * Optional institutional statement rendered between the hero and sections.
+   * Used for Education's learning philosophy block.
+   */
+  philosophyStatement?: { pl: string; en: string }
+  /**
+   * Optional editorial breaks between sections — short manifesto statements
+   * that interrupt the listing rhythm and signal strategic transitions.
+   * afterIndex: render after sections[afterIndex].
+   */
+  editorialBreaks?: Array<{ afterIndex: number; pl: string; en: string }>
 }
 
 /**
  * CapabilityLayout
  * ─────────────────────────────────────────────────────────────
- * Full listing page layout: Hero → Sections → CTA.
+ * Full listing page layout: Hero → (Philosophy) → Sections → CTA.
  * Shared between ServicesPage and EducationPage.
+ *
+ * Editorial rhythm is controlled via:
+ * - philosophyStatement: appears once, between hero and first section
+ * - editorialBreaks: manifesto pauses between specific sections
+ *
  * Pure Server Component.
  */
-export default function CapabilityLayout({ locale, prefix, sections, hero, cta }: Props) {
+export default function CapabilityLayout({
+  locale,
+  prefix,
+  sections,
+  hero,
+  cta,
+  philosophyStatement,
+  editorialBreaks,
+}: Props) {
   return (
     <>
       <CapabilityHero
@@ -38,24 +63,46 @@ export default function CapabilityLayout({ locale, prefix, sections, hero, cta }
       />
 
       <div className="container-base">
-        {sections.map((section) => {
+
+        {/* Learning philosophy — Education only */}
+        {philosophyStatement && (
+          <div className="py-12 border-b border-gray-100">
+            <p className="text-[15px] text-gray-500 leading-relaxed max-w-[44rem]">
+              {philosophyStatement[locale]}
+            </p>
+          </div>
+        )}
+
+        {sections.map((section, index) => {
           const capabilities = getCapabilitiesForSection(section.id)
+          const editorialBreak = editorialBreaks?.find((b) => b.afterIndex === index)
+
           return (
-            <CapabilitySection
-              key={section.id}
-              section={section}
-              capabilities={capabilities}
-              locale={locale}
-              prefix={prefix}
-            />
+            <Fragment key={section.id}>
+              <CapabilitySection
+                section={section}
+                capabilities={capabilities}
+                locale={locale}
+                prefix={prefix}
+              />
+              {editorialBreak && (
+                <div className="py-10">
+                  <p className="text-[13px] text-gray-400 leading-relaxed max-w-[38rem]">
+                    {editorialBreak[locale]}
+                  </p>
+                </div>
+              )}
+            </Fragment>
           )
         })}
+
         <CapabilityCTA
           locale={locale}
           note={cta.note}
           label={cta.label}
           href={cta.href}
         />
+
       </div>
     </>
   )

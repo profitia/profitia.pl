@@ -25,19 +25,21 @@ interface Props {
  * CapabilityDetail
  * ─────────────────────────────────────────────────────────────
  * Hero block for a capability detail page.
- * Breadcrumb, eyebrow, large title, intro paragraph.
- * Editorial, not landing-page.
+ * Breadcrumb → eyebrow → large title → intro paragraph.
+ *
+ * Institutional paper aesthetic: generous whitespace, wide prose,
+ * no decorative elements. The intro paragraph acts as a lede.
  */
 export default function CapabilityDetail({ capability, locale, prefix }: Props) {
   const c = BREADCRUMB_COPY[locale]
 
   return (
-    <section className="pt-16 pb-14 border-b border-gray-100">
+    <section className="pt-20 pb-16 border-b border-gray-100">
       <div className="container-base">
 
         {/* Breadcrumb */}
         <nav
-          className="flex items-center gap-2 text-xs text-gray-400 mb-10"
+          className="flex items-center gap-2 text-xs text-gray-400 mb-12"
           aria-label={locale === 'en' ? 'Breadcrumb' : 'Ścieżka nawigacji'}
         >
           <Link href={HOME_HREFS[locale]} className="hover:text-gray-600 transition-colors duration-200">
@@ -53,11 +55,12 @@ export default function CapabilityDetail({ capability, locale, prefix }: Props) 
 
         <CapabilityMeta capability={capability} locale={locale} />
 
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mt-5 mb-6 max-w-[42rem]">
+        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mt-6 mb-8 max-w-[42rem]">
           {t(capability.title, locale)}
         </h1>
 
-        <p className="text-lg text-gray-500 leading-relaxed max-w-[38rem]">
+        {/* Lede paragraph — wider, slightly heavier than body */}
+        <p className="text-[17px] text-gray-600 leading-relaxed max-w-[44rem]">
           {t(capability.longDescription, locale)}
         </p>
 

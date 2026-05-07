@@ -9,6 +9,7 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
     id: 'advisory',
     type: 'service',
     order: 1,
+    featured: true,
     eyebrow: { pl: 'Sekcja I', en: 'Section I' },
     title: {
       pl: 'Doradztwo i Transformacja',
@@ -23,6 +24,7 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
     id: 'negotiations',
     type: 'service',
     order: 2,
+    featured: true,
     eyebrow: { pl: 'Sekcja II', en: 'Section II' },
     title: {
       pl: 'Negocjacje i Cost Intelligence',
@@ -37,6 +39,7 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
     id: 'analytics',
     type: 'service',
     order: 3,
+    featured: true,
     eyebrow: { pl: 'Sekcja III', en: 'Section III' },
     title: {
       pl: 'Dane i Analityka',
@@ -72,6 +75,7 @@ export const EDUCATION_SECTIONS: CapabilitySectionDef[] = [
     id: 'executive',
     type: 'education',
     order: 1,
+    featured: true,
     eyebrow: { pl: 'Ścieżka I', en: 'Track I' },
     title: {
       pl: 'Programy Executive',
@@ -86,6 +90,7 @@ export const EDUCATION_SECTIONS: CapabilitySectionDef[] = [
     id: 'negotiation',
     type: 'education',
     order: 2,
+    featured: true,
     eyebrow: { pl: 'Ścieżka II', en: 'Track II' },
     title: {
       pl: 'Warsztaty Negocjacyjne',

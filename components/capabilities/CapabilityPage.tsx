@@ -15,18 +15,42 @@ interface Props {
 
 const COPY = {
   pl: {
-    whatItSolves: { eyebrow: 'Problem', title: 'Co rozwiązujemy' },
-    methodology: { eyebrow: 'Podejście', title: 'Jak pracujemy' },
-    outcomes: { eyebrow: 'Efekty', title: 'Measurable outcomes' },
-    engagement: { eyebrow: 'Format', title: 'Typowe zaangażowanie' },
+    whatItSolves: {
+      eyebrow: 'Problem',
+      title: 'Gdzie organizacje się zatrzymują',
+    },
+    methodology: {
+      eyebrow: 'Przebieg',
+      title: 'Jak przebiega zaangażowanie',
+    },
+    outcomes: {
+      eyebrow: 'Efekty',
+      title: 'Co zmienia się operacyjnie',
+    },
+    engagement: {
+      eyebrow: 'Format',
+      title: 'Format współpracy',
+    },
     related: { eyebrow: 'Zobacz też', title: 'Powiązane obszary' },
     cta: { note: 'Następny krok', href: '/contact' },
   },
   en: {
-    whatItSolves: { eyebrow: 'Problem', title: 'What we solve' },
-    methodology: { eyebrow: 'Approach', title: 'How we work' },
-    outcomes: { eyebrow: 'Results', title: 'Measurable outcomes' },
-    engagement: { eyebrow: 'Format', title: 'Typical engagement' },
+    whatItSolves: {
+      eyebrow: 'Problem',
+      title: 'Where organisations get stuck',
+    },
+    methodology: {
+      eyebrow: 'Approach',
+      title: 'How engagements work',
+    },
+    outcomes: {
+      eyebrow: 'Results',
+      title: 'What changes operationally',
+    },
+    engagement: {
+      eyebrow: 'Format',
+      title: 'Engagement format',
+    },
     related: { eyebrow: 'See also', title: 'Related areas' },
     cta: { note: 'Next step', href: '/en/contact' },
   },
@@ -35,12 +59,19 @@ const COPY = {
 /**
  * CapabilityPage
  * ─────────────────────────────────────────────────────────────
- * Canonical detail page template for both services and education.
- * Sections: Detail hero → What it solves → How we work →
- *           Outcomes → Engagement → Related → CTA
+ * Canonical detail page — institutional paper format.
  *
- * Editorial institution paper feel.
+ * Structure:
+ *   Detail hero (lede paragraph)
+ *   → Where organisations get stuck (numbered problem statements)
+ *   → How engagements work (numbered methodology steps)
+ *   → What changes operationally (numbered outcomes)
+ *   → Format (2-col metadata grid)
+ *   → Related areas
+ *   → Institutional CTA invitation
+ *
  * No landing page patterns, no animated counters, no icon grids.
+ * Maximum institutional authority.
  */
 export default function CapabilityPage({ capability, locale, prefix }: Props) {
   const c = COPY[locale]
@@ -53,24 +84,33 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
 
       <div className="container-base">
 
-        {/* What it solves */}
-        <div className="border-t border-gray-100 pt-14 pb-10">
-          <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-5">
-            {c.whatItSolves.eyebrow}
-          </p>
-          <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-8">
-            {c.whatItSolves.title}
-          </h2>
-          <ul className="space-y-3 max-w-2xl">
-            {capability.whatItSolves.map((item, i) => (
-              <li key={i} className="flex gap-4 items-start">
-                <span className="flex-shrink-0 w-1 h-1 rounded-full bg-gray-300 mt-[10px]" aria-hidden="true" />
-                <p className="text-base text-gray-600 leading-relaxed">
-                  {t(item, locale)}
-                </p>
-              </li>
-            ))}
-          </ul>
+        {/* Where organisations get stuck */}
+        <div className="border-t border-gray-100 pt-16 pb-12">
+          <div className="grid lg:grid-cols-[200px_1fr] gap-8 lg:gap-16">
+            <div className="lg:pt-1">
+              <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-3">
+                {c.whatItSolves.eyebrow}
+              </p>
+              <h2 className="text-lg font-semibold tracking-tight text-gray-900 leading-snug">
+                {c.whatItSolves.title}
+              </h2>
+            </div>
+            <ol className="space-y-4 lg:pt-1">
+              {capability.whatItSolves.map((item, i) => (
+                <li key={i} className="flex gap-5 items-start">
+                  <span
+                    className="flex-shrink-0 text-[10px] font-semibold text-gray-300 tabular-nums mt-[5px] w-5 text-right"
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <p className="text-[15px] text-gray-600 leading-relaxed">
+                    {t(item, locale)}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
 
         <CapabilityMethodology
