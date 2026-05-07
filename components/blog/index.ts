@@ -1,5 +1,5 @@
 /**
- * Blog Components — Barrel Export
+ * Blog Components - Barrel Export
  *
  * All blog/article components importable from '@/components/blog'
  */

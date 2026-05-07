@@ -59,7 +59,7 @@ export default function CapabilityDetail({ capability, locale, prefix }: Props) 
           {t(capability.title, locale)}
         </h1>
 
-        {/* Lede paragraph — wider, slightly heavier than body */}
+        {/* Lede paragraph - wider, slightly heavier than body */}
         <p className="text-[17px] text-gray-600 leading-relaxed max-w-[44rem]">
           {t(capability.longDescription, locale)}
         </p>

@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Capability Platform — Core Types
+// Capability Platform - Core Types
 // Shared by Services and Education. One architecture, two surfaces.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -67,10 +67,10 @@ export interface CapabilitySectionDef {
   eyebrow: LocalizedString
   title: LocalizedString
   description: LocalizedString
-  /** Anchor practice section — rendered with larger type and more whitespace */
+  /** Anchor practice section - rendered with larger type and more whitespace */
   featured?: boolean
   /**
-   * Primary anchor — the single most commanding section on the page.
+   * Primary anchor - the single most commanding section on the page.
    * Creates hierarchy narrative: one dominant, others supporting.
    * Only one section per page should carry this.
    */

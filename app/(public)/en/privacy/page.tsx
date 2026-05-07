@@ -58,10 +58,10 @@ export default function PrivacyPageEN() {
         <LegalContent>
           <p>We process personal data on the following legal bases under Article 6 of the GDPR:</p>
           <ul>
-            <li><strong>Art. 6(1)(a)</strong> — consent of the data subject (e.g. newsletter subscription, contact forms).</li>
-            <li><strong>Art. 6(1)(b)</strong> — performance of a contract or pre-contractual measures.</li>
-            <li><strong>Art. 6(1)(c)</strong> — compliance with a legal obligation.</li>
-            <li><strong>Art. 6(1)(f)</strong> — legitimate interests of the controller (e.g. direct marketing, site security).</li>
+            <li><strong>Art. 6(1)(a)</strong> - consent of the data subject (e.g. newsletter subscription, contact forms).</li>
+            <li><strong>Art. 6(1)(b)</strong> - performance of a contract or pre-contractual measures.</li>
+            <li><strong>Art. 6(1)(c)</strong> - compliance with a legal obligation.</li>
+            <li><strong>Art. 6(1)(f)</strong> - legitimate interests of the controller (e.g. direct marketing, site security).</li>
           </ul>
         </LegalContent>
       </LegalSection>
@@ -70,10 +70,10 @@ export default function PrivacyPageEN() {
         <LegalContent>
           <p>Depending on the purpose of interaction, we may process the following categories of data:</p>
           <ul>
-            <li>Identification data — name, job title, company.</li>
-            <li>Contact data — email address, phone number.</li>
-            <li>Technical data — IP address, cookies, server logs.</li>
-            <li>Correspondence data — content of messages submitted through forms.</li>
+            <li>Identification data - name, job title, company.</li>
+            <li>Contact data - email address, phone number.</li>
+            <li>Technical data - IP address, cookies, server logs.</li>
+            <li>Correspondence data - content of messages submitted through forms.</li>
           </ul>
         </LegalContent>
       </LegalSection>
@@ -81,11 +81,11 @@ export default function PrivacyPageEN() {
       <LegalSection id="purposes" title="4. Purposes of Processing">
         <LegalContent>
           <ul>
-            <li>Handling enquiries and correspondence — based on legitimate interest or contract.</li>
-            <li>Delivering advisory and training services — based on contract.</li>
-            <li>Sending newsletters and marketing communications — based on consent.</li>
-            <li>Website analytics and optimisation — based on legitimate interest.</li>
-            <li>Fulfilling accounting and tax obligations — based on legal requirement.</li>
+            <li>Handling enquiries and correspondence - based on legitimate interest or contract.</li>
+            <li>Delivering advisory and training services - based on contract.</li>
+            <li>Sending newsletters and marketing communications - based on consent.</li>
+            <li>Website analytics and optimisation - based on legitimate interest.</li>
+            <li>Fulfilling accounting and tax obligations - based on legal requirement.</li>
           </ul>
         </LegalContent>
       </LegalSection>
@@ -93,9 +93,9 @@ export default function PrivacyPageEN() {
       <LegalSection id="retention" title="5. Retention Period">
         <LegalContent>
           <ul>
-            <li>Contact form data — up to 3 years from last contact.</li>
-            <li>Contract-related data — as required by tax and accounting law (typically 5 years).</li>
-            <li>Newsletter subscription data — until consent is withdrawn.</li>
+            <li>Contact form data - up to 3 years from last contact.</li>
+            <li>Contract-related data - as required by tax and accounting law (typically 5 years).</li>
+            <li>Newsletter subscription data - until consent is withdrawn.</li>
           </ul>
         </LegalContent>
       </LegalSection>

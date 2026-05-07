@@ -44,11 +44,11 @@ export default function TermsPageEN() {
       <LegalSection id="definitions" title="1. Definitions">
         <LegalContent>
           <ul>
-            <li><strong>Website</strong> — the website accessible at profitia.pl.</li>
-            <li><strong>Administrator</strong> — Profitia Management Consultants Mazurowski i Wspólnicy Sp. J., ul. Puławska 145, 02-715 Warsaw.</li>
-            <li><strong>User</strong> — any individual using the Website.</li>
-            <li><strong>Content</strong> — all materials published on the Website, including articles, reports and graphics.</li>
-            <li><strong>Services</strong> — advisory, training and analytical services provided by the Administrator.</li>
+            <li><strong>Website</strong> - the website accessible at profitia.pl.</li>
+            <li><strong>Administrator</strong> - Profitia Management Consultants Mazurowski i Wspólnicy Sp. J., ul. Puławska 145, 02-715 Warsaw.</li>
+            <li><strong>User</strong> - any individual using the Website.</li>
+            <li><strong>Content</strong> - all materials published on the Website, including articles, reports and graphics.</li>
+            <li><strong>Services</strong> - advisory, training and analytical services provided by the Administrator.</li>
           </ul>
         </LegalContent>
       </LegalSection>

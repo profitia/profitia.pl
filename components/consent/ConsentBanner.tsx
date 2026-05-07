@@ -1,14 +1,14 @@
 'use client'
 
 /**
- * ConsentBanner — Initial Consent Panel
+ * ConsentBanner - Initial Consent Panel
  *
  * Appears on first visit (no stored consent) as a fixed bottom panel.
  * Canonical Profitia aesthetic: calm, restrained, editorial, institutional.
- * No dark patterns — all three actions are equally visible.
+ * No dark patterns - all three actions are equally visible.
  *
  * Entrance: subtle slide-up with opacity fade.
- * Respects prefers-reduced-motion — no animation when true.
+ * Respects prefers-reduced-motion - no animation when true.
  *
  * Desktop: two-column layout (text / actions).
  * Mobile: stacked, safe-area aware.
@@ -21,7 +21,7 @@ const COPY = {
   pl: {
     eyebrow: 'Prywatność',
     heading: 'Używamy plików cookie.',
-    body: 'Niektóre z nich są niezbędne do działania serwisu. Pozostałe — analityczne i marketingowe — aktywujemy tylko za Twoją zgodą.',
+    body: 'Niektóre z nich są niezbędne do działania serwisu. Pozostałe - analityczne i marketingowe - aktywujemy tylko za Twoją zgodą.',
     acceptAll: 'Zaakceptuj wszystkie',
     customize: 'Dostosuj ustawienia',
     rejectAll: 'Odrzuć niezbędne',
@@ -30,7 +30,7 @@ const COPY = {
   en: {
     eyebrow: 'Privacy',
     heading: 'We use cookies.',
-    body: 'Some are essential for the site to work. Others — analytics and marketing — are only activated with your consent.',
+    body: 'Some are essential for the site to work. Others - analytics and marketing - are only activated with your consent.',
     acceptAll: 'Accept all',
     customize: 'Customise settings',
     rejectAll: 'Reject non-essential',
@@ -65,9 +65,9 @@ export function ConsentBanner({ locale = 'pl' }: ConsentBannerProps) {
         'fixed bottom-0 left-0 right-0 z-[60]',
         // Background + border
         'bg-white border-t border-gray-100',
-        // Shadow — mirrors footer feeling
+        // Shadow - mirrors footer feeling
         'shadow-[0_-1px_24px_0_rgba(0,0,0,0.05)]',
-        // Safe area — iOS home indicator
+        // Safe area - iOS home indicator
         'pb-[env(safe-area-inset-bottom)]',
         // Entrance animation
         'transition-[transform,opacity] duration-300 ease-out',

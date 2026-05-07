@@ -8,7 +8,7 @@
  *   - Left-aligned label + H1 + subtitle
  *   - Max-w-2xl headline (editorial, not centered)
  *   - Optional micro-detail below CTA (e.g. "No credit card required")
- *   - No image — pure typography moment
+ *   - No image - pure typography moment
  *
  * VISUAL RHYTHM:
  *   bg-white → [gray-50 section follows]

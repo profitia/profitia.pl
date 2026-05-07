@@ -7,7 +7,7 @@ interface Props {
   label: string
   /** CTA href */
   href: string
-  /** Retained for backwards compatibility — not rendered visually */
+  /** Retained for backwards compatibility - not rendered visually */
   note?: string
 }
 
@@ -32,7 +32,7 @@ const CONTACT_HREF: Record<Locale, string> = {
 /**
  * CapabilityCTA
  * ─────────────────────────────────────────────────────────────
- * Quiet institutional invitation — not a hero banner, not a conversion block.
+ * Quiet institutional invitation - not a hero banner, not a conversion block.
  * Leads with a human statement, then a simple action.
  * Restrained close that fits both listing and detail pages.
  */

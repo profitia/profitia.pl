@@ -4,7 +4,7 @@
  * Canonical constants for the Profitia form system.
  */
 
-/** Current consent schema version — bump when consent copy changes. */
+/** Current consent schema version - bump when consent copy changes. */
 export const CONSENT_VERSION = '2026-05-07'
 
 export const FIELD_LIMITS = {

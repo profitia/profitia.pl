@@ -5,7 +5,7 @@ import type { Locale } from '@/lib/i18n'
 // Re-export for convenience
 export type { Locale }
 
-// Dictionary type is derived from the PL file — keeps types in sync
+// Dictionary type is derived from the PL file - keeps types in sync
 export type Dictionary = typeof import('@/dictionaries/pl.json')
 
 // API response wrappers
@@ -31,7 +31,7 @@ export interface ArticlePreview {
   createdAt: Date
 }
 
-// Integrations (placeholder — not yet implemented)
+// Integrations (placeholder - not yet implemented)
 export interface TeamsBookingConfig {
   organizerEmail: string
   meetingLink: string

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * ConsentGate — Integration Readiness Component
+ * ConsentGate - Integration Readiness Component
  *
  * Conditionally renders children based on consent category state.
  * The primary mechanism for gating third-party integrations:

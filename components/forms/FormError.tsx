@@ -1,5 +1,5 @@
 /**
- * FormError — calm inline error block.
+ * FormError - calm inline error block.
  *
  * Shown below the form on submission failure.
  * Restrained red palette. No modal, no explosion, no retry badge.

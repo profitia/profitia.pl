@@ -14,7 +14,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <html lang="pl">
       <body className="bg-gray-100 min-h-screen font-sans antialiased">
         <div className="flex h-screen">
-          {/* Sidebar — placeholder */}
+          {/* Sidebar - placeholder */}
           <aside className="w-64 text-white flex flex-col p-6 hidden md:flex" style={{ backgroundColor: '#242F44' }}>
             <div className="text-xl font-bold mb-10">Profitia Admin</div>
             <nav className="space-y-2 flex-1">

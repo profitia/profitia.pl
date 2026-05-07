@@ -1,7 +1,7 @@
 /**
- * ContactPage — canonical institutional contact page.
+ * ContactPage - canonical institutional contact page.
  *
- * Server Component — renders static layout + ContactForm (client).
+ * Server Component - renders static layout + ContactForm (client).
  * Locale-aware (PL/EN), bilingual from single component.
  *
  * Layout:

@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * BlogNewsletter — Editorial Subscription Section
+ * BlogNewsletter - Editorial Subscription Section
  *
  * Used in the blog index below the article grid.
  * Tone: intelligence subscription, not marketing.

@@ -9,7 +9,7 @@ export default function AdminLoginPage() {
         <h1 className="text-2xl font-heading font-bold text-brand-primary mb-6">
           Panel administracyjny
         </h1>
-        {/* Login form — auth logic added later */}
+        {/* Login form - auth logic added later */}
         <form className="space-y-5" method="POST" action="/api/admin/login">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">

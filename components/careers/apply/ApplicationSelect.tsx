@@ -18,8 +18,8 @@ interface Props {
 }
 
 /**
- * ApplicationSelect — institutional role selector.
- * Derives options dynamically from JOB_POSTS via props — no hardcoding.
+ * ApplicationSelect - institutional role selector.
+ * Derives options dynamically from JOB_POSTS via props - no hardcoding.
  */
 export function ApplicationSelect({
   id,

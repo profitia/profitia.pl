@@ -18,7 +18,7 @@ const NAV_LABEL: Record<CareerLocale, string> = {
 /**
  * CareerRow
  * ─────────────────────────────────────────────────────────────
- * Single job post listing row — editorial, not a card.
+ * Single job post listing row - editorial, not a card.
  * Mirrors CapabilityCard row variant: title + meta + nav arrow.
  * Conversion language excluded. Navigation language only.
  */
@@ -42,7 +42,7 @@ export default function CareerRow({ job, locale, isFirst = false }: Props) {
       <Link
         href={href}
         className={`flex-shrink-0 text-xs hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
-        aria-label={`${title} — ${navLabel}`}
+        aria-label={`${title} - ${navLabel}`}
       >
         {navLabel} →
       </Link>

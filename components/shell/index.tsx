@@ -1,5 +1,5 @@
 /**
- * PROFITIA — Shell Wrapper System
+ * PROFITIA - Shell Wrapper System
  * ─────────────────────────────────────────────────────────────────────────
  * Canonical layout primitives used by every public page.
  * These enforce consistent spacing, container widths, and tonal rhythm.
@@ -20,8 +20,8 @@
 import { ReactNode } from 'react'
 
 // ─── PageWrapper ──────────────────────────────────────────────────────────
-// Wraps all content on a page. Adds no visual style — pure structure.
-// Already applied globally via the (public) layout — use on special pages only.
+// Wraps all content on a page. Adds no visual style - pure structure.
+// Already applied globally via the (public) layout - use on special pages only.
 export function PageWrapper({ children }: { children: ReactNode }) {
   return <div className="min-h-screen flex flex-col">{children}</div>
 }
@@ -64,7 +64,7 @@ export function SectionWrapper({
 
 // ─── DarkSectionWrapper ───────────────────────────────────────────────────
 // Dark tonal break. For testimonials, proof moments, stats strips.
-// bg-gray-900 — never used for CTA (that's black via CTASection).
+// bg-gray-900 - never used for CTA (that's black via CTASection).
 interface DarkSectionWrapperProps {
   children: ReactNode
   size?: 'md' | 'lg'

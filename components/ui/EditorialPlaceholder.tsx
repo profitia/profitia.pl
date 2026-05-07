@@ -1,14 +1,14 @@
 /**
  * EditorialPlaceholder
  * ─────────────────────────────────────────────────────────────────────────
- * A premium, intentional image placeholder — NOT a gray box.
+ * A premium, intentional image placeholder - NOT a gray box.
  * Used during content development before photography is ready.
  *
  * Design rules:
  * - Cinematic aspect ratios (16/9, 4/3, 3/2, 1/1)
  * - Subtle gradient with noise texture feel
- * - Optional label in the center (e.g. "Hero — 1600×900")
- * - Intentionally premium — could pass for editorial art direction
+ * - Optional label in the center (e.g. "Hero - 1600×900")
+ * - Intentionally premium - could pass for editorial art direction
  *
  * Usage:
  *   <EditorialPlaceholder aspect="16/9" label="Brand story moment" />
@@ -20,7 +20,7 @@ interface EditorialPlaceholderProps {
   aspect?: '16/9' | '4/3' | '3/2' | '1/1' | 'square' | 'portrait'
   /** Optional descriptive label shown in the center */
   label?: string
-  /** Width hint — controls max-width when used inline */
+  /** Width hint - controls max-width when used inline */
   size?: 'sm' | 'md' | 'lg' | 'full'
   /** Additional classes */
   className?: string
@@ -78,7 +78,7 @@ export default function EditorialPlaceholder({
         {/* Gradient base */}
         <div className={`absolute inset-0 bg-gradient-to-br ${toneCls}`} />
 
-        {/* Subtle diagonal lines — creates texture */}
+        {/* Subtle diagonal lines - creates texture */}
         <svg
           className="absolute inset-0 w-full h-full opacity-[0.04]"
           xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ export default function EditorialPlaceholder({
           </div>
         )}
 
-        {/* Corner mark — art direction cue */}
+        {/* Corner mark - art direction cue */}
         <div className={`absolute bottom-3 right-3 text-[10px] tracking-widest uppercase ${labelCls} opacity-50 select-none font-mono`}>
           {aspect === '16/9' ? '16:9' : aspect === 'portrait' ? '3:4' : aspect.replace('/', ':')}
         </div>

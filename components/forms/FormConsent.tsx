@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * FormConsent — GDPR-compliant checkbox with custom visual treatment.
+ * FormConsent - GDPR-compliant checkbox with custom visual treatment.
  *
  * Accessibility:
  *   - Real <input type="checkbox"> inside label (sr-only, keyboard reachable)

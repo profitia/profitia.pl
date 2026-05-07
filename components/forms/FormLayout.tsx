@@ -3,7 +3,7 @@
 import type { FormEvent, ReactNode } from 'react'
 
 /**
- * FormLayout — semantic <form> wrapper with institutional spacing.
+ * FormLayout - semantic <form> wrapper with institutional spacing.
  *
  * Marked 'use client' because it handles the onSubmit event.
  * Used when you need a reusable form shell outside of ContactForm/NewsletterForm.

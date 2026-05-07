@@ -1,10 +1,10 @@
 'use client'
 
 /**
- * ArticleNewsletter — End-of-Article Subscription Block
+ * ArticleNewsletter - End-of-Article Subscription Block
  *
  * Appears after the article content and author block.
- * Editorial intelligence subscription tone — not marketing.
+ * Editorial intelligence subscription tone - not marketing.
  * Contextual: reads as a natural continuation of the article.
  */
 

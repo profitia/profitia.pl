@@ -1,7 +1,7 @@
 /**
  * lib/forms/payload.ts
  *
- * Payload builders — transform validated form values into canonical
+ * Payload builders - transform validated form values into canonical
  * CRM-ready, audit-ready submission payloads.
  */
 

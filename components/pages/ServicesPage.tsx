@@ -12,7 +12,7 @@ const COPY = {
       eyebrow: 'Advisory · Negocjacje · Analityka',
       title: 'Budujemy przewagę zakupową poprzez dane, negocjacje i transformację funkcji zakupowej.',
       subtitle:
-        'Projekt doradczy, wsparcie negocjacyjne, analityka spend lub transformacja organizacji zakupowej — podejście dopasowane do skali wyzwania.',
+        'Projekt doradczy, wsparcie negocjacyjne, analityka spend lub transformacja organizacji zakupowej - podejście dopasowane do skali wyzwania.',
     },
     cta: {
       note: 'Następny krok',
@@ -25,7 +25,7 @@ const COPY = {
       eyebrow: 'Advisory · Negotiations · Analytics',
       title: 'We help procurement teams build leverage through intelligence, negotiations and operating transformation.',
       subtitle:
-        'Advisory projects, negotiation support, spend analytics or procurement transformation — an approach matched to the scale of the challenge.',
+        'Advisory projects, negotiation support, spend analytics or procurement transformation - an approach matched to the scale of the challenge.',
     },
     cta: {
       note: 'Next step',
@@ -36,7 +36,7 @@ const COPY = {
 }
 
 /**
- * Editorial breaks — short manifesto statements that interrupt the listing
+ * Editorial breaks - short manifesto statements that interrupt the listing
  * rhythm and signal strategic transitions between practice areas.
  * Max 2 per page. Used sparingly.
  */

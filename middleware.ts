@@ -16,7 +16,7 @@ function detectBrowserLocale(acceptLanguage: string): 'pl' | 'en' {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // /en/* — serve as-is, ensure locale cookie is set to 'en'
+  // /en/* - serve as-is, ensure locale cookie is set to 'en'
   if (pathname === '/en' || pathname.startsWith('/en/')) {
     const response = NextResponse.next()
     if (!request.cookies.get(LOCALE_COOKIE)) {
@@ -55,7 +55,7 @@ export function middleware(request: NextRequest) {
         return response
       }
 
-      // PL browser — set cookie and continue
+      // PL browser - set cookie and continue
       const response = NextResponse.next()
       response.cookies.set(LOCALE_COOKIE, 'pl', {
         maxAge: 60 * 60 * 24 * 365,

@@ -10,8 +10,8 @@ interface LegalLayoutProps {
 /**
  * Canonical legal page shell.
  *
- * Desktop: two-column grid — 240px sticky sidebar (TOC) + fluid content column.
- * Mobile:  single column — collapsible TOC above content.
+ * Desktop: two-column grid - 240px sticky sidebar (TOC) + fluid content column.
+ * Mobile:  single column - collapsible TOC above content.
  *
  * Content is naturally constrained by prose max-width; the layout
  * never enforces full-bleed density on legal text.
@@ -21,7 +21,7 @@ export function LegalLayout({ toc, children }: LegalLayoutProps) {
     <div className="container-base pt-16 pb-32 lg:pt-24 lg:pb-44">
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] lg:gap-16 lg:items-start">
 
-        {/* Sidebar — first in DOM → stacks above content on mobile */}
+        {/* Sidebar - first in DOM → stacks above content on mobile */}
         <LegalSidebar items={toc} />
 
         {/* Content column */}

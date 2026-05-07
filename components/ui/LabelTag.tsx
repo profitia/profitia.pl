@@ -5,7 +5,7 @@ interface Props {
 }
 
 /**
- * Section label tag — caps, tracked, small.
+ * Section label tag - caps, tracked, small.
  * dark=true for use on dark backgrounds (gray-900, black).
  */
 export default function LabelTag({ children, className = '', dark = false }: Props) {

@@ -5,13 +5,13 @@ import { t } from '@/lib/capabilities'
 interface Props {
   capability: Capability
   locale: Locale
-  /** 'services' | 'education' — determines the URL prefix */
+  /** 'services' | 'education' - determines the URL prefix */
   prefix: 'services' | 'education'
   /** Whether to render as a border-bottom row (list) vs a boxed card */
   variant?: 'row' | 'card'
   /**
    * First item in its section. Slightly more present: semibold title,
-   * extra bottom pause — creates reading hierarchy inside the section,
+   * extra bottom pause - creates reading hierarchy inside the section,
    * reduces spreadsheet feel without redesigning the row.
    */
   isFirst?: boolean
@@ -20,7 +20,7 @@ interface Props {
 /**
  * Navigation labels for listing rows and related rows.
  * CTA language is only for the final conversion section on detail pages.
- * Listing rows navigate — they do not convert.
+ * Listing rows navigate - they do not convert.
  */
 const NAV_LABEL: Record<'service' | 'education', { pl: string; en: string }> = {
   service:   { pl: 'Zobacz usługę', en: 'Explore service' },
@@ -34,15 +34,15 @@ const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
  * ─────────────────────────────────────────────────────────────
  * Institutional editorial card. Zero icons, zero shadows.
  *
- * row  — scan-friendly listing entry: title + eyebrow + CTA arrow.
- *        Description intentionally omitted — belongs on the detail page.
- * card — contained tile for Related section and grids.
+ * row  - scan-friendly listing entry: title + eyebrow + CTA arrow.
+ *        Description intentionally omitted - belongs on the detail page.
+ * card - contained tile for Related section and grids.
  */
 export default function CapabilityCard({ capability, locale, prefix, variant = 'row', isFirst = false }: Props) {
   const href = `${LOCALE_PREFIX[locale]}/${prefix}/${capability.slug}`
   const title = t(capability.title, locale)
   const eyebrow = t(capability.eyebrow, locale)
-  // Navigation label — derived from type, not ctaLabel.
+  // Navigation label - derived from type, not ctaLabel.
   // ctaLabel is reserved for the final conversion CTA on detail pages.
   const navLabel = NAV_LABEL[capability.type][locale]
   const cta = t(capability.ctaLabel, locale)
@@ -61,7 +61,7 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
         <Link
           href={href}
           className={`flex-shrink-0 text-xs hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
-          aria-label={`${title} — ${navLabel}`}
+          aria-label={`${title} - ${navLabel}`}
         >
           {navLabel} →
         </Link>
@@ -69,7 +69,7 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
     )
   }
 
-  // card variant — used in Related section
+  // card variant - used in Related section
   const desc = t(capability.shortDescription, locale)
   return (
     <Link

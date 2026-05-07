@@ -55,10 +55,10 @@ export default function CookiesPage() {
         <LegalContent>
           <p>W serwisie profitia.pl wyróżniamy następujące kategorie plików cookies:</p>
           <ul>
-            <li><strong>Cookies niezbędne</strong> — konieczne do prawidłowego funkcjonowania serwisu, nie wymagają zgody użytkownika.</li>
-            <li><strong>Cookies funkcjonalne</strong> — zapamiętują preferencje użytkownika, takie jak wybór języka interfejsu.</li>
-            <li><strong>Cookies analityczne</strong> — umożliwiają analizę ruchu i zachowania użytkowników w celu optymalizacji serwisu.</li>
-            <li><strong>Cookies marketingowe</strong> — mogą być stosowane do wyświetlania spersonalizowanych treści i reklam.</li>
+            <li><strong>Cookies niezbędne</strong> - konieczne do prawidłowego funkcjonowania serwisu, nie wymagają zgody użytkownika.</li>
+            <li><strong>Cookies funkcjonalne</strong> - zapamiętują preferencje użytkownika, takie jak wybór języka interfejsu.</li>
+            <li><strong>Cookies analityczne</strong> - umożliwiają analizę ruchu i zachowania użytkowników w celu optymalizacji serwisu.</li>
+            <li><strong>Cookies marketingowe</strong> - mogą być stosowane do wyświetlania spersonalizowanych treści i reklam.</li>
           </ul>
         </LegalContent>
       </LegalSection>
@@ -69,9 +69,9 @@ export default function CookiesPage() {
             Serwis korzysta z cookies własnych w następujących celach:
           </p>
           <ul>
-            <li>Zapamiętywanie preferencji językowych — plik <strong>PROFITIA_LOCALE</strong> przechowuje wybrany język interfejsu (PL/EN). Ważność: 12 miesięcy.</li>
+            <li>Zapamiętywanie preferencji językowych - plik <strong>PROFITIA_LOCALE</strong> przechowuje wybrany język interfejsu (PL/EN). Ważność: 12 miesięcy.</li>
             <li>Obsługa sesji użytkownika przy korzystaniu z formularzy kontaktowych.</li>
-            <li>Bezpieczeństwo serwisu — ochrona przed atakami CSRF.</li>
+            <li>Bezpieczeństwo serwisu - ochrona przed atakami CSRF.</li>
           </ul>
           <p>
             Powyższe cookies są niezbędne do prawidłowego działania serwisu i nie wymagają odrębnej zgody użytkownika.
@@ -85,7 +85,7 @@ export default function CookiesPage() {
             Serwis może korzystać z usług podmiotów trzecich, które umieszczają własne pliki cookies. Dotyczy to w szczególności:
           </p>
           <ul>
-            <li>Narzędzi analitycznych (np. Google Analytics) — analiza ruchu i zachowania użytkowników.</li>
+            <li>Narzędzi analitycznych (np. Google Analytics) - analiza ruchu i zachowania użytkowników.</li>
             <li>Platform do zarządzania treścią i formularzami.</li>
             <li>Integracji z portalami społecznościowymi.</li>
           </ul>

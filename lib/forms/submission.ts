@@ -1,7 +1,7 @@
 /**
  * lib/forms/submission.ts
  *
- * Submission handlers — send canonical payloads to API routes.
+ * Submission handlers - send canonical payloads to API routes.
  *
  * Architecture supports future integrations:
  *   - HubSpot CRM
@@ -11,7 +11,7 @@
  *   - Webhooks / automation flows
  *
  * CRM integrations belong in the API routes (/api/contact, /api/newsletter),
- * not here. This layer is intentionally thin — build/send/return.
+ * not here. This layer is intentionally thin - build/send/return.
  */
 
 import type {

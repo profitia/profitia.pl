@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * FormField — controlled text/email/tel input with institutional styling.
+ * FormField - controlled text/email/tel input with institutional styling.
  *
  * Label: uppercase micro-label system.
  * Input: border-gray-200, focus:border-gray-400, no shadows, no glow.

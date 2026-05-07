@@ -1,5 +1,5 @@
 /**
- * Seed script — creates the first admin user.
+ * Seed script - creates the first admin user.
  * Run once after db:push:  npx ts-node db/seed.ts
  *
  * Reads credentials from environment variables:

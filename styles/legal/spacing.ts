@@ -1,5 +1,5 @@
 /**
- * PROFITIA — Legal Spacing Token System
+ * PROFITIA - Legal Spacing Token System
  * Reference: docs/design-system/LEGAL_SYSTEM.md
  */
 

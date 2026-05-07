@@ -1,10 +1,10 @@
 /**
- * PullQuote — Editorial Pull Quote Element
+ * PullQuote - Editorial Pull Quote Element
  *
  * Standalone React component for embedding strategic pull quotes
  * within article content via the future CMS / MDX layer.
  *
- * Restrained, editorial — left border rail, italic text.
+ * Restrained, editorial - left border rail, italic text.
  * Not decorative. Reserved for high-signal excerpts from the article.
  */
 

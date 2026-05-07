@@ -1,7 +1,7 @@
 /**
  * TeamQuote
  * ─────────────────────────────────────────────────────────────
- * Editorial pull-quote — a company statement, founding philosophy,
+ * Editorial pull-quote - a company statement, founding philosophy,
  * or mission framing. Large type, restrained border accent.
  *
  * NOT a testimonial widget. NOT a decorative element.

@@ -12,7 +12,7 @@ const COPY = {
       eyebrow: 'Programy · Warsztaty · Coaching',
       title: 'Rozwijamy kompetencje zakupowe poprzez praktyczne programy, warsztaty i edukację opartą na realnych negocjacjach.',
       subtitle:
-        'Akademia Zakupów, warsztaty negocjacyjne, analityka spend lub program dedykowany — każdy format zaprojektowany z myślą o natychmiastowym zastosowaniu w praktyce.',
+        'Akademia Zakupów, warsztaty negocjacyjne, analityka spend lub program dedykowany - każdy format zaprojektowany z myślą o natychmiastowym zastosowaniu w praktyce.',
     },
     cta: {
       note: 'Następny krok',
@@ -25,7 +25,7 @@ const COPY = {
       eyebrow: 'Programmes · Workshops · Coaching',
       title: 'We develop procurement capabilities through practical programmes, workshops and negotiation-based learning.',
       subtitle:
-        'Procurement Academy, negotiation workshops, spend analytics or a custom programme — every format designed for immediate practical application.',
+        'Procurement Academy, negotiation workshops, spend analytics or a custom programme - every format designed for immediate practical application.',
     },
     cta: {
       note: 'Next step',
@@ -36,7 +36,7 @@ const COPY = {
 }
 
 /**
- * Academy learning philosophy — rendered once, between hero and first track.
+ * Academy learning philosophy - rendered once, between hero and first track.
  * Positions the education offer as institutional capability development,
  * not a training catalogue.
  */
@@ -46,7 +46,7 @@ const PHILOSOPHY = {
 }
 
 /**
- * Editorial breaks — signal strategic transitions between learning tracks.
+ * Editorial breaks - signal strategic transitions between learning tracks.
  */
 const EDITORIAL_BREAKS = [
   {
@@ -59,7 +59,7 @@ const EDITORIAL_BREAKS = [
 /**
  * EducationPage
  * ─────────────────────────────────────────────────────────────
- * Executive procurement academy — not a course catalogue.
+ * Executive procurement academy - not a course catalogue.
  * Server Component.
  */
 export default function EducationPage({ locale }: Props) {

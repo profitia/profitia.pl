@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 /**
- * Apply Page — PL
+ * Apply Page - PL
  * ─────────────────────────────────────────────────────────────
  * Institutional application page. Document-centric. Low-emotion UX.
  *
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  *   Breadcrumb → eyebrow → heading → intro → form
  *
  * Suspense boundary is required because ApplicationForm uses
- * useSearchParams() — a client-side API not available during SSR.
+ * useSearchParams() - a client-side API not available during SSR.
  */
 export default function Page() {
   return (
@@ -56,7 +56,7 @@ export default function Page() {
             Wybierz stanowisko i prześlij CV. Odpowiadamy po przeanalizowaniu każdego zgłoszenia.
           </p>
 
-          {/* Form — Suspense required for useSearchParams */}
+          {/* Form - Suspense required for useSearchParams */}
           <Suspense fallback={null}>
             <ApplicationForm locale="pl" />
           </Suspense>

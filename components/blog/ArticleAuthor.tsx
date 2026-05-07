@@ -1,8 +1,8 @@
 /**
- * ArticleAuthor — Author Bio Section
+ * ArticleAuthor - Author Bio Section
  *
  * Shown below article content.
- * Institutional, restrained — not social-media-like.
+ * Institutional, restrained - not social-media-like.
  */
 
 import type { ArticleDetailData } from '@/lib/content/types'

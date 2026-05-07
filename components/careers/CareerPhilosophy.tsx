@@ -12,7 +12,7 @@ interface Props {
 /**
  * CareerPhilosophy
  * ─────────────────────────────────────────────────────────────
- * "How we work" section — institutional operating philosophy.
+ * "How we work" section - institutional operating philosophy.
  * Not values cards. Not mission statements.
  * A clear account of expectations, thinking style and ownership culture.
  */
@@ -22,7 +22,7 @@ export default function CareerPhilosophy({ eyebrow, title, items }: Props) {
       <div className="container-base">
         <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-20">
 
-          {/* Left — label column */}
+          {/* Left - label column */}
           <div className="mb-10 lg:mb-0 lg:pt-1">
             <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-4">
               {eyebrow}
@@ -32,7 +32,7 @@ export default function CareerPhilosophy({ eyebrow, title, items }: Props) {
             </h2>
           </div>
 
-          {/* Right — items */}
+          {/* Right - items */}
           <div className="space-y-8">
             {items.map((item, i) => (
               <div key={i} className="border-b border-gray-100 pb-8 last:border-0 last:pb-0">

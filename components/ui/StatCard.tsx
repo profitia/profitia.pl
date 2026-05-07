@@ -9,7 +9,7 @@ interface Props {
 }
 
 /**
- * Editorial stat block — no box, no border, just large value + supporting label.
+ * Editorial stat block - no box, no border, just large value + supporting label.
  * Use separator=true to add border-t above (for stacked stat lists).
  * dark=true for use on gray-900/black backgrounds.
  */

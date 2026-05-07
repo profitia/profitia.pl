@@ -1,11 +1,11 @@
 'use client'
 
 /**
- * SubmitButton — canonical submit button with loading state.
+ * SubmitButton - canonical submit button with loading state.
  *
  * Loading: restrained spinner (border-top white on transparent ring),
  * no brand colors, no bouncing animations.
- * Disabled: opacity-40 — no layout shift.
+ * Disabled: opacity-40 - no layout shift.
  */
 
 interface SubmitButtonProps {

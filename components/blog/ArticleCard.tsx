@@ -1,8 +1,8 @@
 /**
- * ArticleCard — Editorial Intelligence Block
+ * ArticleCard - Editorial Intelligence Block
  *
  * Used in the blog index grid.
- * NOT a typical content card — editorial intelligence block.
+ * NOT a typical content card - editorial intelligence block.
  * Image, category, reading time, title, excerpt.
  * Clean divider-based separation, no heavy border-box aesthetics.
  *

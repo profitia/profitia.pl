@@ -1,8 +1,8 @@
 {
   "site": {
     "name": "Profitia",
-    "tagline": "Profitia — Doradztwo zakupowe",
-    "description": "Profitia — doradztwo zakupowe. Pomagamy organizacjom podejmować lepsze decyzje zakupowe, łącząc doświadczenie, dane i technologię."
+    "tagline": "Profitia - Doradztwo zakupowe",
+    "description": "Profitia - doradztwo zakupowe. Pomagamy organizacjom podejmować lepsze decyzje zakupowe, łącząc doświadczenie, dane i technologię."
   },
   "nav": {
     "home": "Strona główna",
@@ -53,17 +53,17 @@
   "homepage": {
     "meta": {
       "title": "Zakupy, które realnie wpływają na wynik firmy",
-      "description": "Profitia — doradztwo zakupowe. Pomagamy organizacjom podejmować lepsze decyzje zakupowe, łącząc doświadczenie, dane i technologię."
+      "description": "Profitia - doradztwo zakupowe. Pomagamy organizacjom podejmować lepsze decyzje zakupowe, łącząc doświadczenie, dane i technologię."
     },
     "hero": {
       "eyebrow": "Profitia",
       "h1": "Zakupy, które realnie wpływają na wynik firmy",
       "sub1a": "Nie chodzi o to, żeby negocjować więcej.",
-      "sub1b": "Chodzi o to, żeby podejmować lepsze decyzje — zanim usiądziesz do rozmowy.",
+      "sub1b": "Chodzi o to, żeby podejmować lepsze decyzje - zanim usiądziesz do rozmowy.",
       "sub2": "Łączymy doświadczenie, dane i narzędzia, żeby zakupy przestały być reaktywne i zaczęły realnie wpływać na marżę.",
       "cta": "Umów rozmowę",
       "statLabel": "Średnia poprawa warunków zakupowych",
-      "imgAlt": "Spotkanie negocjacyjne — doradztwo zakupowe Profitia"
+      "imgAlt": "Spotkanie negocjacyjne - doradztwo zakupowe Profitia"
     },
     "problem": {
       "eyebrow": "Kontekst",
@@ -79,26 +79,26 @@
         },
         {
           "title": "Ryzyko dostawców",
-          "desc": "Koncentracja, zależność, płynność finansowa kontrahentów — to teraz elementarz funkcji zakupów."
+          "desc": "Koncentracja, zależność, płynność finansowa kontrahentów - to teraz elementarz funkcji zakupów."
         },
         {
           "title": "Zmienność rynku",
-          "desc": "Ceny surowców, kursy walut, dostępność — zmienne, których nie można ignorować przy podejmowaniu decyzji."
+          "desc": "Ceny surowców, kursy walut, dostępność - zmienne, których nie można ignorować przy podejmowaniu decyzji."
         },
         {
           "title": "Więcej danych, mniej jasności",
-          "desc": "Dane są wszędzie — ale zamiana ich w konkretną decyzję zakupową wymaga czegoś więcej niż Excela i intuicji."
+          "desc": "Dane są wszędzie - ale zamiana ich w konkretną decyzję zakupową wymaga czegoś więcej niż Excela i intuicji."
         },
         {
           "title": "Presja czasu",
-          "desc": "Negocjacje, renegocjacje, zapytania ofertowe — tempo pracy nie pozwala na głębszą analizę wtedy, gdy jest najbardziej potrzebna."
+          "desc": "Negocjacje, renegocjacje, zapytania ofertowe - tempo pracy nie pozwala na głębszą analizę wtedy, gdy jest najbardziej potrzebna."
         },
         {
           "title": "Większa odpowiedzialność",
-          "desc": "Zakupy odpowiadają za więcej — często bez odpowiedniego wsparcia merytorycznego ani narzędzi."
+          "desc": "Zakupy odpowiadają za więcej - często bez odpowiedniego wsparcia merytorycznego ani narzędzi."
         }
       ],
-      "quote": "Zakupy stają się funkcją strategiczną — ale nadal działają reaktywnie."
+      "quote": "Zakupy stają się funkcją strategiczną - ale nadal działają reaktywnie."
     },
     "insight": {
       "eyebrow": "Diagnoza",
@@ -130,21 +130,21 @@
           "title": "Doradztwo",
           "desc": "Rozwiązanie konkretnych problemów zakupowych i wdrożenie rekomendacji w praktyce.",
           "img": "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80",
-          "alt": "Doradztwo zakupowe — spotkanie konsultacyjne"
+          "alt": "Doradztwo zakupowe - spotkanie konsultacyjne"
         },
         {
           "n": "02",
           "title": "Kompetencje",
           "desc": "Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.",
           "img": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-          "alt": "Rozwój kompetencji zakupowych — szkolenie zespołu"
+          "alt": "Rozwój kompetencji zakupowych - szkolenie zespołu"
         },
         {
           "n": "03",
           "title": "Narzędzia",
           "desc": "Dane i narzędzia, które zamieniają przeczucia w uzasadnione decyzje.",
           "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-          "alt": "Narzędzia analityczne — dane zakupowe"
+          "alt": "Narzędzia analityczne - dane zakupowe"
         }
       ],
       "seeMore": "Zobacz więcej →"
@@ -156,7 +156,7 @@
         {
           "n": "01",
           "title": "Diagnoza sytuacji",
-          "desc": "Rozumiemy punkt wyjścia — jakie kategorie, jakie napięcia, jakie dane już masz. Nie zaczynamy od rozwiązania, które mamy w katalogu."
+          "desc": "Rozumiemy punkt wyjścia - jakie kategorie, jakie napięcia, jakie dane już masz. Nie zaczynamy od rozwiązania, które mamy w katalogu."
         },
         {
           "n": "02",
@@ -166,20 +166,20 @@
         {
           "n": "03",
           "title": "Konkretna rekomendacja",
-          "desc": "Nie raport — plan działania. Co zrobić, w jakiej kolejności, z jakim uzasadnieniem. Rekomendacja gotowa do prezentacji zarządowi i wdrożenia z zespołem."
+          "desc": "Nie raport - plan działania. Co zrobić, w jakiej kolejności, z jakim uzasadnieniem. Rekomendacja gotowa do prezentacji zarządowi i wdrożenia z zespołem."
         },
         {
           "n": "04",
           "title": "Wdrożenie z zespołem",
-          "desc": "Realizujemy razem z Twoim zespołem — żeby wiedza i podejście zostały w organizacji. Nie robimy za Was; robimy razem, z transferem kompetencji."
+          "desc": "Realizujemy razem z Twoim zespołem - żeby wiedza i podejście zostały w organizacji. Nie robimy za Was; robimy razem, z transferem kompetencji."
         },
         {
           "n": "05",
           "title": "Weryfikacja efektów",
-          "desc": "Mierzymy, co się zmieniło. Korekta tam, gdzie potrzeba — ciągłe doskonalenie, nie jednorazowy projekt z raportem końcowym."
+          "desc": "Mierzymy, co się zmieniło. Korekta tam, gdzie potrzeba - ciągłe doskonalenie, nie jednorazowy projekt z raportem końcowym."
         }
       ],
-      "footer1": "Nie chodzi o ilość danych —",
+      "footer1": "Nie chodzi o ilość danych -",
       "footer2": "tylko o ich właściwe wykorzystanie."
     },
     "impact": {
@@ -196,15 +196,15 @@
         },
         {
           "title": "Lepszy zespół",
-          "desc": "Twoi ludzie rozumieją nie tylko co robić, ale dlaczego — i potrafią samodzielnie uzasadnić decyzje."
+          "desc": "Twoi ludzie rozumieją nie tylko co robić, ale dlaczego - i potrafią samodzielnie uzasadnić decyzje."
         },
         {
           "title": "Spójność",
-          "desc": "Jeden sposób myślenia o zakupach w całej organizacji — zamiast różnych podejść w każdym departamencie."
+          "desc": "Jeden sposób myślenia o zakupach w całej organizacji - zamiast różnych podejść w każdym departamencie."
         },
         {
           "title": "Przewidywalność",
-          "desc": "Zamiast niespodzianek od dostawców — terminarz renegocjacji, monitoring rynku i gotowość na zmianę."
+          "desc": "Zamiast niespodzianek od dostawców - terminarz renegocjacji, monitoring rynku i gotowość na zmianę."
         },
         {
           "title": "Realny wynik",
@@ -229,7 +229,7 @@
         {
           "n": "03",
           "title": "Trudne decyzje zakupowe",
-          "desc": "Zmiana dostawcy, konsolidacja kategorii, decyzja make-or-buy. Wysokie stawki, wiele zmiennych i presja czasu — potrzebujesz zewnętrznego punktu widzenia."
+          "desc": "Zmiana dostawcy, konsolidacja kategorii, decyzja make-or-buy. Wysokie stawki, wiele zmiennych i presja czasu - potrzebujesz zewnętrznego punktu widzenia."
         },
         {
           "n": "04",
@@ -249,7 +249,7 @@
           "label": "średnia poprawa warunków zakupowych w pierwszym cyklu renegocjacji"
         },
         {
-          "val": "3–6 tyg.",
+          "val": "3-6 tyg.",
           "label": "czas od diagnozy do pierwszych konkretnych wyników w terenie"
         },
         {
@@ -262,11 +262,11 @@
     "cases": {
       "eyebrow": "Przypadek",
       "h2": "Jak to wygląda w praktyce",
-      "imgAlt": "Analiza danych zakupowych — przypadek firmy produkcyjnej",
+      "imgAlt": "Analiza danych zakupowych - przypadek firmy produkcyjnej",
       "blocks": [
         {
           "label": "Problem",
-          "text": "Firma produkcyjna, 4 kluczowe kategorie zakupowe — każda zarządzana przez inny dział, inaczej. Brak benchmarków, brak strategii. Dwóch kluczowych dostawców wysyła podwyżki w tym samym kwartale o łącznie 14%."
+          "text": "Firma produkcyjna, 4 kluczowe kategorie zakupowe - każda zarządzana przez inny dział, inaczej. Brak benchmarków, brak strategii. Dwóch kluczowych dostawców wysyła podwyżki w tym samym kwartale o łącznie 14%."
         },
         {
           "label": "Działanie",
@@ -274,14 +274,14 @@
         },
         {
           "label": "Efekt",
-          "text": "Negocjacje zakończone przy 6% wzroście zamiast 14% — połowiczne przejęcie podwyżki. Strategia na kolejne 18 miesięcy dla obu kategorii. Zespół z modelem pracy gotowym do samodzielnego stosowania."
+          "text": "Negocjacje zakończone przy 6% wzroście zamiast 14% - połowiczne przejęcie podwyżki. Strategia na kolejne 18 miesięcy dla obu kategorii. Zespół z modelem pracy gotowym do samodzielnego stosowania."
         }
       ]
     },
     "cta": {
       "eyebrow": "Następny krok",
       "h2": "Zacznij od jednego konkretnego przypadku",
-      "sub1": "Możemy przejść przez jedną sytuację i pokazać lepsze podejście — bez zobowiązań i bez ogólnikowych propozycji.",
+      "sub1": "Możemy przejść przez jedną sytuację i pokazać lepsze podejście - bez zobowiązań i bez ogólnikowych propozycji.",
       "sub2a": "Bez zobowiązań. Bez sprzedaży.",
       "sub2b": "Konkretna rozmowa o Twojej sytuacji.",
       "button": "Umów rozmowę"
@@ -297,7 +297,7 @@
           "title": "Cena to opinia. Koszt to fakt.",
           "cta": "Czytaj analizę →",
           "img": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80",
-          "imgAlt": "Analiza kosztów — struktura modelu should-cost"
+          "imgAlt": "Analiza kosztów - struktura modelu should-cost"
         },
         {
           "slug": "dzien-z-zycia-kupca-kiedy-stala-cena-przegrywa-z-faktami",
@@ -305,7 +305,7 @@
           "title": "Dzień z życia kupca: kiedy stała cena przegrywa z faktami",
           "cta": "Czytaj analizę →",
           "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
-          "imgAlt": "Negocjacje zakupowe — analiza should-cost przy stole"
+          "imgAlt": "Negocjacje zakupowe - analiza should-cost przy stole"
         },
         {
           "slug": "analiza-finansowa-dostawcow",
@@ -313,7 +313,7 @@
           "title": "Analiza finansowa dostawców",
           "cta": "Czytaj analizę →",
           "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80",
-          "imgAlt": "Analiza finansowa — wskaźniki kondycji dostawcy"
+          "imgAlt": "Analiza finansowa - wskaźniki kondycji dostawcy"
         }
       ]
     }

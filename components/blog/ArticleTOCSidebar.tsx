@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * ArticleTOCSidebar — TOC Interaction Layer (Client Component)
+ * ArticleTOCSidebar - TOC Interaction Layer (Client Component)
  *
  * Receives pre-computed TOC items (extracted server-side in ArticleLayout).
  * Manages scroll-based active section tracking via IntersectionObserver.

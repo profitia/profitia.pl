@@ -1,8 +1,8 @@
-# SECTION 34 — CANONICAL CAPABILITY EDITORIAL SYSTEM
+# SECTION 34 - CANONICAL CAPABILITY EDITORIAL SYSTEM
 
 > **Status:** Source of Truth | Version 1.0 | May 2026
 > **Scope:** Services listing, Education listing, Capability detail pages, Related capabilities, CTA structure, Editorial breaks, Footer behavior on capability routes.
-> **Obowiązuje od:** ETAP 6.6 (May 2026) — confirmed canonical after ETAP 6.8.1.
+> **Obowiązuje od:** ETAP 6.6 (May 2026) - confirmed canonical after ETAP 6.8.1.
 
 ---
 
@@ -15,7 +15,7 @@ It is an **institutional procurement intelligence publication layer**.
 It must read like:
 - a strategic report published by a serious advisory institution,
 - an executive briefing prepared for C-suite review,
-- an operating philosophy publication — not a product catalogue,
+- an operating philosophy publication - not a product catalogue,
 - a knowledge platform built on earned authority.
 
 **It must not read like:**
@@ -38,9 +38,9 @@ When in doubt: add space. Remove contrast. Reduce density. The content earns att
 
 ### Three editorial tiers (Services listing)
 
-The listing pages use a three-tier section hierarchy — not a uniform grid.
+The listing pages use a three-tier section hierarchy - not a uniform grid.
 
-#### Tier 1 — Dominant
+#### Tier 1 - Dominant
 
 One section per page. The primary anchor practice. Most commanding editorial presence.
 
@@ -50,11 +50,11 @@ One section per page. The primary anchor practice. Most commanding editorial pre
 - Description: present, `text-[15px] text-gray-500`
 - Gap: `lg:gap-24`
 
-Currently: **Doradztwo i Transformacja** (Advisory & Transformation) — marked `dominant: true` in `categories.ts`.
+Currently: **Doradztwo i Transformacja** (Advisory & Transformation) - marked `dominant: true` in `categories.ts`.
 
 A dominant section communicates: *this is the centre of gravity of our practice*.
 
-#### Tier 2 — Featured
+#### Tier 2 - Featured
 
 Two sections. Significant practice tracks, clearly present, secondary to dominant.
 
@@ -66,7 +66,7 @@ Two sections. Significant practice tracks, clearly present, secondary to dominan
 
 Currently: **Negocjacje i Cost Intelligence**, **Dane i Analityka**.
 
-#### Tier 3 — Standard
+#### Tier 3 - Standard
 
 One or more sections. Supporting practices. Quiet, matter-of-fact.
 
@@ -79,11 +79,11 @@ Currently: **Rozwój Kompetencji** (Capability Development).
 
 ### Why Education has no dominant section
 
-Education is structured differently — intentionally.
+Education is structured differently - intentionally.
 
 Services carries strategic pressure, hierarchy, executive authority. One practice leads. Others follow.
 
-Education carries reflection, balance, institutional development. All tracks are peers. No track commands the page — they invite.
+Education carries reflection, balance, institutional development. All tracks are peers. No track commands the page - they invite.
 
 This distinction between **strategic pressure** (Services) and **institutional development** (Education) is architecturally significant. It must be preserved in all future evolution.
 
@@ -102,24 +102,24 @@ This creates an optical entry point per section. The eye enters through the anch
 
 ### Chapter cadence
 
-The listing page and detail pages are structured as a series of chapters, not sections. Each chapter has a distinct weight and pacing. The reader experiences rhythm — a sequence of tension, structure, breath — not a sequence of identically designed blocks.
+The listing page and detail pages are structured as a series of chapters, not sections. Each chapter has a distinct weight and pacing. The reader experiences rhythm - a sequence of tension, structure, breath - not a sequence of identically designed blocks.
 
-### Marginalia — editorial breaks
+### Marginalia - editorial breaks
 
 Between selected sections on listing pages, brief editorial statements appear. These are not separators. They are not designed quote blocks.
 
-They are **marginal strategic annotations** — the kind of quiet observation that appears in the margin of a serious report.
+They are **marginal strategic annotations** - the kind of quiet observation that appears in the margin of a serious report.
 
 Visual characteristics:
 - `text-[11px] text-gray-200 leading-[1.9] max-w-[22rem]`
-- Low contrast — annotation, not announcement
-- Narrow column — marginalia, not centred separator
-- High line-height within — reflective, not declarative
+- Low contrast - annotation, not announcement
+- Narrow column - marginalia, not centred separator
+- High line-height within - reflective, not declarative
 
 Editorial characteristics:
 - Written as institutional observation, not as marketing copy
 - Never begins with "We" or "Our"
-- Never sells — only observes
+- Never sells - only observes
 - Appears once or twice per listing page, never at every section boundary
 
 ### Philosophy block (Education only)
@@ -128,11 +128,11 @@ A single institutional statement about learning philosophy appears between the h
 
 ### Reading anchors
 
-Every section on both listing and detail pages has at least one optical anchor — a typographic element with slightly more presence than its surroundings. This gives the eye something to enter through. Without anchors, equal-weight elements produce scanning fatigue.
+Every section on both listing and detail pages has at least one optical anchor - a typographic element with slightly more presence than its surroundings. This gives the eye something to enter through. Without anchors, equal-weight elements produce scanning fatigue.
 
 ### Institutional silence between chapters
 
-Chapter boundaries on detail pages are marked by whitespace alone — `border-t border-gray-100` and generous padding. No decorative separators. No accent lines. No visual noise.
+Chapter boundaries on detail pages are marked by whitespace alone - `border-t border-gray-100` and generous padding. No decorative separators. No accent lines. No visual noise.
 
 The silence between chapters is the transition.
 
@@ -144,46 +144,46 @@ The silence between chapters is the transition.
 
 ```
 1. Hero (CapabilityDetail)
-   — Breadcrumb → eyebrow → large title → lede paragraph
-   — pt-20 pb-16, lede text-[17px] text-gray-600 max-w-[44rem]
+   - Breadcrumb → eyebrow → large title → lede paragraph
+   - pt-20 pb-16, lede text-[17px] text-gray-600 max-w-[44rem]
 
 2. Thesis (CapabilityPage, conditional)
-   — Expert institutional observation — one or two sentences
-   — Not a slogan. Not a summary. An authoritative opening.
-   — pt-16 pb-14 border-b border-gray-100
-   — text-[16px] text-gray-600 max-w-[40rem]
+   - Expert institutional observation - one or two sentences
+   - Not a slogan. Not a summary. An authoritative opening.
+   - pt-16 pb-14 border-b border-gray-100
+   - text-[16px] text-gray-600 max-w-[40rem]
 
-3. Problem (CapabilityPage — "Where organisations get stuck")
-   — Numbered. Compressed density. The weight of the problem.
-   — Most tension in the document
+3. Problem (CapabilityPage - "Where organisations get stuck")
+   - Numbered. Compressed density. The weight of the problem.
+   - Most tension in the document
 
-4. Methodology (CapabilityMethodology — "How engagements work")
-   — Numbered. Structured. Process accent line (border-gray-200).
-   — Ordered clarity — the most structured section
+4. Methodology (CapabilityMethodology - "How engagements work")
+   - Numbered. Structured. Process accent line (border-gray-200).
+   - Ordered clarity - the most structured section
 
-5. Outcome (CapabilityOutcome — "What changes operationally")
-   — Numbered. Airy. Forward-looking.
-   — Most breathing in the document
+5. Outcome (CapabilityOutcome - "What changes operationally")
+   - Numbered. Airy. Forward-looking.
+   - Most breathing in the document
 
-6. Engagement (CapabilityEngagement — "Engagement format")
-   — DL metadata grid. Quietest section.
-   — Document close, not feature list.
+6. Engagement (CapabilityEngagement - "Engagement format")
+   - DL metadata grid. Quietest section.
+   - Document close, not feature list.
 
 7. Related capabilities (CapabilityRelated)
-   — Editorial rows, not card grid
-   — Reading continuation, not appendix
+   - Editorial rows, not card grid
+   - Reading continuation, not appendix
 
 8. Institutional CTA (CapabilityCTA)
-   — Invitation to conversation. Single sentence. Single link.
+   - Invitation to conversation. Single sentence. Single link.
 
 9. Footer
-   — Institutional signature close
-   — Newsletter suppressed on all capability pages
+   - Institutional signature close
+   - Newsletter suppressed on all capability pages
 ```
 
 ### Emotional density progression
 
-The four body sections carry distinct emotional density. The reader feels a progression — tension, clarity, relief, quiet — not a sequence of identical templates.
+The four body sections carry distinct emotional density. The reader feels a progression - tension, clarity, relief, quiet - not a sequence of identical templates.
 
 | Section | Emotional density | Key characteristics |
 |---------|------------------|---------------------|
@@ -196,7 +196,7 @@ This progression is not decorative. It mirrors how a thoughtful executive reads:
 
 ### The thesis layer
 
-Each capability has an institutional thesis — one or two sentences that open the body of the detail page. These are stored in `lib/capabilities/thesis.ts` and rendered between the hero lede and the Problem section.
+Each capability has an institutional thesis - one or two sentences that open the body of the detail page. These are stored in `lib/capabilities/thesis.ts` and rendered between the hero lede and the Problem section.
 
 **What the thesis is:**
 - An expert observation, not a sales claim
@@ -218,9 +218,9 @@ Each capability has an institutional thesis — one or two sentences that open t
 
 Navigation CTA and conversion CTA must never share the same language.
 
-**Navigation CTA** — appears on listing rows and related capability rows. The click leads to a detail page. The language must reflect exploration.
+**Navigation CTA** - appears on listing rows and related capability rows. The click leads to a detail page. The language must reflect exploration.
 
-**Conversion CTA** — appears exclusively at the bottom of detail pages (`CapabilityCTA`). The click leads to contact. The language reflects intent.
+**Conversion CTA** - appears exclusively at the bottom of detail pages (`CapabilityCTA`). The click leads to contact. The language reflects intent.
 
 ### Official navigation label system
 
@@ -229,7 +229,7 @@ Navigation CTA and conversion CTA must never share the same language.
 | `service` | `Zobacz usługę →` | `Explore service →` |
 | `education` | `Zobacz program →` | `Explore programme →` |
 
-These labels are derived from `capability.type` — not from `ctaLabel` — in `CapabilityCard` and `CapabilityRelated`. This makes the semantic distinction structural, not textual. Future capabilities inherit correct navigation language automatically.
+These labels are derived from `capability.type` - not from `ctaLabel` - in `CapabilityCard` and `CapabilityRelated`. This makes the semantic distinction structural, not textual. Future capabilities inherit correct navigation language automatically.
 
 The `ctaLabel` field in `data.ts` is preserved and used exclusively by `CapabilityCTA` at the bottom of detail pages.
 
@@ -243,15 +243,15 @@ Presenting "Umów rozmowę" as the CTA for a link that leads to a detail page cr
 
 Related capability rows are **reading continuation**, not a "you might also like" UI block.
 
-They appear at the end of the body, before the final CTA. They invite the reader to continue exploring adjacent expertise — not to convert, but to deepen understanding.
+They appear at the end of the body, before the final CTA. They invite the reader to continue exploring adjacent expertise - not to convert, but to deepen understanding.
 
 Visual system:
-- Simple `border-b border-gray-100` rows — identical to listing page rows
+- Simple `border-b border-gray-100` rows - identical to listing page rows
 - No rounded cards, no borders, no shadows
-- Section label: `text-[9px] text-gray-300` — document metadata level
-- Section title: `text-base font-medium text-gray-800` — present but not commanding
+- Section label: `text-[9px] text-gray-300` - document metadata level
+- Section title: `text-base font-medium text-gray-800` - present but not commanding
 - Per-row spacing: `py-6`
-- CTA per row: `text-gray-500` — readable, secondary
+- CTA per row: `text-gray-500` - readable, secondary
 
 Cross-type safety: the URL prefix (`/services/` vs `/education/`) is derived from `cap.type`, not from the host page's prefix. A service detail page can correctly link to education capabilities.
 
@@ -263,14 +263,14 @@ Maximum three related capabilities per page.
 
 On capability pages (both listing and detail), the newsletter section is suppressed.
 
-Reason: detail pages close with an institutional CTA invitation — a single, considered statement inviting conversation. Stacking a newsletter section after this creates redundant endings and dilutes the institutional close.
+Reason: detail pages close with an institutional CTA invitation - a single, considered statement inviting conversation. Stacking a newsletter section after this creates redundant endings and dilutes the institutional close.
 
 On capability pages, the footer operates as:
 - Institutional signature (not utility navigation)
 - Larger vertical rhythm: `py-20` for the main grid
-- Column labels at `text-gray-500` — readable as section headers, not as design decoration
+- Column labels at `text-gray-500` - readable as section headers, not as design decoration
 
-The footer should feel like the final page of a strategic report — present, dignified, quiet.
+The footer should feel like the final page of a strategic report - present, dignified, quiet.
 
 ---
 
@@ -307,7 +307,7 @@ Capability listings are not a product catalogue. They are an inventory of expert
 
 ### 2. The three-tier hierarchy must be preserved
 
-One dominant section, selected featured sections, and supporting standard sections. This asymmetry creates hierarchy narrative. A grid of equal-weight sections produces no narrative — only a list.
+One dominant section, selected featured sections, and supporting standard sections. This asymmetry creates hierarchy narrative. A grid of equal-weight sections produces no narrative - only a list.
 
 ### 3. Institutional silence must not be filled
 
@@ -315,7 +315,7 @@ Future designers will be tempted to fill whitespace. They must not. The space be
 
 ### 4. CTA semantics must remain structurally separated
 
-Navigation labels (listing rows) and conversion labels (final CTA) must never converge. This distinction is now structural — `NAV_LABEL` is derived from `capability.type`, `ctaLabel` is the conversion field. If this is ever collapsed, rebuild it structurally.
+Navigation labels (listing rows) and conversion labels (final CTA) must never converge. This distinction is now structural - `NAV_LABEL` is derived from `capability.type`, `ctaLabel` is the conversion field. If this is ever collapsed, rebuild it structurally.
 
 ### 5. The emotional density progression must be maintained
 
@@ -340,7 +340,7 @@ Every future change to the capability system must satisfy this test:
 
 > *Does this change increase the institutional editorial feel, or does it increase the designed UI feel?*
 
-If the answer is "designed UI feel" — the change is wrong.
+If the answer is "designed UI feel" - the change is wrong.
 
 Acceptable evolution directions:
 - More breathing, not less
@@ -360,13 +360,86 @@ Unacceptable evolution directions:
 
 ---
 
-## APPENDIX — REFERENCE CONCEPTS
+## TYPOGRAPHIC NEUTRALITY
 
-These are conceptual references — not visual templates. They describe the quality of thinking that informs this system.
+### Standard separator
+
+Profitia uses **space-hyphen-space** as the canonical sentence separator across all platform surfaces.
+
+```
+Correct:  "analiza kosztów - rekomendacje - wdrożenie"
+Correct:  "Strategic advisory - negotiation support - implementation"
+Forbidden: "analiza kosztów — rekomendacje — wdrożenie"
+Forbidden: "analiza kosztów – rekomendacje – wdrożenie"
+```
+
+This applies to: copy, metadata, labels, CTAs, document titles, section introductions, legal text, editorial prose, and documentation.
+
+### Why the em dash was retired
+
+The em dash (`—`) belongs to a typographic register associated with:
+- editorial magazines and literary publishing,
+- luxury brand communication,
+- designed sentence drama,
+- expressive typographic pacing.
+
+This is not the register Profitia operates in.
+
+Profitia's editorial voice is positioned at:
+- institutional documentation,
+- executive briefings,
+- consulting papers,
+- procurement operating systems.
+
+Within this register, the em dash reads as performative. It introduces a typographic tension that runs counter to the platform's institutional calm. The standard hyphen is calmer, less expressive, more procedural, and more aligned with the authority that comes from precision rather than from stylistic gesture.
+
+### What the hyphen communicates
+
+The hyphen does not interrupt. It connects. It separates clauses with procedural neutrality. It does not dramatize the pause. It does not ask the reader to feel the rhythm.
+
+This is precisely what institutional communication requires: separators that carry information without carrying emotion.
+
+### Platform priorities
+
+Typographic choices must support:
+- **Procedural clarity** - the reader moves through the text without stylistic friction,
+- **Institutional neutrality** - the typography does not editorialise,
+- **Executive readability** - the text reads efficiently at C-suite pace,
+- **Restrained cadence** - rhythm comes from sentence construction, not punctuation dramatics.
+
+Not:
+- expressive typography,
+- luxury editorial pacing,
+- designed sentence drama,
+- typographic personality signals.
+
+### Future rule - absolute
+
+The following are **permanently prohibited** across all platform surfaces, documentation, and copy:
+
+| Character | Unicode | Name | Status |
+|-----------|---------|------|--------|
+| `—` | U+2014 | Em dash | FORBIDDEN |
+| `–` | U+2013 | En dash (as separator) | FORBIDDEN |
+| `--` | - | Double hyphen as separator | FORBIDDEN |
+
+**Permitted exceptions** (technical contexts only):
+- Phone numbers and numeric ranges: `3-6 tyg.` (plain hyphen, no spaces)
+- URL slugs, file names, CSS class names
+- Code syntax and operators
+- Compound words where hyphen is grammatically correct
+
+**Default separator for editorial use:** ` - ` (space-hyphen-space, always).
+
+---
+
+## APPENDIX - REFERENCE CONCEPTS
+
+These are conceptual references - not visual templates. They describe the quality of thinking that informs this system.
 
 ### Institutional report cadence
 
-The best strategic documents do not announce themselves. They open quietly, establish authority through precision, and close without fanfare. The reader finishes knowing more than they started — not because they were sold to, but because the document respected their intelligence.
+The best strategic documents do not announce themselves. They open quietly, establish authority through precision, and close without fanfare. The reader finishes knowing more than they started - not because they were sold to, but because the document respected their intelligence.
 
 This is the reading experience the capability system aims to produce.
 
@@ -380,11 +453,11 @@ The thesis layer, the problem section and the methodology steps should carry thi
 
 Academic papers move through a predictable but satisfying rhythm: abstract → problem → method → findings → implications. The reader knows where they are in the document. The progression feels inevitable.
 
-The capability detail page mirrors this rhythm. The reader is never surprised by what comes next — they are simply drawn forward.
+The capability detail page mirrors this rhythm. The reader is never surprised by what comes next - they are simply drawn forward.
 
 ### Procurement operating philosophy
 
-The most effective procurement institutions publish their thinking. They do not sell their services — they demonstrate their expertise through the quality and depth of their published positions. Clients engage not because they were persuaded, but because they recognised expertise.
+The most effective procurement institutions publish their thinking. They do not sell their services - they demonstrate their expertise through the quality and depth of their published positions. Clients engage not because they were persuaded, but because they recognised expertise.
 
 The capability system is the published voice of that expertise.
 
@@ -396,32 +469,32 @@ For technical implementation details, see the source components:
 
 ```
 lib/capabilities/
-  types.ts         — Core types including dominant?: boolean and Capability
-  data.ts          — 22 capabilities (PL + EN) — ctaLabel for conversion only
-  categories.ts    — SERVICE_SECTIONS, EDUCATION_SECTIONS (dominant/featured flags)
-  thesis.ts        — CAPABILITY_THESIS: Record<string, { pl: string; en: string }>
-  utils.ts         — getCapabilitiesForSection, getRelatedCapabilities
-  index.ts         — All exports
+  types.ts         - Core types including dominant?: boolean and Capability
+  data.ts          - 22 capabilities (PL + EN) - ctaLabel for conversion only
+  categories.ts    - SERVICE_SECTIONS, EDUCATION_SECTIONS (dominant/featured flags)
+  thesis.ts        - CAPABILITY_THESIS: Record<string, { pl: string; en: string }>
+  utils.ts         - getCapabilitiesForSection, getRelatedCapabilities
+  index.ts         - All exports
 
 components/capabilities/
-  CapabilityHero.tsx        — variant: 'services' | 'education'
-  CapabilityLayout.tsx      — listing layout: hero → philosophy → sections → CTA
-  CapabilitySection.tsx     — three-tier: dominant / featured / standard
-  CapabilityCard.tsx        — row: isFirst hierarchy, NAV_LABEL by type
-  CapabilityPage.tsx        — detail: thesis → problem → ... → CTA
-  CapabilityDetail.tsx      — hero block with lede
-  CapabilityMethodology.tsx — numbered process steps
-  CapabilityOutcome.tsx     — numbered outcomes, airy
-  CapabilityEngagement.tsx  — metadata dl grid, quietest
-  CapabilityRelated.tsx     — editorial rows, cross-type URL safe
-  CapabilityCTA.tsx         — institutional invitation, conversion only
-  CapabilityMeta.tsx        — eyebrow metadata
+  CapabilityHero.tsx        - variant: 'services' | 'education'
+  CapabilityLayout.tsx      - listing layout: hero → philosophy → sections → CTA
+  CapabilitySection.tsx     - three-tier: dominant / featured / standard
+  CapabilityCard.tsx        - row: isFirst hierarchy, NAV_LABEL by type
+  CapabilityPage.tsx        - detail: thesis → problem → ... → CTA
+  CapabilityDetail.tsx      - hero block with lede
+  CapabilityMethodology.tsx - numbered process steps
+  CapabilityOutcome.tsx     - numbered outcomes, airy
+  CapabilityEngagement.tsx  - metadata dl grid, quietest
+  CapabilityRelated.tsx     - editorial rows, cross-type URL safe
+  CapabilityCTA.tsx         - institutional invitation, conversion only
+  CapabilityMeta.tsx        - eyebrow metadata
 
 components/layout/
-  Footer.tsx  — newsletter suppressed on all /services|education routes
+  Footer.tsx  - newsletter suppressed on all /services|education routes
 ```
 
 ---
 
-*Last updated: May 2026 — following ETAP 6.6 through ETAP 6.8.1.*
+*Last updated: May 2026 - following ETAP 6.6 through ETAP 6.8.1.*
 *This document is part of the Profitia Design System canon. It supersedes any prior informal notes or inline component comments on capability editorial philosophy.*

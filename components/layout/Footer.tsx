@@ -36,15 +36,15 @@ export default function Footer() {
   const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
     (p) => pathname === p || pathname === `/en${p}`
   )
-  // Article pages: inline newsletter present — suppress footer newsletter
+  // Article pages: inline newsletter present - suppress footer newsletter
   // and use compressed footer rhythm
   const isArticlePage = /^(\/en)?\/blog\/[^/]+/.test(pathname)
-  // About page: quiet CTA → footer transition — suppress newsletter, compressed rhythm
+  // About page: quiet CTA → footer transition - suppress newsletter, compressed rhythm
   const isAboutPage = /^(\/en)?\/about\/?$/.test(pathname)
-  // Capability pages (services/education — both listing and detail): no newsletter.
+  // Capability pages (services/education - both listing and detail): no newsletter.
   // Detail pages already close with CapabilityCTA; stacking newsletter creates too many endings.
   const isCapabilityPage = /^(\/en)?\/(services|education)(\/[^/]+)?\/?$/.test(pathname)
-  // Career pages: close with institutional CTA — suppress newsletter for same reason.
+  // Career pages: close with institutional CTA - suppress newsletter for same reason.
   const isCareerPage = /^(\/en)?\/career(\/[^/]+)?\/?$/.test(pathname)
   const NAV_LINKS = [
     { href: isEN ? '/en' : '/', label: dict.nav.home },
@@ -61,7 +61,7 @@ export default function Footer() {
     <footer className="bg-white border-t border-gray-100">
 
       {/* ══════════════════════════════════════════════════
-          SECTION 1 — NEWSLETTER
+          SECTION 1 - NEWSLETTER
           ══════════════════════════════════════════════════ */}
       {!isLegalPage && !isArticlePage && !isAboutPage && !isCapabilityPage && !isCareerPage && (
       <div className="border-b border-gray-100">
@@ -85,7 +85,7 @@ export default function Footer() {
       )}
 
       {/* ══════════════════════════════════════════════════
-          SECTION 2 — MAIN FOOTER GRID
+          SECTION 2 - MAIN FOOTER GRID
           ══════════════════════════════════════════════════ */}
       <div className={`container-base ${isArticlePage ? 'py-10' : isAboutPage ? 'py-14' : isCapabilityPage || isCareerPage ? 'py-20' : 'py-16'}`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
@@ -235,7 +235,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="block text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
               >
-                PEDP — broszura informacyjna ↗
+                PEDP - broszura informacyjna ↗
               </a>
               <a
                 href="https://profitia.pl/images/profitia/cips-globalstandard_2017_pl.pdf"
@@ -272,7 +272,7 @@ export default function Footer() {
       </div>
 
       {/* ══════════════════════════════════════════════════
-          SECTION 3 — LEGAL BAR
+          SECTION 3 - LEGAL BAR
           ══════════════════════════════════════════════════ */}
       <div className="border-t border-gray-100">
           <div className={`container-base ${isCapabilityPage ? 'py-6' : isArticlePage || isAboutPage ? 'py-4' : 'py-5'} flex items-center justify-between gap-4 flex-wrap`}>

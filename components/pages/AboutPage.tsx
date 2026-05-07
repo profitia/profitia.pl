@@ -4,20 +4,20 @@
  * Canonical About page for Profitia. PL + EN via locale prop.
  *
  * SECTIONS:
- *   1. Hero           — eyebrow, headline, subtitle
- *   2. Foundation     — stats column + prose (company origin, mission)
- *   3. Capabilities   — 4 numbered capability rows
- *   4. Philosophy     — 3 first-principles pillars + quote
- *   5. Leadership     — editorial team rows
- *   6. Credentials    — CIPS, trust, institutional authority
- *   7. Quiet CTA      — strategic conversation nudge, no sales pressure
+ *   1. Hero           - eyebrow, headline, subtitle
+ *   2. Foundation     - stats column + prose (company origin, mission)
+ *   3. Capabilities   - 4 numbered capability rows
+ *   4. Philosophy     - 3 first-principles pillars + quote
+ *   5. Leadership     - editorial team rows
+ *   6. Credentials    - CIPS, trust, institutional authority
+ *   7. Quiet CTA      - strategic conversation nudge, no sales pressure
  *
  * DESIGN CONSTRAINTS:
  *   - No shadows, no color, no gradients
  *   - container-base for all sections
  *   - border-t border-gray-100 between sections
  *   - Gray-500 minimum for all readable supporting text
- *   - Editorial restraint — institutional, not startup
+ *   - Editorial restraint - institutional, not startup
  */
 
 import Link from 'next/link'
@@ -132,13 +132,13 @@ const COPY = {
       eyebrow: 'Procurement Advisory · Warsaw · Since 2010',
       h1: 'The best negotiations begin before you enter the room.',
       subtitle:
-        'Profitia is the procurement competence hub for business leaders in Poland. We combine procurement strategy with operational intelligence — so your negotiations always begin with an information advantage.',
+        'Profitia is the procurement competence hub for business leaders in Poland. We combine procurement strategy with operational intelligence - so your negotiations always begin with an information advantage.',
     },
     foundation: {
       eyebrow: 'Foundation',
       h2: 'Polish firm. International standards.',
       p1: 'Profitia was founded in 2010 with a mission to raise the standards of procurement management in Poland. Built on experience gained at international consulting firms, with Polish capital and a deep grounding in local market realities.',
-      p2: 'We help Poland\'s largest companies improve their procurement processes — from strategy and tools, through team competencies, to concrete negotiation results. We work where procurement decisions genuinely affect margins and competitive position.',
+      p2: 'We help Poland\'s largest companies improve their procurement processes - from strategy and tools, through team competencies, to concrete negotiation results. We work where procurement decisions genuinely affect margins and competitive position.',
       stats: [
         { value: '2010', label: 'founded' },
         { value: '20+', label: 'years experience' },
@@ -153,12 +153,12 @@ const COPY = {
         {
           num: '01',
           name: 'Procurement Advisory',
-          desc: 'Procurement strategy, process optimisation, category management and internal competency building. We work with companies at both strategic and operational level — where procurement decisions have the greatest impact on results.',
+          desc: 'Procurement strategy, process optimisation, category management and internal competency building. We work with companies at both strategic and operational level - where procurement decisions have the greatest impact on results.',
         },
         {
           num: '02',
           name: 'Negotiation Preparation',
-          desc: 'Market intelligence, cost benchmarks, negotiating position mapping and strategy development. Your negotiations begin with an information advantage — not assumptions.',
+          desc: 'Market intelligence, cost benchmarks, negotiating position mapping and strategy development. Your negotiations begin with an information advantage - not assumptions.',
         },
         {
           num: '03',
@@ -168,7 +168,7 @@ const COPY = {
         {
           num: '04',
           name: 'SpendGuru',
-          desc: 'Procurement intelligence platform for negotiation preparation. Automated spend analysis, market benchmarks and category recommendations — for companies that want to negotiate systematically.',
+          desc: 'Procurement intelligence platform for negotiation preparation. Automated spend analysis, market benchmarks and category recommendations - for companies that want to negotiate systematically.',
         },
       ],
     },
@@ -176,7 +176,7 @@ const COPY = {
       eyebrow: 'Approach',
       h2: 'How we think about procurement.',
       quote:
-        'Data without context is just numbers. Context without data is just intuition. We combine both — and that is our edge.',
+        'Data without context is just numbers. Context without data is just intuition. We combine both - and that is our edge.',
       principles: [
         {
           name: 'Intelligence over intuition',
@@ -184,7 +184,7 @@ const COPY = {
         },
         {
           name: 'Long-term advantage, not one-off savings',
-          desc: 'The goal isn\'t one better contract. It\'s systemic procurement maturity that compounds year over year — across every tender, category and market.',
+          desc: 'The goal isn\'t one better contract. It\'s systemic procurement maturity that compounds year over year - across every tender, category and market.',
         },
         {
           name: 'Transparent methodology',
@@ -202,15 +202,15 @@ const COPY = {
       eyebrow: 'Credentials',
       h2: 'A certified centre of excellence.',
       cipsDesc:
-        'Profitia is a certified CIPS (Chartered Institute of Procurement & Supply) partner in Poland — a recognised Centre of Excellence. This is the highest standard of qualification in the procurement industry, confirmed by the world\'s leading procurement body.',
+        'Profitia is a certified CIPS (Chartered Institute of Procurement & Supply) partner in Poland - a recognised Centre of Excellence. This is the highest standard of qualification in the procurement industry, confirmed by the world\'s leading procurement body.',
       points: [
         {
           label: 'CIPS Centre of Excellence',
-          desc: 'Certified CIPS partner — the world\'s leading procurement body with over 200,000 members in 150 countries.',
+          desc: 'Certified CIPS partner - the world\'s leading procurement body with over 200,000 members in 150 countries.',
         },
         {
           label: 'MCIPS Certification',
-          desc: 'Profitia partners hold MCIPS certificates — the highest level of professional CIPS procurement qualification.',
+          desc: 'Profitia partners hold MCIPS certificates - the highest level of professional CIPS procurement qualification.',
         },
         {
           label: 'Publications and academy',

@@ -5,7 +5,7 @@
  * Used as a sub-unit inside TeamMemberCard and TeamMemberRow.
  *
  * SIZE VARIANTS:
- *   - 'sm'  compact — card context
+ *   - 'sm'  compact - card context
  *   - 'md'  row context (default)
  *   - 'lg'  featured leadership row
  */

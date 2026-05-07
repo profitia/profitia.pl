@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * FormTextarea — controlled textarea with character counter and institutional styling.
+ * FormTextarea - controlled textarea with character counter and institutional styling.
  */
 
 const TEXTAREA_BASE = [

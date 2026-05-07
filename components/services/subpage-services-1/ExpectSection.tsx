@@ -25,7 +25,7 @@ export default function ExpectSection({ label, headline, items }: Props) {
           </h2>
         </RevealWrapper>
 
-        {/* 2×2 grid — landing page proof section style */}
+        {/* 2×2 grid - landing page proof section style */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 rounded-2xl overflow-hidden">
           {items.map((item, i) => (
             <RevealWrapper key={i} delay={Math.min(i % 4, 4) as 0 | 1 | 2 | 3 | 4}>

@@ -8,7 +8,7 @@ interface LegalMetaProps {
 }
 
 /**
- * Institutional metadata chips — last updated, version, jurisdiction, etc.
+ * Institutional metadata chips - last updated, version, jurisdiction, etc.
  * Rendered inside LegalHero below the intro text.
  */
 export function LegalMeta({ items }: LegalMetaProps) {

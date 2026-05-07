@@ -2,10 +2,10 @@
  * AdvisorySection
  * ─────────────────────────────────────────────────────────────
  * Two-column grid for advisors, external experts, and contributors.
- * Compact cards without bio — role + credentials only.
+ * Compact cards without bio - role + credentials only.
  *
  * USAGE: Advisory board, academic partners, program experts.
- * Currently reserved — add members when advisory roster grows.
+ * Currently reserved - add members when advisory roster grows.
  */
 
 import type { TeamMember } from '@/lib/team/types'

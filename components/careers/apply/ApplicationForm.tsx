@@ -91,13 +91,13 @@ interface Props {
 /**
  * ApplicationForm
  * ─────────────────────────────────────────────────────────────
- * Recruitment application form — institutional, calm, document-centric.
+ * Recruitment application form - institutional, calm, document-centric.
  *
  * Reads ?role= from URL to preselect the role.
  * User may change it manually.
  *
  * State machine: idle → submitting → success
- * No backend storage yet — success state shown after validation passes.
+ * No backend storage yet - success state shown after validation passes.
  * Architecture is ready for future POST /api/career/apply integration.
  */
 export default function ApplicationForm({ locale }: Props) {
@@ -106,7 +106,7 @@ export default function ApplicationForm({ locale }: Props) {
 
   const c = COPY[locale]
 
-  // ── Role options derived from data — no hardcoding ──────────
+  // ── Role options derived from data - no hardcoding ──────────
   const roleOptions = JOB_POSTS.map((job) => ({
     value: job.slug,
     label: tCareer(job.title, locale),
@@ -227,7 +227,7 @@ export default function ApplicationForm({ locale }: Props) {
         disabled={isSubmitting}
       />
 
-      {/* LinkedIn — optional */}
+      {/* LinkedIn - optional */}
       <ApplicationField
         id="linkedin"
         label={c.fields.linkedin}
@@ -252,7 +252,7 @@ export default function ApplicationForm({ locale }: Props) {
         disabled={isSubmitting}
       />
 
-      {/* Message — optional */}
+      {/* Message - optional */}
       <ApplicationTextarea
         id="message"
         label={c.fields.message}
@@ -265,7 +265,7 @@ export default function ApplicationForm({ locale }: Props) {
         disabled={isSubmitting}
       />
 
-      {/* Consents — two separate, never combined */}
+      {/* Consents - two separate, never combined */}
       <div className="space-y-5 pt-2">
         <ApplicationConsent
           id="consentCurrent"

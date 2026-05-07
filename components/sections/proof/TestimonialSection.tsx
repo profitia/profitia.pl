@@ -2,7 +2,7 @@
  * TestimonialSection
  * ─────────────────────────────────────────────────────────────────────────
  * Dark premium section. QuoteBlock based.
- * The tonal break in page rhythm — gray-900 background.
+ * The tonal break in page rhythm - gray-900 background.
  *
  * USAGE: Mid-page proof moment. One featured testimonial with optional metric.
  */

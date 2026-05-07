@@ -1,8 +1,8 @@
 /**
- * Canonical Consent Categories — Definition Registry
+ * Canonical Consent Categories - Definition Registry
  *
  * Single source of truth for all consent categories.
- * Both PL and EN strings are inline — no dictionary dependency for consent copy.
+ * Both PL and EN strings are inline - no dictionary dependency for consent copy.
  * The UI layer picks the correct locale at render time.
  */
 
@@ -10,13 +10,13 @@ import type { ConsentCategory } from './types'
 
 export interface ConsentCategoryDefinition {
   id: ConsentCategory
-  /** If true, always enabled — toggle is locked and unconfigurable. */
+  /** If true, always enabled - toggle is locked and unconfigurable. */
   required: boolean
   /** Default state for new visitors before any consent decision. */
   defaultEnabled: boolean
   label: { pl: string; en: string }
   description: { pl: string; en: string }
-  /** Concrete examples — shown in preferences modal. */
+  /** Concrete examples - shown in preferences modal. */
   examples: { pl: string; en: string }
 }
 
@@ -47,8 +47,8 @@ export const CONSENT_CATEGORIES: ConsentCategoryDefinition[] = [
       en: 'Analytics',
     },
     description: {
-      pl: 'Pomagają nam rozumieć, jak użytkownicy korzystają z serwisu. Dane są agregowane i anonimowe — nie identyfikują konkretnych osób.',
-      en: 'Help us understand how visitors use the site. Data is aggregated and anonymous — no individual is identified.',
+      pl: 'Pomagają nam rozumieć, jak użytkownicy korzystają z serwisu. Dane są agregowane i anonimowe - nie identyfikują konkretnych osób.',
+      en: 'Help us understand how visitors use the site. Data is aggregated and anonymous - no individual is identified.',
     },
     examples: {
       pl: 'Google Analytics, Hotjar, Microsoft Clarity',

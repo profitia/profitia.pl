@@ -36,11 +36,11 @@ const BRAND_BG = { backgroundColor: '#242F44' } as const
  * Renders as <Link> when href is provided, otherwise as <button>.
  *
  * Variants:
- *   primary       — bg-black (light sections)
- *   secondary     — border-gray-300 outline (light sections)
- *   primary-dark  — bg-white (dark/black sections)
- *   secondary-dark— border-gray-700 outline (dark/black sections)
- *   brand         — bg-[#242F44] → hover:#006D9E (high-brand moments)
+ *   primary       - bg-black (light sections)
+ *   secondary     - border-gray-300 outline (light sections)
+ *   primary-dark  - bg-white (dark/black sections)
+ *   secondary-dark- border-gray-700 outline (dark/black sections)
+ *   brand         - bg-[#242F44] → hover:#006D9E (high-brand moments)
  */
 export default function Button({
   href,

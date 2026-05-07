@@ -1,5 +1,5 @@
 /**
- * PROFITIA — Page Templates
+ * PROFITIA - Page Templates
  * Composition systems for all page types.
  *
  * Templates = composition logic, not custom layouts.

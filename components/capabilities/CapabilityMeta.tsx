@@ -7,7 +7,7 @@ interface Props {
 }
 
 /**
- * CapabilityMeta — eyebrow + category badge.
+ * CapabilityMeta - eyebrow + category badge.
  * Minimal, institutional. Used inside hero and detail sections.
  */
 export default function CapabilityMeta({ capability, locale }: Props) {

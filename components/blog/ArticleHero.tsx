@@ -1,8 +1,8 @@
 /**
- * ArticleHero — Single Article Page Hero
+ * ArticleHero - Single Article Page Hero
  *
  * Institutional editorial hero.
- * No dark backgrounds — white, premium whitespace, strong typographic hierarchy.
+ * No dark backgrounds - white, premium whitespace, strong typographic hierarchy.
  *
  * Structure:
  * - Metadata: category + reading time + date

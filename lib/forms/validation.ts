@@ -1,7 +1,7 @@
 /**
  * lib/forms/validation.ts
  *
- * Client-side validation logic — locale-aware, text-first, calm error messages.
+ * Client-side validation logic - locale-aware, text-first, calm error messages.
  * Server-side boundary validation lives in the API routes (Zod).
  */
 
@@ -52,7 +52,7 @@ export function validateContactForm(
     errors.email = m.emailInvalid
   }
 
-  // Company (optional — validate only if provided)
+  // Company (optional - validate only if provided)
   if (values.company && values.company.length > FIELD_LIMITS.company.max) {
     errors.company = m.tooLong(FIELD_LIMITS.company.max)
   }

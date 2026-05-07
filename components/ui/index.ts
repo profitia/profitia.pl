@@ -1,4 +1,4 @@
-// Profitia UI — reusable component layer
+// Profitia UI - reusable component layer
 // Import from '@/components/ui' for convenience.
 //
 // Usage:

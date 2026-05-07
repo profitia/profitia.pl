@@ -7,9 +7,9 @@ interface Props {
   subtitle?: string
   /**
    * Controls pacing and subtitle width.
-   * services — commanding pause, terse subtitle (strategic manifesto)
-   * education — expansive subtitle, academy cadence
-   * default — neutral
+   * services - commanding pause, terse subtitle (strategic manifesto)
+   * education - expansive subtitle, academy cadence
+   * default - neutral
    */
   variant?: 'services' | 'education'
 }
@@ -18,10 +18,10 @@ interface Props {
  * CapabilityHero
  * ─────────────────────────────────────────────────────────────
  * Canonical editorial hero for listing pages (Services, Education).
- * Variant controls pacing — not visual language.
+ * Variant controls pacing - not visual language.
  */
 export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Props) {
-  // Services: commanding opening statement — more top gravity, terse subtitle
+  // Services: commanding opening statement - more top gravity, terse subtitle
   // Education: current pacing, wider subtitle (expansive academy statement)
   const section = variant === 'services'
     ? 'pt-28 pb-24 border-b border-gray-100'

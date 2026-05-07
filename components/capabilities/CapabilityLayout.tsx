@@ -29,7 +29,7 @@ interface Props {
    */
   philosophyStatement?: { pl: string; en: string }
   /**
-   * Optional editorial breaks between sections — short manifesto statements
+   * Optional editorial breaks between sections - short manifesto statements
    * that interrupt the listing rhythm and signal strategic transitions.
    * afterIndex: render after sections[afterIndex].
    */
@@ -70,7 +70,7 @@ export default function CapabilityLayout({
 
       <div className="container-base">
 
-        {/* Learning philosophy — Education only */}
+        {/* Learning philosophy - Education only */}
         {philosophyStatement && (
           <div className="py-14 border-b border-gray-100">
             <p className="text-[15px] text-gray-500 leading-relaxed max-w-[44rem]">

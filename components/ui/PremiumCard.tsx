@@ -14,7 +14,7 @@ interface Props {
 /**
  * Standard premium card: border → hover:bg-gray-900 dark inversion.
  * Pass href to make the entire card a link (with arrow indicator).
- * Icon should be raw SVG/icon — no background circle, text-gray-400.
+ * Icon should be raw SVG/icon - no background circle, text-gray-400.
  */
 export default function PremiumCard({
   icon,

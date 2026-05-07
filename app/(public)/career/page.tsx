@@ -4,7 +4,7 @@ import CareerListingPage from '@/components/pages/CareerListingPage'
 export const metadata: Metadata = {
   title: 'Kariera | Profitia',
   description:
-    'Praca w Profitia — środowisko dla osób, które chcą pracować na realnych problemach zakupowych. Analityka, negocjacje, doradztwo.',
+    'Praca w Profitia - środowisko dla osób, które chcą pracować na realnych problemach zakupowych. Analityka, negocjacje, doradztwo.',
 }
 
 export default function Page() {

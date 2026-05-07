@@ -9,7 +9,7 @@ interface Props {
  * ─────────────────────────────────────────────────────────────
  * Listing page hero. Institutional, calm, intelligent.
  * Not employer branding. Not HR landing page.
- * Variant of services hero pacing — commanding but not aggressive.
+ * Variant of services hero pacing - commanding but not aggressive.
  */
 export default function CareerHero({ eyebrow, title, subtitle }: Props) {
   return (

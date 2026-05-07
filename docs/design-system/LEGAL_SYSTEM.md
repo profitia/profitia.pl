@@ -1,4 +1,4 @@
-# LEGAL SYSTEM — PROFITIA DESIGN SYSTEM
+# LEGAL SYSTEM - PROFITIA DESIGN SYSTEM
 
 > **Source of truth** for all legal, compliance and policy pages.  
 > Implemented: May 2026. All legal pages must use this system.
@@ -9,10 +9,10 @@
 
 Legal pages are institutional documents, not marketing landing pages. They must communicate:
 
-- **Trustworthiness** — calm, authoritative, no marketing noise
-- **Readability** — excellent long-form reading comfort on all devices
-- **Institutional clarity** — premium consulting, legal publishing feel
-- **Editorial rhythm** — spacious, hierarchical, never cramped
+- **Trustworthiness** - calm, authoritative, no marketing noise
+- **Readability** - excellent long-form reading comfort on all devices
+- **Institutional clarity** - premium consulting, legal publishing feel
+- **Editorial rhythm** - spacious, hierarchical, never cramped
 
 **Anti-patterns (forbidden):**
 - WordPress-style cramped legal pages
@@ -66,7 +66,7 @@ LegalLayout              → page shell (server)
 
 - Grid: `lg:grid-cols-[240px_1fr] lg:gap-16`
 - Sidebar: `sticky top-28 self-start`
-- Content: `max-w-[65ch]` — optimal reading line length (~75 chars)
+- Content: `max-w-[65ch]` - optimal reading line length (~75 chars)
 
 ### Mobile (< lg)
 
@@ -92,7 +92,7 @@ LegalLayout              → page shell (server)
 ### LegalHero
 
 **Props:** `eyebrow`, `title`, `intro?`, `meta?: {label, value}[]`  
-**Purpose:** Page intro — restrained, no marketing energy.  
+**Purpose:** Page intro - restrained, no marketing energy.  
 **Structure:**
 - Eyebrow: `text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400`
 - H1: `text-3xl md:text-[2.25rem] font-semibold tracking-tight text-gray-900 leading-[1.08]`
@@ -103,9 +103,9 @@ LegalLayout              → page shell (server)
 ### LegalSection
 
 **Props:** `id: string`, `title: string`, `children: ReactNode`  
-**Purpose:** Reusable section — provides anchor target + H2 heading.  
+**Purpose:** Reusable section - provides anchor target + H2 heading.  
 **Key classes:**
-- `scroll-mt-28` — offset for sticky header on anchor navigation (~88px header)
+- `scroll-mt-28` - offset for sticky header on anchor navigation (~88px header)
 - H2: `text-xl font-semibold ... mt-12 mb-4 pt-6 border-t border-gray-100`
 
 ### LegalContent
@@ -130,7 +130,7 @@ LegalLayout              → page shell (server)
 ### LegalTOC
 
 **Props:** `items: TOCItem[]`  
-**Client component** — requires `'use client'`.  
+**Client component** - requires `'use client'`.  
 **Active section tracking:** IntersectionObserver with `rootMargin: '-10% 0% -70% 0%'`  
 - Section becomes "active" when it occupies the upper ~30% of the viewport
 - Active item: `text-gray-900 font-medium`
@@ -139,19 +139,19 @@ LegalLayout              → page shell (server)
 ### LegalSidebar
 
 **Props:** `items: TOCItem[]`  
-**Client component** — manages mobile open/close state.  
-**Desktop:** `hidden lg:block sticky top-28` — always visible, eyebrow label + TOC list  
+**Client component** - manages mobile open/close state.  
+**Desktop:** `hidden lg:block sticky top-28` - always visible, eyebrow label + TOC list  
 **Mobile:** toggle button → collapsible `bg-gray-50 rounded-lg` panel
 
 ### LegalAnchorLink
 
 **Props:** `href: string`, `className?`, `children`  
-**Client component** — smooth scroll with `scrollIntoView({ behavior: 'smooth' })` + `history.pushState` for URL hash update without navigation.
+**Client component** - smooth scroll with `scrollIntoView({ behavior: 'smooth' })` + `history.pushState` for URL hash update without navigation.
 
 ### LegalMeta
 
 **Props:** `items: {label, value}[]`  
-**Purpose:** Metadata chips — last updated, version, jurisdiction.  
+**Purpose:** Metadata chips - last updated, version, jurisdiction.  
 **Rendered inside LegalHero.**
 
 ---
@@ -197,7 +197,7 @@ All legal page interactions follow the **Canonical Interaction System** (VISUAL_
 | Element | Hover | Transition |
 |---------|-------|------------|
 | TOC links (inactive) | `text-gray-700` | `duration-200 ease-out` |
-| TOC links (active) | no hover change (already active) | — |
+| TOC links (active) | no hover change (already active) | - |
 | Body links | `text-gray-600` | `duration-200` |
 | Mobile TOC trigger | `bg-gray-100` | `duration-200 ease-out` |
 
@@ -243,7 +243,7 @@ Each legal page must include:
 
 ## 11. LOCK RULES
 
-**LOCKED — requires explicit authorization to change:**
+**LOCKED - requires explicit authorization to change:**
 - Two-column layout (sidebar + content)
 - `max-w-[65ch]` content width
 - `scroll-mt-28` section anchor offset
@@ -252,9 +252,9 @@ Each legal page must include:
 - Sidebar sticky offset `top-28`
 
 **CONDITIONALLY CHANGEABLE (with justification):**
-- Sidebar width (currently 240px) — adjust for language/content needs
+- Sidebar width (currently 240px) - adjust for language/content needs
 - Gap between sidebar and content (`lg:gap-16`)
-- Page vertical rhythm (`pt-16 lg:pt-24`) — if global shell changes
+- Page vertical rhythm (`pt-16 lg:pt-24`) - if global shell changes
 
 **FORBIDDEN:**
 - Marketing CTAs on legal pages
@@ -268,4 +268,4 @@ Each legal page must include:
 
 ---
 
-*Document created: May 2026 | Legal System Foundation — source of truth for all legal and compliance pages.*
+*Document created: May 2026 | Legal System Foundation - source of truth for all legal and compliance pages.*

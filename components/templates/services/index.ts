@@ -1,5 +1,5 @@
 /**
- * PROFITIA — Service Page System
+ * PROFITIA - Service Page System
  * Modular components for composing service subpages.
  *
  * Every service page = composition of these components.
@@ -9,14 +9,14 @@
  *   import { ServiceHero, ServiceFeatures, ServiceCTA } from '@/components/templates/services'
  *
  * CANONICAL SERVICE PAGE COMPOSITION ORDER:
- *   1. ServiceHero         — entry, editorial or split layout
- *   2. ServiceOverview     — key metrics + "what it delivers" text
- *   3. ServiceFeatures     — grid or list breakdown of capabilities
- *   4. ServiceStats        — dark tonal break, impact numbers
- *   5. ServiceProcess      — step-by-step methodology
- *   6. ServiceProof        — testimonial + logo cloud (dark)
- *   7. RelatedServices     — cross-linking to other services
- *   8. ServiceCTA          — black CTA, always last
+ *   1. ServiceHero         - entry, editorial or split layout
+ *   2. ServiceOverview     - key metrics + "what it delivers" text
+ *   3. ServiceFeatures     - grid or list breakdown of capabilities
+ *   4. ServiceStats        - dark tonal break, impact numbers
+ *   5. ServiceProcess      - step-by-step methodology
+ *   6. ServiceProof        - testimonial + logo cloud (dark)
+ *   7. RelatedServices     - cross-linking to other services
+ *   8. ServiceCTA          - black CTA, always last
  *
  * Visual reference: docs/design-system/VISUAL_CONTEXT_PROFITIA.md
  */

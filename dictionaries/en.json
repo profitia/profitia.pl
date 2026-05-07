@@ -1,8 +1,8 @@
 {
   "site": {
     "name": "Profitia",
-    "tagline": "Profitia — Procurement Advisory",
-    "description": "Profitia — procurement advisory. We help organisations make better procurement decisions by combining experience, data and technology."
+    "tagline": "Profitia - Procurement Advisory",
+    "description": "Profitia - procurement advisory. We help organisations make better procurement decisions by combining experience, data and technology."
   },
   "nav": {
     "home": "Home",
@@ -53,17 +53,17 @@
   "homepage": {
     "meta": {
       "title": "Procurement that genuinely impacts your bottom line | Profitia",
-      "description": "Profitia — procurement advisory. We help organisations make better procurement decisions by combining experience, data and technology."
+      "description": "Profitia - procurement advisory. We help organisations make better procurement decisions by combining experience, data and technology."
     },
     "hero": {
       "eyebrow": "Profitia",
       "h1": "Procurement that genuinely impacts your bottom line",
       "sub1a": "It's not about negotiating more.",
-      "sub1b": "It's about making better decisions — before you sit down to negotiate.",
+      "sub1b": "It's about making better decisions - before you sit down to negotiate.",
       "sub2": "We combine experience, data and tools so procurement stops being reactive and starts actively driving margin.",
       "cta": "Schedule a conversation",
       "statLabel": "Average improvement in procurement terms",
-      "imgAlt": "Business negotiation meeting — Profitia procurement advisory"
+      "imgAlt": "Business negotiation meeting - Profitia procurement advisory"
     },
     "problem": {
       "eyebrow": "Context",
@@ -79,26 +79,26 @@
         },
         {
           "title": "Supplier risk",
-          "desc": "Concentration, dependency, counterparty liquidity — these are now the fundamentals of any procurement function."
+          "desc": "Concentration, dependency, counterparty liquidity - these are now the fundamentals of any procurement function."
         },
         {
           "title": "Market volatility",
-          "desc": "Commodity prices, exchange rates, availability — variables that can no longer be ignored in decision-making."
+          "desc": "Commodity prices, exchange rates, availability - variables that can no longer be ignored in decision-making."
         },
         {
           "title": "More data, less clarity",
-          "desc": "Data is everywhere — but turning it into a concrete procurement decision requires more than Excel and intuition."
+          "desc": "Data is everywhere - but turning it into a concrete procurement decision requires more than Excel and intuition."
         },
         {
           "title": "Time pressure",
-          "desc": "Negotiations, renegotiations, RFQs — the pace of work leaves no room for the deep analysis needed most."
+          "desc": "Negotiations, renegotiations, RFQs - the pace of work leaves no room for the deep analysis needed most."
         },
         {
           "title": "Growing accountability",
-          "desc": "Procurement is responsible for more — often without adequate knowledge support or tools."
+          "desc": "Procurement is responsible for more - often without adequate knowledge support or tools."
         }
       ],
-      "quote": "Procurement is becoming a strategic function — yet still operates reactively."
+      "quote": "Procurement is becoming a strategic function - yet still operates reactively."
     },
     "insight": {
       "eyebrow": "Diagnosis",
@@ -130,21 +130,21 @@
           "title": "Advisory",
           "desc": "Solving specific procurement challenges and implementing recommendations in practice.",
           "img": "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80",
-          "alt": "Procurement advisory — consulting meeting"
+          "alt": "Procurement advisory - consulting meeting"
         },
         {
           "n": "02",
           "title": "Competence",
           "desc": "We strengthen procurement teams so they make better decisions in real situations.",
           "img": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-          "alt": "Procurement competence development — team training"
+          "alt": "Procurement competence development - team training"
         },
         {
           "n": "03",
           "title": "Tools",
           "desc": "Data and tools that turn intuition into well-founded decisions.",
           "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-          "alt": "Analytical tools — procurement data"
+          "alt": "Analytical tools - procurement data"
         }
       ],
       "seeMore": "Learn more →"
@@ -156,7 +156,7 @@
         {
           "n": "01",
           "title": "Situation diagnosis",
-          "desc": "We understand the starting point — what categories, what tensions, what data you already have. We don't start from a solution in our catalogue."
+          "desc": "We understand the starting point - what categories, what tensions, what data you already have. We don't start from a solution in our catalogue."
         },
         {
           "n": "02",
@@ -166,20 +166,20 @@
         {
           "n": "03",
           "title": "Concrete recommendation",
-          "desc": "Not a report — an action plan. What to do, in what order, with what rationale. A recommendation ready to present to the board and implement with your team."
+          "desc": "Not a report - an action plan. What to do, in what order, with what rationale. A recommendation ready to present to the board and implement with your team."
         },
         {
           "n": "04",
           "title": "Implementation with your team",
-          "desc": "We execute together with your team — so that knowledge and approach stay in the organisation. We don't do it for you; we do it with you, with knowledge transfer."
+          "desc": "We execute together with your team - so that knowledge and approach stay in the organisation. We don't do it for you; we do it with you, with knowledge transfer."
         },
         {
           "n": "05",
           "title": "Results verification",
-          "desc": "We measure what changed. Correction where needed — continuous improvement, not a one-off project with a final report."
+          "desc": "We measure what changed. Correction where needed - continuous improvement, not a one-off project with a final report."
         }
       ],
-      "footer1": "It's not about how much data —",
+      "footer1": "It's not about how much data -",
       "footer2": "only how you use it."
     },
     "impact": {
@@ -196,15 +196,15 @@
         },
         {
           "title": "Better team",
-          "desc": "Your people understand not just what to do, but why — and can independently justify their decisions."
+          "desc": "Your people understand not just what to do, but why - and can independently justify their decisions."
         },
         {
           "title": "Consistency",
-          "desc": "One way of thinking about procurement across the entire organisation — instead of different approaches in every department."
+          "desc": "One way of thinking about procurement across the entire organisation - instead of different approaches in every department."
         },
         {
           "title": "Predictability",
-          "desc": "Instead of supplier surprises — a renegotiation schedule, market monitoring and readiness for change."
+          "desc": "Instead of supplier surprises - a renegotiation schedule, market monitoring and readiness for change."
         },
         {
           "title": "Real results",
@@ -229,7 +229,7 @@
         {
           "n": "03",
           "title": "Difficult procurement decisions",
-          "desc": "Changing supplier, consolidating a category, make-or-buy decision. High stakes, many variables and time pressure — you need an external perspective."
+          "desc": "Changing supplier, consolidating a category, make-or-buy decision. High stakes, many variables and time pressure - you need an external perspective."
         },
         {
           "n": "04",
@@ -249,7 +249,7 @@
           "label": "average improvement in procurement terms in the first renegotiation cycle"
         },
         {
-          "val": "3–6 wks.",
+          "val": "3-6 wks.",
           "label": "time from diagnosis to first concrete results in the field"
         },
         {
@@ -262,11 +262,11 @@
     "cases": {
       "eyebrow": "Case study",
       "h2": "What this looks like in practice",
-      "imgAlt": "Procurement data analysis — manufacturing company case study",
+      "imgAlt": "Procurement data analysis - manufacturing company case study",
       "blocks": [
         {
           "label": "Challenge",
-          "text": "A manufacturing company with 4 key procurement categories — each managed by a different department, differently. No benchmarks, no strategy. Two key suppliers send price increases in the same quarter, totalling 14%."
+          "text": "A manufacturing company with 4 key procurement categories - each managed by a different department, differently. No benchmarks, no strategy. Two key suppliers send price increases in the same quarter, totalling 14%."
         },
         {
           "label": "Action",
@@ -274,14 +274,14 @@
         },
         {
           "label": "Outcome",
-          "text": "Negotiations concluded at a 6% increase instead of 14% — the increase was partially absorbed. An 18-month strategy for both categories. A team equipped with a working model ready to apply independently."
+          "text": "Negotiations concluded at a 6% increase instead of 14% - the increase was partially absorbed. An 18-month strategy for both categories. A team equipped with a working model ready to apply independently."
         }
       ]
     },
     "cta": {
       "eyebrow": "Next step",
       "h2": "Start with one concrete case",
-      "sub1": "We can walk through one situation and show you a better approach — with no commitment and no generic proposals.",
+      "sub1": "We can walk through one situation and show you a better approach - with no commitment and no generic proposals.",
       "sub2a": "No commitment. No sales pitch.",
       "sub2b": "A concrete conversation about your situation.",
       "button": "Schedule a conversation"
@@ -297,7 +297,7 @@
           "title": "Price is an opinion. Cost is a fact.",
           "cta": "Read article →",
           "img": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80",
-          "imgAlt": "Cost analysis — should-cost model structure"
+          "imgAlt": "Cost analysis - should-cost model structure"
         },
         {
           "slug": "dzien-z-zycia-kupca-kiedy-stala-cena-przegrywa-z-faktami",
@@ -305,7 +305,7 @@
           "title": "A buyer's day: when a fixed price loses to the facts",
           "cta": "Read article →",
           "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
-          "imgAlt": "Procurement negotiation — should-cost analysis at the table"
+          "imgAlt": "Procurement negotiation - should-cost analysis at the table"
         },
         {
           "slug": "analiza-finansowa-dostawcow",
@@ -313,7 +313,7 @@
           "title": "Financial analysis of suppliers",
           "cta": "Read article →",
           "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80",
-          "imgAlt": "Financial analysis — supplier health indicators"
+          "imgAlt": "Financial analysis - supplier health indicators"
         }
       ]
     }

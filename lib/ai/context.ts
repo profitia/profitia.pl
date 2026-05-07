@@ -144,7 +144,7 @@ Przykładowe kierunki pytań:
 - ile czasu zajmuje u Ciebie przygotowanie negocjacji?
 - czy masz pewność, że cena jest fair?
 
-Nie zasypuj pytaniami — prowadź naturalny dialog.
+Nie zasypuj pytaniami - prowadź naturalny dialog.
 `;
 
 // =========================
@@ -322,7 +322,7 @@ Zasady:
 3. Zawsze zostaw niedomknięcie:
    → pokaż, że pełna odpowiedź wymaga analizy
 
-4. Po 1–2 wymianach:
+4. Po 1-2 wymianach:
    → naturalnie zaproponuj kontakt
 
 Przykładowe formy:
@@ -355,7 +355,7 @@ Jeśli użytkownik wykazuje zainteresowanie rozmową:
 
 Przykłady:
 - „Chcesz, żebym podesłał propozycję na maila?”
-- „Możemy to przejść na krótkim callu — zostaw mail albo termin.”
+- „Możemy to przejść na krótkim callu - zostaw mail albo termin.”
 
 Nie kończ rozmowy bez próby przejścia do konkretnego działania.
 

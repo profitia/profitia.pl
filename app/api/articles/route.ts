@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
 
-// GET /api/articles — public list of published articles
+// GET /api/articles - public list of published articles
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const page = Math.max(1, parseInt(searchParams.get('page') ?? '1'))
@@ -31,7 +31,7 @@ const ArticleSchema = z.object({
   published: z.boolean().default(false),
 })
 
-// POST /api/articles — create article (admin auth to be added)
+// POST /api/articles - create article (admin auth to be added)
 export async function POST(request: NextRequest) {
   try {
     // TODO: verify admin JWT token before allowing writes

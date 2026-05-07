@@ -1,5 +1,5 @@
 /**
- * FeaturedArticle — Editorial Cover Story
+ * FeaturedArticle - Editorial Cover Story
  *
  * The primary editorial surface on the blog index.
  * Asymmetric layout: content (40%) + image (60%) on desktop.

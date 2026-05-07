@@ -7,7 +7,7 @@ export default function NewArticlePage() {
   return (
     <div>
       <h1 className="text-3xl font-heading font-bold text-brand-primary mb-8">Nowy artykuł</h1>
-      {/* Article editor form — rich text editor (e.g. TipTap) to be integrated later */}
+      {/* Article editor form - rich text editor (e.g. TipTap) to be integrated later */}
       <form className="bg-white rounded-xl shadow-sm p-8 space-y-6" method="POST" action="/api/articles">
         <div>
           <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">

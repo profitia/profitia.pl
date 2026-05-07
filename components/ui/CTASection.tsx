@@ -11,13 +11,13 @@ interface Props {
 }
 
 /**
- * Global CTA section — pixel-perfect match of public/landing/components/cta.html.
+ * Global CTA section - pixel-perfect match of public/landing/components/cta.html.
  * Always bg-black. Use at the bottom of every public-facing page.
  *
- * label     — small caps above headline (optional, defaults to "Następny krok")
- * headline  — main CTA headline (max-w-2xl)
- * subtitle  — gray-400 supporting text (max-w-lg)
- * note      — gray-600 fine print below subtitle (optional)
+ * label     - small caps above headline (optional, defaults to "Następny krok")
+ * headline  - main CTA headline (max-w-2xl)
+ * subtitle  - gray-400 supporting text (max-w-lg)
+ * note      - gray-600 fine print below subtitle (optional)
  */
 export default function CTASection({
   label = 'Następny krok',

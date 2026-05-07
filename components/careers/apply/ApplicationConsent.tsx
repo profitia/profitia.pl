@@ -10,8 +10,8 @@ interface Props {
 }
 
 /**
- * ApplicationConsent — GDPR checkbox with institutional styling.
- * Each consent is its own instance — never combined.
+ * ApplicationConsent - GDPR checkbox with institutional styling.
+ * Each consent is its own instance - never combined.
  * Matches existing FormConsent visual contract exactly.
  */
 export function ApplicationConsent({

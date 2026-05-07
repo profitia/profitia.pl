@@ -15,9 +15,9 @@ interface Props {
 }
 
 /**
- * ApplicationUpload — institutional document upload row.
+ * ApplicationUpload - institutional document upload row.
  *
- * Visual: small bordered row — document-oriented, not a drag-and-drop zone.
+ * Visual: small bordered row - document-oriented, not a drag-and-drop zone.
  * No animated states. No colorful UI. No giant drop areas.
  * Feels like attaching a file to a professional email.
  */
@@ -54,7 +54,7 @@ export function ApplicationUpload({
         )}
       </label>
 
-      {/* Document row — minimal, institutional */}
+      {/* Document row - minimal, institutional */}
       <div
         className={[
           'border rounded-xl px-5 py-4 flex items-center justify-between gap-4',

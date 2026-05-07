@@ -5,7 +5,7 @@ interface Props {
 }
 
 /**
- * ApplicationSuccess — quiet institutional confirmation.
+ * ApplicationSuccess - quiet institutional confirmation.
  * No emojis. No "Awesome!". No celebration language.
  * Matches FormSuccess visual contract: vertical accent bar + heading + body.
  */

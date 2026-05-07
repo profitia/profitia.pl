@@ -44,11 +44,11 @@ export interface NewsletterFormValues {
 export interface FormConsentMeta {
   gdpr: boolean
   newsletter: boolean
-  /** Semver or date — must match CONSENT_VERSION constant. */
+  /** Semver or date - must match CONSENT_VERSION constant. */
   consentVersion: string
   /** ISO 8601 timestamp of the moment consent was given. */
   consentAt: string
-  /** GDPR Article 6 lawful basis — always 'consent' for these forms. */
+  /** GDPR Article 6 lawful basis - always 'consent' for these forms. */
   lawfulBasis: 'consent'
 }
 
@@ -59,7 +59,7 @@ export interface ContactSubmissionPayload {
   locale: Locale
   /** ISO 8601 */
   submittedAt: string
-  /** Pathname from which the form was submitted — source tracking. */
+  /** Pathname from which the form was submitted - source tracking. */
   source: string
   /** UTM / campaign readiness (populated by future analytics layer). */
   utmSource?: string
@@ -79,7 +79,7 @@ export interface NewsletterSubmissionPayload {
   locale: Locale
   /** ISO 8601 */
   submittedAt: string
-  /** Pathname — source tracking. */
+  /** Pathname - source tracking. */
   source: string
   email: string
   consent: FormConsentMeta

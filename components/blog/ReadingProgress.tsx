@@ -1,14 +1,14 @@
 'use client'
 
 /**
- * ReadingProgress — Thin Editorial Progress Bar
+ * ReadingProgress - Thin Editorial Progress Bar
  *
  * Fixed to the top of the viewport, above the header.
  * Tracks scroll position relative to article length.
  * Appears only after scrolling past the hero.
  *
  * - 2px tall, bg-gray-900, z-[100]
- * - No animation on width — real-time, jank-free
+ * - No animation on width - real-time, jank-free
  * - Respects prefers-reduced-motion (hidden if motion preference is reduce)
  */
 

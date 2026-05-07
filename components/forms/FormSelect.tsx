@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * FormSelect — controlled select with custom chevron and institutional styling.
+ * FormSelect - controlled select with custom chevron and institutional styling.
  * appearance-none removes native arrow; replaced with a custom SVG chevron.
  */
 
@@ -74,7 +74,7 @@ export function FormSelect({
             </option>
           ))}
         </select>
-        {/* Custom chevron — pointer-events-none so it doesn't block select clicks */}
+        {/* Custom chevron - pointer-events-none so it doesn't block select clicks */}
         <div
           className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5"
           aria-hidden="true"

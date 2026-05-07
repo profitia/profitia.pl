@@ -1,7 +1,7 @@
 import type { CapabilitySectionDef } from './types'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SERVICES — 4 canonical sections
+// SERVICES - 4 canonical sections
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
@@ -16,8 +16,8 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
       en: 'Advisory & Transformation',
     },
     description: {
-      pl: 'Projekty doradcze, interim management i transformacja funkcji zakupowej — dla organizacji, które chcą zbudować trwałą przewagę zakupową.',
-      en: 'Advisory projects, interim management and procurement transformation — for organisations that want to build lasting procurement advantage.',
+      pl: 'Projekty doradcze, interim management i transformacja funkcji zakupowej - dla organizacji, które chcą zbudować trwałą przewagę zakupową.',
+      en: 'Advisory projects, interim management and procurement transformation - for organisations that want to build lasting procurement advantage.',
     },
   },
   {
@@ -46,8 +46,8 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
       en: 'Data & Analytics',
     },
     description: {
-      pl: 'Spend cube, dashboardy zakupowe, systemy KPI i supplier intelligence — fundament decyzji opartych na danych.',
-      en: 'Spend cube, procurement dashboards, KPI systems and supplier intelligence — the foundation of data-driven decisions.',
+      pl: 'Spend cube, dashboardy zakupowe, systemy KPI i supplier intelligence - fundament decyzji opartych na danych.',
+      en: 'Spend cube, procurement dashboards, KPI systems and supplier intelligence - the foundation of data-driven decisions.',
     },
   },
   {
@@ -67,7 +67,7 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
-// EDUCATION — 4 canonical sections
+// EDUCATION - 4 canonical sections
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const EDUCATION_SECTIONS: CapabilitySectionDef[] = [
@@ -82,8 +82,8 @@ export const EDUCATION_SECTIONS: CapabilitySectionDef[] = [
       en: 'Executive Programmes',
     },
     description: {
-      pl: 'Zaawansowane programy dla dyrektorów i liderów funkcji zakupowej — strategia, transformacja i przywództwo.',
-      en: 'Advanced programmes for procurement directors and function leaders — strategy, transformation and leadership.',
+      pl: 'Zaawansowane programy dla dyrektorów i liderów funkcji zakupowej - strategia, transformacja i przywództwo.',
+      en: 'Advanced programmes for procurement directors and function leaders - strategy, transformation and leadership.',
     },
   },
   {
@@ -97,8 +97,8 @@ export const EDUCATION_SECTIONS: CapabilitySectionDef[] = [
       en: 'Negotiation Workshops',
     },
     description: {
-      pl: 'Praktyczne warsztaty oparte na metodzie harvardzkiej i realnych case studies — od technik po presję dostawcy.',
-      en: 'Practical workshops grounded in Harvard methodology and real case studies — from technique to supplier pressure.',
+      pl: 'Praktyczne warsztaty oparte na metodzie harvardzkiej i realnych case studies - od technik po presję dostawcy.',
+      en: 'Practical workshops grounded in Harvard methodology and real case studies - from technique to supplier pressure.',
     },
   },
   {
@@ -111,8 +111,8 @@ export const EDUCATION_SECTIONS: CapabilitySectionDef[] = [
       en: 'Analytics & Intelligence',
     },
     description: {
-      pl: 'Spend analytics, analiza finansowa dostawców i procurement intelligence — dla zespołów gotowych na decyzje oparte na danych.',
-      en: 'Spend analytics, supplier financial analysis and procurement intelligence — for teams ready to make data-driven decisions.',
+      pl: 'Spend analytics, analiza finansowa dostawców i procurement intelligence - dla zespołów gotowych na decyzje oparte na danych.',
+      en: 'Spend analytics, supplier financial analysis and procurement intelligence - for teams ready to make data-driven decisions.',
     },
   },
   {

@@ -6,7 +6,7 @@ interface LegalContentProps {
 
 /**
  * Prose typography container for legal body content.
- * Manual Tailwind arbitrary-variant styles — no @tailwindcss/typography required.
+ * Manual Tailwind arbitrary-variant styles - no @tailwindcss/typography required.
  *
  * Supports: <p>, <ul>, <ol>, <h3>, <strong>, <a>, <table>
  */

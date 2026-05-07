@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 /**
- * Apply Page — EN
+ * Apply Page - EN
  * ─────────────────────────────────────────────────────────────
  * Institutional application page. Document-centric. Low-emotion UX.
  */
@@ -50,7 +50,7 @@ export default function Page() {
             Select a position and attach your CV. We respond after reviewing each submission individually.
           </p>
 
-          {/* Form — Suspense required for useSearchParams */}
+          {/* Form - Suspense required for useSearchParams */}
           <Suspense fallback={null}>
             <ApplicationForm locale="en" />
           </Suspense>

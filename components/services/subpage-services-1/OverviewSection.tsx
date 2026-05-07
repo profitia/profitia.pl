@@ -37,7 +37,7 @@ export default function OverviewSection({ label, headline, paragraphs, stats }: 
             </div>
           </div>
 
-          {/* Right: editorial stats — no heavy box */}
+          {/* Right: editorial stats - no heavy box */}
           <div className="space-y-10 lg:pt-16">
             {stats.map((stat, i) => (
               <RevealWrapper key={i} delay={Math.min(i + 1, 4) as 1 | 2 | 3 | 4}>

@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Career Layer — Core Types
+// Career Layer - Core Types
 // Institutional recruitment editorial system.
 // Not employer branding. Not HR marketing.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -34,17 +34,17 @@ export interface JobPost {
   /** Short description for listing rows */
   summary: CareerLocalizedString
   /**
-   * Strategic positioning of this role — one paragraph.
+   * Strategic positioning of this role - one paragraph.
    * Not a job ad intro. An honest description of where this role sits.
    */
   roleContext: CareerLocalizedString
-  /** What you will work on — 4–6 items */
+  /** What you will work on - 4-6 items */
   workItems: CareerLocalizedString[]
-  /** What matters in this role — 4–5 items */
+  /** What matters in this role - 4-5 items */
   requirements: CareerLocalizedString[]
-  /** What kind of person succeeds here — 3–4 items */
+  /** What kind of person succeeds here - 3-4 items */
   profile: CareerLocalizedString[]
-  /** Working model — format, location, flexibility */
+  /** Working model - format, location, flexibility */
   workingModel: CareerLocalizedString
   /** Development path in this role */
   development: CareerLocalizedString

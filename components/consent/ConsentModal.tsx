@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * ConsentModal — Preferences Management Modal
+ * ConsentModal - Preferences Management Modal
  *
  * Full GDPR-compliant consent preferences interface.
  * Canonical Profitia aesthetic: editorial, institutional, calm.
@@ -16,7 +16,7 @@
  * - Footer: Save (primary CTA) + Cancel (text) + version metadata
  *
  * Necessary cookies: locked ON, visually distinct.
- * Backdrop: subtle blur overlay — closes modal on click.
+ * Backdrop: subtle blur overlay - closes modal on click.
  */
 
 import { useCallback, useEffect, useState } from 'react'
@@ -63,7 +63,7 @@ export function ConsentModal({ locale = 'pl' }: ConsentModalProps) {
   const t = COPY[locale === 'en' ? 'en' : 'pl']
   const lang = locale === 'en' ? 'en' : 'pl'
 
-  // Local draft state — mirrors saved consent, or defaults
+  // Local draft state - mirrors saved consent, or defaults
   const [draft, setDraft] = useState<ConsentCategories>({
     necessary: true,
     analytics: record?.categories.analytics ?? false,

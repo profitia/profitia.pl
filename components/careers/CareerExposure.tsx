@@ -12,7 +12,7 @@ interface Props {
 /**
  * CareerExposure
  * ─────────────────────────────────────────────────────────────
- * "Why people stay" section — not a benefits list.
+ * "Why people stay" section - not a benefits list.
  * Strategic exposure: the type of work, complexity, and development.
  * Institutional tone. No perks. No startup energy.
  */
@@ -22,7 +22,7 @@ export default function CareerExposure({ eyebrow, title, items }: Props) {
       <div className="container-base">
         <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-20">
 
-          {/* Left — label column */}
+          {/* Left - label column */}
           <div className="mb-10 lg:mb-0 lg:pt-1">
             <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-4">
               {eyebrow}
@@ -32,7 +32,7 @@ export default function CareerExposure({ eyebrow, title, items }: Props) {
             </h2>
           </div>
 
-          {/* Right — items */}
+          {/* Right - items */}
           <div className="space-y-7">
             {items.map((item, i) => (
               <div key={i} className="border-b border-gray-100 pb-7 last:border-0 last:pb-0">

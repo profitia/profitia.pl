@@ -14,7 +14,7 @@ interface LegalTOCProps {
 
 /**
  * Table of contents with IntersectionObserver-based active section tracking.
- * Renders only the list — LegalSidebar provides the sticky / collapsible wrapper.
+ * Renders only the list - LegalSidebar provides the sticky / collapsible wrapper.
  */
 export function LegalTOC({ items }: LegalTOCProps) {
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? '')
@@ -38,7 +38,7 @@ export function LegalTOC({ items }: LegalTOCProps) {
     })
 
     return () => observer.disconnect()
-  // items are module-level constants — stable across renders
+  // items are module-level constants - stable across renders
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

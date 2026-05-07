@@ -16,7 +16,7 @@ const COPY = {
   pl: {
     hero: {
       eyebrow: 'Środowisko pracy',
-      title: 'Praca na realnych problemach zakupowych — bez uproszczeń.',
+      title: 'Praca na realnych problemach zakupowych - bez uproszczeń.',
       subtitle: 'Analityka, negocjacje, transformacja. Praca z danymi i klientami, nie z prezentacjami o danych.',
     },
     philosophy: {
@@ -25,7 +25,7 @@ const COPY = {
       items: [
         {
           label: 'Problemy, nie procesy',
-          body: 'Zaczynamy od zrozumienia problemu biznesowego, a nie od wdrożenia procesu. Analiza zakupowa ma sens wtedy, gdy zmienia decyzje — nie wtedy, gdy wygląda schludnie w raporcie.',
+          body: 'Zaczynamy od zrozumienia problemu biznesowego, a nie od wdrożenia procesu. Analiza zakupowa ma sens wtedy, gdy zmienia decyzje - nie wtedy, gdy wygląda schludnie w raporcie.',
         },
         {
           label: 'Dane jako argument, nie dekoracja',
@@ -33,7 +33,7 @@ const COPY = {
         },
         {
           label: 'Odpowiedzialność za wynik',
-          body: 'Konsultanci Profitia mają bezpośredni kontakt z klientami i realnymi decyzjami zakupowymi. Nie ma buforowania od rzeczywistości — co oznacza też realny wpływ na wyniki.',
+          body: 'Konsultanci Profitia mają bezpośredni kontakt z klientami i realnymi decyzjami zakupowymi. Nie ma buforowania od rzeczywistości - co oznacza też realny wpływ na wyniki.',
         },
         {
           label: 'Myślenie przez strukturę',
@@ -41,7 +41,7 @@ const COPY = {
         },
         {
           label: 'Uczenie się przez projekty',
-          body: 'Kompetencje w Profitia buduje się przez pracę z realnymi klientami, nie przez szkolenia. Mentoring jest integralną częścią każdego projektu — nie opcją dostępną przy dobrej woli.',
+          body: 'Kompetencje w Profitia buduje się przez pracę z realnymi klientami, nie przez szkolenia. Mentoring jest integralną częścią każdego projektu - nie opcją dostępną przy dobrej woli.',
         },
       ],
     },
@@ -55,15 +55,15 @@ const COPY = {
       items: [
         {
           label: 'Praca z realnymi decyzjami',
-          body: 'Projekty dotyczą rzeczywistych kategorii zakupowych, prawdziwych negocjacji i aktualnych wyzwań klientów. Nie ma studium przypadku — jest przypadek.',
+          body: 'Projekty dotyczą rzeczywistych kategorii zakupowych, prawdziwych negocjacji i aktualnych wyzwań klientów. Nie ma studium przypadku - jest przypadek.',
         },
         {
           label: 'Szerokość ekspozycji kategorii',
-          body: 'W Profitia pracujesz z wieloma kategoriami — od surowców przez logistykę po usługi profesjonalne. Buduje to zrozumienie zakupów jako dyscypliny, nie tylko jednej kategorii.',
+          body: 'W Profitia pracujesz z wieloma kategoriami - od surowców przez logistykę po usługi profesjonalne. Buduje to zrozumienie zakupów jako dyscypliny, nie tylko jednej kategorii.',
         },
         {
           label: 'Dostęp do negocjacji',
-          body: 'Konsultanci uczestniczą w przygotowaniu i często bezpośrednim wsparciu negocjacji. To rzadka ekspozycja — szczególnie wcześnie w karierze.',
+          body: 'Konsultanci uczestniczą w przygotowaniu i często bezpośrednim wsparciu negocjacji. To rzadka ekspozycja - szczególnie wcześnie w karierze.',
         },
         {
           label: 'Praca z danymi na poziomie organizacji',
@@ -71,12 +71,12 @@ const COPY = {
         },
         {
           label: 'Feedback jako standard',
-          body: 'Po każdym projekcie — ustrukturyzowany feedback. Nie raz w roku przy ocenie rocznej.',
+          body: 'Po każdym projekcie - ustrukturyzowany feedback. Nie raz w roku przy ocenie rocznej.',
         },
       ],
     },
     cta: {
-      invitation: 'Jeżeli interesuje Cię praca oparta na analizie, odpowiedzialności i realnym wpływie — porozmawiajmy.',
+      invitation: 'Jeżeli interesuje Cię praca oparta na analizie, odpowiedzialności i realnym wpływie - porozmawiajmy.',
       label: 'Skontaktuj się',
       href: '/contact',
     },
@@ -84,7 +84,7 @@ const COPY = {
   en: {
     hero: {
       eyebrow: 'Professional environment',
-      title: 'Working on real procurement problems — without simplification.',
+      title: 'Working on real procurement problems - without simplification.',
       subtitle: 'Analytics, negotiations, transformation. Working with data and clients, not with presentations about data.',
     },
     philosophy: {
@@ -93,7 +93,7 @@ const COPY = {
       items: [
         {
           label: 'Problems, not processes',
-          body: 'We start from understanding the business problem, not from implementing a process. Procurement analysis has value when it changes decisions — not when it looks tidy in a report.',
+          body: 'We start from understanding the business problem, not from implementing a process. Procurement analysis has value when it changes decisions - not when it looks tidy in a report.',
         },
         {
           label: 'Data as argument, not decoration',
@@ -101,7 +101,7 @@ const COPY = {
         },
         {
           label: 'Ownership of outcomes',
-          body: 'Profitia consultants have direct contact with clients and real procurement decisions. There is no buffer from reality — which also means real influence on results.',
+          body: 'Profitia consultants have direct contact with clients and real procurement decisions. There is no buffer from reality - which also means real influence on results.',
         },
         {
           label: 'Thinking through structure',
@@ -109,7 +109,7 @@ const COPY = {
         },
         {
           label: 'Learning through projects',
-          body: 'Skills at Profitia are built through work with real clients, not through training programmes. Mentoring is an integral part of every project — not an option dependent on goodwill.',
+          body: 'Skills at Profitia are built through work with real clients, not through training programmes. Mentoring is an integral part of every project - not an option dependent on goodwill.',
         },
       ],
     },
@@ -123,15 +123,15 @@ const COPY = {
       items: [
         {
           label: 'Working with real decisions',
-          body: 'Projects concern real procurement categories, actual negotiations and current client challenges. There is no case study — there is a case.',
+          body: 'Projects concern real procurement categories, actual negotiations and current client challenges. There is no case study - there is a case.',
         },
         {
           label: 'Category breadth',
-          body: 'At Profitia you work across many categories — from raw materials through logistics to professional services. This builds understanding of procurement as a discipline, not just one category.',
+          body: 'At Profitia you work across many categories - from raw materials through logistics to professional services. This builds understanding of procurement as a discipline, not just one category.',
         },
         {
           label: 'Access to negotiations',
-          body: 'Consultants participate in preparing and often directly supporting negotiations. This is rare exposure — particularly early in a career.',
+          body: 'Consultants participate in preparing and often directly supporting negotiations. This is rare exposure - particularly early in a career.',
         },
         {
           label: 'Data at organisational depth',
@@ -139,12 +139,12 @@ const COPY = {
         },
         {
           label: 'Feedback as standard',
-          body: 'After every project — structured feedback. Not once a year in an annual review.',
+          body: 'After every project - structured feedback. Not once a year in an annual review.',
         },
       ],
     },
     cta: {
-      invitation: 'If you are interested in work grounded in analysis, ownership and real impact — let\'s talk.',
+      invitation: 'If you are interested in work grounded in analysis, ownership and real impact - let\'s talk.',
       label: 'Get in touch',
       href: '/en/contact',
     },

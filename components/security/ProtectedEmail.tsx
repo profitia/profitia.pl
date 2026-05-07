@@ -10,7 +10,7 @@ interface ProtectedEmailProps {
 
 /**
  * Renders an email link only after client-side hydration.
- * SSR output: empty placeholder span — no mailto, no address in HTML source.
+ * SSR output: empty placeholder span - no mailto, no address in HTML source.
  * Client output: full semantic <a href="mailto:..."> with email text.
  */
 export function ProtectedEmail({ user, domain, className }: ProtectedEmailProps) {

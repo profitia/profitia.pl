@@ -1,5 +1,5 @@
 /**
- * Editorial Content Migration — Procurement Intelligence Publication
+ * Editorial Content Migration - Procurement Intelligence Publication
  *
  * Migrates 3 original Profitia articles into the new editorial system.
  * Each article is fully adapted: structured TOC, pull quotes (blockquote),

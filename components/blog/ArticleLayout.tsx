@@ -1,8 +1,8 @@
 /**
- * ArticleLayout — Article Reading Experience (Server Component)
+ * ArticleLayout - Article Reading Experience (Server Component)
  *
  * Manages the two-column reading layout:
- * - Sticky TOC sidebar (desktop) / collapsible (mobile) — handled by ArticleTOCSidebar (Client)
+ * - Sticky TOC sidebar (desktop) / collapsible (mobile) - handled by ArticleTOCSidebar (Client)
  * - Article content rendered server-side via dangerouslySetInnerHTML
  *
  * Server-side:
@@ -11,7 +11,7 @@
  * 3. Builds tocItems array and passes it to ArticleTOCSidebar (Client Component)
  *
  * This architecture eliminates the Server→Client RSC boundary for the large
- * content HTML string — content is rendered server-side, only small tocItems
+ * content HTML string - content is rendered server-side, only small tocItems
  * (array of {id, label, level}) crosses the boundary to the Client Component.
  */
 
@@ -95,7 +95,7 @@ export function ArticleLayout({ content }: ArticleLayoutProps) {
             className={[
               // Paragraph
               '[&>p]:text-[16px] [&>p]:text-gray-600 [&>p]:leading-[1.9] [&>p]:mb-7',
-              // Headings — scroll-mt-28 for sticky header offset
+              // Headings - scroll-mt-28 for sticky header offset
               '[&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-gray-900 [&>h2]:leading-snug [&>h2]:mt-16 [&>h2]:mb-6 [&>h2]:pt-10 [&>h2]:border-t [&>h2]:border-gray-100 [&>h2]:scroll-mt-28',
               '[&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-gray-900 [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:scroll-mt-28',
               '[&>h4]:text-base [&>h4]:font-semibold [&>h4]:text-gray-800 [&>h4]:mt-8 [&>h4]:mb-3',
@@ -124,7 +124,7 @@ export function ArticleLayout({ content }: ArticleLayoutProps) {
               // Max width
               'max-w-[68ch]',
             ].join(' ')}
-            // Note: content is from our own CMS seed — not user-generated input
+            // Note: content is from our own CMS seed - not user-generated input
             dangerouslySetInnerHTML={{ __html: processedHtml }}
           />
         </div>

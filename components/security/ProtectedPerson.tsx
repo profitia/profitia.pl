@@ -9,7 +9,7 @@ interface ProtectedPersonProps {
 
 /**
  * Renders a person's name only after client-side hydration.
- * SSR output: empty placeholder span — name absent from HTML source.
+ * SSR output: empty placeholder span - name absent from HTML source.
  * Client output: plain <span> with the name.
  */
 export function ProtectedPerson({ name, className }: ProtectedPersonProps) {

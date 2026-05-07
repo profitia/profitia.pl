@@ -4,10 +4,10 @@
  * Canonical Consent Provider
  *
  * Global context for the Profitia consent infrastructure.
- * Wraps the app tree — provides state, actions, and renders Banner + Modal.
+ * Wraps the app tree - provides state, actions, and renders Banner + Modal.
  *
  * SSR-safe: all storage access deferred to useEffect after hydration.
- * `isLoaded` guards against hydration mismatch — Banner/Modal never render on server.
+ * `isLoaded` guards against hydration mismatch - Banner/Modal never render on server.
  */
 
 import React, {
@@ -66,12 +66,12 @@ function buildRecord(
 
 interface ConsentProviderProps {
   children: React.ReactNode
-  /** Active locale — passed from layout. Defaults to 'pl'. */
+  /** Active locale - passed from layout. Defaults to 'pl'. */
   locale?: string
 }
 
 export function ConsentProvider({ children, locale: localeProp }: ConsentProviderProps) {
-  // Derive locale from URL path — /en/* → 'en', everything else → 'pl'
+  // Derive locale from URL path - /en/* → 'en', everything else → 'pl'
   // Overrides the prop fallback so layouts don't need to thread locale down
   const pathname = usePathname()
   const locale = localeProp ?? (pathname.startsWith('/en') ? 'en' : 'pl')
@@ -80,7 +80,7 @@ export function ConsentProvider({ children, locale: localeProp }: ConsentProvide
   const [bannerVisible, setBannerVisible] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
 
-  // Hydration — read stored consent after mount
+  // Hydration - read stored consent after mount
   useEffect(() => {
     const stored = readConsent()
     setRecord(stored)
@@ -171,7 +171,7 @@ export function ConsentProvider({ children, locale: localeProp }: ConsentProvide
   return (
     <ConsentContext.Provider value={value}>
       {children}
-      {/* Banner and modal are client-only — guarded by isLoaded to prevent SSR mismatch */}
+      {/* Banner and modal are client-only - guarded by isLoaded to prevent SSR mismatch */}
       {isLoaded && bannerVisible && <ConsentBanner locale={locale} />}
       {isLoaded && modalVisible && <ConsentModal locale={locale} />}
     </ConsentContext.Provider>
@@ -202,7 +202,7 @@ export function useConsentCategory(category: ConsentCategory): boolean {
 }
 
 /**
- * Alias for useConsentCategory — semantically clearer in gate contexts.
+ * Alias for useConsentCategory - semantically clearer in gate contexts.
  */
 export function useHasConsent(category: ConsentCategory): boolean {
   return useConsentCategory(category)

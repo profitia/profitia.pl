@@ -2,7 +2,7 @@
  * LeadershipSection
  * ─────────────────────────────────────────────────────────────
  * Renders featured team members (type: leadership | director)
- * as editorial horizontal rows. No grid — each person deserves space.
+ * as editorial horizontal rows. No grid - each person deserves space.
  *
  * USAGE: About page, contact page leadership callout.
  */

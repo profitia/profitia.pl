@@ -11,7 +11,7 @@ import type { Capability } from './types'
 export const CAPABILITIES: Capability[] = [
 
   // ══════════════════════════════════════════════════════════════
-  // SERVICES — Advisory & Transformation
+  // SERVICES - Advisory & Transformation
   // ══════════════════════════════════════════════════════════════
 
   {
@@ -43,14 +43,14 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Wewnętrzne kompetencje wzmocnione przez transfer wiedzy', en: 'Internal capabilities strengthened through knowledge transfer' },
     ],
     methodology: [
-      { pl: 'Diagnoza — analiza danych zakupowych, struktury wydatków i warunków umów', en: 'Diagnosis — analysis of procurement data, spend structure and contract terms' },
-      { pl: 'Benchmarki — porównanie z rynkiem w danej kategorii', en: 'Benchmarking — comparison with market standards in the category' },
-      { pl: 'Strategia — pozycja negocjacyjna, argumentacja, plan działania', en: 'Strategy — negotiation position, argumentation, action plan' },
-      { pl: 'Wdrożenie — towarzyszenie w realizacji i weryfikacja wyników', en: 'Implementation — support through execution and results verification' },
+      { pl: 'Diagnoza - analiza danych zakupowych, struktury wydatków i warunków umów', en: 'Diagnosis - analysis of procurement data, spend structure and contract terms' },
+      { pl: 'Benchmarki - porównanie z rynkiem w danej kategorii', en: 'Benchmarking - comparison with market standards in the category' },
+      { pl: 'Strategia - pozycja negocjacyjna, argumentacja, plan działania', en: 'Strategy - negotiation position, argumentation, action plan' },
+      { pl: 'Wdrożenie - towarzyszenie w realizacji i weryfikacja wyników', en: 'Implementation - support through execution and results verification' },
     ],
     engagement: {
-      pl: 'Projekty 4–12 tygodni; format warsztatu diagnostycznego, analizy i raportów rekomendacyjnych.',
-      en: '4–12 week projects; diagnostic workshop, analysis and recommendation report format.',
+      pl: 'Projekty 4-12 tygodni; format warsztatu diagnostycznego, analizy i raportów rekomendacyjnych.',
+      en: '4-12 week projects; diagnostic workshop, analysis and recommendation report format.',
     },
     relatedCapabilities: ['interim-management', 'procurement-transformation', 'should-cost-analysis'],
     relatedInsights: [],
@@ -73,12 +73,12 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Doradztwo', en: 'Advisory' },
     title: { pl: 'Interim Management', en: 'Interim Management' },
     shortDescription: {
-      pl: 'Doświadczony dyrektor zakupów dostępny tam, gdzie i kiedy potrzebujesz — na czas transformacji lub przejścia.',
-      en: 'An experienced procurement director available where and when you need them — through transformation or transition.',
+      pl: 'Doświadczony dyrektor zakupów dostępny tam, gdzie i kiedy potrzebujesz - na czas transformacji lub przejścia.',
+      en: 'An experienced procurement director available where and when you need them - through transformation or transition.',
     },
     longDescription: {
-      pl: 'Zapewniamy dostęp do seniorowego doświadczenia zakupowego w formule interim — bez kosztów stałych, z natychmiastowym efektem. Odpowiedź na lukę kompetencyjną, restrukturyzację funkcji lub potrzebę prowadzenia złożonego projektu zakupowego bez angażowania pełnoetatowego zasobu.',
-      en: 'We provide access to senior procurement expertise on an interim basis — without permanent costs, with immediate impact. The answer to a competency gap, function restructuring or the need to lead a complex procurement project without full-time resource.',
+      pl: 'Zapewniamy dostęp do seniorowego doświadczenia zakupowego w formule interim - bez kosztów stałych, z natychmiastowym efektem. Odpowiedź na lukę kompetencyjną, restrukturyzację funkcji lub potrzebę prowadzenia złożonego projektu zakupowego bez angażowania pełnoetatowego zasobu.',
+      en: 'We provide access to senior procurement expertise on an interim basis - without permanent costs, with immediate impact. The answer to a competency gap, function restructuring or the need to lead a complex procurement project without full-time resource.',
     },
     whatItSolves: [
       { pl: 'Luka seniorowa w funkcji zakupowej podczas rekrutacji lub zmiany', en: 'Senior gap in procurement function during recruitment or change' },
@@ -91,13 +91,13 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Wiedza i procesy przeniesione do organizacji', en: 'Knowledge and processes transferred to the organisation' },
     ],
     methodology: [
-      { pl: 'Szybkie wdrożenie — 1–2 tygodnie od decyzji do uruchomienia', en: 'Fast onboarding — 1–2 weeks from decision to launch' },
+      { pl: 'Szybkie wdrożenie - 1-2 tygodnie od decyzji do uruchomienia', en: 'Fast onboarding - 1-2 weeks from decision to launch' },
       { pl: 'Elastyczny zakres od 10 dni/miesiąc do pełnoetatowego zaangażowania', en: 'Flexible scope from 10 days/month to full-time engagement' },
       { pl: 'Regularne raportowanie i transfer wiedzy od pierwszego dnia', en: 'Regular reporting and knowledge transfer from day one' },
     ],
     engagement: {
-      pl: 'Zaangażowanie 3–12 miesięcy; elastyczne od part-time do pełnoetatowego.',
-      en: '3–12 month engagement; flexible from part-time to full-time.',
+      pl: 'Zaangażowanie 3-12 miesięcy; elastyczne od part-time do pełnoetatowego.',
+      en: '3-12 month engagement; flexible from part-time to full-time.',
     },
     relatedCapabilities: ['projekty-doradcze', 'procurement-transformation', 'category-strategy'],
     relatedInsights: [],
@@ -120,8 +120,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Transformacja', en: 'Transformation' },
     title: { pl: 'Procurement Transformation', en: 'Procurement Transformation' },
     shortDescription: {
-      pl: 'Kompleksowa transformacja funkcji zakupowej — od modelu operacyjnego po kulturę organizacyjną.',
-      en: 'Comprehensive procurement function transformation — from operating model to organisational culture.',
+      pl: 'Kompleksowa transformacja funkcji zakupowej - od modelu operacyjnego po kulturę organizacyjną.',
+      en: 'Comprehensive procurement function transformation - from operating model to organisational culture.',
     },
     longDescription: {
       pl: 'Przeprowadzamy organizacje przez kompleksową transformację funkcji zakupowej: od diagnozy dojrzałości, przez redesign procesów i modelu operacyjnego, po wdrożenie nowych kompetencji i narzędzi. Efektem jest funkcja zakupowa działająca na poziomie strategicznym.',
@@ -140,14 +140,14 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Zakupy jako partner strategiczny dla biznesu', en: 'Procurement as a strategic partner to the business' },
     ],
     methodology: [
-      { pl: 'Diagnoza dojrzałości — ocena aktualnego stanu funkcji zakupowej', en: 'Maturity diagnosis — assessment of current procurement function state' },
-      { pl: 'Blueprint — zaprojektowanie docelowego modelu operacyjnego', en: 'Blueprint — design of target operating model' },
-      { pl: 'Pilotaż — wdrożenie zmian w wybranym obszarze', en: 'Pilot — change implementation in selected area' },
-      { pl: 'Rollout — pełne wdrożenie z wsparciem change management', en: 'Rollout — full implementation with change management support' },
+      { pl: 'Diagnoza dojrzałości - ocena aktualnego stanu funkcji zakupowej', en: 'Maturity diagnosis - assessment of current procurement function state' },
+      { pl: 'Blueprint - zaprojektowanie docelowego modelu operacyjnego', en: 'Blueprint - design of target operating model' },
+      { pl: 'Pilotaż - wdrożenie zmian w wybranym obszarze', en: 'Pilot - change implementation in selected area' },
+      { pl: 'Rollout - pełne wdrożenie z wsparciem change management', en: 'Rollout - full implementation with change management support' },
     ],
     engagement: {
-      pl: 'Projekty 6–18 miesięcy; fazy diagnostyczna, projektowa i wdrożeniowa.',
-      en: '6–18 month projects; diagnostic, design and implementation phases.',
+      pl: 'Projekty 6-18 miesięcy; fazy diagnostyczna, projektowa i wdrożeniowa.',
+      en: '6-18 month projects; diagnostic, design and implementation phases.',
     },
     relatedCapabilities: ['projekty-doradcze', 'operating-model-design', 'category-strategy'],
     relatedInsights: [],
@@ -170,12 +170,12 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Doradztwo', en: 'Advisory' },
     title: { pl: 'Category Strategy', en: 'Category Strategy' },
     shortDescription: {
-      pl: 'Strategia dla kluczowych kategorii kosztowych — oparta na danych rynkowych, nie intuicji.',
-      en: 'Strategy for key cost categories — grounded in market data, not intuition.',
+      pl: 'Strategia dla kluczowych kategorii kosztowych - oparta na danych rynkowych, nie intuicji.',
+      en: 'Strategy for key cost categories - grounded in market data, not intuition.',
     },
     longDescription: {
-      pl: 'Budujemy strategie zakupowe dla kluczowych kategorii kosztowych Twojej organizacji. Każda strategia obejmuje analizę rynku dostawców, benchmarki, ocenę ryzyka i pozycję negocjacyjną — tak, żeby Twoi kupcy wchodzili do negocjacji z pełną wiedzą.',
-      en: 'We build procurement strategies for your organisation\'s key cost categories. Each strategy covers supplier market analysis, benchmarking, risk assessment and negotiation position — so your buyers enter negotiations with complete knowledge.',
+      pl: 'Budujemy strategie zakupowe dla kluczowych kategorii kosztowych Twojej organizacji. Każda strategia obejmuje analizę rynku dostawców, benchmarki, ocenę ryzyka i pozycję negocjacyjną - tak, żeby Twoi kupcy wchodzili do negocjacji z pełną wiedzą.',
+      en: 'We build procurement strategies for your organisation\'s key cost categories. Each strategy covers supplier market analysis, benchmarking, risk assessment and negotiation position - so your buyers enter negotiations with complete knowledge.',
     },
     whatItSolves: [
       { pl: 'Decyzje zakupowe bez znajomości struktury rynku dostawców', en: 'Procurement decisions without knowledge of the supplier market structure' },
@@ -194,8 +194,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Opracowanie strategii i planu wdrożenia', en: 'Strategy development and implementation plan' },
     ],
     engagement: {
-      pl: 'Projekty 3–8 tygodni na kategorię; możliwe podejście portfelowe dla wielu kategorii jednocześnie.',
-      en: '3–8 week projects per category; portfolio approach available for multiple categories simultaneously.',
+      pl: 'Projekty 3-8 tygodni na kategorię; możliwe podejście portfelowe dla wielu kategorii jednocześnie.',
+      en: '3-8 week projects per category; portfolio approach available for multiple categories simultaneously.',
     },
     relatedCapabilities: ['projekty-doradcze', 'should-cost-analysis', 'spend-cube'],
     relatedInsights: [],
@@ -218,8 +218,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Transformacja', en: 'Transformation' },
     title: { pl: 'Operating Model Design', en: 'Operating Model Design' },
     shortDescription: {
-      pl: 'Projektowanie modelu operacyjnego funkcji zakupowej — struktura, role, procesy i KPI.',
-      en: 'Designing the procurement function operating model — structure, roles, processes and KPIs.',
+      pl: 'Projektowanie modelu operacyjnego funkcji zakupowej - struktura, role, procesy i KPI.',
+      en: 'Designing the procurement function operating model - structure, roles, processes and KPIs.',
     },
     longDescription: {
       pl: 'Pomagamy zaprojektować lub zredesignować model operacyjny funkcji zakupowej: strukturę organizacyjną, podział odpowiedzialności, kluczowe procesy, system mierzenia efektywności i mechanizmy governance.',
@@ -242,8 +242,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Roadmapa wdrożenia i plan change management', en: 'Implementation roadmap and change management plan' },
     ],
     engagement: {
-      pl: 'Projekty 6–12 tygodni; połączone z diagnozą i warsztatami.',
-      en: '6–12 week projects; combined with diagnosis and workshops.',
+      pl: 'Projekty 6-12 tygodni; połączone z diagnozą i warsztatami.',
+      en: '6-12 week projects; combined with diagnosis and workshops.',
     },
     relatedCapabilities: ['procurement-transformation', 'projekty-doradcze'],
     relatedInsights: [],
@@ -266,8 +266,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Transformacja', en: 'Transformation' },
     title: { pl: 'Procurement PMO', en: 'Procurement PMO' },
     shortDescription: {
-      pl: 'Zarządzanie portfelem projektów zakupowych — governance, raportowanie i koordynacja inicjatyw.',
-      en: 'Procurement project portfolio management — governance, reporting and initiative coordination.',
+      pl: 'Zarządzanie portfelem projektów zakupowych - governance, raportowanie i koordynacja inicjatyw.',
+      en: 'Procurement project portfolio management - governance, reporting and initiative coordination.',
     },
     longDescription: {
       pl: 'Budujemy lub prowadzimy biuro zarządzania projektami zakupowymi (PMO): governance inicjatyw, śledzenie savings, koordynacja interdyscyplinarna i raportowanie dla zarządu. Dla organizacji prowadzących wiele równoległych inicjatyw zakupowych.',
@@ -305,7 +305,7 @@ export const CAPABILITIES: Capability[] = [
   },
 
   // ══════════════════════════════════════════════════════════════
-  // SERVICES — Negotiation & Cost Intelligence
+  // SERVICES - Negotiation & Cost Intelligence
   // ══════════════════════════════════════════════════════════════
 
   {
@@ -317,8 +317,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Negocjacje', en: 'Negotiations' },
     title: { pl: 'Analiza SPOT', en: 'SPOT Analysis' },
     shortDescription: {
-      pl: 'Szybka diagnoza potencjału negocjacyjnego w kluczowej kategorii — w ciągu tygodnia.',
-      en: 'Fast diagnosis of negotiation potential in a key category — within one week.',
+      pl: 'Szybka diagnoza potencjału negocjacyjnego w kluczowej kategorii - w ciągu tygodnia.',
+      en: 'Fast diagnosis of negotiation potential in a key category - within one week.',
     },
     longDescription: {
       pl: 'Szybka analiza bieżącej pozycji zakupowej w wybranej kategorii lub u konkretnego dostawcy. Identyfikujemy gap między obecnymi warunkami a rynkiem, oceniamy siłę przetargową i wskazujemy najważniejsze dźwignie do natychmiastowego działania.',
@@ -331,7 +331,7 @@ export const CAPABILITIES: Capability[] = [
     ],
     outcomes: [
       { pl: 'Ocena gap między obecnymi warunkami a rynkiem (ilościowo)', en: 'Gap assessment between current terms and market (quantified)' },
-      { pl: 'Identyfikacja 3–5 kluczowych dźwigni negocjacyjnych', en: 'Identification of 3–5 key negotiation levers' },
+      { pl: 'Identyfikacja 3-5 kluczowych dźwigni negocjacyjnych', en: 'Identification of 3-5 key negotiation levers' },
       { pl: 'Rekomendacja kolejnych kroków', en: 'Next steps recommendation' },
     ],
     methodology: [
@@ -340,8 +340,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Ocena siły przetargowej i zależności', en: 'Bargaining power and dependency assessment' },
     ],
     engagement: {
-      pl: 'Format 5–10 dni roboczych; raport i prezentacja wyników.',
-      en: '5–10 working day format; report and results presentation.',
+      pl: 'Format 5-10 dni roboczych; raport i prezentacja wyników.',
+      en: '5-10 working day format; report and results presentation.',
     },
     relatedCapabilities: ['should-cost-analysis', 'negotiation-preparation', 'projekty-doradcze'],
     relatedInsights: [],
@@ -364,12 +364,12 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Cost Intelligence', en: 'Cost Intelligence' },
     title: { pl: 'Should-Cost Analysis', en: 'Should-Cost Analysis' },
     shortDescription: {
-      pl: 'Ile powinien kosztować produkt lub usługa — zbudowana od fundamentów kosztowych, nie ceny ofertowej.',
-      en: 'What a product or service should cost — built from cost fundamentals, not the quoted price.',
+      pl: 'Ile powinien kosztować produkt lub usługa - zbudowana od fundamentów kosztowych, nie ceny ofertowej.',
+      en: 'What a product or service should cost - built from cost fundamentals, not the quoted price.',
     },
     longDescription: {
-      pl: 'Modelujemy strukturę kosztów dostawcy: materiały, praca, overhead, marża. Pokazujemy, ile powinien kosztować produkt lub usługa na podstawie rzeczywistych czynników kosztowych — nie ceny, którą zaproponował dostawca. Fundament każdej negocjacji opartej na faktach.',
-      en: 'We model the supplier\'s cost structure: materials, labour, overhead, margin. We show what a product or service should cost based on real cost drivers — not the price the supplier quoted. The foundation of any fact-based negotiation.',
+      pl: 'Modelujemy strukturę kosztów dostawcy: materiały, praca, overhead, marża. Pokazujemy, ile powinien kosztować produkt lub usługa na podstawie rzeczywistych czynników kosztowych - nie ceny, którą zaproponował dostawca. Fundament każdej negocjacji opartej na faktach.',
+      en: 'We model the supplier\'s cost structure: materials, labour, overhead, margin. We show what a product or service should cost based on real cost drivers - not the price the supplier quoted. The foundation of any fact-based negotiation.',
     },
     whatItSolves: [
       { pl: 'Negocjacje bez znajomości rzeczywistej struktury kosztów dostawcy', en: 'Negotiations without knowledge of the supplier\'s real cost structure' },
@@ -388,8 +388,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Opracowanie argumentacji i scenariuszy negocjacyjnych', en: 'Negotiation argumentation and scenario development' },
     ],
     engagement: {
-      pl: 'Analiza 1–3 tygodnie na kategorię; model Excelowy z dokumentacją metodologii.',
-      en: '1–3 week analysis per category; Excel model with methodology documentation.',
+      pl: 'Analiza 1-3 tygodnie na kategorię; model Excelowy z dokumentacją metodologii.',
+      en: '1-3 week analysis per category; Excel model with methodology documentation.',
     },
     relatedCapabilities: ['analiza-spot', 'negotiation-preparation', 'supplier-benchmarking'],
     relatedInsights: [],
@@ -436,8 +436,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Symulacja negocjacyjna i debrief', en: 'Negotiation simulation and debrief' },
     ],
     engagement: {
-      pl: 'Format 1–5 dni; warsztaty przygotowawcze i sesja symulacyjna.',
-      en: '1–5 day format; preparation workshops and simulation session.',
+      pl: 'Format 1-5 dni; warsztaty przygotowawcze i sesja symulacyjna.',
+      en: '1-5 day format; preparation workshops and simulation session.',
     },
     relatedCapabilities: ['should-cost-analysis', 'analiza-spot', 'supplier-negotiation-support'],
     relatedInsights: [],
@@ -460,8 +460,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Intelligence', en: 'Intelligence' },
     title: { pl: 'Supplier Benchmarking', en: 'Supplier Benchmarking' },
     shortDescription: {
-      pl: 'Porównanie Twoich warunków z rynkiem — żebyś wiedział, gdzie stoisz i o ile możesz poprawić.',
-      en: 'Comparison of your terms against the market — so you know where you stand and how much you can improve.',
+      pl: 'Porównanie Twoich warunków z rynkiem - żebyś wiedział, gdzie stoisz i o ile możesz poprawić.',
+      en: 'Comparison of your terms against the market - so you know where you stand and how much you can improve.',
     },
     longDescription: {
       pl: 'Dostarczamy zewnętrzne benchmarki dla kluczowych kategorii i dostawców: ceny rynkowe, warunki płatności, poziom usług, warunki umów. Dane, które pozwalają ocenić, czy Twoje obecne warunki są rynkowe i gdzie jest przestrzeń do poprawy.',
@@ -483,8 +483,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Raport z oceną pozycji i rekomendacjami', en: 'Report with position assessment and recommendations' },
     ],
     engagement: {
-      pl: 'Analiza 2–4 tygodnie; raport benchmarkowy dla 1–5 kategorii.',
-      en: '2–4 week analysis; benchmark report for 1–5 categories.',
+      pl: 'Analiza 2-4 tygodnie; raport benchmarkowy dla 1-5 kategorii.',
+      en: '2-4 week analysis; benchmark report for 1-5 categories.',
     },
     relatedCapabilities: ['should-cost-analysis', 'analiza-spot', 'negotiation-preparation'],
     relatedInsights: [],
@@ -507,12 +507,12 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Negocjacje', en: 'Negotiations' },
     title: { pl: 'Supplier Negotiation Support', en: 'Supplier Negotiation Support' },
     shortDescription: {
-      pl: 'Bezpośrednie wsparcie w negocjacjach z dostawcami — jako ekspert lub obserwator z debrief.',
-      en: 'Direct support in supplier negotiations — as an expert or observer with debrief.',
+      pl: 'Bezpośrednie wsparcie w negocjacjach z dostawcami - jako ekspert lub obserwator z debrief.',
+      en: 'Direct support in supplier negotiations - as an expert or observer with debrief.',
     },
     longDescription: {
-      pl: 'Wspieramy Twój zespół bezpośrednio podczas negocjacji z dostawcami — w roli eksperta przy stole lub jako obserwator z debrief po zakończeniu rozmów. Dostarczamy zarówno merytoryczne wsparcie argumentacyjne, jak i coaching negocjacyjny na żywo.',
-      en: 'We support your team directly during supplier negotiations — as an expert at the table or as an observer with a post-session debrief. We provide both substantive argumentation support and live negotiation coaching.',
+      pl: 'Wspieramy Twój zespół bezpośrednio podczas negocjacji z dostawcami - w roli eksperta przy stole lub jako obserwator z debrief po zakończeniu rozmów. Dostarczamy zarówno merytoryczne wsparcie argumentacyjne, jak i coaching negocjacyjny na żywo.',
+      en: 'We support your team directly during supplier negotiations - as an expert at the table or as an observer with a post-session debrief. We provide both substantive argumentation support and live negotiation coaching.',
     },
     whatItSolves: [
       { pl: 'Brak doświadczonego negocjatora po stronie kupującego', en: 'No experienced negotiator on the buyer\'s side' },
@@ -546,7 +546,7 @@ export const CAPABILITIES: Capability[] = [
   },
 
   // ══════════════════════════════════════════════════════════════
-  // SERVICES — Data & Analytics
+  // SERVICES - Data & Analytics
   // ══════════════════════════════════════════════════════════════
 
   {
@@ -558,12 +558,12 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Analityka', en: 'Analytics' },
     title: { pl: 'Spend Cube', en: 'Spend Cube' },
     shortDescription: {
-      pl: 'Kompletny obraz wydatków Twojej organizacji — skategoryzowany, analizowalny i gotowy do decyzji.',
-      en: 'A complete picture of your organisation\'s spending — categorised, analysable and decision-ready.',
+      pl: 'Kompletny obraz wydatków Twojej organizacji - skategoryzowany, analizowalny i gotowy do decyzji.',
+      en: 'A complete picture of your organisation\'s spending - categorised, analysable and decision-ready.',
     },
     longDescription: {
-      pl: 'Budujemy spend cube: pełen obraz wydatków organizacji z podziałem na kategorie, dostawców, jednostki organizacyjne i okresy. Dane oczyszczone, skategoryzowane i załadowane do środowiska analitycznego — gotowe do identyfikacji potencjału oszczędnościowego.',
-      en: 'We build a spend cube: a complete picture of organisational spending broken down by category, supplier, organisational unit and period. Data cleaned, categorised and loaded into an analytical environment — ready for savings potential identification.',
+      pl: 'Budujemy spend cube: pełen obraz wydatków organizacji z podziałem na kategorie, dostawców, jednostki organizacyjne i okresy. Dane oczyszczone, skategoryzowane i załadowane do środowiska analitycznego - gotowe do identyfikacji potencjału oszczędnościowego.',
+      en: 'We build a spend cube: a complete picture of organisational spending broken down by category, supplier, organisational unit and period. Data cleaned, categorised and loaded into an analytical environment - ready for savings potential identification.',
     },
     whatItSolves: [
       { pl: 'Brak widoczności struktury wydatków i kluczowych dostawców', en: 'No visibility of spend structure and key suppliers' },
@@ -572,7 +572,7 @@ export const CAPABILITIES: Capability[] = [
     ],
     outcomes: [
       { pl: 'Skategoryzowana baza wydatków dla całej organizacji', en: 'Categorised spend database for the entire organisation' },
-      { pl: 'Top dostawcy, kategorie i jednostki — w jednym widoku', en: 'Top suppliers, categories and units — in a single view' },
+      { pl: 'Top dostawcy, kategorie i jednostki - w jednym widoku', en: 'Top suppliers, categories and units - in a single view' },
       { pl: 'Gotowe dane do analizy i decyzji zakupowych', en: 'Data ready for procurement analysis and decisions' },
     ],
     methodology: [
@@ -582,8 +582,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Załadowanie do środowiska analitycznego i budowa widoków', en: 'Loading to analytical environment and view construction' },
     ],
     engagement: {
-      pl: 'Projekt 4–8 tygodni; jednorazowy lub w modelu recurring (quarterly refresh).',
-      en: '4–8 week project; one-off or recurring model (quarterly refresh).',
+      pl: 'Projekt 4-8 tygodni; jednorazowy lub w modelu recurring (quarterly refresh).',
+      en: '4-8 week project; one-off or recurring model (quarterly refresh).',
     },
     relatedCapabilities: ['spend-analytics', 'procurement-dashboards', 'category-strategy'],
     relatedInsights: [],
@@ -606,8 +606,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Analityka', en: 'Analytics' },
     title: { pl: 'Spend Analytics', en: 'Spend Analytics' },
     shortDescription: {
-      pl: 'Analiza wzorców wydatków, trendów i anomalii — od danych do rekomendacji zakupowych.',
-      en: 'Analysis of spending patterns, trends and anomalies — from data to procurement recommendations.',
+      pl: 'Analiza wzorców wydatków, trendów i anomalii - od danych do rekomendacji zakupowych.',
+      en: 'Analysis of spending patterns, trends and anomalies - from data to procurement recommendations.',
     },
     longDescription: {
       pl: 'Na bazie danych zakupowych przeprowadzamy kompleksową analizę spend: wzorce wydatków, trendy, anomalie, koncentracja dostawców, okazje do konsolidacji. Każda analiza kończy się konkretnymi rekomendacjami dla funkcji zakupowej.',
@@ -630,8 +630,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Raport rekomendacyjny i prezentacja', en: 'Recommendation report and presentation' },
     ],
     engagement: {
-      pl: 'Analiza 2–4 tygodnie; raport + prezentacja wyników z rekomendacjami.',
-      en: '2–4 week analysis; report + results presentation with recommendations.',
+      pl: 'Analiza 2-4 tygodnie; raport + prezentacja wyników z rekomendacjami.',
+      en: '2-4 week analysis; report + results presentation with recommendations.',
     },
     relatedCapabilities: ['spend-cube', 'procurement-dashboards', 'supplier-intelligence'],
     relatedInsights: [],
@@ -654,8 +654,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Analityka', en: 'Analytics' },
     title: { pl: 'Procurement Dashboards', en: 'Procurement Dashboards' },
     shortDescription: {
-      pl: 'Dashboardy zakupowe — widoczność kluczowych wskaźników w czasie rzeczywistym.',
-      en: 'Procurement dashboards — visibility of key metrics in real time.',
+      pl: 'Dashboardy zakupowe - widoczność kluczowych wskaźników w czasie rzeczywistym.',
+      en: 'Procurement dashboards - visibility of key metrics in real time.',
     },
     longDescription: {
       pl: 'Projektujemy i budujemy dashboardy zakupowe: systemy KPI, widoki dla zarządu, raporty operacyjne dla kupców. Narzędzia, które dają funkcji zakupowej pełną widoczność działań i wyników w jednym miejscu.',
@@ -678,8 +678,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Wdrożenie i szkolenie zespołu', en: 'Implementation and team training' },
     ],
     engagement: {
-      pl: 'Projekt 4–10 tygodni; zależnie od dostępności źródeł danych i zakresu.',
-      en: '4–10 week project; depending on data source availability and scope.',
+      pl: 'Projekt 4-10 tygodni; zależnie od dostępności źródeł danych i zakresu.',
+      en: '4-10 week project; depending on data source availability and scope.',
     },
     relatedCapabilities: ['spend-cube', 'procurement-kpi-systems', 'spend-analytics'],
     relatedInsights: [],
@@ -725,8 +725,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Identyfikacja alternatywnych źródeł i ich ocena', en: 'Alternative source identification and assessment' },
     ],
     engagement: {
-      pl: 'Profil na dostawcę 1–2 tygodnie; możliwe zaangażowanie portfelowe.',
-      en: '1–2 weeks per supplier profile; portfolio engagement possible.',
+      pl: 'Profil na dostawcę 1-2 tygodnie; możliwe zaangażowanie portfelowe.',
+      en: '1-2 weeks per supplier profile; portfolio engagement possible.',
     },
     relatedCapabilities: ['should-cost-analysis', 'supplier-benchmarking', 'spend-analytics'],
     relatedInsights: [],
@@ -772,8 +772,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Wdrożenie systemu i szkolenie zespołu', en: 'System implementation and team training' },
     ],
     engagement: {
-      pl: 'Projekt 3–6 tygodni; warsztaty + dokumentacja + wdrożenie.',
-      en: '3–6 week project; workshops + documentation + implementation.',
+      pl: 'Projekt 3-6 tygodni; warsztaty + dokumentacja + wdrożenie.',
+      en: '3-6 week project; workshops + documentation + implementation.',
     },
     relatedCapabilities: ['procurement-dashboards', 'operating-model-design', 'spend-analytics'],
     relatedInsights: [],
@@ -788,7 +788,7 @@ export const CAPABILITIES: Capability[] = [
   },
 
   // ══════════════════════════════════════════════════════════════
-  // SERVICES — Capability Development
+  // SERVICES - Capability Development
   // ══════════════════════════════════════════════════════════════
 
   {
@@ -800,8 +800,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Coaching', en: 'Coaching' },
     title: { pl: 'Coaching Zakupowy', en: 'Procurement Coaching' },
     shortDescription: {
-      pl: 'Indywidualny coaching dla kupców i dyrektorów zakupów — praktyczny, zorientowany na wyniki.',
-      en: 'Individual coaching for buyers and procurement directors — practical, results-oriented.',
+      pl: 'Indywidualny coaching dla kupców i dyrektorów zakupów - praktyczny, zorientowany na wyniki.',
+      en: 'Individual coaching for buyers and procurement directors - practical, results-oriented.',
     },
     longDescription: {
       pl: 'Coaching indywidualny dla kupców i liderów funkcji zakupowej. Pracujemy nad konkretnymi wyzwaniami: negocjacje, zarządzanie dostawcami, komunikacja z zarządem, budowanie autorytetu zakupów w organizacji.',
@@ -818,14 +818,14 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Większa pewność i skuteczność w roli zakupowej', en: 'Greater confidence and effectiveness in the procurement role' },
     ],
     methodology: [
-      { pl: 'Diagnoza — identyfikacja celów i wyzwań', en: 'Diagnosis — goal and challenge identification' },
-      { pl: 'Regularne sesje (45–90 minut, co 2 tygodnie)', en: 'Regular sessions (45–90 minutes, every 2 weeks)' },
-      { pl: 'Praca między sesjami — zadania i eksperymenty', en: 'Between-session work — assignments and experiments' },
+      { pl: 'Diagnoza - identyfikacja celów i wyzwań', en: 'Diagnosis - goal and challenge identification' },
+      { pl: 'Regularne sesje (45-90 minut, co 2 tygodnie)', en: 'Regular sessions (45-90 minutes, every 2 weeks)' },
+      { pl: 'Praca między sesjami - zadania i eksperymenty', en: 'Between-session work - assignments and experiments' },
       { pl: 'Ewaluacja postępów i korekta kursu', en: 'Progress evaluation and course correction' },
     ],
     engagement: {
-      pl: 'Program 3–6 miesięcy; 6–12 sesji indywidualnych.',
-      en: '3–6 month programme; 6–12 individual sessions.',
+      pl: 'Program 3-6 miesięcy; 6-12 sesji indywidualnych.',
+      en: '3-6 month programme; 6-12 individual sessions.',
     },
     relatedCapabilities: ['negotiation-preparation', 'warsztaty-negocjacyjne', 'akademia-zakupow'],
     relatedInsights: [],
@@ -840,7 +840,7 @@ export const CAPABILITIES: Capability[] = [
   },
 
   // ══════════════════════════════════════════════════════════════
-  // EDUCATION — Executive Programmes
+  // EDUCATION - Executive Programmes
   // ══════════════════════════════════════════════════════════════
 
   {
@@ -852,8 +852,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Program Executive', en: 'Executive Programme' },
     title: { pl: 'Akademia Zakupów', en: 'Procurement Academy' },
     shortDescription: {
-      pl: 'Kompleksowy program kompetencji zakupowych — od strategii kategorii po zarządzanie dostawcami.',
-      en: 'A comprehensive procurement competency programme — from category strategy to supplier management.',
+      pl: 'Kompleksowy program kompetencji zakupowych - od strategii kategorii po zarządzanie dostawcami.',
+      en: 'A comprehensive procurement competency programme - from category strategy to supplier management.',
     },
     longDescription: {
       pl: 'Akademia Zakupów to wielomodułowy program rozwijający kompetencje zakupowe na poziomie strategicznym i operacyjnym. Obejmuje strategie zakupowe, zarządzanie kategoriami, negocjacje oparte na faktach, zarządzanie dostawcami i analitykę zakupową.',
@@ -876,8 +876,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Ewaluacja i ścieżka certyfikacji', en: 'Evaluation and certification path' },
     ],
     engagement: {
-      pl: 'Program 4–8 modułów; w trybie in-company lub otwartym; stacjonarnie lub online.',
-      en: '4–8 module programme; in-company or open format; in-person or online.',
+      pl: 'Program 4-8 modułów; w trybie in-company lub otwartym; stacjonarnie lub online.',
+      en: '4-8 module programme; in-company or open format; in-person or online.',
     },
     relatedCapabilities: ['procurement-excellence', 'coaching-zakupowy', 'strategic-sourcing'],
     relatedInsights: [],
@@ -900,8 +900,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Program Executive', en: 'Executive Programme' },
     title: { pl: 'Procurement Excellence', en: 'Procurement Excellence' },
     shortDescription: {
-      pl: 'Program dla dojrzałych organizacji zakupowych — doskonałość operacyjna i przewaga strategiczna.',
-      en: 'A programme for mature procurement organisations — operational excellence and strategic advantage.',
+      pl: 'Program dla dojrzałych organizacji zakupowych - doskonałość operacyjna i przewaga strategiczna.',
+      en: 'A programme for mature procurement organisations - operational excellence and strategic advantage.',
     },
     longDescription: {
       pl: 'Zaawansowany program dla doświadczonych kupców i liderów zakupowych. Skupia się na osiągnięciu i utrzymaniu doskonałości operacyjnej: advanced category management, strategic cost management, procurement governance i przywództwo zakupowe.',
@@ -947,8 +947,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Program Executive', en: 'Executive Programme' },
     title: { pl: 'Strategic Sourcing', en: 'Strategic Sourcing' },
     shortDescription: {
-      pl: 'Jak zbudować strategię sourcingową dla złożonych kategorii — od analizy rynku po wybór dostawcy.',
-      en: 'How to build a sourcing strategy for complex categories — from market analysis to supplier selection.',
+      pl: 'Jak zbudować strategię sourcingową dla złożonych kategorii - od analizy rynku po wybór dostawcy.',
+      en: 'How to build a sourcing strategy for complex categories - from market analysis to supplier selection.',
     },
     longDescription: {
       pl: 'Program skupiony na umiejętności budowania i realizowania strategii sourcingowej. Uczymy systematycznego podejścia do wyboru dostawców: od analizy kategorii i rynku, przez RFP i ewaluację, po decyzję i onboarding nowego dostawcy.',
@@ -970,8 +970,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Opracowanie własnego procesu sourcingowego', en: 'Development of own sourcing process' },
     ],
     engagement: {
-      pl: 'Warsztat 2–3 dni lub program modułowy; in-company lub otwarty.',
-      en: '2–3 day workshop or modular programme; in-company or open.',
+      pl: 'Warsztat 2-3 dni lub program modułowy; in-company lub otwarty.',
+      en: '2-3 day workshop or modular programme; in-company or open.',
     },
     relatedCapabilities: ['akademia-zakupow', 'category-strategy', 'warsztaty-negocjacyjne'],
     relatedInsights: [],
@@ -986,7 +986,7 @@ export const CAPABILITIES: Capability[] = [
   },
 
   // ══════════════════════════════════════════════════════════════
-  // EDUCATION — Negotiation Workshops
+  // EDUCATION - Negotiation Workshops
   // ══════════════════════════════════════════════════════════════
 
   {
@@ -1022,8 +1022,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Case studies z branż uczestników', en: 'Case studies from participants\' industries' },
     ],
     engagement: {
-      pl: 'Warsztat 1–2 dni; in-company lub program otwarty. Dostępna wersja zaawansowana (dzień 3).',
-      en: '1–2 day workshop; in-company or open programme. Advanced version available (day 3).',
+      pl: 'Warsztat 1-2 dni; in-company lub program otwarty. Dostępna wersja zaawansowana (dzień 3).',
+      en: '1-2 day workshop; in-company or open programme. Advanced version available (day 3).',
     },
     relatedCapabilities: ['advanced-negotiations', 'negotiation-preparation', 'coaching-zakupowy'],
     relatedInsights: [],
@@ -1046,8 +1046,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Warsztaty', en: 'Workshop' },
     title: { pl: 'Advanced Negotiations', en: 'Advanced Negotiations' },
     shortDescription: {
-      pl: 'Zaawansowane techniki negocjacyjne dla doświadczonych kupców — presja, koalicje i złożone scenariusze.',
-      en: 'Advanced negotiation techniques for experienced buyers — pressure, coalitions and complex scenarios.',
+      pl: 'Zaawansowane techniki negocjacyjne dla doświadczonych kupców - presja, koalicje i złożone scenariusze.',
+      en: 'Advanced negotiation techniques for experienced buyers - pressure, coalitions and complex scenarios.',
     },
     longDescription: {
       pl: 'Dla doświadczonych kupców, którzy chcą wejść na wyższy poziom. Skupiamy się na zaawansowanych scenariuszach: negocjacje wielostronne, zarządzanie presją dostawcy, negocjacje w trudnych warunkach rynkowych, koalicje i alianse zakupowe.',
@@ -1069,8 +1069,8 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Indywidualny feedback i coaching technik', en: 'Individual feedback and technique coaching' },
     ],
     engagement: {
-      pl: 'Warsztat 1–2 dni; wyłącznie in-company dla doświadczonych zespołów.',
-      en: '1–2 day workshop; in-company only for experienced teams.',
+      pl: 'Warsztat 1-2 dni; wyłącznie in-company dla doświadczonych zespołów.',
+      en: '1-2 day workshop; in-company only for experienced teams.',
     },
     relatedCapabilities: ['warsztaty-negocjacyjne', 'negotiation-preparation', 'coaching-zakupowy'],
     relatedInsights: [],
@@ -1093,8 +1093,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Warsztaty', en: 'Workshop' },
     title: { pl: 'Fact-Based Negotiation', en: 'Fact-Based Negotiation' },
     shortDescription: {
-      pl: 'Jak wygrywać negocjacje za pomocą danych — should-cost, benchmarki i argumentacja faktualna.',
-      en: 'How to win negotiations using data — should-cost, benchmarks and factual argumentation.',
+      pl: 'Jak wygrywać negocjacje za pomocą danych - should-cost, benchmarki i argumentacja faktualna.',
+      en: 'How to win negotiations using data - should-cost, benchmarks and factual argumentation.',
     },
     longDescription: {
       pl: 'Warsztat skupiony na negocjacjach opartych na danych: jak budować argumentację na podstawie should-cost, benchmarków i analiz rynkowych, jak odrzucać nieuzasadnione podwyżki, jak prowadzić rozmowę o cenach na podstawie faktów, a nie intuicji.',
@@ -1132,7 +1132,7 @@ export const CAPABILITIES: Capability[] = [
   },
 
   // ══════════════════════════════════════════════════════════════
-  // EDUCATION — Analytics & Intelligence
+  // EDUCATION - Analytics & Intelligence
   // ══════════════════════════════════════════════════════════════
 
   {
@@ -1167,14 +1167,14 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Projekt własnej analizy spend', en: 'Own spend analysis project' },
     ],
     engagement: {
-      pl: 'Warsztat 1–2 dni; in-company lub otwarty.',
-      en: '1–2 day workshop; in-company or open.',
+      pl: 'Warsztat 1-2 dni; in-company lub otwarty.',
+      en: '1-2 day workshop; in-company or open.',
     },
     relatedCapabilities: ['spend-cube', 'procurement-dashboards', 'supplier-intelligence'],
     relatedInsights: [],
     ctaLabel: { pl: 'Zapytaj o szkolenie', en: 'Ask about the training' },
     metadata: {
-      title: { pl: 'Spend Analytics — Szkolenie | Profitia', en: 'Spend Analytics — Training | Profitia' },
+      title: { pl: 'Spend Analytics - Szkolenie | Profitia', en: 'Spend Analytics - Training | Profitia' },
       description: {
         pl: 'Szkolenie z analizy danych zakupowych. Spend cube, identyfikacja okazji i raport dla zarządu.',
         en: 'Procurement data analysis training. Spend cube, opportunity identification and management report.',
@@ -1191,8 +1191,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Analityka', en: 'Analytics' },
     title: { pl: 'Analiza Finansowa Dostawców', en: 'Supplier Financial Analysis' },
     shortDescription: {
-      pl: 'Jak czytać sprawozdania finansowe dostawców — ryzyko, kondycja i dźwignia negocjacyjna.',
-      en: 'How to read supplier financial statements — risk, health and negotiation leverage.',
+      pl: 'Jak czytać sprawozdania finansowe dostawców - ryzyko, kondycja i dźwignia negocjacyjna.',
+      en: 'How to read supplier financial statements - risk, health and negotiation leverage.',
     },
     longDescription: {
       pl: 'Szkolenie z analizy finansowej dla kupców: jak ocenić kondycję finansową dostawcy, zidentyfikować ryzyka, ocenić czy dostawca jest silny czy słaby negocjacyjnie na podstawie jego sytuacji finansowej. Praktyczne narzędzia i ćwiczenia na realnych sprawozdaniach.',
@@ -1230,7 +1230,7 @@ export const CAPABILITIES: Capability[] = [
   },
 
   // ══════════════════════════════════════════════════════════════
-  // EDUCATION — Custom Programmes
+  // EDUCATION - Custom Programmes
   // ══════════════════════════════════════════════════════════════
 
   {
@@ -1242,8 +1242,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Program Dedykowany', en: 'Custom Programme' },
     title: { pl: 'Warsztaty In-Company', en: 'In-Company Workshops' },
     shortDescription: {
-      pl: 'Dedykowane warsztaty zaprojektowane dla Twojego zespołu — na Twoich danych i wyzwaniach.',
-      en: 'Dedicated workshops designed for your team — on your data and challenges.',
+      pl: 'Dedykowane warsztaty zaprojektowane dla Twojego zespołu - na Twoich danych i wyzwaniach.',
+      en: 'Dedicated workshops designed for your team - on your data and challenges.',
     },
     longDescription: {
       pl: 'Projektujemy i prowadzimy dedykowane warsztaty dla zespołów zakupowych. Każdy program jest dostosowany do specyfiki branży, poziomu kompetencji i konkretnych wyzwań organizacji. Pracujemy na danych i przypadkach klienta.',
@@ -1289,8 +1289,8 @@ export const CAPABILITIES: Capability[] = [
     eyebrow: { pl: 'Program Dedykowany', en: 'Custom Programme' },
     title: { pl: 'Procurement Mentoring', en: 'Procurement Mentoring' },
     shortDescription: {
-      pl: 'Mentoring od doświadczonego praktyka zakupowego — strategiczne wsparcie i transfer wiedzy.',
-      en: 'Mentoring from an experienced procurement practitioner — strategic support and knowledge transfer.',
+      pl: 'Mentoring od doświadczonego praktyka zakupowego - strategiczne wsparcie i transfer wiedzy.',
+      en: 'Mentoring from an experienced procurement practitioner - strategic support and knowledge transfer.',
     },
     longDescription: {
       pl: 'Program mentorski łączący kupca lub lidera zakupowego z doświadczonym praktykiem. Skupiamy się na długoterminowym rozwoju zawodowym, nawigowaniu w organizacji i budowaniu autorytetu funkcji zakupowej.',
@@ -1307,13 +1307,13 @@ export const CAPABILITIES: Capability[] = [
       { pl: 'Długoterminowy plan rozwoju zawodowego', en: 'Long-term professional development plan' },
     ],
     methodology: [
-      { pl: 'Sesje mentorskie co 2–4 tygodnie (60–90 minut)', en: 'Mentoring sessions every 2–4 weeks (60–90 minutes)' },
+      { pl: 'Sesje mentorskie co 2-4 tygodnie (60-90 minut)', en: 'Mentoring sessions every 2-4 weeks (60-90 minutes)' },
       { pl: 'Praca na konkretnych wyzwaniach i celach mentee', en: 'Work on specific mentee challenges and goals' },
       { pl: 'Dostęp do sieci i zasobów mentora', en: 'Access to mentor\'s network and resources' },
     ],
     engagement: {
-      pl: 'Program 6–12 miesięcy; 6–12 sesji mentorskich.',
-      en: '6–12 month programme; 6–12 mentoring sessions.',
+      pl: 'Program 6-12 miesięcy; 6-12 sesji mentorskich.',
+      en: '6-12 month programme; 6-12 mentoring sessions.',
     },
     relatedCapabilities: ['coaching-zakupowy', 'procurement-excellence', 'akademia-zakupow'],
     relatedInsights: [],

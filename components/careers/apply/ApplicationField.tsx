@@ -22,8 +22,8 @@ interface Props {
 }
 
 /**
- * ApplicationField — institutional text input for the recruitment form.
- * Identical styling contract to FormField — minimal, no glow, no shadow.
+ * ApplicationField - institutional text input for the recruitment form.
+ * Identical styling contract to FormField - minimal, no glow, no shadow.
  */
 export function ApplicationField({
   id,

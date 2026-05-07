@@ -45,11 +45,11 @@ export default function TermsPage() {
         <LegalContent>
           <p>Użyte w niniejszym regulaminie pojęcia oznaczają:</p>
           <ul>
-            <li><strong>Serwis</strong> — serwis internetowy dostępny pod adresem profitia.pl.</li>
-            <li><strong>Administrator</strong> — Profitia Management Consultants Mazurowski i Wspólnicy Sp. J., ul. Puławska 145, 02-715 Warszawa.</li>
-            <li><strong>Użytkownik</strong> — osoba fizyczna korzystająca z serwisu.</li>
-            <li><strong>Treści</strong> — wszelkie materiały zamieszczone w serwisie, w tym artykuły, opracowania, raporty, grafiki.</li>
-            <li><strong>Usługi</strong> — usługi doradcze, szkoleniowe i analityczne świadczone przez Administratora.</li>
+            <li><strong>Serwis</strong> - serwis internetowy dostępny pod adresem profitia.pl.</li>
+            <li><strong>Administrator</strong> - Profitia Management Consultants Mazurowski i Wspólnicy Sp. J., ul. Puławska 145, 02-715 Warszawa.</li>
+            <li><strong>Użytkownik</strong> - osoba fizyczna korzystająca z serwisu.</li>
+            <li><strong>Treści</strong> - wszelkie materiały zamieszczone w serwisie, w tym artykuły, opracowania, raporty, grafiki.</li>
+            <li><strong>Usługi</strong> - usługi doradcze, szkoleniowe i analityczne świadczone przez Administratora.</li>
           </ul>
         </LegalContent>
       </LegalSection>

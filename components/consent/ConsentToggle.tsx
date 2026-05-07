@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * ConsentToggle — Accessible Category Toggle
+ * ConsentToggle - Accessible Category Toggle
  *
  * WCAG 2.1 AA compliant toggle switch with:
  * - role="switch" + aria-checked for screen readers

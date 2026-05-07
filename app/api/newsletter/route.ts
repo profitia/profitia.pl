@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Idempotent — already subscribed returns success
+    // Idempotent - already subscribed returns success
     const existing = await prisma.subscriber.findUnique({
       where: { email: data.email },
     })

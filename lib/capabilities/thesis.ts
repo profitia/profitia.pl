@@ -1,16 +1,16 @@
 /**
- * Institutional thesis statements — one per capability.
+ * Institutional thesis statements - one per capability.
  *
  * These are not marketing slogans. They are expert observations:
  * concise, authoritative, editorial. Rendered on detail pages between
  * the hero lede and the problem section.
  *
- * Format: 1–2 sentences. No superlatives. No promises. No italics.
+ * Format: 1-2 sentences. No superlatives. No promises. No italics.
  * Tone: research paper / executive briefing / institutional report.
  */
 export const CAPABILITY_THESIS: Record<string, { pl: string; en: string }> = {
 
-  // ─── Services — Advisory ──────────────────────────────────────────────
+  // ─── Services - Advisory ──────────────────────────────────────────────
 
   'projekty-doradcze': {
     pl: 'Większość organizacji nie traci na złych decyzjach zakupowych. Traci na braku zewnętrznego punktu odniesienia, który umożliwia ocenę, czy decyzja jest dobra.',
@@ -42,7 +42,7 @@ export const CAPABILITY_THESIS: Record<string, { pl: string; en: string }> = {
     en: 'Procurement transformation programmes rarely fail because of poor strategy. They fail because of lack of execution discipline.',
   },
 
-  // ─── Services — Negotiations ──────────────────────────────────────────
+  // ─── Services - Negotiations ──────────────────────────────────────────
 
   'analiza-spot': {
     pl: 'Rynek nie negocjuje. Dostarcza informacji tym, którzy wiedzą, jak je czytać i kiedy działać.',
@@ -69,7 +69,7 @@ export const CAPABILITY_THESIS: Record<string, { pl: string; en: string }> = {
     en: 'An experienced negotiator on the buyer side changes not only the outcome of the conversation. It changes the dynamic from the very first moment.',
   },
 
-  // ─── Services — Analytics ─────────────────────────────────────────────
+  // ─── Services - Analytics ─────────────────────────────────────────────
 
   'spend-cube': {
     pl: 'Dane zakupowe mają wartość dopiero wtedy, gdy zmieniają decyzje operacyjne.',
@@ -77,8 +77,8 @@ export const CAPABILITY_THESIS: Record<string, { pl: string; en: string }> = {
   },
 
   'spend-analytics': {
-    pl: 'Organizacja, która nie rozumie struktury własnego wydatku, nie jest w stanie nim zarządzać — niezależnie od tego, ile narzędzi posiada.',
-    en: 'An organisation that does not understand the structure of its own spending cannot manage it — regardless of how many tools it has.',
+    pl: 'Organizacja, która nie rozumie struktury własnego wydatku, nie jest w stanie nim zarządzać - niezależnie od tego, ile narzędzi posiada.',
+    en: 'An organisation that does not understand the structure of its own spending cannot manage it - regardless of how many tools it has.',
   },
 
   'procurement-dashboards': {
@@ -96,18 +96,18 @@ export const CAPABILITY_THESIS: Record<string, { pl: string; en: string }> = {
     en: 'An organisation measures what it manages. What it does not measure escapes control regardless of its stated importance.',
   },
 
-  // ─── Services — Development ───────────────────────────────────────────
+  // ─── Services - Development ───────────────────────────────────────────
 
   'coaching-zakupowy': {
     pl: 'Zmiana kompetencji negocjacyjnych wymaga zmiany nawyków decyzyjnych. Wiedza bez zmiany zachowania nie przekłada się na wyniki.',
     en: 'Changing negotiation competence requires changing decision-making habits. Knowledge without behavioural change does not translate into results.',
   },
 
-  // ─── Education — Executive ───────────────────────────────────────────
+  // ─── Education - Executive ───────────────────────────────────────────
 
   'akademia-zakupow': {
-    pl: 'Zakupy strategiczne to dyscyplina zarządzania — nie funkcja wsparcia. Ta różnica w pozycjonowaniu zmienia wszystko.',
-    en: 'Strategic procurement is a management discipline — not a support function. That difference in positioning changes everything.',
+    pl: 'Zakupy strategiczne to dyscyplina zarządzania - nie funkcja wsparcia. Ta różnica w pozycjonowaniu zmienia wszystko.',
+    en: 'Strategic procurement is a management discipline - not a support function. That difference in positioning changes everything.',
   },
 
   'procurement-excellence': {
@@ -116,11 +116,11 @@ export const CAPABILITY_THESIS: Record<string, { pl: string; en: string }> = {
   },
 
   'strategic-sourcing': {
-    pl: 'Strategiczny sourcing wymaga zdolności do analizy rynków dostawców — nie tylko do zarządzania relacjami z pojedynczymi dostawcami.',
-    en: 'Strategic sourcing requires the ability to analyse supplier markets — not just to manage relationships with individual suppliers.',
+    pl: 'Strategiczny sourcing wymaga zdolności do analizy rynków dostawców - nie tylko do zarządzania relacjami z pojedynczymi dostawcami.',
+    en: 'Strategic sourcing requires the ability to analyse supplier markets - not just to manage relationships with individual suppliers.',
   },
 
-  // ─── Education — Negotiation ─────────────────────────────────────────
+  // ─── Education - Negotiation ─────────────────────────────────────────
 
   'warsztaty-negocjacyjne': {
     pl: 'Negocjacje zakupowe są zbyt często traktowane jako sztuka improwizacji. Są nauką strukturalnego przygotowania.',
@@ -133,27 +133,27 @@ export const CAPABILITY_THESIS: Record<string, { pl: string; en: string }> = {
   },
 
   'fact-based-negotiation': {
-    pl: 'Argumentacja oparta na faktach zmienia naturę negocjacji — z walki pozycyjnej w dialog oparty na logice kosztów.',
-    en: 'Fact-based argumentation changes the nature of negotiations — from positional combat to a dialogue grounded in cost logic.',
+    pl: 'Argumentacja oparta na faktach zmienia naturę negocjacji - z walki pozycyjnej w dialog oparty na logice kosztów.',
+    en: 'Fact-based argumentation changes the nature of negotiations - from positional combat to a dialogue grounded in cost logic.',
   },
 
-  // ─── Education — Analytics ───────────────────────────────────────────
+  // ─── Education - Analytics ───────────────────────────────────────────
 
   'spend-analytics-training': {
-    pl: 'Analityk zakupowy, który nie rozumie struktury kosztów, produkuje raporty. Ten, który rozumie — produkuje wnioski.',
+    pl: 'Analityk zakupowy, który nie rozumie struktury kosztów, produkuje raporty. Ten, który rozumie - produkuje wnioski.',
     en: 'A procurement analyst who does not understand cost structure produces reports. One who understands it produces insights.',
   },
 
   'supplier-financial-analysis': {
-    pl: 'Ocena ryzyka dostawcy bez analizy jego sytuacji finansowej to ocena niepełna — niezależnie od liczby lat współpracy.',
-    en: 'Assessing supplier risk without analysing its financial position is an incomplete assessment — regardless of how many years of partnership exist.',
+    pl: 'Ocena ryzyka dostawcy bez analizy jego sytuacji finansowej to ocena niepełna - niezależnie od liczby lat współpracy.',
+    en: 'Assessing supplier risk without analysing its financial position is an incomplete assessment - regardless of how many years of partnership exist.',
   },
 
-  // ─── Education — Custom ──────────────────────────────────────────────
+  // ─── Education - Custom ──────────────────────────────────────────────
 
   'in-company-workshops': {
-    pl: 'Programy in-company są skuteczne wtedy, gdy odpowiadają na rzeczywiste wyzwania organizacji — a nie na ustandaryzowany curriculum.',
-    en: 'In-company programmes are effective when they address the actual challenges of the organisation — not a standardised curriculum.',
+    pl: 'Programy in-company są skuteczne wtedy, gdy odpowiadają na rzeczywiste wyzwania organizacji - a nie na ustandaryzowany curriculum.',
+    en: 'In-company programmes are effective when they address the actual challenges of the organisation - not a standardised curriculum.',
   },
 
   'procurement-mentoring': {

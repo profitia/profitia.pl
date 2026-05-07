@@ -14,7 +14,7 @@ interface Props {
 }
 
 /**
- * ApplicationTextarea — institutional multi-line input.
+ * ApplicationTextarea - institutional multi-line input.
  * No resize handle on y-axis. Minimal styling.
  */
 export function ApplicationTextarea({

@@ -54,10 +54,10 @@ export default function CookiesPageEN() {
       <LegalSection id="types" title="2. Types of cookies">
         <LegalContent>
           <ul>
-            <li><strong>Essential cookies</strong> — required for the website to function correctly; no consent needed.</li>
-            <li><strong>Functional cookies</strong> — remember user preferences such as language selection.</li>
-            <li><strong>Analytics cookies</strong> — help us understand site traffic and user behaviour.</li>
-            <li><strong>Marketing cookies</strong> — may be used to deliver personalised content and ads.</li>
+            <li><strong>Essential cookies</strong> - required for the website to function correctly; no consent needed.</li>
+            <li><strong>Functional cookies</strong> - remember user preferences such as language selection.</li>
+            <li><strong>Analytics cookies</strong> - help us understand site traffic and user behaviour.</li>
+            <li><strong>Marketing cookies</strong> - may be used to deliver personalised content and ads.</li>
           </ul>
         </LegalContent>
       </LegalSection>
@@ -65,7 +65,7 @@ export default function CookiesPageEN() {
       <LegalSection id="own-cookies" title="3. First-party cookies">
         <LegalContent>
           <ul>
-            <li><strong>PROFITIA_LOCALE</strong> — stores the selected interface language (PL/EN). Expires: 12 months.</li>
+            <li><strong>PROFITIA_LOCALE</strong> - stores the selected interface language (PL/EN). Expires: 12 months.</li>
             <li>Session handling for contact forms.</li>
             <li>Security tokens (CSRF protection).</li>
           </ul>

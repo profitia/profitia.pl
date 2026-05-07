@@ -2,7 +2,7 @@
  * ServiceStats
  * ─────────────────────────────────────────────────────────────────────────
  * Metrics section for a service. Dark bg tonal break.
- * "The numbers" — impact proof integrated in service flow.
+ * "The numbers" - impact proof integrated in service flow.
  *
  * COMPOSITION: StatsStrip dark variant.
  */

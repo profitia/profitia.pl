@@ -1,8 +1,8 @@
 /**
- * PublicationHero — Editorial Publication Introduction
+ * PublicationHero - Editorial Publication Introduction
  *
  * The opening frame of the blog index.
- * Institutional, minimal — establishes editorial positioning.
+ * Institutional, minimal - establishes editorial positioning.
  * No marketing energy. Pure publication authority.
  */
 

@@ -1,12 +1,12 @@
 'use client'
 
 /**
- * NewsletterForm — consent-aware newsletter subscription form.
+ * NewsletterForm - consent-aware newsletter subscription form.
  *
  * Variants:
- *   footer   — inline (email + button in a row), used in Footer
- *   inline   — same layout, full width, for homepage / article contexts
- *   compact  — same as inline (alias for now)
+ *   footer   - inline (email + button in a row), used in Footer
+ *   inline   - same layout, full width, for homepage / article contexts
+ *   compact  - same as inline (alias for now)
  *
  * GDPR: explicit checkbox consent (Article 6(1)(a)).
  * No passive implied consent. Checkbox must be checked before submission.
@@ -162,7 +162,7 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
         </p>
       )}
 
-      {/* GDPR consent checkbox — full label wrapping for correct click UX */}
+      {/* GDPR consent checkbox - full label wrapping for correct click UX */}
       <label
         htmlFor={consentId}
         className="mt-2 flex gap-2.5 items-start cursor-pointer select-none"

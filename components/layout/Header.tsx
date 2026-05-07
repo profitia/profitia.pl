@@ -83,7 +83,7 @@ export default function Header() {
   return (
     <>
       {/* ══════════════════════════════════════════════════
-          HEADER — two-state sticky
+          HEADER - two-state sticky
           ══════════════════════════════════════════════════ */}
       <header
         className={`sticky top-0 z-50 transition-all duration-[260ms] ease-out ${
@@ -101,7 +101,7 @@ export default function Header() {
           <Link
             href={isEN ? '/en' : '/'}
             className="flex items-center flex-shrink-0 opacity-100 hover:opacity-70 transition-opacity duration-200"
-            aria-label={isEN ? 'Profitia — home' : 'Profitia — strona główna'}
+            aria-label={isEN ? 'Profitia - home' : 'Profitia - strona główna'}
           >
             <Image
               src="/logo/profitia-default.svg"
@@ -161,7 +161,7 @@ export default function Header() {
           {/* Right: lang switcher + CTA + hamburger */}
           <div className="flex items-center gap-4">
 
-            {/* Language switcher — desktop */}
+            {/* Language switcher - desktop */}
             <div
               className="hidden md:flex items-center gap-[2px] text-[11.5px]"
               role="group"
@@ -194,7 +194,7 @@ export default function Header() {
               </button>
             </div>
 
-            {/* CTA — advisory dark graphite */}
+            {/* CTA - advisory dark graphite */}
             <Link
               href={`${prefix}/contact`}
               className="hidden md:inline-flex items-center justify-center px-4 py-[9px] text-[13px] font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 tracking-[-0.01em]"
@@ -239,7 +239,7 @@ export default function Header() {
       </header>
 
       {/* ══════════════════════════════════════════════════
-          MOBILE — fullscreen overlay
+          MOBILE - fullscreen overlay
           ══════════════════════════════════════════════════ */}
       <div
         id="mobile-nav-panel"
@@ -258,7 +258,7 @@ export default function Header() {
             mobileOpen ? 'translate-y-0' : '-translate-y-3'
           }`}
         >
-          {/* Primary nav links — large editorial typography */}
+          {/* Primary nav links - large editorial typography */}
           <nav
             className="flex-1 flex flex-col justify-center"
             aria-label={isEN ? 'Mobile navigation' : 'Nawigacja mobilna'}

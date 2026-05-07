@@ -30,21 +30,21 @@ export const JOB_POSTS: JobPost[] = [
       en: 'Employment contract or B2B',
     },
     summary: {
-      pl: 'Praca bezpośrednio przy projektach doradczych — analiza, przygotowanie negocjacji, rekomendacje dla dyrektorów zakupów i CFO.',
-      en: 'Working directly on advisory projects — analysis, negotiation preparation and recommendations for procurement directors and CFOs.',
+      pl: 'Praca bezpośrednio przy projektach doradczych - analiza, przygotowanie negocjacji, rekomendacje dla dyrektorów zakupów i CFO.',
+      en: 'Working directly on advisory projects - analysis, negotiation preparation and recommendations for procurement directors and CFOs.',
     },
     roleContext: {
-      pl: 'Konsultant Zakupowy pracuje bezpośrednio przy projektach klientów. Rola obejmuje analizę danych zakupowych, budowanie strategii negocjacyjnej, przygotowanie benchmarków rynkowych i współtworzenie rekomendacji, które trafiają do zarządów i dyrektorów zakupów. Projekty są zróżnicowane kategoriowo i sektorowo — od dóbr pośrednich przez logistykę po usługi profesjonalne. Praca ma realny wpływ na decyzje zakupowe organizacji o obrotach od kilkuset milionów do kilku miliardów złotych.',
-      en: 'The Procurement Consultant works directly on client projects. The role covers procurement data analysis, negotiation strategy development, market benchmarking and contributing to recommendations that reach boards and procurement directors. Projects span a wide range of categories and sectors — from indirect spend through logistics to professional services. The work has direct influence on procurement decisions in organisations with revenues from several hundred million to several billion PLN.',
+      pl: 'Konsultant Zakupowy pracuje bezpośrednio przy projektach klientów. Rola obejmuje analizę danych zakupowych, budowanie strategii negocjacyjnej, przygotowanie benchmarków rynkowych i współtworzenie rekomendacji, które trafiają do zarządów i dyrektorów zakupów. Projekty są zróżnicowane kategoriowo i sektorowo - od dóbr pośrednich przez logistykę po usługi profesjonalne. Praca ma realny wpływ na decyzje zakupowe organizacji o obrotach od kilkuset milionów do kilku miliardów złotych.',
+      en: 'The Procurement Consultant works directly on client projects. The role covers procurement data analysis, negotiation strategy development, market benchmarking and contributing to recommendations that reach boards and procurement directors. Projects span a wide range of categories and sectors - from indirect spend through logistics to professional services. The work has direct influence on procurement decisions in organisations with revenues from several hundred million to several billion PLN.',
     },
     workItems: [
       {
-        pl: 'Analiza struktury wydatków klienta — kategoryzacja, identyfikacja potencjału oszczędnościowego, analiza warunków umów',
-        en: 'Client spend structure analysis — categorisation, savings potential identification, contract terms review',
+        pl: 'Analiza struktury wydatków klienta - kategoryzacja, identyfikacja potencjału oszczędnościowego, analiza warunków umów',
+        en: 'Client spend structure analysis - categorisation, savings potential identification, contract terms review',
       },
       {
-        pl: 'Budowanie strategii negocjacyjnej — argumentacja, modele cenowe, benchmarki rynkowe, pozycja przetargowa',
-        en: 'Negotiation strategy development — argumentation, pricing models, market benchmarks, tender positioning',
+        pl: 'Budowanie strategii negocjacyjnej - argumentacja, modele cenowe, benchmarki rynkowe, pozycja przetargowa',
+        en: 'Negotiation strategy development - argumentation, pricing models, market benchmarks, tender positioning',
       },
       {
         pl: 'Prowadzenie warsztatów diagnostycznych z zespołami zakupowymi i finansowymi klienta',
@@ -55,8 +55,8 @@ export const JOB_POSTS: JobPost[] = [
         en: 'Building quantitative models: savings identification, cost structure analysis, should-cost modelling',
       },
       {
-        pl: 'Współtworzenie deliverables klienta — raportów, rekomendacji, planów wdrożeniowych',
-        en: 'Contributing to client deliverables — reports, recommendations, implementation plans',
+        pl: 'Współtworzenie deliverables klienta - raportów, rekomendacji, planów wdrożeniowych',
+        en: 'Contributing to client deliverables - reports, recommendations, implementation plans',
       },
       {
         pl: 'Praca bezpośrednio z danymi klienta i wewnętrznymi narzędziami analitycznymi Profitia',
@@ -69,8 +69,8 @@ export const JOB_POSTS: JobPost[] = [
         en: 'Analytical thinking: ability to structure a problem, build an argument from data and communicate conclusions clearly',
       },
       {
-        pl: 'Wiedza zakupowa lub kategoriowa — albo silna motywacja do jej szybkiego zbudowania',
-        en: 'Procurement or category knowledge — or strong motivation to build it rapidly',
+        pl: 'Wiedza zakupowa lub kategoriowa - albo silna motywacja do jej szybkiego zbudowania',
+        en: 'Procurement or category knowledge - or strong motivation to build it rapidly',
       },
       {
         pl: 'Biegłość w Excel / narzędziach danych na poziomie umożliwiającym samodzielną analizę',
@@ -117,8 +117,8 @@ export const JOB_POSTS: JobPost[] = [
         en: 'Procurement Consultant | Career | Profitia',
       },
       description: {
-        pl: 'Rola konsultanta zakupowego w Profitia — praca przy projektach doradczych, negocjacyjnych i analitycznych dla organizacji zakupowych.',
-        en: 'Procurement Consultant role at Profitia — advisory, negotiation and analytics projects for procurement organisations.',
+        pl: 'Rola konsultanta zakupowego w Profitia - praca przy projektach doradczych, negocjacyjnych i analitycznych dla organizacji zakupowych.',
+        en: 'Procurement Consultant role at Profitia - advisory, negotiation and analytics projects for procurement organisations.',
       },
     },
   },
@@ -145,17 +145,17 @@ export const JOB_POSTS: JobPost[] = [
       en: 'Employment contract',
     },
     summary: {
-      pl: 'Punkt wejścia do pracy analitycznej i doradczej Profitia — analiza danych zakupowych, intelligence rynkowy, przygotowanie materiałów dla klientów.',
-      en: 'Entry point into Profitia analytical and advisory work — procurement data analysis, market intelligence and client material preparation.',
+      pl: 'Punkt wejścia do pracy analitycznej i doradczej Profitia - analiza danych zakupowych, intelligence rynkowy, przygotowanie materiałów dla klientów.',
+      en: 'Entry point into Profitia analytical and advisory work - procurement data analysis, market intelligence and client material preparation.',
     },
     roleContext: {
-      pl: 'Rola Młodszego Analityka Biznesowego to rzeczywisty punkt wejścia do pracy doradczej Profitia. Rola skupia się na rozwijaniu kompetencji analitycznych, które stanowią fundament pracy z klientami — analiza danych zakupowych, strukturyzacja informacji rynkowych, budowanie modeli i wspieranie przygotowania materiałów projektowych. Praca jest realizowana w bezpośrednim kontakcie z projektami i danymi klientów, pod mentoringiem doświadczonych konsultantów.',
-      en: 'The Junior Business Analyst role is a genuine entry point into Profitia advisory work. It focuses on developing the analytical skills that underpin client work — procurement data analysis, market intelligence structuring, model building and supporting project material preparation. The work takes place in direct contact with client projects and data, under the mentoring of experienced consultants.',
+      pl: 'Rola Młodszego Analityka Biznesowego to rzeczywisty punkt wejścia do pracy doradczej Profitia. Rola skupia się na rozwijaniu kompetencji analitycznych, które stanowią fundament pracy z klientami - analiza danych zakupowych, strukturyzacja informacji rynkowych, budowanie modeli i wspieranie przygotowania materiałów projektowych. Praca jest realizowana w bezpośrednim kontakcie z projektami i danymi klientów, pod mentoringiem doświadczonych konsultantów.',
+      en: 'The Junior Business Analyst role is a genuine entry point into Profitia advisory work. It focuses on developing the analytical skills that underpin client work - procurement data analysis, market intelligence structuring, model building and supporting project material preparation. The work takes place in direct contact with client projects and data, under the mentoring of experienced consultants.',
     },
     workItems: [
       {
-        pl: 'Przetwarzanie i strukturyzowanie danych zakupowych klientów — kategoryzacja, czyszczenie, przygotowanie analityczne',
-        en: 'Processing and structuring client procurement data — categorisation, cleansing, analytical preparation',
+        pl: 'Przetwarzanie i strukturyzowanie danych zakupowych klientów - kategoryzacja, czyszczenie, przygotowanie analityczne',
+        en: 'Processing and structuring client procurement data - categorisation, cleansing, analytical preparation',
       },
       {
         pl: 'Budowanie standardowych modeli analitycznych: wydatki wg kategorii, koncentracja dostawców, porównania rok-do-roku',
@@ -180,8 +180,8 @@ export const JOB_POSTS: JobPost[] = [
     ],
     requirements: [
       {
-        pl: 'Ustrukturyzowane podejście analityczne — zdolność do pracy z danymi i wyciągania uzasadnionych wniosków',
-        en: 'Structured analytical approach — ability to work with data and draw defensible conclusions',
+        pl: 'Ustrukturyzowane podejście analityczne - zdolność do pracy z danymi i wyciągania uzasadnionych wniosków',
+        en: 'Structured analytical approach - ability to work with data and draw defensible conclusions',
       },
       {
         pl: 'Dbałość o jakość: dokładność ma znaczenie w deliverables klientów',
@@ -192,7 +192,7 @@ export const JOB_POSTS: JobPost[] = [
         en: 'Proficiency in Excel; interest in developing data analysis skills further',
       },
       {
-        pl: 'Zdolność do klarownego komunikowania wyników — pisemnie i ustnie',
+        pl: 'Zdolność do klarownego komunikowania wyników - pisemnie i ustnie',
         en: 'Ability to communicate findings clearly in written and verbal form',
       },
       {
@@ -232,8 +232,8 @@ export const JOB_POSTS: JobPost[] = [
         en: 'Junior Business Analyst | Career | Profitia',
       },
       description: {
-        pl: 'Rola analityczna w Profitia — praca z danymi zakupowymi, analityka spend, wsparcie projektów doradczych i negocjacyjnych.',
-        en: 'Analytical role at Profitia — procurement data work, spend analytics, support for advisory and negotiation projects.',
+        pl: 'Rola analityczna w Profitia - praca z danymi zakupowymi, analityka spend, wsparcie projektów doradczych i negocjacyjnych.',
+        en: 'Analytical role at Profitia - procurement data work, spend analytics, support for advisory and negotiation projects.',
       },
     },
   },

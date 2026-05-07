@@ -11,7 +11,7 @@ interface Props {
 /**
  * CareerRoles
  * ─────────────────────────────────────────────────────────────
- * Open roles section — editorial rows, not cards.
+ * Open roles section - editorial rows, not cards.
  * Mirrors CapabilitySection layout: label column + row list.
  */
 export default function CareerRoles({ eyebrow, title, jobs, locale }: Props) {
@@ -20,7 +20,7 @@ export default function CareerRoles({ eyebrow, title, jobs, locale }: Props) {
       <div className="container-base">
         <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-20">
 
-          {/* Left — label column */}
+          {/* Left - label column */}
           <div className="mb-10 lg:mb-0 lg:pt-1">
             <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-4">
               {eyebrow}
@@ -30,7 +30,7 @@ export default function CareerRoles({ eyebrow, title, jobs, locale }: Props) {
             </h2>
           </div>
 
-          {/* Right — editorial rows */}
+          {/* Right - editorial rows */}
           <div>
             {jobs.map((job, index) => (
               <CareerRow

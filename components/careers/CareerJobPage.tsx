@@ -17,7 +17,7 @@ const COPY = {
     workingModel:{ eyebrow: 'Model pracy', title: 'Forma i organizacja pracy' },
     development: { eyebrow: 'Rozwój', title: 'Jak wygląda rozwój w tej roli' },
     cta: {
-      invitation: 'Jeżeli ta rola odpowiada temu, czego szukasz — prześlij aplikację.',
+      invitation: 'Jeżeli ta rola odpowiada temu, czego szukasz - prześlij aplikację.',
       label: 'Prześlij CV',
     },
   },
@@ -29,7 +29,7 @@ const COPY = {
     workingModel:{ eyebrow: 'Working model', title: 'Format and working arrangement' },
     development: { eyebrow: 'Development', title: 'How development looks in this role' },
     cta: {
-      invitation: 'If this role matches what you are looking for — submit an application.',
+      invitation: 'If this role matches what you are looking for - submit an application.',
       label: 'Submit your CV',
     },
   },
@@ -43,10 +43,10 @@ const COPY = {
  * Structure (mirrors capability detail page emotional arc):
  *   JobDetail hero (lede)
  *   → Role context (positioning paragraph)
- *   → What you will work on (numbered items — presence/density)
- *   → What matters in this role (requirements — structured clarity)
- *   → What kind of person succeeds (profile — forward-looking)
- *   → Working model (metadata — quiet facts)
+ *   → What you will work on (numbered items - presence/density)
+ *   → What matters in this role (requirements - structured clarity)
+ *   → What kind of person succeeds (profile - forward-looking)
+ *   → Working model (metadata - quiet facts)
  *   → Development (airy close)
  *   → Institutional CTA
  *

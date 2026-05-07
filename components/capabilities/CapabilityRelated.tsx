@@ -14,7 +14,7 @@ interface Props {
 const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
 
 /**
- * Navigation labels — type-derived, not ctaLabel.
+ * Navigation labels - type-derived, not ctaLabel.
  * Related rows navigate to detail pages; they do not convert.
  */
 const NAV_LABEL: Record<'service' | 'education', { pl: string; en: string }> = {
@@ -25,7 +25,7 @@ const NAV_LABEL: Record<'service' | 'education', { pl: string; en: string }> = {
 /**
  * CapabilityRelated
  * ─────────────────────────────────────────────────────────────
- * Adjacent expertise references — editorial reading continuation.
+ * Adjacent expertise references - editorial reading continuation.
  * Not a card grid. Not a component showcase.
  *
  * Uses simple border-bottom rows, identical to the listing page,
@@ -68,7 +68,7 @@ export default function CapabilityRelated({ capabilities, locale, eyebrow, title
               <Link
                 href={href}
                 className="flex-shrink-0 text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5"
-                aria-label={`${capTitle} — ${navLabel}`}
+                aria-label={`${capTitle} - ${navLabel}`}
               >
                 {navLabel} →
               </Link>

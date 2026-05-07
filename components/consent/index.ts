@@ -1,5 +1,5 @@
 /**
- * Consent Infrastructure — Barrel Export
+ * Consent Infrastructure - Barrel Export
  *
  * Public surface of the Profitia Consent System.
  * Import from '@/components/consent' in all consuming code.

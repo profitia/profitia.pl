@@ -16,7 +16,7 @@ const COPY = {
 /**
  * CapabilityEngagement
  * ─────────────────────────────────────────────────────────────
- * Institutional metadata grid — 2 columns, no icons, no colours.
+ * Institutional metadata grid - 2 columns, no icons, no colours.
  * Shows engagement format and capability area as a dl grid.
  * Feels like document metadata, not a feature list.
  */

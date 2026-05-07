@@ -9,7 +9,7 @@ interface LegalHeroProps {
 
 /**
  * Restrained legal page hero.
- * No giant image, no marketing energy — institutional clarity only.
+ * No giant image, no marketing energy - institutional clarity only.
  */
 export function LegalHero({ eyebrow, title, intro, meta }: LegalHeroProps) {
   return (

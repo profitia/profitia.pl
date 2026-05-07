@@ -67,7 +67,7 @@ export function t(field: { pl: string; en: string }, locale: Locale): string {
 }
 
 /**
- * All slugs for a given type — used for generateStaticParams.
+ * All slugs for a given type - used for generateStaticParams.
  */
 export function getSlugsByType(type: CapabilityType): string[] {
   return CAPABILITIES.filter((c) => c.type === type).map((c) => c.slug)

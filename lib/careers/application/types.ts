@@ -1,10 +1,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Career Application — Core Types
+// Career Application - Core Types
 // Storage-ready interface. Backend integration is a future step.
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * CareerApplication — canonical domain record.
+ * CareerApplication - canonical domain record.
  * Created on submission. Stored in future backend integration.
  */
 export interface CareerApplication {
@@ -28,7 +28,7 @@ export interface CareerApplication {
 }
 
 /**
- * ApplicationFormValues — in-memory form state (pre-persistence).
+ * ApplicationFormValues - in-memory form state (pre-persistence).
  * File is kept as the raw File object until upload.
  */
 export interface ApplicationFormValues {
@@ -44,6 +44,6 @@ export interface ApplicationFormValues {
 }
 
 /**
- * ApplicationFieldErrors — per-field validation error messages.
+ * ApplicationFieldErrors - per-field validation error messages.
  */
 export type ApplicationFieldErrors = Partial<Record<keyof ApplicationFormValues, string>>

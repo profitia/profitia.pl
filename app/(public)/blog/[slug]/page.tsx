@@ -114,10 +114,10 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
-      {/* Reading progress — fixed top bar, client-side */}
+      {/* Reading progress - fixed top bar, client-side */}
       <ReadingProgress />
 
-      {/* Article hero — category, time, date, title, subtitle, author, image */}
+      {/* Article hero - category, time, date, title, subtitle, author, image */}
       <ArticleHero article={article} locale={locale} />
 
       {/* Two-column: sticky TOC sidebar + editorial content (client) */}

@@ -1,5 +1,5 @@
 /**
- * ArticleRelated — Related Intelligence Briefs
+ * ArticleRelated - Related Intelligence Briefs
  *
  * Shown at the bottom of an article page.
  * Max 3 articles. Editorial, restrained presentation.

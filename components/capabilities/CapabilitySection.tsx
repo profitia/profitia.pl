@@ -16,14 +16,14 @@ interface Props {
  *
  * Three editorial tiers:
  *
- * Dominant — single anchor practice. Most commanding presence on the page.
+ * Dominant - single anchor practice. Most commanding presence on the page.
  *   400px left column, text-3xl heading, generous whitespace.
- *   Creates hierarchy narrative — one pillar, others supporting.
+ *   Creates hierarchy narrative - one pillar, others supporting.
  *
- * Featured — significant practice track. Clearly present, secondary to dominant.
+ * Featured - significant practice track. Clearly present, secondary to dominant.
  *   300px left column, text-xl heading, moderate whitespace.
  *
- * Standard — supporting practice. Quiet, matter-of-fact.
+ * Standard - supporting practice. Quiet, matter-of-fact.
  *   220px left column, text-lg heading, minimal whitespace.
  */
 export default function CapabilitySection({ section, capabilities, locale, prefix }: Props) {

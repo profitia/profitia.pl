@@ -1,13 +1,13 @@
 /**
- * InsightBlock — Inline Intelligence Callout
+ * InsightBlock - Inline Intelligence Callout
  *
  * Used for highlighted statistics, key findings, or strategic insights
  * embedded within article content.
  *
  * Variants:
- * - 'stat'     — large number + label
- * - 'insight'  — highlighted insight text
- * - 'finding'  — research or data finding
+ * - 'stat'     - large number + label
+ * - 'insight'  - highlighted insight text
+ * - 'finding'  - research or data finding
  *
  * Restrained, editorial, institutional.
  */

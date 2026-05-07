@@ -1,10 +1,10 @@
 /**
- * Editorial Content Model — Type Definitions
+ * Editorial Content Model - Type Definitions
  *
  * Canonical category system + article types for the Profitia
  * Procurement Intelligence Publication.
  *
- * Categories are defined here — the DB stores the slug as a plain String.
+ * Categories are defined here - the DB stores the slug as a plain String.
  * This file is the single source of truth for editorial taxonomy.
  */
 

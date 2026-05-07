@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 /**
- * FormSection — optional eyebrow label + grouped children.
+ * FormSection - optional eyebrow label + grouped children.
  * Purely presentational. No 'use client' needed.
  */
 

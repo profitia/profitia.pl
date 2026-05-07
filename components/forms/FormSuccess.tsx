@@ -1,8 +1,8 @@
 /**
- * FormSuccess — editorial success confirmation block.
+ * FormSuccess - editorial success confirmation block.
  *
  * Institutional tone: calm, reassuring, specific.
- * NOT: "Thanks 🎉" — YES: "Zapytanie zostało wysłane."
+ * NOT: "Thanks 🎉" - YES: "Zapytanie zostało wysłane."
  *
  * Visual: vertical accent bar + eyebrow + heading + body.
  */

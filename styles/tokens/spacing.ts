@@ -1,5 +1,5 @@
 /**
- * PROFITIA — Spacing Token System
+ * PROFITIA - Spacing Token System
  * Reference: docs/design-system/VISUAL_CONTEXT_PROFITIA.md § Spacing & Layout
  *
  * Usage:
@@ -10,12 +10,12 @@
 // ─── Section vertical padding ─────────────────────────────────────────────
 // Cinematic, whitespace-driven. Never compress.
 export const section = {
-  xs: 'py-12',               // Compact — admin, tight blocks
-  sm: 'py-16',               // Small — sub-sections, embedded blocks
-  md: 'py-24',               // Medium — secondary sections
-  lg: 'py-28',               // Standard — all main content sections
-  xl: 'py-36',               // Cinematic — hero variants, premium moments
-  cta: 'py-24 lg:py-32',     // CTA section — exact match landing page
+  xs: 'py-12',               // Compact - admin, tight blocks
+  sm: 'py-16',               // Small - sub-sections, embedded blocks
+  md: 'py-24',               // Medium - secondary sections
+  lg: 'py-28',               // Standard - all main content sections
+  xl: 'py-36',               // Cinematic - hero variants, premium moments
+  cta: 'py-24 lg:py-32',     // CTA section - exact match landing page
 } as const
 
 // ─── Content gap (between grid items) ────────────────────────────────────
@@ -76,5 +76,5 @@ export const bg = {
   dark: 'bg-gray-900',        // testimonial, proof moment
   navy: 'bg-[#242F44]',       // brand dark
   black: 'bg-black',          // CTA section ONLY
-  purple: 'bg-[#48103F]',     // premium accent — sparingly
+  purple: 'bg-[#48103F]',     // premium accent - sparingly
 } as const

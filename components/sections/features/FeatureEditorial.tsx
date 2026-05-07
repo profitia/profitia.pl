@@ -2,7 +2,7 @@
  * FeatureEditorial
  * ─────────────────────────────────────────────────────────────────────────
  * Large typography moment. Minimal UI. Composition-driven.
- * The "strategic statement" section — one big idea, full width.
+ * The "strategic statement" section - one big idea, full width.
  *
  * USAGE: Between proof sections and CTA. "What this means."
  */

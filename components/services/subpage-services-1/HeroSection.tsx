@@ -83,7 +83,7 @@ export default function HeroSection({
           </RevealWrapper>
         </div>
 
-        {/* Right: image — full bleed, cinematic */}
+        {/* Right: image - full bleed, cinematic */}
         <RevealWrapper
           delay={2}
           className="relative w-full h-[60vh] lg:h-[calc(100vh-64px)] overflow-hidden"

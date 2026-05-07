@@ -1,5 +1,5 @@
 /**
- * PROFITIA — Section Library
+ * PROFITIA - Section Library
  * Canonical section components for page composition.
  *
  * Import pattern:

@@ -1,8 +1,8 @@
 /**
- * CategoryBadge — Editorial Category Chip
+ * CategoryBadge - Editorial Category Chip
  *
  * Small, uppercase eyebrow-style category label.
- * Restrained — no color chips, institutional.
+ * Restrained - no color chips, institutional.
  */
 
 import { getCategoryLabel } from '@/lib/content/utils'

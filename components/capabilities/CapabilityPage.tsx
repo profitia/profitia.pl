@@ -59,7 +59,7 @@ const COPY = {
 /**
  * CapabilityPage
  * ─────────────────────────────────────────────────────────────
- * Canonical detail page — institutional paper format.
+ * Canonical detail page - institutional paper format.
  *
  * Structure:
  *   Detail hero (lede paragraph)
@@ -85,7 +85,7 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
 
       <div className="container-base">
 
-        {/* Institutional thesis — expert observation, not a slogan */}
+        {/* Institutional thesis - expert observation, not a slogan */}
         {thesis && (
           <div className="pt-16 pb-14 border-b border-gray-100">
             <p className="text-[16px] text-gray-600 leading-relaxed max-w-[40rem]">
@@ -94,7 +94,7 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
           </div>
         )}
 
-        {/* Where organisations get stuck — compressed, weighted, tension */}
+        {/* Where organisations get stuck - compressed, weighted, tension */}
         <div className="border-t border-gray-100 pt-24 pb-14">
           <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-16">
             <div className="lg:pt-1">

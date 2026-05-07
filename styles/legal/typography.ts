@@ -1,9 +1,9 @@
 /**
- * PROFITIA — Legal Typography Token System
+ * PROFITIA - Legal Typography Token System
  * Reference: docs/design-system/LEGAL_SYSTEM.md
  *
  * Optimized for: long-form legal reading, institutional clarity, premium feel.
- * No @tailwindcss/typography — all tokens are plain Tailwind class strings.
+ * No @tailwindcss/typography - all tokens are plain Tailwind class strings.
  */
 
 export const legalTypo = {

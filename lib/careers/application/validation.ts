@@ -3,7 +3,7 @@ import { CV_MAX_BYTES, CV_ALLOWED_TYPES, FIELD_LIMITS } from './constants'
 import type { ApplicationFormValues, ApplicationFieldErrors } from './types'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Zod schema — used as the canonical validation source.
+// Zod schema - used as the canonical validation source.
 // The manual validateApplication function runs this for field-level errors.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -32,7 +32,7 @@ export const applicationSchema = z.object({
 
 /**
  * Validate application form values.
- * File (cv) is validated separately — Zod doesn't model File objects well on the client.
+ * File (cv) is validated separately - Zod doesn't model File objects well on the client.
  *
  * Returns field-level errors in display-ready format.
  */
@@ -75,7 +75,7 @@ export function validateApplication(
       if (!errors[field]) {
         // Surface locale-appropriate message
         const raw = issue.message
-        // Messages are stored as "PL / EN" — split by locale
+        // Messages are stored as "PL / EN" - split by locale
         if (raw.includes(' / ')) {
           errors[field] = locale === 'en' ? raw.split(' / ')[1] : raw.split(' / ')[0]
         } else {

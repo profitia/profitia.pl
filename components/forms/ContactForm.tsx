@@ -1,7 +1,7 @@
 'use client'
 
 /**
- * ContactForm — canonical institutional contact form.
+ * ContactForm - canonical institutional contact form.
  *
  * - Locale-aware (PL/EN)
  * - GDPR consent with privacy policy link

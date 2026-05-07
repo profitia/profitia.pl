@@ -41,7 +41,7 @@ function parseRecord(raw: string): ConsentRecord | null {
   try {
     const parsed = JSON.parse(raw)
     if (!isValidRecord(parsed)) return null
-    // Version gate — different version = treat as new visitor
+    // Version gate - different version = treat as new visitor
     if (parsed.version !== CONSENT_VERSION) return null
     return parsed
   } catch {
@@ -75,7 +75,7 @@ export function readConsent(): ConsentRecord | null {
 
 /**
  * Persist the consent record to cookie + localStorage sync.
- * Silent on failure — non-fatal.
+ * Silent on failure - non-fatal.
  */
 export function writeConsent(record: ConsentRecord): void {
   if (typeof document === 'undefined') return // SSR guard
@@ -95,7 +95,7 @@ export function writeConsent(record: ConsentRecord): void {
   try {
     localStorage.setItem(CONSENT_COOKIE_NAME, JSON.stringify(record))
   } catch {
-    // localStorage unavailable (private mode, etc.) — non-fatal
+    // localStorage unavailable (private mode, etc.) - non-fatal
   }
 }
 
