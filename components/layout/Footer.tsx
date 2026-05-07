@@ -44,12 +44,15 @@ export default function Footer() {
   // Capability pages (services/education — both listing and detail): no newsletter.
   // Detail pages already close with CapabilityCTA; stacking newsletter creates too many endings.
   const isCapabilityPage = /^(\/en)?\/(services|education)(\/[^/]+)?\/?$/.test(pathname)
+  // Career pages: close with institutional CTA — suppress newsletter for same reason.
+  const isCareerPage = /^(\/en)?\/career(\/[^/]+)?\/?$/.test(pathname)
   const NAV_LINKS = [
     { href: isEN ? '/en' : '/', label: dict.nav.home },
     { href: `${prefix}/services`, label: dict.nav.services },
     { href: `${prefix}/education`, label: dict.nav.education },
     { href: `${prefix}/blog`, label: dict.nav.blog },
     { href: `${prefix}/about`, label: dict.nav.about },
+    { href: `${prefix}/career`, label: dict.nav.career },
     { href: `${prefix}/contact`, label: dict.nav.contact },
     { href: `${prefix}/privacy`, label: dict.footer.privacy },
   ]
@@ -60,7 +63,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 1 — NEWSLETTER
           ══════════════════════════════════════════════════ */}
-      {!isLegalPage && !isArticlePage && !isAboutPage && !isCapabilityPage && (
+      {!isLegalPage && !isArticlePage && !isAboutPage && !isCapabilityPage && !isCareerPage && (
       <div className="border-b border-gray-100">
         <div className="container-base py-12 grid md:grid-cols-[1fr_1.1fr] gap-6 lg:gap-10 items-center">
           <div>
@@ -84,7 +87,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 2 — MAIN FOOTER GRID
           ══════════════════════════════════════════════════ */}
-      <div className={`container-base ${isArticlePage ? 'py-10' : isAboutPage ? 'py-14' : isCapabilityPage ? 'py-20' : 'py-16'}`}>
+      <div className={`container-base ${isArticlePage ? 'py-10' : isAboutPage ? 'py-14' : isCapabilityPage || isCareerPage ? 'py-20' : 'py-16'}`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
           {/* Column 1: Brand / Trust */}

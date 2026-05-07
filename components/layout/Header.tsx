@@ -73,9 +73,10 @@ export default function Header() {
     { href: `${prefix}/education`, label: dict.nav.education },
     { href: `${prefix}/blog`, label: dict.nav.blog },
   ]
-  // Secondary: lighter links (O nas, Kontakt)
+  // Secondary: lighter links (O nas, Kariera, Kontakt)
   const secondaryNav = [
     { href: `${prefix}/about`, label: dict.nav.about },
+    { href: `${prefix}/career`, label: dict.nav.career },
     { href: `${prefix}/contact`, label: dict.nav.contact },
   ]
 
