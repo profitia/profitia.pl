@@ -34,10 +34,10 @@ export function TeamMemberRow({
   const areas = getAreas(member, locale)
 
   return (
-    <article className="py-14 border-b border-gray-100 last:border-b-0 first:pt-0">
-      <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 lg:items-start">
+    <article className="py-16 lg:py-20 border-b border-gray-100 last:border-b-0 first:pt-0">
+      <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] lg:grid-cols-[240px_1fr] gap-8 lg:gap-14 lg:items-start">
         {/* Portrait */}
-        <div className="sm:max-w-[220px] w-full max-w-[200px]">
+        <div className="sm:max-w-[240px] w-full max-w-[220px]">
           <TeamProfileImage
             name={member.name}
             imageUrl={member.imageUrl}
@@ -58,7 +58,7 @@ export function TeamMemberRow({
           />
 
           {bio && (
-            <p className="mt-5 text-[15px] text-gray-500 leading-[1.8] max-w-[60ch]">
+            <p className="mt-6 text-[15px] text-gray-500 leading-[1.88] max-w-[58ch]">
               {bio}
             </p>
           )}

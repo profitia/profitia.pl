@@ -42,7 +42,7 @@ export function TeamProfileImage({
           ${SIZE_CLASSES[size]}
           ${size === 'lg' ? 'aspect-[3/4]' : 'rounded-full'}
           bg-gray-100 flex items-center justify-center
-          rounded-xl select-none ${className}
+          rounded-2xl select-none ${className}
         `}
         aria-label={name}
       >
@@ -57,7 +57,7 @@ export function TeamProfileImage({
     <div
       className={`
         ${size === 'lg' ? 'w-full aspect-[3/4]' : SIZE_CLASSES[size]}
-        relative overflow-hidden rounded-xl bg-gray-100
+        relative overflow-hidden rounded-2xl bg-gray-100
         group ${className}
       `}
     >
@@ -68,9 +68,9 @@ export function TeamProfileImage({
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 280px, 240px"
         className="
           object-cover object-top
-          [filter:grayscale(18%)_contrast(1.02)]
+          [filter:grayscale(10%)_contrast(1.03)]
           transition-[filter] duration-300 ease-out
-          group-hover:[filter:grayscale(8%)_contrast(1.02)]
+          group-hover:[filter:grayscale(2%)_contrast(1.03)]
         "
       />
     </div>

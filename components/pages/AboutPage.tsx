@@ -240,22 +240,22 @@ export function AboutPage({ locale }: AboutPageProps) {
   return (
     <div>
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
-      <div className="container-base pt-16 pb-16 lg:pt-28 lg:pb-24 border-b border-gray-100">
-        <div className="max-w-[56rem]">
-          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-8">
+      <div className="container-base pt-20 pb-20 lg:pt-40 lg:pb-32 border-b border-gray-100">
+        <div className="max-w-[54rem]">
+          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-12">
             {t.hero.eyebrow}
           </p>
-          <h1 className="text-[2.25rem] md:text-[3rem] lg:text-[3.75rem] font-semibold tracking-tight text-gray-900 leading-[1.06] mb-7">
+          <h1 className="text-[2.25rem] md:text-[3rem] lg:text-[3.75rem] font-semibold tracking-tight text-gray-900 leading-[1.06] mb-8 lg:mb-10">
             {t.hero.h1}
           </h1>
-          <p className="text-xl text-gray-500 leading-[1.72] max-w-[54ch]">
+          <p className="text-[1.125rem] md:text-xl text-gray-500 leading-[1.82] max-w-[46ch]">
             {t.hero.subtitle}
           </p>
         </div>
       </div>
 
       {/* ── 2. FOUNDATION ────────────────────────────────────────── */}
-      <section className="container-base py-20 lg:py-28 border-b border-gray-100">
+      <section className="container-base py-16 lg:py-20 border-b border-gray-100">
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20">
           {/* Stats column */}
           <div className="lg:pt-1">
@@ -265,7 +265,7 @@ export function AboutPage({ locale }: AboutPageProps) {
             <div className="grid grid-cols-2 gap-x-8 gap-y-10">
               {t.foundation.stats.map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-[2rem] font-semibold tracking-tight text-gray-900 leading-none mb-1.5">
+                  <div className="text-[2.5rem] font-semibold tracking-tight text-gray-900 leading-none mb-2">
                     {stat.value}
                   </div>
                   <div className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400">
@@ -307,8 +307,8 @@ export function AboutPage({ locale }: AboutPageProps) {
           {/* Right: numbered rows */}
           <div className="divide-y divide-gray-100">
             {t.capabilities.items.map((item) => (
-              <div key={item.num} className="py-8 first:pt-0 last:pb-0">
-                <div className="flex gap-5 items-baseline mb-2.5">
+              <div key={item.num} className="py-10 lg:py-12 first:pt-0 last:pb-0">
+                <div className="flex gap-5 items-baseline mb-3">
                   <span className="text-[10px] font-semibold tracking-[0.18em] text-gray-300 tabular-nums">
                     {item.num}
                   </span>
@@ -326,7 +326,7 @@ export function AboutPage({ locale }: AboutPageProps) {
       </section>
 
       {/* ── 4. PHILOSOPHY ────────────────────────────────────────── */}
-      <section className="container-base py-20 lg:py-28 border-b border-gray-100">
+      <section className="container-base py-28 lg:py-36 border-b border-gray-100">
         <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-10">
           {t.philosophy.eyebrow}
         </p>
@@ -339,7 +339,7 @@ export function AboutPage({ locale }: AboutPageProps) {
             </h2>
             <figure className="border-l-2 border-gray-200 pl-6">
               <blockquote>
-                <p className="text-[1.1rem] font-semibold tracking-tight text-gray-700 leading-[1.55]">
+                <p className="text-[1.2rem] font-semibold tracking-tight text-gray-700 leading-[1.65]">
                   {t.philosophy.quote}
                 </p>
               </blockquote>
@@ -349,8 +349,8 @@ export function AboutPage({ locale }: AboutPageProps) {
           {/* Right: 3 principles */}
           <div className="divide-y divide-gray-100">
             {t.philosophy.principles.map((p) => (
-              <div key={p.name} className="py-7 first:pt-0 last:pb-0">
-                <h3 className="text-[13.5px] font-semibold text-gray-900 mb-2 leading-snug">
+              <div key={p.name} className="py-8 lg:py-9 first:pt-0 last:pb-0">
+                <h3 className="text-[13.5px] font-semibold text-gray-900 mb-2.5 leading-snug">
                   {p.name}
                 </h3>
                 <p className="text-[14px] text-gray-500 leading-[1.8]">
@@ -363,8 +363,8 @@ export function AboutPage({ locale }: AboutPageProps) {
       </section>
 
       {/* ── 5. LEADERSHIP ────────────────────────────────────────── */}
-      <section className="container-base py-20 lg:py-28 border-b border-gray-100">
-        <div className="mb-14">
+      <section className="container-base py-24 lg:py-32 border-b border-gray-100">
+        <div className="mb-16 lg:mb-20">
           <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-4">
             {t.leadership.eyebrow}
           </p>
@@ -376,11 +376,11 @@ export function AboutPage({ locale }: AboutPageProps) {
           </p>
         </div>
 
-        <LeadershipSection members={FEATURED_TEAM} locale={locale} />
+        <LeadershipSection members={FEATURED_TEAM} locale={locale} showAreas={false} />
       </section>
 
       {/* ── 6. CREDENTIALS ───────────────────────────────────────── */}
-      <section className="container-base py-20 lg:py-28 border-b border-gray-100">
+      <section className="container-base py-16 lg:py-24 border-b border-gray-100">
         <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-10">
           {t.credentials.eyebrow}
         </p>
@@ -398,9 +398,9 @@ export function AboutPage({ locale }: AboutPageProps) {
               <Image
                 src="https://cipsdistancelearning.com/wp-content/uploads/2024/01/CIPS_logo_Primary_RGB.svg"
                 alt="CIPS — Chartered Institute of Procurement & Supply"
-                width={120}
-                height={40}
-                className="opacity-70 grayscale"
+                width={140}
+                height={46}
+                className="opacity-55 grayscale"
                 unoptimized
               />
             </div>
@@ -409,8 +409,8 @@ export function AboutPage({ locale }: AboutPageProps) {
           {/* Right: 3 credential points */}
           <div className="divide-y divide-gray-100">
             {t.credentials.points.map((point) => (
-              <div key={point.label} className="py-7 first:pt-0 last:pb-0">
-                <h3 className="text-[13px] font-semibold text-gray-900 mb-2 tracking-tight">
+              <div key={point.label} className="py-8 lg:py-10 first:pt-0 last:pb-0">
+                <h3 className="text-[13px] font-semibold text-gray-900 mb-2.5 tracking-tight">
                   {point.label}
                 </h3>
                 <p className="text-[14px] text-gray-500 leading-[1.8]">
@@ -423,26 +423,25 @@ export function AboutPage({ locale }: AboutPageProps) {
       </section>
 
       {/* ── 7. QUIET CTA ─────────────────────────────────────────── */}
-      <section className="container-base py-20 lg:py-32">
-        <div className="max-w-[44rem]">
-          <h2 className="text-[2.25rem] md:text-[3rem] font-semibold tracking-tight text-gray-900 leading-[1.1] mb-6">
+      <section className="container-base py-24 sm:py-32 lg:py-48">
+        <div className="max-w-[42rem]">
+          <h2 className="text-[2.25rem] md:text-[3rem] font-semibold tracking-tight text-gray-900 leading-[1.1] mb-8">
             {t.cta.h2}
           </h2>
-          <p className="text-lg text-gray-500 leading-[1.72] max-w-[50ch] mb-10">
+          <p className="text-[1.125rem] text-gray-500 leading-[1.82] max-w-[44ch] mb-14">
             {t.cta.subtitle}
           </p>
           <Link
             href={t.cta.href}
             className="
-              inline-flex items-center gap-2
-              text-[13px] font-semibold tracking-[0.05em] text-gray-900
-              border-b border-gray-900 pb-0.5
-              hover:text-gray-500 hover:border-gray-400
+              inline-flex items-center gap-3
+              text-[11px] font-semibold tracking-[0.18em] uppercase
+              text-gray-400 hover:text-gray-700
               transition-colors duration-200 ease-out
             "
           >
             {t.cta.link}
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true" className="font-normal tracking-normal text-sm">→</span>
           </Link>
         </div>
       </section>

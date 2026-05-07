@@ -38,6 +38,8 @@ export default function Footer() {
   // Article pages: inline newsletter present — suppress footer newsletter
   // and use compressed footer rhythm
   const isArticlePage = /^(\/en)?\/blog\/[^/]+/.test(pathname)
+  // About page: quiet CTA → footer transition — suppress newsletter, compressed rhythm
+  const isAboutPage = /^(\/en)?\/about\/?$/.test(pathname)
   const NAV_LINKS = [
     { href: isEN ? '/en' : '/', label: dict.nav.home },
     { href: `${prefix}/services`, label: dict.nav.services },
@@ -53,7 +55,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 1 — NEWSLETTER
           ══════════════════════════════════════════════════ */}
-      {!isLegalPage && !isArticlePage && (
+      {!isLegalPage && !isArticlePage && !isAboutPage && (
       <div className="border-b border-gray-100">
         <div className="container-base py-12 grid md:grid-cols-[1fr_1.1fr] gap-6 lg:gap-10 items-center">
           <div>
@@ -95,7 +97,7 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 2 — MAIN FOOTER GRID
           ══════════════════════════════════════════════════ */}
-      <div className={`container-base ${isArticlePage ? 'py-10' : 'py-16'}`}>
+      <div className={`container-base ${isArticlePage ? 'py-10' : isAboutPage ? 'py-12' : 'py-16'}`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
           {/* Column 1: Brand / Trust */}
@@ -281,7 +283,7 @@ export default function Footer() {
           SECTION 3 — LEGAL BAR
           ══════════════════════════════════════════════════ */}
       <div className="border-t border-gray-100">
-        <div className={`container-base ${isArticlePage ? 'py-4' : 'py-5'} flex items-center justify-between gap-4 flex-wrap`}>
+        <div className={`container-base ${isArticlePage || isAboutPage ? 'py-4' : 'py-5'} flex items-center justify-between gap-4 flex-wrap`}>
           <span className="text-xs text-gray-400">
             © {new Date().getFullYear()} Profitia Management Consultants. {dict.footer.rights}
           </span>

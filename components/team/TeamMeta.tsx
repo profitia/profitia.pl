@@ -31,14 +31,14 @@ export function TeamMeta({
 }: TeamMetaProps) {
   const nameCls =
     size === 'lg'
-      ? 'text-2xl font-semibold tracking-tight text-gray-900 leading-tight'
+      ? 'text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight'
       : size === 'md'
       ? 'text-[1.125rem] font-semibold tracking-tight text-gray-900 leading-tight'
       : 'text-base font-semibold tracking-tight text-gray-900 leading-tight'
 
   const roleCls =
     size === 'lg'
-      ? 'text-[10.5px] font-semibold tracking-[0.24em] uppercase text-gray-500 mt-2'
+      ? 'text-[11px] font-semibold tracking-[0.24em] uppercase text-gray-500 mt-2.5'
       : 'text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mt-1.5'
 
   return (
