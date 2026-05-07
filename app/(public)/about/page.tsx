@@ -1,20 +1,19 @@
 import type { Metadata } from 'next'
+import { AboutPage } from '@/components/pages/AboutPage'
 
-export const metadata: Metadata = { title: 'O nas' }
+export const metadata: Metadata = {
+  title: 'O nas | Profitia',
+  description:
+    'Profitia to centrum kompetencji zakupowych dla liderów biznesu w Polsce. Doradztwo zakupowe, przygotowanie do negocjacji i analityka zakupowa od 2010 roku.',
+  alternates: {
+    canonical: 'https://www.profitia.pl/about',
+    languages: {
+      'pl': 'https://www.profitia.pl/about',
+      'en': 'https://www.profitia.pl/en/about',
+    },
+  },
+}
 
-export default function AboutPage() {
-  return (
-    <section className="py-28">
-      <div className="container-base max-w-3xl">
-        <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-6">
-          O firmie
-        </p>
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mb-8">
-          O nas
-        </h1>
-        {/* Content placeholder */}
-        <p className="text-gray-500 text-lg leading-relaxed">— Treść sekcji &quot;O nas&quot; —</p>
-      </div>
-    </section>
-  )
+export default function AboutPagePL() {
+  return <AboutPage locale="pl" />
 }

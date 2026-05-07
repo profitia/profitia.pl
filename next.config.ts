@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cipsdistancelearning.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'profitia.pl',
+      },
     ],
   },
 }
