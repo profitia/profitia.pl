@@ -2063,3 +2063,326 @@ No exception is valid for any of the following on legal pages:
 
 *Sekcja dodana: May 2026 | Legal Reading UX Rules — high-level doctrine for institutional reading experience.*
 
+---
+
+## SECTION 28 — CANONICAL CONSENT INFRASTRUCTURE SYSTEM
+
+> **Status:** Production-ready | GDPR-grade | Architecture-complete | Canonical | Integration-ready
+> **Cross-ref:** Section 21 (Interaction System) · Section 24 (Footer System) · Section 25 (Legal System) · Section 27 (Legal UX) · `docs/design-system/LEGAL_SYSTEM.md`
+
+The Profitia Consent Infrastructure is not a cookie banner. It is a full **institutional trust layer** — a compliance architecture and user agency system that governs all data processing consent across the platform.
+
+---
+
+### A. PHILOSOPHY
+
+**What the consent system is:**
+- Institutional trust layer
+- Legal + UX infrastructure
+- Compliance architecture
+- User agency system — the visitor is always in control
+
+**What the consent system is not:**
+- A marketing widget
+- A conversion tool
+- A cookie popup
+- A friction-reduction mechanism for data collection
+
+**Tone of the system:**
+- Calm
+- Editorial
+- Restrained
+- Non-manipulative
+- Transparent
+
+**Profitia never uses:**
+
+| Forbidden pattern | Why |
+|---|---|
+| Dark patterns | Consent must be freely given — manipulation invalidates it |
+| Hidden reject action | Equal-weight actions are a legal and ethical requirement |
+| Oversized accept CTA | Creates implied pressure — constitutes a dark pattern |
+| Pre-enabled marketing cookies | Unlawful under GDPR Article 7 — consent must be opt-in |
+| Fake urgency or emotional pressure | Consent must be informed, not coerced |
+| Aggressive overlays | Must not obstruct the user's ability to reject |
+| Deceptive toggle states | Toggle visual state must accurately reflect consent state |
+
+---
+
+### B. CORE ARCHITECTURE
+
+The system is split into two layers: a pure logic layer (`lib/consent/`) and a UI layer (`components/consent/`).
+
+**`lib/consent/` — Logic Foundation**
+
+| File | Role |
+|------|------|
+| `types.ts` | Canonical type definitions: `ConsentRecord`, `ConsentCategories`, `ConsentCategory`, `ConsentStatus`, `ConsentContextValue` |
+| `categories.ts` | Category registry — `CONSENT_CATEGORIES` array with PL/EN copy inline, extensible without redesign |
+| `storage.ts` | Persistence layer — cookie (primary) + localStorage (sync), all reads/writes guarded, version-aware |
+
+**`components/consent/` — UI Layer**
+
+| Component | Type | Role |
+|-----------|------|------|
+| `ConsentProvider` | Client | Global context: state machine, actions, mounts Banner + Modal |
+| `ConsentBanner` | Client | Initial consent panel — first visit experience |
+| `ConsentModal` | Client | Full preferences management interface |
+| `ConsentToggle` | Client | Accessible ARIA toggle switch per category |
+| `ConsentGate` | Client | Integration gate — conditional rendering based on consent |
+| `index.ts` | — | Barrel export — all consuming code imports from `@/components/consent` |
+
+**Architectural properties:**
+- **Typed end-to-end** — `ConsentRecord`, `ConsentCategories`, `ConsentCategory` are strict TypeScript types used throughout
+- **SSR-safe** — all storage reads deferred to `useEffect`; server never touches consent state
+- **Hydration-safe** — `isLoaded` flag prevents Banner/Modal rendering until client hydration completes; no mismatch possible
+- **Provider-based** — `ConsentProvider` wraps the app tree; all children access context via hooks
+- **Category-driven** — the category registry is the single source of truth for all copy, behavior, and gate logic
+
+---
+
+### C. CONSENT CATEGORY SYSTEM
+
+Four canonical categories. Defined in `lib/consent/categories.ts`.
+
+| Category | Required | Default | Purpose |
+|----------|----------|---------|---------|
+| `necessary` | Yes — immutable | Always `true` | Session, security, language, GDPR consent itself |
+| `analytics` | No | `false` (opt-in) | Aggregated, anonymized site usage data |
+| `marketing` | No | `false` (opt-in) | Advertising attribution, pixel-based tracking |
+| `functional` | No | `false` (opt-in) | Embedded content, CRM forms, chat integrations |
+
+**`necessary` is immutable.** The toggle is visually locked, keyboard-disabled (`disabled` attribute), and labeled "Always active". The category cannot be set to `false` — the provider enforces `necessary: true` on every `saveCustom()` call regardless of input.
+
+**Extensibility:** New categories (e.g. `personalization`, `video`) can be added to `CONSENT_CATEGORIES` in `categories.ts` and the `ConsentCategories` interface in `types.ts`. The Provider, Modal, and Gate all consume the registry — no component-level changes required.
+
+---
+
+### D. STORAGE + VERSIONING
+
+**Persistence strategy:**
+
+| Layer | Mechanism | Max-age | Purpose |
+|-------|-----------|---------|---------|
+| Primary | HTTP cookie (`profitia_consent`) | 1 year | Survives tab close, browser restart, cross-session |
+| Sync | `localStorage` | Browser-controlled | Fast read on next load; fallback if cookie blocked |
+
+**`ConsentRecord` schema:**
+
+```ts
+{
+  version: string       // '1.0' — schema version
+  createdAt: string     // ISO 8601 — first consent. Never updated.
+  updatedAt: string     // ISO 8601 — last re-customization
+  locale: string        // 'pl' | 'en' — locale at time of decision
+  status: ConsentStatus // 'pending' | 'accepted_all' | 'rejected_all' | 'customized'
+  categories: ConsentCategories
+}
+```
+
+**Version-aware invalidation:** If the stored record's `version` field does not match `CONSENT_VERSION` constant in `storage.ts`, the record is treated as `null` — the visitor sees the banner again. This mechanism allows re-consent collection after policy changes without manual cookie clearing.
+
+**Safety guarantees:**
+- Corrupt or unparseable JSON → `null` (re-consent shown)
+- `localStorage` unavailable (private browsing) → non-fatal; cookie layer continues
+- Cookie write failure → non-fatal; `localStorage` layer continues
+- Both unavailable → consent state is in-memory only for the session
+
+---
+
+### E. CONSENT GATE SYSTEM
+
+`ConsentGate` is the **canonical integration pattern** for all third-party and tracking systems.
+
+**Rule:** Every analytics, tracking, advertising, CRM, or data-collection integration **must** be wrapped in `ConsentGate`. Direct unconditional rendering of tracking code is forbidden.
+
+**Behavior:**
+- Renders `null` until client hydration is complete (`isLoaded = false`) — no tracking fires on SSR or before consent check
+- Renders `fallback` (default: `null`) if the category is not consented
+- Renders `children` only when the category is consented
+
+**Usage pattern — future integrations:**
+
+```tsx
+// Google Analytics 4
+<ConsentGate category="analytics">
+  <GoogleAnalytics id="G-XXXXXXXX" />
+</ConsentGate>
+
+// Google Tag Manager
+<ConsentGate category="analytics">
+  <GoogleTagManager id="GTM-XXXXXXX" />
+</ConsentGate>
+
+// Meta Pixel
+<ConsentGate category="marketing">
+  <MetaPixel id="XXXXXXXXXX" />
+</ConsentGate>
+
+// LinkedIn Insight Tag
+<ConsentGate category="marketing">
+  <LinkedInInsight partnerId="XXXXXXX" />
+</ConsentGate>
+
+// HubSpot Forms / CRM
+<ConsentGate category="functional">
+  <HubSpotForm portalId="..." formId="..." />
+</ConsentGate>
+
+// Embedded video (Vimeo / YouTube)
+<ConsentGate category="functional" fallback={<VideoConsentPlaceholder />}>
+  <VimeoEmbed id="..." />
+</ConsentGate>
+
+// Newsletter tracking pixel
+<ConsentGate category="marketing">
+  <NewsletterTrackingPixel />
+</ConsentGate>
+```
+
+**ConsentGate is not optional.** Any system that sets cookies, fires pixels, or transmits user data to third parties must pass through it.
+
+---
+
+### F. UX DOCTRINE
+
+#### Equal-weight action principle
+
+The three primary consent actions carry equal visual hierarchy. This is both a legal requirement (GDPR consent must be freely given) and a design principle.
+
+| Action | Visual treatment |
+|--------|-----------------|
+| Accept all | Filled button — `bg-[#1C1C1E]` (canonical CTA) |
+| Customize settings | Outlined button — `border border-gray-200` |
+| Reject non-essential | Text-only button — `text-gray-400` |
+
+No action is hidden. No action requires more steps than another. The reject path is one click — identical to accept.
+
+#### Banner doctrine
+
+| Property | Rule |
+|----------|------|
+| Position | Fixed bottom panel — does not block reading or navigation |
+| Entrance | Slide-up + opacity fade, 300ms, `ease-out` |
+| Width | Full-width within `container-base` constraints |
+| Mobile | Stacked layout, safe-area inset respected |
+| Content | Eyebrow + heading + body + privacy link + 3 actions |
+| Blocking | Never blocks the page — visitor can read and scroll freely |
+| Persistence | Remains until an explicit decision is made |
+
+#### Modal doctrine
+
+| Property | Rule |
+|----------|------|
+| Layout — mobile | Full-width bottom sheet, rounded top corners |
+| Layout — desktop | Centered, `max-w-lg`, `max-h-[80vh]`, internal scroll |
+| Backdrop | `bg-black/20 backdrop-blur-[2px]` — subtle, not aggressive |
+| Close | Escape key, backdrop click, cancel button, ×  button |
+| Body scroll | Locked while modal is open |
+| Tone | Editorial, legal-grade — not SaaS preferences UI |
+| Required category | Visually distinct lock state — labeled "Always active" |
+| Version info | Consent version + last updated date shown in modal footer |
+
+---
+
+### G. ACCESSIBILITY + MOTION
+
+| Rule | Implementation |
+|------|----------------|
+| `prefers-reduced-motion` | Banner entrance animation disabled (`motion-reduce:transition-none`); smooth-scroll uses `behavior: 'auto'` |
+| Keyboard navigation | All buttons and toggles fully keyboard-reachable |
+| Toggle ARIA | `role="switch"`, `aria-checked={enabled}`, `disabled` when required |
+| Modal ARIA | `role="dialog"`, `aria-modal="true"`, `aria-labelledby` pointing to modal title |
+| Escape handling | `keydown` listener closes modal on Escape |
+| Focus safety | Close button has `focus-visible:ring-2` focus ring; toggle has `focus-visible:ring-2` |
+| Mobile readability | Touch targets ≥ 44px, readable font sizes, non-cramped layout |
+
+*Cross-ref: Section 21 (CANONICAL INTERACTION SYSTEM)*
+
+---
+
+### H. FOOTER INTEGRATION — REOPEN MECHANISM
+
+The consent preferences are always accessible via the Footer legal bar.
+
+**Canonical trigger:** Text button labeled "Ustawienia prywatności" (PL) / "Privacy settings" (EN)
+
+**Placement:** Footer legal bar — right side, same row as copyright notice
+
+**Behavior:**
+- Calls `openModal()` from `useConsent()` — opens the full preferences modal
+- Always available — no page-type restriction
+- Persistent across all routes
+
+**Forbidden reopen patterns:**
+- Floating privacy bubble (chat-like position)
+- Fixed bottom-right privacy icon
+- Sticky privacy widget
+- Separate `/privacy-settings` page route
+
+The legal bar already contains the copyright notice. The privacy settings trigger sits alongside it — quiet, persistent, and institutional.
+
+*Cross-ref: Section 24 (CANONICAL FOOTER SYSTEM)*
+
+---
+
+### I. MOBILE CONSENT UX
+
+| Rule | Implementation |
+|------|----------------|
+| Banner layout | Single-column stacked (text above, actions below) |
+| Banner safe-area | `pb-[env(safe-area-inset-bottom)]` — accounts for iOS home indicator |
+| Modal type | Bottom sheet — slides up from bottom, rounded top corners |
+| Modal height | `max-h-[90vh]` on mobile — category list scrolls internally |
+| Modal safe-area | `pb-[env(safe-area-inset-bottom)]` inside modal footer |
+| Toggle size | `h-6 w-11` toggle, `h-5 w-5` thumb — within comfortable touch range |
+| Category items | `py-5` per item — generous tap area and reading room |
+| Content width | Full container width — no artificial narrowing on small screens |
+| Backdrop | Tappable to close — consistent with mobile UX conventions |
+
+---
+
+### J. FORBIDDEN PATTERNS
+
+| Pattern | Category | Reason |
+|---------|----------|--------|
+| Third-party CMP widget (Cookiebot, OneTrust, etc.) | Architecture | Breaks visual consistency; external aesthetic; data sharing |
+| Neon or brand-accent consent UI | Visual | Incompatible with editorial aesthetic |
+| Cyber / SaaS-dashboard aesthetic | Visual | Wrong tone for institutional trust context |
+| Oversized overlay blocking the page | UX | Creates pressure; may constitute a dark pattern |
+| Forced consent (no visible reject) | Legal | Unlawful under GDPR — consent must be freely refusable |
+| Accept-only prominent flow | Legal | Equal-weight actions are required |
+| Pre-enabled marketing or analytics | Legal | Opt-in required — default must be `false` |
+| Popup spam or repeated banner re-appearance | UX | Banner appears only until a decision is made |
+| Floating privacy bubble | UX | Inconsistent with editorial, institutional system |
+| Animation-heavy consent flows | Accessibility | Conflicts with `prefers-reduced-motion`; distracts from reading |
+| Direct unconditional analytics rendering | Architecture | All tracking must pass through `ConsentGate` |
+
+---
+
+### K. CANONICAL STATUS
+
+The Profitia Consent Infrastructure System is considered:
+
+**Stable** · **Production-grade** · **GDPR-compliant** · **Extensible** · **Future-ready**
+
+All future integrations involving data collection, tracking, advertising, or user identification **must** route through this architecture:
+
+| Integration type | Required gate |
+|-----------------|---------------|
+| Web analytics (GA4, Plausible, Matomo) | `ConsentGate category="analytics"` |
+| Tag management (GTM) | `ConsentGate category="analytics"` |
+| Advertising pixels (Meta, LinkedIn, Google Ads) | `ConsentGate category="marketing"` |
+| CRM (HubSpot, Pipedrive tracking) | `ConsentGate category="functional"` |
+| Newsletter tracking | `ConsentGate category="marketing"` |
+| Form analytics | `ConsentGate category="analytics"` |
+| Embedded content (video, maps, calendars) | `ConsentGate category="functional"` |
+| ATS / recruitment tools | `ConsentGate category="functional"` |
+| Automation / event systems | Category depends on data processing scope |
+
+No exception is valid without an explicit architectural decision and documentation update.
+
+---
+
+*Sekcja dodana: May 2026 | Canonical Consent Infrastructure System — source of truth dla GDPR-grade consent layer Profitia.*
+
