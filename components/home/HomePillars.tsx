@@ -205,69 +205,81 @@ export default function HomePillars({ items, seeMore }: Props) {
         {items.map((pillar, i) => {
           const isInactive = hasActive && active !== i
 
+          // Per-column dark overlay: inactive gets a solid dark plane that
+          // kills the active background image showing through the column.
+          // Active: transparent — image from the bg layer reads through.
+          // Pre-activation: transparent — white page reads through.
+          const columnOverlay = isInactive
+            ? 'rgba(0,0,0,0.82)'
+            : 'transparent'
+
+          // Text colors: three states — pre-activation (light bg), active, inactive.
+          const numColor = isInactive
+            ? 'rgba(255,255,255,0.28)'
+            : hasActive ? 'rgba(255,255,255,0.50)' : '#9ca3af'
+          const titleColor = isInactive
+            ? 'rgba(255,255,255,0.58)'
+            : hasActive ? '#ffffff' : '#111827'
+          const descColor = isInactive
+            ? 'rgba(255,255,255,0.38)'
+            : hasActive ? 'rgba(229,231,235,0.95)' : '#6b7280'
+          const ctaColor = isInactive
+            ? 'rgba(255,255,255,0.30)'
+            : hasActive ? 'rgba(255,255,255,0.80)' : '#374151'
+          const sepColor = isInactive
+            ? 'rgba(255,255,255,0.14)'
+            : hasActive ? 'rgba(255,255,255,0.40)' : '#e5e7eb'
+
           return (
             <div
               key={`d-${pillar.n}`}
-              className={`relative flex flex-col justify-end p-8 flex-1 z-10 cursor-default ${
+              className={`relative flex flex-col justify-center p-10 flex-1 z-10 cursor-default ${
                 i < items.length - 1
                   ? `border-r ${hasActive ? 'border-white/10' : 'border-gray-200'}`
                   : ''
               }`}
-              style={{
-                opacity: isInactive ? 0.40 : 1,
-                transition: 'opacity 700ms ease-out',
-              }}
+              style={{ transition: 'border-color 700ms ease-out' }}
               onMouseEnter={() => handleHover(i)}
             >
-              {/* Inactive zone: blurred backdrop + subtle dark overlay.
-                  Creates a clearly subordinate reading plane.
-                  Blur does not transition — opacity fade masks the snap.
-                  Text content sits above this at z-10. */}
+              {/* Per-column overlay: solid dark for inactive, transparent for active */}
               <div
                 aria-hidden="true"
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  backdropFilter: isInactive ? 'blur(6px)' : 'blur(0px)',
-                  background: isInactive ? 'rgba(0,0,0,0.26)' : 'transparent',
+                  background: columnOverlay,
                   transition: 'background 700ms ease-out',
                 }}
               />
 
-              {/* Text content - above blur overlay */}
+              {/* Text content */}
               <div className="relative z-10">
+                {/* Pillar number — acts as structural chapter anchor */}
                 <div
-                  className="text-[10px] font-medium tracking-[0.2em] uppercase mb-4"
-                  style={{
-                    color: hasActive ? 'rgba(255,255,255,0.38)' : '#9ca3af',
-                    transition: 'color 700ms ease-out',
-                  }}
+                  className="text-[11px] font-medium tracking-[0.28em] uppercase mb-5"
+                  style={{ color: numColor, transition: 'color 700ms ease-out' }}
                 >
-                  {pillar.n}
+                  {pillar.n} /
                 </div>
                 <h3
-                  className="text-xl md:text-2xl font-semibold leading-snug"
-                  style={{
-                    color: hasActive ? '#ffffff' : '#111827',
-                    transition: 'color 700ms ease-out',
-                  }}
+                  className="text-2xl lg:text-3xl font-semibold leading-tight"
+                  style={{ color: titleColor, transition: 'color 700ms ease-out' }}
                 >
                   {pillar.title}
                 </h3>
+                {/* Separator line — editorial chapter divider */}
+                <div
+                  className="w-8 h-px my-5"
+                  style={{ background: sepColor, transition: 'background 700ms ease-out' }}
+                />
                 <p
-                  className="text-sm md:text-base mt-3 max-w-xs leading-relaxed"
-                  style={{
-                    color: hasActive ? 'rgba(229,231,235,0.92)' : '#6b7280',
-                    transition: 'color 700ms ease-out',
-                  }}
+                  className="text-sm lg:text-base max-w-xs leading-relaxed"
+                  style={{ color: descColor, transition: 'color 700ms ease-out' }}
                 >
                   {pillar.desc}
                 </p>
                 <span
-                  className="inline-block mt-5 text-sm"
-                  style={{
-                    color: hasActive ? 'rgba(255,255,255,0.75)' : '#374151',
-                    transition: 'color 700ms ease-out',
-                  }}
+                  className="inline-block mt-6 text-sm"
+                  style={{ color: ctaColor, transition: 'color 700ms ease-out' }}
                 >
                   {seeMore}
                 </span>

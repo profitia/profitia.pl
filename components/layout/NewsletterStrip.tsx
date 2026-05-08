@@ -18,11 +18,11 @@ import { usePathname } from 'next/navigation'
 
 const COPY = {
   pl: {
-    text: 'Komentarze rynkowe, analizy kosztowe i obserwacje zakupowe - raz w tygodniu.',
-    cta: 'Zapisz sie',
+    text: 'ProfiNews - miesięczny briefing zakupowy Profitii.',
+    cta: 'Zapisz się',
   },
   en: {
-    text: 'Market observations, procurement analysis and cost intelligence - once a week.',
+    text: 'ProfiNews - Profitia monthly procurement briefing.',
     cta: 'Subscribe',
   },
 } as const
@@ -41,7 +41,7 @@ export default function NewsletterStrip() {
       className="flex items-center justify-center gap-5 px-4 bg-gray-950"
       style={{ height: '38px' }}
     >
-      <p className="text-[11px] text-gray-500 leading-none tracking-[0.01em] truncate min-w-0 hidden sm:block">
+      <p className="text-[11px] text-gray-500 leading-none tracking-[0.01em] truncate min-w-0">
         {t.text}
       </p>
       <Link
