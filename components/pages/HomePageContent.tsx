@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Dictionary } from '@/lib/i18n'
 import { FeaturedArticles } from '@/components/sections/insights'
+import HomePillars from '@/components/home/HomePillars'
 
 export default function HomePageContent({ dict }: { dict: Dictionary }) {
   const d = dict.homepage
@@ -135,34 +136,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           PILLARS
           ════════════════════════════════════ */}
-      <style>{`
-        #pillars-section:hover .pillar { opacity: 0.4; }
-        #pillars-section .pillar:hover { opacity: 1 !important; }
-      `}</style>
-      <section id="pillars-section" className="flex flex-col md:flex-row md:h-[calc(100vh-80px)] overflow-hidden">
-        {d.pillars.items.map((pillar, i) => (
-          <div
-            key={pillar.n}
-            className={`pillar group relative flex flex-col justify-end p-6 md:p-8 md:flex-1 h-[60vh] md:h-auto ${i < 2 ? 'border-b md:border-b-0 md:border-r border-gray-200' : ''} overflow-hidden cursor-pointer transition-opacity duration-500`}
-          >
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <Image
-                src={pillar.img}
-                alt={pillar.alt}
-                fill
-                className="object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
-              />
-            </div>
-            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10">
-              <div className="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 group-hover:text-white/50 mb-4 transition-colors duration-300">{pillar.n}</div>
-              <h3 className="text-xl md:text-2xl font-semibold text-gray-900 group-hover:text-white transition-colors duration-300">{pillar.title}</h3>
-              <p className="text-sm md:text-base text-gray-500 mt-3 group-hover:text-gray-200 max-w-xs leading-relaxed transition-colors duration-300">{pillar.desc}</p>
-              <span className="inline-block mt-5 text-sm text-gray-900 group-hover:text-white transition-colors duration-300">{d.pillars.seeMore}</span>
-            </div>
-          </div>
-        ))}
-      </section>
+      <HomePillars items={d.pillars.items} seeMore={d.pillars.seeMore} />
 
       {/* ════════════════════════════════════
           PROCESS

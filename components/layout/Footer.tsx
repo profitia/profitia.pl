@@ -64,7 +64,7 @@ export default function Footer() {
           SECTION 1 - NEWSLETTER
           ══════════════════════════════════════════════════ */}
       {!isLegalPage && !isArticlePage && !isAboutPage && !isCapabilityPage && !isCareerPage && (
-      <div className="border-b border-gray-100">
+      <div id="footer-newsletter" className="border-b border-gray-100">
         <div className="container-base py-12 grid md:grid-cols-[1fr_1.1fr] gap-6 lg:gap-10 items-center">
           <div>
             <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-4">
