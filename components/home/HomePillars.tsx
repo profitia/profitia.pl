@@ -212,7 +212,7 @@ export default function HomePillars({ items, seeMore }: Props) {
           const columnOverlay = hasActive
             ? active === i
               ? 'rgba(0,0,0,0.82)'
-              : 'rgba(255,255,255,0.92)'
+              : 'rgba(255,255,255,0.72)'
             : 'transparent'
 
           // Text colors follow the background inversion:
