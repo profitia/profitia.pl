@@ -205,37 +205,41 @@ export default function HomePillars({ items, seeMore }: Props) {
         {items.map((pillar, i) => {
           const isInactive = hasActive && active !== i
 
-          // Per-column dark overlay: inactive gets a solid dark plane that
-          // kills the active background image showing through the column.
-          // Active: transparent — image from the bg layer reads through.
-          // Pre-activation: transparent — white page reads through.
-          const columnOverlay = isInactive
-            ? 'rgba(0,0,0,0.82)'
+          // INVERTED logic: active → dark, inactive → light.
+          // Active column: solid dark overlay over the background image.
+          // Inactive column: opaque white plane — hides the bg image, shows light.
+          // Pre-activation: transparent — white page, dark text.
+          const columnOverlay = hasActive
+            ? active === i
+              ? 'rgba(0,0,0,0.82)'
+              : 'rgba(255,255,255,0.92)'
             : 'transparent'
 
-          // Text colors: three states — pre-activation (light bg), active, inactive.
-          const numColor = isInactive
-            ? 'rgba(255,255,255,0.28)'
-            : hasActive ? 'rgba(255,255,255,0.50)' : '#9ca3af'
-          const titleColor = isInactive
-            ? 'rgba(255,255,255,0.58)'
-            : hasActive ? '#ffffff' : '#111827'
-          const descColor = isInactive
-            ? 'rgba(255,255,255,0.38)'
-            : hasActive ? 'rgba(229,231,235,0.95)' : '#6b7280'
-          const ctaColor = isInactive
-            ? 'rgba(255,255,255,0.30)'
-            : hasActive ? 'rgba(255,255,255,0.80)' : '#374151'
-          const sepColor = isInactive
-            ? 'rgba(255,255,255,0.14)'
-            : hasActive ? 'rgba(255,255,255,0.40)' : '#e5e7eb'
+          // Text colors follow the background inversion:
+          // Active   (dark)  → white.
+          // Inactive (light) → dark muted (pre-activation palette).
+          const numColor = hasActive
+            ? active === i ? 'rgba(255,255,255,0.50)' : '#9ca3af'
+            : '#9ca3af'
+          const titleColor = hasActive
+            ? active === i ? '#ffffff' : '#111827'
+            : '#111827'
+          const descColor = hasActive
+            ? active === i ? 'rgba(229,231,235,0.95)' : '#6b7280'
+            : '#6b7280'
+          const ctaColor = hasActive
+            ? active === i ? 'rgba(255,255,255,0.80)' : '#374151'
+            : '#374151'
+          const sepColor = hasActive
+            ? active === i ? 'rgba(255,255,255,0.40)' : '#e5e7eb'
+            : '#e5e7eb'
 
           return (
             <div
               key={`d-${pillar.n}`}
               className={`relative flex flex-col justify-center p-10 flex-1 z-10 cursor-default ${
                 i < items.length - 1
-                  ? `border-r ${hasActive ? 'border-white/10' : 'border-gray-200'}`
+                  ? `border-r ${active === i || !hasActive ? 'border-gray-200' : 'border-gray-200'}`
                   : ''
               }`}
               style={{ transition: 'border-color 700ms ease-out' }}
