@@ -1,25 +1,23 @@
 'use client'
 
 /**
- * HomePillars - Editorial activation sequence for the three-pillar section.
+ * HomePillars - Editorial activation sequence (ETAP 8.1 refined).
  *
- * DESKTOP:
- *   When the section enters the viewport, an editorial activation sequence runs:
- *   1. Pillar 0 activates immediately.
- *   2. After 2500ms, Pillar 1 activates.
- *   3. After 2500ms, Pillar 2 activates. Sequence ends.
- *   After the first sequence, the system is fully manual (hover controls active state).
- *   Hover at any point immediately overrides the sequence.
+ * ETAP 8.1 refinements (active/inactive hierarchy):
+ *   - Active pillar bg: lighter overlay (black/38 vs /54) → more atmospheric image
+ *   - Inactive text columns: backdrop-filter blur(6px) + rgba(0,0,0,0.26) zone overlay
+ *     creates a clearly subordinate, hazy reading plane without hiding content
+ *   - Inactive column opacity: 0.40 (from 0.45) — still accessible, clearly secondary
+ *   - Mobile: mobileActive state (default: 0), tap-to-switch. Active pillar
+ *     has lighter overlay (black/38), inactive pillars darker (black/66).
+ *     All content always visible.
  *
- *   Active pillar image spans the FULL WIDTH of the section as an atmospheric
- *   editorial background. Inactive pillars are at reduced opacity (0.45).
- *   Transitions: opacity fade only, 700ms. No sliding, no scaling, no zoom.
- *
- * MOBILE:
- *   No autoplay. All three pillars are always visible as stacked editorial blocks,
- *   each with its own image visible. Content readable without interaction.
- *
- * Visual canon: institutional silence. Not marketing UI.
+ * Canon constraints:
+ *   Transitions: opacity + background color only (~700ms ease-out).
+ *   Blur does NOT animate (backdrop-filter: blur transitions unreliably across
+ *   browsers; the opacity fade on the column makes the snap imperceptible).
+ *   No slide, scale, zoom, parallax, glow, gradient.
+ *   Inactive pillars remain legible — not hidden.
  */
 
 import Image from 'next/image'
@@ -40,6 +38,8 @@ interface Props {
 
 export default function HomePillars({ items, seeMore }: Props) {
   const [active, setActive] = useState<number | null>(null)
+  // Mobile: tap-to-activate, first pillar dominant by default
+  const [mobileActive, setMobileActive] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([])
   const manualRef = useRef(false)
@@ -108,54 +108,76 @@ export default function HomePillars({ items, seeMore }: Props) {
   return (
     <section ref={sectionRef} className="overflow-hidden">
 
-      {/* ── MOBILE: always-visible stacked editorial blocks ───────────────────
-          Each pillar always shows its image. Readable without interaction.
+      {/* ── MOBILE: stacked editorial blocks, tap-to-activate ────────────────
+          mobileActive (default: 0) tracks the dominant pillar.
+          Active: lighter overlay, full text opacity.
+          Inactive: heavier overlay, reduced text opacity.
+          All content always visible — no hidden text.
           ──────────────────────────────────────────────────────────────────── */}
       <div className="flex flex-col md:hidden">
-        {items.map((pillar, i) => (
-          <div
-            key={`m-${pillar.n}`}
-            className={`relative flex flex-col justify-end p-6 overflow-hidden ${
-              i < items.length - 1 ? 'border-b border-gray-100' : ''
-            }`}
-            style={{ height: 'clamp(200px, 52vw, 280px)' }}
-          >
-            <Image
-              src={pillar.img}
-              alt={pillar.alt}
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-black/52" />
-            <div className="relative z-10">
-              <div className="text-[10px] font-medium tracking-[0.2em] uppercase text-white/40 mb-3">
-                {pillar.n}
+        {items.map((pillar, i) => {
+          const isMobileActive = mobileActive === i
+          return (
+            <div
+              key={`m-${pillar.n}`}
+              className={`relative flex flex-col justify-end p-6 overflow-hidden cursor-pointer ${
+                i < items.length - 1 ? 'border-b border-gray-100' : ''
+              }`}
+              style={{ height: 'clamp(200px, 52vw, 280px)' }}
+              onClick={() => setMobileActive(i)}
+            >
+              <Image
+                src={pillar.img}
+                alt={pillar.alt}
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
+              {/* Overlay: lighter for active, considerably heavier for inactive */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: isMobileActive ? 'rgba(0,0,0,0.38)' : 'rgba(0,0,0,0.66)',
+                  transition: 'background 700ms ease-out',
+                }}
+              />
+              <div
+                className="relative z-10"
+                style={{
+                  opacity: isMobileActive ? 1 : 0.55,
+                  transition: 'opacity 700ms ease-out',
+                }}
+              >
+                <div className="text-[10px] font-medium tracking-[0.2em] uppercase text-white/40 mb-3">
+                  {pillar.n}
+                </div>
+                <h3 className="text-xl font-semibold text-white leading-snug">
+                  {pillar.title}
+                </h3>
+                <p className="text-sm text-gray-200 mt-2 leading-relaxed max-w-xs">
+                  {pillar.desc}
+                </p>
+                <span className="inline-block mt-4 text-sm text-white/70">
+                  {seeMore}
+                </span>
               </div>
-              <h3 className="text-xl font-semibold text-white leading-snug">
-                {pillar.title}
-              </h3>
-              <p className="text-sm text-gray-200 mt-2 leading-relaxed max-w-xs">
-                {pillar.desc}
-              </p>
-              <span className="inline-block mt-4 text-sm text-white/70">
-                {seeMore}
-              </span>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
       {/* ── DESKTOP: editorial sequence + full-width atmospheric background ──
-          Active pillar image spans full section width.
-          Inactive pillars: opacity 0.45 but always readable.
-          Transition: opacity fade only, 700ms ease-out.
+          Active pillar image spans full section width (cross-faded bg layers).
+          Active: light overlay (black/38), sharp, full opacity column.
+          Inactive: heavier blur zone (backdrop-filter) + dark overlay inside
+            the column, column opacity 0.40. Still legible, clearly secondary.
+          Transitions: opacity + background (~700ms). Blur does not animate.
           ──────────────────────────────────────────────────────────────────── */}
       <div
         className="hidden md:flex md:flex-row relative"
         style={{ height: 'calc(100vh - 80px)' }}
       >
-        {/* Full-width background image layers - one per pillar, cross-faded */}
+        {/* Full-width background image layers - cross-faded between pillars */}
         {items.map((pillar, i) => (
           <div
             key={`bg-${i}`}
@@ -173,12 +195,12 @@ export default function HomePillars({ items, seeMore }: Props) {
               className="object-cover"
               sizes="100vw"
             />
-            {/* Dark atmospheric overlay - text always readable */}
-            <div className="absolute inset-0 bg-black/54" />
+            {/* Lighter overlay = more image shows through, more atmospheric */}
+            <div className="absolute inset-0 bg-black/38" />
           </div>
         ))}
 
-        {/* Pillar text columns */}
+        {/* Text columns */}
         {items.map((pillar, i) => {
           const isInactive = hasActive && active !== i
 
@@ -191,12 +213,27 @@ export default function HomePillars({ items, seeMore }: Props) {
                   : ''
               }`}
               style={{
-                opacity: isInactive ? 0.45 : 1,
-                transition: 'opacity 700ms ease-out, border-color 700ms ease-out',
+                opacity: isInactive ? 0.40 : 1,
+                transition: 'opacity 700ms ease-out',
               }}
               onMouseEnter={() => handleHover(i)}
             >
-              <div>
+              {/* Inactive zone: blurred backdrop + subtle dark overlay.
+                  Creates a clearly subordinate reading plane.
+                  Blur does not transition — opacity fade masks the snap.
+                  Text content sits above this at z-10. */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  backdropFilter: isInactive ? 'blur(6px)' : 'blur(0px)',
+                  background: isInactive ? 'rgba(0,0,0,0.26)' : 'transparent',
+                  transition: 'background 700ms ease-out',
+                }}
+              />
+
+              {/* Text content - above blur overlay */}
+              <div className="relative z-10">
                 <div
                   className="text-[10px] font-medium tracking-[0.2em] uppercase mb-4"
                   style={{
