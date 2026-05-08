@@ -21,7 +21,11 @@
  */
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useRef, useCallback, useEffect } from 'react'
+
+// CTA links per pillar index. null = no link.
+const PILLAR_LINKS: (string | null)[] = ['/services', '/education', null]
 
 interface PillarItem {
   n: string
@@ -148,19 +152,19 @@ export default function HomePillars({ items, seeMore }: Props) {
                   transition: 'opacity 700ms ease-out',
                 }}
               >
-                {/* Pillar number: larger, more separated, acts as structural anchor */}
-                <div className="text-[11px] font-semibold tracking-[0.28em] uppercase text-white/55 mb-4">
-                  {pillar.n}
-                </div>
                 <h3 className="text-2xl font-semibold text-white leading-tight">
                   {pillar.title}
                 </h3>
                 <p className="text-[15px] text-white/90 mt-4 leading-relaxed max-w-xs">
                   {pillar.desc}
                 </p>
-                <span className="inline-block mt-5 text-sm text-white/80">
-                  {seeMore}
-                </span>
+                {PILLAR_LINKS[i] ? (
+                  <Link href={PILLAR_LINKS[i]!} className="inline-block mt-5 text-sm text-white/80 hover:text-white transition-colors">
+                    {seeMore}
+                  </Link>
+                ) : (
+                  <span className="inline-block mt-5 text-sm text-white/80">{seeMore}</span>
+                )}
               </div>
             </div>
           )
@@ -218,9 +222,6 @@ export default function HomePillars({ items, seeMore }: Props) {
           // Text colors follow the background inversion:
           // Active   (dark)  → white.
           // Inactive (light) → dark muted (pre-activation palette).
-          const numColor = hasActive
-            ? active === i ? 'rgba(255,255,255,0.50)' : '#9ca3af'
-            : '#9ca3af'
           const titleColor = hasActive
             ? active === i ? '#ffffff' : '#111827'
             : '#111827'
@@ -257,13 +258,6 @@ export default function HomePillars({ items, seeMore }: Props) {
 
               {/* Text content */}
               <div className="relative z-10">
-                {/* Pillar number — acts as structural chapter anchor */}
-                <div
-                  className="text-[11px] font-medium tracking-[0.28em] uppercase mb-5"
-                  style={{ color: numColor, transition: 'color 700ms ease-out' }}
-                >
-                  {pillar.n} /
-                </div>
                 <h3
                   className="text-2xl lg:text-3xl font-semibold leading-tight"
                   style={{ color: titleColor, transition: 'color 700ms ease-out' }}
@@ -281,12 +275,22 @@ export default function HomePillars({ items, seeMore }: Props) {
                 >
                   {pillar.desc}
                 </p>
-                <span
-                  className="inline-block mt-6 text-sm"
-                  style={{ color: ctaColor, transition: 'color 700ms ease-out' }}
-                >
-                  {seeMore}
-                </span>
+                {PILLAR_LINKS[i] ? (
+                  <Link
+                    href={PILLAR_LINKS[i]!}
+                    className="inline-block mt-6 text-sm hover:underline"
+                    style={{ color: ctaColor, transition: 'color 700ms ease-out' }}
+                  >
+                    {seeMore}
+                  </Link>
+                ) : (
+                  <span
+                    className="inline-block mt-6 text-sm"
+                    style={{ color: ctaColor, transition: 'color 700ms ease-out' }}
+                  >
+                    {seeMore}
+                  </span>
+                )}
               </div>
             </div>
           )
