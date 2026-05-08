@@ -109,10 +109,10 @@ export default function HomePillars({ items, seeMore }: Props) {
     <section ref={sectionRef} className="overflow-hidden">
 
       {/* ── MOBILE: stacked editorial blocks, tap-to-activate ────────────────
-          mobileActive (default: 0) tracks the dominant pillar.
-          Active: lighter overlay, full text opacity.
-          Inactive: heavier overlay, reduced text opacity.
-          All content always visible — no hidden text.
+          ETAP 8.2: text-first hierarchy — content reads immediately.
+          Active: lighter overlay, full text, full contrast.
+          Inactive: heavy overlay (0.74), muted text (0.50 opacity).
+          Taller blocks, larger title, more padding — editorial text layer.
           ──────────────────────────────────────────────────────────────────── */}
       <div className="flex flex-col md:hidden">
         {items.map((pillar, i) => {
@@ -120,10 +120,10 @@ export default function HomePillars({ items, seeMore }: Props) {
           return (
             <div
               key={`m-${pillar.n}`}
-              className={`relative flex flex-col justify-end p-6 overflow-hidden cursor-pointer ${
-                i < items.length - 1 ? 'border-b border-gray-100' : ''
+              className={`relative flex flex-col justify-end overflow-hidden cursor-pointer ${
+                i < items.length - 1 ? 'border-b border-white/10' : ''
               }`}
-              style={{ height: 'clamp(200px, 52vw, 280px)' }}
+              style={{ height: 'clamp(240px, 60vw, 320px)' }}
               onClick={() => setMobileActive(i)}
             >
               <Image
@@ -133,31 +133,32 @@ export default function HomePillars({ items, seeMore }: Props) {
                 className="object-cover"
                 sizes="100vw"
               />
-              {/* Overlay: lighter for active, considerably heavier for inactive */}
+              {/* Contrast separation: active ~45%, inactive ~74% */}
               <div
                 className="absolute inset-0"
                 style={{
-                  background: isMobileActive ? 'rgba(0,0,0,0.38)' : 'rgba(0,0,0,0.66)',
+                  background: isMobileActive ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.74)',
                   transition: 'background 700ms ease-out',
                 }}
               />
               <div
-                className="relative z-10"
+                className="relative z-10 px-7 pb-9 pt-5"
                 style={{
-                  opacity: isMobileActive ? 1 : 0.55,
+                  opacity: isMobileActive ? 1 : 0.50,
                   transition: 'opacity 700ms ease-out',
                 }}
               >
-                <div className="text-[10px] font-medium tracking-[0.2em] uppercase text-white/40 mb-3">
+                {/* Pillar number: larger, more separated, acts as structural anchor */}
+                <div className="text-[11px] font-semibold tracking-[0.28em] uppercase text-white/55 mb-4">
                   {pillar.n}
                 </div>
-                <h3 className="text-xl font-semibold text-white leading-snug">
+                <h3 className="text-2xl font-semibold text-white leading-tight">
                   {pillar.title}
                 </h3>
-                <p className="text-sm text-gray-200 mt-2 leading-relaxed max-w-xs">
+                <p className="text-[15px] text-white/90 mt-4 leading-relaxed max-w-xs">
                   {pillar.desc}
                 </p>
-                <span className="inline-block mt-4 text-sm text-white/70">
+                <span className="inline-block mt-5 text-sm text-white/80">
                   {seeMore}
                 </span>
               </div>
