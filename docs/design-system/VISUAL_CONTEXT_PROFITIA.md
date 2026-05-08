@@ -3470,3 +3470,228 @@ All three documents are in agreement. The rule is system-wide, not page-specific
 
 *Sekcja dodana: May 2026 - ETAP 7.7 typographic normalization pass. 154 source files updated. Zero em/en dashes remain in the codebase.*
 
+---
+
+## SECTION 32 - HOMEPAGE THREE PILLARS INTERACTION LAYER
+
+> **Status:** Source of Truth | Version 1.0 | May 2026
+> **Scope:** Homepage only - `components/home/HomePillars.tsx`
+> **Obowiazuje od:** ETAP 8 / 8.1 / 8.2 (May 2026).
+
+---
+
+### Purpose
+
+The Three Pillars section is NOT:
+- a carousel,
+- a gallery,
+- a hover gimmick,
+- an animated showcase.
+
+It is the **editorial orientation layer** of the homepage.
+
+Its function:
+- rapid comprehension of the company's three capability pillars,
+- display of the competence structure,
+- calm, non-promotional entry point into the site architecture.
+
+The section behaves as an **editorial navigation layer**, not as a marketing showcase.
+
+---
+
+### Desktop behaviour - canonical state
+
+**Pre-activation (on page load):**
+- Section renders with white background per column.
+- All three pillar text blocks visible, dark text on white.
+- No image visible. No sequence running yet.
+
+**Activation sequence (fires once on viewport entry):**
+- Triggered by `IntersectionObserver` at threshold 0.25, desktop only (`window.innerWidth >= 768`).
+- Pillar 0 activates immediately.
+- After 2500ms: Pillar 1 activates.
+- After 2500ms: Pillar 2 activates. Sequence ends permanently.
+- On activation: a full-width atmospheric background image cross-fades in behind the active column. Active column receives a dark overlay. Inactive columns receive an opaque light overlay hiding the background image.
+
+**Active column state:**
+- Dark overlay `rgba(0,0,0,0.82)` over background image.
+- Text: white. Full opacity.
+- Image visible through the dark overlay - atmospheric presence, not decorative.
+
+**Inactive column state:**
+- Light overlay `rgba(255,255,255,0.72)` - image faintly visible, column legible.
+- Text: dark muted (pre-activation palette - gray tones).
+- Clearly subordinate. Not hidden.
+
+**Manual hover:**
+- Hover on any column immediately cancels the sequence.
+- Sets the hovered column as active permanently.
+- System becomes fully manual. No reset on mouse leave.
+- Hover always wins over autoplay.
+
+**Transitions:**
+- Type: opacity and background-color only.
+- Duration: 700ms ease-out.
+- No slide, no scale, no zoom, no parallax.
+
+---
+
+### Mobile behaviour - canonical state
+
+**Layout:** Stacked blocks, always visible. No autoplay. No sequence.
+
+**mobileActive state:** Index 0 is dominant on page load. User tap changes the active block.
+
+**Active block:**
+- Overlay: `rgba(0,0,0,0.45)` - lighter, image more present.
+- Text: full opacity.
+
+**Inactive blocks:**
+- Overlay: `rgba(0,0,0,0.74)` - heavier, image suppressed.
+- Text: 0.50 opacity. Readable, clearly secondary.
+
+**Canonical principle for mobile:**
+Mobile prioritizes readability over image presence.
+Images serve as atmospheric context, not primary visual content.
+
+---
+
+### CTA link mapping - canonical state (May 2026)
+
+| Pillar | Title | CTA target |
+|---|---|---|
+| 1 | Doradztwo | `/services` |
+| 2 | Kompetencje | `/education` |
+| 3 | Narzedzia | no link (span) |
+
+This mapping is defined in `PILLAR_LINKS` constant in `HomePillars.tsx`.
+
+---
+
+### Prohibited evolution paths
+
+**Never add:**
+- Carousel UI of any kind
+- Slider dots / pagination indicators
+- Autoplay loop (sequence fires once only - this is canonical)
+- Swipe gallery behaviour
+- Parallax effects
+- Zoom-on-hover
+- Scale animations
+- Glassmorphism
+- Cinematic overlays
+- Animated transitions beyond opacity and background-color
+- Navigation arrows
+- "Active" indicator dots
+
+**Never change the section to:**
+- An interactive agency homepage showcase
+- A product feature carousel
+- A marketing animation sequence
+
+---
+
+*Sekcja dodana: May 2026 - ETAP 8 homepage discoverability pass. Component: `components/home/HomePillars.tsx`.*
+
+---
+
+## SECTION 33 - NEWSLETTER ANNOUNCEMENT BAR
+
+> **Status:** Source of Truth | Version 1.0 | May 2026
+> **Scope:** All public pages - `components/layout/NewsletterStrip.tsx`
+> **Obowiazuje od:** ETAP 8 (May 2026).
+
+---
+
+### Purpose
+
+The newsletter announcement bar is NOT:
+- a promotional banner,
+- a conversion popup,
+- a sales strip,
+- a growth hacking element.
+
+It is an **institutional publication signal**.
+
+Its role:
+- communicate the existence of a publication layer (ProfiNews briefing),
+- build the editorial platform rhythm,
+- signal continuity of analysis and research.
+
+The bar reads like a **think tank publication strip** or **financial publication header** - not a startup growth banner.
+
+---
+
+### Visual rules - canonical state
+
+- **Position:** Above the main header. Not sticky. Scrolls away naturally.
+- **Height:** 38px (fixed via inline style).
+- **Background:** `bg-gray-950` (Tailwind standard, no custom color).
+- **Typography:** `text-[11px]`, tracking minimal, no bold, no uppercase.
+- **Layout:** Centered. Text + inline CTA. `gap-5` between elements.
+- **CTA:** `<Link>` to `#footer-newsletter` anchor. Underlined. No button. No pill. No box.
+- **CTA colors:** `text-gray-400` default, `hover:text-gray-200`. Subtle.
+- **Text color:** `text-gray-500`. Low-noise.
+- **Animation:** None. Static. No scroll hide. No dismiss. No entrance animation.
+- **Mobile:** Text visible at all breakpoints (truncates gracefully on very small screens). CTA always visible.
+
+---
+
+### Copywriting rules
+
+Newsletter bar language must read as:
+- a briefing title,
+- a research note reference,
+- an institutional publication announcement.
+
+NOT as:
+- content marketing,
+- hype,
+- growth newsletter promotional copy.
+
+**Canonical copy - May 2026:**
+
+| Locale | Text | CTA |
+|---|---|---|
+| PL | ProfiNews - miesięczny briefing zakupowy Profitii. | Zapisz się |
+| EN | ProfiNews - Profitia monthly procurement briefing. | Subscribe |
+
+The copy names the publication (ProfiNews), defines the cadence (monthly), and names the domain (procurement). It does not make claims about readership, value, or outcomes.
+
+---
+
+### Prohibited patterns
+
+**Never use:**
+- "Dolącz do X subskrybentów" (social proof numbers)
+- Emoji of any kind
+- Urgency language ("Last chance", "Hurry")
+- Flashing or animated CTA
+- Countdown timers
+- Growth newsletter copywriting ("curated insights", "top picks")
+- Performance marketing tone
+- Exclamation marks
+- Brand superlatives
+
+**Never change the bar to:**
+- A sticky announcement ribbon
+- A dismissible cookie-style banner
+- A modal or popover trigger
+- A promotional offer strip
+- A hero sub-headline
+
+---
+
+### Anchor target
+
+The CTA navigates to `#footer-newsletter` on the current locale root (`/` for PL, `/en` for EN).
+
+The footer newsletter section (`components/layout/Footer.tsx`) carries `id="footer-newsletter"` as its anchor.
+
+On pages where the footer newsletter section is suppressed (legal, article, about, capability, career), the CTA navigates to the homepage newsletter section which is always visible.
+
+---
+
+*Sekcja dodana: May 2026 - ETAP 8 homepage discoverability pass. Component: `components/layout/NewsletterStrip.tsx`.*
+
+
