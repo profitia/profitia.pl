@@ -2,12 +2,15 @@
 // ETAP 5 — Runtime Security Layer
 // Prompt injection defense, PII detection, output sanitization,
 // schema enforcement, metadata protection.
+// ETAP 7 — Multilingual extension: Polish injection patterns added.
 // ─────────────────────────────────────────────────────────
 
 // ── Prompt Injection Patterns ─────────────────────────────
 // Based on known attack patterns: role override, instruction injection,
 // jailbreaking, system prompt extraction
+// Covers: English (ETAP 5) + Polish (ETAP 7)
 const INJECTION_PATTERNS: ReadonlyArray<RegExp> = [
+  // ── English patterns ──────────────────────────────────
   /ignore\s+(?:(?:all|the)\s+)?(?:previous|above|prior)?\s*(?:instructions?|prompts?|rules?|context)/i,
   /you\s+are\s+now\s+(a|an)\s+/i,
   /forget\s+(everything|all|your\s+instructions?)/i,
@@ -32,7 +35,34 @@ const INJECTION_PATTERNS: ReadonlyArray<RegExp> = [
   /give\s+me\s+(free|unlimited)\s+access/i,
   /bypass\s+payment/i,
   /provide\s+contact\s+details\s+of\s+all/i,
+
+  // ── Polish patterns (ETAP 7) ──────────────────────────
+  // "zignoruj [wszystkie] [poprzednie] instrukcje/zasady/ograniczenia"
+  /zignoruj\s+(?:wszystkie\s+)?(?:poprzednie\s+)?(?:instrukcje|zasady|ograniczenia|polecenia|kontekst|regu[łl]y)/i,
+  // "ujawnij [swoje] [instrukcje/prompt/system]"
+  /ujawnij\s+(?:swoje\s+)?(?:instrukcje|prompt|system|polecenia|zasady)/i,
+  // "pokaż [mi] [swój] prompt/instrukcje/system"
+  /poka[żz]\s+(?:mi\s+)?(?:sw[oó]j\s+)?(?:prompt|instrukcje|system\s+prompt|polecenia|zasady)/i,
+  // "obejdź/omiń [swoje] ograniczenia/zasady"
+  /(?:obejd[źz]|omin\s*[^\w]|pomi[nń])\s+(?:swoje\s+)?(?:ograniczenia|zasady|filtry|regu[łl]y)/i,
+  // "zachowuj się jak [coś innego]"
+  /zachowuj\s+si[eę]\s+jak\s+/i,
+  // "udawaj [że] jesteś [czymś innym]"
+  /udawaj\s+(?:[żz]e\s+)?(?:jeste[sś]|byłeś)\s+/i,
+  // "zapomnij [wszystkie] [poprzednie] instrukcje/zasady"
+  /zapomnij\s+(?:wszystkie\s+)?(?:poprzednie\s+)?(?:instrukcje|zasady|polecenia|kontekst)/i,
+  // "tryb deweloperski / tryb bez ograniczeń"
+  /tryb\s+(?:deweloperski|bez\s+ogranicze[nń]|unrestricted|debug)/i,
+  // "jesteś [teraz] wolny/bez ograniczeń"
+  /jeste[sś]\s+(?:teraz\s+)?(?:wolny|wolna|bez\s+ogranicze[nń]|uwolniony)/i,
+  // "powiedz mi swoje instrukcje/prompt systemowy"
+  /powiedz\s+mi\s+(?:swoje\s+)?(?:instrukcje|prompt|zasady|system\s+prompt)/i,
+  // "wypisz [swoje] instrukcje/zasady/prompt"
+  /wypisz\s+(?:swoje\s+)?(?:instrukcje|zasady|prompt|polecenia)/i,
+  // "powtórz swój prompt systemowy"
+  /powt[oó]rz\s+(?:sw[oó]j\s+)?(?:prompt|instrukcje|zasady)/i,
 ];
+
 
 // ── PII Patterns ──────────────────────────────────────────
 const PII_PATTERNS: ReadonlyArray<{ name: string; pattern: RegExp }> = [
