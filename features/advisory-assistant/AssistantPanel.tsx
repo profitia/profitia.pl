@@ -203,6 +203,7 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
         messages={session?.messages ?? []}
         streamingContent={streamingContent}
         locale={locale}
+        onPromptSelect={handleSend}
       />
 
       {/* Recommendation strip — orchestrator-driven */}

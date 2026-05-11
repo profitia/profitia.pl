@@ -3,16 +3,15 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Message, Locale } from "@/types";
-import { ASSISTANT_STRINGS } from "@/lib/i18n";
 
 interface MessageListProps {
   messages: Message[];
   streamingContent: string;
   locale: Locale;
+  onPromptSelect?: (prompt: string) => void;
 }
 
-export function MessageList({ messages, streamingContent, locale }: MessageListProps) {
-  const strings = ASSISTANT_STRINGS[locale];
+export function MessageList({ messages, streamingContent, locale, onPromptSelect }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,7 +23,7 @@ export function MessageList({ messages, streamingContent, locale }: MessageListP
   return (
     <div className="flex-1 overflow-y-auto advisory-scroll px-4 py-4 space-y-3 min-h-0">
       {isEmpty && (
-        <EmptyState locale={locale} />
+        <EmptyState locale={locale} onSelect={onPromptSelect} />
       )}
 
       <AnimatePresence initial={false}>
@@ -83,7 +82,7 @@ export function MessageList({ messages, streamingContent, locale }: MessageListP
   );
 }
 
-function EmptyState({ locale }: { locale: Locale }) {
+function EmptyState({ locale, onSelect }: { locale: Locale; onSelect?: (prompt: string) => void }) {
   const openingPrompts =
     locale === "pl"
       ? [
@@ -122,6 +121,7 @@ function EmptyState({ locale }: { locale: Locale }) {
           {openingPrompts.map((prompt) => (
             <button
               key={prompt}
+              onClick={() => onSelect?.(prompt)}
               className="w-full text-left text-sm text-gray-600 px-3 py-2.5 rounded-xl border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-all duration-150 leading-snug"
             >
               {prompt}
