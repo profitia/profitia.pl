@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
-import ChatWidget from '@/components/ChatWidget'
+import AdvisoryWidget from '@/components/AdvisoryWidget'
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="pl" className={inter.variable}>
       <body className="font-sans antialiased">
         {children}
-        <ChatWidget />
+        <AdvisoryWidget />
       </body>
     </html>
   )
