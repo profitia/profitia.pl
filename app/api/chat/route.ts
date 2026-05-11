@@ -1,101 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import type { AdvisoryDecision, PageContext, SessionState } from '@/types'
-import { serializeDecisionForPrompt } from '@/lib/engines/advisory-orchestrator'
 import {
   parseAdvisoryMetadata,
   stripMetadataBlock,
 } from '@/runtime/schemas/advisory-output.schema'
+import { buildAdvisorySystemPrompt } from '@/lib/advisory-quality/system-prompt'
+import {
+  applyHallucinationGuardrails,
+  evaluateResponseQuality,
+} from '@/lib/advisory-quality/hallucination-guard'
+import {
+  getCompressionProfile,
+} from '@/lib/advisory-quality/advisory-compression'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
-
-function buildSystemPrompt(
-  locale: string,
-  pageContext: PageContext,
-  sessionState: SessionState,
-  decision: AdvisoryDecision | null,
-): string {
-  const isPL = locale === 'pl'
-
-  const intentDescriptions: Record<string, string> = {
-    I1_SAVINGS: 'cost reduction and savings',
-    I2_FORECASTING: 'spend visibility and analytics',
-    I3_SUPPLIER_RISK: 'supplier risk management',
-    I4_DIGITALIZATION: 'procurement digitalization',
-    I5_SOURCING: 'procurement transformation and sourcing',
-    I6_EDUCATION: 'procurement capability development',
-    I7_EXPLORATORY: 'general exploration of Profitia services',
-    I8_NEGOTIATIONS: 'negotiation preparation and support',
-    UNKNOWN: 'general procurement topics',
-  }
-
-  const pageIntentContext =
-    intentDescriptions[pageContext.primaryIntent] ?? 'procurement'
-
-  const basePrompt = `You are a Procurement Advisory Intelligence for Profitia Management Consultants — a senior procurement advisory firm based in Warsaw, Poland.
-
-Your role is NOT a customer service chatbot. You are a procurement advisor — like a senior consultant who happens to be available on the website to have a real conversation.
-
-CURRENT CONTEXT:
-- Page: ${pageContext.slug}
-- Page focus: ${pageIntentContext}
-- Detected intent: ${sessionState.detectedIntent} (confidence: ${(sessionState.intentConfidence * 100).toFixed(0)}%)
-- Urgency: ${sessionState.urgency}
-- Buying stage: ${sessionState.buyingStage}
-- Advisory phase: ${sessionState.phase}
-- Language: ${locale}
-
-PROFITIA SERVICES OVERVIEW:
-Advisory & Transformation: Advisory Projects, Interim Management, Procurement Transformation, Category Strategy, Operating Model Design, Procurement PMO
-Negotiation & Cost Intelligence: SPOT Analysis (5-10 days fast diagnostic), Should-Cost Analysis, Negotiation Preparation, Supplier Benchmarking, Supplier Negotiation Support
-Data & Analytics: Spend Cube, Spend Analytics, Procurement Dashboards, Supplier Intelligence, Procurement KPI Systems
-Education: Procurement Academy, Procurement Excellence, Negotiation Workshops (Harvard methodology), Fact-Based Negotiation, In-Company Workshops, Procurement Mentoring
-
-KEY CONTACT: kontakt@profitia.pl | +48 533 747 340`
-
-  const intelligenceContext = decision
-    ? `\n\n${serializeDecisionForPrompt(decision)}`
-    : ''
-
-  const behaviorRules = `
-
-YOUR ADVISORY BEHAVIOR:
-1. Never say "How can I help you?" — you're an advisor, not support staff
-2. Diagnose before recommending — ask 1 sharp question to understand the real situation
-3. Maximum 2-4 conversational steps per journey — no long sequences
-4. When intent is clear (confidence ≥ 0.70), recommend specific services with their URLs
-5. Always show the business consequence — margin, cash, risk, predictability
-6. When ready to escalate, be direct: "The next step is a 20-minute conversation — no commitment."
-7. Respond in ${isPL ? 'Polish' : 'English'} — match the language of the user's message
-8. Adapt your language depth to the user's procurement sophistication level
-9. If escalation is indicated, push toward /contact or /services/analiza-spot
-10. Never use generic phrases like "That's a great question" or "How can I assist you"
-
-TONE BY ADVISORY CONTEXT:
-- diagnostic: empathetic, structured, explain consequences clearly
-- analytical: data-forward, reference benchmarks, be precise
-- strategic: framework-level, category thinking, peer-to-peer
-- executive: business impact first, ROI, risk, margin impact
-- peer: transformation advisor lens, systemic, change management aware
-
-ESCALATION LOGIC:
-- U1 (urgent): Push to /contact or /services/analiza-spot directly
-- U2 (active planning): Recommend specific service + suggest conversation
-- U3 (exploratory): Guide to right capability area, then soft CTA
-
-RECOMMENDATIONS FORMAT:
-When recommending a service, include the URL in markdown: [Service Name](/services/slug)
-When ready to escalate: suggest /contact
-
-After understanding the situation, emit a JSON metadata block at the END of your response (not visible to user, will be parsed):
-\`\`\`metadata
-{"intent": "I8_NEGOTIATIONS", "confidence": 0.85, "urgency": "U1", "phase": "capability_recommendation"}
-\`\`\``
-
-  return basePrompt + intelligenceContext + behaviorRules
-}
 
 function encodeSSE(data: unknown): string {
   return `data: ${JSON.stringify(data)}\n\n`
@@ -117,12 +38,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid messages' }, { status: 400 })
     }
 
-    const systemPrompt = buildSystemPrompt(
-      locale ?? 'pl',
+    const messageCount = messages.length
+    const l = locale === 'en' ? 'en' : 'pl'
+
+    // ETAP 4.5: Use quality-grade system prompt
+    const systemPrompt = buildAdvisorySystemPrompt({
+      locale: l,
       pageContext,
       sessionState,
-      advisoryDecision ?? null,
-    )
+      decision: advisoryDecision ?? null,
+      messageCount,
+    })
+
+    // ETAP 4.5: Derive compression profile for token limit
+    const compressionProfile = getCompressionProfile({
+      urgency: sessionState.urgency,
+      buyingStage: sessionState.buyingStage,
+      maturity: sessionState.maturity,
+      messageCount,
+      intentConfidence: sessionState.intentConfidence,
+    })
 
     const stream = new ReadableStream({
       async start(controller) {
@@ -139,12 +74,14 @@ export async function POST(req: NextRequest) {
               })),
             ],
             stream: true,
-            max_tokens: 700,
-            temperature: 0.35,
+            max_tokens: compressionProfile.maxTokens,
+            temperature: compressionProfile.temperature,
           })
 
           let fullContent = ''
           let metadataStarted = false
+          // Buffer visible content until metadata block detected
+          const visibleBuffer: string[] = []
 
           for await (const chunk of completion) {
             const delta = chunk.choices[0]?.delta?.content ?? ''
@@ -156,17 +93,41 @@ export async function POST(req: NextRequest) {
               const metaIndex = fullContent.indexOf('```metadata')
               if (metaIndex !== -1) {
                 metadataStarted = true
+                // Flush buffered content up to metadata start
+                const visiblePart = fullContent.slice(0, metaIndex)
+                const alreadySent = visibleBuffer.join('')
+                const toFlush = visiblePart.slice(alreadySent.length)
+                if (toFlush) {
+                  controller.enqueue(
+                    encoder.encode(encodeSSE({ type: 'text', content: toFlush })),
+                  )
+                }
                 continue
               }
             }
 
-            if (metadataStarted) continue
+            if (!metadataStarted) {
+              visibleBuffer.push(delta)
+              controller.enqueue(
+                encoder.encode(encodeSSE({ type: 'text', content: delta })),
+              )
+            }
+          }
 
+          // ETAP 4.5: Apply hallucination guardrails to full response
+          const guardrail = applyHallucinationGuardrails(fullContent)
+          const _quality = evaluateResponseQuality(guardrail.sanitizedContent, l)
+
+          // Emit quality metadata for client-side logging (dev only)
+          if (process.env.NODE_ENV !== 'production' && guardrail.issues.length > 0) {
             controller.enqueue(
-              encoder.encode(encodeSSE({ type: 'text', content: delta })),
+              encoder.encode(
+                encodeSSE({ type: 'quality_warning', issues: guardrail.issues }),
+              ),
             )
           }
 
+          // Emit advisory metadata (intent, urgency, phase)
           const advisoryMeta = parseAdvisoryMetadata(fullContent)
           if (advisoryMeta) {
             controller.enqueue(
@@ -175,7 +136,6 @@ export async function POST(req: NextRequest) {
           }
 
           stripMetadataBlock(fullContent)
-
           controller.enqueue(encoder.encode('data: [DONE]\n\n'))
         } catch {
           controller.enqueue(
