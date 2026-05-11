@@ -115,3 +115,89 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   Advisory Assistant — component classes
+   ══════════════════════════════════════════════════════════ */
+@layer components {
+  /* Floating trigger button */
+  .advisory-trigger {
+    @apply fixed bottom-6 right-6 z-[9999] flex items-center gap-2
+           bg-[#242F44] text-white rounded-full
+           px-5 py-3
+           shadow-[0_20px_40px_rgba(0,0,0,0.12),0_8px_16px_rgba(0,0,0,0.06)]
+           transition-all duration-200 ease-out
+           hover:shadow-[0_32px_64px_rgba(0,0,0,0.14),0_16px_32px_rgba(0,0,0,0.08)] hover:scale-[1.02]
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#242F44] focus-visible:ring-offset-2;
+  }
+
+  /* Advisory panel */
+  .advisory-panel {
+    @apply fixed bottom-24 right-6 z-[9999]
+           bg-white rounded-[1.25rem]
+           shadow-[0_32px_64px_rgba(0,0,0,0.14),0_16px_32px_rgba(0,0,0,0.08)]
+           border border-gray-100
+           flex flex-col overflow-hidden;
+    width: min(420px, calc(100vw - 3rem));
+    max-height: min(620px, calc(100vh - 8rem));
+  }
+
+  /* Recommendation card */
+  .rec-card {
+    @apply rounded-xl border border-gray-100 bg-white p-4
+           transition-all duration-150 ease-out
+           hover:border-gray-200 hover:shadow-[0_1px_3px_rgba(0,0,0,0.06)]
+           cursor-pointer;
+  }
+
+  /* Advisory label */
+  .advisory-label {
+    @apply text-[0.625rem] font-medium tracking-[0.25em] uppercase text-gray-400;
+  }
+
+  /* CTA buttons */
+  .cta-primary {
+    @apply inline-flex items-center gap-1.5
+           bg-[#242F44] text-white text-sm font-medium
+           px-4 py-2.5 rounded-xl
+           transition-all duration-150
+           hover:bg-[#1a2235]
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#242F44];
+  }
+  .cta-secondary {
+    @apply inline-flex items-center gap-1.5
+           bg-transparent text-gray-700 text-sm font-medium
+           px-4 py-2.5 rounded-xl border border-gray-200
+           transition-all duration-150
+           hover:border-gray-300 hover:bg-gray-50
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400;
+  }
+
+  /* Typing indicator */
+  .typing-dot {
+    @apply w-1.5 h-1.5 rounded-full bg-gray-400;
+    animation: indicator-blink 1.4s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  /* Message bubbles */
+  .msg-user {
+    @apply bg-[#242F44] text-white rounded-2xl rounded-br-sm px-4 py-3 text-sm leading-relaxed;
+  }
+  .msg-assistant {
+    @apply bg-gray-50 text-gray-800 rounded-2xl rounded-bl-sm px-4 py-3 text-sm leading-relaxed border border-gray-100;
+  }
+}
+
+/* ── Scrollbar (advisory panel) ─────────────────────────── */
+.advisory-scroll::-webkit-scrollbar { width: 4px; }
+.advisory-scroll::-webkit-scrollbar-track { background: transparent; }
+.advisory-scroll::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 2px; }
+.advisory-scroll::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes indicator-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}

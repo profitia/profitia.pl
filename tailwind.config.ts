@@ -4,7 +4,12 @@ const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './features/**/*.{js,ts,jsx,tsx,mdx}',
+    './hooks/**/*.{js,ts,jsx,tsx,mdx}',
+    './stores/**/*.{js,ts,jsx,tsx,mdx}',
     './lib/**/*.{js,ts,jsx,tsx,mdx}',
+    './runtime/**/*.{js,ts,jsx,tsx,mdx}',
+    './services/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -42,6 +47,42 @@ const config: Config = {
       },
       transitionDuration: {
         '250': '250ms',
+      },
+      fontSize: {
+        '2xs': ['0.625rem', { lineHeight: '0.875rem' }],
+      },
+      borderRadius: {
+        '2.5xl': '1.25rem',
+        '3xl': '1.5rem',
+      },
+      zIndex: {
+        advisory: '9999',
+        'advisory-modal': '10000',
+      },
+      boxShadow: {
+        'advisory-sm': '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
+        advisory: '0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04)',
+        'advisory-lg': '0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.06)',
+        'advisory-xl': '0 32px 64px rgba(0,0,0,0.14), 0 16px 32px rgba(0,0,0,0.08)',
+      },
+      keyframes: {
+        'slide-up': {
+          '0%': { transform: 'translateY(8px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'indicator-blink': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.3' },
+        },
+      },
+      animation: {
+        'slide-up': 'slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+        'fade-in': 'fade-in 0.2s ease-out',
+        'indicator-blink': 'indicator-blink 1.4s ease-in-out infinite',
       },
     },
   },
