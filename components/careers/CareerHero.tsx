@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 interface Props {
@@ -22,11 +23,10 @@ const STATS = [
  * Tone: premium consulting, strategic, calm. Not dark SaaS.
  *
  * Layout (desktop):
- *   [left content 54%] [atmospheric panel] [stats column ~120px]
+ *   [left content 54%] [photo + stats column ~120px]
  *
- * Right panel: CSS atmospheric composition.
- * Replace with real photo by placing image at /public/career/hero.jpg
- * and swapping the panel div for <Image src="/career/hero.jpg" … />.
+ * Photo: Unsplash — colorful consulting/office tone, consistent with site photography.
+ * To swap: change the src URL below.
  */
 export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Props) {
   return (
@@ -117,35 +117,20 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
         aria-hidden="true"
       >
         {/* Atmospheric CSS composition */}
-        <div className="relative flex-1 overflow-hidden">
-          {/* Base tone */}
-          <div
-            className="absolute inset-0"
-            style={{ background: 'linear-gradient(148deg, #eeede9 0%, #e4e3df 35%, #d6d5d0 70%, #c8c7c2 100%)' }}
+        <div className="relative flex-1 overflow-hidden bg-gray-100">
+          {/* Real photo — colorful, consulting tone */}
+          <Image
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=85"
+            alt="Zespół Profitia w pracy"
+            fill
+            className="object-cover object-center"
+            sizes="50vw"
+            priority
           />
-          {/* Subtle architectural grid */}
-          <div
-            className="absolute inset-0 opacity-[0.06]"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(30,30,30,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(30,30,30,0.7) 1px, transparent 1px)',
-              backgroundSize: '72px 72px',
-            }}
-          />
-          {/* Warm light bloom — top right */}
-          <div
-            className="absolute -top-24 -right-24 w-96 h-96 rounded-full opacity-40"
-            style={{ background: 'radial-gradient(circle, rgba(255,252,240,0.9) 0%, transparent 70%)' }}
-          />
-          {/* Second bloom — bottom center */}
-          <div
-            className="absolute bottom-0 left-1/4 right-0 h-48 opacity-30"
-            style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(255,254,250,0.8) 0%, transparent 70%)' }}
-          />
+          {/* Subtle warm overlay for consistency with page tone */}
+          <div className="absolute inset-0 bg-white/8" />
           {/* Left-edge fade — integrates with content */}
           <div className="absolute inset-y-0 left-0 w-44 bg-gradient-to-r from-white via-white/70 to-transparent" />
-          {/* Thin accent line — vertical, architectural */}
-          <div className="absolute left-[38%] top-[20%] bottom-[20%] w-px bg-gray-300/40" />
         </div>
 
         {/* Stats column — annual report style */}
