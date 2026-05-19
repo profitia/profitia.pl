@@ -1,46 +1,64 @@
 import type { JobPost, CareerLocale } from '@/lib/careers'
-import CareerRow from './CareerRow'
+import CareerRoleCard from './CareerRoleCard'
 
 interface Props {
   eyebrow: string
   title: string
   jobs: JobPost[]
   locale: CareerLocale
+  applyLabel: string
+  expandLabel: string
+  collapseLabel: string
+  responsibilitiesLabel: string
+  learningLabel: string
+  requirementsLabel: string
 }
 
 /**
  * CareerRoles
- * ─────────────────────────────────────────────────────────────
- * Open roles section - editorial rows, not cards.
- * Mirrors CapabilitySection layout: label column + row list.
+ * Interactive role explorer — expandable cards, not a job board list.
+ * Each card reveals full role context, responsibilities, requirements and CTA.
  */
-export default function CareerRoles({ eyebrow, title, jobs, locale }: Props) {
+export default function CareerRoles({
+  eyebrow,
+  title,
+  jobs,
+  locale,
+  applyLabel,
+  expandLabel,
+  collapseLabel,
+  responsibilitiesLabel,
+  learningLabel,
+  requirementsLabel,
+}: Props) {
   return (
-    <section className="pt-20 pb-10 border-b border-gray-100">
+    <section id="roles" className="py-24 border-b border-gray-100">
       <div className="container-base">
-        <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-20">
-
-          {/* Left - label column */}
-          <div className="mb-10 lg:mb-0 lg:pt-1">
-            <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-4">
+        <div className="mb-14 lg:grid lg:grid-cols-[260px_1fr] lg:gap-20">
+          <div>
+            <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-5">
               {eyebrow}
             </p>
-            <h2 className="text-lg font-semibold tracking-tight text-gray-900 leading-snug">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-snug">
               {title}
             </h2>
           </div>
+        </div>
 
-          {/* Right - editorial rows */}
-          <div>
-            {jobs.map((job, index) => (
-              <CareerRow
-                key={job.slug}
-                job={job}
-                locale={locale}
-                isFirst={index === 0}
-              />
-            ))}
-          </div>
+        <div>
+          {jobs.map((job) => (
+            <CareerRoleCard
+              key={job.slug}
+              job={job}
+              locale={locale}
+              applyLabel={applyLabel}
+              expandLabel={expandLabel}
+              collapseLabel={collapseLabel}
+              responsibilitiesLabel={responsibilitiesLabel}
+              learningLabel={learningLabel}
+              requirementsLabel={requirementsLabel}
+            />
+          ))}
         </div>
       </div>
     </section>
