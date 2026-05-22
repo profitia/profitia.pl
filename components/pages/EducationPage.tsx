@@ -1,7 +1,8 @@
 import type { Locale } from '@/lib/capabilities'
 import type { TeamMember } from '@/lib/team/types'
+import Link from 'next/link'
+import Image from 'next/image'
 import {
-  HeroSplit,
   FeatureGrid,
   FeatureStats,
   FeatureSplit,
@@ -318,15 +319,57 @@ export default function EducationPage({ locale }: Props) {
 
   return (
     <>
-      {/* 1 — Hero */}
-      <HeroSplit
-        label={c.hero.label}
-        headline={c.hero.headline}
-        subtitle={c.hero.subtitle}
-        ctaPrimary={c.hero.ctaPrimary}
-        ctaSecondary={c.hero.ctaSecondary}
-        image={HERO_IMAGE}
-      />
+      {/* 1 — Hero: full-height right-bleed layout matching homepage/career pattern */}
+      <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[680px]">
+        {/* Content — left half, inside container */}
+        <div className="container mx-auto max-w-7xl px-6 relative z-10 pt-28 pb-20 lg:pt-36 lg:pb-0 lg:min-h-[680px] lg:flex lg:flex-col lg:justify-center">
+          <div className="lg:max-w-[50%] lg:pr-16">
+            <RevealWrapper delay={0}>
+              <p className="label-tag mb-5">{c.hero.label}</p>
+              <h1 className="text-4xl md:text-5xl lg:text-[3.25rem] font-semibold tracking-tight text-gray-900 leading-[1.06] mb-6">
+                {c.hero.headline}
+              </h1>
+            </RevealWrapper>
+            <RevealWrapper delay={1}>
+              <p className="text-lg text-gray-600 leading-relaxed max-w-lg mb-10">
+                {c.hero.subtitle}
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link href={c.hero.ctaPrimary.href} className="btn-primary">
+                  {c.hero.ctaPrimary.label}
+                </Link>
+                <Link href={c.hero.ctaSecondary.href} className="btn-secondary">
+                  {c.hero.ctaSecondary.label}
+                </Link>
+              </div>
+            </RevealWrapper>
+          </div>
+        </div>
+
+        {/* Image — absolute, right half, bleeds to edge (desktop only) */}
+        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%]" aria-hidden="true">
+          <Image
+            src={HERO_IMAGE.src}
+            alt={HERO_IMAGE.alt}
+            fill
+            className="object-cover"
+            sizes="50vw"
+            priority
+          />
+        </div>
+
+        {/* Mobile: image below content, rounded */}
+        <div className="relative lg:hidden mt-8 mx-6 aspect-[16/9] rounded-xl overflow-hidden bg-gray-100">
+          <Image
+            src={HERO_IMAGE.src}
+            alt={HERO_IMAGE.alt}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+        </div>
+      </section>
 
       {/* 2 — Programme Offer Grid */}
       <FeatureGrid
