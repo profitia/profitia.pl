@@ -1,7 +1,7 @@
 import type { Locale } from '@/lib/capabilities'
 import type { TeamMember } from '@/lib/team/types'
 import {
-  HeroEditorial,
+  HeroSplit,
   FeatureGrid,
   FeatureStats,
   FeatureSplit,
@@ -207,6 +207,13 @@ const COPY = {
   },
 } as const
 
+// ─── HERO IMAGE ───────────────────────────────────────────────────────────────
+
+const HERO_IMAGE = {
+  src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80',
+  alt: 'Procurement Executive Development Programme - konferencja edukacyjna',
+}
+
 // ─── TRAINERS DATA ─────────────────────────────────────────────────────────────
 
 const TRAINERS: TeamMember[] = [
@@ -312,12 +319,13 @@ export default function EducationPage({ locale }: Props) {
   return (
     <>
       {/* 1 — Hero */}
-      <HeroEditorial
+      <HeroSplit
         label={c.hero.label}
         headline={c.hero.headline}
         subtitle={c.hero.subtitle}
         ctaPrimary={c.hero.ctaPrimary}
         ctaSecondary={c.hero.ctaSecondary}
+        image={HERO_IMAGE}
       />
 
       {/* 2 — Programme Offer Grid */}
