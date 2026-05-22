@@ -16,6 +16,7 @@ export interface FeatureItem {
   body: string
   icon?: string        // emoji or short text
   href?: string
+  linkLabel?: string   // custom link text, defaults to 'Dowiedz się więcej'
 }
 
 export interface FeatureGridProps {
@@ -66,6 +67,7 @@ export function FeatureGrid({
                 title={item.title}
                 description={item.body}
                 href={item.href}
+                linkLabel={item.linkLabel}
               />
             </RevealWrapper>
           ))}

@@ -7,9 +7,9 @@ import {
   FeatureSplit,
   CTADark,
   CTAMinimal,
-  StatsStrip,
 } from '@/components/sections'
-import { TeamSection, TeamGrid } from '@/components/team'
+import { RevealWrapper } from '@/components/ui'
+import { TeamSection, TeamMemberCard } from '@/components/team'
 
 // ─── COPY ─────────────────────────────────────────────────────────────────────
 
@@ -35,24 +35,32 @@ const COPY = {
       body: 'Od certyfikacji MCIPS po warsztaty negocjacyjne i programy szyte na miarę organizacji - każdy format zaprojektowany z myślą o natychmiastowym zastosowaniu w praktyce.',
       items: [
         {
-          title: 'Certyfikacja CIPS / MCIPS',
-          body: 'Oficjalny program prowadzący do prestiżowej certyfikacji MCIPS - globalnego standardu w zakupach korporacyjnych.',
+          title: 'Certyfikacje CIPS / MCIPS',
+          body: 'Ścieżka rozwoju od podstaw do statusu MCIPS - uznawana globalnie przez pracodawców w sektorze zakupów i supply chain.',
           icon: '◆',
+          href: '/contact',
+          linkLabel: 'Poznaj ścieżkę MCIPS',
         },
         {
-          title: 'Certyfikacja Korporacyjna',
-          body: 'Programy certyfikacyjne wdrażane wewnątrz organizacji - dla całych zespołów zakupowych budujących wspólny standard.',
+          title: 'Certyfikacja korporacyjna',
+          body: 'Tworzymy program certyfikacyjny dopasowany do potrzeb całej organizacji. Start od bezpłatnej konsultacji.',
           icon: '◈',
+          href: '/contact',
+          linkLabel: 'Umów konsultację',
         },
         {
           title: 'Spend Academy',
-          body: 'Intensywne szkolenia z analityki zakupowej, spend intelligence i decyzji opartych na danych rynkowych.',
+          body: 'Autorska akademia rozwijająca kompetencje zakupowe - od strategii kategorialnej po codzienne narzędzia pracy.',
           icon: '◉',
+          href: '/contact',
+          linkLabel: 'Dowiedz się więcej',
         },
         {
-          title: 'Szkolenia dla Firm',
-          body: 'Warsztaty in-company, coaching indywidualny i assessment dostosowane do specyfiki Twojej organizacji.',
+          title: 'Szkolenia dla firm',
+          body: 'Otwarte i zamknięte szkolenia z zakresu zakupów, negocjacji, zarządzania dostawcami i category management.',
           icon: '◎',
+          href: '/contact',
+          linkLabel: 'Zobacz szkolenia',
         },
       ],
     },
@@ -124,23 +132,31 @@ const COPY = {
       items: [
         {
           title: 'CIPS / MCIPS Certification',
-          body: 'The official programme leading to MCIPS - the globally recognised standard for corporate procurement professionals.',
+          body: 'A development path from foundation to MCIPS status - globally recognised by employers in procurement and supply chain.',
           icon: '◆',
+          href: '/en/contact',
+          linkLabel: 'Explore the MCIPS path',
         },
         {
           title: 'Corporate Certification',
-          body: 'Certification programmes implemented inside your organisation - for entire procurement teams building a shared standard.',
+          body: 'We build a certification programme tailored to your entire organisation. Start with a free consultation.',
           icon: '◈',
+          href: '/en/contact',
+          linkLabel: 'Book a consultation',
         },
         {
           title: 'Spend Academy',
-          body: 'Intensive training in spend analytics, procurement intelligence and data-driven market decision making.',
+          body: 'Our proprietary academy developing procurement competencies - from category strategy to everyday working tools.',
           icon: '◉',
+          href: '/en/contact',
+          linkLabel: 'Learn more',
         },
         {
           title: 'Corporate Training',
-          body: "In-company workshops, individual coaching and assessment tailored to your organisation's specific context.",
+          body: 'Open and closed training in procurement, negotiation, supplier management and category management.',
           icon: '◎',
+          href: '/en/contact',
+          linkLabel: 'View training',
         },
       ],
     },
@@ -304,10 +320,7 @@ export default function EducationPage({ locale }: Props) {
         ctaSecondary={c.hero.ctaSecondary}
       />
 
-      {/* 2 — Stats Strip */}
-      <StatsStrip stats={[...c.stats]} />
-
-      {/* 3 — Programme Offer Grid */}
+      {/* 2 — Programme Offer Grid */}
       <FeatureGrid
         label={c.offer.label}
         headline={c.offer.headline}
@@ -335,13 +348,19 @@ export default function EducationPage({ locale }: Props) {
         background="gray-50"
       />
 
-      {/* 6 — Trainers */}
+      {/* 5 — Trainers */}
       <TeamSection
         eyebrow={c.trainers.eyebrow}
         heading={c.trainers.heading}
         description={c.trainers.description}
       >
-        <TeamGrid members={TRAINERS} locale={locale} cols={2} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {TRAINERS.map((member, i) => (
+            <RevealWrapper key={member.id} delay={(i % 4) as 0 | 1 | 2 | 3}>
+              <TeamMemberCard member={member} locale={locale} showBio showAreas />
+            </RevealWrapper>
+          ))}
+        </div>
       </TeamSection>
 
       {/* 7 — Needs Assessment / Advisory */}

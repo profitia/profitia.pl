@@ -6,6 +6,7 @@ interface Props {
   title: string
   description: string
   href?: string
+  linkLabel?: string
   delay?: 0 | 1 | 2 | 3 | 4
   className?: string
   children?: React.ReactNode
@@ -21,6 +22,7 @@ export default function PremiumCard({
   title,
   description,
   href,
+  linkLabel,
   delay = 0,
   className = '',
   children,
@@ -43,7 +45,7 @@ export default function PremiumCard({
       {children}
       {href && (
         <div className="mt-6 flex items-center gap-1.5 text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
-          Dowiedz się więcej
+          {linkLabel ?? 'Dowiedz się więcej'}
           <svg
             className="w-3.5 h-3.5 translate-x-0 group-hover:translate-x-1 transition-transform duration-200"
             fill="none"
