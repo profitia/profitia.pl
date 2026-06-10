@@ -17,8 +17,8 @@ export interface CareerApplication {
   fullName: string
   email: string
   phone: string
-  linkedin?: string
-  message?: string
+  /** Role-specific answers keyed by question ID */
+  roleAnswers: Record<string, string>
   /** Original filename of the uploaded CV */
   cvFileName: string
   /** Required GDPR consent for current recruitment */
@@ -30,14 +30,14 @@ export interface CareerApplication {
 /**
  * ApplicationFormValues - in-memory form state (pre-persistence).
  * File is kept as the raw File object until upload.
+ * roleAnswers holds all role-specific question answers keyed by question ID.
  */
 export interface ApplicationFormValues {
   roleSlug: string
   fullName: string
   email: string
   phone: string
-  linkedin: string
-  message: string
+  roleAnswers: Record<string, string>
   cv: File | null
   consentCurrent: boolean
   consentFuture: boolean
@@ -45,5 +45,7 @@ export interface ApplicationFormValues {
 
 /**
  * ApplicationFieldErrors - per-field validation error messages.
+ * Uses a flat Record to support both top-level fields and
+ * role-specific answer keys (prefixed with "roleAnswers_<questionId>").
  */
-export type ApplicationFieldErrors = Partial<Record<keyof ApplicationFormValues, string>>
+export type ApplicationFieldErrors = Record<string, string | undefined>
