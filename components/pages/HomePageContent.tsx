@@ -30,7 +30,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             </p>
             <div className="mt-8">
               <Link
-                href="#g6lvxh"
+                href="/services"
                 className="inline-block bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
               >
                 {d.hero.cta}
