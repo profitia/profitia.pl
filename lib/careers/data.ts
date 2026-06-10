@@ -22,8 +22,8 @@ export const JOB_POSTS: JobPost[] = [
       en: 'Advisory',
     },
     location: {
-      pl: 'Warszawa (Villa Metro) · zdalnie elastycznie',
-      en: 'Warsaw (Villa Metro) · flexible remote',
+      pl: 'Warszawa (Villa Metro) · praca hybrydowa',
+      en: 'Warsaw (Villa Metro) · hybrid work',
     },
     employmentType: {
       pl: 'Umowa o pracę lub B2B',
@@ -34,17 +34,13 @@ export const JOB_POSTS: JobPost[] = [
       en: 'Working directly on advisory projects - analysis, negotiation preparation and recommendations for procurement directors and CFOs.',
     },
     roleContext: {
-      pl: 'Konsultant Zakupowy pracuje bezpośrednio przy projektach klientów. Rola obejmuje analizę danych zakupowych, budowanie strategii negocjacyjnej, przygotowanie benchmarków rynkowych i współtworzenie rekomendacji, które trafiają do zarządów i dyrektorów zakupów. Projekty są zróżnicowane kategoriowo i sektorowo - od dóbr pośrednich przez logistykę po usługi profesjonalne. Praca ma realny wpływ na decyzje zakupowe organizacji o obrotach od kilkuset milionów do kilku miliardów złotych.',
-      en: 'The Procurement Consultant works directly on client projects. The role covers procurement data analysis, negotiation strategy development, market benchmarking and contributing to recommendations that reach boards and procurement directors. Projects span a wide range of categories and sectors - from indirect spend through logistics to professional services. The work has direct influence on procurement decisions in organisations with revenues from several hundred million to several billion PLN.',
+      pl: 'Konsultant Zakupowy pracuje bezpośrednio przy projektach klientów. Rola obejmuje analizę danych zakupowych, budowanie strategii negocjacyjnej, przygotowanie benchmarków rynkowych i współtworzenie rekomendacji, które trafiają do zarządów i dyrektorów zakupów. Projekty są zróżnicowane kategoriowo i sektorowo - od dóbr pośrednich przez logistykę po usługi profesjonalne. Praca ma realny wpływ na decyzje zakupowe organizacji o obrotach nawet kilku miliardów złotych.',
+      en: 'The Procurement Consultant works directly on client projects. The role covers procurement data analysis, negotiation strategy development, market benchmarking and contributing to recommendations that reach boards and procurement directors. Projects span a wide range of categories and sectors - from indirect spend through logistics to professional services. The work has direct influence on procurement decisions in organisations with revenues of up to several billion PLN.',
     },
     workItems: [
       {
         pl: 'Analiza struktury wydatków klienta - kategoryzacja, identyfikacja potencjału oszczędnościowego, analiza warunków umów',
         en: 'Client spend structure analysis - categorisation, savings potential identification, contract terms review',
-      },
-      {
-        pl: 'Budowanie strategii negocjacyjnej - argumentacja, modele cenowe, benchmarki rynkowe, pozycja przetargowa',
-        en: 'Negotiation strategy development - argumentation, pricing models, market benchmarks, tender positioning',
       },
       {
         pl: 'Prowadzenie warsztatów diagnostycznych z zespołami zakupowymi i finansowymi klienta',
@@ -53,6 +49,10 @@ export const JOB_POSTS: JobPost[] = [
       {
         pl: 'Przygotowanie modeli ilościowych: identyfikacja oszczędności, analiza struktury kosztów, should-cost analysis',
         en: 'Building quantitative models: savings identification, cost structure analysis, should-cost modelling',
+      },
+      {
+        pl: 'Budowanie strategii negocjacyjnej - argumentacja, modele cenowe, benchmarki rynkowe, pozycja przetargowa',
+        en: 'Negotiation strategy development - argumentation, pricing models, market benchmarks, tender positioning',
       },
       {
         pl: 'Współtworzenie deliverables klienta - raportów, rekomendacji, planów wdrożeniowych',
@@ -137,12 +137,12 @@ export const JOB_POSTS: JobPost[] = [
       en: 'Analytics & Data',
     },
     location: {
-      pl: 'Warszawa (Villa Metro) · zdalnie elastycznie',
-      en: 'Warsaw (Villa Metro) · flexible remote',
+      pl: 'Warszawa (Villa Metro) · praca hybrydowa',
+      en: 'Warsaw (Villa Metro) · hybrid work',
     },
     employmentType: {
-      pl: 'Umowa o pracę',
-      en: 'Employment contract',
+      pl: 'Umowa zlecenie',
+      en: 'Civil contract (zlecenie)',
     },
     summary: {
       pl: 'Punkt wejścia do pracy analitycznej i doradczej Profitia - analiza danych zakupowych, intelligence rynkowy, przygotowanie materiałów dla klientów.',
@@ -162,20 +162,20 @@ export const JOB_POSTS: JobPost[] = [
         en: 'Building standard analytical models: spend by category, supplier concentration, year-on-year comparisons',
       },
       {
-        pl: 'Prowadzenie badań rynkowych i dostawców na potrzeby strategii negocjacyjnych',
-        en: 'Conducting supplier and market research to inform negotiation strategies',
+        pl: 'Prowadzenie badań rynkowych i dostawców',
+        en: 'Conducting supplier and market research',
       },
       {
-        pl: 'Wspieranie przygotowania prezentacji i dokumentów rekomendacyjnych dla klientów',
-        en: 'Supporting the preparation of client presentations and recommendation documents',
+        pl: 'Wspieranie przygotowania prezentacji i dokumentów dla klientów',
+        en: 'Supporting the preparation of client presentations and documents',
       },
       {
         pl: 'Udział w budowaniu wewnętrznej bazy wiedzy: benchmarki kategorii, dane rynkowe, biblioteki metodologiczne',
         en: 'Contributing to the internal knowledge base: category benchmarks, market data, methodology libraries',
       },
       {
-        pl: 'Praca z Excel oraz stopniowe zapoznawanie się z platformami danych i SQL',
-        en: 'Working with Excel and progressively developing competency in data platforms and SQL',
+        pl: 'Praca z Excel oraz PowerPoint',
+        en: 'Working with Excel and PowerPoint',
       },
     ],
     requirements: [
@@ -196,8 +196,24 @@ export const JOB_POSTS: JobPost[] = [
         en: 'Ability to communicate findings clearly in written and verbal form',
       },
       {
-        pl: 'Silna motywacja do nauki zakupów i metodologii negocjacyjnej',
-        en: 'Strong motivation to learn procurement and negotiation methodology',
+        pl: 'Minimum II rok studiów',
+        en: 'At minimum second year of studies',
+      },
+      {
+        pl: 'Dostępność minimum 20 godzin tygodniowo',
+        en: 'Availability of at least 20 hours per week',
+      },
+      {
+        pl: 'Umiejętność pracy w zespole i komunikacji interpersonalnej',
+        en: 'Ability to work collaboratively and communicate effectively',
+      },
+      {
+        pl: 'Orientacja na osiąganie celów',
+        en: 'Results-oriented mindset',
+      },
+      {
+        pl: 'Zainteresowanie tematyką zakupów, łańcucha dostaw lub konsultingu',
+        en: 'Interest in procurement, supply chain or consulting',
       },
     ],
     profile: [

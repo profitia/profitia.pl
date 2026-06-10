@@ -11,6 +11,21 @@ interface Props {
   cta2: string
 }
 
+/**
+ * TODO: HERO METRICS — PENDING REPLACEMENT
+ * ────────────────────────────────────────────────────────────
+ * Current stats do not communicate value for candidates:
+ *   - '3 lata na rynku'       — neutral, not a candidate-relevant selling point
+ *   - '5 sektorów działania'  — abstract, does not speak to candidate experience
+ *   - '1 podejście do wartości' — unclear meaning, flagged by business feedback
+ *
+ * RECOMMENDATION: Replace with candidate-meaningful metrics confirmed by leadership,
+ * e.g. avg years of team experience, number of clients served, categories covered,
+ * measurable project outcomes. Do NOT change values without confirmed data.
+ *
+ * If no confirmed metrics are available: consider removing the stats column
+ * entirely to avoid communicating unclear or misleading signals to candidates.
+ */
 const STATS = [
   { n: '3', lines: ['lata', 'na rynku'] },
   { n: '5', lines: ['sektorów', 'działania'] },

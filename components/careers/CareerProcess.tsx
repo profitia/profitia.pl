@@ -47,7 +47,7 @@ export default function CareerProcess({ eyebrow, title, subtitle, steps }: Props
         <p className="text-[15px] text-gray-500 leading-relaxed mb-16 lg:hidden">{subtitle}</p>
 
         {/* Timeline grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 lg:gap-10">
           {steps.map((step, i) => (
             <motion.div
               key={i}
