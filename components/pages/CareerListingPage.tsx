@@ -29,27 +29,27 @@ const COPY = {
       items: [
         {
           label: 'Wpływ na realne decyzje biznesowe',
-          body: 'Projekty dotyczą rzeczywistych kategorii zakupowych, realnych wyzwań klientów i decyzji z wymiernym wpływem na wyniki biznesowe. Praca daje poczucie sprawczości - na rekomendacje, na przebieg negocjacji, na decyzje zakupowe klientów.',
+          body: 'Projekty dotyczą realnych kategorii zakupowych i wyzwań klientów - z wymiernym wpływem na wyniki biznesowe. Praca daje bezpośrednią sprawczość: na rekomendacje, przebieg negocjacji i decyzje zakupowe.',
         },
         {
           label: 'Różnorodność kategorii zakupowych',
-          body: 'W Profitia pracujesz z wieloma kategoriami - od surowców przez logistykę po usługi profesjonalne. Budujesz szerokie rozumienie zakupów jako strategicznej funkcji organizacji, nie tylko jednej kategorii.',
+          body: 'Pracujesz z wieloma kategoriami - od surowców przez logistykę po usługi profesjonalne. Budujesz rozumienie zakupów jako strategicznej funkcji organizacji, nie tylko jednej kategorii.',
         },
         {
           label: 'Uczestnictwo w negocjacjach',
-          body: 'Konsultanci uczestniczą w przygotowaniu i często bezpośrednim wsparciu negocjacji. To rzadka ekspozycja - szczególnie na wczesnym etapie kariery.',
+          body: 'Konsultanci uczestniczą w przygotowaniu i bezpośrednim wsparciu negocjacji - rzadka ekspozycja, szczególnie na wczesnym etapie kariery.',
         },
         {
           label: 'Dane na poziomie organizacji',
-          body: 'Praca z danymi zakupowymi klientów daje wgląd w strukturę kosztów i decyzji, który jest niedostępny dla większości pracowników - nawet w organizacjach dysponujących własnymi systemami analitycznymi.',
+          body: 'Dane zakupowe klientów dają wgląd w strukturę kosztów i decyzji niedostępny dla większości pracowników - nawet w organizacjach z własnymi systemami analitycznymi.',
         },
         {
           label: 'Mentoring jako standard',
-          body: 'Mentoring to stały element pracy, nie jednorazowe zdarzenie. Regularne spotkania, plan rozwoju, macierz kompetencji i bieżący feedback - nie raz w roku przy ocenie rocznej.',
+          body: 'Mentoring to ciągły element pracy - regularne spotkania, plan rozwoju, macierz kompetencji i bieżący feedback. Nie jednorazowe zdarzenie raz w roku.',
         },
         {
-          label: 'Myślenie przez projekty',
-          body: 'Kompetencje budujemy przez realną pracę projektową - każde zadanie to inne pytanie biznesowe, inny kontekst, inny zestaw zmiennych. Różnorodność problemów jest stałym elementem środowiska pracy.',
+          label: 'Rozwój przez projekty',
+          body: 'Kompetencje budujemy przez realną pracę projektową. Każde zadanie to inne pytanie biznesowe, inny kontekst, inny zestaw zmiennych - różnorodność jest stałą cechą tej pracy.',
         },
       ],
     },
@@ -72,8 +72,8 @@ const COPY = {
         {
           phase: 'Recommend',
           title: 'Rekomendacje i rozwiązania',
-          description: 'Tworzymy rekomendacje dopasowane do specyfiki klienta - projektujemy rozwiązania, budujemy koncepcje zmian i definiujemy priorytety wdrożeniowe. Każda rekomendacja jest szyta pod potrzeby konkretnej organizacji.',
-          learning: 'Projektowanie rozwiązań zakupowych. Komunikacja rekomendacji dla zarządu. Dopasowanie koncepcji do możliwości organizacji.',
+          description: 'Tu powstaje konkretna wartość projektu. Na podstawie danych i analizy projektujemy rozwiązania szyte pod specyfikę klienta - budujemy koncepcje zmian, definiujemy priorytety wdrożeniowe i tworzymy rekomendacje gotowe do decyzji zarządu.',
+          learning: 'Projektowanie i komunikacja rozwiązań dla zarządu. Definiowanie priorytetów i planu wdrożenia. Przekształcanie analizy w rekomendacje decyzyjne.',
         },
         {
           phase: 'Implement',
@@ -168,27 +168,27 @@ const COPY = {
       items: [
         {
           label: 'Impact on real business decisions',
-          body: 'Projects concern real procurement categories, actual client challenges and decisions with measurable business impact. The work delivers a genuine sense of influence - on recommendations, on the course of negotiations, on client procurement decisions.',
+          body: 'Projects concern real procurement categories and client challenges - with measurable business impact. The work gives direct influence on recommendations, the course of negotiations and procurement decisions.',
         },
         {
           label: 'Variety of procurement categories',
-          body: 'At Profitia you work across many categories - from raw materials through logistics to professional services. You build broad understanding of procurement as a strategic organisational function, not just a single category.',
+          body: 'You work across many categories - from raw materials through logistics to professional services. You build understanding of procurement as a strategic organisational function, not just a single category.',
         },
         {
           label: 'Participation in negotiations',
-          body: 'Consultants participate in preparing and often directly supporting negotiations. Rare exposure - particularly at an early stage of a career.',
+          body: 'Consultants participate in preparing and directly supporting negotiations - rare exposure, particularly at an early career stage.',
         },
         {
           label: 'Data at organisational depth',
-          body: 'Working with client procurement data provides insight into cost structure and decision-making that is unavailable to most employees - even in organisations with their own analytics systems.',
+          body: 'Client procurement data provides insight into cost structure and decisions unavailable to most employees - even in organisations with their own analytics systems.',
         },
         {
           label: 'Mentoring as standard',
-          body: 'Mentoring is a continuous part of the work, not a one-off event. Regular meetings, a development plan, a competency framework and ongoing feedback - not once a year in an annual review.',
+          body: 'Mentoring is a continuous element of the role - regular meetings, a development plan, a competency framework and ongoing feedback. Not a once-a-year event.',
         },
         {
-          label: 'Thinking through projects',
-          body: 'We build skills through real project work - each assignment is a different business question, a different context, a different set of variables. The variety of problems is a constant feature of the working environment.',
+          label: 'Growth through projects',
+          body: 'We build skills through real project work. Each assignment brings a different business question, context and set of variables - variety of problems is a constant of this environment.',
         },
       ],
     },
@@ -211,8 +211,8 @@ const COPY = {
         {
           phase: 'Recommend',
           title: 'Recommendations and solutions',
-          description: 'We create recommendations tailored to each client - designing solutions, building concepts for change and defining implementation priorities. Every recommendation is shaped to the specific organisation.',
-          learning: 'Designing procurement solutions. Communicating recommendations to boards. Matching concepts to organisational capacity.',
+          description: 'This is where the project delivers concrete value. Drawing on data and analysis, we design solutions tailored to each client - building concepts for change, defining implementation priorities and creating recommendations ready for board decision.',
+          learning: 'Designing and communicating solutions to leadership. Setting priorities and implementation plans. Turning analysis into decision-ready recommendations.',
         },
         {
           phase: 'Implement',
@@ -301,7 +301,7 @@ const COPY = {
  * Tone: editorial, institutional, strategic. Not HR marketing.
  *
  * Structure:
- *   Hero (dark) → Values → Work Style → Roles → Process → FAQ → CTA (dark)
+ *   Hero → Values → Roles → Work Style → Process → FAQ → CTA (dark)
  *
  * Server Component — child components handle 'use client' where needed.
  */
@@ -325,12 +325,6 @@ export default function CareerListingPage({ locale }: Props) {
         items={c.values.items}
       />
 
-      <CareerWorkStyle
-        eyebrow={c.workStyle.eyebrow}
-        title={c.workStyle.title}
-        steps={c.workStyle.steps}
-      />
-
       <CareerRoles
         eyebrow={c.roles.eyebrow}
         title={c.roles.title}
@@ -342,6 +336,12 @@ export default function CareerListingPage({ locale }: Props) {
         responsibilitiesLabel={c.roles.responsibilitiesLabel}
         learningLabel={c.roles.learningLabel}
         requirementsLabel={c.roles.requirementsLabel}
+      />
+
+      <CareerWorkStyle
+        eyebrow={c.workStyle.eyebrow}
+        title={c.workStyle.title}
+        steps={c.workStyle.steps}
       />
 
       <CareerProcess

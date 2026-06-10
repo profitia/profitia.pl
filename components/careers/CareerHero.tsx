@@ -12,33 +12,12 @@ interface Props {
 }
 
 /**
- * TODO: HERO METRICS — PENDING REPLACEMENT
- * ────────────────────────────────────────────────────────────
- * Current stats do not communicate value for candidates:
- *   - '3 lata na rynku'       — neutral, not a candidate-relevant selling point
- *   - '5 sektorów działania'  — abstract, does not speak to candidate experience
- *   - '1 podejście do wartości' — unclear meaning, flagged by business feedback
- *
- * RECOMMENDATION: Replace with candidate-meaningful metrics confirmed by leadership,
- * e.g. avg years of team experience, number of clients served, categories covered,
- * measurable project outcomes. Do NOT change values without confirmed data.
- *
- * If no confirmed metrics are available: consider removing the stats column
- * entirely to avoid communicating unclear or misleading signals to candidates.
- */
-const STATS = [
-  { n: '3', lines: ['lata', 'na rynku'] },
-  { n: '5', lines: ['sektorów', 'działania'] },
-  { n: '1', lines: ['podejście', 'do wartości'] },
-]
-
-/**
  * CareerHero
  * Light editorial split hero.
  * Tone: premium consulting, strategic, calm. Not dark SaaS.
  *
  * Layout (desktop):
- *   [left content 54%] [photo + stats column ~120px]
+ *   [left content 52%] [photo — full height bleed, no stats column]
  *
  * Photo: Unsplash — colorful consulting/office tone, consistent with site photography.
  * To swap: change the src URL below.
@@ -103,64 +82,31 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             </a>
           </motion.div>
 
-          {/* Mobile stats — below CTAs */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex gap-8 mt-14 pb-8 lg:hidden"
-          >
-            {STATS.map(({ n, lines }) => (
-              <div key={n}>
-                <p className="text-2xl font-light text-gray-800 leading-none mb-1">{n}</p>
-                {lines.map((l) => (
-                  <p key={l} className="text-[9px] font-medium tracking-[0.28em] uppercase text-gray-400 leading-snug">{l}</p>
-                ))}
-              </div>
-            ))}
-          </motion.div>
-
         </div>
       </div>
 
-      {/* Right: atmospheric panel (desktop only) — full height, bleeds to edge */}
+      {/* Right: photo panel (desktop only) — full height, bleeds to edge */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.1, delay: 0.18 }}
-        className="hidden lg:flex absolute right-0 top-0 bottom-0 w-[50%]"
+        className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]"
         aria-hidden="true"
       >
-        {/* Atmospheric CSS composition */}
-        <div className="relative flex-1 overflow-hidden bg-gray-100">
+        <div className="relative w-full h-full overflow-hidden bg-gray-100">
           {/* Real photo — colorful, consulting tone */}
           <Image
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=85"
             alt="Zespół Profitia w pracy"
             fill
             className="object-cover object-center"
-            sizes="50vw"
+            sizes="52vw"
             priority
           />
           {/* Subtle warm overlay for consistency with page tone */}
           <div className="absolute inset-0 bg-white/8" />
           {/* Left-edge fade — integrates with content */}
           <div className="absolute inset-y-0 left-0 w-44 bg-gradient-to-r from-white via-white/70 to-transparent" />
-        </div>
-
-        {/* Stats column — annual report style */}
-        <div className="flex-shrink-0 w-[130px] flex flex-col justify-center gap-0 border-l border-gray-200/70 bg-white/60">
-          {STATS.map(({ n, lines }, i) => (
-            <div
-              key={n}
-              className={`px-6 py-7 ${i < STATS.length - 1 ? 'border-b border-gray-200/60' : ''}`}
-            >
-              <p className="text-[2.1rem] font-light text-gray-800 leading-none mb-2">{n}</p>
-              {lines.map((l) => (
-                <p key={l} className="text-[8px] font-semibold tracking-[0.32em] uppercase text-gray-400 leading-snug">{l}</p>
-              ))}
-            </div>
-          ))}
         </div>
       </motion.div>
 
