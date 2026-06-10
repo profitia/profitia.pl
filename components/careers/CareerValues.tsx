@@ -61,13 +61,12 @@ export default function CareerValues({ eyebrow, title, items }: Props) {
               variants={itemVariants}
               className={[
                 'py-10 pr-8',
-                // Bottom borders for all except last row
-                i < items.length - (items.length % 3 || 3) ? 'border-b border-gray-100' : '',
-                // Right borders: every item not in last column
-                i % 3 !== 2 ? 'lg:border-r lg:border-gray-100' : '',
-                // md 2-col: right border on odd items
-                i % 2 === 0 ? 'md:border-r md:border-gray-100 lg:border-r-0' : '',
-                i % 3 !== 2 ? 'lg:border-r lg:border-gray-100' : '',
+                // md (2-col): right border on left-column items (even)
+                i % 2 === 0 ? 'md:border-r md:border-gray-100' : '',
+                // lg (3-col): right border only between 01–02 (i=0) and 05–06 (i=4)
+                // md:border-r already covers i=0 and i=4 at lg — correct
+                // i=2 has md:border-r but must not show at lg
+                i === 2 ? 'lg:border-r-0' : '',
               ].join(' ')}
             >
               <div className="text-[11px] font-medium tracking-[0.28em] uppercase text-gray-300 mb-5">

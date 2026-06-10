@@ -58,31 +58,31 @@ const COPY = {
       title: 'Jak pracujemy',
       steps: [
         {
-          phase: 'Diagnose',
+          phase: 'Diagnoza',
           title: 'Zrozumienie problemu',
           description: 'Zaczynamy od zrozumienia struktury wydatków klienta, priorytetów biznesowych i realnych możliwości poprawy. Analiza zakupowa zaczyna się od pytań, nie od arkuszy.',
           learning: 'Jak czytać organizację przez dane zakupowe. Jak definiować zakres projektu i hipotezy.',
         },
         {
-          phase: 'Analyze',
+          phase: 'Analiza',
           title: 'Modele i benchmarki',
           description: 'Budujemy modele kosztowe, should-cost analysis i benchmarki rynkowe. Tworząc rzeczywistą podstawę do decyzji - nie intuicję.',
           learning: 'Metodyki wyceny kosztów. Analiza rynkowa i struktury cen. Praca z danymi na poziomie klienta.',
         },
         {
-          phase: 'Recommend',
+          phase: 'Rekomendacja',
           title: 'Rekomendacje i rozwiązania',
           description: 'Tu powstaje konkretna wartość projektu. Na podstawie danych i analizy projektujemy rozwiązania szyte pod specyfikę klienta - budujemy koncepcje zmian, definiujemy priorytety wdrożeniowe i tworzymy rekomendacje gotowe do decyzji zarządu.',
           learning: 'Projektowanie i komunikacja rozwiązań dla zarządu. Definiowanie priorytetów i planu wdrożenia. Przekształcanie analizy w rekomendacje decyzyjne.',
         },
         {
-          phase: 'Implement',
+          phase: 'Wdrożenie',
           title: 'Wdrożenie',
           description: 'Wspieramy klienta w pełnym cyklu wdrożenia - od negocjacji i postępowań zakupowych, przez nowe warunki handlowe, po zmiany procesowe i organizacyjne w funkcji zakupowej.',
           learning: 'Negocjacje i zarządzanie postępowaniami zakupowymi. Change management. Budowanie funkcji zakupowej od wewnątrz.',
         },
         {
-          phase: 'Optimize',
+          phase: 'Optymalizacja',
           title: 'Analiza efektów',
           description: 'Analizujemy osiągnięte wyniki, identyfikujemy kolejne obszary do poprawy i budujemy długoterminowe podejście klienta do kategorii.',
           learning: 'Pomiar efektów projektów zakupowych. Identyfikacja kolejnych okazji. Długofalowe myślenie o portfelu kategorii.',
