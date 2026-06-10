@@ -16,8 +16,8 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
       en: 'Advisory & Transformation',
     },
     description: {
-      pl: 'Projekty doradcze, interim management i transformacja funkcji zakupowej - dla organizacji, które chcą zbudować trwałą przewagę zakupową.',
-      en: 'Advisory projects, interim management and procurement transformation - for organisations that want to build lasting procurement advantage.',
+      pl: 'Projekty doradcze wspierające organizacje w budowaniu przewagi zakupowej, redukcji kosztów i profesjonalizacji funkcji procurement.',
+      en: 'Advisory projects helping organisations build procurement advantage, reduce costs and professionalise the procurement function.',
     },
   },
   {

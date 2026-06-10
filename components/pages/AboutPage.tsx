@@ -33,7 +33,7 @@ const COPY = {
       eyebrow: 'Doradztwo zakupowe · Warszawa · od 2010',
       h1: 'Najlepsze negocjacje zaczynają się przed salą negocjacyjną.',
       subtitle:
-        'Profitia to centrum kompetencji zakupowych dla liderów biznesu w Polsce. Łączymy strategię zakupową z intelligence operacyjnym - żeby Twoje negocjacje zawsze zaczynały się od przewagi informacyjnej.',
+        'Profitia to firma doradcza specjalizująca się w obszarze zakupów, negocjacji i rozwoju kompetencji procurement. Wspieramy organizacje w podejmowaniu lepszych decyzji zakupowych poprzez połączenie danych, wiedzy rynkowej i praktycznego doświadczenia projektowego.',
     },
     foundation: {
       eyebrow: 'Fundament',
@@ -97,7 +97,7 @@ const COPY = {
       eyebrow: 'Zespół',
       h2: 'Partnerzy i eksperci.',
       description:
-        'Łączymy doświadczenie zdobyte w największych firmach konsultingowych z głęboką znajomością polskiego rynku zakupowego.',
+        'Nasz zespół tworzą praktycy zakupów, negocjacji i analizy kosztowej pracujący na co dzień z organizacjami z różnych branż.',
     },
     credentials: {
       eyebrow: 'Credentials',
@@ -132,7 +132,7 @@ const COPY = {
       eyebrow: 'Procurement Advisory · Warsaw · Since 2010',
       h1: 'The best negotiations begin before you enter the room.',
       subtitle:
-        'Profitia is the procurement competence hub for business leaders in Poland. We combine procurement strategy with operational intelligence - so your negotiations always begin with an information advantage.',
+        'Profitia is an advisory company specialising in procurement, negotiations and procurement capability development. We help organisations make better procurement decisions by combining data, market intelligence and hands-on project experience.',
     },
     foundation: {
       eyebrow: 'Foundation',
@@ -196,7 +196,7 @@ const COPY = {
       eyebrow: 'Team',
       h2: 'Partners and experts.',
       description:
-        'We combine experience gained at leading consulting firms with deep knowledge of the Polish procurement market.',
+        'Our team consists of procurement, negotiation and cost analysis practitioners working with organisations across multiple industries.',
     },
     credentials: {
       eyebrow: 'Credentials',

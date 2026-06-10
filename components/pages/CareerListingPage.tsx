@@ -19,7 +19,7 @@ const COPY = {
     hero: {
       eyebrow: 'Praca w Profitia',
       title: 'Rozwijaj się na styku analityki, zakupów i realnych decyzji biznesowych.',
-      subtitle: 'Pracujemy z organizacjami, które traktują zakupy jako funkcję strategiczną - i szukamy osób, które chcą mieć realny wpływ.',
+      subtitle: 'Pracujemy z organizacjami, które traktują zakupy jako funkcję strategiczną. Łączymy analitykę, negocjacje i doradztwo, pomagając klientom podejmować lepsze decyzje zakupowe.',
       cta1: 'Zobacz otwarte role',
       cta2: 'Jak wygląda rekrutacja',
     },
@@ -149,7 +149,7 @@ const COPY = {
       ],
     },
     cta: {
-      invitation: 'Chcesz pracować na realnych problemach i mieć wpływ na wyniki klientów? Zacznijmy rozmowę.',
+      invitation: 'Dołącz do zespołu, który łączy analitykę, negocjacje i doradztwo zakupowe. Pracuj przy projektach mających realny wpływ na decyzje i wyniki organizacji.',
       label: 'Aplikuj teraz',
       href: '/career/apply',
     },
@@ -158,7 +158,7 @@ const COPY = {
     hero: {
       eyebrow: 'Work at Profitia',
       title: 'Grow at the intersection of analytics, procurement, and real business decisions.',
-      subtitle: 'We work with organisations that treat procurement as a strategic function - and we look for people who want real impact.',
+      subtitle: 'We work with organisations that treat procurement as a strategic function. We combine analytics, negotiations and advisory services to help clients make better procurement decisions.',
       cta1: 'See open roles',
       cta2: 'How recruitment works',
     },
@@ -288,7 +288,7 @@ const COPY = {
       ],
     },
     cta: {
-      invitation: 'Want to work on real problems and have impact on client outcomes? Let\'s start the conversation.',
+      invitation: 'Join a team that combines analytics, negotiations and procurement advisory. Work on projects that have a real impact on organisational decisions and outcomes.',
       label: 'Apply now',
       href: '/en/career/apply',
     },
