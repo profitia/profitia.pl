@@ -321,6 +321,7 @@ export default function ApplicationForm({ locale }: Props) {
                   onChange={(v) => setRoleAnswer(question.id, v)}
                   error={fieldError}
                   disabled={isSubmitting}
+                  layout={question.radioLayout ?? 'stack'}
                 />
               )
             }

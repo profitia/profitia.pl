@@ -22,6 +22,10 @@ interface Props {
   options: RadioOption[]
   value: string
   onChange: (value: string) => void
+  /** 'inline' = horizontal wrap (Tak/Nie, 2-3 short options)
+   *  'stack'  = vertical list (options with descriptions)
+   *  Default: 'stack' */
+  layout?: 'inline' | 'stack'
 }
 
 export function ApplicationRadio({
@@ -33,6 +37,7 @@ export function ApplicationRadio({
   options,
   value,
   onChange,
+  layout = 'stack',
 }: Props) {
   return (
     <div>
@@ -53,7 +58,7 @@ export function ApplicationRadio({
         aria-labelledby={`${id}-label`}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className="flex flex-wrap gap-x-6 gap-y-3"
+        className={layout === 'inline' ? 'flex flex-wrap gap-x-6 gap-y-3' : 'flex flex-col gap-y-3'}
       >
         {options.map((opt) => {
           const isChecked = value === opt.value

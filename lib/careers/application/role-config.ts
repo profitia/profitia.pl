@@ -24,6 +24,8 @@ export interface FormQuestion {
   placeholder?: { pl: string; en: string }
   rows?: number                         // for textarea
   maxLength?: number                    // for textarea
+  /** Radio layout: 'inline' for short 2-3 option groups, 'stack' for options with descriptions */
+  radioLayout?: 'inline' | 'stack'
 }
 
 export interface RoleFormConfig {
@@ -40,9 +42,9 @@ const YES_NO: RadioOption[] = [
 ]
 
 const EXCEL_LEVELS: RadioOption[] = [
-  { value: 'podstawowy', label: { pl: 'Podstawowy', en: 'Basic' } },
-  { value: 'sredniozaawansowany', label: { pl: 'Średniozaawansowany', en: 'Intermediate' } },
-  { value: 'zaawansowany', label: { pl: 'Zaawansowany', en: 'Advanced' } },
+  { value: 'podstawowy', label: { pl: 'Podstawowy (filtry, sortowanie)', en: 'Basic (filters, sorting)' } },
+  { value: 'sredniozaawansowany', label: { pl: 'Średniozaawansowany (formuły, tabele przestawne)', en: 'Intermediate (formulas, pivot tables)' } },
+  { value: 'zaawansowany', label: { pl: 'Zaawansowany (złożone formuły, analiza danych)', en: 'Advanced (complex formulas, data analysis)' } },
 ]
 
 const ENGLISH_LEVELS: RadioOption[] = [
@@ -72,44 +74,48 @@ const Q_HYBRID: FormQuestion = {
   id: 'hybridAccepted',
   type: 'radio',
   label: {
-    pl: 'Czy akceptujesz pracę w modelu hybrydowym 3:2?',
-    en: 'Do you accept a 3:2 hybrid working model?',
+    pl: 'Czy akceptujesz pracę w modelu hybrydowym 3:2 (3 dni z biura / u Klienta, 2 dni zdalnie)?',
+    en: 'Do you accept a 3:2 hybrid model (3 days in office / client site, 2 days remote)?',
   },
   required: true,
   options: YES_NO,
+  radioLayout: 'inline',
 }
 
 const Q_TRAVEL: FormQuestion = {
   id: 'businessTravel',
   type: 'radio',
   label: {
-    pl: 'Czy jesteś otwarty/a na wyjazdy służbowe?',
-    en: 'Are you open to business travel?',
+    pl: 'Czy jesteś otwarty/a na wyjazdy służbowe (na terenie Polski oraz sporadycznie zagraniczne)?',
+    en: 'Are you open to business travel (within Poland and occasionally abroad)?',
   },
   required: true,
   options: YES_NO,
+  radioLayout: 'inline',
 }
 
 const Q_EXCEL: FormQuestion = {
   id: 'excelLevel',
-  type: 'select',
+  type: 'radio',
   label: {
     pl: 'Jak oceniasz swój poziom znajomości Excela?',
     en: 'How would you rate your Excel proficiency?',
   },
   required: true,
   options: EXCEL_LEVELS,
+  radioLayout: 'stack',
 }
 
 const Q_ENGLISH: FormQuestion = {
   id: 'englishLevel',
-  type: 'select',
+  type: 'radio',
   label: {
-    pl: 'Jak oceniasz swój poziom języka angielskiego?',
-    en: 'How would you rate your English level?',
+    pl: 'Jak oceniasz swój poziom znajomości języka angielskiego?',
+    en: 'How would you rate your English proficiency?',
   },
   required: true,
   options: ENGLISH_LEVELS,
+  radioLayout: 'stack',
 }
 
 // ─── Role configurations ──────────────────────────────────────────────────────
@@ -128,8 +134,8 @@ export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
         id: 'salaryExpectation',
         type: 'text',
         label: {
-          pl: 'Oczekiwania finansowe (stawka miesięczna brutto)',
-          en: 'Salary expectation (monthly gross)',
+          pl: 'Jakie są Twoje oczekiwania finansowe (stawka miesięczna brutto)?',
+          en: 'What are your salary expectations (monthly gross)?',
         },
         required: false,
         placeholder: {
@@ -141,13 +147,13 @@ export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
         id: 'motivation',
         type: 'textarea',
         label: {
-          pl: 'Dlaczego interesuje Cię ta rola i konsulting zakupowy?',
-          en: 'Why are you interested in this role and procurement consulting?',
+          pl: 'Dlaczego interesuje Cię ta rola i praca w obszarze konsultingu zakupowego?',
+          en: 'Why are you interested in this role and working in procurement consulting?',
         },
         required: true,
         placeholder: {
-          pl: 'Opisz swoje motywacje i to, co przyciąga Cię do tej roli...',
-          en: 'Describe your motivations and what draws you to this role...',
+          pl: 'maks. 4–5 zdań',
+          en: 'max. 4–5 sentences',
         },
         rows: 5,
         maxLength: 2000,
@@ -163,8 +169,8 @@ export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
         id: 'hoursPerWeek',
         type: 'radio',
         label: {
-          pl: 'Ile godzin tygodniowo możesz przeznaczyć na pracę?',
-          en: 'How many hours per week can you dedicate to work?',
+          pl: 'Ile godzin tygodniowo możesz przeznaczyć na pracę (min. 20 h)?',
+          en: 'How many hours per week can you dedicate to work (min. 20 h)?',
         },
         required: true,
         options: [
@@ -172,6 +178,7 @@ export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
           { value: '30-40h', label: { pl: '30 – 40 h', en: '30 – 40 h' } },
           { value: '40h', label: { pl: '40 h', en: '40 h' } },
         ],
+        radioLayout: 'inline',
       },
       Q_HYBRID,
       Q_TRAVEL,
@@ -181,8 +188,8 @@ export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
         id: 'salaryExpectation',
         type: 'text',
         label: {
-          pl: 'Oczekiwania finansowe (stawka godzinowa brutto)',
-          en: 'Salary expectation (hourly gross rate)',
+          pl: 'Jakie są Twoje oczekiwania finansowe (stawka godzinowa brutto)?',
+          en: 'What are your salary expectations (hourly gross rate)?',
         },
         required: false,
         placeholder: {
@@ -194,13 +201,13 @@ export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
         id: 'motivation',
         type: 'textarea',
         label: {
-          pl: 'Dlaczego interesuje Cię ta rola i obszar analizy / konsultingu zakupowego?',
-          en: 'Why are you interested in this role and procurement analytics / consulting?',
+          pl: 'Dlaczego interesuje Cię ta rola i praca w obszarze analizy / konsultingu zakupowego?',
+          en: 'Why are you interested in this role and working in procurement analytics / consulting?',
         },
         required: true,
         placeholder: {
-          pl: 'Opisz swoje motywacje i zainteresowania...',
-          en: 'Describe your motivations and interests...',
+          pl: 'maks. 4–5 zdań',
+          en: 'max. 4–5 sentences',
         },
         rows: 5,
         maxLength: 2000,
