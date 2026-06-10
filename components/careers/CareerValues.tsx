@@ -59,15 +59,7 @@ export default function CareerValues({ eyebrow, title, items }: Props) {
             <motion.div
               key={i}
               variants={itemVariants}
-              className={[
-                'py-10 pr-8',
-                // md (2-col): right border on left-column items (even)
-                i % 2 === 0 ? 'md:border-r md:border-gray-100' : '',
-                // lg (3-col): right border only between 01–02 (i=0) and 05–06 (i=4)
-                // md:border-r already covers i=0 and i=4 at lg — correct
-                // i=2 has md:border-r but must not show at lg
-                i === 2 ? 'lg:border-r-0' : '',
-              ].join(' ')}
+              className="py-10 pr-8"
             >
               <div className="text-[11px] font-medium tracking-[0.28em] uppercase text-gray-300 mb-5">
                 {String(i + 1).padStart(2, '0')}
