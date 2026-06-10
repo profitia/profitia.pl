@@ -33,13 +33,13 @@ const COPY = {
       eyebrow: 'Doradztwo zakupowe · Warszawa · od 2010',
       h1: 'Najlepsze negocjacje zaczynają się przed salą negocjacyjną.',
       subtitle:
-        'Profitia to firma doradcza specjalizująca się w obszarze zakupów, negocjacji i rozwoju kompetencji procurement. Wspieramy organizacje w podejmowaniu lepszych decyzji zakupowych poprzez połączenie danych, wiedzy rynkowej i praktycznego doświadczenia projektowego.',
+        'Od ponad 15 lat pomagamy organizacjom budować silniejszą funkcję zakupową poprzez doradztwo, certyfikację CIPS i własną technologię. Pracujemy tam, gdzie decyzje zakupowe realnie wpływają na marżę, koszty i ryzyko operacyjne.',
     },
     foundation: {
       eyebrow: 'Fundament',
       h2: 'Polska firma. Międzynarodowe standardy.',
       p1: 'Profitia powstała w 2010 roku z misją podniesienia standardów zarządzania zakupami w Polsce. Zbudowana na bazie doświadczeń zdobytych w międzynarodowych firmach doradczych, z polskim kapitałem i głębokim zakotwiczeniem w lokalnych realiach.',
-      p2: 'Pomagamy największym polskim firmom usprawnić procesy zakupowe - od strategii i narzędzi, przez kompetencje zespołu, aż po konkretne wyniki negocjacyjne. Działamy tam, gdzie decyzje zakupowe realnie wpływają na marżę i konkurencyjność firmy.',
+      p2: 'Pracujemy z 8 z 10 największych firm w Polsce - tam, gdzie decyzje zakupowe realnie wpływają na marżę, koszty operacyjne i ciągłość dostaw.',
       stats: [
         { value: '2010', label: 'rok założenia' },
         { value: '20+', label: 'lat doświadczenia' },
@@ -132,13 +132,13 @@ const COPY = {
       eyebrow: 'Procurement Advisory · Warsaw · Since 2010',
       h1: 'The best negotiations begin before you enter the room.',
       subtitle:
-        'Profitia is an advisory company specialising in procurement, negotiations and procurement capability development. We help organisations make better procurement decisions by combining data, market intelligence and hands-on project experience.',
+        'For over 15 years we have helped organisations build stronger procurement functions - through advisory, CIPS certification and proprietary technology. We work where procurement decisions directly shape margin, cost and operational risk.',
     },
     foundation: {
       eyebrow: 'Foundation',
       h2: 'Polish firm. International standards.',
       p1: 'Profitia was founded in 2010 with a mission to raise the standards of procurement management in Poland. Built on experience gained at international consulting firms, with Polish capital and a deep grounding in local market realities.',
-      p2: 'We help Poland\'s largest companies improve their procurement processes - from strategy and tools, through team competencies, to concrete negotiation results. We work where procurement decisions genuinely affect margins and competitive position.',
+      p2: 'We work with 8 of the top 10 companies in Poland - where procurement decisions directly shape margin, operating costs and supply continuity.',
       stats: [
         { value: '2010', label: 'founded' },
         { value: '20+', label: 'years experience' },

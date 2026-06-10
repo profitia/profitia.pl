@@ -28,7 +28,7 @@ const COPY = {
     hero: {
       eyebrow: 'KONTAKT',
       h1: 'Porozmawiajmy.',
-      subtitle: 'Każde zapytanie traktujemy indywidualnie.',
+      subtitle: 'Zaczynamy od zrozumienia sytuacji, nie od oferty. Pierwsze spotkanie służy diagnozie wyzwań i możliwości poprawy wyników zakupowych.',
     },
     info: {
       eyebrow: 'DANE KONTAKTOWE',
@@ -48,7 +48,7 @@ const COPY = {
     hero: {
       eyebrow: 'CONTACT',
       h1: "Let's talk.",
-      subtitle: 'Every enquiry is handled individually.',
+      subtitle: 'We start by understanding your situation, not with an offer. The first meeting is about diagnosing challenges and opportunities for improving procurement outcomes.',
     },
     info: {
       eyebrow: 'CONTACT DETAILS',
