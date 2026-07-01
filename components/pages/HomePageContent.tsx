@@ -16,36 +16,40 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
         <div className="grid grid-cols-1 md:grid-cols-2">
 
           {/* LEFT: text */}
-          <div className="flex flex-col justify-center h-auto md:h-[calc(100vh-80px)] px-6 md:px-12 py-16 md:py-0">
-            <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">{d.hero.eyebrow}</p>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mt-6">
-              {d.hero.h1}
-            </h1>
-            <p className="text-lg text-gray-600 leading-relaxed mt-6">
-              {d.hero.sub1a}<br />
-              {d.hero.sub1b}
-            </p>
-            <p className="text-gray-500 leading-relaxed mt-4">
-              {d.hero.sub2}
-            </p>
-            <div className="mt-8 flex flex-col items-start gap-5">
-              <Link
-                href="/services"
-                className="inline-block bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
-              >
-                {d.hero.cta}
-              </Link>
+          <div className="h-auto md:h-[calc(100vh-80px)] px-6 md:px-12 py-16 md:py-0">
+            <div className="flex h-full flex-col justify-center max-w-xl">
+              <div className="flex flex-col justify-center md:flex-[3]">
+                <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">{d.hero.eyebrow}</p>
+                <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mt-6">
+                  {d.hero.h1}
+                </h1>
+                <p className="text-lg text-gray-600 leading-relaxed mt-6">
+                  {d.hero.sub1a}<br />
+                  {d.hero.sub1b}
+                </p>
+                <p className="text-gray-500 leading-relaxed mt-4">
+                  {d.hero.sub2}
+                </p>
+              </div>
 
-              <div>
-                <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-2">
-                  {d.hero.reportLabel}
+              <div className="py-10 md:py-8">
+                <div className="border-t border-gray-200" />
+              </div>
+
+              <div className="flex flex-col justify-center md:flex-[2]">
+                <h2 className="text-2xl md:text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight">
+                  {d.hero.reportHeading}
+                </h2>
+                <p className="text-gray-600 leading-relaxed mt-4">
+                  {d.hero.reportBody}
                 </p>
-                <p className="text-lg font-semibold tracking-tight text-gray-900">
-                  {d.hero.reportTitle}
-                </p>
-                <span className="inline-block mt-4 bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm opacity-40 cursor-not-allowed select-none">
+                <button
+                  type="button"
+                  aria-disabled="true"
+                  className="inline-flex items-center justify-center self-start mt-6 bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm"
+                >
                   {d.hero.reportCta}
-                </span>
+                </button>
               </div>
             </div>
           </div>
@@ -60,10 +64,6 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
-            <div className="absolute bottom-8 left-8 bg-white px-4 py-3 rounded-lg shadow-md">
-              <div className="text-xs text-gray-500">{d.hero.statLabel}</div>
-              <div className="text-xl font-semibold text-gray-900 mt-0.5">+20%</div>
-            </div>
           </div>
 
         </div>
