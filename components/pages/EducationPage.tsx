@@ -18,7 +18,7 @@ const COPY = {
   pl: {
     hero: {
       label: 'CIPS · MCIPS · Akademia Zakupów',
-      headline: 'Procurement Executive Development Programme',
+      headline: 'Executive Development Programme w zakupach',
       subtitle:
         'Zdobądź prestiżowy certyfikat MCIPS i dołącz do globalnej sieci ponad 200 000 profesjonalistów zakupowych. Programy budowane na realiach rynkowych - nie teorii akademickiej.',
       ctaPrimary: { label: 'Zobacz ofertę MCIPS', href: '/contact' },
@@ -212,7 +212,7 @@ const COPY = {
 
 const HERO_IMAGE = {
   src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80',
-  alt: 'Procurement Executive Development Programme - konferencja edukacyjna',
+  alt: 'Executive Development Programme w zakupach - konferencja edukacyjna',
 }
 
 // ─── TRAINERS DATA ─────────────────────────────────────────────────────────────
@@ -282,7 +282,7 @@ const TRAINERS: TeamMember[] = [
     yearsExperience: '20+',
     imageUrl:
       'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
-    bio: 'Doradca i coach zakupowy z 20-letnim doświadczeniem w transformacji funkcji procurement. Specjalizuje się w programach dedykowanych dla organizacji budujących dojrzałość zakupową.',
+    bio: 'Doradca i coach zakupowy z 20-letnim doświadczeniem w transformacji funkcji zakupowej. Specjalizuje się w programach dedykowanych dla organizacji budujących dojrzałość zakupową.',
     bioEN:
       'Procurement consultant and coach with 20 years of experience in procurement function transformation. Specialises in bespoke programmes for organisations building procurement maturity.',
     areas: ['Transformacja zakupowa', 'Coaching', 'Programy dedykowane'],

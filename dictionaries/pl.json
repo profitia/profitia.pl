@@ -57,13 +57,26 @@
     },
     "hero": {
       "eyebrow": "Profitia",
-      "h1": "Procurement, który realnie wpływa na wynik firmy",
-      "sub1a": "Pomagamy firmom budować przewagę rynkową poprzez strategiczne zarządzanie kosztami, negocjacje zorientowane na targecie, optymalnie zbudowane procesy procurementowe oraz rozwój kompetencji zakupowych",
+      "h1": "Zakupy, które realnie wpływają na wynik firmy",
+      "sub1a": "Pomagamy firmom budować przewagę rynkową poprzez strategiczne zarządzanie kosztami, negocjacje zorientowane na targecie, optymalnie zbudowane procesy zakupowe oraz rozwój kompetencji zakupowych",
       "sub1b": "",
       "sub2": "",
       "cta": "Sprawdź ofertę",
+      "reportLabel": "Nowy raport",
+      "reportTitle": "AI w zakupach",
+      "reportCta": "Pobierz raport",
       "statLabel": "Średnia poprawa warunków zakupowych",
       "imgAlt": "Spotkanie negocjacyjne - doradztwo zakupowe Profitia"
+    },
+    "cips": {
+      "eyebrow": "Partnerstwo",
+      "h2": "Profitia jest oficjalnym partnerem CIPS w Polsce",
+      "body1": "CIPS - Chartered Institute of Procurement & Supply - to największa na świecie organizacja zawodowa dla profesjonalistów zakupów i łańcucha dostaw, wyznaczająca globalne standardy kwalifikacji, rozwoju i praktyki rynkowej.",
+      "body2": "Jako oficjalny partner CIPS w Polsce Profitia wspiera liderów i zespoły zakupowe w budowaniu kompetencji, które przekładają się na lepsze przygotowanie negocjacji, mocniejsze decyzje i trwały wpływ na wyniki biznesowe.",
+      "conferenceLabel": "Konferencja CIPS Poland",
+      "conferenceTitle": "26 listopada 2026",
+      "conferenceBody": "Zbliżająca się konferencja CIPS Poland będzie miejscem spotkania liderów zakupów, praktyków i organizacji rozwijających nowoczesne podejście do zarządzania zakupami.",
+      "conferenceButton": "Pobierz informacje"
     },
     "problem": {
       "eyebrow": "Kontekst",
@@ -129,22 +142,25 @@
           "n": "01",
           "title": "Doradztwo",
           "desc": "Rozwiązanie konkretnych problemów zakupowych i wdrożenie rekomendacji w praktyce.",
-          "img": "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80",
-          "alt": "Doradztwo zakupowe - spotkanie konsultacyjne"
+          "img": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80",
+          "alt": "Doradztwo zakupowe - spotkanie konsultacyjne",
+          "href": "/services"
         },
         {
           "n": "02",
-          "title": "Kompetencje",
-          "desc": "Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.",
-          "img": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-          "alt": "Rozwój kompetencji zakupowych - szkolenie zespołu"
+          "title": "Narzędzia",
+          "desc": "Dane i narzędzia, które zamieniają przeczucia w uzasadnione decyzje.",
+          "img": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+          "alt": "Narzędzia analityczne - dane zakupowe",
+          "href": null
         },
         {
           "n": "03",
-          "title": "Narzędzia",
-          "desc": "Dane i narzędzia, które zamieniają przeczucia w uzasadnione decyzje.",
-          "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-          "alt": "Narzędzia analityczne - dane zakupowe"
+          "title": "Kompetencje",
+          "desc": "Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.",
+          "img": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+          "alt": "Rozwój kompetencji zakupowych - szkolenie zespołu",
+          "href": "/education"
         }
       ],
       "seeMore": "Zobacz więcej →"
@@ -278,6 +294,12 @@
         }
       ]
     },
+    "testimonial": {
+      "eyebrow": "Opinia klienta",
+      "quote": "Współpraca z Profitią pozwoliła nam wejść na wyższy poziom zarządzania zakupami. Połączenie eksperckiego doradztwa z dostępem do rzetelnych danych i nowoczesnych narzędzi przełożyło się na lepsze przygotowanie negocjacji, większą pewność podejmowanych decyzji i realne oszczędności. To partner, który rozumie wyzwania zakupów i dostarcza rozwiązania mające bezpośredni wpływ na wyniki biznesowe.",
+      "author": "Dyrektor Zakupów",
+      "company": "LipCo Foods"
+    },
     "cta": {
       "eyebrow": "Następny krok",
       "h2": "Zacznij od jednego konkretnego przypadku",
@@ -296,7 +318,7 @@
           "meta": "9 MIN CZYTANIA · COST INTELLIGENCE",
           "title": "Cena to opinia. Koszt to fakt.",
           "cta": "Czytaj analizę →",
-          "img": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80",
+          "img": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=80",
           "imgAlt": "Analiza kosztów - struktura modelu should-cost"
         },
         {
@@ -304,7 +326,7 @@
           "meta": "11 MIN CZYTANIA · COST INTELLIGENCE",
           "title": "Dzień z życia kupca: kiedy stała cena przegrywa z faktami",
           "cta": "Czytaj analizę →",
-          "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
+          "img": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&q=80",
           "imgAlt": "Negocjacje zakupowe - analiza should-cost przy stole"
         },
         {
@@ -312,7 +334,7 @@
           "meta": "7 MIN CZYTANIA · RYZYKO DOSTAWCÓW",
           "title": "Analiza finansowa dostawców",
           "cta": "Czytaj analizę →",
-          "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80",
+          "img": "https://images.unsplash.com/photo-1554224154-22dec7ec8818?w=900&q=80",
           "imgAlt": "Analiza finansowa - wskaźniki kondycji dostawcy"
         }
       ]

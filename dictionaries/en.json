@@ -62,8 +62,21 @@
       "sub1b": "It's about making better decisions - before you sit down to negotiate.",
       "sub2": "We combine experience, data and tools so procurement stops being reactive and starts actively driving margin.",
       "cta": "Schedule a conversation",
+      "reportLabel": "New report",
+      "reportTitle": "AI in procurement",
+      "reportCta": "Download report",
       "statLabel": "Average improvement in procurement terms",
       "imgAlt": "Business negotiation meeting - Profitia procurement advisory"
+    },
+    "cips": {
+      "eyebrow": "Partnership",
+      "h2": "Profitia is the official CIPS partner in Poland",
+      "body1": "CIPS - the Chartered Institute of Procurement & Supply - is the world's largest professional body for procurement and supply, setting global standards for qualification, capability and professional practice.",
+      "body2": "As the official CIPS partner in Poland, Profitia supports procurement leaders and teams in building capabilities that lead to stronger negotiation preparation, better decisions and direct business impact.",
+      "conferenceLabel": "CIPS Poland Conference",
+      "conferenceTitle": "26 November 2026",
+      "conferenceBody": "The upcoming CIPS Poland conference will bring together procurement leaders, practitioners and organisations developing a more modern approach to procurement management.",
+      "conferenceButton": "Download information"
     },
     "problem": {
       "eyebrow": "Context",
@@ -129,22 +142,25 @@
           "n": "01",
           "title": "Advisory",
           "desc": "Solving specific procurement challenges and implementing recommendations in practice.",
-          "img": "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80",
-          "alt": "Procurement advisory - consulting meeting"
+          "img": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80",
+          "alt": "Procurement advisory - consulting meeting",
+          "href": "/services"
         },
         {
           "n": "02",
-          "title": "Competence",
-          "desc": "We strengthen procurement teams so they make better decisions in real situations.",
-          "img": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-          "alt": "Procurement competence development - team training"
+          "title": "Tools",
+          "desc": "Data and tools that turn intuition into well-founded decisions.",
+          "img": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+          "alt": "Analytical tools - procurement data",
+          "href": null
         },
         {
           "n": "03",
-          "title": "Tools",
-          "desc": "Data and tools that turn intuition into well-founded decisions.",
-          "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-          "alt": "Analytical tools - procurement data"
+          "title": "Competence",
+          "desc": "We strengthen procurement teams so they make better decisions in real situations.",
+          "img": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+          "alt": "Procurement competence development - team training",
+          "href": "/education"
         }
       ],
       "seeMore": "Learn more →"
@@ -278,6 +294,12 @@
         }
       ]
     },
+    "testimonial": {
+      "eyebrow": "Client perspective",
+      "quote": "Working with Profitia helped us move to a higher level of procurement management. The combination of expert advisory support, reliable data and modern tools translated into better negotiation preparation, greater confidence in our decisions and tangible savings. This is a partner that understands procurement challenges and delivers solutions with direct business impact.",
+      "author": "Procurement Director",
+      "company": "LipCo Foods"
+    },
     "cta": {
       "eyebrow": "Next step",
       "h2": "Start with one concrete case",
@@ -296,7 +318,7 @@
           "meta": "9 MIN READ · COST INTELLIGENCE",
           "title": "Price is an opinion. Cost is a fact.",
           "cta": "Read article →",
-          "img": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80",
+          "img": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=80",
           "imgAlt": "Cost analysis - should-cost model structure"
         },
         {
@@ -304,7 +326,7 @@
           "meta": "11 MIN READ · COST INTELLIGENCE",
           "title": "A buyer's day: when a fixed price loses to the facts",
           "cta": "Read article →",
-          "img": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
+          "img": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&q=80",
           "imgAlt": "Procurement negotiation - should-cost analysis at the table"
         },
         {
@@ -312,7 +334,7 @@
           "meta": "7 MIN READ · SUPPLIER RISK",
           "title": "Financial analysis of suppliers",
           "cta": "Read article →",
-          "img": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80",
+          "img": "https://images.unsplash.com/photo-1554224154-22dec7ec8818?w=900&q=80",
           "imgAlt": "Financial analysis - supplier health indicators"
         }
       ]

@@ -8,7 +8,7 @@
 
 const COPY = {
   pl: {
-    eyebrow: 'Procurement Intelligence',
+    eyebrow: 'Inteligencja zakupowa',
     h1: 'Wiedza zakupowa',
     intro:
       'Analizy, strategie i inteligencja dla osób odpowiedzialnych za zakupy, koszty i negocjacje. Bez szumu. Tylko substancja.',

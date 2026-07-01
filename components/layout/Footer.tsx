@@ -112,7 +112,7 @@ export default function Footer() {
             <p className="text-[11px] text-gray-400 leading-relaxed mb-4">
               {isEN
                 ? 'Negotiations Intelligence · Data-driven Procurement · Certified CIPS Partner in Poland · Advisory · Training · Procurement Analytics'
-                : 'Negotiations Intelligence · Data-driven Procurement · Certyfikowany Partner CIPS w Polsce · Doradztwo · Szkolenia · Analityka zakupowa'}
+                : 'Inteligencja negocjacyjna · Zakupy oparte na danych · Certyfikowany Partner CIPS w Polsce · Doradztwo · Szkolenia · Analityka zakupowa'}
             </p>
             <p className="text-[11px] text-gray-400 leading-relaxed mb-6">
               {isEN

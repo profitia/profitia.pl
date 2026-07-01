@@ -24,15 +24,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef, useCallback, useEffect } from 'react'
 
-// CTA links per pillar index. null = no link.
-const PILLAR_LINKS: (string | null)[] = ['/services', '/education', null]
-
 interface PillarItem {
   n: string
   title: string
   desc: string
   img: string
   alt: string
+  href?: string | null
 }
 
 interface Props {
@@ -158,8 +156,8 @@ export default function HomePillars({ items, seeMore }: Props) {
                 <p className="text-[15px] text-white/90 mt-4 leading-relaxed max-w-xs">
                   {pillar.desc}
                 </p>
-                {PILLAR_LINKS[i] ? (
-                  <Link href={PILLAR_LINKS[i]!} className="inline-block mt-5 text-sm text-white/80 hover:text-white transition-colors">
+                {pillar.href ? (
+                  <Link href={pillar.href} className="inline-block mt-5 text-sm text-white/80 hover:text-white transition-colors">
                     {seeMore}
                   </Link>
                 ) : (
@@ -275,9 +273,9 @@ export default function HomePillars({ items, seeMore }: Props) {
                 >
                   {pillar.desc}
                 </p>
-                {PILLAR_LINKS[i] ? (
+                {pillar.href ? (
                   <Link
-                    href={PILLAR_LINKS[i]!}
+                    href={pillar.href}
                     className="inline-block mt-6 text-sm hover:underline"
                     style={{ color: ctaColor, transition: 'color 700ms ease-out' }}
                   >

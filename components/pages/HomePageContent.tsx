@@ -28,20 +28,32 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             <p className="text-gray-500 leading-relaxed mt-4">
               {d.hero.sub2}
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col items-start gap-5">
               <Link
                 href="/services"
                 className="inline-block bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
               >
                 {d.hero.cta}
               </Link>
+
+              <div className="rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 max-w-sm">
+                <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-2">
+                  {d.hero.reportLabel}
+                </p>
+                <p className="text-lg font-semibold tracking-tight text-gray-900">
+                  {d.hero.reportTitle}
+                </p>
+                <span className="inline-flex mt-4 rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium text-gray-400 cursor-not-allowed select-none">
+                  {d.hero.reportCta}
+                </span>
+              </div>
             </div>
           </div>
 
           {/* RIGHT: image */}
           <div className="relative w-full h-[60vh] md:h-[calc(100vh-80px)] overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80"
+              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80"
               alt={d.hero.imgAlt}
               fill
               className="object-cover"
@@ -54,6 +66,68 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════
+          CIPS
+          ════════════════════════════════════ */}
+      <section className="py-24 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid gap-12 lg:grid-cols-[1.3fr_0.9fr] lg:items-start">
+            <div>
+              <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">{d.cips.eyebrow}</p>
+              <div className="flex flex-wrap items-center gap-6 mb-8">
+                <div className="rounded-2xl bg-white px-5 py-4 shadow-sm">
+                  <Image
+                    src="/logo/profitia-default.svg"
+                    alt="Profitia"
+                    width={140}
+                    height={38}
+                    className="h-8 w-auto"
+                  />
+                </div>
+                <div className="rounded-2xl bg-white px-5 py-4 shadow-sm">
+                  <Image
+                    src="/logo/cips.png"
+                    alt="CIPS"
+                    width={129}
+                    height={50}
+                    className="h-8 w-auto"
+                  />
+                </div>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-3xl leading-tight text-gray-900">
+                {d.cips.h2}
+              </h2>
+              <p className="text-gray-600 text-base leading-relaxed mt-6 max-w-3xl">
+                {d.cips.body1}
+              </p>
+              <p className="text-gray-600 text-base leading-relaxed mt-4 max-w-3xl">
+                {d.cips.body2}
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+              <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-4">
+                {d.cips.conferenceLabel}
+              </p>
+              <h3 className="text-2xl font-semibold tracking-tight text-gray-900 leading-tight">
+                {d.cips.conferenceTitle}
+              </h3>
+              <p className="text-sm text-gray-600 leading-relaxed mt-4">
+                {d.cips.conferenceBody}
+              </p>
+              <Link
+                href="/docs/26.11.26_Conference_CIPS_Profitia_EN.pdf"
+                className="inline-block mt-6 bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {d.cips.conferenceButton}
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -284,7 +358,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             <div>
               <div className="relative w-full rounded-2xl shadow-sm aspect-[4/3] overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80"
+                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80"
                   alt={d.cases.imgAlt}
                   fill
                   className="object-cover"
@@ -299,6 +373,24 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════
+          TESTIMONIAL
+          ════════════════════════════════════ */}
+      <section className="py-24 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-6">
+            {d.testimonial.eyebrow}
+          </p>
+          <blockquote className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-snug">
+            &ldquo;{d.testimonial.quote}&rdquo;
+          </blockquote>
+          <div className="mt-10 pt-8 border-t border-gray-200">
+            <p className="text-sm font-medium text-gray-900">{d.testimonial.author}</p>
+            <p className="text-sm text-gray-500 mt-1">{d.testimonial.company}</p>
           </div>
         </div>
       </section>

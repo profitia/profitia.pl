@@ -11,7 +11,7 @@ import {
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Procurement Intelligence | Profitia',
+  title: 'Inteligencja zakupowa | Profitia',
   description:
     'Analizy, strategie i inteligencja dla osób odpowiedzialnych za zakupy, koszty i negocjacje.',
   alternates: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     languages: { en: 'https://profitia.pl/en/blog' },
   },
   openGraph: {
-    title: 'Procurement Intelligence | Profitia',
+    title: 'Inteligencja zakupowa | Profitia',
     description:
       'Analizy zakupowe, strategie negocjacyjne i inteligencja rynkowa od Profitia.',
     type: 'website',
