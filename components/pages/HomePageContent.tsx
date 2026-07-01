@@ -48,7 +48,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                 <div className="border-t border-gray-200" />
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 pb-10 md:pb-10">
                 <h2 className="text-2xl md:text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight">
                   {d.hero.reportHeading}
                 </h2>
