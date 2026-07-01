@@ -36,14 +36,14 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                 {d.hero.cta}
               </Link>
 
-              <div className="rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 max-w-sm">
+              <div>
                 <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-2">
                   {d.hero.reportLabel}
                 </p>
                 <p className="text-lg font-semibold tracking-tight text-gray-900">
                   {d.hero.reportTitle}
                 </p>
-                <span className="inline-flex mt-4 rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium text-gray-400 cursor-not-allowed select-none">
+                <span className="inline-block mt-4 bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm opacity-40 cursor-not-allowed select-none">
                   {d.hero.reportCta}
                 </span>
               </div>
