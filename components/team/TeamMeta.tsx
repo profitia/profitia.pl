@@ -31,22 +31,22 @@ export function TeamMeta({
 }: TeamMetaProps) {
   const nameCls =
     size === 'lg'
-      ? 'text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight'
+      ? 'text-[1.75rem] font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms] group-hover:text-[rgb(0,109,158)]'
       : size === 'md'
-      ? 'text-[1.125rem] font-semibold tracking-tight text-gray-900 leading-tight'
-      : 'text-base font-semibold tracking-tight text-gray-900 leading-tight'
+      ? 'text-[1.125rem] font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms] group-hover:text-[rgb(0,109,158)]'
+      : 'text-base font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms] group-hover:text-[rgb(0,109,158)]'
 
   const roleCls =
     size === 'lg'
-      ? 'text-[11px] font-semibold tracking-[0.24em] uppercase text-gray-500 mt-2.5'
-      : 'text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mt-1.5'
+      ? 'text-[11px] font-semibold tracking-[0.24em] uppercase text-[rgb(72,94,136)] mt-2.5'
+      : 'text-[10px] font-semibold tracking-[0.22em] uppercase text-[rgb(72,94,136)] mt-1.5'
 
   return (
     <div>
       <div className="flex items-baseline gap-2.5">
         <span className={nameCls}>{name}</span>
         {credentials && (
-          <span className="text-[10px] font-medium tracking-[0.15em] uppercase text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">
+          <span className="text-[10px] font-medium tracking-[0.15em] uppercase text-[rgb(72,94,136)] border border-[rgba(149,166,199,0.35)] px-1.5 py-0.5 rounded">
             {credentials}
           </span>
         )}
@@ -55,7 +55,7 @@ export function TeamMeta({
       <p className={roleCls}>
         {role}
         {yearsExperience && (
-          <span className="ml-3 text-gray-300 font-normal normal-case tracking-normal">
+          <span className="ml-3 text-[rgba(72,94,136,0.65)] font-normal normal-case tracking-normal">
             · {yearsExperience} lat
           </span>
         )}
@@ -66,7 +66,7 @@ export function TeamMeta({
           {areas.map((area) => (
             <span
               key={area}
-              className="text-[10px] font-medium text-gray-500 tracking-[0.06em] bg-gray-50 border border-gray-100 px-2 py-0.5 rounded-md"
+              className="text-[10px] font-medium text-[rgb(59,56,56)] tracking-[0.06em] bg-[rgba(199,237,251,0.15)] border border-[rgba(149,166,199,0.3)] px-2 py-0.5 rounded-md"
             >
               {area}
             </span>

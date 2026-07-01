@@ -34,14 +34,16 @@ export function TeamMemberRow({
   const areas = getAreas(member, locale)
 
   return (
-    <article className="py-16 lg:py-20 border-b border-gray-100 last:border-b-0 first:pt-0">
+    <article className="group relative py-16 lg:py-20 border-b border-[rgba(149,166,199,0.3)] last:border-b-0 first:pt-0 px-4 -mx-4 transition-colors duration-[250ms] hover:bg-[rgba(199,237,251,0.15)]">
       <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] lg:grid-cols-[240px_1fr] gap-8 lg:gap-14 lg:items-start">
         {/* Portrait */}
-        <div className="sm:max-w-[240px] w-full max-w-[220px]">
+        <div className="relative sm:max-w-[240px] w-full max-w-[220px]">
+          <div className="absolute -left-4 top-0 bottom-0 w-[3px] bg-[rgb(0,109,158)] opacity-0 transition-opacity duration-[250ms] group-hover:opacity-100" />
           <TeamProfileImage
             name={member.name}
             imageUrl={member.imageUrl}
             size="lg"
+            className="transition-transform duration-[250ms] group-hover:scale-[1.02]"
           />
         </div>
 
@@ -58,7 +60,7 @@ export function TeamMemberRow({
           />
 
           {bio && (
-            <p className="mt-7 text-[15px] text-gray-600 leading-[1.88] max-w-[58ch]">
+            <p className="mt-7 text-[15px] text-[rgb(59,56,56)] leading-[1.88] max-w-[58ch]">
               {bio}
             </p>
           )}
@@ -68,8 +70,8 @@ export function TeamMemberRow({
               href={`mailto:${member.email}`}
               className="
                 mt-5 inline-flex text-[11px] font-medium tracking-[0.1em] uppercase
-                text-gray-400 hover:text-brand-blue
-                transition-colors duration-200 ease-out
+                text-[rgb(72,94,136)] hover:text-[rgb(0,109,158)]
+                transition-colors duration-[250ms] ease-out
               "
             >
               {member.email}

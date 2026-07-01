@@ -69,7 +69,7 @@ export function TeamProfileImage({
         className="
           object-cover object-[50%_12%]
           [filter:grayscale(10%)_contrast(1.03)]
-          transition-[filter] duration-300 ease-out
+          transition-transform duration-[250ms] ease-out
           group-hover:[filter:grayscale(2%)_contrast(1.03)]
         "
       />
