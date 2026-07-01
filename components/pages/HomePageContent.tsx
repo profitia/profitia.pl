@@ -4,6 +4,7 @@ import type { Dictionary } from '@/lib/i18n'
 import { FeaturedArticles } from '@/components/sections/insights'
 import HomePillars from '@/components/home/HomePillars'
 import InteractiveTestimonials from '@/components/home/InteractiveTestimonials'
+import { RevealWrapper } from '@/components/ui'
 
 export default function HomePageContent({ dict }: { dict: Dictionary }) {
   const d = dict.homepage
@@ -20,54 +21,58 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
         <div className="grid grid-cols-1 md:grid-cols-2">
 
           {/* LEFT: text */}
-          <div className="h-auto md:h-[calc(100vh-80px)] px-6 md:px-12">
-            <div className="flex h-full w-full flex-col justify-center py-16 md:py-20">
-              <div className="space-y-8 max-w-xl">
-                <h1 className="max-w-xl font-semibold text-gray-900">
-                  <span className="block whitespace-nowrap tracking-[-0.05em] text-[2.5rem] sm:text-[3rem] md:text-[3.9rem]">
-                    {heroTitleLead}.
-                  </span>
-                  {heroTitleTail ? (
-                    <span className="mt-3 block whitespace-nowrap tracking-[-0.055em] text-[1.88rem] leading-[1.02] sm:mt-3 sm:text-[2.26rem] md:mt-3.5 md:text-[2.66rem]">
-                      {heroTitleTail}
+          <div className="h-auto md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] px-6 md:px-12">
+            <div className="flex h-full w-full flex-col justify-center py-16 md:py-10 2xl:py-20">
+              <RevealWrapper delay={0}>
+                <div className="space-y-8 md:space-y-5 2xl:space-y-8 max-w-xl">
+                  <h1 className="max-w-xl font-semibold text-gray-900">
+                    <span className="block whitespace-nowrap tracking-[-0.05em] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
+                      {heroTitleLead}.
                     </span>
-                  ) : null}
-                </h1>
-                <div className="space-y-5 max-w-xl">
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {d.hero.sub1a}<br />
-                    {d.hero.sub1b}
-                  </p>
-                  <p className="text-gray-500 leading-relaxed">
-                    {d.hero.sub2}
-                  </p>
+                    {heroTitleTail ? (
+                      <span className="mt-3 block whitespace-nowrap tracking-[-0.055em] text-[1.88rem] leading-[1.02] sm:mt-3 sm:text-[2.26rem] md:mt-2 md:text-[1.86rem] lg:text-[2rem] 2xl:mt-3.5 2xl:text-[2.66rem]">
+                        {heroTitleTail}
+                      </span>
+                    ) : null}
+                  </h1>
+                  <div className="space-y-5 md:space-y-3.5 2xl:space-y-5 max-w-xl">
+                    <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-600 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed">
+                      {d.hero.sub1a}<br />
+                      {d.hero.sub1b}
+                    </p>
+                    <p className="text-gray-500 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed">
+                      {d.hero.sub2}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </RevealWrapper>
 
-              <div className="py-10 md:py-10">
+              <div className="py-10 md:py-5 2xl:py-10">
                 <div className="border-t border-gray-200" />
               </div>
 
-              <div className="space-y-6 pb-10 md:pb-10">
-                <h2 className="text-2xl md:text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight">
-                  {d.hero.reportHeading}
-                </h2>
-                <p className="text-gray-600 leading-relaxed">
-                  {d.hero.reportBody}
-                </p>
-                <button
-                  type="button"
-                  aria-disabled="true"
-                  className="inline-flex items-center justify-center self-start bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
-                >
-                  {d.hero.reportCta}
-                </button>
-              </div>
+              <RevealWrapper delay={2}>
+                <div className="space-y-6 md:space-y-3.5 2xl:space-y-6 pb-10 md:pb-4 2xl:pb-10">
+                  <h2 className="text-2xl md:text-[1.22rem] lg:text-[1.3rem] 2xl:text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight">
+                    {d.hero.reportHeading}
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed md:text-[0.94rem] lg:text-[0.98rem] md:leading-[1.55] 2xl:text-base 2xl:leading-relaxed">
+                    {d.hero.reportBody}
+                  </p>
+                  <button
+                    type="button"
+                    aria-disabled="true"
+                    className="inline-flex items-center justify-center self-start bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
+                  >
+                    {d.hero.reportCta}
+                  </button>
+                </div>
+              </RevealWrapper>
             </div>
           </div>
 
           {/* RIGHT: image */}
-          <div className="relative w-full h-[60vh] md:h-[calc(100vh-80px)] overflow-hidden">
+          <RevealWrapper delay={1} className="relative w-full h-[60vh] md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] overflow-hidden">
             <Image
               src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80"
               alt={d.hero.imgAlt}
@@ -76,7 +81,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
-          </div>
+          </RevealWrapper>
 
         </div>
       </section>
@@ -88,35 +93,37 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid gap-12 lg:grid-cols-[1.3fr_0.9fr]">
             <div className="py-2 lg:py-6">
-              <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">{d.cips.eyebrow}</p>
-              <div className="flex flex-wrap items-center gap-8 mb-8">
-                <Image
-                  src="/logo/profitia-default.svg"
-                  alt="Profitia"
-                  width={140}
-                  height={38}
-                  className="h-8 w-auto"
-                />
-                <Image
-                  src="/logo/cips.png"
-                  alt="CIPS"
-                  width={129}
-                  height={50}
-                  className="h-9 w-auto"
-                />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-3xl leading-tight text-gray-900">
-                {d.cips.h2}
-              </h2>
-              <p className="text-gray-600 text-base leading-relaxed mt-6 max-w-3xl">
-                {d.cips.body1}
-              </p>
-              <p className="text-gray-600 text-base leading-relaxed mt-4 max-w-3xl">
-                {d.cips.body2}
-              </p>
+              <RevealWrapper delay={0}>
+                <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">{d.cips.eyebrow}</p>
+                <div className="flex flex-wrap items-center gap-8 mb-8">
+                  <Image
+                    src="/logo/profitia-default.svg"
+                    alt="Profitia"
+                    width={140}
+                    height={38}
+                    className="h-8 w-auto"
+                  />
+                  <Image
+                    src="/logo/cips.png"
+                    alt="CIPS"
+                    width={129}
+                    height={50}
+                    className="h-9 w-auto"
+                  />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-3xl leading-tight text-gray-900">
+                  {d.cips.h2}
+                </h2>
+                <p className="text-gray-600 text-base leading-relaxed mt-6 max-w-3xl">
+                  {d.cips.body1}
+                </p>
+                <p className="text-gray-600 text-base leading-relaxed mt-4 max-w-3xl">
+                  {d.cips.body2}
+                </p>
+              </RevealWrapper>
             </div>
 
-            <div className="relative overflow-hidden bg-[#242F44] text-white min-h-[520px] lg:min-h-full lg:mr-[calc(50%-50vw-1.5rem)]">
+            <RevealWrapper delay={1} className="relative overflow-hidden bg-[#242F44] text-white min-h-[520px] lg:min-h-full lg:mr-[calc(50%-50vw-1.5rem)]">
               <Image
                 src="/cips/warsaw-cips.png"
                 alt={d.cips.conferenceImageAlt}
@@ -159,7 +166,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                   </Link>
                 </div>
               </div>
-            </div>
+            </RevealWrapper>
           </div>
         </div>
       </section>

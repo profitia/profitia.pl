@@ -22,6 +22,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { RevealWrapper } from '@/components/ui'
 import { LeadershipSection } from '@/components/team/LeadershipSection'
 import { FEATURED_TEAM } from '@/lib/team/data'
 
@@ -34,6 +35,7 @@ const COPY = {
       h1: 'Najlepsze negocjacje zaczynają się przed salą negocjacyjną.',
       subtitle:
         'Od ponad 15 lat pomagamy organizacjom budować silniejszą funkcję zakupową poprzez doradztwo, certyfikację CIPS i własną technologię. Pracujemy tam, gdzie decyzje zakupowe realnie wpływają na marżę, koszty i ryzyko operacyjne.',
+      imageAlt: 'Zespół Profitia podczas wspólnej sesji warsztatowej',
     },
     foundation: {
       eyebrow: 'Fundament',
@@ -133,6 +135,7 @@ const COPY = {
       h1: 'The best negotiations begin before you enter the room.',
       subtitle:
         'For over 15 years we have helped organisations build stronger procurement functions - through advisory, CIPS certification and proprietary technology. We work where procurement decisions directly shape margin, cost and operational risk.',
+      imageAlt: 'The Profitia team during a joint workshop session',
     },
     foundation: {
       eyebrow: 'Foundation',
@@ -228,6 +231,10 @@ const COPY = {
   },
 } as const
 
+const HERO_IMAGE = {
+  src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=85',
+}
+
 // ─── Page Component ────────────────────────────────────────────
 
 interface AboutPageProps {
@@ -240,25 +247,53 @@ export function AboutPage({ locale }: AboutPageProps) {
   return (
     <div>
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
-      <div className="container-base pt-20 pb-20 lg:pt-40 lg:pb-32 border-b border-gray-100">
-        <div className="max-w-[44rem]">
-          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-8 lg:mb-12">
-            {t.hero.eyebrow}
-          </p>
-          <h1 className="text-[2.25rem] md:text-[3rem] lg:text-[3.75rem] font-semibold tracking-tight text-gray-900 leading-[1.06] lg:leading-[1.04] mb-8 lg:mb-10">
-            {t.hero.h1}
-          </h1>
-          <p className="text-[1.125rem] md:text-xl text-gray-500 leading-[1.85] max-w-[46ch]">
-            {t.hero.subtitle}
-          </p>
+      <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] border-b border-gray-100">
+        <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
+          <RevealWrapper delay={0} className="lg:max-w-[50%] lg:pr-16">
+            <div className="space-y-8 md:space-y-5 2xl:space-y-8">
+              <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+                {t.hero.eyebrow}
+              </p>
+              <h1 className="font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
+                {t.hero.h1}
+              </h1>
+              <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-500 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed max-w-[46ch]">
+                {t.hero.subtitle}
+              </p>
+            </div>
+          </RevealWrapper>
         </div>
-      </div>
+
+        <RevealWrapper delay={1} className="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%]" aria-hidden="true">
+          <Image
+            src={HERO_IMAGE.src}
+            alt={t.hero.imageAlt}
+            fill
+            className="object-cover"
+            sizes="50vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-[#ece7df]/18" />
+        </RevealWrapper>
+
+        <RevealWrapper delay={1} className="relative lg:hidden mt-8 mx-6 mb-6 aspect-[16/9] rounded-xl overflow-hidden bg-gray-100">
+          <Image
+            src={HERO_IMAGE.src}
+            alt={t.hero.imageAlt}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-[#ece7df]/18" />
+        </RevealWrapper>
+      </section>
 
       {/* ── 2. FOUNDATION ────────────────────────────────────────── */}
       <section className="container-base py-16 lg:py-20 border-b border-gray-100">
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20">
           {/* Stats column */}
-          <div className="lg:pt-1">
+          <RevealWrapper delay={0} className="lg:pt-1">
             <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-10">
               {t.foundation.eyebrow}
             </p>
@@ -274,10 +309,10 @@ export function AboutPage({ locale }: AboutPageProps) {
                 </div>
               ))}
             </div>
-          </div>
+          </RevealWrapper>
 
           {/* Prose column */}
-          <div>
+          <RevealWrapper delay={1}>
             <h2 className="text-3xl md:text-[2.25rem] font-semibold tracking-tight text-gray-900 leading-[1.1] mb-7">
               {t.foundation.h2}
             </h2>
@@ -287,7 +322,7 @@ export function AboutPage({ locale }: AboutPageProps) {
             <p className="text-[15px] text-gray-500 leading-[1.82]">
               {t.foundation.p2}
             </p>
-          </div>
+          </RevealWrapper>
         </div>
       </section>
 
@@ -295,17 +330,17 @@ export function AboutPage({ locale }: AboutPageProps) {
       <section className="container-base py-20 lg:py-28 border-b border-gray-100">
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20">
           {/* Left: heading */}
-          <div className="lg:pt-1">
+          <RevealWrapper delay={0} className="lg:pt-1">
             <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-5">
               {t.capabilities.eyebrow}
             </p>
             <h2 className="text-3xl md:text-[2.25rem] font-semibold tracking-tight text-gray-900 leading-[1.1]">
               {t.capabilities.h2}
             </h2>
-          </div>
+          </RevealWrapper>
 
           {/* Right: numbered rows */}
-          <div className="divide-y divide-gray-100">
+          <RevealWrapper delay={1} className="divide-y divide-gray-100">
             {t.capabilities.items.map((item) => (
               <div key={item.num} className="py-10 lg:py-12 first:pt-0 last:pb-0">
                 <div className="flex gap-5 items-baseline mb-3">
@@ -321,7 +356,7 @@ export function AboutPage({ locale }: AboutPageProps) {
                 </p>
               </div>
             ))}
-          </div>
+          </RevealWrapper>
         </div>
       </section>
 

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 interface Props {
@@ -24,17 +25,17 @@ interface Props {
  */
 export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Props) {
   return (
-    <section className="relative bg-white overflow-hidden min-h-[640px] lg:min-h-[700px]">
+    <section className="relative bg-white overflow-hidden min-h-[640px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
 
       {/* Left: content (inside container so it respects max-width) */}
-      <div className="container-base relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-0 lg:min-h-[700px] lg:flex lg:flex-col lg:justify-center">
+      <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
         <div className="lg:max-w-[52%] lg:pr-12">
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-[10px] font-medium tracking-[0.34em] uppercase text-gray-400 mb-9"
+            className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400"
           >
             {eyebrow}
           </motion.p>
@@ -43,7 +44,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.07 }}
-            className="text-[2.25rem] md:text-[2.75rem] lg:text-[3rem] font-semibold tracking-tight text-gray-900 leading-[1.07] max-w-[20ch] mb-8"
+            className="mt-8 md:mt-5 2xl:mt-8 font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem] max-w-[20ch]"
           >
             {title}
           </motion.h1>
@@ -52,7 +53,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.16 }}
-            className="text-[16px] text-gray-500 leading-[1.75] max-w-[36rem] mb-12"
+            className="mt-8 md:mt-5 2xl:mt-8 text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-500 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed max-w-[36rem]"
           >
             {subtitle}
           </motion.p>
@@ -61,25 +62,21 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.28 }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-8 sm:items-center"
+            className="mt-8 md:mt-5 2xl:mt-8 flex flex-wrap items-center gap-4"
           >
-            {/* Primary CTA — dark navy fill */}
-            <a
+            <Link
               href="#roles"
-              className="inline-flex items-center gap-2 bg-gray-900 text-white text-[13px] font-medium px-6 py-3.5 hover:bg-brand-blue transition-colors duration-200 group"
+              className="btn-primary"
             >
               {cta1}
-              <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
-            </a>
+            </Link>
 
-            {/* Secondary CTA — text link */}
-            <a
+            <Link
               href="#process"
-              className="text-[13px] text-gray-500 hover:text-brand-blue transition-colors duration-200 group inline-flex items-center gap-2"
+              className="btn-secondary"
             >
               {cta2}
-              <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
-            </a>
+            </Link>
           </motion.div>
 
         </div>

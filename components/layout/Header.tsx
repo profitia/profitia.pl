@@ -67,16 +67,15 @@ export default function Header() {
   }
 
   // ── Navigation structure ──────────────────────────────────────
-  // Primary: weighted links (Usługi, Edukacja, Blog)
+  // Primary order requested by design pass.
   const primaryNav = [
     { href: `${prefix}/services`, label: dict.nav.services },
     { href: `${prefix}/education`, label: dict.nav.education },
-    { href: `${prefix}/blog`, label: dict.nav.blog },
-  ]
-  // Secondary: lighter links (O nas, Kariera, Kontakt)
-  const secondaryNav = [
-    { href: `${prefix}/about`, label: dict.nav.about },
     { href: `${prefix}/career`, label: dict.nav.career },
+    { href: `${prefix}/blog`, label: dict.nav.blog },
+    { href: `${prefix}/about`, label: dict.nav.about },
+  ]
+  const secondaryNav = [
     { href: `${prefix}/contact`, label: dict.nav.contact },
   ]
 

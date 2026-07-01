@@ -286,20 +286,23 @@ export default function EducationPage({ locale }: Props) {
   return (
     <>
       {/* 1 — Hero: full-height right-bleed layout matching homepage/career pattern */}
-      <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[680px]">
+      <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
         {/* Content — left half, inside container */}
-        <div className="container mx-auto max-w-7xl px-6 relative z-10 pt-28 pb-20 lg:pt-36 lg:pb-0 lg:min-h-[680px] lg:flex lg:flex-col lg:justify-center">
+        <div className="container mx-auto max-w-7xl px-6 relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
           <div className="lg:max-w-[50%] lg:pr-16">
             <RevealWrapper delay={0}>
-              <p className="label-tag mb-5">{c.hero.label}</p>
-              <h1 className="text-4xl md:text-5xl lg:text-[3.25rem] font-semibold tracking-tight text-gray-900 leading-[1.06] mb-6">
-                {c.hero.headline}
-              </h1>
+              <div className="space-y-8 md:space-y-5 2xl:space-y-8">
+                <p className="label-tag">{c.hero.label}</p>
+                <h1 className="font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
+                  {c.hero.headline}
+                </h1>
+              </div>
             </RevealWrapper>
             <RevealWrapper delay={1}>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-lg mb-10">
-                {c.hero.subtitle}
-              </p>
+              <div className="mt-8 md:mt-5 2xl:mt-8 space-y-8 md:space-y-5 2xl:space-y-8">
+                <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-600 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed max-w-lg">
+                  {c.hero.subtitle}
+                </p>
               <div className="flex flex-wrap items-center gap-4">
                 <Link href={c.hero.ctaPrimary.href} className="btn-primary">
                   {c.hero.ctaPrimary.label}
@@ -307,6 +310,7 @@ export default function EducationPage({ locale }: Props) {
                 <Link href={c.hero.ctaSecondary.href} className="btn-secondary">
                   {c.hero.ctaSecondary.label}
                 </Link>
+              </div>
               </div>
             </RevealWrapper>
           </div>
