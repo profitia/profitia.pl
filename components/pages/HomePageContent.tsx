@@ -106,13 +106,16 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
 
             <div className="relative overflow-hidden bg-[#242F44] text-white min-h-[520px] lg:min-h-full">
               <Image
-                src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1400&q=80"
+                src="https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=1400&q=80"
                 alt={d.cips.conferenceImageAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#1c2a43]/92 via-[#243653]/78 to-[#242F44]/82" />
+              <div
+                className="absolute inset-0"
+                style={{ backgroundColor: 'rgba(72,94,136,0.5)' }}
+              />
               <div className="relative z-10 flex h-full flex-col justify-between px-8 py-10 md:px-10 md:py-12 lg:px-12">
                 <div>
                   <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/70 mb-5">
