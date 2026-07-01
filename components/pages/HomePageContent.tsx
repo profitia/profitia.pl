@@ -402,17 +402,35 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           TESTIMONIAL
           ════════════════════════════════════ */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-5xl mx-auto px-6">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-6">
-            {d.testimonial.eyebrow}
-          </p>
-          <blockquote className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-snug">
-            &ldquo;{d.testimonial.quote}&rdquo;
-          </blockquote>
-          <div className="mt-10 pt-8 border-t border-gray-200">
-            <p className="text-sm font-medium text-gray-900">{d.testimonial.author}</p>
-            <p className="text-sm text-gray-500 mt-1">{d.testimonial.company}</p>
+      <section className="py-28 bg-[#242F44] text-white border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16 items-start">
+            <div className="lg:pt-3">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-8">
+                {d.testimonial.eyebrow}
+              </p>
+              <div className="border-t border-white/10 pt-6">
+                <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-3">
+                  {d.testimonial.company}
+                </p>
+                <p className="text-sm font-medium text-white">{d.testimonial.author}</p>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div aria-hidden="true" className="absolute -top-8 -left-1 text-[6rem] md:text-[7rem] leading-none text-white/10 font-semibold select-none">
+                &ldquo;
+              </div>
+              <blockquote className="relative text-3xl md:text-4xl lg:text-[3.25rem] font-semibold tracking-tight leading-[1.12] text-white max-w-5xl">
+                {d.testimonial.quote}
+              </blockquote>
+              <div className="mt-10 pt-8 border-t border-white/10 lg:hidden">
+                <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-2">
+                  {d.testimonial.company}
+                </p>
+                <p className="text-sm font-medium text-white">{d.testimonial.author}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
