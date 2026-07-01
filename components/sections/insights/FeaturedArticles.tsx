@@ -18,7 +18,7 @@ export default function FeaturedArticles({ copy, articles }: Props) {
 
         {/* Header */}
         <div className="mb-14 max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gray-400 mb-5">
+          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
             {copy.eyebrow}
           </p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight text-gray-900">

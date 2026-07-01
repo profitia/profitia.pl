@@ -11,6 +11,10 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
   const heroTitleParts = d.hero.h1.split('. ')
   const heroTitleLead = heroTitleParts[0]
   const heroTitleTail = heroTitleParts.slice(1).join('. ')
+  const eyebrowTone = 'text-[rgba(0,109,158,0.8)]'
+  const eyebrowToneOnDark = 'text-[rgba(199,237,251,0.82)]'
+  const separatorBorder = 'border-[rgba(149,166,199,0.35)]'
+  const separatorFill = 'bg-[rgba(149,166,199,0.35)]'
 
   return (
     <>
@@ -178,7 +182,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
         <div className="max-w-7xl mx-auto px-6">
 
           <div className="mb-16">
-            <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">{d.problem.eyebrow}</p>
+            <p className={`text-xs font-medium tracking-[0.25em] uppercase mb-5 ${eyebrowTone}`}>{d.problem.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight text-gray-900">
               {d.problem.h2}
             </h2>
@@ -219,13 +223,13 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       <section id="3hhwq4" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">
 
-          <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">{d.insight.eyebrow}</p>
+          <p className={`text-xs font-medium tracking-[0.25em] uppercase mb-5 ${eyebrowTone}`}>{d.insight.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-16 leading-tight text-gray-900">
             {d.insight.h2}
           </h2>
 
           <div className="relative">
-            <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-200" />
+            <div className={`absolute left-4 top-0 bottom-0 w-px ${separatorFill}`} />
             {d.insight.items.map((item) => (
               <div key={item.n} className="relative pl-12 mb-12">
                 <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center text-sm font-medium">
@@ -258,12 +262,12 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       <section id="b5xg0q" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">{d.process.eyebrow}</p>
+            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowTone}`}>{d.process.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
               {d.process.h2}
             </h2>
           </div>
-          <div className="divide-y divide-gray-100">
+          <div className={`divide-y ${separatorBorder}`}>
             {d.process.steps.map((step) => (
               <div key={step.n} className="grid md:grid-cols-[100px_1fr] gap-6 md:gap-10 py-10 group hover:bg-gray-50 rounded-xl px-4 -mx-4 transition-colors duration-200">
                 <div className="text-5xl font-thin text-gray-100 group-hover:text-gray-200 transition-colors leading-none pt-1 select-none">{step.n}</div>
@@ -274,7 +278,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               </div>
             ))}
           </div>
-          <div className="mt-14 pt-10 border-t border-gray-100">
+          <div className={`mt-14 pt-10 border-t ${separatorBorder}`}>
             <p className="text-xl font-medium leading-relaxed">
               {d.process.footer1}{' '}
               <span className="text-gray-400">{d.process.footer2}</span>
@@ -289,7 +293,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       <section id="vqj89m" className="py-28 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-500 mb-5">{d.impact.eyebrow}</p>
+            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowToneOnDark}`}>{d.impact.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
               {d.impact.h2}
             </h2>
@@ -309,10 +313,10 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           USE-CASES
           ════════════════════════════════════ */}
-      <section id="p8800w" className="py-28 bg-white">
+      <section id="p8800w" className="py-28 bg-[rgba(199,237,251,0.24)]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">{d.usecases.eyebrow}</p>
+            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowTone}`}>{d.usecases.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
               {d.usecases.h2}
             </h2>
@@ -326,7 +330,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               </div>
             ))}
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-100">
+          <div className={`mt-12 pt-8 border-t ${separatorBorder}`}>
             <p className="text-gray-600">
               {d.usecases.footer}{' '}
               <Link href="#g6lvxh" className="text-brand-blue font-medium hover:text-brand-blue transition-colors duration-200">
@@ -352,15 +356,15 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           PROOF
           ════════════════════════════════════ */}
-      <section id="d31qlk" className="py-28 bg-gray-50">
+      <section id="d31qlk" className="py-28 bg-[rgba(199,237,251,0.18)]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">{d.proof.eyebrow}</p>
+            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowTone}`}>{d.proof.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
               {d.proof.h2}
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-px bg-gray-200 rounded-2xl overflow-hidden mb-20">
+          <div className={`grid md:grid-cols-3 gap-px rounded-2xl overflow-hidden mb-20 ${separatorFill}`}>
             {d.proof.stats.map((stat) => (
               <div key={stat.val} className="bg-white p-10 text-center">
                 <p className="text-5xl font-semibold text-gray-900 mb-3">{stat.val}</p>
@@ -369,7 +373,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             ))}
           </div>
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-8">
+            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-8 ${eyebrowTone}`}>
               {d.proof.sectorsLabel}
             </p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
@@ -389,7 +393,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       <section id="io58to" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">{d.cases.eyebrow}</p>
+            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowTone}`}>{d.cases.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
               {d.cases.h2}
             </h2>
@@ -407,8 +411,8 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             </div>
             <div className="space-y-10 pt-4">
               {d.cases.blocks.map((item, idx) => (
-                <div key={item.label} className={idx > 0 ? 'border-t border-gray-100 pt-10' : ''}>
-                  <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-gray-400 mb-3">{item.label}</p>
+                <div key={item.label} className={idx > 0 ? `border-t ${separatorBorder} pt-10` : ''}>
+                  <p className={`text-[10px] font-bold tracking-[0.25em] uppercase mb-3 ${eyebrowTone}`}>{item.label}</p>
                   <p className="text-gray-700 leading-relaxed text-sm">{item.text}</p>
                 </div>
               ))}
