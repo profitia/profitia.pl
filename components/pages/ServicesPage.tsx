@@ -1,5 +1,5 @@
-import type { Locale } from '@/lib/capabilities'
-import { SERVICE_SECTIONS } from '@/lib/capabilities'
+import type { Capability, Locale } from '@/lib/capabilities'
+import { CAPABILITIES, SERVICE_SECTIONS } from '@/lib/capabilities'
 import { CapabilityLayout } from '@/components/capabilities'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 const COPY = {
   pl: {
     hero: {
-      eyebrow: 'Advisory · Negocjacje · Analityka',
+      eyebrow: 'Doradztwo · Oszczędności · Negocjacje',
       title: 'Budujemy przewagę zakupową poprzez dane, negocjacje i transformację funkcji zakupowej.',
       subtitle:
         'Pracujemy z organizacjami, które chcą odzyskać kontrolę nad kosztami, poprawić pozycję negocjacyjną i budować decyzje zakupowe w oparciu o dane, a nie intuicję.',
@@ -62,15 +62,42 @@ const EDITORIAL_BREAKS = [
  */
 export default function ServicesPage({ locale }: Props) {
   const c = COPY[locale]
+  const visibleSections = SERVICE_SECTIONS.slice(0, 1).map((section) => ({
+    ...section,
+    eyebrow: { pl: '', en: '' },
+  }))
+
+  const serviceList = [
+    { slug: 'analiza-spot', title: { pl: 'Analiza SPOT', en: 'SPOT Analysis' } },
+    { slug: 'procurement-pmo', title: { pl: 'Oszczędności', en: 'Savings' } },
+    { slug: 'negotiation-preparation', title: { pl: 'Negocjacje', en: 'Negotiations' } },
+    { slug: 'category-strategy', title: { pl: 'Zarządzanie kategoriami', en: 'Category Management' } },
+    { slug: 'interim-management', title: { pl: 'Rent an Expert', en: 'Rent an Expert' } },
+  ] as const
+
+  const advisoryCapabilities: Capability[] = serviceList
+    .map(({ slug, title }) => {
+      const capability = CAPABILITIES.find((item) => item.slug === slug)
+
+      if (!capability) return null
+
+      return {
+        ...capability,
+        title,
+      }
+    })
+    .filter((capability): capability is Capability => capability !== null)
+
   return (
     <CapabilityLayout
       locale={locale}
       prefix="services"
-      sections={SERVICE_SECTIONS}
+      sections={visibleSections}
+      sectionCapabilities={{ advisory: advisoryCapabilities }}
       hero={c.hero}
       cta={c.cta}
       heroVariant="services"
-      editorialBreaks={EDITORIAL_BREAKS}
+      editorialBreaks={[]}
     />
   )
 }

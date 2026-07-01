@@ -53,15 +53,17 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
       >
         {/* Left: section header */}
         <div className="lg:pt-1">
-          <p
-            className={
-              isDominant
-                ? 'text-[10px] font-semibold tracking-[0.3em] uppercase text-gray-400 mb-5'
-                : 'text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-4'
-            }
-          >
-            {t(section.eyebrow, locale)}
-          </p>
+          {t(section.eyebrow, locale) && (
+            <p
+              className={
+                isDominant
+                  ? 'text-[10px] font-semibold tracking-[0.3em] uppercase text-gray-400 mb-5'
+                  : 'text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-4'
+              }
+            >
+              {t(section.eyebrow, locale)}
+            </p>
+          )}
           <h2
             className={
               isDominant

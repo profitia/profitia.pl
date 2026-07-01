@@ -57,8 +57,8 @@
     },
     "hero": {
       "eyebrow": "Profitia",
-      "h1": "Zakupy, które realnie wpływają na wynik firmy",
-      "sub1a": "Pomagamy firmom budować przewagę rynkową poprzez strategiczne zarządzanie kosztami, negocjacje zorientowane na targecie, optymalnie zbudowane procesy zakupowe oraz rozwój kompetencji zakupowych",
+      "h1": "Jesteśmy Profitia. Zakupowy One-Stop-Shop",
+      "sub1a": "Łączymy doradztwo, technologię i rozwój kompetencji, aby wspierać organizacje na każdym etapie transformacji zakupów - od strategii i oszczędności, przez procesy i organizację, po nowoczesne narzędzia oraz edukację zespołów zakupowych.",
       "sub1b": "",
       "sub2": "",
       "cta": "Sprawdź ofertę",
@@ -301,9 +301,38 @@
     },
     "testimonial": {
       "eyebrow": "Opinia klienta",
-      "quote": "Współpraca z Profitią pozwoliła nam wejść na wyższy poziom zarządzania zakupami. Połączenie eksperckiego doradztwa z dostępem do rzetelnych danych i nowoczesnych narzędzi przełożyło się na lepsze przygotowanie negocjacji, większą pewność podejmowanych decyzji i realne oszczędności. To partner, który rozumie wyzwania zakupów i dostarcza rozwiązania mające bezpośredni wpływ na wyniki biznesowe.",
-      "author": "Dyrektor Zakupów",
-      "company": "LipCo Foods"
+      "items": [
+        {
+          "company": "LipCo Foods",
+          "role": "Dyrektor Zakupów",
+          "title": "Współpraca z Profitią pozwoliła nam wejść na wyższy poziom zarządzania zakupami.",
+          "body": "Połączenie eksperckiego doradztwa z dostępem do rzetelnych danych i nowoczesnych narzędzi przełożyło się na lepsze przygotowanie negocjacji, większą pewność podejmowanych decyzji i realne oszczędności. To partner, który rozumie wyzwania zakupów i dostarcza rozwiązania mające bezpośredni wpływ na wyniki biznesowe."
+        },
+        {
+          "company": "Firma 1",
+          "role": "Stanowisko 1",
+          "title": "Rekomendacja 1",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "company": "Firma 2",
+          "role": "Stanowisko 2",
+          "title": "Rekomendacja 2",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+        },
+        {
+          "company": "Firma 3",
+          "role": "Stanowisko 3",
+          "title": "Rekomendacja 3",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla."
+        },
+        {
+          "company": "Firma 4",
+          "role": "Stanowisko 4",
+          "title": "Rekomendacja 4",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+        }
+      ]
     },
     "cta": {
       "eyebrow": "Następny krok",

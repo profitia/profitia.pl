@@ -301,9 +301,38 @@
     },
     "testimonial": {
       "eyebrow": "Client perspective",
-      "quote": "Working with Profitia helped us move to a higher level of procurement management. The combination of expert advisory support, reliable data and modern tools translated into better negotiation preparation, greater confidence in our decisions and tangible savings. This is a partner that understands procurement challenges and delivers solutions with direct business impact.",
-      "author": "Procurement Director",
-      "company": "LipCo Foods"
+      "items": [
+        {
+          "company": "LipCo Foods",
+          "role": "Procurement Director",
+          "title": "Working with Profitia helped us move to a higher level of procurement management.",
+          "body": "The combination of expert advisory support, reliable data and modern tools translated into better negotiation preparation, greater confidence in our decisions and tangible savings. This is a partner that understands procurement challenges and delivers solutions with direct business impact."
+        },
+        {
+          "company": "Company 1",
+          "role": "Role 1",
+          "title": "Recommendation 1",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "company": "Company 2",
+          "role": "Role 2",
+          "title": "Recommendation 2",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
+        },
+        {
+          "company": "Company 3",
+          "role": "Role 3",
+          "title": "Recommendation 3",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla."
+        },
+        {
+          "company": "Company 4",
+          "role": "Role 4",
+          "title": "Recommendation 4",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+        }
+      ]
     },
     "cta": {
       "eyebrow": "Next step",

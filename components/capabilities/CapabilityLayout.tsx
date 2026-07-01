@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import type { Locale, CapabilitySectionDef } from '@/lib/capabilities'
+import type { Locale, Capability, CapabilitySectionDef } from '@/lib/capabilities'
 import { getCapabilitiesForSection } from '@/lib/capabilities'
 import CapabilityHero from './CapabilityHero'
 import CapabilitySection from './CapabilitySection'
@@ -34,6 +34,10 @@ interface Props {
    * afterIndex: render after sections[afterIndex].
    */
   editorialBreaks?: Array<{ afterIndex: number; pl: string; en: string }>
+  /**
+   * Optional per-section capability overrides for custom listing composition.
+   */
+  sectionCapabilities?: Partial<Record<string, Capability[]>>
 }
 
 /**
@@ -57,6 +61,7 @@ export default function CapabilityLayout({
   heroVariant,
   philosophyStatement,
   editorialBreaks,
+  sectionCapabilities,
 }: Props) {
   return (
     <>
@@ -80,7 +85,7 @@ export default function CapabilityLayout({
         )}
 
         {sections.map((section, index) => {
-          const capabilities = getCapabilitiesForSection(section.id)
+          const capabilities = sectionCapabilities?.[section.id] ?? getCapabilitiesForSection(section.id)
           const editorialBreak = editorialBreaks?.find((b) => b.afterIndex === index)
 
           return (

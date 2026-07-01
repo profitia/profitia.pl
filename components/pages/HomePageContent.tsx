@@ -3,9 +3,13 @@ import Link from 'next/link'
 import type { Dictionary } from '@/lib/i18n'
 import { FeaturedArticles } from '@/components/sections/insights'
 import HomePillars from '@/components/home/HomePillars'
+import InteractiveTestimonials from '@/components/home/InteractiveTestimonials'
 
 export default function HomePageContent({ dict }: { dict: Dictionary }) {
   const d = dict.homepage
+  const heroTitleParts = d.hero.h1.split('. ')
+  const heroTitleLead = heroTitleParts[0]
+  const heroTitleTail = heroTitleParts.slice(1).join('. ')
 
   return (
     <>
@@ -17,12 +21,19 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
 
           {/* LEFT: text */}
           <div className="h-auto md:h-[calc(100vh-80px)] px-6 md:px-12">
-            <div className="flex h-full max-w-xl flex-col justify-center py-16 md:py-20">
-              <div className="space-y-8">
-                <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08]">
-                  {d.hero.h1}
+            <div className="flex h-full w-full flex-col justify-center py-16 md:py-20">
+              <div className="space-y-8 max-w-xl">
+                <h1 className="max-w-xl font-semibold text-gray-900">
+                  <span className="block whitespace-nowrap tracking-[-0.05em] text-[2.5rem] sm:text-[3rem] md:text-[3.9rem]">
+                    {heroTitleLead}.
+                  </span>
+                  {heroTitleTail ? (
+                    <span className="mt-3 block whitespace-nowrap tracking-[-0.055em] text-[1.88rem] leading-[1.02] sm:mt-3 sm:text-[2.26rem] md:mt-3.5 md:text-[2.66rem]">
+                      {heroTitleTail}
+                    </span>
+                  ) : null}
                 </h1>
-                <div className="space-y-5">
+                <div className="space-y-5 max-w-xl">
                   <p className="text-lg text-gray-600 leading-relaxed">
                     {d.hero.sub1a}<br />
                     {d.hero.sub1b}
@@ -402,38 +413,10 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           TESTIMONIAL
           ════════════════════════════════════ */}
-      <section className="py-28 bg-[#242F44] text-white border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16 items-start">
-            <div className="lg:pt-3">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-8">
-                {d.testimonial.eyebrow}
-              </p>
-              <div className="border-t border-white/10 pt-6">
-                <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-3">
-                  {d.testimonial.company}
-                </p>
-                <p className="text-sm font-medium text-white">{d.testimonial.author}</p>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div aria-hidden="true" className="absolute -top-6 left-0 text-[4.5rem] md:text-[5.5rem] leading-none text-white/10 font-semibold select-none">
-                &ldquo;
-              </div>
-              <blockquote className="relative text-2xl md:text-3xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.18] text-white max-w-4xl">
-                {d.testimonial.quote}
-              </blockquote>
-              <div className="mt-10 pt-8 border-t border-white/10 lg:hidden">
-                <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-2">
-                  {d.testimonial.company}
-                </p>
-                <p className="text-sm font-medium text-white">{d.testimonial.author}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <InteractiveTestimonials
+        eyebrow={d.testimonial.eyebrow}
+        items={d.testimonial.items}
+      />
 
       {/* ════════════════════════════════════
           CTA

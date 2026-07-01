@@ -7,6 +7,8 @@ interface Props {
   label: string
   /** CTA href */
   href: string
+  /** Optional custom invitation copy shown above the actions */
+  invitation?: string
   /** Retained for backwards compatibility - not rendered visually */
   note?: string
 }
@@ -36,13 +38,13 @@ const CONTACT_HREF: Record<Locale, string> = {
  * Leads with a human statement, then a simple action.
  * Restrained close that fits both listing and detail pages.
  */
-export default function CapabilityCTA({ locale, label, href }: Props) {
+export default function CapabilityCTA({ locale, label, href, invitation }: Props) {
   const c = COPY[locale]
 
   return (
     <div className="border-t border-gray-100 pt-16 pb-16">
       <p className="text-[17px] text-gray-800 font-medium tracking-tight leading-snug mb-8 max-w-[34rem]">
-        {c.invitation}
+        {invitation ?? c.invitation}
       </p>
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         <Link

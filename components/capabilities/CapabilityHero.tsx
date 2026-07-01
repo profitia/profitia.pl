@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { Locale } from '@/lib/capabilities'
 
 interface Props {
@@ -21,6 +22,41 @@ interface Props {
  * Variant controls pacing - not visual language.
  */
 export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Props) {
+  if (variant === 'services') {
+    return (
+      <section className="bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="h-auto md:h-[calc(100vh-80px)] px-6 md:px-12">
+            <div className="flex h-full max-w-xl flex-col justify-center py-16 md:py-20">
+              <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-8">
+                {eyebrow}
+              </p>
+              <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08]">
+                {title}
+              </h1>
+              {subtitle && (
+                <p className="mt-8 text-lg text-gray-600 leading-relaxed max-w-lg">
+                  {subtitle}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="relative w-full h-[60vh] md:h-[calc(100vh-80px)] overflow-hidden">
+            <Image
+              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80"
+              alt="Profitia services advisory hero"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   // Services: commanding opening statement - more top gravity, terse subtitle
   // Education: current pacing, wider subtitle (expansive academy statement)
   const section = variant === 'services'
