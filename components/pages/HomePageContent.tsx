@@ -17,7 +17,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
 
           {/* LEFT: text */}
           <div className="h-auto md:h-[calc(100vh-80px)] px-6 md:px-12">
-            <div className="flex h-full max-w-xl flex-col justify-between py-16 md:py-20">
+            <div className="flex h-full max-w-xl flex-col justify-center py-16 md:py-20">
               <div className="space-y-8">
                 <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08]">
                   {d.hero.h1}
@@ -33,7 +33,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                 </div>
               </div>
 
-              <div className="py-10 md:py-12">
+              <div className="py-10 md:py-10">
                 <div className="border-t border-gray-200" />
               </div>
 
