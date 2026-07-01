@@ -49,21 +49,22 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
 
   if (variant === 'row') {
     return (
-      <div className={`group border-b border-gray-100 flex items-start justify-between gap-6 ${isFirst ? 'pt-6 pb-9' : 'py-6'}`}>
+      <div className={`group border-b border-[rgba(149,166,199,0.3)] flex items-start justify-between gap-6 rounded-xl px-4 -mx-4 transition-colors duration-200 hover:bg-[rgba(199,237,251,0.2)] ${isFirst ? 'pt-6 pb-9' : 'py-6'}`}>
         <div className="min-w-0">
-          <h3 className={`text-[15px] tracking-tight text-gray-900 leading-snug ${isFirst ? 'font-semibold' : 'font-medium'}`}>
+          <h3 className={`text-[15px] tracking-tight text-[rgb(36,47,68)] leading-snug ${isFirst ? 'font-semibold' : 'font-medium'}`}>
             {title}
           </h3>
-          <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400 mt-1">
+          <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-[rgb(72,94,136)] mt-1">
             {eyebrow}
           </p>
         </div>
         <Link
           href={href}
-          className={`flex-shrink-0 text-xs hover:text-brand-blue transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
+          className={`group/link flex-shrink-0 text-xs text-[rgb(72,94,136)] hover:text-[rgb(0,109,158)] transition-colors duration-200 whitespace-nowrap pt-0.5`}
           aria-label={`${title} - ${navLabel}`}
         >
-          {navLabel} →
+          <span>{navLabel}</span>
+          <span aria-hidden="true" className="ml-1 inline-block transition-transform duration-200 group-hover/link:translate-x-1">→</span>
         </Link>
       </div>
     )

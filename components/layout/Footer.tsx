@@ -124,7 +124,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="CIPS Centre of Excellence"
-              className="inline-block opacity-60 hover:opacity-85 transition-opacity duration-200 ease-out"
+              className="inline-block opacity-75 hover:opacity-95 transition-opacity duration-200 ease-out"
             >
               <Image
                 src="/logo/cips-footer.png"
@@ -146,7 +146,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-sm text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
+                    className="block text-sm text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
                 >
                   {link.label}
                 </Link>
@@ -166,12 +166,12 @@ export default function Footer() {
                 <ProtectedPhone
                   parts={['+48', '533', '747', '340']}
                   display="+48 533 747 340"
-                  className="block text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
+                  className="block text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
                 />
                 <ProtectedEmail
                   user="kontakt"
                   domain="profitia.pl"
-                  className="block text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
+                  className="block text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
                 />
               </div>
 
@@ -188,12 +188,12 @@ export default function Footer() {
                   <ProtectedEmail
                     user="agnieszka.tworzynska"
                     domain="profitia.pl"
-                    className="block text-xs text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
+                    className="block text-xs text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
                   />
                   <ProtectedPhone
                     parts={['+48', '572', '001', '381']}
                     display="+48 572 001 381"
-                    className="block text-xs text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
+                    className="block text-xs text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
                   />
                 </div>
               </div>
@@ -211,12 +211,12 @@ export default function Footer() {
                   <ProtectedEmail
                     user="tomasz.uscinski"
                     domain="profitia.pl"
-                    className="block text-xs text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
+                    className="block text-xs text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
                   />
                   <ProtectedPhone
                     parts={['+48', '787', '417', '293']}
                     display="+48 787 417 293"
-                    className="block text-xs text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
+                    className="block text-xs text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
                   />
                 </div>
               </div>
@@ -233,7 +233,7 @@ export default function Footer() {
                 href="https://profitia.pl/images/pedp/PEDP-2026-CIPS.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
+                className="block text-sm text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
               >
                 PEDP - broszura informacyjna ↗
               </a>
@@ -241,7 +241,7 @@ export default function Footer() {
                 href="https://profitia.pl/images/profitia/cips-globalstandard_2017_pl.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out leading-snug"
+                className="block text-sm text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out leading-snug"
               >
                 Globalny Standard w Zakupach i Łańcuchu Dostaw ↗
               </a>
@@ -253,7 +253,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={isEN ? 'Profitia on LinkedIn' : 'Profitia na LinkedIn'}
-                className="flex items-center justify-center w-8 h-8 text-white/60 hover:text-brand-blue transition-colors duration-200 ease-out"
+                className="flex items-center justify-center w-8 h-8 text-white/60 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
               >
                 <IconLinkedIn />
               </a>
@@ -262,7 +262,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={isEN ? 'Profitia on Facebook' : 'Profitia na Facebook'}
-                className="flex items-center justify-center w-8 h-8 text-white/60 hover:text-brand-blue transition-colors duration-200 ease-out"
+                className="flex items-center justify-center w-8 h-8 text-white/60 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
               >
                 <IconFacebook />
               </a>
@@ -281,7 +281,7 @@ export default function Footer() {
           </span>
           <button
             onClick={openModal}
-            className="text-xs text-white/60 hover:text-brand-blue transition-colors duration-200 ease-out whitespace-nowrap"
+            className="text-xs text-white/60 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out whitespace-nowrap"
           >
             {dict.footer.privacySettings}
           </button>

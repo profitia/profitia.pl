@@ -42,22 +42,22 @@ export default function CapabilityCTA({ locale, label, href, invitation }: Props
   const c = COPY[locale]
 
   return (
-    <div className="border-t border-gray-100 pt-16 pb-16">
-      <p className="text-[17px] text-gray-800 font-medium tracking-tight leading-snug mb-8 max-w-[34rem]">
+    <div className="border-t border-[rgba(149,166,199,0.35)] pt-16 pb-16">
+      <p className="text-[17px] text-[rgb(59,56,56)] font-medium tracking-tight leading-snug mb-8 max-w-[34rem]">
         {invitation ?? c.invitation}
       </p>
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         <Link
           href={href}
-          className="inline-block bg-gray-900 text-white rounded-xl px-6 py-3.5 text-sm font-medium hover:bg-brand-blue transition-colors duration-200"
+          className="inline-block bg-[rgb(36,47,68)] text-white rounded-xl px-6 py-3.5 text-sm font-medium hover:bg-[rgb(72,94,136)] transition-colors duration-[250ms]"
         >
           {label}
         </Link>
-        <span className="text-sm text-gray-400">
+        <span className="text-sm text-[rgb(59,56,56)]">
           {c.or}{' '}
           <Link
             href={CONTACT_HREF[locale]}
-            className="text-gray-600 underline underline-offset-4 decoration-gray-300 hover:text-brand-blue transition-colors duration-200"
+            className="text-[rgb(72,94,136)] underline underline-offset-4 decoration-[rgba(149,166,199,0.45)] hover:text-[rgb(0,109,158)] transition-colors duration-200"
           >
             {c.contactLink}
           </Link>

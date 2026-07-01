@@ -31,14 +31,14 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
             <div className="flex h-full max-w-xl flex-col justify-center py-16 md:py-10 2xl:py-20">
               <RevealWrapper delay={0}>
                 <div className="space-y-8 md:space-y-5 2xl:space-y-8">
-                  <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+                  <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">
                     {eyebrow}
                   </p>
-                  <h1 className="font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem] max-w-xl">
+                  <h1 className="font-semibold text-[rgb(36,47,68)] tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem] max-w-xl">
                     {title}
                   </h1>
                   {subtitle && (
-                    <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-600 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed max-w-lg">
+                    <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-[rgb(59,56,56)] leading-relaxed md:leading-[1.55] 2xl:leading-relaxed max-w-lg">
                       {subtitle}
                     </p>
                   )}

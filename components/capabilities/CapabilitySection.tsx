@@ -36,10 +36,10 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
     <section
       className={
         isDominant
-          ? 'border-t border-gray-100 pt-28 pb-16'
+          ? 'border-t border-[rgba(149,166,199,0.3)] pt-28 pb-16'
           : isFeatured
-          ? 'border-t border-gray-100 pt-20 pb-10'
-          : 'border-t border-gray-100 pt-12 pb-4'
+          ? 'border-t border-[rgba(149,166,199,0.3)] pt-20 pb-10'
+          : 'border-t border-[rgba(149,166,199,0.3)] pt-12 pb-4'
       }
     >
       <div
@@ -57,8 +57,8 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
             <p
               className={
                 isDominant
-                  ? 'text-[10px] font-semibold tracking-[0.3em] uppercase text-gray-400 mb-5'
-                  : 'text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-4'
+                  ? 'text-[10px] font-semibold tracking-[0.3em] uppercase text-[rgba(0,109,158,0.8)] mb-5'
+                  : 'text-[10px] font-semibold tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)] mb-4'
               }
             >
               {t(section.eyebrow, locale)}
@@ -67,10 +67,10 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
           <h2
             className={
               isDominant
-                ? 'text-3xl font-semibold tracking-tight text-gray-900 leading-snug mb-6'
+                ? 'text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-6'
                 : isFeatured
-                ? 'text-xl font-semibold tracking-tight text-gray-900 leading-snug mb-5'
-                : 'text-lg font-semibold tracking-tight text-gray-900 leading-snug mb-4'
+                ? 'text-xl font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-5'
+                : 'text-lg font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-4'
             }
           >
             {t(section.title, locale)}
@@ -78,8 +78,8 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
           <p
             className={
               isDominant
-                ? 'text-[15px] text-gray-500 leading-relaxed max-w-[26rem]'
-                : 'text-sm text-gray-400 leading-relaxed'
+                ? 'text-[15px] text-[rgb(59,56,56)] leading-relaxed max-w-[26rem]'
+                : 'text-sm text-[rgb(59,56,56)] leading-relaxed'
             }
           >
             {t(section.description, locale)}
