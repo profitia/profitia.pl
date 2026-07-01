@@ -30,11 +30,11 @@ export default function Page() {
             className="flex items-center gap-2 text-xs text-gray-400 mb-12"
             aria-label="Ścieżka nawigacji"
           >
-            <Link href="/" className="hover:text-gray-600 transition-colors duration-200">
+            <Link href="/" className="hover:text-brand-blue transition-colors duration-200">
               Strona główna
             </Link>
             <span aria-hidden="true">/</span>
-            <Link href="/career" className="hover:text-gray-600 transition-colors duration-200">
+            <Link href="/career" className="hover:text-brand-blue transition-colors duration-200">
               Kariera
             </Link>
             <span aria-hidden="true">/</span>

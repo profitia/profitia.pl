@@ -50,7 +50,7 @@ export default function CareerFAQ({ eyebrow, title, items }: Props) {
                   className="w-full text-left group py-7 flex items-start justify-between gap-6"
                   aria-expanded={openIndex === i}
                 >
-                  <span className="text-[16px] font-medium text-gray-800 tracking-tight group-hover:text-gray-600 transition-colors duration-200">
+                  <span className="text-[16px] font-medium text-gray-800 tracking-tight group-hover:text-brand-blue transition-colors duration-200">
                     {item.q}
                   </span>
                   <motion.span

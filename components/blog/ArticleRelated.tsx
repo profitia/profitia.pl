@@ -57,7 +57,7 @@ export function ArticleRelated({ articles, locale }: ArticleRelatedProps) {
                   </span>
                 )}
               </div>
-              <h4 className="text-base font-semibold tracking-tight text-gray-900 leading-snug group-hover:text-gray-600 transition-colors duration-200 ease-out">
+              <h4 className="text-base font-semibold tracking-tight text-gray-900 leading-snug group-hover:text-brand-blue transition-colors duration-200 ease-out">
                 {article.title}
               </h4>
             </Link>

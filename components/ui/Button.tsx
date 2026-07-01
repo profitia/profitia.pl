@@ -16,10 +16,10 @@ interface Props {
 }
 
 const VARIANTS: Record<Variant, string> = {
-  'primary':        'bg-black text-white hover:bg-gray-800',
-  'secondary':      'border border-gray-300 text-gray-700 hover:border-gray-900 hover:text-gray-900',
-  'primary-dark':   'bg-white text-black hover:bg-gray-100',
-  'secondary-dark': 'border border-gray-700 text-gray-300 hover:border-gray-400 hover:text-white',
+  'primary':        'bg-gray-900 text-white hover:bg-brand-blue',
+  'secondary':      'border border-brand-blue text-brand-blue hover:bg-[rgba(0,109,158,0.05)] hover:border-brand-blue hover:text-brand-blue',
+  'primary-dark':   'bg-white text-gray-900 hover:bg-brand-blue hover:text-white',
+  'secondary-dark': 'border border-white/30 text-white/78 hover:border-brand-blue hover:text-white hover:bg-[rgba(0,109,158,0.08)]',
   'brand':          'text-white',
 }
 
@@ -36,10 +36,10 @@ const BRAND_BG = { backgroundColor: '#242F44' } as const
  * Renders as <Link> when href is provided, otherwise as <button>.
  *
  * Variants:
- *   primary       - bg-black (light sections)
- *   secondary     - border-gray-300 outline (light sections)
- *   primary-dark  - bg-white (dark/black sections)
- *   secondary-dark- border-gray-700 outline (dark/black sections)
+ *   primary       - Deep Navy (light sections)
+ *   secondary     - Corporate Blue outline (light sections)
+ *   primary-dark  - white fill (dark/navy sections)
+ *   secondary-dark- white/blue outline (dark/navy sections)
  *   brand         - bg-[#242F44] → hover:#006D9E (high-brand moments)
  */
 export default function Button({

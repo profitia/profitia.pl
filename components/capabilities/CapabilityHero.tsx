@@ -57,15 +57,10 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
     )
   }
 
-  // Services: commanding opening statement - more top gravity, terse subtitle
-  // Education: current pacing, wider subtitle (expansive academy statement)
-  const section = variant === 'services'
-    ? 'pt-28 pb-24 border-b border-gray-100'
-    : 'pt-20 pb-16 border-b border-gray-100'
+  // Education/default: current pacing, wider subtitle for academy-style statement.
+  const section = 'pt-20 pb-16 border-b border-gray-100'
 
-  const subtitleMaxW = variant === 'services'
-    ? 'max-w-[22rem]'
-    : variant === 'education'
+  const subtitleMaxW = variant === 'education'
     ? 'max-w-[42rem]'
     : 'max-w-[36rem]'
 

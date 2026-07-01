@@ -34,8 +34,8 @@ export function ConsentToggle({ id, enabled, required = false, onChange }: Conse
       className={[
         'relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full',
         'transition-colors duration-200 ease-out',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2',
-        enabled ? 'bg-gray-900' : 'bg-gray-200',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2',
+        enabled ? 'bg-brand-blue' : 'bg-gray-200',
         required ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
       ].join(' ')}
     >

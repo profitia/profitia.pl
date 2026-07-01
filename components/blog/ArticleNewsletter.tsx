@@ -54,11 +54,11 @@ export function ArticleNewsletter({ locale }: ArticleNewsletterProps) {
             required
             placeholder={t.placeholder}
             aria-label={t.placeholder}
-            className="flex-1 min-w-0 px-4 py-3 text-sm bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-500 transition-colors duration-200 ease-out"
+            className="flex-1 min-w-0 px-4 py-3 text-sm bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-brand-blue transition-colors duration-200 ease-out"
           />
           <button
             type="submit"
-            className="px-5 py-3 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
+            className="px-5 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-brand-blue rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
           >
             {t.button}
           </button>

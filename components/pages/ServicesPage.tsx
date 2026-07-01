@@ -75,18 +75,18 @@ export default function ServicesPage({ locale }: Props) {
     { slug: 'interim-management', title: { pl: 'Rent an Expert', en: 'Rent an Expert' } },
   ] as const
 
-  const advisoryCapabilities: Capability[] = serviceList
-    .map(({ slug, title }) => {
-      const capability = CAPABILITIES.find((item) => item.slug === slug)
+  const advisoryCapabilities = serviceList.reduce<Capability[]>((acc, { slug, title }) => {
+    const capability = CAPABILITIES.find((item) => item.slug === slug)
 
-      if (!capability) return null
+    if (!capability) return acc
 
-      return {
-        ...capability,
-        title,
-      }
+    acc.push({
+      ...capability,
+      title,
     })
-    .filter((capability): capability is Capability => capability !== null)
+
+    return acc
+  }, [])
 
   return (
     <CapabilityLayout

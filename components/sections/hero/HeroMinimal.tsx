@@ -37,7 +37,7 @@ export function HeroMinimal({
             {breadcrumb.map((crumb, i) => (
               <span key={crumb.href} className="flex items-center gap-2">
                 {i > 0 && <span>/</span>}
-                <a href={crumb.href} className="hover:text-gray-900 transition-colors duration-200">
+                <a href={crumb.href} className="hover:text-brand-blue transition-colors duration-200">
                   {crumb.label}
                 </a>
               </span>

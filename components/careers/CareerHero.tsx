@@ -66,7 +66,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             {/* Primary CTA — dark navy fill */}
             <a
               href="#roles"
-              className="inline-flex items-center gap-2 bg-gray-900 text-white text-[13px] font-medium px-6 py-3.5 hover:bg-gray-700 transition-colors duration-200 group"
+              className="inline-flex items-center gap-2 bg-gray-900 text-white text-[13px] font-medium px-6 py-3.5 hover:bg-brand-blue transition-colors duration-200 group"
             >
               {cta1}
               <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
@@ -75,7 +75,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             {/* Secondary CTA — text link */}
             <a
               href="#process"
-              className="text-[13px] text-gray-400 hover:text-gray-700 transition-colors duration-200 group inline-flex items-center gap-2"
+              className="text-[13px] text-gray-500 hover:text-brand-blue transition-colors duration-200 group inline-flex items-center gap-2"
             >
               {cta2}
               <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>

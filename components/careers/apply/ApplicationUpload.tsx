@@ -77,7 +77,7 @@ export function ApplicationUpload({
               type="button"
               onClick={handleClear}
               disabled={disabled}
-              className="flex-shrink-0 text-[12px] text-gray-400 hover:text-gray-700 transition-colors duration-200 whitespace-nowrap"
+              className="flex-shrink-0 text-[12px] text-gray-400 hover:text-brand-blue transition-colors duration-200 whitespace-nowrap"
             >
               Usuń / Remove
             </button>
@@ -92,7 +92,7 @@ export function ApplicationUpload({
               type="button"
               onClick={() => inputRef.current?.click()}
               disabled={disabled}
-              className="flex-shrink-0 text-[12px] text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200 whitespace-nowrap underline underline-offset-4 decoration-gray-300 hover:decoration-gray-600"
+              className="flex-shrink-0 text-[12px] text-gray-600 hover:text-brand-blue font-medium transition-colors duration-200 whitespace-nowrap underline underline-offset-4 decoration-gray-300 hover:decoration-brand-blue"
             >
               Wybierz plik / Choose file
             </button>

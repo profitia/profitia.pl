@@ -4,7 +4,7 @@
  * FormField - controlled text/email/tel input with institutional styling.
  *
  * Label: uppercase micro-label system.
- * Input: border-gray-200, focus:border-gray-400, no shadows, no glow.
+ * Input: brand-tinted border, Corporate Blue focus, no shadows, no glow.
  * Error: calm red text, no explosion styling.
  */
 
@@ -69,7 +69,7 @@ export function FormField({
         className={`${INPUT_BASE} ${
           error
             ? 'border-red-200 focus:border-red-300'
-            : 'border-gray-200 focus:border-gray-400'
+            : 'border-gray-200 focus:border-brand-blue'
         }`}
       />
       {error && (

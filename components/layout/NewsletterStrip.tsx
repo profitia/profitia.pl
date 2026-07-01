@@ -5,7 +5,7 @@
  *
  * Canonical spec:
  *   - Static. No animation. No hide-on-scroll. No dynamic behavior.
- *   - bg-gray-950, ~38px height.
+ *   - deep navy strip, ~38px height.
  *   - Small, quiet typography. No gradients, icons, emojis, counters.
  *   - CTA navigates to the footer newsletter section (existing form, no duplication).
  *
@@ -38,15 +38,15 @@ export default function NewsletterStrip() {
 
   return (
     <div
-      className="flex items-center justify-center gap-5 px-4 bg-gray-950"
+      className="flex items-center justify-center gap-5 px-4 bg-gray-900"
       style={{ height: '38px' }}
     >
-      <p className="text-[11px] text-gray-500 leading-none tracking-[0.01em] truncate min-w-0">
+      <p className="text-[11px] text-white/62 leading-none tracking-[0.01em] truncate min-w-0">
         {t.text}
       </p>
       <Link
         href={newsletterHref}
-        className="text-[11px] text-gray-400 hover:text-gray-200 transition-colors duration-200 shrink-0 underline underline-offset-2 decoration-gray-700 leading-none"
+        className="text-[11px] text-white/72 hover:text-brand-blue transition-colors duration-200 shrink-0 underline underline-offset-2 decoration-white/25 leading-none"
       >
         {t.cta}
       </Link>

@@ -60,7 +60,7 @@ export function ApplicationTextarea({
           'disabled:opacity-50 disabled:cursor-not-allowed',
           error
             ? 'border-red-200 focus:border-red-300'
-            : 'border-gray-200 focus:border-gray-400',
+            : 'border-gray-200 focus:border-brand-blue',
         ].join(' ')}
       />
       {error && (

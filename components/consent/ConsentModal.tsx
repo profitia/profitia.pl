@@ -131,7 +131,7 @@ export function ConsentModal({ locale = 'pl' }: ConsentModalProps) {
             <button
               onClick={closeModal}
               aria-label={t.close}
-              className="ml-4 mt-0.5 flex-shrink-0 p-1.5 text-gray-400 hover:text-gray-900 transition-colors duration-200 ease-out rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
+              className="ml-4 mt-0.5 flex-shrink-0 p-1.5 text-gray-500 hover:text-brand-blue transition-colors duration-200 ease-out rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path
@@ -207,7 +207,7 @@ export function ConsentModal({ locale = 'pl' }: ConsentModalProps) {
               {/* Primary: Save */}
               <button
                 onClick={handleSave}
-                className="px-5 py-3 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 ease-out"
+                className="px-5 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-brand-blue rounded-lg transition-colors duration-200 ease-out"
               >
                 {t.save}
               </button>
@@ -215,7 +215,7 @@ export function ConsentModal({ locale = 'pl' }: ConsentModalProps) {
               {/* Cancel */}
               <button
                 onClick={closeModal}
-                className="px-4 py-3 text-sm text-gray-400 hover:text-gray-700 transition-colors duration-200 ease-out"
+                className="px-4 py-3 text-sm text-gray-500 hover:text-brand-blue transition-colors duration-200 ease-out"
               >
                 {t.cancel}
               </button>

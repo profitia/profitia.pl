@@ -88,7 +88,7 @@ export function ConsentBanner({ locale = 'pl' }: ConsentBannerProps) {
               {t.body}{' '}
               <a
                 href={`${prefix}/privacy`}
-                className="underline text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out whitespace-nowrap"
+                className="underline text-gray-500 hover:text-brand-blue transition-colors duration-200 ease-out whitespace-nowrap"
               >
                 {t.privacyLink} ↗
               </a>
@@ -100,7 +100,7 @@ export function ConsentBanner({ locale = 'pl' }: ConsentBannerProps) {
             {/* Primary: Accept all */}
             <button
               onClick={acceptAll}
-              className="px-5 py-3 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
+              className="px-5 py-3 text-sm font-medium text-white bg-gray-900 hover:bg-brand-blue rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
             >
               {t.acceptAll}
             </button>
@@ -108,7 +108,7 @@ export function ConsentBanner({ locale = 'pl' }: ConsentBannerProps) {
             {/* Secondary: Customize */}
             <button
               onClick={openModal}
-              className="px-5 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-200 hover:border-gray-400 rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
+              className="px-5 py-3 text-sm font-medium text-brand-blue bg-white border border-brand-blue hover:bg-[rgba(0,109,158,0.05)] rounded-lg transition-colors duration-200 ease-out whitespace-nowrap"
             >
               {t.customize}
             </button>
@@ -116,7 +116,7 @@ export function ConsentBanner({ locale = 'pl' }: ConsentBannerProps) {
             {/* Tertiary: Reject */}
             <button
               onClick={rejectAll}
-              className="px-3 py-3 text-sm text-gray-400 hover:text-gray-700 transition-colors duration-200 ease-out whitespace-nowrap sm:pl-1"
+              className="px-3 py-3 text-sm text-gray-400 hover:text-brand-blue transition-colors duration-200 ease-out whitespace-nowrap sm:pl-1"
             >
               {t.rejectAll}
             </button>

@@ -29,7 +29,7 @@ export function FormError({ eyebrow, message, onRetry, retryLabel }: FormErrorPr
         <button
           type="button"
           onClick={onRetry}
-          className="mt-3 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+          className="mt-3 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-500 hover:text-brand-blue transition-colors duration-200 ease-out"
         >
           {retryLabel}
         </button>

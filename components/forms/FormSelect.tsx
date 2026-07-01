@@ -65,7 +65,7 @@ export function FormSelect({
           className={`${SELECT_BASE} ${value === '' ? 'text-gray-400' : 'text-gray-900'} ${
             error
               ? 'border-red-200 focus:border-red-300'
-              : 'border-gray-200 focus:border-gray-400'
+                : 'border-gray-200 focus:border-brand-blue'
           }`}
         >
           {options.map((opt) => (
@@ -82,7 +82,7 @@ export function FormSelect({
           <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
             <path
               d="M1 1.5L6 6.5L11 1.5"
-              stroke="#9CA3AF"
+              stroke="#485E88"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"

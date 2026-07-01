@@ -33,14 +33,14 @@ export const reveal = {
 
 // ─── Hover transitions ────────────────────────────────────────────────────
 export const hover = {
-  // Card dark inversion - all PremiumCard variants
-  card: 'hover:bg-gray-900 hover:border-gray-900 hover:text-white hover:shadow-lg transition-all duration-300',
+  // Card light tint - all PremiumCard variants
+  card: 'hover:bg-[rgba(0,109,158,0.03)] hover:border-[rgba(0,109,158,0.18)] hover:shadow-lg transition-all duration-300',
   // Text/link color shifts - desktop nav, body links
-  soft: 'hover:text-gray-900 transition-colors duration-200',
+  soft: 'hover:text-brand-blue transition-colors duration-200',
   // Button hover (used inline, not via class)
   button: 'transition-colors duration-200',
   // Icon subtle lift
-  icon: 'hover:text-gray-600 transition-colors duration-200',
+  icon: 'hover:text-brand-blue transition-colors duration-200',
   // Arrow translate (→)
   arrow: 'group-hover:translate-x-1 transition-transform duration-200',
   // Navigation link - desktop (gray-500 base → gray-900 hover)

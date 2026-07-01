@@ -58,7 +58,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                 <button
                   type="button"
                   aria-disabled="true"
-                  className="inline-flex items-center justify-center self-start bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm"
+                  className="inline-flex items-center justify-center self-start bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
                 >
                   {d.hero.reportCta}
                 </button>
@@ -151,7 +151,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                   </p>
                   <Link
                     href="/docs/26.11.26_Conference_CIPS_Profitia_EN.pdf"
-                    className="inline-block mt-6 bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
+                    className="inline-block mt-6 bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -312,17 +312,17 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             {d.usecases.items.map((uc) => (
-              <div key={uc.n} className="group border border-gray-200 rounded-xl p-8 transition-all duration-300 hover:bg-gray-900 hover:text-white hover:shadow-lg">
-                <p className="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 group-hover:text-gray-500 mb-5 transition-colors">{uc.n}</p>
-                <h3 className="font-semibold text-xl text-gray-900 group-hover:text-white mb-4 transition-colors tracking-tight">{uc.title}</h3>
-                <p className="text-gray-600 group-hover:text-gray-300 text-sm leading-relaxed transition-colors">{uc.desc}</p>
+              <div key={uc.n} className="group border border-gray-200 rounded-xl p-8 transition-all duration-300 hover:bg-[rgba(0,109,158,0.03)] hover:border-[rgba(0,109,158,0.18)] hover:shadow-lg">
+                <p className="text-xs font-medium tracking-[0.2em] uppercase text-gray-500 group-hover:text-brand-blue mb-5 transition-colors">{uc.n}</p>
+                <h3 className="font-semibold text-xl text-gray-900 mb-4 transition-colors tracking-tight">{uc.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed transition-colors">{uc.desc}</p>
               </div>
             ))}
           </div>
           <div className="mt-12 pt-8 border-t border-gray-100">
             <p className="text-gray-600">
               {d.usecases.footer}{' '}
-              <Link href="#g6lvxh" className="text-gray-900 font-medium hover:underline">
+              <Link href="#g6lvxh" className="text-brand-blue font-medium hover:text-brand-blue transition-colors duration-200">
                 {d.usecases.footerLink}
               </Link>
             </p>
@@ -421,21 +421,21 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           CTA
           ════════════════════════════════════ */}
-      <section id="g6lvxh" className="py-24 lg:py-32 bg-black text-white">
+      <section id="g6lvxh" className="py-24 lg:py-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-600 mb-7">{d.cta.eyebrow}</p>
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-white/56 mb-7">{d.cta.eyebrow}</p>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-7 max-w-2xl mx-auto leading-tight">
             {d.cta.h2}
           </h2>
-          <p className="text-gray-400 text-lg mb-4 max-w-lg mx-auto leading-relaxed">
+          <p className="text-white/72 text-lg mb-4 max-w-lg mx-auto leading-relaxed">
             {d.cta.sub1}
           </p>
-          <p className="text-gray-600 text-sm mb-12">
+          <p className="text-white/58 text-sm mb-12">
             {d.cta.sub2a}<br />{d.cta.sub2b}
           </p>
           <a
             href="mailto:kontakt@profitia.pl"
-            className="inline-block bg-white text-black rounded-xl px-8 py-4 font-medium text-base hover:bg-gray-100 transition-colors duration-200"
+            className="inline-block bg-white text-gray-900 rounded-xl px-8 py-4 font-medium text-base hover:bg-[rgba(255,255,255,0.92)] transition-colors duration-200"
           >
             {d.cta.button}
           </a>

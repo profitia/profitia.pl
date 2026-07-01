@@ -47,7 +47,7 @@ function TOCItem({
         className={[
           'block transition-colors duration-300 ease-out',
           item.level === 2 ? 'text-[13.5px] leading-[1.5]' : 'text-[12.5px] leading-[1.5]',
-          isActive ? 'text-gray-900 font-medium' : 'text-gray-500 hover:text-gray-700',
+          isActive ? 'text-gray-900 font-medium' : 'text-gray-500 hover:text-brand-blue',
         ].join(' ')}
       >
         {item.label}

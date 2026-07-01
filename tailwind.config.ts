@@ -14,6 +14,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        gray: {
+          50: '#F4F6FA',
+          100: '#E6EDF5',
+          200: '#D6E2EA',
+          300: '#CAD2E3',
+          400: '#A6A6A6',
+          500: '#767171',
+          600: '#3B3838',
+          700: '#485E88',
+          800: '#2D3B56',
+          900: '#242F44',
+          950: '#1A2233',
+        },
         brand: {
           // ── Brandbook palette (official) ──────────────────────
           navy:    '#242F44', // Deep Navy - primary brand color

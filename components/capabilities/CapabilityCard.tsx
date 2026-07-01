@@ -60,7 +60,7 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
         </div>
         <Link
           href={href}
-          className={`flex-shrink-0 text-xs hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
+          className={`flex-shrink-0 text-xs hover:text-brand-blue transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
           aria-label={`${title} - ${navLabel}`}
         >
           {navLabel} →
@@ -79,13 +79,13 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
       <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400 mb-4">
         {eyebrow}
       </p>
-      <h3 className="text-base font-semibold tracking-tight text-gray-900 mb-2 leading-snug group-hover:text-gray-700 transition-colors duration-200">
+      <h3 className="text-base font-semibold tracking-tight text-gray-900 mb-2 leading-snug group-hover:text-brand-blue transition-colors duration-200">
         {title}
       </h3>
       <p className="text-sm text-gray-500 leading-relaxed">
         {desc}
       </p>
-      <p className="text-xs font-medium text-gray-400 mt-5 group-hover:text-gray-700 transition-colors duration-200">
+      <p className="text-xs font-medium text-gray-400 mt-5 group-hover:text-brand-blue transition-colors duration-200">
         {cta} →
       </p>
     </Link>

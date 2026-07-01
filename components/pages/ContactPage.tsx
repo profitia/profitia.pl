@@ -105,7 +105,7 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
                 <ProtectedEmail
                   user="kontakt"
                   domain="profitia.pl"
-                  className="text-[15px] text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[15px] text-gray-700 hover:text-brand-blue transition-colors duration-200"
                 />
               </div>
 
@@ -117,7 +117,7 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
                 <ProtectedPhone
                   parts={['+48', '787', '417', '293']}
                   display="+48 787 417 293"
-                  className="text-[15px] text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                  className="text-[15px] text-gray-700 hover:text-brand-blue transition-colors duration-200"
                 />
               </div>
 

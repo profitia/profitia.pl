@@ -42,7 +42,7 @@ export default function FeaturedArticleCard({ article }: Props) {
         </Link>
         <Link
           href={`/blog/${article.slug}`}
-          className="mt-4 text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 inline-flex items-center gap-1"
+          className="mt-4 text-sm text-gray-500 hover:text-brand-blue transition-colors duration-200 inline-flex items-center gap-1"
         >
           {article.cta}
         </Link>

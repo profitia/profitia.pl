@@ -46,30 +46,30 @@
    */
   .btn-primary {
     @apply inline-flex items-center justify-center
-           px-6 py-3.5 bg-black text-white font-medium text-sm
-           rounded-xl hover:bg-gray-800
+           px-6 py-3.5 bg-gray-900 text-white font-medium text-sm
+           rounded-xl hover:bg-brand-blue
            transition-colors duration-200;
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center
-           px-6 py-3.5 border border-gray-300 text-gray-700 font-medium text-sm
-           rounded-xl hover:border-gray-900 hover:text-gray-900
+           px-6 py-3.5 border border-brand-blue text-brand-blue font-medium text-sm
+           rounded-xl hover:bg-[rgba(0,109,158,0.05)] hover:border-brand-blue hover:text-brand-blue
            transition-colors duration-200;
   }
 
   /* Inside dark/black sections (bg-black, bg-gray-900) */
   .btn-primary-dark {
     @apply inline-flex items-center justify-center
-           px-8 py-4 bg-white text-black font-medium text-base
-           rounded-xl hover:bg-gray-100
+           px-8 py-4 bg-white text-gray-900 font-medium text-base
+           rounded-xl hover:bg-brand-blue hover:text-white
            transition-colors duration-200;
   }
 
   .btn-secondary-dark {
     @apply inline-flex items-center justify-center
-           px-8 py-4 border border-gray-700 text-gray-300 font-medium text-base
-           rounded-xl hover:border-gray-400 hover:text-white
+           px-8 py-4 border border-white/30 text-white/78 font-medium text-base
+           rounded-xl hover:border-brand-blue hover:text-white hover:bg-[rgba(0,109,158,0.08)]
            transition-colors duration-200;
   }
 
@@ -95,7 +95,7 @@
 
   .card-premium {
     @apply border border-gray-200 rounded-xl p-8
-           hover:bg-gray-900 hover:border-gray-900 hover:text-white hover:shadow-lg
+           hover:bg-[rgba(0,109,158,0.03)] hover:border-[rgba(0,109,158,0.18)] hover:shadow-lg
            transition-all duration-300;
   }
 

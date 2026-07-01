@@ -62,7 +62,7 @@ export function ApplicationSuccess({
         <div className="mt-10">
           <Link
             href={backHref}
-            className="text-[13px] text-gray-500 hover:text-gray-900 transition-colors duration-200 underline underline-offset-4 decoration-gray-300 hover:decoration-gray-600"
+            className="text-[13px] text-gray-500 hover:text-brand-blue transition-colors duration-200 underline underline-offset-4 decoration-gray-300 hover:decoration-brand-blue"
           >
             ← {backLabel}
           </Link>

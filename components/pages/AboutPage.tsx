@@ -436,7 +436,7 @@ export function AboutPage({ locale }: AboutPageProps) {
             className="
               inline-flex items-center gap-3
               text-[11px] font-semibold tracking-[0.18em] uppercase
-              text-gray-400 hover:text-gray-700
+              text-gray-400 hover:text-brand-blue
               transition-colors duration-200 ease-out
             "
           >

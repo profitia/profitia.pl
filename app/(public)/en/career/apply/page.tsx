@@ -24,11 +24,11 @@ export default function Page() {
             className="flex items-center gap-2 text-xs text-gray-400 mb-12"
             aria-label="Breadcrumb"
           >
-            <Link href="/en" className="hover:text-gray-600 transition-colors duration-200">
+            <Link href="/en" className="hover:text-brand-blue transition-colors duration-200">
               Home
             </Link>
             <span aria-hidden="true">/</span>
-            <Link href="/en/career" className="hover:text-gray-600 transition-colors duration-200">
+            <Link href="/en/career" className="hover:text-brand-blue transition-colors duration-200">
               Career
             </Link>
             <span aria-hidden="true">/</span>

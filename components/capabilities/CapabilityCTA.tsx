@@ -49,7 +49,7 @@ export default function CapabilityCTA({ locale, label, href, invitation }: Props
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         <Link
           href={href}
-          className="inline-block bg-gray-900 text-white rounded-xl px-6 py-3.5 text-sm font-medium hover:bg-gray-700 transition-colors duration-200"
+          className="inline-block bg-gray-900 text-white rounded-xl px-6 py-3.5 text-sm font-medium hover:bg-brand-blue transition-colors duration-200"
         >
           {label}
         </Link>
@@ -57,7 +57,7 @@ export default function CapabilityCTA({ locale, label, href, invitation }: Props
           {c.or}{' '}
           <Link
             href={CONTACT_HREF[locale]}
-            className="text-gray-600 underline underline-offset-4 decoration-gray-300 hover:text-gray-900 transition-colors duration-200"
+            className="text-gray-600 underline underline-offset-4 decoration-gray-300 hover:text-brand-blue transition-colors duration-200"
           >
             {c.contactLink}
           </Link>

@@ -39,11 +39,11 @@ export default function CareerJobDetail({ job, locale }: Props) {
           className="flex items-center gap-2 text-xs text-gray-400 mb-12"
           aria-label={locale === 'en' ? 'Breadcrumb' : 'Ścieżka nawigacji'}
         >
-          <Link href={HOME_HREFS[locale]} className="hover:text-gray-600 transition-colors duration-200">
+          <Link href={HOME_HREFS[locale]} className="hover:text-brand-blue transition-colors duration-200">
             {c.home}
           </Link>
           <span aria-hidden="true">/</span>
-          <Link href={CAREER_HREFS[locale]} className="hover:text-gray-600 transition-colors duration-200">
+          <Link href={CAREER_HREFS[locale]} className="hover:text-brand-blue transition-colors duration-200">
             {c.career}
           </Link>
           <span aria-hidden="true">/</span>

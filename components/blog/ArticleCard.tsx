@@ -59,7 +59,7 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-semibold tracking-tight text-gray-900 leading-[1.25] mb-2.5 group-hover:text-gray-600 transition-colors duration-200 ease-out">
+        <h3 className="text-lg font-semibold tracking-tight text-gray-900 leading-[1.25] mb-2.5 group-hover:text-brand-blue transition-colors duration-200 ease-out">
           {article.title}
         </h3>
 

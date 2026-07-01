@@ -125,14 +125,14 @@ export default function Header() {
                 href={link.href}
                 className={`relative text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isActive(link.href)
-                    ? 'text-gray-900'
-                    : 'text-gray-500 hover:text-gray-900'
+                    ? 'text-brand-blue'
+                    : 'text-gray-500 hover:text-brand-blue'
                 }`}
               >
                 {link.label}
                 {isActive(link.href) && (
                   <span
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-gray-800 opacity-30 rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-brand-blue opacity-40 rounded-full"
                     aria-hidden="true"
                   />
                 )}
@@ -149,8 +149,8 @@ export default function Header() {
                 href={link.href}
                 className={`text-[13.5px] tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isActive(link.href)
-                    ? 'text-gray-700 font-medium'
-                    : 'text-gray-400 hover:text-gray-700 font-normal'
+                    ? 'text-brand-blue font-medium'
+                    : 'text-gray-500 hover:text-brand-blue font-normal'
                 }`}
               >
                 {link.label}
@@ -174,7 +174,7 @@ export default function Header() {
                 className={`px-1 py-0.5 transition-colors duration-150 ease-out leading-none ${
                   currentLocale === 'pl'
                     ? 'text-gray-900 font-semibold'
-                    : 'text-gray-400 hover:text-gray-700 font-normal'
+                    : 'text-gray-400 hover:text-brand-blue font-normal'
                 }`}
               >
                 PL
@@ -187,7 +187,7 @@ export default function Header() {
                 className={`px-1 py-0.5 transition-colors duration-150 ease-out leading-none ${
                   currentLocale === 'en'
                     ? 'text-gray-900 font-semibold'
-                    : 'text-gray-400 hover:text-gray-700 font-normal'
+                    : 'text-gray-400 hover:text-brand-blue font-normal'
                 }`}
               >
                 EN
@@ -197,7 +197,7 @@ export default function Header() {
             {/* CTA - advisory dark graphite */}
             <Link
               href={`${prefix}/contact`}
-              className="hidden md:inline-flex items-center justify-center px-4 py-[9px] text-[13px] font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg transition-colors duration-200 tracking-[-0.01em]"
+              className="hidden md:inline-flex items-center justify-center px-4 py-[9px] text-[13px] font-medium text-white bg-gray-900 hover:bg-brand-blue rounded-lg transition-colors duration-200 tracking-[-0.01em]"
             >
               {dict.nav.cta}
             </Link>
@@ -205,7 +205,7 @@ export default function Header() {
             {/* Hamburger / close toggle */}
             <button
               type="button"
-              className="md:hidden relative flex items-center justify-center w-8 h-8 text-gray-700 hover:text-gray-900 transition-colors duration-200"
+              className="md:hidden relative flex items-center justify-center w-8 h-8 text-gray-700 hover:text-brand-blue transition-colors duration-200"
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav-panel"
@@ -271,8 +271,8 @@ export default function Header() {
                   onClick={() => setMobileOpen(false)}
                   className={`block py-3 text-2xl font-medium tracking-tight leading-tight transition-colors duration-150 ease-out ${
                     isActive(link.href)
-                      ? 'text-gray-900'
-                      : 'text-gray-700 hover:text-gray-900'
+                      ? 'text-brand-blue'
+                      : 'text-gray-700 hover:text-brand-blue'
                   }`}
                 >
                   {link.label}
@@ -290,7 +290,7 @@ export default function Header() {
                 aria-pressed={currentLocale === 'pl'}
                 aria-label={isEN ? 'Switch to Polish' : 'Przełącz na język polski'}
                 className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ease-out ${
-                  currentLocale === 'pl' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-gray-700 font-normal'
+                  currentLocale === 'pl' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-brand-blue font-normal'
                 }`}
               >
                 PL
@@ -301,7 +301,7 @@ export default function Header() {
                 aria-pressed={currentLocale === 'en'}
                 aria-label="Switch to English"
                 className={`px-1 py-0.5 text-xs tracking-wide transition-colors duration-150 ease-out ${
-                  currentLocale === 'en' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-gray-700 font-normal'
+                  currentLocale === 'en' ? 'text-gray-900 font-semibold' : 'text-gray-400 hover:text-brand-blue font-normal'
                 }`}
               >
                 EN
@@ -312,7 +312,7 @@ export default function Header() {
             <Link
               href={`${prefix}/contact`}
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center w-full py-4 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-xl transition-colors duration-200"
+              className="flex items-center justify-center w-full py-4 text-sm font-medium text-white bg-gray-900 hover:bg-brand-blue rounded-xl transition-colors duration-200"
             >
               {dict.nav.cta}
             </Link>
@@ -320,7 +320,7 @@ export default function Header() {
             {/* Contact email */}
             <a
               href="mailto:kontakt@profitia.pl"
-              className="block text-center text-xs text-gray-400 hover:text-gray-600 transition-colors duration-150"
+              className="block text-center text-xs text-gray-500 hover:text-brand-blue transition-colors duration-150"
             >
               kontakt@profitia.pl
             </a>

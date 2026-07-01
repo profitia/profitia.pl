@@ -35,9 +35,9 @@ export function SubmitButton({
         'text-[13px] font-semibold tracking-[0.06em]',
         'rounded-xl',
         'transition-colors duration-200 ease-out',
-        'hover:bg-gray-700',
+        'hover:bg-brand-blue',
         'disabled:opacity-40 disabled:cursor-not-allowed',
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2',
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2',
       ]
         .filter(Boolean)
         .join(' ')}

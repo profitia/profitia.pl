@@ -65,6 +65,7 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
   const [values, setValues] = useState<NewsletterFormValues>(INITIAL)
   const [errors, setErrors] = useState<FieldErrors<NewsletterFormValues>>({})
   const [submitState, setSubmitState] = useState<FormSubmitState>('idle')
+  const isFooter = variant === 'footer'
 
   const emailId = `newsletter-email-${variant}`
   const consentId = `newsletter-consent-${variant}`
@@ -101,7 +102,7 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
   if (submitState === 'success') {
     return (
       <p
-        className="text-sm text-gray-600 leading-relaxed"
+        className={`${isFooter ? 'text-sm text-white/72' : 'text-sm text-gray-600'} leading-relaxed`}
         role="status"
         aria-live="polite"
       >
@@ -142,14 +143,16 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
               'focus:outline-none transition-colors duration-200 ease-out',
               errors.email
                 ? 'border-red-300 focus:border-red-400'
-                : 'border-gray-200 focus:border-gray-500',
+                : isFooter
+                ? 'border-white/15 focus:border-brand-blue'
+                : 'border-gray-200 focus:border-brand-blue',
             ].join(' ')}
           />
         </div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-5 py-3.5 text-sm font-medium text-white bg-[#1C1C1E] hover:bg-[#2D2D30] rounded-lg border border-transparent transition-colors duration-200 ease-out whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-5 py-3.5 text-sm font-medium text-white bg-gray-900 hover:bg-brand-blue rounded-lg border border-transparent transition-colors duration-200 ease-out whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? t.submitting : t.button}
         </button>
@@ -181,9 +184,9 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
             className={[
               'absolute inset-0 flex items-center justify-center rounded-[3px] border',
               'transition-colors duration-200 ease-out',
-              'peer-focus-visible:ring-1 peer-focus-visible:ring-gray-400 peer-focus-visible:ring-offset-1',
+              'peer-focus-visible:ring-1 peer-focus-visible:ring-brand-blue peer-focus-visible:ring-offset-1',
               values.consentGdpr
-                ? 'bg-gray-900 border-gray-900'
+                ? 'bg-brand-blue border-brand-blue'
                 : errors.consentGdpr
                 ? 'border-red-300 bg-white'
                 : 'border-gray-300 bg-white',
@@ -202,11 +205,11 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
             )}
           </span>
         </span>
-        <span className="text-[11px] text-gray-500 leading-[1.6]">
+        <span className={`text-[11px] leading-[1.6] ${isFooter ? 'text-white/68' : 'text-gray-500'}`}>
           {t.consent}{' '}
           <a
             href={privacyHref}
-            className="underline underline-offset-2 hover:text-gray-700 transition-colors duration-200"
+            className={`underline underline-offset-2 transition-colors duration-200 hover:text-brand-blue`}
             onClick={(e) => e.stopPropagation()}
           >
             {t.consentLink}

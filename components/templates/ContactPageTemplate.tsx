@@ -70,7 +70,7 @@ export function ContactPageTemplate({
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="text-gray-900 font-medium hover:text-gray-600 transition-colors duration-200"
+                          className="text-gray-900 font-medium hover:text-brand-blue transition-colors duration-200"
                         >
                           {item.value}
                         </a>

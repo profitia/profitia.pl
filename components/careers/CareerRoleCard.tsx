@@ -54,7 +54,7 @@ export default function CareerRoleCard({
         aria-expanded={open}
       >
         <div className="min-w-0">
-          <h3 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-snug mb-2 group-hover:text-gray-600 transition-colors duration-200">
+          <h3 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-snug mb-2 group-hover:text-brand-blue transition-colors duration-200">
             {title}
           </h3>
           <div className="flex flex-wrap gap-x-4 gap-y-1">
@@ -72,7 +72,7 @@ export default function CareerRoleCard({
           </div>
         </div>
         <div className="flex-shrink-0 pt-1 flex items-center gap-3">
-          <span className="text-[13px] text-gray-400 group-hover:text-gray-700 transition-colors duration-200">
+          <span className="text-[13px] text-gray-400 group-hover:text-brand-blue transition-colors duration-200">
             {open ? collapseLabel : expandLabel}
           </span>
           <motion.span
@@ -157,7 +157,7 @@ export default function CareerRoleCard({
               <div className="pt-2">
                 <Link
                   href={applyHref}
-                  className="inline-block bg-gray-900 text-white text-sm font-medium px-6 py-3 hover:bg-gray-700 transition-colors duration-200"
+                  className="inline-block bg-gray-900 text-white text-sm font-medium px-6 py-3 hover:bg-brand-blue transition-colors duration-200"
                 >
                   {applyLabel} →
                 </Link>

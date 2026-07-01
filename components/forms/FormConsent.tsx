@@ -90,7 +90,7 @@ export function FormConsent({
                 href={privacyHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-2 decoration-gray-300 hover:text-gray-900 hover:decoration-gray-600 transition-colors duration-200"
+                className="underline underline-offset-2 decoration-gray-300 hover:text-brand-blue hover:decoration-brand-blue transition-colors duration-200"
                 onClick={(e) => e.stopPropagation()}
               >
                 {privacyLabel}

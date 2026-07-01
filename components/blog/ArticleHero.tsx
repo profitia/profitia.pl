@@ -34,7 +34,7 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
       {/* Back link */}
       <Link
         href={`${prefix}/blog`}
-        className="inline-flex items-center gap-1.5 text-[12px] text-gray-500 hover:text-gray-800 transition-colors duration-200 ease-out mb-8"
+        className="inline-flex items-center gap-1.5 text-[12px] text-gray-500 hover:text-brand-blue transition-colors duration-200 ease-out mb-8"
       >
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path

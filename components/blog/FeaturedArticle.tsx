@@ -43,7 +43,7 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
             </div>
 
             {/* Title */}
-            <h2 className="text-[1.75rem] md:text-[2.25rem] lg:text-[2.75rem] font-semibold tracking-tight text-gray-900 leading-[1.08] mb-5 group-hover:text-gray-700 transition-colors duration-300 ease-out">
+            <h2 className="text-[1.75rem] md:text-[2.25rem] lg:text-[2.75rem] font-semibold tracking-tight text-gray-900 leading-[1.08] mb-5 group-hover:text-brand-blue transition-colors duration-300 ease-out">
               {article.title}
             </h2>
 
@@ -68,7 +68,7 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
             </div>
 
             {/* CTA */}
-            <span className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-gray-900 group-hover:gap-3 transition-all duration-300 ease-out">
+            <span className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-gray-900 group-hover:text-brand-blue group-hover:gap-3 transition-all duration-300 ease-out">
               {CTA[locale]}
               <svg
                 width="14"

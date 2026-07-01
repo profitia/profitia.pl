@@ -38,6 +38,28 @@ interface Props {
   seeMore: string
 }
 
+const DESKTOP_HOVER_OVERLAYS: Record<string, { bg: string; active: string }> = {
+  '01': {
+    bg: 'rgba(142,0,85,0.14)',
+    active: 'rgba(142,0,85,0.82)',
+  },
+  '02': {
+    bg: 'rgba(0,109,158,0.14)',
+    active: 'rgba(0,109,158,0.82)',
+  },
+  '03': {
+    bg: 'rgba(72,94,136,0.14)',
+    active: 'rgba(72,94,136,0.82)',
+  },
+}
+
+const DEFAULT_DESKTOP_OVERLAY = {
+  bg: 'rgba(0,0,0,0.14)',
+  active: 'rgba(0,0,0,0.82)',
+}
+
+const DESKTOP_HOVER_TRANSITION = '240ms ease-out'
+
 export default function HomePillars({ items, seeMore }: Props) {
   const [active, setActive] = useState<number | null>(null)
   // Mobile: tap-to-activate, first pillar dominant by default
@@ -188,7 +210,7 @@ export default function HomePillars({ items, seeMore }: Props) {
             className="absolute inset-0 pointer-events-none"
             style={{
               opacity: active === i ? 1 : 0,
-              transition: 'opacity 700ms ease-out',
+              transition: `opacity ${DESKTOP_HOVER_TRANSITION}`,
             }}
           >
             <Image
@@ -199,13 +221,20 @@ export default function HomePillars({ items, seeMore }: Props) {
               sizes="100vw"
             />
             {/* Lighter overlay = more image shows through, more atmospheric */}
-            <div className="absolute inset-0 bg-black/38" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: (DESKTOP_HOVER_OVERLAYS[pillar.n] ?? DEFAULT_DESKTOP_OVERLAY).bg,
+                transition: `background ${DESKTOP_HOVER_TRANSITION}`,
+              }}
+            />
           </div>
         ))}
 
         {/* Text columns */}
         {items.map((pillar, i) => {
           const isInactive = hasActive && active !== i
+          const pillarOverlay = DESKTOP_HOVER_OVERLAYS[pillar.n] ?? DEFAULT_DESKTOP_OVERLAY
 
           // INVERTED logic: active → dark, inactive → light.
           // Active column: solid dark overlay over the background image.
@@ -213,7 +242,7 @@ export default function HomePillars({ items, seeMore }: Props) {
           // Pre-activation: transparent — white page, dark text.
           const columnOverlay = hasActive
             ? active === i
-              ? 'rgba(0,0,0,0.82)'
+              ? pillarOverlay.active
               : 'rgba(255,255,255,0.72)'
             : 'transparent'
 
@@ -250,7 +279,7 @@ export default function HomePillars({ items, seeMore }: Props) {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background: columnOverlay,
-                  transition: 'background 700ms ease-out',
+                  transition: `background ${DESKTOP_HOVER_TRANSITION}`,
                 }}
               />
 
@@ -258,18 +287,18 @@ export default function HomePillars({ items, seeMore }: Props) {
               <div className="relative z-10">
                 <h3
                   className="text-2xl lg:text-3xl font-semibold leading-tight"
-                  style={{ color: titleColor, transition: 'color 700ms ease-out' }}
+                  style={{ color: titleColor, transition: `color ${DESKTOP_HOVER_TRANSITION}` }}
                 >
                   {pillar.title}
                 </h3>
                 {/* Separator line — editorial chapter divider */}
                 <div
                   className="w-8 h-px my-5"
-                  style={{ background: sepColor, transition: 'background 700ms ease-out' }}
+                  style={{ background: sepColor, transition: `background ${DESKTOP_HOVER_TRANSITION}` }}
                 />
                 <p
                   className="text-sm lg:text-base max-w-xs leading-relaxed"
-                  style={{ color: descColor, transition: 'color 700ms ease-out' }}
+                  style={{ color: descColor, transition: `color ${DESKTOP_HOVER_TRANSITION}` }}
                 >
                   {pillar.desc}
                 </p>
@@ -277,14 +306,14 @@ export default function HomePillars({ items, seeMore }: Props) {
                   <Link
                     href={pillar.href}
                     className="inline-block mt-6 text-sm hover:underline"
-                    style={{ color: ctaColor, transition: 'color 700ms ease-out' }}
+                    style={{ color: ctaColor, transition: `color ${DESKTOP_HOVER_TRANSITION}` }}
                   >
                     {seeMore}
                   </Link>
                 ) : (
                   <span
                     className="inline-block mt-6 text-sm"
-                    style={{ color: ctaColor, transition: 'color 700ms ease-out' }}
+                    style={{ color: ctaColor, transition: `color ${DESKTOP_HOVER_TRANSITION}` }}
                   >
                     {seeMore}
                   </span>

@@ -29,7 +29,7 @@ export default function ExpectSection({ label, headline, items }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 rounded-2xl overflow-hidden">
           {items.map((item, i) => (
             <RevealWrapper key={i} delay={Math.min(i % 4, 4) as 0 | 1 | 2 | 3 | 4}>
-              <div className="group bg-white p-10 hover:bg-gray-900 transition-all duration-300 cursor-default h-full">
+              <div className="group bg-white p-10 hover:bg-[rgba(0,109,158,0.03)] transition-all duration-300 cursor-default h-full">
                 <div className="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 group-hover:text-gray-500 mb-6 transition-colors">
                   {item.number}
                 </div>

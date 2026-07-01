@@ -35,11 +35,11 @@ export default function HeroSection({
               className="flex items-center gap-2 text-xs text-gray-400 mb-10"
               aria-label="Breadcrumb"
             >
-              <Link href="/" className="hover:text-gray-600 transition-colors duration-200">
+              <Link href="/" className="hover:text-brand-blue transition-colors duration-200">
                 Strona główna
               </Link>
               <span>/</span>
-              <Link href="/services" className="hover:text-gray-600 transition-colors duration-200">
+              <Link href="/services" className="hover:text-brand-blue transition-colors duration-200">
                 Usługi
               </Link>
               <span>/</span>
@@ -69,13 +69,13 @@ export default function HeroSection({
             <div className="flex flex-wrap gap-3">
               <Link
                 href={ctaPrimary.href}
-                className="inline-block bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
+                className="inline-block bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
               >
                 {ctaPrimary.label}
               </Link>
               <Link
                 href={ctaSecondary.href}
-                className="inline-block border border-gray-300 text-gray-700 rounded-xl px-6 py-3.5 font-medium text-sm hover:border-gray-900 hover:text-gray-900 transition-colors duration-200"
+                className="inline-block border border-brand-blue text-brand-blue rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-[rgba(0,109,158,0.05)] transition-colors duration-200"
               >
                 {ctaSecondary.label}
               </Link>

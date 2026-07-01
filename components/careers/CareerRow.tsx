@@ -41,7 +41,7 @@ export default function CareerRow({ job, locale, isFirst = false }: Props) {
       </div>
       <Link
         href={href}
-        className={`flex-shrink-0 text-xs hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
+        className={`flex-shrink-0 text-xs hover:text-brand-blue transition-colors duration-200 whitespace-nowrap pt-0.5 ${isFirst ? 'text-gray-500' : 'text-gray-400'}`}
         aria-label={`${title} - ${navLabel}`}
       >
         {navLabel} →

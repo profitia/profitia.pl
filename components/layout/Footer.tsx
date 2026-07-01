@@ -58,22 +58,22 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-white border-t border-gray-100">
+    <footer className="bg-gray-900 text-white border-t border-white/10">
 
       {/* ══════════════════════════════════════════════════
           SECTION 1 - NEWSLETTER
           ══════════════════════════════════════════════════ */}
       {!isLegalPage && !isArticlePage && !isAboutPage && !isCapabilityPage && !isCareerPage && (
-      <div id="footer-newsletter" className="border-b border-gray-100">
+      <div id="footer-newsletter" className="border-b border-white/10">
         <div className="container-base py-12 grid md:grid-cols-[1fr_1.1fr] gap-6 lg:gap-10 items-center">
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-4">
+            <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-white/60 mb-4">
               {dict.footer.newsletter.eyebrow}
             </p>
-            <h3 className="text-xl font-semibold tracking-tight text-gray-900 leading-snug max-w-sm">
+            <h3 className="text-xl font-semibold tracking-tight text-white leading-snug max-w-sm">
               {dict.footer.newsletter.heading}
             </h3>
-            <p className="text-sm text-gray-500 mt-3 max-w-xs leading-relaxed">
+            <p className="text-sm text-white/68 mt-3 max-w-xs leading-relaxed">
               {dict.footer.newsletter.sub}
             </p>
           </div>
@@ -98,23 +98,23 @@ export default function Footer() {
               aria-label="Profitia"
             >
               <Image
-                src="/logo/profitia-default.svg"
+                src="/logo/profitia-white.svg"
                 alt="Profitia"
                 width={140}
                 height={38}
                 className="h-9 w-auto"
               />
             </Link>
-            <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-gray-600 leading-relaxed mb-3">
+            <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/82 leading-relaxed mb-3">
               Profitia Management Consultants<br />
               {isEN ? 'Mazurowski & Partners General Partnership' : 'Mazurowski i Wspólnicy Sp. J.'}
             </p>
-            <p className="text-[11px] text-gray-400 leading-relaxed mb-4">
+            <p className="text-[11px] text-white/60 leading-relaxed mb-4">
               {isEN
                 ? 'Negotiations Intelligence · Data-driven Procurement · Certified CIPS Partner in Poland · Advisory · Training · Procurement Analytics'
                 : 'Inteligencja negocjacyjna · Zakupy oparte na danych · Certyfikowany Partner CIPS w Polsce · Doradztwo · Szkolenia · Analityka zakupowa'}
             </p>
-            <p className="text-[11px] text-gray-400 leading-relaxed mb-6">
+            <p className="text-[11px] text-white/60 leading-relaxed mb-6">
               {isEN
                 ? <>Villa Metro, 145 Puławska Street, 5th Floor<br />02-715 Warsaw, Poland</>
                 : <>02-715 Warszawa, Villa Metro<br />ul. Puławska 145, V p.</>}
@@ -124,7 +124,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="CIPS Centre of Excellence"
-              className="inline-block opacity-50 hover:opacity-80 transition-opacity duration-200 ease-out"
+              className="inline-block opacity-60 hover:opacity-85 transition-opacity duration-200 ease-out"
             >
               <Image
                 src="/logo/cips-footer.png"
@@ -138,7 +138,7 @@ export default function Footer() {
 
           {/* Column 2: Navigation */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-5">
+            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/60 mb-5">
               {dict.footer.navigation}
             </p>
             <nav className="space-y-2.5" aria-label={isEN ? 'Footer navigation' : 'Nawigacja stopki'}>
@@ -146,7 +146,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+                  className="block text-sm text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
                 >
                   {link.label}
                 </Link>
@@ -156,7 +156,7 @@ export default function Footer() {
 
           {/* Column 3: Contact */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-5">
+            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/60 mb-5">
               {dict.footer.contact}
             </p>
             <div className="space-y-5 text-sm">
@@ -166,57 +166,57 @@ export default function Footer() {
                 <ProtectedPhone
                   parts={['+48', '533', '747', '340']}
                   display="+48 533 747 340"
-                  className="block text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+                  className="block text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
                 />
                 <ProtectedEmail
                   user="kontakt"
                   domain="profitia.pl"
-                  className="block text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+                  className="block text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
                 />
               </div>
 
               {/* Training */}
               <div>
-                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-white/55 mb-1.5">
                   {dict.footer.contactTraining}
                 </p>
                 <ProtectedPerson
                   name="Agnieszka Tworzyńska"
-                  className="text-gray-700 font-medium text-xs mb-1"
+                  className="text-white/88 font-medium text-xs mb-1"
                 />
                 <div className="space-y-0.5">
                   <ProtectedEmail
                     user="agnieszka.tworzynska"
                     domain="profitia.pl"
-                    className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+                    className="block text-xs text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
                   />
                   <ProtectedPhone
                     parts={['+48', '572', '001', '381']}
                     display="+48 572 001 381"
-                    className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+                    className="block text-xs text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
                   />
                 </div>
               </div>
 
               {/* SpendGuru */}
               <div>
-                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-white/55 mb-1.5">
                   {dict.footer.contactSpendGuru}
                 </p>
                 <ProtectedPerson
                   name="Tomasz Uściński"
-                  className="text-gray-700 font-medium text-xs mb-1"
+                  className="text-white/88 font-medium text-xs mb-1"
                 />
                 <div className="space-y-0.5">
                   <ProtectedEmail
                     user="tomasz.uscinski"
                     domain="profitia.pl"
-                    className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+                    className="block text-xs text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
                   />
                   <ProtectedPhone
                     parts={['+48', '787', '417', '293']}
                     display="+48 787 417 293"
-                    className="block text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+                    className="block text-xs text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
                   />
                 </div>
               </div>
@@ -225,7 +225,7 @@ export default function Footer() {
 
           {/* Column 4: Resources + Social */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-5">
+            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/60 mb-5">
               {dict.footer.resources}
             </p>
             <div className="space-y-3 mb-10">
@@ -233,7 +233,7 @@ export default function Footer() {
                 href="https://profitia.pl/images/pedp/PEDP-2026-CIPS.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out"
+                className="block text-sm text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out"
               >
                 PEDP - broszura informacyjna ↗
               </a>
@@ -241,7 +241,7 @@ export default function Footer() {
                 href="https://profitia.pl/images/profitia/cips-globalstandard_2017_pl.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 ease-out leading-snug"
+                className="block text-sm text-white/72 hover:text-brand-blue transition-colors duration-200 ease-out leading-snug"
               >
                 Globalny Standard w Zakupach i Łańcuchu Dostaw ↗
               </a>
@@ -253,7 +253,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={isEN ? 'Profitia on LinkedIn' : 'Profitia na LinkedIn'}
-                className="flex items-center justify-center w-8 h-8 text-gray-400 hover:text-gray-900 transition-colors duration-200 ease-out"
+                className="flex items-center justify-center w-8 h-8 text-white/60 hover:text-brand-blue transition-colors duration-200 ease-out"
               >
                 <IconLinkedIn />
               </a>
@@ -262,7 +262,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={isEN ? 'Profitia on Facebook' : 'Profitia na Facebook'}
-                className="flex items-center justify-center w-8 h-8 text-gray-400 hover:text-gray-900 transition-colors duration-200 ease-out"
+                className="flex items-center justify-center w-8 h-8 text-white/60 hover:text-brand-blue transition-colors duration-200 ease-out"
               >
                 <IconFacebook />
               </a>
@@ -274,14 +274,14 @@ export default function Footer() {
       {/* ══════════════════════════════════════════════════
           SECTION 3 - LEGAL BAR
           ══════════════════════════════════════════════════ */}
-      <div className="border-t border-gray-100">
+      <div className="border-t border-white/10">
           <div className={`container-base ${isCapabilityPage ? 'py-6' : isArticlePage || isAboutPage ? 'py-4' : 'py-5'} flex items-center justify-between gap-4 flex-wrap`}>
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-white/60">
             © {new Date().getFullYear()} Profitia Management Consultants. {dict.footer.rights}
           </span>
           <button
             onClick={openModal}
-            className="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200 ease-out whitespace-nowrap"
+            className="text-xs text-white/60 hover:text-brand-blue transition-colors duration-200 ease-out whitespace-nowrap"
           >
             {dict.footer.privacySettings}
           </button>

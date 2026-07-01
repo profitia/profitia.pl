@@ -57,7 +57,7 @@ export function LegalTOC({ items }: LegalTOCProps) {
               className={`block text-[13.5px] leading-[1.5] transition-colors duration-200 ease-out ${
                 activeId === id
                   ? 'text-gray-900 font-medium'
-                  : 'text-gray-400 hover:text-gray-600'
+                  : 'text-gray-400 hover:text-brand-blue'
               }`}
             >
               {label}

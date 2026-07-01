@@ -68,7 +68,7 @@ export function TeamMemberRow({
               href={`mailto:${member.email}`}
               className="
                 mt-5 inline-flex text-[11px] font-medium tracking-[0.1em] uppercase
-                text-gray-400 hover:text-gray-700
+                text-gray-400 hover:text-brand-blue
                 transition-colors duration-200 ease-out
               "
             >

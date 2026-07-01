@@ -81,7 +81,7 @@ export function FormTextarea({
         className={`${TEXTAREA_BASE} ${
           error
             ? 'border-red-200 focus:border-red-300'
-            : 'border-gray-200 focus:border-gray-400'
+            : 'border-gray-200 focus:border-brand-blue'
         }`}
       />
       {hint && !error && (

@@ -67,7 +67,7 @@ export default function CapabilityRelated({ capabilities, locale, eyebrow, title
               </div>
               <Link
                 href={href}
-                className="flex-shrink-0 text-xs text-gray-500 hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5"
+                className="flex-shrink-0 text-xs text-gray-500 hover:text-brand-blue transition-colors duration-200 whitespace-nowrap pt-0.5"
                 aria-label={`${capTitle} - ${navLabel}`}
               >
                 {navLabel} →

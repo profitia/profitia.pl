@@ -266,7 +266,7 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
                   href={item.href}
                   target={isExternalDocument ? '_blank' : undefined}
                   rel={isExternalDocument ? 'noopener noreferrer' : undefined}
-                  className={`flex-shrink-0 text-xs hover:text-gray-900 transition-colors duration-200 whitespace-nowrap pt-0.5 ${index === 0 ? 'text-gray-500' : 'text-gray-400'}`}
+                  className={`flex-shrink-0 text-xs hover:text-brand-blue transition-colors duration-200 whitespace-nowrap pt-0.5 ${index === 0 ? 'text-gray-500' : 'text-gray-400'}`}
                   aria-label={`${item.title} - ${locale === 'pl' ? 'zobacz' : 'explore'}`}
                 >
                   {locale === 'pl' ? 'Zobacz' : 'Explore'} →
