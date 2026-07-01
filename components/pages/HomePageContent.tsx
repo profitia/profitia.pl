@@ -74,28 +74,24 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           ════════════════════════════════════ */}
       <section className="py-24 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid gap-12 lg:grid-cols-[1.3fr_0.9fr] lg:items-start">
-            <div>
+          <div className="grid gap-12 lg:grid-cols-[1.3fr_0.9fr]">
+            <div className="py-2 lg:py-6">
               <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">{d.cips.eyebrow}</p>
-              <div className="flex flex-wrap items-center gap-6 mb-8">
-                <div className="rounded-2xl bg-white px-5 py-4 shadow-sm">
-                  <Image
-                    src="/logo/profitia-default.svg"
-                    alt="Profitia"
-                    width={140}
-                    height={38}
-                    className="h-8 w-auto"
-                  />
-                </div>
-                <div className="rounded-2xl bg-white px-5 py-4 shadow-sm">
-                  <Image
-                    src="/logo/cips.png"
-                    alt="CIPS"
-                    width={129}
-                    height={50}
-                    className="h-8 w-auto"
-                  />
-                </div>
+              <div className="flex flex-wrap items-center gap-8 mb-8">
+                <Image
+                  src="/logo/profitia-default.svg"
+                  alt="Profitia"
+                  width={140}
+                  height={38}
+                  className="h-8 w-auto"
+                />
+                <Image
+                  src="/logo/cips.png"
+                  alt="CIPS"
+                  width={129}
+                  height={50}
+                  className="h-9 w-auto"
+                />
               </div>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-3xl leading-tight text-gray-900">
                 {d.cips.h2}
@@ -108,24 +104,45 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-              <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-4">
-                {d.cips.conferenceLabel}
-              </p>
-              <h3 className="text-2xl font-semibold tracking-tight text-gray-900 leading-tight">
-                {d.cips.conferenceTitle}
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed mt-4">
-                {d.cips.conferenceBody}
-              </p>
-              <Link
-                href="/docs/26.11.26_Conference_CIPS_Profitia_EN.pdf"
-                className="inline-block mt-6 bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {d.cips.conferenceButton}
-              </Link>
+            <div className="relative overflow-hidden bg-[#242F44] text-white min-h-[520px] lg:min-h-full">
+              <Image
+                src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1400&q=80"
+                alt={d.cips.conferenceImageAlt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#1c2a43]/92 via-[#243653]/78 to-[#242F44]/82" />
+              <div className="relative z-10 flex h-full flex-col justify-between px-8 py-10 md:px-10 md:py-12 lg:px-12">
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/70 mb-5">
+                    {d.cips.conferenceLabel}
+                  </p>
+                  <h3 className="text-4xl md:text-5xl font-semibold tracking-tight text-white leading-[1.02] max-w-sm">
+                    {d.cips.conferenceTitle}
+                  </h3>
+                  <p className="text-base text-white/85 leading-relaxed mt-6 max-w-md">
+                    {d.cips.conferenceBody}
+                  </p>
+                </div>
+
+                <div className="pt-12">
+                  <p className="text-2xl md:text-[2rem] font-medium tracking-tight text-[#5fc2ff] leading-tight max-w-sm">
+                    {d.cips.conferencePrompt}
+                  </p>
+                  <p className="text-sm text-white/80 leading-relaxed mt-3 max-w-sm">
+                    {d.cips.conferencePromptBody}
+                  </p>
+                  <Link
+                    href="/docs/26.11.26_Conference_CIPS_Profitia_EN.pdf"
+                    className="inline-block mt-6 bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-gray-800 transition-colors duration-200"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {d.cips.conferenceButton}
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -76,6 +76,9 @@
       "conferenceLabel": "CIPS Poland Conference",
       "conferenceTitle": "26 November 2026",
       "conferenceBody": "The upcoming CIPS Poland conference will bring together procurement leaders, practitioners and organisations developing a more modern approach to procurement management.",
+      "conferencePrompt": "Save the date.",
+      "conferencePromptBody": "Meet us on 26 November 2026 during the CIPS Poland conference.",
+      "conferenceImageAlt": "Warsaw skyline at sunset - CIPS Poland conference backdrop",
       "conferenceButton": "Download information"
     },
     "problem": {

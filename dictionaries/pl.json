@@ -76,6 +76,9 @@
       "conferenceLabel": "Konferencja CIPS Poland",
       "conferenceTitle": "26 listopada 2026",
       "conferenceBody": "Zbliżająca się konferencja CIPS Poland będzie miejscem spotkania liderów zakupów, praktyków i organizacji rozwijających nowoczesne podejście do zarządzania zakupami.",
+      "conferencePrompt": "Zapisz tę datę.",
+      "conferencePromptBody": "26 listopada 2026 spotkajmy się podczas konferencji CIPS Poland.",
+      "conferenceImageAlt": "Warszawa o zachodzie słońca - oprawa konferencji CIPS Poland",
       "conferenceButton": "Pobierz informacje"
     },
     "problem": {
