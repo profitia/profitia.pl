@@ -204,10 +204,10 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
     <section
       className={
         isDominant
-          ? 'border-t border-gray-100 pt-28 pb-16'
+          ? 'border-t border-[rgba(149,166,199,0.3)] pt-28 pb-16'
           : isFeatured
-          ? 'border-t border-gray-100 pt-20 pb-10'
-          : 'border-t border-gray-100 pt-12 pb-4'
+          ? 'border-t border-[rgba(149,166,199,0.3)] pt-20 pb-10'
+          : 'border-t border-[rgba(149,166,199,0.3)] pt-12 pb-4'
       }
     >
       <div
@@ -217,8 +217,8 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
           <p
             className={
               isDominant
-                ? 'text-[10px] font-semibold tracking-[0.3em] uppercase text-gray-400 mb-5'
-                : 'text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-4'
+                ? 'text-[10px] font-semibold tracking-[0.3em] uppercase text-[rgba(0,109,158,0.8)] mb-5'
+                : 'text-[10px] font-semibold tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)] mb-4'
             }
           >
             {section.eyebrow}
@@ -226,10 +226,10 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
           <h2
             className={
               isDominant
-                ? 'text-3xl font-semibold tracking-tight text-gray-900 leading-snug mb-6'
+                ? 'text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-6'
                 : isFeatured
-                ? 'text-xl font-semibold tracking-tight text-gray-900 leading-snug mb-5'
-                : 'text-lg font-semibold tracking-tight text-gray-900 leading-snug mb-4'
+                ? 'text-xl font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-5'
+                : 'text-lg font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-4'
             }
           >
             {section.title}
@@ -237,8 +237,8 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
           <p
             className={
               isDominant
-                ? 'text-[15px] text-gray-500 leading-relaxed max-w-[26rem]'
-                : 'text-sm text-gray-400 leading-relaxed'
+                ? 'text-[15px] text-[rgb(59,56,56)] leading-relaxed max-w-[26rem]'
+                : 'text-sm text-[rgb(59,56,56)] leading-relaxed'
             }
           >
             {section.description}
@@ -252,13 +252,13 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
             return (
               <div
                 key={`${section.title}-${item.title}`}
-                className={`group border-b border-gray-100 flex items-start justify-between gap-6 ${index === 0 ? 'pt-6 pb-9' : 'py-6'}`}
+                className={`group border-b border-[rgba(149,166,199,0.3)] flex items-start justify-between gap-6 rounded-xl px-4 -mx-4 transition-colors duration-[250ms] hover:bg-[rgba(199,237,251,0.2)] ${index === 0 ? 'pt-6 pb-9' : 'py-6'}`}
               >
                 <div className="min-w-0">
-                  <h3 className={`text-[15px] tracking-tight text-gray-900 leading-snug ${index === 0 ? 'font-semibold' : 'font-medium'}`}>
+                  <h3 className={`text-[15px] tracking-tight text-[rgb(36,47,68)] leading-snug ${index === 0 ? 'font-semibold' : 'font-medium'}`}>
                     {item.title}
                   </h3>
-                  <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400 mt-1">
+                  <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-[rgb(72,94,136)] mt-1">
                     {item.eyebrow}
                   </p>
                 </div>
@@ -266,10 +266,11 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
                   href={item.href}
                   target={isExternalDocument ? '_blank' : undefined}
                   rel={isExternalDocument ? 'noopener noreferrer' : undefined}
-                  className={`flex-shrink-0 text-xs hover:text-brand-blue transition-colors duration-200 whitespace-nowrap pt-0.5 ${index === 0 ? 'text-gray-500' : 'text-gray-400'}`}
+                  className="group/link flex-shrink-0 text-xs text-[rgb(72,94,136)] hover:text-[rgb(0,109,158)] transition-colors duration-[250ms] whitespace-nowrap pt-0.5"
                   aria-label={`${item.title} - ${locale === 'pl' ? 'zobacz' : 'explore'}`}
                 >
-                  {locale === 'pl' ? 'Zobacz' : 'Explore'} →
+                  <span>{locale === 'pl' ? 'Zobacz' : 'Explore'}</span>
+                  <span aria-hidden="true" className="ml-1 inline-block transition-transform duration-[250ms] group-hover/link:translate-x-[5px]">→</span>
                 </Link>
               </div>
             )
@@ -292,22 +293,22 @@ export default function EducationPage({ locale }: Props) {
           <div className="lg:max-w-[50%] lg:pr-16">
             <RevealWrapper delay={0}>
               <div className="space-y-8 md:space-y-5 2xl:space-y-8">
-                <p className="label-tag">{c.hero.label}</p>
-                <h1 className="font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
+                <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">{c.hero.label}</p>
+                <h1 className="font-semibold text-[rgb(36,47,68)] tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
                   {c.hero.headline}
                 </h1>
               </div>
             </RevealWrapper>
             <RevealWrapper delay={1}>
               <div className="mt-8 md:mt-5 2xl:mt-8 space-y-8 md:space-y-5 2xl:space-y-8">
-                <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-600 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed max-w-lg">
+                <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-[rgb(59,56,56)] leading-relaxed md:leading-[1.55] 2xl:leading-relaxed max-w-lg">
                   {c.hero.subtitle}
                 </p>
               <div className="flex flex-wrap items-center gap-4">
-                <Link href={c.hero.ctaPrimary.href} className="btn-primary">
+                <Link href={c.hero.ctaPrimary.href} className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[rgb(36,47,68)] text-white text-sm font-medium transition-colors duration-[250ms] hover:bg-[rgb(72,94,136)]">
                   {c.hero.ctaPrimary.label}
                 </Link>
-                <Link href={c.hero.ctaSecondary.href} className="btn-secondary">
+                <Link href={c.hero.ctaSecondary.href} className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border border-[rgb(0,109,158)] bg-white text-[rgb(0,109,158)] text-sm font-medium transition-colors duration-[250ms] hover:bg-[rgba(199,237,251,0.2)] hover:text-[rgb(0,109,158)]">
                   {c.hero.ctaSecondary.label}
                 </Link>
               </div>
