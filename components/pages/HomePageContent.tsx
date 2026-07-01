@@ -16,37 +16,38 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
         <div className="grid grid-cols-1 md:grid-cols-2">
 
           {/* LEFT: text */}
-          <div className="h-auto md:h-[calc(100vh-80px)] px-6 md:px-12 py-16 md:py-0">
-            <div className="flex h-full flex-col justify-center max-w-xl">
-              <div className="flex flex-col justify-center md:flex-[3]">
-                <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">{d.hero.eyebrow}</p>
-                <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mt-6">
+          <div className="h-auto md:h-[calc(100vh-80px)] px-6 md:px-12">
+            <div className="flex h-full max-w-xl flex-col justify-center py-16 md:justify-between md:py-20">
+              <div className="space-y-6">
+                <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08]">
                   {d.hero.h1}
                 </h1>
-                <p className="text-lg text-gray-600 leading-relaxed mt-6">
-                  {d.hero.sub1a}<br />
-                  {d.hero.sub1b}
-                </p>
-                <p className="text-gray-500 leading-relaxed mt-4">
-                  {d.hero.sub2}
-                </p>
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    {d.hero.sub1a}<br />
+                    {d.hero.sub1b}
+                  </p>
+                  <p className="text-gray-500 leading-relaxed">
+                    {d.hero.sub2}
+                  </p>
+                </div>
               </div>
 
-              <div className="py-10 md:py-8">
+              <div className="py-8 md:py-10">
                 <div className="border-t border-gray-200" />
               </div>
 
-              <div className="flex flex-col justify-center md:flex-[2]">
+              <div className="space-y-4">
                 <h2 className="text-2xl md:text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight">
                   {d.hero.reportHeading}
                 </h2>
-                <p className="text-gray-600 leading-relaxed mt-4">
+                <p className="text-gray-600 leading-relaxed">
                   {d.hero.reportBody}
                 </p>
                 <button
                   type="button"
                   aria-disabled="true"
-                  className="inline-flex items-center justify-center self-start mt-6 bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm"
+                  className="inline-flex items-center justify-center self-start bg-black text-white rounded-xl px-6 py-3.5 font-medium text-sm mt-2"
                 >
                   {d.hero.reportCta}
                 </button>
