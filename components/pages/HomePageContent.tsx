@@ -72,7 +72,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           CIPS
           ════════════════════════════════════ */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
+      <section className="py-24 bg-gray-50 border-t border-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid gap-12 lg:grid-cols-[1.3fr_0.9fr]">
             <div className="py-2 lg:py-6">
@@ -104,12 +104,13 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               </p>
             </div>
 
-            <div className="relative overflow-hidden bg-[#242F44] text-white min-h-[520px] lg:min-h-full">
+            <div className="relative overflow-hidden bg-[#242F44] text-white min-h-[520px] lg:min-h-full lg:mr-[calc(50%-50vw-1.5rem)]">
               <Image
-                src="https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=1400&q=80"
+                src="/cips/warsaw-cips.png"
                 alt={d.cips.conferenceImageAlt}
                 fill
                 className="object-cover"
+                style={{ objectPosition: '72% center' }}
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
               <div
