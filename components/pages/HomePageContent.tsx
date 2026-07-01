@@ -418,10 +418,10 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             </div>
 
             <div className="relative">
-              <div aria-hidden="true" className="absolute -top-8 -left-1 text-[6rem] md:text-[7rem] leading-none text-white/10 font-semibold select-none">
+              <div aria-hidden="true" className="absolute -top-6 left-0 text-[4.5rem] md:text-[5.5rem] leading-none text-white/10 font-semibold select-none">
                 &ldquo;
               </div>
-              <blockquote className="relative text-3xl md:text-4xl lg:text-[3.25rem] font-semibold tracking-tight leading-[1.12] text-white max-w-5xl">
+              <blockquote className="relative text-2xl md:text-3xl lg:text-[2.75rem] font-semibold tracking-tight leading-[1.18] text-white max-w-4xl">
                 {d.testimonial.quote}
               </blockquote>
               <div className="mt-10 pt-8 border-t border-white/10 lg:hidden">
