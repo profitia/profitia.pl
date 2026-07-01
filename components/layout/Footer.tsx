@@ -127,7 +127,7 @@ export default function Footer() {
               className="inline-block opacity-50 hover:opacity-80 transition-opacity duration-200 ease-out"
             >
               <Image
-                src="https://cipsdistancelearning.com/wp-content/uploads/2022/07/CIPS_Centre-Excellence_Logo_2022.png"
+                src="/logo/cips-footer.png"
                 alt="CIPS Centre of Excellence"
                 width={96}
                 height={38}
