@@ -49,7 +49,7 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
 
   if (variant === 'row') {
     return (
-      <div className={`group border-b border-[rgba(149,166,199,0.3)] flex items-start justify-between gap-6 rounded-xl px-4 -mx-4 transition-colors duration-200 hover:bg-[rgba(199,237,251,0.2)] ${isFirst ? 'pt-6 pb-9' : 'py-6'}`}>
+      <div className={`group border-b border-[rgba(149,166,199,0.3)] flex items-start justify-between gap-6 rounded-xl px-4 -mx-4 transition-colors duration-200 hover-safe-surface-20 ${isFirst ? 'pt-6 pb-9' : 'py-6'}`}>
         <div className="min-w-0">
           <h3 className={`text-[15px] tracking-tight text-[rgb(36,47,68)] leading-snug ${isFirst ? 'font-semibold' : 'font-medium'}`}>
             {title}
@@ -60,11 +60,11 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
         </div>
         <Link
           href={href}
-          className={`group/link flex-shrink-0 text-xs text-[rgb(72,94,136)] hover:text-[rgb(0,109,158)] transition-colors duration-200 whitespace-nowrap pt-0.5`}
+          className="hover-safe-row-link flex-shrink-0 text-xs text-[rgb(72,94,136)] hover-safe-text-brand transition-colors duration-200 whitespace-nowrap pt-0.5"
           aria-label={`${title} - ${navLabel}`}
         >
           <span>{navLabel}</span>
-          <span aria-hidden="true" className="ml-1 inline-block transition-transform duration-200 group-hover/link:translate-x-1">→</span>
+          <span aria-hidden="true" className="hover-safe-row-arrow ml-1 inline-block transition-transform duration-200">→</span>
         </Link>
       </div>
     )
@@ -75,18 +75,18 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
   return (
     <Link
       href={href}
-      className="group block border border-gray-100 rounded-2xl p-7 hover:border-gray-300 transition-colors duration-200"
+      className="group block border border-gray-100 rounded-2xl p-7 transition-colors duration-200"
     >
       <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400 mb-4">
         {eyebrow}
       </p>
-      <h3 className="text-base font-semibold tracking-tight text-gray-900 mb-2 leading-snug group-hover:text-brand-blue transition-colors duration-200">
+      <h3 className="text-base font-semibold tracking-tight text-gray-900 mb-2 leading-snug transition-colors duration-200 hover-safe-text-brand">
         {title}
       </h3>
       <p className="text-sm text-gray-500 leading-relaxed">
         {desc}
       </p>
-      <p className="text-xs font-medium text-gray-400 mt-5 group-hover:text-brand-blue transition-colors duration-200">
+      <p className="text-xs font-medium text-gray-400 mt-5 transition-colors duration-200 hover-safe-text-brand">
         {cta} →
       </p>
     </Link>

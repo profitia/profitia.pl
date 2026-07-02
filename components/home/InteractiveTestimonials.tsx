@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import type { PointerEvent } from 'react'
 
 type TestimonialItem = {
   company: string
@@ -20,6 +21,12 @@ export default function InteractiveTestimonials({
 }: InteractiveTestimonialsProps) {
   const [activeIndex, setActiveIndex] = useState(0)
 
+  const activateOnHover = (index: number, event: PointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType === 'mouse') {
+      setActiveIndex(index)
+    }
+  }
+
   const activeItem = items[activeIndex] ?? items[0]
 
   return (
@@ -35,40 +42,53 @@ export default function InteractiveTestimonials({
                 const isActive = index === activeIndex
 
                 return (
-                  <button
-                    key={`${item.company}-${item.role}`}
-                    type="button"
-                    onMouseEnter={() => setActiveIndex(index)}
-                    onFocus={() => setActiveIndex(index)}
-                    className={[
-                      'group block w-full border-b border-white/10 px-6 py-5 text-left transition-colors duration-200 last:border-b-0',
-                      isActive ? 'bg-white/[0.03]' : 'bg-transparent hover:bg-white/[0.02]',
-                    ].join(' ')}
-                    aria-pressed={isActive}
-                  >
-                    <p
+                  <div key={`${item.company}-${item.role}`} className="border-b border-white/10 last:border-b-0">
+                    <button
+                      type="button"
+                      onPointerEnter={(event) => activateOnHover(index, event)}
+                      onClick={() => setActiveIndex(index)}
+                      onFocus={() => setActiveIndex(index)}
                       className={[
-                        'text-[10px] font-semibold tracking-[0.22em] uppercase transition-colors duration-200',
-                        isActive ? 'text-[#5fc2ff]' : 'text-gray-500 group-hover:text-gray-300',
+                        'hover-safe-testimonial group block w-full px-6 py-5 text-left transition-colors duration-200',
+                        isActive ? 'bg-white/[0.03]' : 'bg-transparent',
                       ].join(' ')}
+                      aria-pressed={isActive}
                     >
-                      {item.company}
-                    </p>
-                    <p
-                      className={[
-                        'mt-3 text-sm font-medium transition-colors duration-200',
-                        isActive ? 'text-white' : 'text-white/72 group-hover:text-white',
-                      ].join(' ')}
-                    >
-                      {item.role}
-                    </p>
-                  </button>
+                      <p
+                        className={[
+                          'text-[10px] font-semibold tracking-[0.22em] uppercase transition-colors duration-200',
+                          isActive ? 'text-[#5fc2ff]' : 'hover-safe-testimonial-company text-gray-500',
+                        ].join(' ')}
+                      >
+                        {item.company}
+                      </p>
+                      <p
+                        className={[
+                          'mt-3 text-sm font-medium transition-colors duration-200',
+                          isActive ? 'text-white' : 'hover-safe-testimonial-role text-white/72',
+                        ].join(' ')}
+                      >
+                        {item.role}
+                      </p>
+                    </button>
+
+                    {isActive ? (
+                      <div className="px-6 pb-6 pt-1 lg:hidden testimonial-fade">
+                        <blockquote className="text-[1.5rem] font-semibold tracking-tight leading-[1.22] text-white">
+                          {item.title}
+                        </blockquote>
+                        <p className="mt-5 text-sm font-normal leading-[1.75] text-gray-300">
+                          {item.body}
+                        </p>
+                      </div>
+                    ) : null}
+                  </div>
                 )
               })}
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <div aria-hidden="true" className="absolute -top-6 left-0 text-[4.5rem] md:text-[5.5rem] leading-none text-white/10 font-semibold select-none">
               &ldquo;
             </div>
@@ -79,12 +99,6 @@ export default function InteractiveTestimonials({
               <p className="mt-8 text-base md:text-lg font-normal leading-[1.8] text-gray-300 max-w-2xl">
                 {activeItem.body}
               </p>
-            </div>
-            <div className="mt-10 pt-8 border-t border-white/10 lg:hidden">
-              <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-2">
-                {activeItem.company}
-              </p>
-              <p className="text-sm font-medium text-white">{activeItem.role}</p>
             </div>
           </div>
         </div>

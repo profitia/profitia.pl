@@ -116,6 +116,58 @@
   .reveal-delay-4 { transition-delay: 0.4s; }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .hover-safe-surface-20:hover {
+    background-color: rgba(199, 237, 251, 0.2);
+  }
+
+  .hover-safe-surface-15:hover {
+    background-color: rgba(199, 237, 251, 0.15);
+  }
+
+  .hover-safe-text-brand:hover {
+    color: rgb(0, 109, 158);
+  }
+
+  .hover-safe-card:hover .hover-safe-card-image {
+    transform: scale(1.05);
+    filter: brightness(0.75);
+  }
+
+  .hover-safe-card:hover .hover-safe-card-title {
+    color: rgb(75, 85, 99);
+  }
+
+  .hover-safe-row-link:hover .hover-safe-row-arrow {
+    transform: translateX(5px);
+  }
+
+  .hover-safe-row:hover .hover-safe-row-bar {
+    opacity: 1;
+  }
+
+  .hover-safe-row:hover .hover-safe-name {
+    color: rgb(0, 109, 158);
+  }
+
+  .hover-safe-row:hover .hover-safe-image-target {
+    transform: scale(1.02);
+    filter: grayscale(2%) contrast(1.03);
+  }
+
+  .hover-safe-testimonial:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+
+  .hover-safe-testimonial:hover .hover-safe-testimonial-company {
+    color: rgb(209, 213, 219);
+  }
+
+  .hover-safe-testimonial:hover .hover-safe-testimonial-role {
+    color: rgb(255, 255, 255);
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════
    Advisory Assistant — component classes
    ══════════════════════════════════════════════════════════ */

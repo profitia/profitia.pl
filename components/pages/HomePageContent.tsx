@@ -30,11 +30,11 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               <RevealWrapper delay={0}>
                 <div className="space-y-8 md:space-y-5 2xl:space-y-8 max-w-xl">
                   <h1 className="max-w-xl font-semibold text-gray-900">
-                    <span className="block whitespace-nowrap tracking-[-0.05em] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
+                    <span className="block break-words tracking-[-0.05em] text-[clamp(2rem,11vw,2.5rem)] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
                       {heroTitleLead}.
                     </span>
                     {heroTitleTail ? (
-                      <span className="mt-3 block whitespace-nowrap tracking-[-0.055em] text-[1.88rem] leading-[1.02] sm:mt-3 sm:text-[2.26rem] md:mt-2 md:text-[1.86rem] lg:text-[2rem] 2xl:mt-3.5 2xl:text-[2.66rem]">
+                      <span className="mt-3 block break-words tracking-[-0.055em] text-[clamp(1.5rem,8vw,1.88rem)] leading-[1.02] sm:mt-3 md:mt-2 md:text-[1.86rem] lg:text-[2rem] 2xl:mt-3.5 2xl:text-[2.66rem]">
                         {heroTitleTail}
                       </span>
                     ) : null}
@@ -82,6 +82,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               alt={d.hero.imgAlt}
               fill
               className="object-cover"
+              sizes="(max-width: 767px) 100vw, 50vw"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />

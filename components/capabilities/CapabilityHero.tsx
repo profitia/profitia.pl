@@ -53,6 +53,7 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
               alt="Profitia services advisory hero"
               fill
               className="object-cover"
+              sizes="(max-width: 767px) 100vw, 50vw"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />

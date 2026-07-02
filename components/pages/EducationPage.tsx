@@ -252,7 +252,7 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
             return (
               <div
                 key={`${section.title}-${item.title}`}
-                className={`group border-b border-[rgba(149,166,199,0.3)] flex items-start justify-between gap-6 rounded-xl px-4 -mx-4 transition-colors duration-[250ms] hover:bg-[rgba(199,237,251,0.2)] ${index === 0 ? 'pt-6 pb-9' : 'py-6'}`}
+                className={`group border-b border-[rgba(149,166,199,0.3)] flex items-start justify-between gap-6 rounded-xl px-4 -mx-4 transition-colors duration-[250ms] hover-safe-surface-20 ${index === 0 ? 'pt-6 pb-9' : 'py-6'}`}
               >
                 <div className="min-w-0">
                   <h3 className={`text-[15px] tracking-tight text-[rgb(36,47,68)] leading-snug ${index === 0 ? 'font-semibold' : 'font-medium'}`}>
@@ -266,11 +266,11 @@ function EducationListingSection({ section, locale }: { section: EducationSectio
                   href={item.href}
                   target={isExternalDocument ? '_blank' : undefined}
                   rel={isExternalDocument ? 'noopener noreferrer' : undefined}
-                  className="group/link flex-shrink-0 text-xs text-[rgb(72,94,136)] hover:text-[rgb(0,109,158)] transition-colors duration-[250ms] whitespace-nowrap pt-0.5"
+                  className="hover-safe-row-link flex-shrink-0 text-xs text-[rgb(72,94,136)] hover-safe-text-brand transition-colors duration-[250ms] whitespace-nowrap pt-0.5"
                   aria-label={`${item.title} - ${locale === 'pl' ? 'zobacz' : 'explore'}`}
                 >
                   <span>{locale === 'pl' ? 'Zobacz' : 'Explore'}</span>
-                  <span aria-hidden="true" className="ml-1 inline-block transition-transform duration-[250ms] group-hover/link:translate-x-[5px]">→</span>
+                  <span aria-hidden="true" className="hover-safe-row-arrow ml-1 inline-block transition-transform duration-[250ms]">→</span>
                 </Link>
               </div>
             )
@@ -337,7 +337,7 @@ export default function EducationPage({ locale }: Props) {
             alt={HERO_IMAGE.alt}
             fill
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 1023px) calc(100vw - 3rem), 50vw"
             priority
           />
           <div className="absolute inset-0 bg-[#f3e8dc]/18" />

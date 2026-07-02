@@ -301,7 +301,7 @@ export function AboutPage({ locale }: AboutPageProps) {
             alt={t.hero.imageAlt}
             fill
             className="object-cover"
-            sizes="100vw"
+            sizes="(max-width: 1023px) calc(100vw - 3rem), 50vw"
             priority
           />
           <div className="absolute inset-0 bg-[#ece7df]/18" />
@@ -361,8 +361,8 @@ export function AboutPage({ locale }: AboutPageProps) {
           {/* Right: numbered rows */}
           <RevealWrapper delay={1} className={`divide-y ${rowSeparatorColor}`}>
             {t.capabilities.items.map((item) => (
-              <div key={item.num} className="group relative py-10 lg:py-12 first:pt-0 last:pb-0 px-4 -mx-4 transition-colors duration-[250ms] hover:bg-[rgba(199,237,251,0.2)]">
-                <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[rgb(0,109,158)] opacity-0 transition-opacity duration-[250ms] group-hover:opacity-100" />
+              <div key={item.num} className="hover-safe-row group relative py-10 lg:py-12 first:pt-0 last:pb-0 px-4 -mx-4 transition-colors duration-[250ms] hover-safe-surface-20">
+                <div className="hover-safe-row-bar absolute left-0 top-0 bottom-0 w-[3px] bg-[rgb(0,109,158)] opacity-0 transition-opacity duration-[250ms]" />
                 <div className="flex gap-5 items-baseline mb-3">
                   <span className="text-[10px] font-semibold tracking-[0.18em] text-[rgb(72,94,136)] tabular-nums">
                     {item.num}
@@ -404,7 +404,7 @@ export function AboutPage({ locale }: AboutPageProps) {
           {/* Right: 3 principles */}
           <div className={`divide-y ${rowSeparatorColor}`}>
             {t.philosophy.principles.map((p) => (
-              <div key={p.name} className="px-4 -mx-4 py-8 lg:py-9 first:pt-0 last:pb-0 transition-colors duration-[250ms] hover:bg-[rgba(199,237,251,0.15)]">
+              <div key={p.name} className="px-4 -mx-4 py-8 lg:py-9 first:pt-0 last:pb-0 transition-colors duration-[250ms] hover-safe-surface-15">
                 <h3 className="text-[13.5px] font-semibold text-[rgb(36,47,68)] mb-2.5 leading-snug">
                   {p.name}
                 </h3>

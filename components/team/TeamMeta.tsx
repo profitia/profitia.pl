@@ -31,10 +31,10 @@ export function TeamMeta({
 }: TeamMetaProps) {
   const nameCls =
     size === 'lg'
-      ? 'text-[1.75rem] font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms] group-hover:text-[rgb(0,109,158)]'
+      ? 'hover-safe-name text-[1.75rem] font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms]'
       : size === 'md'
-      ? 'text-[1.125rem] font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms] group-hover:text-[rgb(0,109,158)]'
-      : 'text-base font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms] group-hover:text-[rgb(0,109,158)]'
+      ? 'hover-safe-name text-[1.125rem] font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms]'
+      : 'hover-safe-name text-base font-semibold tracking-tight text-[rgb(36,47,68)] leading-tight transition-colors duration-[250ms]'
 
   const roleCls =
     size === 'lg'
