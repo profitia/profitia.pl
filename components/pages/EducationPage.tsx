@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { CapabilityCTA } from '@/components/capabilities'
 import { RevealWrapper } from '@/components/ui'
+import MobileHeroImage from '@/components/ui/MobileHeroImage'
 
 interface Props {
   locale: Locale
@@ -330,18 +331,12 @@ export default function EducationPage({ locale }: Props) {
           <div className="absolute inset-0 bg-[#f3e8dc]/18" />
         </div>
 
-        {/* Mobile: image below content, rounded */}
-        <div className="relative lg:hidden mt-8 mx-6 aspect-[16/9] rounded-xl overflow-hidden bg-gray-100">
-          <Image
-            src={HERO_IMAGE.src}
-            alt={HERO_IMAGE.alt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 1023px) calc(100vw - 3rem), 50vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-[#f3e8dc]/18" />
-        </div>
+        <MobileHeroImage
+          src={HERO_IMAGE.src}
+          alt={HERO_IMAGE.alt}
+          priority
+          overlayClassName="bg-[#f3e8dc]/18"
+        />
       </section>
 
       <div className="container-base">

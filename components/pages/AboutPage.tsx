@@ -23,6 +23,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { RevealWrapper } from '@/components/ui'
+import MobileHeroImage from '@/components/ui/MobileHeroImage'
 import { LeadershipSection } from '@/components/team/LeadershipSection'
 import { FEATURED_TEAM } from '@/lib/team/data'
 
@@ -295,16 +296,13 @@ export function AboutPage({ locale }: AboutPageProps) {
           <div className="absolute inset-0 bg-[#ece7df]/18" />
         </RevealWrapper>
 
-        <RevealWrapper delay={1} className="relative lg:hidden mt-8 mx-6 mb-6 aspect-[16/9] rounded-xl overflow-hidden bg-gray-100">
-          <Image
+        <RevealWrapper delay={1} className="md:hidden">
+          <MobileHeroImage
             src={HERO_IMAGE.src}
             alt={t.hero.imageAlt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 1023px) calc(100vw - 3rem), 50vw"
             priority
+            overlayClassName="bg-[#ece7df]/18"
           />
-          <div className="absolute inset-0 bg-[#ece7df]/18" />
         </RevealWrapper>
       </section>
 

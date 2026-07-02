@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui'
+import MobileHeroImage from '@/components/ui/MobileHeroImage'
 
 interface Props {
   eyebrow: string
@@ -99,6 +100,20 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
           {/* Left-edge fade — integrates with content */}
           <div className="absolute inset-y-0 left-0 w-44 bg-gradient-to-r from-white via-white/70 to-transparent" />
         </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.1, delay: 0.18 }}
+        className="md:hidden"
+      >
+        <MobileHeroImage
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=85"
+          alt="Zespół Profitia w pracy"
+          priority
+          overlayClassName="bg-white/8"
+        />
       </motion.div>
 
     </section>
