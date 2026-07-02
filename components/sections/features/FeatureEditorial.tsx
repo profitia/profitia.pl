@@ -12,7 +12,6 @@ import { Button, LabelTag, RevealWrapper } from '@/components/ui'
 export interface FeatureEditorialProps {
   label?: string
   headline: string            // Large, spans full width
-  highlight?: string          // Optional word/phrase highlighted in gray-900
   body?: string
   cta?: { label: string; href: string }
   background?: 'white' | 'gray-50'
