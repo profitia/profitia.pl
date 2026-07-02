@@ -7,8 +7,7 @@
  * USAGE: Inside editorial content, service descriptions, between paragraphs.
  */
 
-import Link from 'next/link'
-import { RevealWrapper } from '@/components/ui'
+import { Button, RevealWrapper } from '@/components/ui'
 
 export interface CTAInlineProps {
   headline: string
@@ -30,7 +29,7 @@ export function CTAInline({
 
   const headlineCls = variant === 'filled' ? 'text-white' : 'text-gray-900'
   const bodyCls = variant === 'filled' ? 'text-gray-400' : 'text-gray-600'
-  const btnCls = variant === 'filled' ? 'btn-primary-dark' : 'btn-primary'
+  const btnVariant = variant === 'filled' ? 'primary-dark' : 'primary'
 
   return (
     <RevealWrapper delay={0}>
@@ -45,9 +44,9 @@ export function CTAInline({
             )}
           </div>
           <div className="flex-shrink-0">
-            <Link href={cta.href} className={btnCls}>
+            <Button href={cta.href} variant={btnVariant}>
               {cta.label}
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

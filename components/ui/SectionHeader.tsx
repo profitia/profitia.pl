@@ -1,4 +1,5 @@
 import RevealWrapper from './RevealWrapper'
+import LabelTag from './LabelTag'
 
 interface Props {
   label?: string
@@ -33,9 +34,9 @@ export default function SectionHeader({
   return (
     <RevealWrapper className={`${maxWidth} ${alignClass} ${className}`.trim()}>
       {label && (
-        <p className={`text-xs font-medium tracking-[0.25em] uppercase ${labelColor} mb-5`}>
+        <LabelTag dark={dark} className={`mb-5 ${align === 'center' ? 'text-center' : ''}`}>
           {label}
-        </p>
+        </LabelTag>
       )}
       <h2 className={`text-3xl md:text-4xl font-semibold tracking-tight ${headlineColor} leading-tight mb-6`}>
         {headline}

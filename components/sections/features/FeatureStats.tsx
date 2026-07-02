@@ -7,8 +7,7 @@
  * USAGE: ROI metrics, market facts, product impact numbers.
  */
 
-import Link from 'next/link'
-import { RevealWrapper, SectionHeader, StatCard } from '@/components/ui'
+import { Button, RevealWrapper, SectionHeader, StatCard } from '@/components/ui'
 
 export interface StatItem {
   value: string      // e.g. "3.2x"
@@ -55,9 +54,9 @@ export function FeatureStats({
             {cta && (
               <RevealWrapper delay={1}>
                 <div className="mt-10">
-                  <Link href={cta.href} className="btn-primary">
+                  <Button href={cta.href}>
                     {cta.label}
-                  </Link>
+                  </Button>
                 </div>
               </RevealWrapper>
             )}

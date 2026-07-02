@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = { title: 'Nowy artykuł' }
 
@@ -63,12 +63,12 @@ export default function NewArticlePage() {
           </label>
         </div>
         <div className="flex gap-4">
-          <button type="submit" className="btn-primary">
+          <Button type="submit">
             Zapisz artykuł
-          </button>
-          <Link href="/admin/articles" className="btn-secondary">
+          </Button>
+          <Button href="/admin/articles" variant="secondary">
             Anuluj
-          </Link>
+          </Button>
         </div>
       </form>
     </div>

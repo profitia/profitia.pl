@@ -8,8 +8,7 @@
  */
 
 import Image from 'next/image'
-import Link from 'next/link'
-import { RevealWrapper, SectionHeader } from '@/components/ui'
+import { Button, RevealWrapper, SectionHeader } from '@/components/ui'
 
 export interface FeatureSplitProps {
   label?: string
@@ -72,9 +71,9 @@ export function FeatureSplit({
             {cta && (
               <RevealWrapper delay={2}>
                 <div className="mt-10">
-                  <Link href={cta.href} className="btn-primary">
+                  <Button href={cta.href}>
                     {cta.label}
-                  </Link>
+                  </Button>
                 </div>
               </RevealWrapper>
             )}

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import Button from '@/components/ui/Button'
 import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
@@ -15,9 +15,9 @@ export default async function AdminArticlesPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-heading font-bold text-brand-primary">Artykuły</h1>
-        <Link href="/admin/articles/new" className="btn-primary">
+        <Button href="/admin/articles/new">
           + Nowy artykuł
-        </Link>
+        </Button>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">

@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { Button } from '@/components/ui'
 
 interface Props {
   eyebrow: string
@@ -64,19 +64,13 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             transition={{ duration: 0.6, delay: 0.28 }}
             className="mt-8 md:mt-5 2xl:mt-8 flex flex-wrap items-center gap-4"
           >
-            <Link
-              href="#roles"
-              className="btn-primary"
-            >
+            <Button href="#roles">
               {cta1}
-            </Link>
+            </Button>
 
-            <Link
-              href="#process"
-              className="btn-secondary"
-            >
+            <Button href="#process" variant="secondary">
               {cta2}
-            </Link>
+            </Button>
           </motion.div>
 
         </div>

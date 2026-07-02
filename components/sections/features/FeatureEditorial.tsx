@@ -7,8 +7,7 @@
  * USAGE: Between proof sections and CTA. "What this means."
  */
 
-import Link from 'next/link'
-import { RevealWrapper } from '@/components/ui'
+import { Button, LabelTag, RevealWrapper } from '@/components/ui'
 
 export interface FeatureEditorialProps {
   label?: string
@@ -39,7 +38,7 @@ export function FeatureEditorial({
 
           <RevealWrapper delay={0}>
             {label && (
-              <p className={`label-tag mb-5 ${alignCls}`}>{label}</p>
+              <LabelTag className={`mb-5 ${alignCls}`}>{label}</LabelTag>
             )}
             <h2 className={`text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 leading-[1.06] ${alignCls}`}>
               {headline}
@@ -55,9 +54,9 @@ export function FeatureEditorial({
               )}
               {cta && (
                 <div className={`mt-10 ${align === 'center' ? 'flex justify-center' : ''}`}>
-                  <Link href={cta.href} className="btn-primary">
+                  <Button href={cta.href}>
                     {cta.label}
-                  </Link>
+                  </Button>
                 </div>
               )}
             </RevealWrapper>

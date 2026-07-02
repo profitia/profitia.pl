@@ -6,8 +6,7 @@
  * USAGE: After feature sections. Mid-page lightweight conversion nudge.
  */
 
-import Link from 'next/link'
-import { RevealWrapper } from '@/components/ui'
+import { Button, RevealWrapper } from '@/components/ui'
 
 export interface CTAMinimalProps {
   headline: string
@@ -38,9 +37,9 @@ export function CTAMinimal({
               )}
             </div>
             <div className="flex-shrink-0">
-              <Link href={cta.href} className="btn-primary">
+              <Button href={cta.href}>
                 {cta.label}
-              </Link>
+              </Button>
             </div>
           </div>
         </RevealWrapper>

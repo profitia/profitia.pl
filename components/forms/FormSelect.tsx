@@ -22,6 +22,7 @@ interface FormSelectProps {
   id: string
   label: string
   options: ReadonlyArray<SelectOption>
+  placeholder?: string
   required?: boolean
   disabled?: boolean
   error?: string
@@ -29,10 +30,13 @@ interface FormSelectProps {
   onChange: (value: string) => void
 }
 
+export type { FormSelectProps, SelectOption }
+
 export function FormSelect({
   id,
   label,
   options,
+  placeholder,
   required,
   disabled,
   error,
@@ -68,6 +72,11 @@ export function FormSelect({
                 : 'border-gray-200 focus:border-brand-blue'
           }`}
         >
+          {placeholder && (
+            <option value="" disabled>
+              {placeholder}
+            </option>
+          )}
           {options.map((opt) => (
             <option key={opt.value} value={opt.value} disabled={opt.value === ''}>
               {opt.label}

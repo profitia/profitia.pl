@@ -7,7 +7,7 @@
  */
 
 import Image from 'next/image'
-import { RevealWrapper } from '@/components/ui'
+import { LabelTag, RevealWrapper } from '@/components/ui'
 
 export interface LogoItem {
   src: string
@@ -34,7 +34,7 @@ export function LogoCloud({
       <div className="container mx-auto max-w-7xl px-6">
         {label && (
           <RevealWrapper delay={0}>
-            <p className="label-tag mb-10 text-center">{label}</p>
+            <LabelTag className="mb-10 text-center">{label}</LabelTag>
           </RevealWrapper>
         )}
         <RevealWrapper delay={1}>

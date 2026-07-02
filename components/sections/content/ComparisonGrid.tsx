@@ -7,7 +7,7 @@
  * USAGE: Service pages, pricing pages, "before/after" strategic framing.
  */
 
-import { RevealWrapper, SectionHeader } from '@/components/ui'
+import { LabelTag, RevealWrapper, SectionHeader } from '@/components/ui'
 
 export interface ComparisonRow {
   aspect: string
@@ -56,13 +56,13 @@ export function ComparisonGrid({
             {/* Header row */}
             <div className="grid grid-cols-[1fr_1fr_1fr] border border-gray-200 rounded-2xl overflow-hidden">
               <div className="p-5 bg-gray-50 border-b border-gray-200">
-                <span className="label-tag">Obszar</span>
+                <LabelTag as="span">Obszar</LabelTag>
               </div>
               <div className="p-5 bg-red-50 border-b border-gray-200 border-l">
-                <span className="label-tag text-red-400">{beforeLabel}</span>
+                <LabelTag as="span" className="text-red-400">{beforeLabel}</LabelTag>
               </div>
               <div className="p-5 bg-gray-900 border-b border-gray-800 border-l">
-                <span className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">{afterLabel}</span>
+                <LabelTag as="span" dark>{afterLabel}</LabelTag>
               </div>
 
               {/* Data rows */}

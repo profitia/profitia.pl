@@ -26,6 +26,8 @@ interface FormTextareaProps {
   hint?: string
 }
 
+export type { FormTextareaProps }
+
 export function FormTextarea({
   id,
   label,

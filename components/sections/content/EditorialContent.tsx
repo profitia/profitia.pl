@@ -8,7 +8,7 @@
  */
 
 import { ReactNode } from 'react'
-import { RevealWrapper } from '@/components/ui'
+import { LabelTag, RevealWrapper } from '@/components/ui'
 
 export interface EditorialContentProps {
   label?: string
@@ -32,7 +32,7 @@ export function EditorialContent({
 
           {(label || headline) && (
             <RevealWrapper delay={0}>
-              {label && <p className="label-tag mb-5">{label}</p>}
+              {label && <LabelTag className="mb-5">{label}</LabelTag>}
               {headline && (
                 <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 leading-tight mb-10">
                   {headline}

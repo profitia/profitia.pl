@@ -8,7 +8,7 @@
  *   bg-white → content section below
  */
 
-import { RevealWrapper } from '@/components/ui'
+import { LabelTag, RevealWrapper } from '@/components/ui'
 
 export interface HeroMinimalProps {
   label?: string
@@ -48,7 +48,7 @@ export function HeroMinimal({
         <div className={`${maxWCls}`}>
           <RevealWrapper delay={0}>
             {label && (
-              <p className={`label-tag mb-5 ${alignCls}`}>{label}</p>
+              <LabelTag className={`mb-5 ${alignCls}`}>{label}</LabelTag>
             )}
             <h1 className={`text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.08] mb-5 ${alignCls}`}>
               {headline}

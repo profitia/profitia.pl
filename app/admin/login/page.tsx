@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = { title: 'Logowanie' }
 
@@ -37,9 +38,9 @@ export default function AdminLoginPage() {
               className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-brand-primary focus:border-transparent"
             />
           </div>
-          <button type="submit" className="btn-primary w-full">
+          <Button type="submit" fullWidth>
             Zaloguj się
-          </button>
+          </Button>
         </form>
       </div>
     </div>

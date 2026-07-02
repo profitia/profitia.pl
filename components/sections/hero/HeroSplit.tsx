@@ -14,8 +14,7 @@
  */
 
 import Image from 'next/image'
-import Link from 'next/link'
-import { RevealWrapper } from '@/components/ui'
+import { Button, LabelTag, RevealWrapper } from '@/components/ui'
 
 export interface HeroSplitProps {
   label?: string
@@ -52,7 +51,7 @@ export function HeroSplit({
           {/* Content */}
           <div className={contentOrder}>
             <RevealWrapper delay={0}>
-              {label && <p className="label-tag mb-5">{label}</p>}
+              {label && <LabelTag className="mb-5">{label}</LabelTag>}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 leading-[1.06] mb-6">
                 {headline}
               </h1>
@@ -64,13 +63,13 @@ export function HeroSplit({
                 </p>
               )}
               <div className="flex flex-wrap items-center gap-4">
-                <Link href={ctaPrimary.href} className="btn-primary">
+                <Button href={ctaPrimary.href}>
                   {ctaPrimary.label}
-                </Link>
+                </Button>
                 {ctaSecondary && (
-                  <Link href={ctaSecondary.href} className="btn-secondary">
+                  <Button href={ctaSecondary.href} variant="secondary">
                     {ctaSecondary.label}
-                  </Link>
+                  </Button>
                 )}
               </div>
             </RevealWrapper>

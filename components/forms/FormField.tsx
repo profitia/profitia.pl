@@ -19,7 +19,7 @@ const INPUT_BASE = [
 interface FormFieldProps {
   id: string
   label: string
-  type?: 'text' | 'email' | 'tel'
+  type?: 'text' | 'email' | 'tel' | 'url'
   placeholder?: string
   required?: boolean
   disabled?: boolean
@@ -28,6 +28,8 @@ interface FormFieldProps {
   onChange: (value: string) => void
   autoComplete?: string
 }
+
+export type { FormFieldProps }
 
 export function FormField({
   id,

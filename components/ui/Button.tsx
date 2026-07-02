@@ -12,6 +12,7 @@ interface Props {
   className?: string
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
+  fullWidth?: boolean
   'aria-label'?: string
 }
 
@@ -51,11 +52,13 @@ export default function Button({
   className = '',
   type = 'button',
   disabled,
+  fullWidth = false,
   'aria-label': ariaLabel,
 }: Props) {
-  const base = 'inline-flex items-center justify-center font-medium rounded-xl transition-colors duration-200'
+  const base = 'inline-flex items-center justify-center font-medium rounded-xl transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
   const isBrand = variant === 'brand'
-  const classes = `${base} ${VARIANTS[variant]} ${SIZES[size]} ${className}`.trim()
+  const width = fullWidth ? 'w-full' : ''
+  const classes = `${base} ${VARIANTS[variant]} ${SIZES[size]} ${width} ${className}`.trim()
 
   if (href) {
     return (
@@ -64,6 +67,7 @@ export default function Button({
         className={classes}
         style={isBrand ? BRAND_BG : undefined}
         aria-label={ariaLabel}
+        aria-disabled={disabled ? true : undefined}
       >
         {children}
       </Link>

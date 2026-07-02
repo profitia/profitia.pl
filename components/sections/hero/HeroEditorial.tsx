@@ -14,8 +14,7 @@
  *   bg-white → [gray-50 section follows]
  */
 
-import Link from 'next/link'
-import { RevealWrapper } from '@/components/ui'
+import { Button, LabelTag, RevealWrapper } from '@/components/ui'
 
 export interface HeroEditorialProps {
   label?: string
@@ -44,7 +43,7 @@ export function HeroEditorial({
         <div className="max-w-2xl">
           <RevealWrapper delay={0}>
             {label && (
-              <p className="label-tag mb-5">{label}</p>
+              <LabelTag className="mb-5">{label}</LabelTag>
             )}
             <h1
               className={`font-semibold tracking-tight text-gray-900 leading-[1.06] mb-6 ${
@@ -64,13 +63,13 @@ export function HeroEditorial({
               </p>
             )}
             <div className="flex flex-wrap items-center gap-4">
-              <Link href={ctaPrimary.href} className="btn-primary">
+              <Button href={ctaPrimary.href}>
                 {ctaPrimary.label}
-              </Link>
+              </Button>
               {ctaSecondary && (
-                <Link href={ctaSecondary.href} className="btn-secondary">
+                <Button href={ctaSecondary.href} variant="secondary">
                   {ctaSecondary.label}
-                </Link>
+                </Button>
               )}
             </div>
             {note && (
