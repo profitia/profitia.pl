@@ -2,14 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import type { ArticleDetailData, ArticlePreviewData } from '@/lib/content/types'
-import {
-  ArticleHero,
-  ArticleLayout,
-  ArticleAuthor,
-  ArticleNewsletter,
-  ArticleRelated,
-  ReadingProgress,
-} from '@/components/blog'
+import BlogArticlePage from '@/components/pages/BlogArticlePage'
 
 export const dynamic = 'force-dynamic'
 
@@ -110,27 +103,5 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound()
 
   const related = await getRelated(article.relatedSlugs ?? [])
-  const locale = 'pl' as const
-
-  return (
-    <>
-      {/* Reading progress - fixed top bar, client-side */}
-      <ReadingProgress />
-
-      {/* Article hero - category, time, date, title, subtitle, author, image */}
-      <ArticleHero article={article} locale={locale} />
-
-      {/* Two-column: sticky TOC sidebar + editorial content (client) */}
-      <ArticleLayout content={article.content} />
-
-      {/* Author bio */}
-      <ArticleAuthor article={article} locale={locale} />
-
-      {/* Newsletter subscription */}
-      <ArticleNewsletter locale={locale} />
-
-      {/* Related articles */}
-      <ArticleRelated articles={related} locale={locale} />
-    </>
-  )
+  return <BlogArticlePage locale="pl" article={article} relatedArticles={related} />
 }
