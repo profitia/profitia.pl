@@ -9,21 +9,47 @@ const LoginSchema = z.object({
   password: z.string().min(8),
 })
 
+async function parseLoginRequest(request: NextRequest) {
+  const contentType = request.headers.get('content-type') ?? ''
+
+  if (contentType.includes('application/json')) {
+    return {
+      data: LoginSchema.parse(await request.json()),
+      expectsRedirect: false,
+    }
+  }
+
+  const formData = await request.formData()
+  return {
+    data: LoginSchema.parse({
+      email: formData.get('email'),
+      password: formData.get('password'),
+    }),
+    expectsRedirect: true,
+  }
+}
+
 // POST /api/admin/login
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { email, password } = LoginSchema.parse(body)
+    const { data, expectsRedirect } = await parseLoginRequest(request)
+    const { email, password } = data
 
     const user = await prisma.adminUser.findUnique({ where: { email } })
     if (!user) {
       // Constant-time response to prevent user enumeration
       await bcrypt.compare(password, '$2a$12$invalidhashplaceholderXXXXXXXXXXXXXXXXXX')
+      if (expectsRedirect) {
+        return NextResponse.redirect(new URL('/admin/login?error=invalid', request.url), { status: 303 })
+      }
       return NextResponse.json({ success: false, message: 'Invalid credentials' }, { status: 401 })
     }
 
     const valid = await bcrypt.compare(password, user.passwordHash)
     if (!valid) {
+      if (expectsRedirect) {
+        return NextResponse.redirect(new URL('/admin/login?error=invalid', request.url), { status: 303 })
+      }
       return NextResponse.json({ success: false, message: 'Invalid credentials' }, { status: 401 })
     }
 
@@ -36,18 +62,23 @@ export async function POST(request: NextRequest) {
       { expiresIn: '8h' }
     )
 
-    const response = NextResponse.json({ success: true })
+    const response = expectsRedirect
+      ? NextResponse.redirect(new URL('/admin/dashboard', request.url), { status: 303 })
+      : NextResponse.json({ success: true })
     response.cookies.set('admin_token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: 60 * 60 * 8,
-      path: '/admin',
+      path: '/',
     })
 
     return response
   } catch (error) {
     if (error instanceof z.ZodError) {
+      if ((request.headers.get('content-type') ?? '').includes('application/x-www-form-urlencoded')) {
+        return NextResponse.redirect(new URL('/admin/login?error=validation', request.url), { status: 303 })
+      }
       return NextResponse.json({ success: false, errors: error.errors }, { status: 422 })
     }
     console.error('[API /admin/login]', error)

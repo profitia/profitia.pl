@@ -56,12 +56,7 @@ export default async function AdminArticlesPage() {
                   {new Date(article.createdAt).toLocaleDateString('pl-PL')}
                 </td>
                 <td className="px-6 py-4 text-right">
-                  <Link
-                    href={`/admin/articles/${article.id}/edit`}
-                    className="text-brand-secondary hover:underline"
-                  >
-                    Edytuj
-                  </Link>
+                  <span className="text-gray-400">Edycja w przygotowaniu</span>
                 </td>
               </tr>
             ))}

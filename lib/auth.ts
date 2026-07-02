@@ -9,8 +9,7 @@ export interface AdminTokenPayload {
   exp: number
 }
 
-export function verifyAdminToken(request: NextRequest): AdminTokenPayload | null {
-  const token = request.cookies.get('admin_token')?.value
+export function verifyAdminTokenValue(token: string | null | undefined): AdminTokenPayload | null {
   if (!token) return null
 
   const secret = process.env.JWT_SECRET
@@ -22,4 +21,8 @@ export function verifyAdminToken(request: NextRequest): AdminTokenPayload | null
   } catch {
     return null
   }
+}
+
+export function verifyAdminToken(request: NextRequest): AdminTokenPayload | null {
+  return verifyAdminTokenValue(request.cookies.get('admin_token')?.value)
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
+import { verifyAdminToken } from '@/lib/auth'
 
 // GET /api/articles - public list of published articles
 export async function GET(request: NextRequest) {
@@ -31,22 +32,62 @@ const ArticleSchema = z.object({
   published: z.boolean().default(false),
 })
 
-// POST /api/articles - create article (admin auth to be added)
+async function parseArticleRequest(request: NextRequest) {
+  const contentType = request.headers.get('content-type') ?? ''
+
+  if (contentType.includes('application/json')) {
+    return {
+      data: ArticleSchema.parse(await request.json()),
+      expectsRedirect: false,
+    }
+  }
+
+  const formData = await request.formData()
+  return {
+    data: ArticleSchema.parse({
+      title: formData.get('title'),
+      slug: formData.get('slug'),
+      excerpt: formData.get('excerpt') || undefined,
+      content: formData.get('content'),
+      published: formData.get('published') === 'on',
+    }),
+    expectsRedirect: true,
+  }
+}
+
+// POST /api/articles - create article (admin only)
 export async function POST(request: NextRequest) {
   try {
-    // TODO: verify admin JWT token before allowing writes
-    const body = await request.json()
-    const data = ArticleSchema.parse(body)
+    if (!verifyAdminToken(request)) {
+      const contentType = request.headers.get('content-type') ?? ''
+      if (!contentType.includes('application/json')) {
+        return NextResponse.redirect(new URL('/admin/login', request.url), { status: 303 })
+      }
+      return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { data, expectsRedirect } = await parseArticleRequest(request)
 
     const existing = await prisma.article.findUnique({ where: { slug: data.slug } })
     if (existing) {
+      if (expectsRedirect) {
+        return NextResponse.redirect(new URL('/admin/articles/new?error=slug', request.url), { status: 303 })
+      }
       return NextResponse.json({ success: false, message: 'Slug already in use' }, { status: 409 })
     }
 
     const article = await prisma.article.create({ data })
+
+    if (expectsRedirect) {
+      return NextResponse.redirect(new URL('/admin/articles', request.url), { status: 303 })
+    }
+
     return NextResponse.json({ success: true, article }, { status: 201 })
   } catch (error) {
     if (error instanceof z.ZodError) {
+      if (!((request.headers.get('content-type') ?? '').includes('application/json'))) {
+        return NextResponse.redirect(new URL('/admin/articles/new?error=validation', request.url), { status: 303 })
+      }
       return NextResponse.json({ success: false, errors: error.errors }, { status: 422 })
     }
     console.error('[API /articles]', error)
