@@ -4,27 +4,31 @@ import Image from 'next/image'
 import { CapabilityCTA } from '@/components/capabilities'
 import { RevealWrapper } from '@/components/ui'
 import MobileHeroImage from '@/components/ui/MobileHeroImage'
+import EducationCatalogAccordion from '@/components/pages/EducationCatalogAccordion'
 
 interface Props {
   locale: Locale
 }
 
-type EducationSectionItem = {
-  title: string
-  eyebrow: string
-  href: string
+type LocalizedString = {
+  pl: string
+  en: string
 }
 
-type EducationSection = {
-  eyebrow: string
-  title: string
-  description: string
-  items: EducationSectionItem[]
-  dominant?: boolean
-  featured?: boolean
+type EducationTraining = {
+  id: string
+  title: LocalizedString
+  description: LocalizedString
+  brochureHref?: Partial<Record<Locale, string>>
 }
 
-const COPY = {
+type EducationDomain = {
+  id: string
+  title: LocalizedString
+  trainings: EducationTraining[]
+}
+
+const PAGE_COPY = {
   pl: {
     hero: {
       label: 'CIPS · MCIPS · Akademia Zakupów',
@@ -39,72 +43,6 @@ const COPY = {
       label: 'Umów rozmowę',
       href: '/contact',
     },
-    sections: [
-      {
-        eyebrow: 'Certyfikacja',
-        title: 'Produkty CIPS',
-        description:
-          'Programy certyfikacyjne i rozwojowe oparte na standardzie CIPS - dla osób indywidualnych i organizacji budujących kompetencje zakupowe w uporządkowany sposób.',
-        items: [
-          { title: 'CIPS / MCIPS', eyebrow: 'CIPS', href: '/contact' },
-          { title: 'Certyfikacja korporacyjna', eyebrow: 'CIPS', href: '/contact' },
-        ],
-        dominant: true,
-      },
-      {
-        eyebrow: 'Akademia',
-        title: 'Spend Academy',
-        description:
-          'Autorskie programy rozwojowe Profitii budujące praktyczne kompetencje zakupowe - od fundamentów po poziom strategiczny.',
-        items: [
-          { title: 'Akademia Zakupów', eyebrow: 'Spend Academy', href: '/education/akademia-zakupow' },
-          { title: 'Procurement Excellence', eyebrow: 'Spend Academy', href: '/education/procurement-excellence' },
-          { title: 'Strategic Sourcing', eyebrow: 'Spend Academy', href: '/education/strategic-sourcing' },
-        ],
-        featured: true,
-      },
-      {
-        eyebrow: 'Rozwój',
-        title: 'Szkolenia',
-        description:
-          'Programy warsztatowe i szkolenia dla zespołów zakupowych - od negocjacji po analitykę i rozwój kompetencji funkcjonalnych.',
-        items: [
-          { title: 'Negocjacje Zakupowe', eyebrow: 'Szkolenie', href: '/education/warsztaty-negocjacyjne' },
-          { title: 'Advanced Negotiations', eyebrow: 'Szkolenie', href: '/education/advanced-negotiations' },
-          { title: 'Fact-Based Negotiation', eyebrow: 'Szkolenie', href: '/education/fact-based-negotiation' },
-          { title: 'Analiza Finansowa Dostawców', eyebrow: 'Szkolenie', href: '/education/supplier-financial-analysis' },
-          { title: 'Warsztaty In-Company', eyebrow: 'Szkolenie', href: '/education/in-company-workshops' },
-        ],
-        featured: true,
-      },
-      {
-        eyebrow: 'Wsparcie',
-        title: 'Mentoring',
-        description:
-          'Długoterminowe wsparcie rozwojowe dla liderów i specjalistów zakupowych, którzy chcą przyspieszyć rozwój w oparciu o doświadczenie praktyków.',
-        items: [
-          { title: 'Procurement Mentoring', eyebrow: 'Mentoring', href: '/education/procurement-mentoring' },
-        ],
-      },
-      {
-        eyebrow: 'Diagnoza',
-        title: 'Badanie Kompetencji Zakupowych',
-        description:
-          'Ocena dojrzałości i kompetencji zespołu zakupowego jako punkt wyjścia do wyboru właściwej ścieżki rozwoju.',
-        items: [
-          { title: 'Assessment kompetencji zakupowych', eyebrow: 'Diagnoza', href: '/contact' },
-        ],
-      },
-      {
-        eyebrow: 'Wydarzenie',
-        title: 'Konferencja CIPS',
-        description:
-          'Konferencja łącząca liderów zakupów, praktyków i organizacje rozwijające nowoczesne podejście do procurementu w Polsce.',
-        items: [
-          { title: 'CIPS Poland Conference - 26 listopada 2026', eyebrow: 'Konferencja', href: '/docs/26.11.26_Conference_CIPS_Profitia_EN.pdf' },
-        ],
-      },
-    ] satisfies EducationSection[],
   },
   en: {
     hero: {
@@ -120,74 +58,177 @@ const COPY = {
       label: 'Schedule a conversation',
       href: '/en/contact',
     },
-    sections: [
-      {
-        eyebrow: 'Certification',
-        title: 'CIPS Products',
-        description:
-          'Certification and development programmes based on the CIPS standard - for individuals and organisations building procurement capabilities in a structured way.',
-        items: [
-          { title: 'CIPS / MCIPS', eyebrow: 'CIPS', href: '/en/contact' },
-          { title: 'Corporate Certification', eyebrow: 'CIPS', href: '/en/contact' },
-        ],
-        dominant: true,
-      },
-      {
-        eyebrow: 'Academy',
-        title: 'Spend Academy',
-        description:
-          'Profitia proprietary development programmes building practical procurement capabilities - from fundamentals to strategic level.',
-        items: [
-          { title: 'Procurement Academy', eyebrow: 'Spend Academy', href: '/en/education/akademia-zakupow' },
-          { title: 'Procurement Excellence', eyebrow: 'Spend Academy', href: '/en/education/procurement-excellence' },
-          { title: 'Strategic Sourcing', eyebrow: 'Spend Academy', href: '/en/education/strategic-sourcing' },
-        ],
-        featured: true,
-      },
-      {
-        eyebrow: 'Training',
-        title: 'Training',
-        description:
-          'Workshop programmes and training formats for procurement teams - from negotiation to analytics and functional capability building.',
-        items: [
-          { title: 'Procurement Negotiations', eyebrow: 'Training', href: '/en/education/warsztaty-negocjacyjne' },
-          { title: 'Advanced Negotiations', eyebrow: 'Training', href: '/en/education/advanced-negotiations' },
-          { title: 'Fact-Based Negotiation', eyebrow: 'Training', href: '/en/education/fact-based-negotiation' },
-          { title: 'Supplier Financial Analysis', eyebrow: 'Training', href: '/en/education/supplier-financial-analysis' },
-          { title: 'In-Company Workshops', eyebrow: 'Training', href: '/en/education/in-company-workshops' },
-        ],
-        featured: true,
-      },
-      {
-        eyebrow: 'Support',
-        title: 'Mentoring',
-        description:
-          'Long-term development support for procurement leaders and specialists who want to accelerate progress through practitioner guidance.',
-        items: [
-          { title: 'Procurement Mentoring', eyebrow: 'Mentoring', href: '/en/education/procurement-mentoring' },
-        ],
-      },
-      {
-        eyebrow: 'Diagnosis',
-        title: 'Procurement Capability Assessment',
-        description:
-          'Assessment of procurement team maturity and competencies as the starting point for choosing the right development path.',
-        items: [
-          { title: 'Procurement capability assessment', eyebrow: 'Diagnosis', href: '/en/contact' },
-        ],
-      },
-      {
-        eyebrow: 'Event',
-        title: 'CIPS Conference',
-        description:
-          'A conference bringing together procurement leaders, practitioners and organisations building a modern procurement approach in Poland.',
-        items: [
-          { title: 'CIPS Poland Conference - 26 November 2026', eyebrow: 'Conference', href: '/docs/26.11.26_Conference_CIPS_Profitia_EN.pdf' },
-        ],
-      },
-    ] satisfies EducationSection[],
   },
 } as const
+
+const EDUCATION_CATALOGUE: EducationDomain[] = [
+  {
+    id: 'procurement-training',
+    title: {
+      pl: 'Szkolenia zakupowe',
+      en: 'Procurement Training',
+    },
+    trainings: [
+      {
+        id: 'procurement-strategies',
+        title: {
+          pl: 'Strategie zakupowe',
+          en: 'Procurement Strategies',
+        },
+        description: {
+          pl: 'Szkolenie dostarcza wiedzy z zakresu budowania strategii zakupowych, a ćwiczenia praktyczne pomagają uczestnikom przełożyć metodykę na konkretne kategorie zakupowe.',
+          en: 'This training provides knowledge on developing procurement strategies, while practical exercises help participants apply the methodology to specific procurement categories.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/CATEGORY%20MANAGEMENT.pdf',
+        },
+      },
+      {
+        id: 'supplier-management',
+        title: {
+          pl: 'Zarządzanie dostawcami',
+          en: 'Supplier Management',
+        },
+        description: {
+          pl: 'Szkolenie rozwija wiedzę z zakresu najlepszych praktyk zarządzania dostawcami oraz analizy obecnych relacji, wspierając budowę bardziej efektywnej współpracy z rynkiem dostawców.',
+          en: 'This training develops knowledge of supplier management best practices and the analysis of existing relationships, supporting the development of more effective cooperation with the supplier market.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/SRM%20-%20ZARZA%CC%A8DZANIE%20RELACJAMI%20Z%20DOSTAWCAMI.pdf',
+        },
+      },
+      {
+        id: 'specification-management',
+        title: {
+          pl: 'Zarządzanie specyfikacją',
+          en: 'Specification Management',
+        },
+        description: {
+          pl: 'Szkolenie omawia elementy procesu zakupowego związane ze specyfikacją, pokazując na przykładach projektowych, jak lepiej definiować potrzeby i wymagania zakupowe.',
+          en: 'This training covers elements of the procurement process related to specifications, using project examples to show how to define procurement needs and requirements more effectively.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/CATEGORY%20MANAGEMENT.pdf',
+        },
+      },
+      {
+        id: 'abc-zakupowca',
+        title: {
+          pl: 'ABC zakupowca',
+          en: 'The ABC of Procurement',
+        },
+        description: {
+          pl: 'Szkolenie obejmuje kluczowe aspekty zakupów – od organizacji funkcji zakupowej po negocjacje – i jest szczególnie przydatne dla osób rozpoczynających pracę w zakupach lub wspierających kupców wiodących.',
+          en: 'This training covers key aspects of procurement – from organizing the procurement function to negotiations – and is particularly useful for people starting their careers in procurement or supporting lead buyers.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/ABC%20ZAKUPOWCA.pdf',
+        },
+      },
+      {
+        id: 'ai-w-zakupach',
+        title: {
+          pl: 'AI w zakupach',
+          en: 'AI in Procurement',
+        },
+        description: {
+          pl: 'Szkolenie dostarcza wiedzy i praktyki w zakresie wykorzystania sztucznej inteligencji w zakupach na poziomie strategicznym, taktycznym i operacyjnym.',
+          en: 'This training provides knowledge and practical experience in using artificial intelligence in procurement at strategic, tactical and operational levels.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/SZKOLENIE%20AI%20W%20ZAKUPACH.pdf',
+        },
+      },
+      {
+        id: 'proces-zakupowy',
+        title: {
+          pl: 'Proces zakupowy',
+          en: 'Procurement Process',
+        },
+        description: {
+          pl: 'Szkolenie daje kompleksową wiedzę i praktyczne umiejętności w zakresie skutecznego prowadzenia procesu zakupowego, mapowania interesariuszy, analizy kategorii oraz określania całkowitego kosztu posiadania.',
+          en: 'This training provides comprehensive knowledge and practical skills in effectively managing the procurement process, stakeholder mapping, category analysis and determining the total cost of ownership.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/PROCES%20ZAKUPOWY.pdf',
+        },
+      },
+      {
+        id: 'negocjacje-zakupowe',
+        title: {
+          pl: 'Negocjacje zakupowe',
+          en: 'Procurement Negotiations',
+        },
+        description: {
+          pl: 'Szkolenie koncentruje się na praktycznym zastosowaniu zaawansowanych technik negocjacyjnych z dostawcami, z wykorzystaniem metody harvardzkiej, ćwiczeń praktycznych i pracy na realnych sytuacjach zakupowych.',
+          en: 'This training focuses on the practical application of advanced negotiation techniques with suppliers, using the Harvard method, practical exercises and work on real-life procurement scenarios.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/NEGOCJACJE%20ZAKUPOWE.pdf',
+        },
+      },
+      {
+        id: 'narzedzia-pracy-zakupowca',
+        title: {
+          pl: 'Narzędzia pracy zakupowca',
+          en: 'Tools for Procurement Professionals',
+        },
+        description: {
+          pl: 'Szkolenie uczy praktycznego wykorzystania narzędzi zakupowych do usprawnienia pracy, m.in. w zakresie baz dostawców, RFP, aukcji, analiz finansowych, platform zakupowych i rozwiązań AI.',
+          en: 'This training teaches the practical use of procurement tools to streamline work, including supplier databases, RFPs, auctions, financial analyses, procurement platforms and AI solutions.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/NARZE%CC%A8DZIA%20PRACY%20ZAKUPOWCA.pdf',
+        },
+      },
+      {
+        id: 'excel-praktyczne-wykorzystanie',
+        title: {
+          pl: 'Excel – praktyczne wykorzystanie w pracy zakupowca',
+          en: 'Excel – Practical Applications in Procurement',
+        },
+        description: {
+          pl: 'Warsztat pokazuje krok po kroku, jak tworzyć i wykorzystywać narzędzia oraz analizy w Excelu przydatne w codziennej pracy zakupowca.',
+          en: 'This workshop demonstrates step by step how to create and use Excel tools and analyses that are useful in the daily work of procurement professionals.',
+        },
+        brochureHref: {
+          pl: '/brochures/education/pl/PRAKTYCZNE%20WYKORZYSTANIE%20EXCELA%20_W%20PRACY%20ZAKUPOWCA.pdf',
+        },
+      },
+      {
+        id: 'esg-w-zakupach',
+        title: {
+          pl: 'ESG w zakupach i łańcuchu dostaw',
+          en: 'ESG in Procurement and the Supply Chain',
+        },
+        description: {
+          pl: 'Szkolenie pokazuje, jak uwzględniać wymagania ESG w zakupach i łańcuchu dostaw oraz jak przekładać je na decyzje zakupowe, kryteria współpracy i zarządzanie dostawcami.',
+          en: 'This training shows how to incorporate ESG requirements into procurement and the supply chain and how to translate them into procurement decisions, cooperation criteria and supplier management.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'strategic-communication',
+    title: {
+      pl: 'Komunikacja strategiczna',
+      en: 'Strategic Communication',
+    },
+    trainings: [
+      {
+        id: 'communication-c-level',
+        title: {
+          pl: 'Komunikacja C-level',
+          en: 'C-Level Communication',
+        },
+        description: {
+          pl: 'Szkolenie rozwija umiejętność przekładania języka zakupów na język biznesu, finansów i strategii, tak aby skuteczniej komunikować wartość zakupów z zarządem, C-level i kluczowymi interesariuszami.',
+          en: 'This training develops the ability to translate the language of procurement into the language of business, finance and strategy in order to communicate the value of procurement more effectively to the board, C-level executives and key stakeholders.',
+        },
+      },
+    ],
+  },
+]
 
 // ─── HERO IMAGE ───────────────────────────────────────────────────────────────
 
@@ -196,94 +237,22 @@ const HERO_IMAGE = {
   alt: 'Kameralne szkolenie zakupowe przy biurku',
 }
 
-function EducationListingSection({ section, locale }: { section: EducationSection; locale: Locale }) {
-  const isDominant = section.dominant === true
-  const isFeatured = section.featured === true && !isDominant
-  const gridClass = 'grid lg:grid-cols-[320px_1fr] gap-10 lg:gap-16'
-
-  return (
-    <section
-      className={
-        isDominant
-          ? 'border-t border-[rgba(149,166,199,0.3)] pt-28 pb-16'
-          : isFeatured
-          ? 'border-t border-[rgba(149,166,199,0.3)] pt-20 pb-10'
-          : 'border-t border-[rgba(149,166,199,0.3)] pt-12 pb-4'
-      }
-    >
-      <div
-        className={gridClass}
-      >
-        <div className="lg:pt-1">
-          <p
-            className={
-              isDominant
-                ? 'text-[10px] font-semibold tracking-[0.3em] uppercase text-[rgba(0,109,158,0.8)] mb-5'
-                : 'text-[10px] font-semibold tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)] mb-4'
-            }
-          >
-            {section.eyebrow}
-          </p>
-          <h2
-            className={
-              isDominant
-                ? 'text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-6'
-                : isFeatured
-                ? 'text-xl font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-5'
-                : 'text-lg font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug mb-4'
-            }
-          >
-            {section.title}
-          </h2>
-          <p
-            className={
-              isDominant
-                ? 'text-[15px] text-[rgb(59,56,56)] leading-relaxed max-w-[26rem]'
-                : 'text-sm text-[rgb(59,56,56)] leading-relaxed'
-            }
-          >
-            {section.description}
-          </p>
-        </div>
-
-        <div className={isDominant ? 'lg:pt-4' : isFeatured ? 'lg:pt-2' : ''}>
-          {section.items.map((item, index) => {
-            const isExternalDocument = item.href.endsWith('.pdf')
-
-            return (
-              <div
-                key={`${section.title}-${item.title}`}
-                className={`group border-b border-[rgba(149,166,199,0.3)] flex items-start justify-between gap-6 rounded-xl px-4 -mx-4 transition-colors duration-[250ms] hover-safe-surface-20 ${index === 0 ? 'pt-6 pb-9' : 'py-6'}`}
-              >
-                <div className="min-w-0">
-                  <h3 className={`text-[15px] tracking-tight text-[rgb(36,47,68)] leading-snug ${index === 0 ? 'font-semibold' : 'font-medium'}`}>
-                    {item.title}
-                  </h3>
-                  <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-[rgb(72,94,136)] mt-1">
-                    {item.eyebrow}
-                  </p>
-                </div>
-                <Link
-                  href={item.href}
-                  target={isExternalDocument ? '_blank' : undefined}
-                  rel={isExternalDocument ? 'noopener noreferrer' : undefined}
-                  className="hover-safe-row-link flex-shrink-0 text-xs text-[rgb(72,94,136)] hover-safe-text-brand transition-colors duration-[250ms] whitespace-nowrap pt-0.5"
-                  aria-label={`${item.title} - ${locale === 'pl' ? 'zobacz' : 'explore'}`}
-                >
-                  <span>{locale === 'pl' ? 'Zobacz' : 'Explore'}</span>
-                  <span aria-hidden="true" className="hover-safe-row-arrow ml-1 inline-block transition-transform duration-[250ms]">→</span>
-                </Link>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
+function getLocalizedString(value: LocalizedString, locale: Locale) {
+  return value[locale]
 }
 
 export default function EducationPage({ locale }: Props) {
-  const c = COPY[locale]
+  const c = PAGE_COPY[locale]
+  const localizedCatalogue = EDUCATION_CATALOGUE.map((domain) => ({
+    id: domain.id,
+    title: getLocalizedString(domain.title, locale),
+    trainings: domain.trainings.map((training) => ({
+      id: training.id,
+      title: getLocalizedString(training.title, locale),
+      description: getLocalizedString(training.description, locale),
+      brochureHref: training.brochureHref?.[locale],
+    })),
+  }))
 
   return (
     <>
@@ -340,13 +309,7 @@ export default function EducationPage({ locale }: Props) {
       </section>
 
       <div className="container-base">
-        {c.sections.map((section) => (
-          <EducationListingSection
-            key={section.title}
-            section={section}
-            locale={locale}
-          />
-        ))}
+        <EducationCatalogAccordion domains={localizedCatalogue} />
 
         <CapabilityCTA
           locale={locale}
