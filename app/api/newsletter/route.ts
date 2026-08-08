@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { CONSENT_VERSION, NEWSLETTER_CONSENT_COPY } from '@/lib/forms/constants'
-import { getFormsPrisma } from '@/lib/forms/prisma'
+import { getFormsPrisma, isMissingFormsDatabaseUrlError } from '@/lib/forms/prisma'
 
 /**
  * POST /api/newsletter
@@ -35,8 +35,6 @@ const NewsletterSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
-    const formsPrisma = getFormsPrisma()
-
     const body: unknown = await request.json()
     const data = NewsletterSchema.parse(body)
     const locale = data.locale ?? 'pl'
@@ -56,6 +54,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Idempotent - already subscribed returns success
+    const formsPrisma = getFormsPrisma()
+
     const existing = await formsPrisma.newsletterSubscription.findUnique({
       where: { email: data.email },
     })
@@ -89,6 +89,18 @@ export async function POST(request: NextRequest) {
         { status: 422 }
       )
     }
+
+    if (isMissingFormsDatabaseUrlError(error)) {
+      return NextResponse.json(
+        {
+          success: false,
+          errorCode: 'FORMS_STORAGE_UNAVAILABLE',
+          message: 'Newsletter service is temporarily unavailable.',
+        },
+        { status: 503 }
+      )
+    }
+
     console.error('[API /newsletter]', error)
     return NextResponse.json(
       { success: false, message: 'Internal server error' },

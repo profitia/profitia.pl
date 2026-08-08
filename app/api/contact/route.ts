@@ -14,7 +14,7 @@ import {
   summarizeOffice365EmailFailure,
 } from '@/lib/forms/contact-notification'
 import { sendOffice365Email } from '@/lib/email/office365'
-import { getFormsPrisma } from '@/lib/forms/prisma'
+import { getFormsPrisma, isMissingFormsDatabaseUrlError } from '@/lib/forms/prisma'
 import {
   CONTACT_REQUEST_BODY_MAX_BYTES,
   extractClientIp,
@@ -173,6 +173,18 @@ function verificationUnavailableResponse() {
   )
 }
 
+function formsStorageUnavailableResponse() {
+  return NextResponse.json(
+    {
+      success: false,
+      error: 'FORMS_STORAGE_UNAVAILABLE',
+      errorCode: 'FORMS_STORAGE_UNAVAILABLE',
+      message: 'Contact form service is temporarily unavailable.',
+    },
+    { status: 503 }
+  )
+}
+
 function rateLimitResponse(locale: (typeof SUPPORTED_LOCALES)[number], retryAfterSeconds: number) {
   const message = locale === 'pl'
     ? 'Zbyt wiele prób wysłania formularza. Spróbuj ponownie za kilka minut.'
@@ -230,8 +242,6 @@ function parseContactRequest(body: unknown) {
 
 export async function POST(request: NextRequest) {
   try {
-    const formsPrisma = getFormsPrisma()
-
     const contentLengthHeader = request.headers.get('content-length')
     if (contentLengthHeader) {
       const contentLength = Number(contentLengthHeader)
@@ -304,6 +314,7 @@ export async function POST(request: NextRequest) {
     }
 
     const consentCopy = CONTACT_CONSENT_COPY[data.locale]
+  const formsPrisma = getFormsPrisma()
 
     const contact = await formsPrisma.contactSubmission.create({
       data: {
@@ -415,6 +426,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return validationResponse(flattenZodErrors(error))
+    }
+
+    if (isMissingFormsDatabaseUrlError(error)) {
+      return formsStorageUnavailableResponse()
     }
 
     console.error('[API /contact]', error)

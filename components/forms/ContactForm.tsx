@@ -82,6 +82,7 @@ const COPY = {
       failed: 'Nie udało się zweryfikować formularza. Spróbuj ponownie.',
       unavailable: 'Weryfikacja bezpieczeństwa jest chwilowo niedostępna. Spróbuj ponownie.',
     },
+    serviceUnavailable: 'Usługa formularza jest chwilowo niedostępna. Spróbuj ponownie później.',
     rateLimited: 'Zbyt wiele prób wysłania formularza. Spróbuj ponownie za kilka minut.',
   },
   en: {
@@ -120,6 +121,7 @@ const COPY = {
       failed: "We couldn't verify the form. Please try again.",
       unavailable: 'Security verification is temporarily unavailable. Please try again.',
     },
+    serviceUnavailable: 'The form service is temporarily unavailable. Please try again later.',
     rateLimited: 'Too many submission attempts. Please try again in a few minutes.',
   },
 } as const
@@ -241,6 +243,8 @@ export function ContactForm({ locale = 'pl' }: ContactFormProps) {
     switch (errorCode) {
       case 'RATE_LIMITED':
         return t.rateLimited
+      case 'FORMS_STORAGE_UNAVAILABLE':
+        return t.serviceUnavailable
       case 'BOT_VERIFICATION_REQUIRED':
       case 'BOT_VERIFICATION_FAILED':
         return t.security.failed
