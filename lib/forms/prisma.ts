@@ -17,9 +17,8 @@ function getFormsDatabaseUrl(): string {
   return url
 }
 
-export const formsPrisma: PrismaClient =
-  globalThis.__formsPrisma ??
-  new PrismaClient({
+function createFormsPrismaClient(): PrismaClient {
+  return new PrismaClient({
     datasources: {
       db: {
         url: getFormsDatabaseUrl(),
@@ -27,7 +26,18 @@ export const formsPrisma: PrismaClient =
     },
     log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
   })
+}
 
-if (process.env.NODE_ENV !== 'production') {
-  globalThis.__formsPrisma = formsPrisma
+export function getFormsPrisma(): PrismaClient {
+  if (globalThis.__formsPrisma) {
+    return globalThis.__formsPrisma
+  }
+
+  const client = createFormsPrismaClient()
+
+  if (process.env.NODE_ENV !== 'production') {
+    globalThis.__formsPrisma = client
+  }
+
+  return client
 }

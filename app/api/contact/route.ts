@@ -14,7 +14,7 @@ import {
   summarizeOffice365EmailFailure,
 } from '@/lib/forms/contact-notification'
 import { sendOffice365Email } from '@/lib/email/office365'
-import { formsPrisma } from '@/lib/forms/prisma'
+import { getFormsPrisma } from '@/lib/forms/prisma'
 import {
   CONTACT_REQUEST_BODY_MAX_BYTES,
   extractClientIp,
@@ -230,6 +230,8 @@ function parseContactRequest(body: unknown) {
 
 export async function POST(request: NextRequest) {
   try {
+    const formsPrisma = getFormsPrisma()
+
     const contentLengthHeader = request.headers.get('content-length')
     if (contentLengthHeader) {
       const contentLength = Number(contentLengthHeader)

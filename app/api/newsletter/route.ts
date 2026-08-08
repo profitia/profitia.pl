@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { CONSENT_VERSION, NEWSLETTER_CONSENT_COPY } from '@/lib/forms/constants'
-import { formsPrisma } from '@/lib/forms/prisma'
+import { getFormsPrisma } from '@/lib/forms/prisma'
 
 /**
  * POST /api/newsletter
@@ -35,6 +35,8 @@ const NewsletterSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    const formsPrisma = getFormsPrisma()
+
     const body: unknown = await request.json()
     const data = NewsletterSchema.parse(body)
     const locale = data.locale ?? 'pl'
