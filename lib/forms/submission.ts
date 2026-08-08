@@ -15,13 +15,13 @@
  */
 
 import type {
-  ContactSubmissionPayload,
+  ContactRequestPayload,
   NewsletterSubmissionPayload,
   SubmissionResult,
 } from './types'
 
 export async function submitContactForm(
-  payload: ContactSubmissionPayload
+  payload: ContactRequestPayload
 ): Promise<SubmissionResult> {
   try {
     const res = await fetch('/api/contact', {
@@ -36,6 +36,7 @@ export async function submitContactForm(
         success: false,
         errorCode: (body as { errorCode?: string }).errorCode ?? 'SERVER_ERROR',
         message: (body as { message?: string }).message,
+        fields: (body as { fields?: Record<string, string> }).fields,
       }
     }
 
@@ -61,6 +62,7 @@ export async function submitNewsletterForm(
         success: false,
         errorCode: (body as { errorCode?: string }).errorCode ?? 'SERVER_ERROR',
         message: (body as { message?: string }).message,
+        fields: (body as { fields?: Record<string, string> }).fields,
       }
     }
 

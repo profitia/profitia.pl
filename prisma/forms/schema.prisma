@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/forms-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_FORMS_URL")
+}
+
+enum SubmissionStatus {
+  NEW
+  READ
+  IN_PROGRESS
+  CLOSED
+}
+
+enum EmailDeliveryStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  UNSUBSCRIBED
+}
+
+model ContactSubmission {
+  id                         String              @id @default(cuid())
+  fullName                   String
+  email                      String
+  company                    String?
+  topic                      String?
+  message                    String              @db.Text
+  privacyConsent             Boolean
+  privacyConsentText         String              @db.Text
+  privacyConsentVersion      String
+  marketingConsent           Boolean
+  marketingConsentText       String              @db.Text
+  marketingConsentVersion    String
+  lawfulBasis                String?
+  privacyPolicyUrl           String?
+  privacyPolicyVersion       String?
+  locale                     String
+  sourcePage                 String?
+  submissionStatus           SubmissionStatus    @default(NEW)
+  internalEmailStatus        EmailDeliveryStatus @default(PENDING)
+  internalEmailSentAt        DateTime?
+  internalEmailMessageId     String?
+  internalEmailError         String?             @db.Text
+  confirmationEmailStatus    EmailDeliveryStatus @default(PENDING)
+  confirmationEmailSentAt    DateTime?
+  confirmationEmailMessageId String?
+  confirmationEmailError     String?             @db.Text
+  submittedAt                DateTime            @default(now())
+  createdAt                  DateTime            @default(now())
+  updatedAt                  DateTime            @updatedAt
+
+  @@map("contact_submissions")
+  @@index([submittedAt])
+  @@index([submissionStatus])
+  @@index([email])
+  @@index([internalEmailStatus])
+  @@index([confirmationEmailStatus])
+}
+
+model NewsletterSubscription {
+  id                    String             @id @default(cuid())
+  email                 String             @unique
+  privacyConsent        Boolean
+  privacyConsentText    String             @db.Text
+  privacyConsentVersion String
+  lawfulBasis           String?
+  locale                String
+  sourcePage            String?
+  subscriptionStatus    SubscriptionStatus @default(ACTIVE)
+  subscribedAt          DateTime           @default(now())
+  confirmedAt           DateTime?
+  unsubscribedAt        DateTime?
+  externalContactId     String?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  @@map("newsletter_subscriptions")
+  @@index([subscribedAt])
+  @@index([subscriptionStatus])
+  @@index([locale])
+}

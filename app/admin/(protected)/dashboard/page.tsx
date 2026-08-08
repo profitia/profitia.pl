@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { formsPrisma } from '@/lib/forms/prisma'
 import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
@@ -7,8 +8,8 @@ export const metadata: Metadata = { title: 'Dashboard' }
 export default async function AdminDashboardPage() {
   const [articleCount, contactCount, subscriberCount] = await Promise.all([
     prisma.article.count(),
-    prisma.contact.count(),
-    prisma.subscriber.count(),
+    formsPrisma.contactSubmission.count(),
+    formsPrisma.newsletterSubscription.count(),
   ])
 
   const stats = [

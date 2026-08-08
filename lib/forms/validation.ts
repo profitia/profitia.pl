@@ -16,15 +16,15 @@ const MESSAGES = {
     emailInvalid: 'Podaj poprawny adres e-mail.',
     tooShort: (min: number) => `Minimalna długość to ${min} znaki.`,
     tooLong: (max: number) => `Maksymalna długość to ${max} znaków.`,
-    consentRequired: 'Akceptacja tej zgody jest wymagana.',
+    consentRequired: 'Zgoda jest wymagana, aby wysłać wiadomość.',
     topicRequired: 'Wybierz temat zapytania.',
   },
   en: {
     required: 'This field is required.',
-    emailInvalid: 'Please enter a valid email address.',
+    emailInvalid: 'Enter a valid email address.',
     tooShort: (min: number) => `Minimum length is ${min} characters.`,
     tooLong: (max: number) => `Maximum length is ${max} characters.`,
-    consentRequired: 'Your acceptance is required.',
+    consentRequired: 'Consent is required to send your message.',
     topicRequired: 'Please select a topic.',
   },
 } as const

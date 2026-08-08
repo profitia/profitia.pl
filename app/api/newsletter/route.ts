@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { prisma } from '@/lib/prisma'
+import { CONSENT_VERSION, NEWSLETTER_CONSENT_COPY } from '@/lib/forms/constants'
+import { formsPrisma } from '@/lib/forms/prisma'
 
 /**
  * POST /api/newsletter
@@ -36,6 +37,9 @@ export async function POST(request: NextRequest) {
   try {
     const body: unknown = await request.json()
     const data = NewsletterSchema.parse(body)
+    const locale = data.locale ?? 'pl'
+    const subscribedAt = data.consent?.consentAt ? new Date(data.consent.consentAt) : new Date()
+    const consentVersion = data.consent?.consentVersion ?? CONSENT_VERSION
 
     // GDPR: require explicit consent before persisting any data
     if (!data.consent?.gdpr) {
@@ -50,7 +54,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Idempotent - already subscribed returns success
-    const existing = await prisma.subscriber.findUnique({
+    const existing = await formsPrisma.newsletterSubscription.findUnique({
       where: { email: data.email },
     })
 
@@ -58,14 +62,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true, alreadySubscribed: true }, { status: 200 })
     }
 
-    await prisma.subscriber.create({
+    await formsPrisma.newsletterSubscription.create({
       data: {
         email: data.email,
-        locale: data.locale ?? null,
-        source: data.source ?? null,
-        consentVersion: data.consent.consentVersion ?? null,
-        consentAt: data.consent.consentAt ? new Date(data.consent.consentAt) : null,
+        locale,
+        sourcePage: data.source ?? null,
+        privacyConsent: data.consent.gdpr,
+        privacyConsentText: NEWSLETTER_CONSENT_COPY[locale].privacyConsentText,
+        privacyConsentVersion: consentVersion,
         lawfulBasis: data.consent.lawfulBasis ?? 'consent',
+        subscribedAt,
       },
     })
 

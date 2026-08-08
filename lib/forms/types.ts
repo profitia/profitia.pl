@@ -74,6 +74,12 @@ export interface ContactSubmissionPayload {
   consent: FormConsentMeta
 }
 
+export interface ContactRequestPayload extends ContactSubmissionPayload {
+  website: string
+  formStartedAt: number
+  turnstileToken: string
+}
+
 export interface NewsletterSubmissionPayload {
   formType: 'newsletter'
   locale: Locale
@@ -91,4 +97,5 @@ export interface SubmissionResult {
   success: boolean
   message?: string
   errorCode?: string
+  fields?: Record<string, string>
 }

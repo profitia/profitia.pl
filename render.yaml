@@ -4,7 +4,7 @@ services:
     runtime: node
     region: frankfurt
     plan: free
-    buildCommand: npm install && npx prisma generate && npm run build
+    buildCommand: npm install && npx prisma generate && npm run db:forms:generate && npm run build
     startCommand: npm run start
     healthCheckPath: /
     envVars:
@@ -14,10 +14,42 @@ services:
         value: 20
       - key: DATABASE_URL
         sync: false
+      - key: DATABASE_FORMS_URL
+        sync: false
       - key: JWT_SECRET
         sync: false
       - key: NEXT_PUBLIC_SITE_URL
         value: https://profitia-pl.onrender.com
+      - key: NEXT_PUBLIC_TURNSTILE_SITE_KEY
+        sync: false
+      - key: TURNSTILE_SECRET_KEY
+        sync: false
+      - key: TURNSTILE_ALLOWED_HOSTNAMES
+        value: profitia-pl.onrender.com,profitia.pl,www.profitia.pl
+      - key: TURNSTILE_EXPECTED_ACTION
+        value: contact_form
+      - key: CONTACT_MIN_FILL_TIME_MS
+        value: 800
+      - key: CONTACT_RATE_LIMIT_WINDOW_MS
+        value: 600000
+      - key: CONTACT_RATE_LIMIT_MAX_PER_IP
+        value: 10
+      - key: CONTACT_RATE_LIMIT_EMAIL_WINDOW_MS
+        value: 1800000
+      - key: CONTACT_RATE_LIMIT_MAX_PER_EMAIL
+        value: 3
+      - key: AZURE_TENANT_ID
+        sync: false
+      - key: AZURE_CLIENT_ID
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: MAIL_SCOPES
+        value: Mail.Send,User.Read
+      - key: MSAL_TOKEN_CACHE_B64
+        sync: false
+      - key: CONTACT_NOTIFICATION_EMAIL
+        value: kontakt@profitia.pl
       - key: OPENAI_API_KEY
         sync: false
       - key: OPENAI_PRIMARY_MODEL
