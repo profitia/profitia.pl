@@ -119,8 +119,11 @@ export function ArticleLayout({ content }: ArticleLayoutProps) {
               // Code
               '[&>pre]:bg-gray-50 [&>pre]:border [&>pre]:border-gray-100 [&>pre]:rounded-lg [&>pre]:p-5 [&>pre]:overflow-x-auto [&>pre]:text-[13px] [&>pre]:text-gray-700 [&>pre]:mb-6',
               '[&_code]:bg-gray-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-[13px] [&_code]:text-gray-700 [&_code]:font-mono',
-              // Image
-              '[&>img]:w-full [&>img]:rounded-lg [&>img]:mb-8 [&>img]:mt-2',
+              // Embedded media
+              '[&_img]:block [&_img]:w-full [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_img]:mb-8 [&_img]:mt-2',
+              '[&_figure]:w-full [&_figure]:max-w-full [&_figure]:my-8',
+              '[&_figcaption]:mt-3 [&_figcaption]:text-sm [&_figcaption]:leading-[1.7] [&_figcaption]:text-gray-500',
+              '[&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:aspect-video [&_iframe]:rounded-lg [&_iframe]:mb-8 [&_iframe]:border-0',
               // Max width
               'max-w-[68ch]',
             ].join(' ')}
