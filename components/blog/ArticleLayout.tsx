@@ -16,6 +16,7 @@
  */
 
 import type { ArticleTOCItem } from '@/lib/content/types'
+import { ArticleContent } from './ArticleContent'
 import { ArticleTOCSidebar } from './ArticleTOCSidebar'
 
 interface ArticleLayoutProps {
@@ -91,44 +92,33 @@ export function ArticleLayout({ content }: ArticleLayoutProps) {
 
         {/* ── Article Content (Server-rendered HTML) ───────── */}
         <div className="min-w-0">
-          <div
+          <ArticleContent
             className={[
-              // Paragraph
               '[&>p]:text-[16px] [&>p]:text-gray-600 [&>p]:leading-[1.9] [&>p]:mb-7',
-              // Headings - scroll-mt-28 for sticky header offset
               '[&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-gray-900 [&>h2]:leading-snug [&>h2]:mt-16 [&>h2]:mb-6 [&>h2]:pt-10 [&>h2]:border-t [&>h2]:border-gray-100 [&>h2]:scroll-mt-28',
               '[&>h3]:text-lg [&>h3]:font-semibold [&>h3]:text-gray-900 [&>h3]:mt-10 [&>h3]:mb-4 [&>h3]:scroll-mt-28',
               '[&>h4]:text-base [&>h4]:font-semibold [&>h4]:text-gray-800 [&>h4]:mt-8 [&>h4]:mb-3',
-              // Lists
               '[&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-7 [&>ul]:space-y-2.5',
               '[&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-7 [&>ol]:space-y-2.5',
               '[&>ul>li]:text-[15px] [&>ul>li]:text-gray-600 [&>ul>li]:leading-[1.85]',
               '[&>ol>li]:text-[15px] [&>ol>li]:text-gray-600 [&>ol>li]:leading-[1.85]',
-              // Inline
               '[&_strong]:font-semibold [&_strong]:text-gray-800',
               '[&_em]:italic',
               '[&_a]:text-gray-900 [&_a]:underline [&_a]:underline-offset-2 [&_a]:decoration-gray-300 [&_a:hover]:decoration-gray-600 [&_a]:transition-colors [&_a]:duration-200',
-              // Pull quote / blockquote
               '[&>blockquote]:border-l-[3px] [&>blockquote]:border-gray-200 [&>blockquote]:pl-7 [&>blockquote]:my-12 [&>blockquote]:italic [&>blockquote]:text-[18px] [&>blockquote]:text-gray-500 [&>blockquote]:leading-[1.78]',
-              // HR / divider
               '[&>hr]:border-0 [&>hr]:border-t [&>hr]:border-gray-100 [&>hr]:my-12',
-              // Tables
               '[&>table]:w-full [&>table]:text-sm [&>table]:mb-8 [&>table]:border-collapse',
               '[&>table>thead>tr>th]:text-left [&>table>thead>tr>th]:text-[11px] [&>table>thead>tr>th]:font-semibold [&>table>thead>tr>th]:tracking-[0.1em] [&>table>thead>tr>th]:uppercase [&>table>thead>tr>th]:text-gray-500 [&>table>thead>tr>th]:pb-3 [&>table>thead>tr>th]:border-b [&>table>thead>tr>th]:border-gray-200',
               '[&>table>tbody>tr>td]:py-3 [&>table>tbody>tr>td]:text-gray-600 [&>table>tbody>tr>td]:border-b [&>table>tbody>tr>td]:border-gray-100',
-              // Code
               '[&>pre]:bg-gray-50 [&>pre]:border [&>pre]:border-gray-100 [&>pre]:rounded-lg [&>pre]:p-5 [&>pre]:overflow-x-auto [&>pre]:text-[13px] [&>pre]:text-gray-700 [&>pre]:mb-6',
               '[&_code]:bg-gray-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-[13px] [&_code]:text-gray-700 [&_code]:font-mono',
-              // Embedded media
-              '[&_img]:block [&_img]:w-full [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_img]:mb-8 [&_img]:mt-2',
+              '[&_img]:block [&_img]:w-full [&_img]:max-w-full [&_img]:h-auto [&_img]:cursor-zoom-in [&_img]:rounded-lg [&_img]:mb-8 [&_img]:mt-2',
               '[&_figure]:w-full [&_figure]:max-w-full [&_figure]:my-8',
               '[&_figcaption]:mt-3 [&_figcaption]:text-sm [&_figcaption]:leading-[1.7] [&_figcaption]:text-gray-500',
               '[&_iframe]:w-full [&_iframe]:max-w-full [&_iframe]:aspect-video [&_iframe]:rounded-lg [&_iframe]:mb-8 [&_iframe]:border-0',
-              // Max width
               'max-w-[68ch]',
             ].join(' ')}
-            // Note: content is from our own CMS seed - not user-generated input
-            dangerouslySetInnerHTML={{ __html: processedHtml }}
+            html={processedHtml}
           />
         </div>
 

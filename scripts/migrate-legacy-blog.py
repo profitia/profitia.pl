@@ -13,6 +13,8 @@ from urllib.parse import urljoin, urlparse
 
 from lxml import etree, html
 
+from legacy_blog_image_deduper import dedupe_featured_images
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = REPO_ROOT / 'db' / 'legacy-blog' / 'legacy-blog-articles.json'
@@ -343,6 +345,7 @@ def main() -> None:
         selected = selected[: args.limit]
 
     migrated = [migrate_entry(entry, Path(args.asset_root)) for entry in selected]
+    dedupe_featured_images(migrated, Path(args.asset_root))
     report = [
         {
             'sourceUrl': item['sourceUrl'],

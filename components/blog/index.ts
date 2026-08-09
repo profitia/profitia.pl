@@ -12,6 +12,7 @@ export { BlogNewsletter } from './BlogNewsletter'
 
 // Article page
 export { ArticleHero } from './ArticleHero'
+export { ArticleContent } from './ArticleContent'
 export { ArticleLayout } from './ArticleLayout'
 export { ArticleTOCSidebar } from './ArticleTOCSidebar'
 export { ArticleAuthor } from './ArticleAuthor'
