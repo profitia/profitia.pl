@@ -23,6 +23,7 @@ export interface TurnstileWidgetHandle {
 }
 
 interface TurnstileWidgetProps {
+  action?: string
   locale: Locale
   siteKey: string
   onTokenChange: (token: string | null) => void
@@ -30,7 +31,7 @@ interface TurnstileWidgetProps {
 }
 
 export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidgetProps>(
-  function TurnstileWidget({ locale, siteKey, onTokenChange, onStatusChange }, ref) {
+  function TurnstileWidget({ action = TURNSTILE_ACTION, locale, siteKey, onTokenChange, onStatusChange }, ref) {
     const containerRef = useRef<HTMLDivElement | null>(null)
     const widgetIdRef = useRef<string | null>(null)
     const [scriptLoaded, setScriptLoaded] = useState(false)
@@ -77,7 +78,7 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
 
       widgetIdRef.current = turnstile.render(containerRef.current, {
         sitekey: siteKey,
-        action: TURNSTILE_ACTION,
+        action,
         appearance: 'interaction-only',
         theme: 'auto',
         size: 'flexible',
@@ -104,7 +105,7 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
       })
 
       onStatusChange('ready')
-    }, [locale, onStatusChange, onTokenChange, scriptFailed, scriptLoaded, siteKey])
+    }, [action, locale, onStatusChange, onTokenChange, scriptFailed, scriptLoaded, siteKey])
 
     useEffect(() => {
       return () => {

@@ -56,11 +56,16 @@ async function main() {
   console.log(`Starting legacy blog import for ${articles.length} articles...\n`)
 
   for (const article of articles) {
-    const saved = await prisma.article.upsert({
-      where: { slug: article.slug },
-      create: toArticleData(article),
-      update: toArticleData(article),
+    const existing = await prisma.article.findFirst({
+      where: { slug: article.slug, locale: null },
+      select: { id: true },
     })
+    const saved = existing
+      ? await prisma.article.update({
+          where: { id: existing.id },
+          data: toArticleData(article),
+        })
+      : await prisma.article.create({ data: toArticleData(article) })
 
     console.log(`✓ Upserted: "${saved.title}" (${saved.slug})`)
   }

@@ -21,6 +21,7 @@ import { ArticleTOCSidebar } from './ArticleTOCSidebar'
 
 interface ArticleLayoutProps {
   content: string
+  locale: 'pl' | 'en'
 }
 
 // ── Server-side heading extraction ───────────────────────────────────────────
@@ -30,7 +31,7 @@ interface ArticleLayoutProps {
  * Uses the same slug algorithm as the original client-side scanner so that
  * IDs are stable and predictable.
  */
-function prepareContent(html: string): {
+export function prepareContent(html: string): {
   processedHtml: string
   tocItems: ArticleTOCItem[]
 } {
@@ -80,7 +81,7 @@ function prepareContent(html: string): {
 
 // ── Main component ──────────────────────────────────────────────────────────
 
-export function ArticleLayout({ content }: ArticleLayoutProps) {
+export function ArticleLayout({ content, locale }: ArticleLayoutProps) {
   const { processedHtml, tocItems } = prepareContent(content)
 
   return (
@@ -88,7 +89,7 @@ export function ArticleLayout({ content }: ArticleLayoutProps) {
       <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] lg:gap-16 lg:items-start">
 
         {/* ── TOC Sidebar (Client Component) ──────────────── */}
-        <ArticleTOCSidebar tocItems={tocItems} />
+        <ArticleTOCSidebar locale={locale} tocItems={tocItems} />
 
         {/* ── Article Content (Server-rendered HTML) ───────── */}
         <div className="min-w-0">

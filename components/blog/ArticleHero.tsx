@@ -107,7 +107,7 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
           <div className="relative hidden md:block w-full aspect-[16/7] rounded-2xl overflow-hidden bg-gray-100">
             <Image
               src={coverImage}
-              alt={article.title}
+              alt={article.coverImageAlt ?? article.title}
               fill
               sizes="(max-width: 1280px) 100vw, 1280px"
               className="object-cover"
@@ -123,7 +123,7 @@ export function ArticleHero({ article, locale }: ArticleHeroProps) {
       {coverImage ? (
         <MobileHeroImage
           src={coverImage}
-          alt={article.title}
+          alt={article.coverImageAlt ?? article.title}
           priority
         />
       ) : (

@@ -25,9 +25,15 @@ function IconFacebook() {
   )
 }
 
-export default function Footer() {
+export default function Footer({
+  articlePage = false,
+  localeOverride,
+}: {
+  articlePage?: boolean
+  localeOverride?: 'pl' | 'en'
+} = {}) {
   const pathname = usePathname()
-  const isEN = pathname.startsWith('/en')
+  const isEN = localeOverride ? localeOverride === 'en' : pathname.startsWith('/en')
   const dict = isEN ? enDict : plDict
   const prefix = isEN ? '/en' : ''
   const { openModal } = useConsent()
@@ -38,7 +44,7 @@ export default function Footer() {
   )
   // Article pages: inline newsletter present - suppress footer newsletter
   // and use compressed footer rhythm
-  const isArticlePage = /^(\/en)?\/blog\/[^/]+/.test(pathname)
+  const isArticlePage = articlePage || /^(\/en)?\/blog\/[^/]+/.test(pathname)
   // About page: quiet CTA → footer transition - suppress newsletter, compressed rhythm
   const isAboutPage = /^(\/en)?\/about\/?$/.test(pathname)
   // Capability pages (services/education - both listing and detail): no newsletter.

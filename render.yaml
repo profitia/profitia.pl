@@ -18,14 +18,26 @@ services:
         sync: false
       - key: JWT_SECRET
         sync: false
+      - key: ADMIN_AUTH_HMAC_SECRET
+        sync: false
       - key: NEXT_PUBLIC_SITE_URL
-        value: https://profitia-pl.onrender.com
+        value: https://profitia.pl
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET_NAME
+        sync: false
+      - key: R2_PUBLIC_BASE_URL
+        sync: false
       - key: NEXT_PUBLIC_TURNSTILE_SITE_KEY
         sync: false
       - key: TURNSTILE_SECRET_KEY
         sync: false
       - key: TURNSTILE_ALLOWED_HOSTNAMES
-        value: profitia-pl.onrender.com,profitia.pl,www.profitia.pl
+        value: profitia.pl,www.profitia.pl
       - key: TURNSTILE_EXPECTED_ACTION
         value: contact_form
       - key: CONTACT_MIN_FILL_TIME_MS

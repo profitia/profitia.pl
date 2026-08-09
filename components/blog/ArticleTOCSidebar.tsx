@@ -12,6 +12,7 @@ import { useCallback, useEffect, useState } from 'react'
 import type { ArticleTOCItem } from '@/lib/content/types'
 
 interface Props {
+  locale: 'pl' | 'en'
   tocItems: ArticleTOCItem[]
 }
 
@@ -56,7 +57,7 @@ function TOCItem({
   )
 }
 
-export function ArticleTOCSidebar({ tocItems }: Props) {
+export function ArticleTOCSidebar({ locale, tocItems }: Props) {
   const [activeId, setActiveId] = useState<string>(tocItems[0]?.id ?? '')
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -86,6 +87,9 @@ export function ArticleTOCSidebar({ tocItems }: Props) {
 
   if (tocItems.length === 0) return <aside />
 
+  const label = locale === 'en' ? 'On this page' : 'Spis treści'
+  const navigationLabel = locale === 'en' ? 'Article table of contents' : 'Spis treści artykułu'
+
   return (
     <aside>
       {/* Mobile: collapsible */}
@@ -96,7 +100,7 @@ export function ArticleTOCSidebar({ tocItems }: Props) {
           aria-expanded={mobileOpen}
         >
           <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400">
-            Spis treści
+            {label}
           </span>
           <svg
             width="14"
@@ -116,7 +120,7 @@ export function ArticleTOCSidebar({ tocItems }: Props) {
           </svg>
         </button>
         {mobileOpen && (
-          <nav aria-label="Spis treści artykułu" className="px-4 py-4">
+          <nav aria-label={navigationLabel} className="px-4 py-4">
             <ul className="space-y-2.5">
               {tocItems.map((item) => (
                 <TOCItem
@@ -133,11 +137,11 @@ export function ArticleTOCSidebar({ tocItems }: Props) {
 
       {/* Desktop: sticky */}
       <nav
-        aria-label="Spis treści artykułu"
+        aria-label={navigationLabel}
         className="hidden lg:block sticky top-28 self-start"
       >
         <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">
-          Spis treści
+          {label}
         </p>
         <ul className="space-y-3">
           {tocItems.map((item) => (

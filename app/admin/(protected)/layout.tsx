@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { verifyAdminTokenValue } from '@/lib/auth'
+import { LogOut } from 'lucide-react'
+import { ADMIN_SESSION_COOKIE, verifyActiveAdminTokenValue } from '@/lib/auth'
 
 export default async function ProtectedAdminLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies()
-  const session = verifyAdminTokenValue(cookieStore.get('admin_token')?.value)
+  const session = await verifyActiveAdminTokenValue(cookieStore.get(ADMIN_SESSION_COOKIE)?.value)
 
   if (!session) {
     redirect('/admin/login')
@@ -24,9 +25,20 @@ export default async function ProtectedAdminLayout({ children }: { children: Rea
               Artykuły
             </Link>
           </nav>
-          <Link href="/" className="text-sm text-gray-400 hover:text-white transition-colors">
-            ← Wróć do strony
-          </Link>
+          <div className="space-y-4">
+            <form action="/api/admin/logout" method="POST">
+              <button
+                type="submit"
+                className="flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-white"
+              >
+                <LogOut aria-hidden="true" size={16} />
+                Wyloguj się
+              </button>
+            </form>
+            <Link href="/" className="block text-sm text-gray-400 hover:text-white transition-colors">
+              ← Wróć do strony
+            </Link>
+          </div>
         </aside>
 
         <main className="flex-1 overflow-auto p-8">{children}</main>

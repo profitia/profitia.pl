@@ -56,12 +56,15 @@ export type ArticleCategorySlug = keyof typeof ARTICLE_CATEGORIES
 export interface ArticlePreviewData {
   id: string
   slug: string
+  locale: 'PL' | 'EN' | null
+  translationGroupId: string | null
   title: string
   excerpt: string | null
   subtitle: string | null
   category: string | null
   readingTime: number | null
   coverImage: string | null
+  coverImageAlt: string | null
   featured: boolean
   publishedAt: Date | null
   authorName: string | null

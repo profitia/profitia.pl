@@ -94,7 +94,7 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
             {article.coverImage ? (
               <Image
                 src={article.coverImage}
-                alt={article.title}
+                alt={article.coverImageAlt ?? article.title}
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"

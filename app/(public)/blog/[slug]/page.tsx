@@ -1,8 +1,17 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { prisma } from '@/lib/prisma'
 import type { ArticleDetailData, ArticlePreviewData } from '@/lib/content/types'
 import BlogArticlePage from '@/components/pages/BlogArticlePage'
+import {
+  findPublishedArticleBySlug,
+  findPublishedRelatedArticles,
+  findPublishedTranslationSibling,
+} from '@/lib/articles/queries'
+import {
+  buildArticleJsonLd,
+  buildArticleMetadata,
+  serializeJsonLd,
+} from '@/lib/articles/article-seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,96 +21,44 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const article = await prisma.article.findUnique({
-    where: { slug },
-    select: {
-      title: true,
-      metaTitle: true,
-      metaDescription: true,
-      excerpt: true,
-      coverImage: true,
-      publishedAt: true,
-      authorName: true,
-      category: true,
-    },
-  })
+  const article = await findPublishedArticleBySlug(slug, 'PL')
   if (!article) return { title: 'Not Found' }
 
-  const title = article.metaTitle ?? article.title
-  const description = article.metaDescription ?? article.excerpt ?? undefined
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `https://profitia.pl/blog/${slug}`,
-      languages: { en: `https://profitia.pl/en/blog/${slug}` },
-    },
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      ...(article.publishedAt && { publishedTime: new Date(article.publishedAt as Date | string).toISOString() }),
-      ...(article.authorName && { authors: [article.authorName] }),
-      ...(article.coverImage && { images: [article.coverImage] }),
-    },
-  }
-}
-
-async function getArticle(slug: string): Promise<ArticleDetailData | null> {
-  const row = await prisma.article.findFirst({
-    where: { slug, published: true },
-    select: {
-      id: true,
-      slug: true,
-      title: true,
-      excerpt: true,
-      subtitle: true,
-      category: true,
-      readingTime: true,
-      coverImage: true,
-      featured: true,
-      publishedAt: true,
-      authorName: true,
-      authorRole: true,
-      content: true,
-      authorBio: true,
-      relatedSlugs: true,
-      metaTitle: true,
-      metaDescription: true,
-    },
-  })
-  if (!row) return null
-  return row as ArticleDetailData
+  const sibling = article.locale
+    ? await findPublishedTranslationSibling(article, 'EN')
+    : null
+  return buildArticleMetadata({ ...article, locale: 'PL' }, sibling)
 }
 
 async function getRelated(slugs: string[]): Promise<ArticlePreviewData[]> {
-  if (slugs.length === 0) return []
-  const rows = await prisma.article.findMany({
-    where: { slug: { in: slugs }, published: true },
-    select: {
-      id: true,
-      slug: true,
-      title: true,
-      excerpt: true,
-      subtitle: true,
-      category: true,
-      readingTime: true,
-      coverImage: true,
-      featured: true,
-      publishedAt: true,
-      authorName: true,
-      authorRole: true,
-    },
-  })
+  const rows = await findPublishedRelatedArticles(slugs, 'PL')
   return rows as ArticlePreviewData[]
 }
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params
-  const article = await getArticle(slug)
-  if (!article) notFound()
+  const row = await findPublishedArticleBySlug(slug, 'PL')
+  if (!row) notFound()
+  const article = row as ArticleDetailData
 
-  const related = await getRelated(article.relatedSlugs ?? [])
-  return <BlogArticlePage locale="pl" article={article} relatedArticles={related} />
+  const [related, sibling] = await Promise.all([
+    getRelated(article.relatedSlugs ?? []),
+    article.locale ? findPublishedTranslationSibling(article, 'EN') : null,
+  ])
+  const languagePaths = article.locale
+    ? { pl: `/blog/${article.slug}`, ...(sibling && { en: `/en/blog/${sibling.slug}` }) }
+    : undefined
+  const jsonLd = buildArticleJsonLd({ ...row, locale: 'PL' })
+
+  return (
+    <>
+      {jsonLd ? (
+        <script
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+          type="application/ld+json"
+        />
+      ) : null}
+      <BlogArticlePage locale="pl" article={article} relatedArticles={related} languagePaths={languagePaths} />
+    </>
+  )
 }

@@ -6,16 +6,19 @@ import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import plDict from '@/dictionaries/pl.json'
 import enDict from '@/dictionaries/en.json'
+import { useLanguageNavigation } from './LanguageNavigationProvider'
+import { resolveLanguageSwitchPath } from '@/lib/articles/language-navigation'
 
 const LOCALE_COOKIE = 'PROFITIA_LOCALE'
 
-export default function Header() {
+export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en' } = {}) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const { languagePaths } = useLanguageNavigation()
 
-  const isEN = pathname.startsWith('/en')
+  const isEN = localeOverride ? localeOverride === 'en' : pathname.startsWith('/en')
   const currentLocale = isEN ? 'en' : 'pl'
   const dict = isEN ? enDict : plDict
   const prefix = isEN ? '/en' : ''
@@ -54,10 +57,7 @@ export default function Header() {
   // ── Locale switch ─────────────────────────────────────────────
   const switchLocale = (locale: 'pl' | 'en') => {
     document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${365 * 24 * 60 * 60}; samesite=lax`
-    const newPath =
-      locale === 'en'
-        ? isEN ? pathname : '/en' + pathname
-        : isEN ? pathname.slice(3) || '/' : pathname
+    const newPath = resolveLanguageSwitchPath(locale, pathname, isEN, languagePaths)
     router.push(newPath)
   }
 

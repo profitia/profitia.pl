@@ -27,9 +27,9 @@ const COPY = {
   },
 } as const
 
-export default function NewsletterStrip() {
+export default function NewsletterStrip({ localeOverride }: { localeOverride?: 'pl' | 'en' } = {}) {
   const pathname = usePathname()
-  const isEN = pathname.startsWith('/en')
+  const isEN = localeOverride ? localeOverride === 'en' : pathname.startsWith('/en')
   const t = COPY[isEN ? 'en' : 'pl']
 
   // Navigate to the footer newsletter section.

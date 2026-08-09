@@ -10,6 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ArticleLocale {
+  PL
+  EN
+}
+
 // ---------------------------------------------------------------------------
 // Blog articles (CMS)
 // ---------------------------------------------------------------------------
@@ -18,13 +23,15 @@ model Article {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  slug      String  @unique
-  title     String
-  excerpt   String? @db.Text
-  content   String  @db.Text
+  slug               String
+  locale             ArticleLocale?
+  translationGroupId String?
+  title              String
+  excerpt            String?        @db.Text
+  content            String         @db.Text
 
-  published    Boolean  @default(false)
-  publishedAt  DateTime?
+  published   Boolean   @default(false)
+  publishedAt DateTime?
 
   // SEO
   metaTitle       String?
@@ -36,15 +43,18 @@ model Article {
 
   // ── Editorial System ────────────────────────────────────────────────────
   // Category slug - must match ArticleCategorySlug in lib/content/types.ts
-  category    String?
+  category      String?
   // Estimated reading time in minutes
-  readingTime Int?
+  readingTime   Int?
   // Cover image - public path (e.g. /images/articles/...) or absolute URL
-  coverImage  String?
+  coverImage    String?
+  coverImageAlt String?
+  coverMedia    Media?  @relation(fields: [coverMediaId], references: [id], onDelete: SetNull)
+  coverMediaId  String?
   // Whether this article is the featured/lead article on the index
-  featured    Boolean @default(false)
+  featured      Boolean @default(false)
   // Subtitle / standfirst - shown in article hero below title
-  subtitle    String? @db.Text
+  subtitle      String? @db.Text
 
   // Author (denormalized - supplements AdminUser relation for editorial display)
   authorName String?
@@ -54,7 +64,29 @@ model Article {
   // Related content - slugs resolved at query time
   relatedSlugs String[] @default([])
 
+  @@unique([locale, slug])
+  @@unique([translationGroupId, locale])
+  @@index([coverMediaId])
   @@map("articles")
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  storageKey String @unique
+  publicUrl  String @unique
+  mimeType   String
+  width      Int
+  height     Int
+  byteSize   Int
+
+  uploadedBy    AdminUser @relation(fields: [uploadedById], references: [id])
+  uploadedById  String
+  coverArticles Article[]
+
+  @@index([uploadedById])
+  @@map("media")
 }
 
 // ---------------------------------------------------------------------------
@@ -65,13 +97,32 @@ model AdminUser {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email        String  @unique
+  email        String @unique
   name         String
   passwordHash String
 
   active Boolean @default(true)
 
   articles Article[]
+  media       Media[]
+  loginAudits AdminLoginAudit[]
 
   @@map("admin_users")
+}
+
+model AdminLoginAudit {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  adminUser   AdminUser? @relation(fields: [adminUserId], references: [id], onDelete: SetNull)
+  adminUserId String?
+  emailKey    String
+  ipKey       String
+  outcome     String
+  userAgent   String?    @db.VarChar(512)
+
+  @@index([ipKey, createdAt])
+  @@index([emailKey, createdAt])
+  @@index([adminUserId])
+  @@map("admin_login_audits")
 }

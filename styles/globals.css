@@ -29,6 +29,67 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
+  .rich-text-editor .tiptap p {
+    @apply mb-4;
+  }
+
+  .rich-text-editor .tiptap h2 {
+    @apply mb-4 mt-8 text-2xl font-semibold text-gray-900;
+  }
+
+  .rich-text-editor .tiptap h3 {
+    @apply mb-3 mt-6 text-xl font-semibold text-gray-900;
+  }
+
+  .rich-text-editor .tiptap ul {
+    @apply mb-4 list-disc pl-6;
+  }
+
+  .rich-text-editor .tiptap ol {
+    @apply mb-4 list-decimal pl-6;
+  }
+
+  .rich-text-editor .tiptap blockquote {
+    @apply my-5 border-l-4 border-gray-300 pl-4 italic text-gray-600;
+  }
+
+  .rich-text-editor .tiptap a {
+    @apply cursor-pointer text-brand-primary underline underline-offset-2;
+  }
+
+  .rich-text-editor .tiptap table {
+    @apply my-6 w-full border-collapse table-fixed;
+  }
+
+  .rich-text-editor .tiptap th,
+  .rich-text-editor .tiptap td {
+    @apply min-w-24 border border-gray-300 px-3 py-2 align-top;
+  }
+
+  .rich-text-editor .tiptap th {
+    @apply bg-gray-50 font-semibold text-gray-900;
+  }
+
+  .rich-text-editor .tiptap .selectedCell {
+    @apply bg-brand-primary/10;
+  }
+
+  .rich-text-editor .tiptap img {
+    @apply my-5 h-auto max-w-full rounded-lg;
+  }
+
+  .rich-text-editor .tiptap img.ProseMirror-selectednode {
+    @apply ring-2 ring-brand-primary ring-offset-2;
+  }
+
+  .rich-text-editor .tiptap figure {
+    @apply my-5;
+  }
+
+  .rich-text-editor .tiptap figcaption {
+    @apply mt-2 text-sm text-gray-500;
+  }
+
   /* ─── Scroll reveal — IntersectionObserver-driven ─────────── */
 
   .reveal {

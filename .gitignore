@@ -31,8 +31,5 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Prisma
-prisma/migrations/
-
 # Uploads (if any)
 public/uploads/

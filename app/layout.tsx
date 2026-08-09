@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: 'Profitia - Doradztwo w zakupach',
   },
   description: 'Profitia to firma doradcza specjalizująca się w optymalizacji zakupów, negocjacjach z dostawcami i budowaniu przewagi kosztowej.',
-  metadataBase: new URL('https://www.profitia.pl'),
+  metadataBase: new URL('https://profitia.pl'),
 }
 
 export default function RootLayout({

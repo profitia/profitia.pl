@@ -1,5 +1,3 @@
-import 'server-only'
-
 import { TURNSTILE_ACTION, TURNSTILE_TOKEN_MAX_LENGTH } from '@/lib/forms/constants'
 
 const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
@@ -51,10 +49,12 @@ function normalizeToken(token: unknown): NormalizedTurnstileToken {
   return { ok: true, token: normalized }
 }
 
-function readConfig(env: NodeJS.ProcessEnv) {
+function readConfig(env: NodeJS.ProcessEnv, expectedActionOverride?: string) {
   const secretKey = env.TURNSTILE_SECRET_KEY?.trim()
   const allowedHostnames = parseAllowedHostnames(env.TURNSTILE_ALLOWED_HOSTNAMES)
-  const expectedAction = env.TURNSTILE_EXPECTED_ACTION?.trim() || TURNSTILE_ACTION
+  const expectedAction = expectedActionOverride?.trim()
+    || env.TURNSTILE_EXPECTED_ACTION?.trim()
+    || TURNSTILE_ACTION
 
   if (!secretKey || !allowedHostnames.size || !expectedAction) {
     return null
@@ -70,14 +70,15 @@ function readConfig(env: NodeJS.ProcessEnv) {
 export async function verifyTurnstileToken(
   token: unknown,
   env: NodeJS.ProcessEnv = process.env,
-  fetchImpl: typeof fetch = fetch
+  fetchImpl: typeof fetch = fetch,
+  expectedAction?: string
 ): Promise<TurnstileVerificationResult> {
   const normalizedToken = normalizeToken(token)
   if (!normalizedToken.ok) {
     return normalizedToken
   }
 
-  const config = readConfig(env)
+  const config = readConfig(env, expectedAction)
   if (!config) {
     return { ok: false, errorCode: 'BOT_VERIFICATION_UNAVAILABLE' }
   }
