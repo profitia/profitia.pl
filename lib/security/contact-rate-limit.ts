@@ -6,10 +6,16 @@ const DEFAULT_CONTACT_RATE_LIMIT_WINDOW_MS = 600_000
 const DEFAULT_CONTACT_RATE_LIMIT_MAX_PER_IP = 10
 const DEFAULT_CONTACT_RATE_LIMIT_EMAIL_WINDOW_MS = 1_800_000
 const DEFAULT_CONTACT_RATE_LIMIT_MAX_PER_EMAIL = 3
+const DEFAULT_NEWSLETTER_MIN_FILL_TIME_MS = 800
+const DEFAULT_NEWSLETTER_RATE_LIMIT_WINDOW_MS = 600_000
+const DEFAULT_NEWSLETTER_RATE_LIMIT_MAX_PER_IP = 10
+const DEFAULT_NEWSLETTER_RATE_LIMIT_EMAIL_WINDOW_MS = 3_600_000
+const DEFAULT_NEWSLETTER_RATE_LIMIT_MAX_PER_EMAIL = 3
 const DEFAULT_MAX_ACTIVE_KEYS = 5_000
 const MAX_FUTURE_SKEW_MS = 30_000
 
 export const CONTACT_REQUEST_BODY_MAX_BYTES = 16 * 1024
+export const NEWSLETTER_REQUEST_BODY_MAX_BYTES = 8 * 1024
 
 interface RateLimitBucket {
   count: number
@@ -28,6 +34,14 @@ interface ConsumeBucketInput {
 }
 
 export interface ContactAbuseConfig {
+  minFillTimeMs: number
+  rateLimitWindowMs: number
+  rateLimitMaxPerIp: number
+  rateLimitEmailWindowMs: number
+  rateLimitMaxPerEmail: number
+}
+
+export interface NewsletterAbuseConfig {
   minFillTimeMs: number
   rateLimitWindowMs: number
   rateLimitMaxPerIp: number
@@ -157,6 +171,7 @@ export function createInMemoryRateLimiter(maxActiveKeys = DEFAULT_MAX_ACTIVE_KEY
 }
 
 const globalLimiter = createInMemoryRateLimiter()
+const globalNewsletterLimiter = createInMemoryRateLimiter()
 
 function hashKey(prefix: 'ip' | 'email', value: string): string {
   return `${prefix}:${createHash('sha256').update(value).digest('hex')}`
@@ -176,6 +191,26 @@ export function getContactAbuseConfig(env: NodeJS.ProcessEnv = process.env): Con
     rateLimitMaxPerEmail: readPositiveInteger(
       env.CONTACT_RATE_LIMIT_MAX_PER_EMAIL,
       DEFAULT_CONTACT_RATE_LIMIT_MAX_PER_EMAIL,
+      1,
+      100
+    ),
+  }
+}
+
+export function getNewsletterAbuseConfig(env: NodeJS.ProcessEnv = process.env): NewsletterAbuseConfig {
+  return {
+    minFillTimeMs: readPositiveInteger(env.NEWSLETTER_MIN_FILL_TIME_MS, DEFAULT_NEWSLETTER_MIN_FILL_TIME_MS, 100, 60_000),
+    rateLimitWindowMs: readPositiveInteger(env.NEWSLETTER_RATE_LIMIT_WINDOW_MS, DEFAULT_NEWSLETTER_RATE_LIMIT_WINDOW_MS, 1_000, 86_400_000),
+    rateLimitMaxPerIp: readPositiveInteger(env.NEWSLETTER_RATE_LIMIT_MAX_PER_IP, DEFAULT_NEWSLETTER_RATE_LIMIT_MAX_PER_IP, 1, 1_000),
+    rateLimitEmailWindowMs: readPositiveInteger(
+      env.NEWSLETTER_RATE_LIMIT_EMAIL_WINDOW_MS,
+      DEFAULT_NEWSLETTER_RATE_LIMIT_EMAIL_WINDOW_MS,
+      1_000,
+      86_400_000
+    ),
+    rateLimitMaxPerEmail: readPositiveInteger(
+      env.NEWSLETTER_RATE_LIMIT_MAX_PER_EMAIL,
+      DEFAULT_NEWSLETTER_RATE_LIMIT_MAX_PER_EMAIL,
       1,
       100
     ),
@@ -203,6 +238,13 @@ export function validateContactFormStartedAt(
   }
 
   return { ok: true, startedAt: value }
+}
+
+export function validateNewsletterFormStartedAt(
+  value: unknown,
+  options: { now?: number; minFillTimeMs: number }
+): TimingValidationResult {
+  return validateContactFormStartedAt(value, options)
 }
 
 export function extractClientIp(request: { headers: Headers }): string | null {
@@ -249,4 +291,29 @@ export function rateLimitContactSubmission(input: {
   }
 
   return globalLimiter.consumeMany(keys)
+}
+
+export function rateLimitNewsletterSubmission(input: {
+  config: NewsletterAbuseConfig
+  clientIp: string | null
+  email: string
+}): RateLimitDecision {
+  const emailKey = hashKey('email', input.email.trim().toLowerCase())
+  const keys: ConsumeBucketInput[] = [
+    {
+      key: emailKey,
+      limit: input.config.rateLimitMaxPerEmail,
+      windowMs: input.config.rateLimitEmailWindowMs,
+    },
+  ]
+
+  if (input.clientIp) {
+    keys.unshift({
+      key: hashKey('ip', input.clientIp),
+      limit: input.config.rateLimitMaxPerIp,
+      windowMs: input.config.rateLimitWindowMs,
+    })
+  }
+
+  return globalNewsletterLimiter.consumeMany(keys)
 }

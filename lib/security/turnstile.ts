@@ -1,4 +1,7 @@
-import { TURNSTILE_ACTION, TURNSTILE_TOKEN_MAX_LENGTH } from '@/lib/forms/constants'
+import {
+  TURNSTILE_ACTION,
+  TURNSTILE_TOKEN_MAX_LENGTH,
+} from '@/lib/forms/constants'
 
 const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
 const SITEVERIFY_TIMEOUT_MS = 4000

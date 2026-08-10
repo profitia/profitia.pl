@@ -21,6 +21,12 @@ enum EmailDeliveryStatus {
   FAILED
 }
 
+enum ExternalSyncStatus {
+  PENDING
+  SYNCED
+  FAILED
+}
+
 enum SubscriptionStatus {
   ACTIVE
   UNSUBSCRIBED
@@ -79,6 +85,14 @@ model NewsletterSubscription {
   confirmedAt           DateTime?
   unsubscribedAt        DateTime?
   externalContactId     String?
+  confirmationEmailStatus    EmailDeliveryStatus?
+  confirmationEmailSentAt    DateTime?
+  confirmationEmailMessageId String?
+  confirmationEmailError     String?             @db.Text
+  mailchimpSyncStatus        ExternalSyncStatus?
+  mailchimpSyncedAt          DateTime?
+  mailchimpSubscriberHash    String?
+  mailchimpError             String?             @db.Text
   createdAt             DateTime           @default(now())
   updatedAt             DateTime           @updatedAt
 
@@ -86,4 +100,5 @@ model NewsletterSubscription {
   @@index([subscribedAt])
   @@index([subscriptionStatus])
   @@index([locale])
+  @@index([mailchimpSyncStatus])
 }

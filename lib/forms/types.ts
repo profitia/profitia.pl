@@ -82,13 +82,14 @@ export interface ContactRequestPayload extends ContactSubmissionPayload {
 
 export interface NewsletterSubmissionPayload {
   formType: 'newsletter'
-  locale: Locale
-  /** ISO 8601 */
-  submittedAt: string
+  locale?: Locale
   /** Pathname - source tracking. */
-  source: string
+  sourcePage?: string
   email: string
-  consent: FormConsentMeta
+  consent: true
+  website: string
+  formStartedAt: number
+  turnstileToken: string
 }
 
 // ── API response shape ────────────────────────────────────────────────────────

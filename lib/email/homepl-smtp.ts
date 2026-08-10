@@ -12,6 +12,7 @@ export interface HomeplSmtpEmailInput {
   cc?: string | string[]
   bcc?: string | string[]
   subject: string
+  text?: string
   html: string
   replyTo?: string
 }
@@ -198,6 +199,10 @@ function validateInput(input: HomeplSmtpEmailInput): HomeplSmtpFailure | null {
     return failure('SMTP_CONFIG_ERROR', 'INVALID_HTML', 'HTML body must not be empty.')
   }
 
+  if (input.text !== undefined && !input.text.trim()) {
+    return failure('SMTP_CONFIG_ERROR', 'INVALID_TEXT', 'Text body must not be empty when provided.')
+  }
+
   const replyTo = normalizeOptionalEmail(input.replyTo)
   if (input.replyTo && (!replyTo || !isValidEmail(replyTo))) {
     return failure('SMTP_CONFIG_ERROR', 'INVALID_REPLY_TO', 'Reply-To email address is invalid.')
@@ -303,6 +308,7 @@ export async function sendHomeplSmtpEmail(
       ...(bccRecipients.length ? { bcc: bccRecipients } : {}),
       ...(replyTo ? { replyTo } : {}),
       subject: input.subject.trim(),
+      ...(input.text ? { text: input.text } : {}),
       html: input.html,
     })
 

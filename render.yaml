@@ -37,7 +37,7 @@ services:
       - key: TURNSTILE_SECRET_KEY
         sync: false
       - key: TURNSTILE_ALLOWED_HOSTNAMES
-        value: profitia.pl,www.profitia.pl
+        value: profitia.pl,www.profitia.pl,profitia-pl.onrender.com
       - key: TURNSTILE_EXPECTED_ACTION
         value: contact_form
       - key: CONTACT_MIN_FILL_TIME_MS
@@ -82,3 +82,17 @@ services:
         value: gpt-4.1-mini
       - key: OPENAI_CHEAP_MODEL
         value: gpt-4.1-nano
+      - key: MAILCHIMP_API_KEY
+        sync: false
+      - key: MAILCHIMP_AUDIENCE_ID
+        sync: false
+      - key: NEWSLETTER_MIN_FILL_TIME_MS
+        value: 800
+      - key: NEWSLETTER_RATE_LIMIT_WINDOW_MS
+        value: 600000
+      - key: NEWSLETTER_RATE_LIMIT_MAX_PER_IP
+        value: 10
+      - key: NEWSLETTER_RATE_LIMIT_EMAIL_WINDOW_MS
+        value: 3600000
+      - key: NEWSLETTER_RATE_LIMIT_MAX_PER_EMAIL
+        value: 3

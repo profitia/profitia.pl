@@ -49,22 +49,21 @@ export function buildContactPayload(
 export function buildNewsletterPayload(
   values: NewsletterFormValues,
   locale: Locale,
-  source: string
+  source: string,
+  options: {
+    website: string
+    formStartedAt: number
+    turnstileToken: string
+  }
 ): NewsletterSubmissionPayload {
-  const now = new Date().toISOString()
-
   return {
     formType: 'newsletter',
     locale,
-    submittedAt: now,
-    source,
-    email: values.email.trim().toLowerCase(),
-    consent: {
-      gdpr: values.consentGdpr,
-      newsletter: true,
-      consentVersion: CONSENT_VERSION,
-      consentAt: now,
-      lawfulBasis: 'consent',
-    },
+    sourcePage: source,
+    email: values.email,
+    consent: true,
+    website: options.website,
+    formStartedAt: options.formStartedAt,
+    turnstileToken: options.turnstileToken,
   }
 }
