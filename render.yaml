@@ -50,6 +50,20 @@ services:
         value: 1800000
       - key: CONTACT_RATE_LIMIT_MAX_PER_EMAIL
         value: 3
+      - key: MAILBOX_LOGIN
+        sync: false
+      - key: MAILBOX_PASSWORD
+        sync: false
+      - key: MAILBOX_SMTP_HOST
+        sync: false
+      - key: MAILBOX_SMTP_PORT
+        sync: false
+      - key: MAILBOX_SMTP_SECURE
+        sync: false
+      - key: CONTACT_NOTIFICATION_EMAIL
+        value: kontakt@profitia.pl
+      - key: CONTACT_NOTIFICATION_BCC
+        value: tomasz.uscinski@profitia.pl
       - key: AZURE_TENANT_ID
         sync: false
       - key: AZURE_CLIENT_ID
@@ -60,8 +74,6 @@ services:
         value: Mail.Send,User.Read
       - key: MSAL_TOKEN_CACHE_B64
         sync: false
-      - key: CONTACT_NOTIFICATION_EMAIL
-        value: kontakt@profitia.pl
       - key: OPENAI_API_KEY
         sync: false
       - key: OPENAI_PRIMARY_MODEL

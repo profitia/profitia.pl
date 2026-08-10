@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
 }
 
 export interface Office365EmailInput {
-  to: string
+  to: string | string[]
   subject: string
   html: string
   replyTo?: string
@@ -98,6 +98,14 @@ function normalizeOptionalEmail(value: string | undefined): string | undefined {
   return normalized || undefined
 }
 
+function normalizeRecipientList(value: string | string[]): string[] {
+  const recipients = Array.isArray(value) ? value : [value]
+
+  return recipients
+    .map((recipient) => normalizeOptionalEmail(recipient))
+    .filter((recipient): recipient is string => Boolean(recipient))
+}
+
 function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 }
@@ -157,8 +165,8 @@ export function validateOffice365Config(env: NodeJS.ProcessEnv = process.env):
 }
 
 function validateInput(input: Office365EmailInput): Office365EmailFailure | null {
-  const to = normalizeOptionalEmail(input.to)
-  if (!to || !isValidEmail(to)) {
+  const recipients = normalizeRecipientList(input.to)
+  if (!recipients.length || recipients.some((recipient) => !isValidEmail(recipient))) {
     return failure('CONFIG_ERROR', 'INVALID_RECIPIENT', 'Recipient email address is invalid.')
   }
 
@@ -309,7 +317,7 @@ export function buildOffice365GraphPayload(
   input: Office365EmailInput,
   mailFrom: string
 ): GraphSendMailPayload {
-  const to = normalizeEmail(input.to)
+  const recipients = normalizeRecipientList(input.to)
   const replyTo = normalizeOptionalEmail(input.replyTo)
 
   return {
@@ -319,7 +327,7 @@ export function buildOffice365GraphPayload(
         contentType: 'HTML',
         content: input.html,
       },
-      toRecipients: [{ emailAddress: { address: to } }],
+      toRecipients: recipients.map((recipient) => ({ emailAddress: { address: recipient } })),
       from: { emailAddress: { address: mailFrom } },
       ...(replyTo ? { replyTo: [{ emailAddress: { address: replyTo } }] } : {}),
     },

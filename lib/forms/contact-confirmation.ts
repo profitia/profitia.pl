@@ -1,6 +1,6 @@
 import type { ContactSubmission } from '@/prisma/generated/forms-client'
 
-import type { Office365EmailInput } from '@/lib/email/office365'
+import type { HomeplSmtpEmailInput } from '@/lib/email/homepl-smtp'
 import { resolveContactNotificationRecipient } from '@/lib/forms/contact-notification'
 
 const CONFIRMATION_COPY = {
@@ -29,7 +29,7 @@ const CONFIRMATION_COPY = {
 export function buildContactConfirmationEmail(
   submission: ContactSubmission,
   env: NodeJS.ProcessEnv = process.env
-): Office365EmailInput {
+): HomeplSmtpEmailInput {
   const locale = submission.locale === 'en' ? 'en' : 'pl'
   const copy = CONFIRMATION_COPY[locale]
 

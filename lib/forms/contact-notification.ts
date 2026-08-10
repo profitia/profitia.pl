@@ -1,8 +1,9 @@
 import type { ContactSubmission } from '@/prisma/generated/forms-client'
 
-import type { Office365EmailFailure, Office365EmailInput } from '@/lib/email/office365'
+import type { HomeplSmtpEmailInput, HomeplSmtpFailure } from '@/lib/email/homepl-smtp'
 
 const DEFAULT_CONTACT_NOTIFICATION_EMAIL = 'kontakt@profitia.pl'
+const DEFAULT_CONTACT_NOTIFICATION_BCC = 'tomasz.uscinski@profitia.pl'
 const MAX_INTERNAL_EMAIL_ERROR_LENGTH = 300
 
 const INTERNAL_TOPIC_LABELS: Record<string, string> = {
@@ -43,6 +44,12 @@ export function resolveContactNotificationRecipient(env: NodeJS.ProcessEnv = pro
   return env.CONTACT_NOTIFICATION_EMAIL?.trim().toLowerCase() || DEFAULT_CONTACT_NOTIFICATION_EMAIL
 }
 
+export function resolveContactNotificationBcc(env: NodeJS.ProcessEnv = process.env): string {
+  return env.CONTACT_NOTIFICATION_BCC?.trim().toLowerCase()
+    || env.CONTACT_NOTIFICATION_CC?.trim().toLowerCase()
+    || DEFAULT_CONTACT_NOTIFICATION_BCC
+}
+
 export function getInternalContactTopicLabel(topic: string | null | undefined): string {
   if (!topic) {
     return INTERNAL_TOPIC_LABELS.other
@@ -54,11 +61,12 @@ export function getInternalContactTopicLabel(topic: string | null | undefined): 
 export function buildInternalContactNotificationEmail(
   submission: ContactSubmission,
   env: NodeJS.ProcessEnv = process.env
-): Office365EmailInput {
+): HomeplSmtpEmailInput {
   const topicLabel = getInternalContactTopicLabel(submission.topic)
 
   return {
     to: resolveContactNotificationRecipient(env),
+    bcc: resolveContactNotificationBcc(env),
     replyTo: submission.email,
     subject: `Nowe zapytanie ze strony Profitia - ${topicLabel}`,
     html: [
@@ -82,17 +90,13 @@ export function buildInternalContactNotificationEmail(
   }
 }
 
-export function summarizeOffice365EmailFailure(error: Office365EmailFailure): string {
-  const detail = error.code === 'TOKEN_ACQUISITION_FAILED'
-    ? 'token acquisition failed'
-    : error.code
-
-  const summary = `${error.kind}: ${detail}`
+export function summarizeHomeplSmtpFailure(error: HomeplSmtpFailure): string {
+  const summary = `${error.kind}: ${error.code}`
   return summary.length <= MAX_INTERNAL_EMAIL_ERROR_LENGTH
     ? summary
     : summary.slice(0, MAX_INTERNAL_EMAIL_ERROR_LENGTH)
 }
 
-export function summarizeInternalEmailFailure(error: Office365EmailFailure): string {
-  return summarizeOffice365EmailFailure(error)
+export function summarizeInternalEmailFailure(error: HomeplSmtpFailure): string {
+  return summarizeHomeplSmtpFailure(error)
 }

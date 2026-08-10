@@ -11,9 +11,11 @@ import {
 } from '@/lib/forms/contact-confirmation'
 import {
   buildInternalContactNotificationEmail,
-  summarizeOffice365EmailFailure,
+  resolveContactNotificationBcc,
+  resolveContactNotificationRecipient,
+  summarizeHomeplSmtpFailure,
 } from '@/lib/forms/contact-notification'
-import { sendOffice365Email } from '@/lib/email/office365'
+import { sendHomeplSmtpEmail } from '@/lib/email/homepl-smtp'
 import { getFormsPrisma, isMissingFormsDatabaseUrlError } from '@/lib/forms/prisma'
 import {
   CONTACT_REQUEST_BODY_MAX_BYTES,
@@ -38,6 +40,9 @@ import { verifyTurnstileToken } from '@/lib/security/turnstile'
  */
 
 const SUPPORTED_LOCALES = ['pl', 'en'] as const
+function hasAcceptedRecipient(result: { accepted: string[] }, email: string): boolean {
+  return result.accepted.includes(email.trim().toLowerCase())
+}
 const CONTACT_TOPICS = ['general', 'advisory', 'spendguru', 'training', 'partnership', 'other'] as const
 const SOURCE_PAGE_PATTERN = /^\/[A-Za-z0-9\-._~\/]*$/
 
@@ -314,7 +319,7 @@ export async function POST(request: NextRequest) {
     }
 
     const consentCopy = CONTACT_CONSENT_COPY[data.locale]
-  const formsPrisma = getFormsPrisma()
+    const formsPrisma = getFormsPrisma()
 
     const contact = await formsPrisma.contactSubmission.create({
       data: {
@@ -338,15 +343,21 @@ export async function POST(request: NextRequest) {
     })
 
     try {
-      const emailResult = await sendOffice365Email(buildInternalContactNotificationEmail(contact))
+      const emailMessage = buildInternalContactNotificationEmail(contact)
+      const emailResult = await sendHomeplSmtpEmail(emailMessage)
+      const requiredTo = resolveContactNotificationRecipient()
+      const requiredBcc = resolveContactNotificationBcc()
+      const internalSendAccepted = emailResult.success
+        && hasAcceptedRecipient(emailResult, requiredTo)
+        && hasAcceptedRecipient(emailResult, requiredBcc)
 
-      if (emailResult.success) {
+      if (internalSendAccepted) {
         await formsPrisma.contactSubmission.update({
           where: { id: contact.id },
           data: {
             internalEmailStatus: 'SENT',
             internalEmailSentAt: new Date(),
-            internalEmailMessageId: null,
+            internalEmailMessageId: emailResult.messageId,
             internalEmailError: null,
           },
         })
@@ -357,7 +368,9 @@ export async function POST(request: NextRequest) {
             internalEmailStatus: 'FAILED',
             internalEmailSentAt: null,
             internalEmailMessageId: null,
-            internalEmailError: summarizeOffice365EmailFailure(emailResult),
+            internalEmailError: emailResult.success
+              ? 'SMTP_RECIPIENT_REJECTED: SMTP_RECIPIENT_REJECTED'
+              : summarizeHomeplSmtpFailure(emailResult),
           },
         })
       }
@@ -378,15 +391,18 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      const confirmationResult = await sendOffice365Email(buildContactConfirmationEmail(contact))
+      const confirmationMessage = buildContactConfirmationEmail(contact)
+      const confirmationResult = await sendHomeplSmtpEmail(confirmationMessage)
+      const confirmationAccepted = confirmationResult.success
+        && hasAcceptedRecipient(confirmationResult, contact.email)
 
-      if (confirmationResult.success) {
+      if (confirmationAccepted) {
         await formsPrisma.contactSubmission.update({
           where: { id: contact.id },
           data: {
             confirmationEmailStatus: 'SENT',
             confirmationEmailSentAt: new Date(),
-            confirmationEmailMessageId: null,
+            confirmationEmailMessageId: confirmationResult.messageId,
             confirmationEmailError: null,
           },
         })
@@ -397,7 +413,9 @@ export async function POST(request: NextRequest) {
             confirmationEmailStatus: 'FAILED',
             confirmationEmailSentAt: null,
             confirmationEmailMessageId: null,
-            confirmationEmailError: summarizeOffice365EmailFailure(confirmationResult),
+            confirmationEmailError: confirmationResult.success
+              ? 'SMTP_RECIPIENT_REJECTED: SMTP_RECIPIENT_REJECTED'
+              : summarizeHomeplSmtpFailure(confirmationResult),
           },
         })
       }
