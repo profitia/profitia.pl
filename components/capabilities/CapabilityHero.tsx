@@ -49,7 +49,7 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
 
           <RevealWrapper delay={1} className="relative w-full h-[60vh] md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80"
+              src="/images/website/Profitia_10.jpg"
               alt="Profitia services advisory hero"
               fill
               className="object-cover"

@@ -233,7 +233,7 @@ const COPY = {
 } as const
 
 const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=85',
+  src: '/images/website/Profitia_18.jpg',
 }
 
 const separatorColor = 'border-[rgba(149,166,199,0.35)]'

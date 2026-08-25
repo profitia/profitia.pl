@@ -88,7 +88,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
         <div className="relative w-full h-full overflow-hidden bg-gray-100">
           {/* Real photo — colorful, consulting tone */}
           <Image
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=85"
+            src="/images/website/Profitia_36.jpg"
             alt="Zespół Profitia w pracy"
             fill
             className="object-cover object-center"
@@ -109,7 +109,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
         className="md:hidden"
       >
         <MobileHeroImage
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1400&q=85"
+          src="/images/website/Profitia_36.jpg"
           alt="Zespół Profitia w pracy"
           priority
           overlayClassName="bg-white/8"

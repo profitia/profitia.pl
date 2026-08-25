@@ -233,7 +233,7 @@ const EDUCATION_CATALOGUE: EducationDomain[] = [
 // ─── HERO IMAGE ───────────────────────────────────────────────────────────────
 
 const HERO_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=85',
+  src: '/images/website/Profitia_41.jpg',
   alt: 'Kameralne szkolenie zakupowe przy biurku',
 }
 
