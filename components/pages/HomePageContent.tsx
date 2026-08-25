@@ -22,14 +22,14 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           HERO
           ════════════════════════════════════ */}
       <section className="bg-white">
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[48%_52%]">
 
           {/* LEFT: text */}
-          <div className="h-auto md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] px-6 md:px-12">
+          <div className="h-auto md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] px-6 md:px-12 lg:pr-6">
             <div className="flex h-full w-full flex-col justify-center py-16 md:py-10 2xl:py-20">
               <RevealWrapper delay={0}>
-                <div className="space-y-8 md:space-y-5 2xl:space-y-8 max-w-xl">
-                  <h1 className="max-w-xl font-semibold text-gray-900">
+                <div className="space-y-8 md:space-y-5 2xl:space-y-8 lg:max-w-[40rem]">
+                  <h1 className="lg:max-w-[40rem] font-semibold text-gray-900">
                     <span className="block break-words tracking-[-0.05em] text-[clamp(2rem,11vw,2.5rem)] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
                       {heroTitleLead}.
                     </span>
@@ -39,7 +39,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                       </span>
                     ) : null}
                   </h1>
-                  <div className="space-y-5 md:space-y-3.5 2xl:space-y-5 max-w-xl">
+                  <div className="space-y-5 md:space-y-3.5 2xl:space-y-5 lg:max-w-[40rem]">
                     <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-600 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed">
                       {d.hero.sub1a}<br />
                       {d.hero.sub1b}

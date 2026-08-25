@@ -259,8 +259,8 @@ export default function EducationPage({ locale }: Props) {
       {/* 1 — Hero: full-height right-bleed layout matching homepage/career pattern */}
       <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
         {/* Content — left half, inside container */}
-        <div className="container mx-auto max-w-7xl px-6 relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
-          <div className="lg:max-w-[50%] lg:pr-16">
+        <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
+          <div className="lg:max-w-[52%] lg:pr-12">
             <RevealWrapper delay={0}>
               <div className="space-y-8 md:space-y-5 2xl:space-y-8">
                 <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">{c.hero.label}</p>
@@ -288,7 +288,7 @@ export default function EducationPage({ locale }: Props) {
         </div>
 
         {/* Image — absolute, right half, bleeds to edge (desktop only) */}
-        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%]" aria-hidden="true">
+        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]" aria-hidden="true">
           <Image
             src={HERO_IMAGE.src}
             alt={HERO_IMAGE.alt}

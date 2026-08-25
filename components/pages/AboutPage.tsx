@@ -269,7 +269,7 @@ export function AboutPage({ locale }: AboutPageProps) {
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
       <section className={`relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] border-b ${separatorColor}`}>
         <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
-          <RevealWrapper delay={0} className="lg:max-w-[50%] lg:pr-16">
+          <RevealWrapper delay={0} className="lg:max-w-[52%] lg:pr-12">
             <div className="space-y-8 md:space-y-5 2xl:space-y-8">
               <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">
                 {t.hero.eyebrow}
@@ -284,7 +284,7 @@ export function AboutPage({ locale }: AboutPageProps) {
           </RevealWrapper>
         </div>
 
-        <RevealWrapper delay={1} className="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%]" aria-hidden="true">
+        <RevealWrapper delay={1} className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]" aria-hidden="true">
           <Image
             src={HERO_IMAGE.src}
             alt={t.hero.imageAlt}
