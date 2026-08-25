@@ -78,12 +78,13 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           {/* RIGHT: image */}
           <RevealWrapper delay={1} className="relative w-full h-[60vh] md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80"
+              src="/images/website/Profitia_26.jpg"
               alt={d.hero.imgAlt}
               fill
               className="object-cover"
               sizes="(max-width: 767px) 100vw, 50vw"
               priority
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
           </RevealWrapper>
