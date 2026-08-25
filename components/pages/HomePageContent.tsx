@@ -81,7 +81,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               src="/images/website/Profitia_26.jpg"
               alt={d.hero.imgAlt}
               fill
-              className="object-cover"
+              className="object-contain object-center lg:object-cover"
               sizes="(max-width: 767px) 100vw, 50vw"
               priority
               unoptimized

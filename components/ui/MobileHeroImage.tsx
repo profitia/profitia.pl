@@ -27,7 +27,7 @@ export default function MobileHeroImage({
         src={src}
         alt={alt}
         fill
-        className={imageClassName ?? 'object-cover'}
+        className={imageClassName ?? 'object-contain object-center'}
         style={imageStyle}
         sizes="(max-width: 767px) 100vw, 50vw"
         priority={priority}

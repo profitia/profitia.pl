@@ -52,7 +52,7 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
               src="/images/website/Profitia_10.jpg"
               alt="Profitia services advisory hero"
               fill
-              className="object-cover"
+              className="object-contain object-center lg:object-cover"
               sizes="(max-width: 767px) 100vw, 50vw"
               priority
             />
