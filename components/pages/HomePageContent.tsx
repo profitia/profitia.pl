@@ -402,9 +402,9 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           </div>
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
             <div>
-              <div className="relative w-full rounded-2xl shadow-sm aspect-[4/3] overflow-hidden">
+              <div className="relative w-full shadow-sm aspect-[4/3] overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80"
+                  src="/images/website/Profitia_31.jpg"
                   alt={d.cases.imgAlt}
                   fill
                   className="object-cover"
