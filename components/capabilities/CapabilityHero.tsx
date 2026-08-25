@@ -27,7 +27,7 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
     return (
       <section className="bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[48%_52%]">
-          <div className="h-auto md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] px-6 md:px-12 lg:pr-6">
+          <div className="h-auto md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] px-6 md:px-12 lg:pr-10">
             <div className="flex h-full lg:max-w-[40rem] flex-col justify-center py-16 md:py-10 2xl:py-20">
               <RevealWrapper delay={0}>
                 <div className="space-y-8 md:space-y-5 2xl:space-y-8">

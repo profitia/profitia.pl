@@ -30,7 +30,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
 
       {/* Left: content (inside container so it respects max-width) */}
       <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
-        <div className="lg:max-w-[52%] lg:pr-12">
+        <div className="lg:max-w-[52%] lg:pr-16">
 
           <motion.p
             initial={{ opacity: 0 }}
