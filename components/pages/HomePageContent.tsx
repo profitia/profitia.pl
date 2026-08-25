@@ -76,12 +76,12 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           </div>
 
           {/* RIGHT: image */}
-          <RevealWrapper delay={1} className="relative w-full h-[60vh] md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] overflow-hidden">
+          <RevealWrapper delay={1} className="relative w-full aspect-[3/2] lg:h-[calc(100vh-140px)] lg:aspect-auto 2xl:h-[calc(100vh-80px)] overflow-hidden">
             <Image
               src="/images/website/Profitia_26.jpg"
               alt={d.hero.imgAlt}
               fill
-              className="object-contain object-center lg:object-cover"
+              className="object-cover object-center"
               sizes="(max-width: 767px) 100vw, 50vw"
               priority
               unoptimized

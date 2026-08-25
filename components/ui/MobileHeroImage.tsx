@@ -22,12 +22,12 @@ export default function MobileHeroImage({
   imageStyle,
 }: MobileHeroImageProps) {
   return (
-    <div className="relative w-full h-[60vh] overflow-hidden bg-gray-100 md:hidden">
+    <div className="relative w-full aspect-[3/2] overflow-hidden bg-gray-100 md:hidden">
       <Image
         src={src}
         alt={alt}
         fill
-        className={imageClassName ?? 'object-contain object-center'}
+        className={imageClassName ?? 'object-cover object-center'}
         style={imageStyle}
         sizes="(max-width: 767px) 100vw, 50vw"
         priority={priority}
