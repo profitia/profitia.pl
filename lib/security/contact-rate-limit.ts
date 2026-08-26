@@ -11,6 +11,11 @@ const DEFAULT_NEWSLETTER_RATE_LIMIT_WINDOW_MS = 600_000
 const DEFAULT_NEWSLETTER_RATE_LIMIT_MAX_PER_IP = 10
 const DEFAULT_NEWSLETTER_RATE_LIMIT_EMAIL_WINDOW_MS = 3_600_000
 const DEFAULT_NEWSLETTER_RATE_LIMIT_MAX_PER_EMAIL = 3
+const DEFAULT_RECRUITMENT_MIN_FILL_TIME_MS = 800
+const DEFAULT_RECRUITMENT_RATE_LIMIT_WINDOW_MS = 600_000
+const DEFAULT_RECRUITMENT_RATE_LIMIT_MAX_PER_IP = 5
+const DEFAULT_RECRUITMENT_RATE_LIMIT_EMAIL_WINDOW_MS = 3_600_000
+const DEFAULT_RECRUITMENT_RATE_LIMIT_MAX_PER_EMAIL = 3
 const DEFAULT_MAX_ACTIVE_KEYS = 5_000
 const MAX_FUTURE_SKEW_MS = 30_000
 
@@ -42,6 +47,14 @@ export interface ContactAbuseConfig {
 }
 
 export interface NewsletterAbuseConfig {
+  minFillTimeMs: number
+  rateLimitWindowMs: number
+  rateLimitMaxPerIp: number
+  rateLimitEmailWindowMs: number
+  rateLimitMaxPerEmail: number
+}
+
+export interface RecruitmentAbuseConfig {
   minFillTimeMs: number
   rateLimitWindowMs: number
   rateLimitMaxPerIp: number
@@ -172,6 +185,7 @@ export function createInMemoryRateLimiter(maxActiveKeys = DEFAULT_MAX_ACTIVE_KEY
 
 const globalLimiter = createInMemoryRateLimiter()
 const globalNewsletterLimiter = createInMemoryRateLimiter()
+const globalRecruitmentLimiter = createInMemoryRateLimiter()
 
 function hashKey(prefix: 'ip' | 'email', value: string): string {
   return `${prefix}:${createHash('sha256').update(value).digest('hex')}`
@@ -217,6 +231,26 @@ export function getNewsletterAbuseConfig(env: NodeJS.ProcessEnv = process.env): 
   }
 }
 
+export function getRecruitmentAbuseConfig(env: NodeJS.ProcessEnv = process.env): RecruitmentAbuseConfig {
+  return {
+    minFillTimeMs: readPositiveInteger(env.RECRUITMENT_MIN_FILL_TIME_MS, DEFAULT_RECRUITMENT_MIN_FILL_TIME_MS, 100, 60_000),
+    rateLimitWindowMs: readPositiveInteger(env.RECRUITMENT_RATE_LIMIT_WINDOW_MS, DEFAULT_RECRUITMENT_RATE_LIMIT_WINDOW_MS, 1_000, 86_400_000),
+    rateLimitMaxPerIp: readPositiveInteger(env.RECRUITMENT_RATE_LIMIT_MAX_PER_IP, DEFAULT_RECRUITMENT_RATE_LIMIT_MAX_PER_IP, 1, 1_000),
+    rateLimitEmailWindowMs: readPositiveInteger(
+      env.RECRUITMENT_RATE_LIMIT_EMAIL_WINDOW_MS,
+      DEFAULT_RECRUITMENT_RATE_LIMIT_EMAIL_WINDOW_MS,
+      1_000,
+      86_400_000
+    ),
+    rateLimitMaxPerEmail: readPositiveInteger(
+      env.RECRUITMENT_RATE_LIMIT_MAX_PER_EMAIL,
+      DEFAULT_RECRUITMENT_RATE_LIMIT_MAX_PER_EMAIL,
+      1,
+      100
+    ),
+  }
+}
+
 export function validateContactFormStartedAt(
   value: unknown,
   options: { now?: number; minFillTimeMs: number }
@@ -241,6 +275,13 @@ export function validateContactFormStartedAt(
 }
 
 export function validateNewsletterFormStartedAt(
+  value: unknown,
+  options: { now?: number; minFillTimeMs: number }
+): TimingValidationResult {
+  return validateContactFormStartedAt(value, options)
+}
+
+export function validateRecruitmentFormStartedAt(
   value: unknown,
   options: { now?: number; minFillTimeMs: number }
 ): TimingValidationResult {
@@ -316,4 +357,29 @@ export function rateLimitNewsletterSubmission(input: {
   }
 
   return globalNewsletterLimiter.consumeMany(keys)
+}
+
+export function rateLimitRecruitmentSubmission(input: {
+  config: RecruitmentAbuseConfig
+  clientIp: string | null
+  email: string
+}): RateLimitDecision {
+  const emailKey = hashKey('email', input.email.trim().toLowerCase())
+  const keys: ConsumeBucketInput[] = [
+    {
+      key: emailKey,
+      limit: input.config.rateLimitMaxPerEmail,
+      windowMs: input.config.rateLimitEmailWindowMs,
+    },
+  ]
+
+  if (input.clientIp) {
+    keys.unshift({
+      key: hashKey('ip', input.clientIp),
+      limit: input.config.rateLimitMaxPerIp,
+      windowMs: input.config.rateLimitWindowMs,
+    })
+  }
+
+  return globalRecruitmentLimiter.consumeMany(keys)
 }

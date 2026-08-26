@@ -16,6 +16,10 @@ services:
         sync: false
       - key: DATABASE_FORMS_URL
         sync: false
+      - key: RECRUITMENT_CV_STORAGE_PATH
+        value: /var/data/recruitment-cv
+      - key: RECRUITMENT_NOTIFICATION_TO
+        value: monika.osiecka@profitia.pl
       - key: JWT_SECRET
         sync: false
       - key: ADMIN_AUTH_HMAC_SECRET

@@ -21,6 +21,44 @@ enum EmailDeliveryStatus {
   FAILED
 }
 
+enum JobPosition {
+  PROCUREMENT_CONSULTANT
+  JUNIOR_BUSINESS_ANALYST
+}
+
+enum WeeklyAvailability {
+  HOURS_20_30
+  HOURS_30_40
+  HOURS_40
+}
+
+enum ExcelLevel {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum EnglishLevel {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+  FLUENT
+}
+
+enum CvStorageStatus {
+  PENDING
+  STORED
+  FAILED
+}
+
+enum JobApplicationStatus {
+  RECEIVED
+  IN_REVIEW
+  REJECTED
+  HIRED
+  WITHDRAWN
+}
+
 enum ExternalSyncStatus {
   PENDING
   SYNCED
@@ -101,4 +139,54 @@ model NewsletterSubscription {
   @@index([subscriptionStatus])
   @@index([locale])
   @@index([mailchimpSyncStatus])
+}
+
+model JobApplication {
+  id                                String                @id @default(cuid())
+  position                          JobPosition
+  fullName                          String
+  email                             String
+  phone                             String
+  availableFrom                     String
+  weeklyAvailability                WeeklyAvailability?
+  hybridAccepted                    Boolean
+  businessTravelAccepted            Boolean
+  excelLevel                        ExcelLevel
+  englishLevel                      EnglishLevel
+  financialExpectations             String?
+  motivation                        String                @db.Text
+  cvOriginalFilename                String?
+  cvMimeType                        String?
+  cvSizeBytes                       Int?
+  cvStorageKey                      String?
+  cvSha256                          String?
+  cvStorageStatus                   CvStorageStatus?
+  currentRecruitmentConsent         Boolean
+  currentRecruitmentConsentText     String                @db.Text
+  currentRecruitmentConsentVersion  String
+  currentRecruitmentConsentAt       DateTime
+  futureRecruitmentConsent          Boolean
+  futureRecruitmentConsentText      String?               @db.Text
+  futureRecruitmentConsentVersion   String?
+  futureRecruitmentConsentAt        DateTime?
+  locale                            String
+  sourcePage                        String?
+  applicationStatus                 JobApplicationStatus  @default(RECEIVED)
+  internalEmailStatus               EmailDeliveryStatus?
+  internalEmailSentAt               DateTime?
+  internalEmailMessageId            String?
+  internalEmailError                String?               @db.Text
+  candidateEmailStatus              EmailDeliveryStatus?
+  candidateEmailSentAt              DateTime?
+  candidateEmailMessageId           String?
+  candidateEmailError               String?               @db.Text
+  submittedAt                       DateTime              @default(now())
+  createdAt                         DateTime              @default(now())
+  updatedAt                         DateTime              @updatedAt
+
+  @@map("job_applications")
+  @@index([position])
+  @@index([email])
+  @@index([applicationStatus])
+  @@index([submittedAt])
 }

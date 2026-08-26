@@ -52,6 +52,7 @@ export const FIELD_LIMITS = {
 
 export const TURNSTILE_ACTION = 'contact_form'
 export const NEWSLETTER_TURNSTILE_ACTION = 'newsletter_form'
+export const RECRUITMENT_TURNSTILE_ACTION = 'job_application_form'
 export const ADMIN_LOGIN_TURNSTILE_ACTION = 'admin_login'
 export const TURNSTILE_TOKEN_MAX_LENGTH = 2048
 

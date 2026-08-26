@@ -161,6 +161,7 @@ async function main() {
       assert.equal(response.status, 200)
       assert.deepEqual(body, { success: true })
       assert.equal(smtpCalls.length, 1)
+      assert.equal(smtpCalls[0]?.attachments, undefined)
       assert.equal(mailchimpCalls.length, 1)
 
       const row = await prisma.newsletterSubscription.findUnique({ where: { email: successEmail } })
@@ -201,6 +202,7 @@ async function main() {
       createdEmails.add(mailchimpFailEmail)
       assert.equal(response.status, 200)
       assert.equal(smtpCalls.length, 1)
+      assert.equal(smtpCalls[0]?.attachments, undefined)
       assert.equal(mailchimpCalls.length, 1)
 
       const row = await prisma.newsletterSubscription.findUnique({ where: { email: mailchimpFailEmail } })

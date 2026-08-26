@@ -15,6 +15,11 @@ export interface HomeplSmtpEmailInput {
   text?: string
   html: string
   replyTo?: string
+  attachments?: Array<{
+    filename: string
+    content: Buffer
+    contentType: string
+  }>
 }
 
 export interface HomeplSmtpVerifySuccess {
@@ -208,6 +213,18 @@ function validateInput(input: HomeplSmtpEmailInput): HomeplSmtpFailure | null {
     return failure('SMTP_CONFIG_ERROR', 'INVALID_REPLY_TO', 'Reply-To email address is invalid.')
   }
 
+  if (input.attachments?.some((attachment) => !attachment.filename.trim())) {
+    return failure('SMTP_CONFIG_ERROR', 'INVALID_ATTACHMENT_FILENAME', 'Attachment filename must not be empty.')
+  }
+
+  if (input.attachments?.some((attachment) => !Buffer.isBuffer(attachment.content) || attachment.content.byteLength < 1)) {
+    return failure('SMTP_CONFIG_ERROR', 'INVALID_ATTACHMENT_CONTENT', 'Attachment content must be a non-empty Buffer.')
+  }
+
+  if (input.attachments?.some((attachment) => !attachment.contentType.trim())) {
+    return failure('SMTP_CONFIG_ERROR', 'INVALID_ATTACHMENT_CONTENT_TYPE', 'Attachment content type must not be empty.')
+  }
+
   return null
 }
 
@@ -310,6 +327,15 @@ export async function sendHomeplSmtpEmail(
       subject: input.subject.trim(),
       ...(input.text ? { text: input.text } : {}),
       html: input.html,
+      ...(input.attachments?.length
+        ? {
+            attachments: input.attachments.map((attachment) => ({
+              filename: attachment.filename,
+              content: attachment.content,
+              contentType: attachment.contentType,
+            })),
+          }
+        : {}),
     })
 
     const accepted = Array.isArray(result.accepted)

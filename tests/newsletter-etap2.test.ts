@@ -167,6 +167,7 @@ async function main() {
       assert.equal(response.status, 200)
       assert.deepEqual(body, { success: true })
       assert.equal(smtpCalls.length, 1)
+      assert.equal(smtpCalls[0]?.attachments, undefined)
       createdEmails.add(plEmail)
 
       const row = await prisma.newsletterSubscription.findUnique({ where: { email: plEmail } })
@@ -214,6 +215,7 @@ async function main() {
       assert.equal(response.status, 200)
       assert.deepEqual(body, { success: true })
       assert.equal(smtpCalls.length, 1)
+      assert.equal(smtpCalls[0]?.attachments, undefined)
       assert.equal(smtpCalls[0]?.subject, 'Thank you for subscribing to the Profitia newsletter')
       assert.match(smtpCalls[0]?.text ?? '', /You will now receive updates about our latest publications, events and news\./)
       createdEmails.add(enEmail)
