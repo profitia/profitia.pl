@@ -288,13 +288,13 @@ export default function EducationPage({ locale }: Props) {
         </div>
 
         {/* Image — absolute, right half, bleeds to edge (desktop only) */}
-        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]" aria-hidden="true">
+        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%]" aria-hidden="true">
           <Image
             src={HERO_IMAGE.src}
             alt={HERO_IMAGE.alt}
             fill
             className="object-cover"
-            sizes="50vw"
+            sizes="48vw"
             priority
           />
           <div className="absolute inset-0 bg-[#f3e8dc]/18" />

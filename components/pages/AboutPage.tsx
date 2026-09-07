@@ -284,13 +284,13 @@ export function AboutPage({ locale }: AboutPageProps) {
           </RevealWrapper>
         </div>
 
-        <RevealWrapper delay={1} className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]" aria-hidden="true">
+        <RevealWrapper delay={1} className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%]" aria-hidden="true">
           <Image
             src={HERO_IMAGE.src}
             alt={t.hero.imageAlt}
             fill
             className="object-cover"
-            sizes="50vw"
+            sizes="48vw"
             priority
           />
           <div className="absolute inset-0 bg-[#ece7df]/18" />

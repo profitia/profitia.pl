@@ -73,13 +73,13 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           </div>
         </div>
 
-        <RevealWrapper delay={1} className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]" aria-hidden="true">
+        <RevealWrapper delay={1} className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%]" aria-hidden="true">
           <Image
             src="/images/website/Profitia_26.jpg"
             alt={d.hero.imgAlt}
             fill
             className="object-cover object-center"
-            sizes="50vw"
+            sizes="48vw"
             priority
             unoptimized
           />

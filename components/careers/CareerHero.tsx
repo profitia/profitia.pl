@@ -79,7 +79,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.1, delay: 0.18 }}
-        className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]"
+        className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%]"
         aria-hidden="true"
       >
         <div className="relative w-full h-full overflow-hidden bg-gray-100">
@@ -88,7 +88,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             alt="Zespół Profitia w pracy"
             fill
             className="object-cover object-center"
-            sizes="50vw"
+            sizes="48vw"
             priority
           />
           <div className="absolute inset-0 bg-white/8" />

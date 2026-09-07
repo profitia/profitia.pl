@@ -45,13 +45,13 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
           </RevealWrapper>
         </div>
 
-        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]" aria-hidden="true">
+        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%]" aria-hidden="true">
           <Image
             src="/images/website/Profitia_10.jpg"
             alt="Profitia services advisory hero"
             fill
             className="object-cover"
-            sizes="50vw"
+            sizes="48vw"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
