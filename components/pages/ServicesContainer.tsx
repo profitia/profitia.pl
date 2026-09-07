@@ -84,7 +84,7 @@ function ServicesDomainSection({
     <section className={isFirst ? 'border-t border-[rgba(149,166,199,0.3)] pt-28 pb-12' : 'border-t border-[rgba(149,166,199,0.3)] pt-12 pb-12'}>
       <div className="grid gap-8 lg:grid-cols-[320px_1fr] lg:gap-16">
         <div className="lg:pt-1">
-          <h2 className={`${isFirst ? 'text-3xl' : 'text-xl'} font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug`}>
+          <h2 className="text-xl font-semibold tracking-tight text-[rgb(36,47,68)] leading-snug">
             {domain.title}
           </h2>
         </div>

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import type { Locale } from '@/lib/capabilities'
 import { RevealWrapper } from '@/components/ui'
+import MobileHeroImage from '@/components/ui/MobileHeroImage'
 
 interface Props {
   locale: Locale
@@ -25,40 +26,43 @@ interface Props {
 export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Props) {
   if (variant === 'services') {
     return (
-      <section className="bg-white">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[48%_52%]">
-          <div className="h-auto md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] px-6 md:px-12 lg:pr-10">
-            <div className="flex h-full lg:max-w-[40rem] flex-col justify-center py-16 md:py-10 2xl:py-20">
-              <RevealWrapper delay={0}>
-                <div className="space-y-8 md:space-y-5 2xl:space-y-8">
-                  <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">
-                    {eyebrow}
-                  </p>
-                  <h1 className="font-semibold text-[rgb(36,47,68)] tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem] lg:max-w-[40rem]">
-                    {title}
-                  </h1>
-                  {subtitle && (
-                    <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-[rgb(59,56,56)] leading-relaxed md:leading-[1.55] 2xl:leading-relaxed lg:max-w-[40rem]">
-                      {subtitle}
-                    </p>
-                  )}
-                </div>
-              </RevealWrapper>
+      <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
+        <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
+          <RevealWrapper delay={0} className="lg:max-w-[52%] lg:pr-16">
+            <div className="space-y-8 md:space-y-5 2xl:space-y-8">
+              <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">
+                {eyebrow}
+              </p>
+              <h1 className="font-semibold text-[rgb(36,47,68)] tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
+                {title}
+              </h1>
+              {subtitle && (
+                <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-[rgb(59,56,56)] leading-relaxed md:leading-[1.55] 2xl:leading-relaxed">
+                  {subtitle}
+                </p>
+              )}
             </div>
-          </div>
-
-          <RevealWrapper delay={1} className="relative w-full aspect-[3/2] lg:h-[calc(100vh-140px)] lg:aspect-auto 2xl:h-[calc(100vh-80px)] overflow-hidden">
-            <Image
-              src="/images/website/Profitia_10.jpg"
-              alt="Profitia services advisory hero"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 767px) 100vw, 50vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
           </RevealWrapper>
         </div>
+
+        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]" aria-hidden="true">
+          <Image
+            src="/images/website/Profitia_10.jpg"
+            alt="Profitia services advisory hero"
+            fill
+            className="object-cover"
+            sizes="50vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
+        </div>
+
+        <MobileHeroImage
+          src="/images/website/Profitia_10.jpg"
+          alt="Profitia services advisory hero"
+          priority
+          overlayClassName="bg-gradient-to-l from-black/40 to-transparent"
+        />
       </section>
     )
   }

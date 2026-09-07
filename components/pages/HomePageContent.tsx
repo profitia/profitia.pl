@@ -5,6 +5,7 @@ import { FeaturedArticles } from '@/components/sections/insights'
 import HomePillars from '@/components/home/HomePillars'
 import InteractiveTestimonials from '@/components/home/InteractiveTestimonials'
 import { RevealWrapper } from '@/components/ui'
+import MobileHeroImage from '@/components/ui/MobileHeroImage'
 
 export default function HomePageContent({ dict }: { dict: Dictionary }) {
   const d = dict.homepage
@@ -21,75 +22,76 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           HERO
           ════════════════════════════════════ */}
-      <section className="bg-white">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[48%_52%]">
-
-          {/* LEFT: text */}
-          <div className="h-auto md:h-[calc(100vh-140px)] 2xl:h-[calc(100vh-80px)] px-6 md:px-12 lg:pr-10">
-            <div className="flex h-full w-full flex-col justify-center py-16 md:py-10 2xl:py-20">
-              <RevealWrapper delay={0}>
-                <div className="space-y-8 md:space-y-5 2xl:space-y-8 lg:max-w-[40rem]">
-                  <h1 className="lg:max-w-[40rem] font-semibold text-gray-900">
-                    <span className="block break-words tracking-[-0.05em] text-[clamp(2rem,11vw,2.5rem)] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
-                      {heroTitleLead}.
+      <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
+        <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
+          <div className="lg:max-w-[52%] lg:pr-16">
+            <RevealWrapper delay={0}>
+              <div className="space-y-8 md:space-y-5 2xl:space-y-8">
+                <h1 className="font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
+                  <span className="block break-words">
+                    {heroTitleLead}.
+                  </span>
+                  {heroTitleTail ? (
+                    <span className="mt-3 block break-words leading-[1.02] sm:mt-3 md:mt-2 2xl:mt-3.5">
+                      {heroTitleTail}
                     </span>
-                    {heroTitleTail ? (
-                      <span className="mt-3 block break-words tracking-[-0.055em] text-[clamp(1.5rem,8vw,1.88rem)] leading-[1.02] sm:mt-3 md:mt-2 md:text-[1.86rem] lg:text-[2rem] 2xl:mt-3.5 2xl:text-[2.66rem]">
-                        {heroTitleTail}
-                      </span>
-                    ) : null}
-                  </h1>
-                  <div className="space-y-5 md:space-y-3.5 2xl:space-y-5 lg:max-w-[40rem]">
-                    <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-600 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed">
-                      {d.hero.sub1a}<br />
-                      {d.hero.sub1b}
-                    </p>
-                    <p className="text-gray-500 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed">
-                      {d.hero.sub2}
-                    </p>
-                  </div>
-                </div>
-              </RevealWrapper>
-
-              <div className="py-10 md:py-5 2xl:py-10">
-                <div className="border-t border-gray-200" />
-              </div>
-
-              <RevealWrapper delay={2}>
-                <div className="space-y-6 md:space-y-3.5 2xl:space-y-6 pb-10 md:pb-4 2xl:pb-10">
-                  <h2 className="text-2xl md:text-[1.22rem] lg:text-[1.3rem] 2xl:text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight">
-                    {d.hero.reportHeading}
-                  </h2>
-                  <p className="text-gray-600 leading-relaxed md:text-[0.94rem] lg:text-[0.98rem] md:leading-[1.55] 2xl:text-base 2xl:leading-relaxed">
-                    {d.hero.reportBody}
+                  ) : null}
+                </h1>
+                <div className="space-y-5 md:space-y-3.5 2xl:space-y-5">
+                  <p className="text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-600 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed">
+                    {d.hero.sub1a}<br />
+                    {d.hero.sub1b}
                   </p>
-                  <button
-                    type="button"
-                    aria-disabled="true"
-                    className="inline-flex items-center justify-center self-start bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
-                  >
-                    {d.hero.reportCta}
-                  </button>
+                  <p className="text-gray-500 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed">
+                    {d.hero.sub2}
+                  </p>
                 </div>
-              </RevealWrapper>
+              </div>
+            </RevealWrapper>
+
+            <div className="py-10 md:py-5 2xl:py-10">
+              <div className="border-t border-gray-200" />
             </div>
+
+            <RevealWrapper delay={2}>
+              <div className="space-y-6 md:space-y-3.5 2xl:space-y-6 pb-10 md:pb-4 2xl:pb-10">
+                <h2 className="text-2xl md:text-[1.22rem] lg:text-[1.3rem] 2xl:text-[1.75rem] font-semibold tracking-tight text-gray-900 leading-tight">
+                  {d.hero.reportHeading}
+                </h2>
+                <p className="text-gray-600 leading-relaxed md:text-[0.94rem] lg:text-[0.98rem] md:leading-[1.55] 2xl:text-base 2xl:leading-relaxed">
+                  {d.hero.reportBody}
+                </p>
+                <button
+                  type="button"
+                  aria-disabled="true"
+                  className="inline-flex items-center justify-center self-start bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
+                >
+                  {d.hero.reportCta}
+                </button>
+              </div>
+            </RevealWrapper>
           </div>
-
-          {/* RIGHT: image */}
-          <RevealWrapper delay={1} className="relative w-full aspect-[3/2] lg:h-[calc(100vh-140px)] lg:aspect-auto 2xl:h-[calc(100vh-80px)] overflow-hidden">
-            <Image
-              src="/images/website/Profitia_26.jpg"
-              alt={d.hero.imgAlt}
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 767px) 100vw, 50vw"
-              priority
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
-          </RevealWrapper>
-
         </div>
+
+        <RevealWrapper delay={1} className="hidden lg:block absolute right-0 top-0 bottom-0 w-[52%]" aria-hidden="true">
+          <Image
+            src="/images/website/Profitia_26.jpg"
+            alt={d.hero.imgAlt}
+            fill
+            className="object-cover object-center"
+            sizes="50vw"
+            priority
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
+        </RevealWrapper>
+
+        <MobileHeroImage
+          src="/images/website/Profitia_26.jpg"
+          alt={d.hero.imgAlt}
+          priority
+          overlayClassName="bg-gradient-to-l from-black/40 to-transparent"
+        />
       </section>
 
       {/* ════════════════════════════════════

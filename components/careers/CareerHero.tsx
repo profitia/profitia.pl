@@ -26,9 +26,7 @@ interface Props {
  */
 export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Props) {
   return (
-    <section className="relative bg-white overflow-hidden min-h-[640px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
-
-      {/* Left: content (inside container so it respects max-width) */}
+    <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
       <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
         <div className="lg:max-w-[52%] lg:pr-16">
 
@@ -45,7 +43,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.07 }}
-            className="mt-8 md:mt-5 2xl:mt-8 font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem] max-w-[20ch]"
+            className="mt-8 md:mt-5 2xl:mt-8 font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]"
           >
             {title}
           </motion.h1>
@@ -54,7 +52,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.16 }}
-            className="mt-8 md:mt-5 2xl:mt-8 text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-500 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed max-w-[36rem]"
+            className="mt-8 md:mt-5 2xl:mt-8 text-lg md:text-[0.92rem] lg:text-[0.96rem] 2xl:text-lg text-gray-500 leading-relaxed md:leading-[1.55] 2xl:leading-relaxed"
           >
             {subtitle}
           </motion.p>
@@ -77,7 +75,6 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
         </div>
       </div>
 
-      {/* Right: photo panel (desktop only) — full height, bleeds to edge */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -86,18 +83,15 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
         aria-hidden="true"
       >
         <div className="relative w-full h-full overflow-hidden bg-gray-100">
-          {/* Real photo — colorful, consulting tone */}
           <Image
             src="/images/website/Profitia_36.jpg"
             alt="Zespół Profitia w pracy"
             fill
             className="object-cover object-center"
-            sizes="52vw"
+            sizes="50vw"
             priority
           />
-          {/* Subtle warm overlay for consistency with page tone */}
           <div className="absolute inset-0 bg-white/8" />
-          {/* Left-edge fade — integrates with content */}
           <div className="absolute inset-y-0 left-0 w-44 bg-gradient-to-r from-white via-white/70 to-transparent" />
         </div>
       </motion.div>
@@ -106,7 +100,6 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.1, delay: 0.18 }}
-        className="md:hidden"
       >
         <MobileHeroImage
           src="/images/website/Profitia_36.jpg"
