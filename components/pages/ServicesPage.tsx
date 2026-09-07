@@ -1,6 +1,7 @@
-import type { Capability, Locale } from '@/lib/capabilities'
-import { CAPABILITIES, SERVICE_SECTIONS } from '@/lib/capabilities'
-import { CapabilityLayout } from '@/components/capabilities'
+import type { Locale } from '@/lib/capabilities'
+import { CapabilityCTA, CapabilityHero } from '@/components/capabilities'
+import ServicesContainer from './ServicesContainer'
+import { SERVICES_CATALOG } from './servicesCatalog'
 
 interface Props {
   locale: Locale
@@ -9,10 +10,10 @@ interface Props {
 const COPY = {
   pl: {
     hero: {
-      eyebrow: 'Doradztwo · Oszczędności · Negocjacje',
-      title: 'Budujemy przewagę zakupową poprzez dane, negocjacje i transformację funkcji zakupowej.',
+      eyebrow: 'Doradztwo · Struktura · Proces · Narzędzia',
+      title: 'Usługi uporządkowane według domen, produktów i zakresu wsparcia.',
       subtitle:
-        'Pracujemy z organizacjami, które chcą odzyskać kontrolę nad kosztami, poprawić pozycję negocjacyjną i budować decyzje zakupowe w oparciu o dane, a nie intuicję.',
+        'Prezentujemy katalog usług bez przechodzenia do osobnych stron produktowych. Każdą domenę można rozwinąć do poziomu konkretnego produktu i zakresu prac.',
     },
     cta: {
       note: 'Następny krok',
@@ -22,10 +23,10 @@ const COPY = {
   },
   en: {
     hero: {
-      eyebrow: 'Advisory · Negotiations · Analytics',
-      title: 'We help procurement teams build leverage through intelligence, negotiations and operating transformation.',
+      eyebrow: 'Advisory · Organisation · Process · Tools',
+      title: 'Services organised by domain, product and scope of support.',
       subtitle:
-        'We work with organisations that want to regain control over costs, improve their negotiation position and build procurement decisions on data - not intuition.',
+        'We present the service catalogue without sending visitors to separate product pages. Each domain can be expanded down to the exact product and scope of work.',
     },
     cta: {
       note: 'Next step',
@@ -33,71 +34,31 @@ const COPY = {
       href: '/en/contact',
     },
   },
-}
+} as const
 
-/**
- * Editorial breaks - short manifesto statements that interrupt the listing
- * rhythm and signal strategic transitions between practice areas.
- * Max 2 per page. Used sparingly.
- */
-const EDITORIAL_BREAKS = [
-  {
-    afterIndex: 0,
-    pl: 'Największe przewagi zakupowe nie wynikają z pojedynczych negocjacji. Powstają z architektury decyzji zakupowych.',
-    en: "The greatest procurement advantages don't come from individual negotiations. They emerge from the architecture of procurement decisions.",
-  },
-  {
-    afterIndex: 1,
-    pl: 'Dane zakupowe mają wartość dopiero wtedy, gdy zmieniają decyzje.',
-    en: 'Procurement data has value only when it changes decisions.',
-  },
-]
-
-/**
- * ServicesPage
- * ─────────────────────────────────────────────────────────────
- * Institutional advisory capabilities listing.
- * Not a service catalogue. Not a sales landing page.
- * Server Component.
- */
 export default function ServicesPage({ locale }: Props) {
   const c = COPY[locale]
-  const visibleSections = SERVICE_SECTIONS.slice(0, 1).map((section) => ({
-    ...section,
-    eyebrow: { pl: '', en: '' },
-  }))
-
-  const serviceList = [
-    { slug: 'analiza-spot', title: { pl: 'Analiza SPOT', en: 'SPOT Analysis' } },
-    { slug: 'procurement-pmo', title: { pl: 'Oszczędności', en: 'Savings' } },
-    { slug: 'negotiation-preparation', title: { pl: 'Negocjacje', en: 'Negotiations' } },
-    { slug: 'category-strategy', title: { pl: 'Zarządzanie kategoriami', en: 'Category Management' } },
-    { slug: 'interim-management', title: { pl: 'Rent an Expert', en: 'Rent an Expert' } },
-  ] as const
-
-  const advisoryCapabilities = serviceList.reduce<Capability[]>((acc, { slug, title }) => {
-    const capability = CAPABILITIES.find((item) => item.slug === slug)
-
-    if (!capability) return acc
-
-    acc.push({
-      ...capability,
-      title,
-    })
-
-    return acc
-  }, [])
 
   return (
-    <CapabilityLayout
-      locale={locale}
-      prefix="services"
-      sections={visibleSections}
-      sectionCapabilities={{ advisory: advisoryCapabilities }}
-      hero={c.hero}
-      cta={c.cta}
-      heroVariant="services"
-      editorialBreaks={[]}
-    />
+    <>
+      <CapabilityHero
+        locale={locale}
+        eyebrow={c.hero.eyebrow}
+        title={c.hero.title}
+        subtitle={c.hero.subtitle}
+        variant="services"
+      />
+
+      <div className="container-base pb-20">
+        <ServicesContainer domains={SERVICES_CATALOG[locale]} />
+
+        <CapabilityCTA
+          locale={locale}
+          note={c.cta.note}
+          label={c.cta.label}
+          href={c.cta.href}
+        />
+      </div>
+    </>
   )
 }

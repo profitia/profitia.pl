@@ -4,7 +4,7 @@ import ServicesPage from '@/components/pages/ServicesPage'
 export const metadata: Metadata = {
   title: 'Usługi | Profitia',
   description:
-    'Doradztwo zakupowe, negocjacje, analityka spend i transformacja funkcji zakupowej. Advisory capabilities dla organizacji budujących trwałą przewagę kosztową.',
+    'Katalog usług Profitia z podziałem na domeny, produkty i rozwijane zakresy wsparcia. Bez osobnych stron produktowych.',
 }
 
 export default function Page() {
