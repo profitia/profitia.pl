@@ -178,7 +178,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                   <div
                     role="menu"
                     aria-label={dict.nav.advisory}
-                    className="min-w-[220px] bg-white p-2 shadow-[0_20px_45px_rgba(15,23,42,0.08)]"
+                    className="min-w-[220px] rounded-xl bg-white p-2 shadow-[0_20px_45px_rgba(15,23,42,0.08)]"
                   >
                     {advisoryLinks.map((link) => (
                       <Link
