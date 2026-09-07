@@ -6,7 +6,9 @@
   },
   "nav": {
     "home": "Strona główna",
+    "advisory": "Doradztwo",
     "services": "Usługi",
+    "products": "Produkty",
     "education": "Edukacja",
     "about": "O nas",
     "blog": "Blog",

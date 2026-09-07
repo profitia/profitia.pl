@@ -21,7 +21,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     orderBy: { updatedAt: 'desc' },
   })
 
-  return buildArticleSitemapEntries(articles.flatMap((article) => (
+  const articleEntries = buildArticleSitemapEntries(articles.flatMap((article) => (
     article.locale ? [{ ...article, locale: article.locale }] : []
   )))
+
+  const siteUrl = process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? 'https://profitia.pl'
+  const staticEntries: MetadataRoute.Sitemap = [
+    { url: new URL('/services', siteUrl).toString(), lastModified: new Date() },
+    { url: new URL('/products', siteUrl).toString(), lastModified: new Date() },
+    { url: new URL('/en/services', siteUrl).toString(), lastModified: new Date() },
+    { url: new URL('/en/products', siteUrl).toString(), lastModified: new Date() },
+  ]
+
+  return [...staticEntries, ...articleEntries]
 }

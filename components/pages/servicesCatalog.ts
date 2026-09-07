@@ -1,23 +1,9 @@
 import type { Locale } from '@/lib/capabilities'
+import type { CatalogDomain, CatalogProduct, CatalogProductAction } from './catalogTypes'
 
-export type ServicesProductAction = {
-  label: string
-  href: string
-  download?: boolean
-}
-
-export type ServicesProduct = {
-  id: string
-  title: string
-  description: string[]
-  action?: ServicesProductAction
-}
-
-export type ServicesDomain = {
-  id: string
-  title: string
-  products: ServicesProduct[]
-}
+export type ServicesProductAction = CatalogProductAction
+export type ServicesProduct = CatalogProduct
+export type ServicesDomain = CatalogDomain
 
 export const SERVICES_CATALOG: Record<Locale, ServicesDomain[]> = {
   pl: [

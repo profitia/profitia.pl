@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import type { ServicesDomain, ServicesProduct } from './servicesCatalog'
+import type { CatalogContentSection, CatalogDomain, CatalogProduct } from './catalogTypes'
 
 type Props = {
-  domains: ServicesDomain[]
+  domains: CatalogDomain[]
 }
 
 function ChevronIcon({ expanded }: { expanded: boolean }) {
@@ -36,7 +36,7 @@ function DownloadIcon() {
   )
 }
 
-function ProductAction({ action }: { action: NonNullable<ServicesProduct['action']> }) {
+function ProductAction({ action }: { action: NonNullable<CatalogProduct['action']> }) {
   return (
     <a
       href={action.href}
@@ -49,21 +49,79 @@ function ProductAction({ action }: { action: NonNullable<ServicesProduct['action
   )
 }
 
-function ProductDescription({ description }: { description: string[] }) {
-  if (description.length === 0) return null
+function renderList(items: string[], ordered?: boolean) {
+  if (items.length === 0) return null
 
-  if (description.length === 1) {
-    return <p className="text-sm text-[rgb(59,56,56)] leading-relaxed">{description[0]}</p>
+  if (ordered) {
+    return (
+      <ol className="space-y-2 text-sm text-[rgb(59,56,56)] leading-relaxed list-decimal pl-5">
+        {items.map((item) => (
+          <li key={item} className="break-words">
+            {item}
+          </li>
+        ))}
+      </ol>
+    )
   }
 
   return (
     <ul className="space-y-2 text-sm text-[rgb(59,56,56)] leading-relaxed list-disc pl-5">
-      {description.map((item) => (
+      {items.map((item) => (
         <li key={item} className="break-words">
           {item}
         </li>
       ))}
     </ul>
+  )
+}
+
+function ProductDescription({ description, sections }: { description?: string[]; sections?: CatalogContentSection[] }) {
+  const hasDescription = Boolean(description && description.length > 0)
+  const hasSections = Boolean(sections && sections.length > 0)
+  if (!hasDescription && !hasSections) return null
+
+  return (
+    <div className="space-y-5">
+      {hasDescription && description?.length === 1 ? (
+        <p className="text-sm text-[rgb(59,56,56)] leading-relaxed">{description[0]}</p>
+      ) : null}
+
+      {hasDescription && description && description.length > 1 ? renderList(description) : null}
+
+      {sections?.map((section, sectionIndex) => (
+        <div key={`${section.title ?? 'section'}-${sectionIndex}`} className="space-y-3">
+          {section.title ? (
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[rgb(0,109,158)]">
+              {section.title}
+            </p>
+          ) : null}
+
+          {section.paragraphs?.map((paragraph) => (
+            <p key={paragraph} className="text-sm text-[rgb(59,56,56)] leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
+
+          {section.items ? renderList(section.items, section.ordered) : null}
+
+          {section.groups?.map((group, groupIndex) => (
+            <div key={`${group.title ?? 'group'}-${groupIndex}`} className="space-y-2">
+              {group.title ? (
+                <p className="text-sm font-semibold text-[rgb(36,47,68)] leading-relaxed">
+                  {group.title}
+                </p>
+              ) : null}
+              {group.paragraphs?.map((paragraph) => (
+                <p key={paragraph} className="text-sm text-[rgb(59,56,56)] leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+              {group.items ? renderList(group.items, group.ordered) : null}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -74,7 +132,7 @@ function ServicesDomainSection({
   onToggle,
   isFirst,
 }: {
-  domain: ServicesDomain
+  domain: CatalogDomain
   openItems: Record<string, boolean>
   activeItemId: string | null
   onToggle: (itemId: string) => void
@@ -114,7 +172,7 @@ function ServicesDomainSection({
                   <ChevronIcon expanded={isOpen} />
                 </button>
                 <div id={contentId} hidden={!isOpen} className="pb-3 pr-10 space-y-4">
-                  <ProductDescription description={product.description} />
+                  <ProductDescription description={product.description} sections={product.sections} />
                   {product.action ? <ProductAction action={product.action} /> : null}
                 </div>
               </div>

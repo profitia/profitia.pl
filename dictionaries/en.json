@@ -6,7 +6,9 @@
   },
   "nav": {
     "home": "Home",
+    "advisory": "Advisory",
     "services": "Services",
+    "products": "Products",
     "education": "Education",
     "about": "About",
     "blog": "Blog",

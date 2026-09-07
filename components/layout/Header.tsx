@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
@@ -13,15 +13,22 @@ const LOCALE_COOKIE = 'PROFITIA_LOCALE'
 
 export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en' } = {}) {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [advisoryOpen, setAdvisoryOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const advisoryMenuRef = useRef<HTMLDivElement | null>(null)
   const { languagePaths } = useLanguageNavigation()
 
   const isEN = localeOverride ? localeOverride === 'en' : pathname.startsWith('/en')
   const currentLocale = isEN ? 'en' : 'pl'
   const dict = isEN ? enDict : plDict
   const prefix = isEN ? '/en' : ''
+  const advisoryLinks = [
+    { href: `${prefix}/services`, label: dict.nav.services },
+    { href: `${prefix}/products`, label: dict.nav.products },
+  ]
+  const isAdvisoryActive = advisoryLinks.some((link) => pathname === link.href || pathname.startsWith(`${link.href}/`))
 
   // ── Legal pages always show the scrolled (stable) header ──────
   const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
@@ -45,6 +52,24 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
     return () => document.removeEventListener('keydown', onKey)
   }, [mobileOpen])
 
+  useEffect(() => {
+    if (!advisoryOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setAdvisoryOpen(false)
+    }
+    const onPointerDown = (event: MouseEvent) => {
+      if (!advisoryMenuRef.current?.contains(event.target as Node)) {
+        setAdvisoryOpen(false)
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('mousedown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('mousedown', onPointerDown)
+    }
+  }, [advisoryOpen])
+
   // ── Lock body scroll when menu open ──────────────────────────
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -52,7 +77,10 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   }, [mobileOpen])
 
   // ── Close on route change ─────────────────────────────────────
-  useEffect(() => { setMobileOpen(false) }, [pathname])
+  useEffect(() => {
+    setMobileOpen(false)
+    setAdvisoryOpen(false)
+  }, [pathname])
 
   // ── Locale switch ─────────────────────────────────────────────
   const switchLocale = (locale: 'pl' | 'en') => {
@@ -69,7 +97,6 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   // ── Navigation structure ──────────────────────────────────────
   // Primary order requested by design pass.
   const primaryNav = [
-    { href: `${prefix}/services`, label: dict.nav.services },
     { href: `${prefix}/education`, label: dict.nav.education },
     { href: `${prefix}/career`, label: dict.nav.career },
     { href: `${prefix}/blog`, label: dict.nav.blog },
@@ -117,6 +144,59 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             className="hidden md:flex items-center gap-6"
             aria-label={isEN ? 'Main navigation' : 'Nawigacja główna'}
           >
+            <div
+              ref={advisoryMenuRef}
+              className="relative"
+              onMouseEnter={() => setAdvisoryOpen(true)}
+              onMouseLeave={() => setAdvisoryOpen(false)}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                  setAdvisoryOpen(false)
+                }
+              }}
+            >
+              <button
+                type="button"
+                className={`relative inline-flex items-center gap-1 text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
+                  isAdvisoryActive || advisoryOpen ? 'text-brand-blue' : 'text-gray-500 hover:text-brand-blue'
+                }`}
+                aria-haspopup="menu"
+                aria-expanded={advisoryOpen}
+                onClick={() => setAdvisoryOpen((current) => !current)}
+              >
+                {dict.nav.advisory}
+                <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className={`h-3.5 w-3.5 transition-transform duration-200 ${advisoryOpen ? 'rotate-180' : ''}`}>
+                  <path d="M5 7.5 10 12.5 15 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                {isAdvisoryActive && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-px bg-brand-blue opacity-40 rounded-full" aria-hidden="true" />
+                )}
+              </button>
+
+              {advisoryOpen && (
+                <div
+                  role="menu"
+                  aria-label={dict.nav.advisory}
+                  className="absolute left-0 top-[calc(100%+0.75rem)] z-50 min-w-[220px] rounded-2xl border border-gray-100 bg-white p-2 shadow-[0_20px_45px_rgba(15,23,42,0.08)]"
+                >
+                  {advisoryLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      role="menuitem"
+                      className={`flex items-center rounded-xl px-3 py-2 text-[13.5px] transition-colors duration-200 ${
+                        isActive(link.href)
+                          ? 'bg-[rgba(199,237,251,0.45)] text-brand-blue font-medium'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {/* Primary links */}
             {primaryNav.map((link) => (
               <Link
@@ -263,7 +343,29 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             aria-label={isEN ? 'Mobile navigation' : 'Nawigacja mobilna'}
           >
             <div className="space-y-0">
-              {[...primaryNav, ...secondaryNav].map((link) => (
+              <div className="py-3">
+                <p className={`text-2xl font-medium tracking-tight leading-tight ${isAdvisoryActive ? 'text-brand-blue' : 'text-gray-700'}`}>
+                  {dict.nav.advisory}
+                </p>
+                <div className="mt-3 space-y-1 pl-5 border-l border-gray-100">
+                  {advisoryLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block py-2 text-lg font-medium tracking-tight leading-tight transition-colors duration-150 ease-out ${
+                        isActive(link.href)
+                          ? 'text-brand-blue'
+                          : 'text-gray-600 hover:text-brand-blue'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {primaryNav.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
