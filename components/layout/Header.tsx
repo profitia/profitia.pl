@@ -174,25 +174,27 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
               </button>
 
               {advisoryOpen && (
-                <div
-                  role="menu"
-                  aria-label={dict.nav.advisory}
-                  className="absolute left-0 top-[calc(100%+0.75rem)] z-50 min-w-[220px] rounded-2xl border border-gray-100 bg-white p-2 shadow-[0_20px_45px_rgba(15,23,42,0.08)]"
-                >
-                  {advisoryLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      role="menuitem"
-                      className={`flex items-center rounded-xl px-3 py-2 text-[13.5px] transition-colors duration-200 ${
-                        isActive(link.href)
-                          ? 'bg-[rgba(199,237,251,0.45)] text-brand-blue font-medium'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+                <div className="absolute left-0 top-full z-50 pt-3">
+                  <div
+                    role="menu"
+                    aria-label={dict.nav.advisory}
+                    className="min-w-[220px] bg-white p-2 shadow-[0_20px_45px_rgba(15,23,42,0.08)]"
+                  >
+                    {advisoryLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        role="menuitem"
+                        className={`flex items-center rounded-xl px-3 py-2 text-[13.5px] transition-colors duration-200 ${
+                          isActive(link.href)
+                            ? 'bg-[rgba(199,237,251,0.45)] text-brand-blue font-medium'
+                            : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
