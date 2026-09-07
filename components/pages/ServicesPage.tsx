@@ -10,10 +10,10 @@ interface Props {
 const COPY = {
   pl: {
     hero: {
-      eyebrow: 'Doradztwo · Struktura · Proces · Narzędzia',
-      title: 'Usługi uporządkowane według domen, produktów i zakresu wsparcia.',
+      eyebrow: 'Doradztwo · Oszczędności · Negocjacje',
+      title: 'Budujemy przewagę zakupową poprzez dane, negocjacje i transformację funkcji zakupowej.',
       subtitle:
-        'Prezentujemy katalog usług bez przechodzenia do osobnych stron produktowych. Każdą domenę można rozwinąć do poziomu konkretnego produktu i zakresu prac.',
+        'Pracujemy z organizacjami, które chcą odzyskać kontrolę nad kosztami, poprawić pozycję negocjacyjną i budować decyzje zakupowe w oparciu o dane, a nie intuicję.',
     },
     cta: {
       note: 'Następny krok',
@@ -23,10 +23,10 @@ const COPY = {
   },
   en: {
     hero: {
-      eyebrow: 'Advisory · Organisation · Process · Tools',
-      title: 'Services organised by domain, product and scope of support.',
+      eyebrow: 'Advisory · Negotiations · Analytics',
+      title: 'We help procurement teams build leverage through intelligence, negotiations and operating transformation.',
       subtitle:
-        'We present the service catalogue without sending visitors to separate product pages. Each domain can be expanded down to the exact product and scope of work.',
+        'We work with organisations that want to regain control over costs, improve their negotiation position and build procurement decisions on data - not intuition.',
     },
     cta: {
       note: 'Next step',
