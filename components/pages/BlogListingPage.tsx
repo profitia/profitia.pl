@@ -66,7 +66,6 @@ export default function BlogListingPage({ locale, articles }: Props) {
                     key={article.id}
                     article={article}
                     locale={locale}
-                    priority={index < 3}
                   />
                 ))}
               </div>

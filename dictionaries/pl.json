@@ -9,7 +9,7 @@
     "advisory": "Doradztwo",
     "services": "Usługi",
     "products": "Produkty",
-    "education": "Edukacja",
+    "education": "Rozwój Kompetencji",
     "about": "O nas",
     "blog": "Blog",
     "contact": "Kontakt",
@@ -163,7 +163,7 @@
         },
         {
           "n": "03",
-          "title": "Kompetencje",
+          "title": "Rozwój kompetencji",
           "desc": "Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.",
           "img": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
           "alt": "Rozwój kompetencji zakupowych - szkolenie zespołu",
@@ -309,30 +309,6 @@
           "role": "Dyrektor Zakupów",
           "title": "Współpraca z Profitią pozwoliła nam wejść na wyższy poziom zarządzania zakupami.",
           "body": "Połączenie eksperckiego doradztwa z dostępem do rzetelnych danych i nowoczesnych narzędzi przełożyło się na lepsze przygotowanie negocjacji, większą pewność podejmowanych decyzji i realne oszczędności. To partner, który rozumie wyzwania zakupów i dostarcza rozwiązania mające bezpośredni wpływ na wyniki biznesowe."
-        },
-        {
-          "company": "Firma 1",
-          "role": "Stanowisko 1",
-          "title": "Rekomendacja 1",
-          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        },
-        {
-          "company": "Firma 2",
-          "role": "Stanowisko 2",
-          "title": "Rekomendacja 2",
-          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
-        },
-        {
-          "company": "Firma 3",
-          "role": "Stanowisko 3",
-          "title": "Rekomendacja 3",
-          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla."
-        },
-        {
-          "company": "Firma 4",
-          "role": "Stanowisko 4",
-          "title": "Rekomendacja 4",
-          "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
         }
       ]
     },

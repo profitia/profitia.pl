@@ -132,10 +132,10 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             <Image
               src="/logo/profitia-default.svg"
               alt="Profitia"
-              width={160}
-              height={44}
+              width={192}
+              height={53}
               priority
-              className="h-[42px] w-auto"
+              className="h-[50px] w-auto"
             />
           </Link>
 
