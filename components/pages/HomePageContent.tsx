@@ -62,7 +62,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
                   {d.hero.reportBody}
                 </p>
                 <Link
-                  href="/docs/Wdroz%CC%87enie%20AI%20w%20Zakupach%20-%20dlaczego,%20co%20i%20kiedy.pdf"
+                  href="/docs/wdrozenie-ai-w-zakupach.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center self-start bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
