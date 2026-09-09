@@ -180,7 +180,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             <RevealWrapper delay={1} className="min-w-0">
               <div className="relative overflow-hidden rounded-[28px] border border-gray-200 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)] min-h-[300px] sm:min-h-[420px] lg:min-h-[600px]">
                 <Image
-                  src="/cips/warsaw-cips.png"
+                  src="/cips/cips-futures-europe-2026.webp"
                   alt={d.cips.conferenceImageAlt}
                   fill
                   className="object-contain p-4 md:p-6"
