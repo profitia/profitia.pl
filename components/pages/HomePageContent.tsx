@@ -100,7 +100,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           CIPS FUTURES EUROPE
           ════════════════════════════════════ */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100 overflow-hidden">
+      <section className="py-24 bg-gray-50 border-t border-gray-100 overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] xl:gap-12">
             <RevealWrapper delay={0} className="min-w-0">
@@ -178,12 +178,13 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
             </RevealWrapper>
 
             <RevealWrapper delay={1} className="min-w-0">
-              <div className="relative overflow-hidden rounded-[28px] border border-gray-200 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)] min-h-[300px] sm:min-h-[420px] lg:min-h-[600px]">
+              <div className="relative min-h-[300px] sm:min-h-[420px] lg:min-h-[600px]">
+                <div className="absolute inset-y-0 left-[-1.5rem] right-[-1.5rem] bg-[#022061] lg:left-0 lg:right-[calc(100%-100vw)]" aria-hidden="true" />
                 <Image
                   src="/cips/cips-futures-europe-2026.webp"
                   alt={d.cips.conferenceImageAlt}
                   fill
-                  className="object-contain p-4 md:p-6"
+                  className="relative z-10 object-contain p-4 md:p-6"
                   sizes="(max-width: 1024px) 100vw, 58vw"
                 />
               </div>
