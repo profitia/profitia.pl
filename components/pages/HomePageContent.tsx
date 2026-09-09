@@ -102,7 +102,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
           ════════════════════════════════════ */}
       <section className="py-24 bg-gray-50 border-t border-gray-100 overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] xl:gap-12">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] xl:gap-12">
             <RevealWrapper delay={0} className="min-w-0">
               <div className="space-y-6 lg:space-y-7 max-w-[44rem]">
                 <div className="space-y-3">
@@ -177,8 +177,8 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
               </div>
             </RevealWrapper>
 
-            <RevealWrapper delay={1} className="min-w-0">
-              <div className="relative min-h-[300px] sm:min-h-[420px] lg:min-h-[600px]">
+            <RevealWrapper delay={1} className="min-w-0 self-stretch">
+              <div className="relative h-full min-h-[300px] sm:min-h-[420px] lg:min-h-[600px]">
                 <div className="absolute inset-y-0 left-[-1.5rem] right-[-1.5rem] bg-[#022061] lg:left-0 lg:right-[calc(100%-100vw)]" aria-hidden="true" />
                 <Image
                   src="/cips/cips-futures-europe-2026.webp"
