@@ -73,17 +73,20 @@
       "imgAlt": "Spotkanie negocjacyjne - doradztwo zakupowe Profitia"
     },
     "cips": {
-      "eyebrow": "Partnerstwo",
-      "h2": "Profitia jest oficjalnym partnerem CIPS w Polsce",
-      "body1": "CIPS - Chartered Institute of Procurement & Supply - to największa na świecie organizacja zawodowa dla profesjonalistów zakupów i łańcucha dostaw, wyznaczająca globalne standardy kwalifikacji, rozwoju i praktyki rynkowej.",
-      "body2": "Jako oficjalny partner CIPS w Polsce Profitia wspiera liderów i zespoły zakupowe w budowaniu kompetencji, które przekładają się na lepsze przygotowanie negocjacji, mocniejsze decyzje i trwały wpływ na wyniki biznesowe.",
-      "conferenceLabel": "Konferencja CIPS Poland",
-      "conferenceTitle": "26 listopada 2026",
-      "conferenceBody": "Zbliżająca się konferencja CIPS Poland będzie miejscem spotkania liderów zakupów, praktyków i organizacji rozwijających nowoczesne podejście do zarządzania zakupami.",
-      "conferencePrompt": "Zapisz tę datę.",
-      "conferencePromptBody": "26 listopada 2026 spotkajmy się podczas konferencji CIPS Poland.",
-      "conferenceImageAlt": "Warszawa o zachodzie słońca - oprawa konferencji CIPS Poland",
-      "conferenceButton": "Pobierz informacje"
+      "eyebrow": "CIPS FUTURES EUROPE",
+      "h2": "CONFERENCE & AWARDS",
+      "dateLine": "Zarezerwuj datę · 26 listopada 2026 r. · godz. 8:00 CET",
+      "venueLine": "Crowne Plaza® Warsaw",
+      "conferenceLabel": "Konferencja",
+      "conferenceBody": "Tematy skoncentrowane na przyszłości, liderzy branży i wartościowe rozmowy o priorytetach kształtujących zakupy.",
+      "awardsLabel": "Gala wręczenia nagród",
+      "awardsBody": "Prestiżowy wieczór celebrujący doskonałość, przywództwo i wpływ na rozwój branży w 8 kategoriach nagród.",
+      "speakersCount": "20+",
+      "speakersLabel": "prelegentów-ekspertów",
+      "topics": "Strategia zakupowa · Transformacja cyfrowa · Przywództwo i rozwój kompetencji",
+      "conferenceImageAlt": "Grafika CIPS FUTURES EUROPE CONFERENCE & AWARDS - panorama Warszawy",
+      "brochureButton": "Pobierz broszurę",
+      "registerButton": "Zarejestruj się"
     },
     "problem": {
       "eyebrow": "Kontekst",

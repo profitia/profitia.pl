@@ -73,17 +73,20 @@
       "imgAlt": "Business negotiation meeting - Profitia procurement advisory"
     },
     "cips": {
-      "eyebrow": "Partnership",
-      "h2": "Profitia is the official CIPS partner in Poland",
-      "body1": "CIPS - the Chartered Institute of Procurement & Supply - is the world's largest professional body for procurement and supply, setting global standards for qualification, capability and professional practice.",
-      "body2": "As the official CIPS partner in Poland, Profitia supports procurement leaders and teams in building capabilities that lead to stronger negotiation preparation, better decisions and direct business impact.",
-      "conferenceLabel": "CIPS Poland Conference",
-      "conferenceTitle": "26 November 2026",
-      "conferenceBody": "The upcoming CIPS Poland conference will bring together procurement leaders, practitioners and organisations developing a more modern approach to procurement management.",
-      "conferencePrompt": "Save the date.",
-      "conferencePromptBody": "Meet us on 26 November 2026 during the CIPS Poland conference.",
-      "conferenceImageAlt": "Warsaw skyline at sunset - CIPS Poland conference backdrop",
-      "conferenceButton": "Download information"
+      "eyebrow": "CIPS FUTURES EUROPE",
+      "h2": "CONFERENCE & AWARDS",
+      "dateLine": "Save the date · 26 November 2026 · 8:00 AM CET",
+      "venueLine": "Crowne Plaza® Warsaw",
+      "conferenceLabel": "Conference",
+      "conferenceBody": "Future-focused content, senior leaders and meaningful conversations on the priorities shaping procurement.",
+      "awardsLabel": "Awards Gala Dinner",
+      "awardsBody": "A prestigious evening recognising excellence, leadership and impact across 8 award categories.",
+      "speakersCount": "20+",
+      "speakersLabel": "expert speakers",
+      "topics": "Procurement strategy · Digital transformation · Leadership & capability",
+      "conferenceImageAlt": "CIPS FUTURES EUROPE CONFERENCE & AWARDS graphic - Warsaw skyline",
+      "brochureButton": "Download brochure",
+      "registerButton": "Register now"
     },
     "problem": {
       "eyebrow": "Context",

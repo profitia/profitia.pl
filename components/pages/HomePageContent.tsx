@@ -16,6 +16,8 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
   const eyebrowToneOnDark = 'text-[rgba(199,237,251,0.82)]'
   const separatorBorder = 'border-[rgba(149,166,199,0.35)]'
   const separatorFill = 'bg-[rgba(149,166,199,0.35)]'
+  const cipsBrochureHref = '/cips/Brochure_CIPS_FUTURES_EUROPE_CONFERENCE_AND_AWARDS.pdf'
+  const cipsRegisterHref = 'https://events.cips.org/CIPSFuturesEuropeConferenceAwards2026?lang=en#/buyTickets/selectTickets?lang=en'
 
   return (
     <>
@@ -96,84 +98,94 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       </section>
 
       {/* ════════════════════════════════════
-          CIPS
+          CIPS FUTURES EUROPE
           ════════════════════════════════════ */}
       <section className="py-24 bg-gray-50 border-t border-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid gap-12 lg:grid-cols-[1.3fr_0.9fr]">
-            <div className="py-2 lg:py-6">
-              <RevealWrapper delay={0}>
-                <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400 mb-5">{d.cips.eyebrow}</p>
-                <div className="flex flex-wrap items-center gap-8 mb-8">
-                  <Image
-                    src="/logo/profitia-default.svg"
-                    alt="Profitia"
-                    width={140}
-                    height={38}
-                    className="h-8 w-auto"
-                  />
-                  <Image
-                    src="/logo/cips.png"
-                    alt="CIPS"
-                    width={129}
-                    height={50}
-                    className="h-9 w-auto"
-                  />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-3xl leading-tight text-gray-900">
-                  {d.cips.h2}
-                </h2>
-                <p className="text-gray-600 text-base leading-relaxed mt-6 max-w-3xl">
-                  {d.cips.body1}
-                </p>
-                <p className="text-gray-600 text-base leading-relaxed mt-4 max-w-3xl">
-                  {d.cips.body2}
-                </p>
-              </RevealWrapper>
-            </div>
-
-            <RevealWrapper delay={1} className="relative overflow-hidden bg-[#242F44] text-white min-h-[520px] lg:min-h-full lg:mr-[calc(50%-50vw-1.5rem)]">
-              <Image
-                src="/cips/warsaw-cips.png"
-                alt={d.cips.conferenceImageAlt}
-                fill
-                className="object-cover"
-                style={{ objectPosition: '72% center' }}
-                sizes="(max-width: 1024px) 100vw, 40vw"
-              />
-              <div
-                className="absolute inset-0"
-                style={{ backgroundColor: 'rgba(72,94,136,0.5)' }}
-              />
-              <div className="relative z-10 flex h-full flex-col justify-between px-8 py-10 md:px-10 md:py-12 lg:px-12">
-                <div>
-                  <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/70 mb-5">
-                    {d.cips.conferenceLabel}
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] xl:gap-12">
+            <RevealWrapper delay={0} className="min-w-0">
+              <div className="space-y-6 lg:space-y-7 max-w-[44rem]">
+                <div className="space-y-3">
+                  <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-400">
+                    {d.cips.eyebrow}
                   </p>
-                  <h3 className="text-4xl md:text-5xl font-semibold tracking-tight text-white leading-[1.02] max-w-sm">
-                    {d.cips.conferenceTitle}
-                  </h3>
-                  <p className="text-base text-white/85 leading-relaxed mt-6 max-w-md">
-                    {d.cips.conferenceBody}
+                  <h2 className="text-[2rem] md:text-[2.2rem] lg:text-[2.25rem] font-semibold tracking-tight leading-[1.03] text-[#242F44] whitespace-pre-line max-w-[12ch]">
+                    {d.cips.h2}
+                  </h2>
+                </div>
+
+                <div className="space-y-2 border-l border-gray-200 pl-5">
+                  <p className="text-[0.98rem] md:text-[1.02rem] font-medium text-gray-700 leading-relaxed">
+                    {d.cips.dateLine}
+                  </p>
+                  <p className="text-[0.98rem] md:text-[1.02rem] text-gray-600 leading-relaxed">
+                    {d.cips.venueLine}
                   </p>
                 </div>
 
-                <div className="pt-12">
-                  <p className="text-2xl md:text-[2rem] font-medium tracking-tight text-[#5fc2ff] leading-tight max-w-sm">
-                    {d.cips.conferencePrompt}
-                  </p>
-                  <p className="text-sm text-white/80 leading-relaxed mt-3 max-w-sm">
-                    {d.cips.conferencePromptBody}
-                  </p>
+                <div className="space-y-5 pt-1">
+                  <div className="space-y-2">
+                    <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-[rgba(0,109,158,0.8)]">
+                      {d.cips.conferenceLabel}
+                    </p>
+                    <p className="text-gray-600 leading-relaxed md:text-[0.97rem] lg:text-base">
+                      {d.cips.conferenceBody}
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-[rgba(0,109,158,0.8)]">
+                      {d.cips.awardsLabel}
+                    </p>
+                    <p className="text-gray-600 leading-relaxed md:text-[0.97rem] lg:text-base">
+                      {d.cips.awardsBody}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-end gap-3 pt-2">
+                  <span className="text-[3.5rem] md:text-[3.85rem] leading-none font-semibold tracking-[-0.06em] text-[#242F44]">
+                    {d.cips.speakersCount}
+                  </span>
+                  <span className="pb-2 text-sm md:text-[0.95rem] font-medium uppercase tracking-[0.18em] text-gray-500">
+                    {d.cips.speakersLabel}
+                  </span>
+                </div>
+
+                <p className="text-sm md:text-[0.95rem] lg:text-[1rem] leading-relaxed text-gray-600 max-w-[42ch]">
+                  {d.cips.topics}
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 pt-2">
                   <Link
-                    href="/docs/26.11.26_Conference_CIPS_Profitia_EN.pdf"
-                    className="inline-block mt-6 bg-gray-900 text-white rounded-xl px-6 py-3.5 font-medium text-sm hover:bg-brand-blue transition-colors duration-200"
+                    href={cipsBrochureHref}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl border border-brand-blue px-6 py-3.5 text-sm font-medium text-brand-blue transition-colors duration-200 hover:bg-brand-blue hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/40 focus-visible:ring-offset-2"
                   >
-                    {d.cips.conferenceButton}
+                    {d.cips.brochureButton}
+                  </Link>
+                  <Link
+                    href={cipsRegisterHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl bg-brand-blue px-6 py-3.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-brand-blue/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/40 focus-visible:ring-offset-2"
+                  >
+                    {d.cips.registerButton}
                   </Link>
                 </div>
+              </div>
+            </RevealWrapper>
+
+            <RevealWrapper delay={1} className="min-w-0">
+              <div className="relative overflow-hidden rounded-[28px] border border-gray-200 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)] min-h-[300px] sm:min-h-[420px] lg:min-h-[600px]">
+                <Image
+                  src="/cips/warsaw-cips.png"
+                  alt={d.cips.conferenceImageAlt}
+                  fill
+                  className="object-contain p-4 md:p-6"
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                />
               </div>
             </RevealWrapper>
           </div>
