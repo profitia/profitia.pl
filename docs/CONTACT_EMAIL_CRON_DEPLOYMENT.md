@@ -10,7 +10,7 @@ Target Render cron configuration:
 - Runtime: Node
 - Region: frankfurt
 - Schedule: `* * * * *`
-- Build command: `npm install && npm run db:forms:generate`
+- Build command: `npm ci --include=dev && npm run db:forms:generate`
 - Start command: `npm run contact:email:dispatch`
 - Persistent disk: disabled
 - Render Key Value: not used
@@ -33,13 +33,16 @@ Environment variables required on the cron job:
 Deployment order:
 
 1. Confirm a backup, checkpoint, or restore path for the Forms database.
-2. Apply the additive migration through the direct, non-pooled Neon endpoint.
-3. Verify the new table, enum types, unique key, and indexes.
-4. Merge and deploy the updated web service.
-5. Submit one contact form in production and confirm one `contact_submissions` row plus two `contact_email_outbox` rows.
-6. Create and enable the Render cron job.
-7. Confirm both emails are dispatched and the related submission statuses become `SENT`.
-8. Monitor the first cron executions and backlog size.
+2. Point `DATABASE_FORMS_URL` temporarily to the direct, non-pooled Neon URL for the migration shell only.
+3. Run `npm run db:forms:status`.
+4. Apply the additive migration with `npm run db:forms:migrate:deploy`.
+5. Re-run `npm run db:forms:status` and verify the new table, enum types, unique key, and indexes.
+6. Restore the normal pooled `DATABASE_FORMS_URL` for runtime.
+7. Merge and deploy the updated web service.
+8. Submit one contact form in production and confirm one `contact_submissions` row plus two `contact_email_outbox` rows.
+9. Create and enable the Render cron job.
+10. Confirm both emails are dispatched and the related submission statuses become `SENT`.
+11. Monitor the first cron executions and backlog size.
 
 Rollback order:
 
@@ -50,5 +53,7 @@ Rollback order:
 
 Notes:
 
-- Do not run the production migration through the pooled Neon URL.
+- Run `npm run db:forms:migrate:deploy` only against the direct, non-pooled Neon URL.
+- Use the pooled `DATABASE_FORMS_URL` for the normal web service and cron runtime.
+- The direct URL is for migration only and should not remain configured as the runtime service URL.
 - `render.yaml` remains intentionally untouched in this task because it does not match the live Render service configuration.

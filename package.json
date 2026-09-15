@@ -15,6 +15,7 @@
     "db:forms:generate": "prisma generate --schema prisma/forms/schema.prisma",
     "db:forms:validate": "prisma validate --schema prisma/forms/schema.prisma",
     "db:forms:migrate": "prisma migrate dev --schema prisma/forms/schema.prisma",
+    "db:forms:migrate:deploy": "prisma migrate deploy --schema prisma/forms/schema.prisma",
     "db:forms:status": "prisma migrate status --schema prisma/forms/schema.prisma",
     "contact:email:dispatch": "tsx scripts/process-contact-email-outbox.ts",
     "test:recruitment-etap1": "tsx tests/recruitment-etap1.test.ts",

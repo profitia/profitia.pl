@@ -4,6 +4,7 @@ import { NextRequest } from 'next/server'
 
 import {
   buildContactEmailMessageId,
+  createPrismaContactEmailOutboxRepository,
   createContactSubmissionWithOutbox,
   processContactEmailOutboxBatch,
   type ContactEmailOutboxJobRecord,
@@ -715,41 +716,191 @@ async function main() {
     let disconnectCalls = 0
     const previousExitCode = process.exitCode
     process.exitCode = undefined
+    const fakeClient = {
+      async $disconnect() {
+        disconnectCalls += 1
+      },
+    } as ReturnType<typeof import('@/lib/forms/prisma').getFormsPrisma>
+    const fakeRepository = new InMemoryContactEmailOutboxRepository([])
+    let repositoryFactoryClient: unknown = null
+    let processBatchRepository: unknown = null
 
     try {
       const result = await runContactEmailOutboxScript({
         argv: ['node', 'scripts/process-contact-email-outbox.ts'],
-        env: { NODE_ENV: 'test' },
+        env: { NODE_ENV: 'production' },
         logger: {
           log() {},
           info() {},
           warn() {},
           error() {},
         },
-        getFormsClient: () => ({
-          async $disconnect() {
-            disconnectCalls += 1
-          },
-        }) as ReturnType<typeof import('@/lib/forms/prisma').getFormsPrisma>,
-        processBatch: async () => ({
+        getFormsClient: () => fakeClient,
+        createRepository: (client) => {
+          repositoryFactoryClient = client
+          return fakeRepository as ReturnType<typeof createPrismaContactEmailOutboxRepository>
+        },
+        processBatch: async (options = {}) => {
+          const { repository } = options
+          processBatchRepository = repository
+          return {
+            scanned: 0,
+            claimed: 0,
+            sent: 0,
+            rescheduled: 0,
+            failed: 0,
+            skipped: 0,
+            technicalFailures: 0,
+            fatalError: false,
+          }
+        },
+      })
+
+      assert.equal(result.scanned, 0)
+      assert.equal(result.fatalError, false)
+      assert.equal(repositoryFactoryClient, fakeClient)
+      assert.equal(processBatchRepository, fakeRepository)
+      assert.equal(disconnectCalls, 1)
+      assert.equal(process.exitCode, 0)
+    } finally {
+      process.exitCode = previousExitCode
+    }
+  })
+
+  await test('dispatcher script sets exitCode 1 on fatalError and still disconnects the same client', async () => {
+    let disconnectCalls = 0
+    const previousExitCode = process.exitCode
+    process.exitCode = undefined
+    const fakeClient = {
+      async $disconnect() {
+        disconnectCalls += 1
+      },
+    } as ReturnType<typeof import('@/lib/forms/prisma').getFormsPrisma>
+    const fakeRepository = new InMemoryContactEmailOutboxRepository([])
+
+    try {
+      const result = await runContactEmailOutboxScript({
+        argv: ['node', 'scripts/process-contact-email-outbox.ts'],
+        env: { NODE_ENV: 'production' },
+        logger: {
+          log() {},
+          info() {},
+          warn() {},
+          error() {},
+        },
+        getFormsClient: () => fakeClient,
+        createRepository: (client) => {
+          assert.equal(client, fakeClient)
+          return fakeRepository as ReturnType<typeof createPrismaContactEmailOutboxRepository>
+        },
+        processBatch: async (options = {}) => {
+          const { repository } = options
+          assert.equal(repository, fakeRepository)
+          return {
+            scanned: 0,
+            claimed: 0,
+            sent: 0,
+            rescheduled: 0,
+            failed: 0,
+            skipped: 0,
+            technicalFailures: 0,
+            fatalError: true,
+          }
+        },
+      })
+
+      assert.equal(result.fatalError, true)
+      assert.equal(disconnectCalls, 1)
+      assert.equal(process.exitCode, 1)
+    } finally {
+      process.exitCode = previousExitCode
+    }
+  })
+
+  await test('dispatcher script sets exitCode 1 on technicalFailures', async () => {
+    let disconnectCalls = 0
+    const previousExitCode = process.exitCode
+    process.exitCode = undefined
+    const fakeClient = {
+      async $disconnect() {
+        disconnectCalls += 1
+      },
+    } as ReturnType<typeof import('@/lib/forms/prisma').getFormsPrisma>
+    const fakeRepository = new InMemoryContactEmailOutboxRepository([])
+
+    try {
+      const result = await runContactEmailOutboxScript({
+        argv: ['node', 'scripts/process-contact-email-outbox.ts'],
+        env: { NODE_ENV: 'production' },
+        logger: {
+          log() {},
+          info() {},
+          warn() {},
+          error() {},
+        },
+        getFormsClient: () => fakeClient,
+        createRepository: (client) => {
+          assert.equal(client, fakeClient)
+          return fakeRepository as ReturnType<typeof createPrismaContactEmailOutboxRepository>
+        },
+        processBatch: async (options = {}) => {
+          const { repository } = options
+          assert.equal(repository, fakeRepository)
+          return {
           scanned: 0,
           claimed: 0,
           sent: 0,
           rescheduled: 0,
           failed: 0,
           skipped: 0,
-          technicalFailures: 0,
+          technicalFailures: 2,
           fatalError: false,
-        }),
+          }
+        },
       })
 
-      assert.equal(result.scanned, 0)
-      assert.equal(result.fatalError, false)
+      assert.equal(result.technicalFailures, 2)
       assert.equal(disconnectCalls, 1)
-      assert.notEqual(process.exitCode, 1)
+      assert.equal(process.exitCode, 1)
     } finally {
       process.exitCode = previousExitCode
     }
+  })
+
+  await test('dispatcher script disconnects the active Prisma client on exception path', async () => {
+    let disconnectCalls = 0
+    const fakeClient = {
+      async $disconnect() {
+        disconnectCalls += 1
+      },
+    } as ReturnType<typeof import('@/lib/forms/prisma').getFormsPrisma>
+    const fakeRepository = new InMemoryContactEmailOutboxRepository([])
+
+    await assert.rejects(
+      () => runContactEmailOutboxScript({
+        argv: ['node', 'scripts/process-contact-email-outbox.ts'],
+        env: { NODE_ENV: 'production' },
+        logger: {
+          log() {},
+          info() {},
+          warn() {},
+          error() {},
+        },
+        getFormsClient: () => fakeClient,
+        createRepository: (client) => {
+          assert.equal(client, fakeClient)
+          return fakeRepository as ReturnType<typeof createPrismaContactEmailOutboxRepository>
+        },
+        processBatch: async (options = {}) => {
+          const { repository } = options
+          assert.equal(repository, fakeRepository)
+          throw new Error('PROCESS_BATCH_THROWN')
+        },
+      }),
+      /PROCESS_BATCH_THROWN/
+    )
+
+    assert.equal(disconnectCalls, 1)
   })
 
   await test('deterministic Message-ID depends only on submission id and job kind', () => {
