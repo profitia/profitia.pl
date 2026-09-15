@@ -21,6 +21,18 @@ enum EmailDeliveryStatus {
   FAILED
 }
 
+enum ContactEmailKind {
+  INTERNAL_NOTIFICATION
+  USER_CONFIRMATION
+}
+
+enum ContactEmailJobStatus {
+  PENDING
+  PROCESSING
+  SENT
+  FAILED
+}
+
 enum JobPosition {
   PROCUREMENT_CONSULTANT
   JUNIOR_BUSINESS_ANALYST
@@ -100,6 +112,7 @@ model ContactSubmission {
   submittedAt                DateTime            @default(now())
   createdAt                  DateTime            @default(now())
   updatedAt                  DateTime            @updatedAt
+  emailOutboxJobs            ContactEmailOutbox[]
 
   @@map("contact_submissions")
   @@index([submittedAt])
@@ -107,6 +120,28 @@ model ContactSubmission {
   @@index([email])
   @@index([internalEmailStatus])
   @@index([confirmationEmailStatus])
+}
+
+model ContactEmailOutbox {
+  id                  String                @id @default(cuid())
+  contactSubmissionId String
+  contactSubmission   ContactSubmission     @relation(fields: [contactSubmissionId], references: [id], onDelete: Cascade)
+  kind                ContactEmailKind
+  status              ContactEmailJobStatus @default(PENDING)
+  attempts            Int                   @default(0)
+  availableAt         DateTime              @default(now())
+  lockedAt            DateTime?
+  lastAttemptAt       DateTime?
+  sentAt              DateTime?
+  messageId           String?
+  lastError           String?               @db.Text
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+
+  @@map("contact_email_outbox")
+  @@unique([contactSubmissionId, kind])
+  @@index([status, availableAt])
+  @@index([lockedAt])
 }
 
 model NewsletterSubscription {
