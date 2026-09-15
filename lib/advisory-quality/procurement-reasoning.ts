@@ -151,14 +151,14 @@ export const BUSINESS_IMPACT_FRAMING = {
 export const REACTIVE_PROCUREMENT_REASONING = {
   pl: [
     "Reaktywne zakupy to zakupy, które zawsze zaczynają się za późno — za mało czasu na sourcing, za mało danych do negocjacji.",
-    "SPOT Analysis w 5–10 dni daje konkretny benchmark rynkowy dla kategorii — to minimum przed każdą negocjacją.",
+    "SPOT Analysis porządkuje obraz całej funkcji zakupowej — pokazuje, czy źródło problemu leży w sourcingu, procesach, organizacji czy narzędziach.",
     "Kupowanie ad hoc bez konsolidacji to najdroższy model zakupów — każda transakcja jest jednorazowa i pozycja negocjacyjna słaba.",
     "Category Strategy buduje długoterminową pozycję — nie rozwiązuje bieżących problemów, ale eliminuje ich powracanie.",
     "Maturity assessment zakupów pokazuje, gdzie jest organizacja dziś i co realnie można osiągnąć w 12 miesiącach.",
   ],
   en: [
     "Reactive procurement always starts too late — not enough time for sourcing, not enough data for negotiation.",
-    "SPOT Analysis in 5–10 days gives a concrete market benchmark for a category — the minimum before any major negotiation.",
+    "SPOT Analysis structures the full procurement function picture — showing whether the root cause sits in sourcing, processes, organisation, or tools.",
     "Ad hoc buying without consolidation is the most expensive procurement model — every transaction is one-off and negotiating position is weak.",
     "Category Strategy builds a long-term position — it doesn't solve current problems but eliminates their recurrence.",
     "Procurement maturity assessment shows where the organization is today and what's realistically achievable in 12 months.",
@@ -169,15 +169,15 @@ export const REACTIVE_PROCUREMENT_REASONING = {
 export const ESCALATION_FRAMING = {
   pl: [
     "Kolejny krok to 20-minutowa rozmowa — bez zobowiązań, tylko diagnoza sytuacji i ocena, co realnie można uzyskać.",
-    "SPOT Analysis to najszybsza forma współpracy — 5–10 dni, konkretny wynik, zero ryzyka długiego zaangażowania.",
-    "Możemy zacząć od jednej kategorii — ograniczone ryzyko, mierzalny wynik, i pełny obraz tego, co jest możliwe.",
-    "Zanim zaangażujesz pełny projekt, warto zrobić szybką diagnostykę — to eliminuje większość niepewności co do zakresu i ROI.",
+    "SPOT Analysis to dobry pierwszy etap wtedy, gdy organizacja potrzebuje obiektywnej diagnozy i ustalenia priorytetów dalszych działań.",
+    "Możemy zacząć od diagnozy całej funkcji zakupowej — ogranicza to ryzyko źle ustawionego zakresu kolejnego etapu.",
+    "Zanim zaangażujesz pełny projekt, warto uporządkować punkt startu diagnozą dojrzałości — to eliminuje większość niepewności co do priorytetów.",
   ],
   en: [
     "The next step is a 20-minute conversation — no commitment, just a situation diagnosis and an honest assessment of what's achievable.",
-    "SPOT Analysis is the fastest form of engagement — 5–10 days, concrete output, zero risk of long-term commitment.",
-    "We can start with one category — limited risk, measurable outcome, and a clear picture of what's possible.",
-    "Before committing to a full project, a quick diagnostic eliminates most uncertainty about scope and ROI.",
+    "SPOT Analysis is a strong first phase when the organisation needs an objective diagnosis and a clear set of improvement priorities.",
+    "We can start with a diagnosis of the full procurement function — reducing the risk of setting the wrong scope for the next phase.",
+    "Before committing to a full project, a maturity assessment helps remove most of the uncertainty around priorities and scope.",
   ],
 }
 

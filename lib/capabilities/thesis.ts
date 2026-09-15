@@ -45,8 +45,8 @@ export const CAPABILITY_THESIS: Record<string, { pl: string; en: string }> = {
   // ─── Services - Negotiations ──────────────────────────────────────────
 
   'analiza-spot': {
-    pl: 'Rynek nie negocjuje. Dostarcza informacji tym, którzy wiedzą, jak je czytać i kiedy działać.',
-    en: 'The market does not negotiate. It supplies information to those who know how to read it and when to act.',
+    pl: 'Organizacje rzadko zatrzymują się na jednym problemie zakupowym. Zazwyczaj zatrzymują się dlatego, że nie wiedzą, od którego zacząć.',
+    en: 'Organisations rarely get stuck on a single procurement issue. They usually get stuck because they do not know where to begin.',
   },
 
   'should-cost-analysis': {

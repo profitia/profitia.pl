@@ -161,7 +161,7 @@ export const BENCHMARK_SUITE: BenchmarkScenario[] = [
       executiveTone: 7,
       overallMin: 70,
     },
-    mustContain: ["SPOT", "benchmark", "cost"],
+    mustContain: ["benchmark", "cost", "negoti"],
     mustNotContain: ["how can i help", "happy to help"],
   },
 

@@ -110,8 +110,8 @@ export function buildCompressionDirective(profile: CompressionProfile, locale: "
 
   const escalationRule = profile.requiresEscalation
     ? isPL
-      ? "\nZaproponuj konkretnie: 20-minutową rozmowę lub SPOT Analysis. Podaj link /contact lub /services/analiza-spot."
-      : "\nPropose specifically: a 20-minute conversation or SPOT Analysis. Include link /contact or /services/analiza-spot."
+      ? "\nZaproponuj konkretnie: 20-minutową rozmowę lub analizę SPOT, jeśli użytkownik nie wie jeszcze od czego zacząć. Podaj link /contact lub /services/analiza-spot."
+      : "\nPropose specifically: a 20-minute conversation or SPOT Analysis if the user still needs an objective starting point. Include /contact or /services/analiza-spot."
     : "";
 
   const recRule = isPL

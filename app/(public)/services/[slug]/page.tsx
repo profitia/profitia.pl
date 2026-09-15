@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getCapabilityBySlug, getSlugsByType, t } from '@/lib/capabilities'
 import { CapabilityPage } from '@/components/capabilities'
+import SpotAnalysisPage from '@/components/pages/SpotAnalysisPage'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -25,6 +26,10 @@ export default async function Page({ params }: Props) {
   const { slug } = await params
   const cap = getCapabilityBySlug(slug)
   if (!cap || cap.type !== 'service') notFound()
+
+  if (slug === 'analiza-spot') {
+    return <SpotAnalysisPage locale="pl" />
+  }
 
   return <CapabilityPage capability={cap} locale="pl" prefix="services" />
 }

@@ -94,8 +94,8 @@ export const PAGE_GRAPH: Record<string, PageContext> = {
   // Negotiation & Cost Intelligence
   "/services/analiza-spot": {
     slug: "/services/analiza-spot",
-    primaryIntent: "I1_SAVINGS",
-    secondaryIntents: ["I8_NEGOTIATIONS"],
+    primaryIntent: "I7_EXPLORATORY",
+    secondaryIntents: ["I5_SOURCING", "I1_SAVINGS"],
     conversionTier: 2,
     escalationReadiness: "high",
   },

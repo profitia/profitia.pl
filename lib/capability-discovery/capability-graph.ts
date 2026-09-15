@@ -9,23 +9,23 @@ import type { CapabilityEdge, CapabilityNode } from "@/types";
 
 export const CAPABILITY_NODES: CapabilityNode[] = [
 
-  // ── Cost Intelligence ─────────────────────────────────
+  // ── Advisory Entry Point ─────────────────────────────
 
   {
     id: "CAP-SPOT",
     slug: "/services/analiza-spot",
     name: { pl: "Analiza SPOT", en: "SPOT Analysis" },
-    intents: ["I1_SAVINGS", "I8_NEGOTIATIONS"],
-    maturityPersonas: ["reactive_buyer", "operational_buyer", "strategic_sourcer"],
+    intents: ["I7_EXPLORATORY", "I5_SOURCING", "I1_SAVINGS"],
+    maturityPersonas: ["reactive_buyer", "operational_buyer", "executive_stakeholder", "transformation_leader"],
     description: {
-      pl: "Szybka diagnoza 5–10 dni: kategorie, dostawcy, potencjał oszczędnościowy i dźwignia negocjacyjna.",
-      en: "Fast 5–10-day diagnostic: categories, suppliers, savings potential and negotiation leverage.",
+      pl: "Kompleksowa diagnoza dojrzałości funkcji zakupowej w 3–4 tygodnie: ponad 80 aspektów, raport luk i priorytety działań.",
+      en: "Comprehensive 3–4 week procurement maturity assessment: 80+ aspects, a gap report, and action priorities.",
     },
-    shortLabel: { pl: "Diagnoza zakupowa", en: "Procurement diagnostic" },
-    relatedIds: ["CAP-SHOULD-COST", "CAP-SPEND-CUBE", "CAP-NEG-PREP"],
-    advisoryPathNext: ["CAP-SHOULD-COST", "CAP-NEG-PREP"],
-    executiveRelevance: ["CFO", "CEO", "procurement_director"],
-    tags: ["diagnostic", "fast-track", "cost", "savings"],
+    shortLabel: { pl: "Diagnoza dojrzałości", en: "Maturity assessment" },
+    relatedIds: ["CAP-TRANSFORMATION", "CAP-CAT-STRATEGY", "CAP-ANALYTICS"],
+    advisoryPathNext: ["CAP-TRANSFORMATION", "CAP-CAT-STRATEGY", "CAP-ANALYTICS"],
+    executiveRelevance: ["CFO", "CEO", "CPO", "procurement_director"],
+    tags: ["maturity", "diagnostic", "priorities", "procurement-function"],
   },
 
   {
@@ -294,8 +294,9 @@ export const CAPABILITY_NODES: CapabilityNode[] = [
 
 // ── Capability Edges ──────────────────────────────────────
 export const CAPABILITY_EDGES: CapabilityEdge[] = [
-  { from: "CAP-SPOT", to: "CAP-SHOULD-COST", weight: 0.9, reason: { pl: "SPOT identyfikuje kategorie dla should-cost", en: "SPOT identifies categories for should-cost" } },
-  { from: "CAP-SPOT", to: "CAP-SPEND-CUBE", weight: 0.7, reason: { pl: "SPOT daje podstawę pod pełne spend analytics", en: "SPOT provides foundation for full spend analytics" } },
+  { from: "CAP-SPOT", to: "CAP-TRANSFORMATION", weight: 0.92, reason: { pl: "Diagnoza SPOT wskazuje priorytety transformacji funkcji zakupowej", en: "SPOT identifies the transformation priorities for the procurement function" } },
+  { from: "CAP-SPOT", to: "CAP-CAT-STRATEGY", weight: 0.82, reason: { pl: "Diagnoza może wskazać potrzebę uporządkowania zarządzania kategoriami", en: "The assessment may show that category management needs to be structured first" } },
+  { from: "CAP-SPOT", to: "CAP-ANALYTICS", weight: 0.68, reason: { pl: "Jeżeli diagnoza pokaże lukę w jakości i widoczności danych, kolejnym krokiem staje się rozwój analityki zakupowej", en: "If the assessment reveals a data quality or visibility gap, procurement analytics becomes the next step" } },
   { from: "CAP-SHOULD-COST", to: "CAP-NEG-PREP", weight: 0.95, reason: { pl: "Analiza kosztów jest wejściem do playbooku negocjacyjnego", en: "Cost analysis feeds into negotiation playbook" } },
   { from: "CAP-NEG-PREP", to: "CAP-NEG-SUPPORT", weight: 0.8, reason: { pl: "Playbook umożliwia wsparcie live", en: "Playbook enables live negotiation support" } },
   { from: "CAP-BENCH", to: "CAP-NEG-PREP", weight: 0.75, reason: { pl: "Benchmarking wzmacnia pozycję negocjacyjną", en: "Benchmarking strengthens negotiation position" } },

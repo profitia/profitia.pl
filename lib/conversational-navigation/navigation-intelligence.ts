@@ -34,12 +34,12 @@ const NAVIGATION_HINTS: NavigationHint[] = [
     maturityPersonas: ["operational_buyer", "strategic_sourcer", "advanced_analyst"],
   },
 
-  // Savings intent → SPOT Analysis
+  // Exploratory / unclear start → SPOT Analysis
   {
     id: "NAV-SAV-01",
     message: {
-      pl: "Szukasz oszczędności zakupowych? SPOT Analysis w 5–10 dni wskazuje konkretne kategorie i potencjał.",
-      en: "Looking for procurement savings? SPOT Analysis identifies specific categories and potential in 5–10 days.",
+      pl: "Jeśli problem zakupowy jest już widoczny, ale punkt startu nadal nie jest jasny, SPOT porządkuje sytuację i wskazuje priorytety działań.",
+      en: "If the procurement problem is visible but the right starting point is still unclear, SPOT structures the situation and sets action priorities.",
     },
     targetSlug: "/services/analiza-spot",
     targetLabel: {
@@ -47,8 +47,8 @@ const NAVIGATION_HINTS: NavigationHint[] = [
       en: "SPOT Analysis →",
     },
     confidence: 0.9,
-    intent: "I1_SAVINGS",
-    maturityPersonas: ["reactive_buyer", "operational_buyer", "strategic_sourcer"],
+    intent: "I7_EXPLORATORY",
+    maturityPersonas: ["reactive_buyer", "operational_buyer", "executive_stakeholder", "transformation_leader"],
   },
 
   // Negotiations → Should-Cost

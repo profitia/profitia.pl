@@ -200,7 +200,7 @@ export const PRODUCTS_CATALOG: Record<Locale, CatalogDomain[]> = {
           sections: [
             {
               paragraphs: [
-                'SPOT Check to szybka, 3-4 tygodniowa diagnoza funkcji zakupowej, która pozwala ocenić dojrzałość organizacji w obszarach Sourcing, Process, Organization oraz Tools.',
+                'SPOT Check to kompleksowa, 3–4-tygodniowa diagnoza dojrzałości funkcji zakupowej w obszarach Sourcingu, Procesów, Organizacji i Narzędzi.',
                 'W efekcie klient otrzymuje Raport Luk, benchmarking względem najlepszych praktyk rynkowych, identyfikację Quick Wins oraz wysokopoziomową roadmapę transformacji zakupów, wskazującą priorytety rozwojowe i potencjalne kierunki zwiększania efektywności organizacji zakupowej.',
               ],
             },
@@ -230,21 +230,21 @@ export const PRODUCTS_CATALOG: Record<Locale, CatalogDomain[]> = {
         },
         {
           id: 'spot-check-process',
-          title: 'Zakres — Procesy (Process)',
+          title: 'Zakres — Procesy',
           sections: [
             { items: ['budżetowanie', 'planowanie zakupów', 'wybór dostawców', 'płatności', 'powiązanie procesów z celami biznesowymi'] },
           ],
         },
         {
           id: 'spot-check-organization',
-          title: 'Zakres — Organizacja (Organization)',
+          title: 'Zakres — Organizacja',
           sections: [
             { items: ['rola zakupów w organizacji', 'zakres wpływu na wydatki', 'struktura organizacyjna', 'kompetencje zespołu zakupowego'] },
           ],
         },
         {
           id: 'spot-check-tools',
-          title: 'Zakres — Narzędzia (Tools)',
+          title: 'Zakres — Narzędzia',
           sections: [
             { items: ['e-sourcing', 'aukcje elektroniczne', 'onboarding dostawców', 'zarządzanie zamówieniami', 'zarządzanie umowami', 'KPI i raportowanie'] },
           ],
@@ -415,8 +415,8 @@ export const PRODUCTS_CATALOG: Record<Locale, CatalogDomain[]> = {
           sections: [
             {
               paragraphs: [
-                'SPOT Check is a fast 3-4 week assessment of the procurement function that evaluates organisational maturity across Sourcing, Process, Organisation and Tools.',
-                'As a result, the client receives a Gap Report, benchmarking against best market practices, Quick Wins identification and a high-level procurement transformation roadmap that sets development priorities and the most promising directions for improving procurement efficiency.',
+                'SPOT Check is a comprehensive 3–4-week assessment of procurement function maturity across Sourcing, Processes, Organisation and Tools.',
+                'As a result, the client receives a Gap Report, benchmarking against market best practices, Quick Wins identification and a high-level procurement transformation roadmap that sets development priorities and the most promising directions for improving procurement efficiency.',
               ],
             },
           ],
@@ -428,7 +428,7 @@ export const PRODUCTS_CATALOG: Record<Locale, CatalogDomain[]> = {
             {
               items: [
                 'determine the current development level of the procurement function ("As-Is")',
-                'identify gaps against best market practices',
+                'identify gaps against market best practices',
                 'highlight the areas of greatest inefficiency',
                 'identify quick improvements (Quick Wins)',
                 'prepare recommendations and a high-level roadmap for further development of the procurement function',
@@ -445,7 +445,7 @@ export const PRODUCTS_CATALOG: Record<Locale, CatalogDomain[]> = {
         },
         {
           id: 'spot-check-process',
-          title: 'Scope - Process',
+          title: 'Scope - Processes',
           sections: [
             { items: ['budgeting', 'procurement planning', 'supplier selection', 'payments', 'linking processes to business goals'] },
           ],
@@ -470,7 +470,7 @@ export const PRODUCTS_CATALOG: Record<Locale, CatalogDomain[]> = {
           sections: [
             {
               groups: [
-                { title: '1. Objective assessment of procurement maturity', paragraphs: ['The client receives an assessment of the procurement function against market good practices and industry benchmarks.'] },
+                { title: '1. Objective assessment of procurement maturity', paragraphs: ['The client receives an assessment of the procurement function against market best practices and industry benchmarks.'] },
                 { title: '2. Gap Analysis', paragraphs: ['Identification of the differences between the current way procurement operates and the best practices of Procurement Excellence.'] },
                 { title: '3. Identification of Quick Wins', paragraphs: ['Identification of short-term initiatives that can be implemented with relatively limited organisational effort.'] },
                 { title: '4. Market benchmarking', paragraphs: ['Comparison of the organisation against:'], items: ['best international practices', 'market leaders in Poland', 'companies from the same industry', 'other companies in the capital group (internal benchmarking)'] },

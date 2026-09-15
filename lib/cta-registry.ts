@@ -23,11 +23,11 @@ export const CTA_REGISTRY: CTAItem[] = [
   {
     id: "CTA-02-spot",
     type: "spot_analysis",
-    label: "Start with a SPOT Analysis",
+    label: "Start with a SPOT assessment",
     url: "/services/analiza-spot",
-    urgencyFit: ["U1"],
-    intentFit: ["I1_SAVINGS", "I8_NEGOTIATIONS"],
-    buyingStageMin: "S3",
+    urgencyFit: ["U2", "U3"],
+    intentFit: ["I7_EXPLORATORY", "I5_SOURCING", "I1_SAVINGS"],
+    buyingStageMin: "S2",
     strength: 8,
     friction: "low",
   },
@@ -95,9 +95,9 @@ export const CTA_REGISTRY: CTAItem[] = [
 
 // Escalation hierarchy by urgency
 export const ESCALATION_HIERARCHY: Record<UrgencyLevel, CTAItem["type"][]> = {
-  U1: ["contact_form", "phone", "spot_analysis"],
+  U1: ["contact_form", "phone", "email"],
   U2: ["contact_form", "spot_analysis", "workshop"],
-  U3: ["contact_form", "workshop", "email"],
+  U3: ["contact_form", "spot_analysis", "email"],
 };
 
 export function getPrioritizedCTAs(

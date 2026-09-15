@@ -22,8 +22,8 @@ interface FallbackResponse {
 
 const FALLBACK_BY_INTENT: Record<string, FallbackResponse> = {
   I1_SAVINGS: {
-    pl: "Identyfikacja oszczędności zakupowych wymaga najpierw analizy spend — benchmarki rynkowe, should-cost i analiza kategorii pozwalają ustalić, gdzie marża jest tracona. Najszybsza ścieżka to [SPOT Analysis](/services/analiza-spot) — 5-10 dni roboczych, wynik: konkretne kategorie i argumenty do negocjacji.\n\nProszę opisać, jakie kategorie zakupowe są priorytetem — lub skontaktować się bezpośrednio: [kontakt](/contact).",
-    en: "Identifying procurement savings requires spend analysis first — market benchmarks, should-cost modeling, and category analysis pinpoint where margin is being lost. The fastest path is [SPOT Analysis](/services/analiza-spot) — 5-10 business days, output: specific categories and negotiation arguments.\n\nPlease describe your priority spend categories — or contact us directly: [contact](/contact).",
+    pl: "Identyfikacja oszczędności zakupowych wymaga najpierw uporządkowania danych, procesów i priorytetów. Jeżeli problem jest widoczny, ale nie wiadomo jeszcze, od czego zacząć, [SPOT Analysis](/services/analiza-spot) daje obiektywną diagnozę dojrzałości funkcji zakupowej i wskazuje kolejne działania.\n\nProszę opisać, gdzie dziś największy problem dotyczy zakupów — lub skontaktować się bezpośrednio: [kontakt](/contact).",
+    en: "Identifying procurement savings starts with structuring the data, processes, and priorities behind the issue. If the problem is visible but the right starting point is still unclear, [SPOT Analysis](/services/analiza-spot) provides an objective procurement maturity assessment and defines the next actions.\n\nPlease describe where procurement is struggling most today — or contact us directly: [contact](/contact).",
   },
   I2_FORECASTING: {
     pl: "Widoczność wydatków to fundament każdej decyzji zakupowej. Bez spend cube nie wiadomo, co się kupuje, od kogo i za ile — co uniemożliwia porównanie z rynkiem. [Spend Analytics](/services/spend-analytics) pozwala ustrukturyzować dane z wielu systemów i wyciągnąć kategorie priorytetowe.\n\nJaki jest główny problem z widocznością — systemy, kategorie, geografia?",
@@ -34,8 +34,8 @@ const FALLBACK_BY_INTENT: Record<string, FallbackResponse> = {
     en: "Spend concentration with few suppliers is both an operational and negotiation risk. When one faces financial difficulties, your supply chain is threatened. [Supplier Intelligence](/services/supplier-intelligence) monitors supplier health and identifies alternatives before problems escalate.\n\nIn which categories is concentration highest?",
   },
   I8_NEGOTIATIONS: {
-    pl: "Negocjacje bez przygotowania analitycznego kończą się akceptacją warunków dostawcy. Kluczowe narzędzia: benchmarki rynkowe, should-cost i analiza historii zakupowej. [SPOT Analysis](/services/analiza-spot) dostarcza te dane w 5-10 dni — wystarczający czas przed większością negocjacji.\n\nKiedy negocjacje? Proszę podać termin — ustalimy, czy SPOT zdążymy.",
-    en: "Negotiations without analytical preparation end with accepting supplier terms. Key tools: market benchmarks, should-cost modeling, and purchase history analysis. [SPOT Analysis](/services/analiza-spot) delivers these in 5-10 business days — enough time before most negotiations.\n\nWhen is the negotiation? Please share the timeline — we'll confirm if SPOT is feasible.",
+    pl: "Negocjacje bez przygotowania analitycznego kończą się akceptacją warunków dostawcy. Kluczowe narzędzia to benchmarki rynkowe, should-cost i analiza historii zakupowej. W tym kontekście właściwym punktem startu jest [Negotiation Preparation](/services/negotiation-preparation) lub [Should-Cost Analysis](/services/should-cost-analysis).\n\nKiedy planowane są negocjacje? Proszę podać termin — dobierzemy właściwy zakres przygotowania.",
+    en: "Negotiations without analytical preparation end with acceptance of supplier terms. The key tools are market benchmarks, should-cost modeling, and purchase history analysis. In this context, the right starting point is [Negotiation Preparation](/services/negotiation-preparation) or [Should-Cost Analysis](/services/should-cost-analysis).\n\nWhen are the negotiations planned? Share the timeline and we will define the right preparation scope.",
   },
   I5_SOURCING: {
     pl: "Budowa strategii zakupowej zaczyna się od segmentacji kategorii — które wymagają pełnego sourcingu, które renegocjacji, a które są poza zakresem wpływu. [Procurement Transformation](/services/procurement-transformation) zapewnia strukturę metodyczną i wsparcie wdrożeniowe.\n\nIle kategorii zakupowych obejmuje Państwa firma i które są priorytetem?",
@@ -111,8 +111,8 @@ const STATIC_RECOMMENDATIONS: Record<string, Array<{ slug: string; title: { pl: 
     { slug: "supplier-benchmarking", title: { pl: "Supplier Benchmarking", en: "Supplier Benchmarking" } },
   ],
   I8_NEGOTIATIONS: [
-    { slug: "analiza-spot", title: { pl: "SPOT Analysis", en: "SPOT Analysis" } },
-    { slug: "negocjacje-z-dostawcami", title: { pl: "Wsparcie Negocjacyjne", en: "Negotiation Support" } },
+    { slug: "negotiation-preparation", title: { pl: "Przygotowanie negocjacyjne", en: "Negotiation Preparation" } },
+    { slug: "should-cost-analysis", title: { pl: "Should-Cost Analysis", en: "Should-Cost Analysis" } },
   ],
   I5_SOURCING: [
     { slug: "procurement-transformation", title: { pl: "Transformacja Zakupów", en: "Procurement Transformation" } },
@@ -137,7 +137,7 @@ export function getStaticRecommendations(intent: string, locale: "pl" | "en") {
 export function getFallbackCTA(locale: "pl" | "en"): { label: string; href: string } {
   return locale === "pl"
     ? { label: "Umów rozmowę", href: "/contact" }
-    : { label: "Schedule a conversation", href: "/contact" };
+    : { label: "Schedule a conversation", href: "/en/contact" };
 }
 
 // ── Degradation Status ────────────────────────────────────
