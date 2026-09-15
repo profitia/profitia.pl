@@ -13,7 +13,7 @@ const COPY = {
       eyebrow: 'Doradztwo · Produkty',
       title: 'Autonomiczne produkty dla funkcji zakupowej.',
       subtitle:
-        'Od dedykowanego eksperta odpowiedzialnego za konkretny rezultat biznesowy po szybką diagnozę dojrzałości zakupów i roadmapę dalszego rozwoju.',
+        'Od dedykowanego eksperta odpowiedzialnego za konkretny rezultat biznesowy po kompleksową, 3–4-tygodniową diagnozę dojrzałości zakupów i roadmapę dalszego rozwoju.',
     },
     intro: {
       heading: 'Rent an Expert / Buyer',
@@ -31,7 +31,7 @@ const COPY = {
       eyebrow: 'Advisory · Products',
       title: 'Standalone products for the procurement function.',
       subtitle:
-        'From a dedicated expert accountable for a specific business outcome to a rapid procurement maturity assessment and a roadmap for further development.',
+        'From a dedicated expert accountable for a specific business outcome to a comprehensive 3–4-week procurement maturity assessment and a roadmap for further development.',
     },
     intro: {
       heading: 'Rent an Expert / Buyer',
