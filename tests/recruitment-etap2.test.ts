@@ -196,7 +196,7 @@ async function main() {
     consentCurrent: 'true',
     consentFuture: 'false',
     locale: 'pl',
-    sourcePage: '/career/apply',
+    sourcePage: '/kariera/aplikuj',
     ...buildValidSecurityFields(stamp),
   }
 

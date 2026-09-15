@@ -2,11 +2,13 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import ApplicationForm from '@/components/careers/apply/ApplicationForm'
+import { getPublicPath } from '@/lib/routing/public-routes'
+import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPublicMetadata('career:apply', 'pl', {
   title: 'Aplikacja | Kariera | Profitia',
   description: 'Prześlij aplikację do Profitia. Rekrutacja na stanowiska konsultanta zakupowego i analityka biznesowego.',
-}
+})
 
 /**
  * Apply Page - PL
@@ -34,7 +36,7 @@ export default function Page() {
               Strona główna
             </Link>
             <span aria-hidden="true">/</span>
-            <Link href="/career" className="hover:text-brand-blue transition-colors duration-200">
+            <Link href={getPublicPath('career:index', 'pl')} className="hover:text-brand-blue transition-colors duration-200">
               Kariera
             </Link>
             <span aria-hidden="true">/</span>

@@ -6,17 +6,12 @@ import {
   LegalContent,
 } from '@/components/legal'
 import type { TOCItem } from '@/components/legal'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
+import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPublicMetadata('terms', 'en', {
   title: 'Terms of Service | Profitia',
-  alternates: {
-    canonical: 'https://www.profitia.pl/en/terms',
-    languages: {
-      pl: 'https://www.profitia.pl/terms',
-      en: 'https://www.profitia.pl/en/terms',
-    },
-  },
-}
+})
 
 const TOC: TOCItem[] = [
   { id: 'definitions',    label: '1. Definitions' },
@@ -30,6 +25,7 @@ const TOC: TOCItem[] = [
 export default function TermsPageEN() {
   return (
     <LegalLayout toc={TOC}>
+      <PublicJsonLd routeId="terms" locale="en" title="Terms of Service | Profitia" />
       <LegalHero
         eyebrow="Legal Document"
         title="Terms of Service"

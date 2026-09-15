@@ -2,8 +2,8 @@ import { redirect } from 'next/navigation'
 
 /**
  * Legacy route - redirected to canonical capability page.
- * Content migrated to /en/services/projekty-doradcze
+ * Content migrated to /en/services/advisory-projects
  */
 export default function Page() {
-  redirect('/en/services/projekty-doradcze')
+  redirect('/en/services/advisory-projects')
 }

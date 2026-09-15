@@ -97,7 +97,7 @@ function buildBaseFields(now = Date.now()) {
     consentCurrent: 'true',
     consentFuture: 'false',
     locale: 'pl',
-    sourcePage: '/career/apply',
+    sourcePage: '/kariera/aplikuj',
     ...buildValidSecurityFields(now),
   }
 }

@@ -8,6 +8,7 @@ import enDict from '@/dictionaries/en.json'
 import { ProtectedEmail, ProtectedPhone, ProtectedPerson } from '@/components/security'
 import { useConsent } from '@/components/consent'
 import { NewsletterForm } from '@/components/forms'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 function IconLinkedIn() {
   return (
@@ -35,32 +36,47 @@ export default function Footer({
   const pathname = usePathname()
   const isEN = localeOverride ? localeOverride === 'en' : pathname.startsWith('/en')
   const dict = isEN ? enDict : plDict
-  const prefix = isEN ? '/en' : ''
+  const currentLocale = isEN ? 'en' : 'pl'
+  const homeHref = getPublicPath('home', currentLocale)
+  const servicesHref = getPublicPath('services:index', currentLocale)
+  const educationHref = getPublicPath('education:index', currentLocale)
+  const aboutHref = getPublicPath('about', currentLocale)
+  const careerHref = getPublicPath('career:index', currentLocale)
+  const contactHref = getPublicPath('contact', currentLocale)
+  const privacyHref = getPublicPath('privacy', currentLocale)
+  const blogHref = isEN ? '/en/blog' : '/blog'
   const { openModal } = useConsent()
 
   // ── Legal pages skip the newsletter section ────────────────────
-  const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
-    (p) => pathname === p || pathname === `/en${p}`
-  )
+  const isLegalPage = [
+    getPublicPath('privacy', 'pl'),
+    getPublicPath('privacy', 'en'),
+    getPublicPath('cookies', 'pl'),
+    getPublicPath('cookies', 'en'),
+    getPublicPath('terms', 'pl'),
+    getPublicPath('terms', 'en'),
+  ].includes(pathname)
   // Article pages: inline newsletter present - suppress footer newsletter
   // and use compressed footer rhythm
   const isArticlePage = articlePage || /^(\/en)?\/blog\/[^/]+/.test(pathname)
   // About page: quiet CTA → footer transition - suppress newsletter, compressed rhythm
-  const isAboutPage = /^(\/en)?\/about\/?$/.test(pathname)
+  const isAboutPage = pathname === getPublicPath('about', 'pl') || pathname === getPublicPath('about', 'en')
   // Capability pages (services/education - both listing and detail): no newsletter.
   // Detail pages already close with CapabilityCTA; stacking newsletter creates too many endings.
-  const isCapabilityPage = /^(\/en)?\/(services|education)(\/[^/]+)?\/?$/.test(pathname)
+  const isCapabilityPage = /^(\/uslugi|\/rozwoj-kompetencji)(\/[^/]+)?\/?$/.test(pathname)
+    || /^(\/en)\/(services|education)(\/[^/]+)?\/?$/.test(pathname)
   // Career pages: close with institutional CTA - suppress newsletter for same reason.
-  const isCareerPage = /^(\/en)?\/career(\/[^/]+)?\/?$/.test(pathname)
+  const isCareerPage = /^(\/kariera)(\/[^/]+)?\/?$/.test(pathname)
+    || /^(\/en)\/career(\/[^/]+)?\/?$/.test(pathname)
   const NAV_LINKS = [
-    { href: isEN ? '/en' : '/', label: dict.nav.home },
-    { href: `${prefix}/services`, label: dict.nav.services },
-    { href: `${prefix}/education`, label: dict.nav.education },
-    { href: `${prefix}/blog`, label: dict.nav.blog },
-    { href: `${prefix}/about`, label: dict.nav.about },
-    { href: `${prefix}/career`, label: dict.nav.career },
-    { href: `${prefix}/contact`, label: dict.nav.contact },
-    { href: `${prefix}/privacy`, label: dict.footer.privacy },
+    { href: homeHref, label: dict.nav.home },
+    { href: servicesHref, label: dict.nav.services },
+    { href: educationHref, label: dict.nav.education },
+    { href: blogHref, label: dict.nav.blog },
+    { href: aboutHref, label: dict.nav.about },
+    { href: careerHref, label: dict.nav.career },
+    { href: contactHref, label: dict.nav.contact },
+    { href: privacyHref, label: dict.footer.privacy },
   ]
 
   return (
@@ -99,7 +115,7 @@ export default function Footer({
           {/* Column 1: Brand / Trust */}
           <div>
             <Link
-              href={isEN ? '/en' : '/'}
+              href={homeHref}
               className="inline-block mb-5 opacity-100 hover:opacity-70 transition-opacity duration-200 ease-out"
               aria-label="Profitia"
             >

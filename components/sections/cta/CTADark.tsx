@@ -8,6 +8,7 @@
  */
 
 import { CTASection } from '@/components/ui'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 export interface CTADarkProps {
   headline?: string
@@ -19,7 +20,7 @@ export interface CTADarkProps {
 export function CTADark({
   headline = 'Gotowy na kolejny krok?',
   subtitle,
-  ctaPrimary = { label: 'Umów rozmowę', href: '/contact' },
+  ctaPrimary = { label: 'Umów rozmowę', href: getPublicPath('contact', 'pl') },
   ctaSecondary,
 }: CTADarkProps) {
   return (

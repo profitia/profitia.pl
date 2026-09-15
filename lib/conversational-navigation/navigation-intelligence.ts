@@ -13,6 +13,7 @@ import type {
   PageSlug,
 } from "@/types";
 import { CAPABILITY_NODES } from "../capability-discovery/capability-graph";
+import { getStablePublicRoutePath, localizePublicHref } from '@/lib/routing/public-routes'
 
 // ── Navigation hint registry ──────────────────────────────
 // Context-aware messages that guide users to next-best pages.
@@ -193,17 +194,19 @@ export function computeNavigationDecision(
   session: AdvisorySession,
   decision: AdvisoryDecision
 ): NavigationDecision {
-  const visitedSlugs = new Set<PageSlug>(session.intelligence.pagesVisited);
-  const currentSlug = session.pageContext.slug;
+  const locale = session.pageContext.slug.startsWith('/en') ? 'en' : 'pl'
+  const visitedSlugs = new Set<PageSlug>(session.intelligence.pagesVisited.map((slug) => (getStablePublicRoutePath(slug) ?? slug) as PageSlug));
+  const currentSlug = (getStablePublicRoutePath(session.pageContext.slug) ?? session.pageContext.slug) as PageSlug;
   const primaryIntent = decision.intent.primary;
   const persona = decision.maturity.persona;
 
   // Score hints
   const scored = NAVIGATION_HINTS
     .filter((hint) => {
+      const targetSlug = (getStablePublicRoutePath(localizePublicHref(hint.targetSlug, locale)) ?? hint.targetSlug) as PageSlug
       // Don't hint to current or already-visited page
-      if (hint.targetSlug === currentSlug) return false;
-      if (visitedSlugs.has(hint.targetSlug)) return false;
+      if (targetSlug === currentSlug) return false;
+      if (visitedSlugs.has(targetSlug)) return false;
       return true;
     })
     .map((hint) => {
@@ -227,7 +230,7 @@ export function computeNavigationDecision(
       score *= hint.confidence;
 
       // Executive routing: executives → contact first
-      if (persona === "executive_stakeholder" && hint.targetSlug === "/contact") {
+      if (persona === "executive_stakeholder" && (getStablePublicRoutePath(localizePublicHref(hint.targetSlug, locale)) ?? hint.targetSlug) === "/contact") {
         score += 20;
       }
 

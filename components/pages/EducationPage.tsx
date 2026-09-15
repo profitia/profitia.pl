@@ -2,9 +2,11 @@ import type { Locale } from '@/lib/capabilities'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CapabilityCTA } from '@/components/capabilities'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import { RevealWrapper } from '@/components/ui'
 import MobileHeroImage from '@/components/ui/MobileHeroImage'
 import EducationCatalogAccordion from '@/components/pages/EducationCatalogAccordion'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 interface Props {
   locale: Locale
@@ -35,13 +37,13 @@ const PAGE_COPY = {
       headline: 'Executive Development Programme w zakupach',
       subtitle:
         'Zdobądź prestiżowy certyfikat MCIPS i dołącz do globalnej sieci ponad 200 000 profesjonalistów zakupowych. Programy budowane na realiach rynkowych - nie teorii akademickiej.',
-      ctaPrimary: { label: 'Zobacz ofertę MCIPS', href: '/contact' },
-      ctaSecondary: { label: 'Bezpłatna konsultacja', href: '/contact' },
+      ctaPrimary: { label: 'Zobacz ofertę MCIPS', href: getPublicPath('contact', 'pl') },
+      ctaSecondary: { label: 'Bezpłatna konsultacja', href: getPublicPath('contact', 'pl') },
     },
     contactCta: {
       invitation: 'Porozmawiajmy o tym, jak zbudować właściwą ścieżkę rozwoju zakupów w Państwa organizacji.',
       label: 'Umów rozmowę',
-      href: '/contact',
+      href: getPublicPath('contact', 'pl'),
     },
   },
   en: {
@@ -50,13 +52,13 @@ const PAGE_COPY = {
       headline: 'Procurement Executive Development Programme',
       subtitle:
         'Earn the prestigious MCIPS qualification and join a global network of 200,000+ procurement professionals. Programmes built on market realities - not academic theory.',
-      ctaPrimary: { label: 'Explore MCIPS', href: '/en/contact' },
-      ctaSecondary: { label: 'Free consultation', href: '/en/contact' },
+      ctaPrimary: { label: 'Explore MCIPS', href: getPublicPath('contact', 'en') },
+      ctaSecondary: { label: 'Free consultation', href: getPublicPath('contact', 'en') },
     },
     contactCta: {
       invitation: "Let's talk about how to build the right procurement development path in your organisation.",
       label: 'Schedule a conversation',
-      href: '/en/contact',
+      href: getPublicPath('contact', 'en'),
     },
   },
 } as const
@@ -237,12 +239,24 @@ const HERO_IMAGE = {
   alt: 'Kameralne szkolenie zakupowe przy biurku',
 }
 
+const SEO = {
+  pl: {
+    title: 'Edukacja | Profitia',
+    description: 'Programy executive, warsztaty negocjacyjne i szkolenia zakupowe. Rozwijamy kompetencje zakupowe poprzez praktyczną edukację opartą na realnych negocjacjach.',
+  },
+  en: {
+    title: 'Education | Profitia',
+    description: 'Executive programmes, negotiation workshops, and procurement training. We develop procurement capabilities through practical education grounded in real negotiations.',
+  },
+} as const
+
 function getLocalizedString(value: LocalizedString, locale: Locale) {
   return value[locale]
 }
 
 export default function EducationPage({ locale }: Props) {
   const c = PAGE_COPY[locale]
+  const seo = SEO[locale]
   const localizedCatalogue = EDUCATION_CATALOGUE.map((domain) => ({
     id: domain.id,
     title: getLocalizedString(domain.title, locale),
@@ -256,6 +270,7 @@ export default function EducationPage({ locale }: Props) {
 
   return (
     <>
+      <PublicJsonLd routeId="education:index" locale={locale} title={seo.title} description={seo.description} />
       {/* 1 — Hero: full-height right-bleed layout matching homepage/career pattern */}
       <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
         {/* Content — left half, inside container */}

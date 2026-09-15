@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import EducationPage from '@/components/pages/EducationPage'
+import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPublicMetadata('education:index', 'pl', {
   title: 'Edukacja | Profitia',
   description:
     'Programy executive, warsztaty negocjacyjne i szkolenia zakupowe. Rozwijamy kompetencje zakupowe poprzez praktyczną edukację opartą na realnych negocjacjach.',
-}
+})
 
 export default function Page() {
   return <EducationPage locale="pl" />

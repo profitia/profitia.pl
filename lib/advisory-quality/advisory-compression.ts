@@ -1,3 +1,5 @@
+import { getCapabilityPath, getPublicPath } from '@/lib/routing/public-routes'
+
 // ─────────────────────────────────────────────────────────
 // ETAP 4.5 — Advisory Compression Engine
 // Controls response length, tone, and advisory density.
@@ -110,8 +112,8 @@ export function buildCompressionDirective(profile: CompressionProfile, locale: "
 
   const escalationRule = profile.requiresEscalation
     ? isPL
-      ? "\nZaproponuj konkretnie: 20-minutową rozmowę lub analizę SPOT, jeśli użytkownik nie wie jeszcze od czego zacząć. Podaj link /contact lub /services/analiza-spot."
-      : "\nPropose specifically: a 20-minute conversation or SPOT Analysis if the user still needs an objective starting point. Include /contact or /services/analiza-spot."
+      ? `\nZaproponuj konkretnie: 20-minutową rozmowę lub analizę SPOT, jeśli użytkownik nie wie jeszcze od czego zacząć. Podaj link ${getPublicPath('contact', 'pl')} lub ${getCapabilityPath('service', 'analiza-spot', 'pl')}.`
+      : `\nPropose specifically: a 20-minute conversation or SPOT Analysis if the user still needs an objective starting point. Include ${getPublicPath('contact', 'en')} or ${getCapabilityPath('service', 'analiza-spot', 'en')}.`
     : "";
 
   const recRule = isPL

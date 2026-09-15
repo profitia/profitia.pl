@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { NavigationHint as NavigationHintType, Locale } from "@/types";
+import { localizePublicHref } from '@/lib/routing/public-routes'
 
 interface NavigationHintProps {
   hint: NavigationHintType;
@@ -18,6 +19,7 @@ export function NavigationHint({
   onDismiss,
 }: NavigationHintProps) {
   const [visible, setVisible] = useState(true);
+  const localizedTargetSlug = localizePublicHref(hint.targetSlug, locale)
 
   useEffect(() => {
     if (autoDismissMs <= 0) return;
@@ -69,7 +71,7 @@ export function NavigationHint({
                 {hint.message[locale]}
               </p>
               <a
-                href={hint.targetSlug}
+                href={localizedTargetSlug}
                 className="inline-block mt-0.5 text-xs font-semibold text-advisory-700 hover:text-advisory-900 dark:text-advisory-400 transition-colors"
               >
                 {hint.targetLabel[locale]} →
@@ -110,6 +112,8 @@ interface InlineNavigationHintProps {
 }
 
 export function InlineNavigationHint({ hint, locale }: InlineNavigationHintProps) {
+  const localizedTargetSlug = localizePublicHref(hint.targetSlug, locale)
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -6 }}
@@ -121,7 +125,7 @@ export function InlineNavigationHint({ hint, locale }: InlineNavigationHintProps
         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
       </svg>
       <a
-        href={hint.targetSlug}
+        href={localizedTargetSlug}
         className="font-medium hover:text-advisory-900 dark:hover:text-advisory-300 transition-colors"
       >
         {hint.message[locale]}

@@ -6,6 +6,7 @@ import { useAdvisorySession } from "@/stores/advisory-session.store";
 import { getPrioritizedCTAs } from "@/lib/cta-registry";
 import { track } from "@/lib/analytics";
 import type { CTAItem, IntentCode, UrgencyLevel, Locale } from "@/types";
+import { localizePublicHref } from '@/lib/routing/public-routes'
 
 interface CTAStripProps {
   intent: IntentCode;
@@ -47,13 +48,14 @@ interface CTAButtonProps {
 
 function CTAButton({ cta, index, onShow, onClick, locale }: CTAButtonProps) {
   const isPrimary = index === 0;
+  const localizedUrl = localizePublicHref(cta.url, locale)
 
   const handleClick = () => {
     onClick(cta.id);
-    track.ctaClicked(cta.id, cta.type, cta.url);
+    track.ctaClicked(cta.id, cta.type, localizedUrl);
   };
 
-  const isExternal = cta.url.startsWith("http") || cta.url.startsWith("tel:") || cta.url.startsWith("mailto:");
+  const isExternal = localizedUrl.startsWith("http") || localizedUrl.startsWith("tel:") || localizedUrl.startsWith("mailto:");
 
   const buttonContent = (
     <motion.div
@@ -73,7 +75,7 @@ function CTAButton({ cta, index, onShow, onClick, locale }: CTAButtonProps) {
   if (isExternal) {
     return (
       <a
-        href={cta.url}
+        href={localizedUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="block"
@@ -84,7 +86,7 @@ function CTAButton({ cta, index, onShow, onClick, locale }: CTAButtonProps) {
   }
 
   return (
-    <Link href={cta.url} className="block">
+    <Link href={localizedUrl} className="block">
       {buttonContent}
     </Link>
   );

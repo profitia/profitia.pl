@@ -1,5 +1,7 @@
 import { CapabilityCTA, CapabilityHero } from '@/components/capabilities'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import { PremiumCard, RevealWrapper } from '@/components/ui'
+import { getPublicPath } from '@/lib/routing/public-routes'
 import type { Locale } from '@/lib/capabilities'
 
 interface Props {
@@ -120,7 +122,7 @@ const COPY = {
     cta: {
       invitation: 'Zacznij od obiektywnej diagnozy sytuacji zakupowej.',
       label: 'Porozmawiajmy o SPOT',
-      href: '/contact',
+      href: getPublicPath('contact', 'pl'),
     },
   },
   en: {
@@ -236,7 +238,7 @@ const COPY = {
     cta: {
       invitation: 'Start with an objective assessment of your procurement function.',
       label: 'Let’s talk about SPOT',
-      href: '/en/contact',
+      href: getPublicPath('contact', 'en'),
     },
   },
 } as const
@@ -250,6 +252,14 @@ export default function SpotAnalysisPage({ locale }: Props) {
 
   return (
     <>
+      <PublicJsonLd
+        routeId="service:analiza-spot"
+        locale={locale}
+        title={locale === 'pl' ? 'Analiza dojrzałości zakupów SPOT | Profitia' : 'SPOT Procurement Maturity Assessment | Profitia'}
+        description={locale === 'pl'
+          ? 'Kompleksowa diagnoza dojrzałości funkcji zakupowej. Ponad 80 badanych aspektów, raport luk i priorytety działań w ciągu 3-4 tygodni.'
+          : 'Comprehensive procurement maturity assessment. Over 80 assessed aspects, a gap report, and action priorities within 3-4 weeks.'}
+      />
       <CapabilityHero
         locale={locale}
         eyebrow={c.hero.eyebrow}

@@ -5,6 +5,7 @@
 // ─────────────────────────────────────────────────────────
 
 import type { IntentCode } from "@/types";
+import { getCapabilityPath, getPublicPath } from '@/lib/routing/public-routes'
 
 // ── Degradation Levels ────────────────────────────────────
 export type DegradationLevel =
@@ -22,32 +23,32 @@ interface FallbackResponse {
 
 const FALLBACK_BY_INTENT: Record<string, FallbackResponse> = {
   I1_SAVINGS: {
-    pl: "Identyfikacja oszczędności zakupowych wymaga najpierw uporządkowania danych, procesów i priorytetów. Jeżeli problem jest widoczny, ale nie wiadomo jeszcze, od czego zacząć, [SPOT Analysis](/services/analiza-spot) daje obiektywną diagnozę dojrzałości funkcji zakupowej i wskazuje kolejne działania.\n\nProszę opisać, gdzie dziś największy problem dotyczy zakupów — lub skontaktować się bezpośrednio: [kontakt](/contact).",
-    en: "Identifying procurement savings starts with structuring the data, processes, and priorities behind the issue. If the problem is visible but the right starting point is still unclear, [SPOT Analysis](/services/analiza-spot) provides an objective procurement maturity assessment and defines the next actions.\n\nPlease describe where procurement is struggling most today — or contact us directly: [contact](/contact).",
+    pl: `Identyfikacja oszczędności zakupowych wymaga najpierw uporządkowania danych, procesów i priorytetów. Jeżeli problem jest widoczny, ale nie wiadomo jeszcze, od czego zacząć, [SPOT Analysis](${getCapabilityPath('service', 'analiza-spot', 'pl')}) daje obiektywną diagnozę dojrzałości funkcji zakupowej i wskazuje kolejne działania.\n\nProszę opisać, gdzie dziś największy problem dotyczy zakupów - lub skontaktować się bezpośrednio: [kontakt](${getPublicPath('contact', 'pl')}).`,
+    en: `Identifying procurement savings starts with structuring the data, processes, and priorities behind the issue. If the problem is visible but the right starting point is still unclear, [SPOT Analysis](${getCapabilityPath('service', 'analiza-spot', 'en')}) provides an objective procurement maturity assessment and defines the next actions.\n\nPlease describe where procurement is struggling most today - or contact us directly: [contact](${getPublicPath('contact', 'en')}).`,
   },
   I2_FORECASTING: {
-    pl: "Widoczność wydatków to fundament każdej decyzji zakupowej. Bez spend cube nie wiadomo, co się kupuje, od kogo i za ile — co uniemożliwia porównanie z rynkiem. [Spend Analytics](/services/spend-analytics) pozwala ustrukturyzować dane z wielu systemów i wyciągnąć kategorie priorytetowe.\n\nJaki jest główny problem z widocznością — systemy, kategorie, geografia?",
-    en: "Spend visibility is the foundation of every procurement decision. Without a spend cube, you don't know what you're buying, from whom, and at what price — making market comparison impossible. [Spend Analytics](/services/spend-analytics) structures data from multiple systems and identifies priority categories.\n\nWhat is the core visibility problem — systems, categories, or geography?",
+    pl: `Widoczność wydatków to fundament każdej decyzji zakupowej. Bez spend cube nie wiadomo, co się kupuje, od kogo i za ile - co uniemożliwia porównanie z rynkiem. [Spend Analytics](${getCapabilityPath('service', 'spend-analytics', 'pl')}) pozwala ustrukturyzować dane z wielu systemów i wyciągnąć kategorie priorytetowe.\n\nJaki jest główny problem z widocznością - systemy, kategorie, geografia?`,
+    en: `Spend visibility is the foundation of every procurement decision. Without a spend cube, you don't know what you're buying, from whom, and at what price - making market comparison impossible. [Spend Analytics](${getCapabilityPath('service', 'spend-analytics', 'en')}) structures data from multiple systems and identifies priority categories.\n\nWhat is the core visibility problem - systems, categories, or geography?`,
   },
   I3_SUPPLIER_RISK: {
-    pl: "Koncentracja spend u kilku dostawców to ryzyko operacyjne i negocjacyjne. Gdy jeden z nich ma problemy finansowe, łańcuch dostaw jest zagrożony. [Supplier Intelligence](/services/supplier-intelligence) pozwala monitorować kondycję dostawców i zidentyfikować alternatywy zanim stanie się to problemem.\n\nW jakich kategoriach koncentracja jest największa?",
-    en: "Spend concentration with few suppliers is both an operational and negotiation risk. When one faces financial difficulties, your supply chain is threatened. [Supplier Intelligence](/services/supplier-intelligence) monitors supplier health and identifies alternatives before problems escalate.\n\nIn which categories is concentration highest?",
+    pl: `Koncentracja spend u kilku dostawców to ryzyko operacyjne i negocjacyjne. Gdy jeden z nich ma problemy finansowe, łańcuch dostaw jest zagrożony. [Supplier Intelligence](${getCapabilityPath('service', 'supplier-intelligence', 'pl')}) pozwala monitorować kondycję dostawców i zidentyfikować alternatywy zanim stanie się to problemem.\n\nW jakich kategoriach koncentracja jest największa?`,
+    en: `Spend concentration with few suppliers is both an operational and negotiation risk. When one faces financial difficulties, your supply chain is threatened. [Supplier Intelligence](${getCapabilityPath('service', 'supplier-intelligence', 'en')}) monitors supplier health and identifies alternatives before problems escalate.\n\nIn which categories is concentration highest?`,
   },
   I8_NEGOTIATIONS: {
-    pl: "Negocjacje bez przygotowania analitycznego kończą się akceptacją warunków dostawcy. Kluczowe narzędzia to benchmarki rynkowe, should-cost i analiza historii zakupowej. W tym kontekście właściwym punktem startu jest [Negotiation Preparation](/services/negotiation-preparation) lub [Should-Cost Analysis](/services/should-cost-analysis).\n\nKiedy planowane są negocjacje? Proszę podać termin — dobierzemy właściwy zakres przygotowania.",
-    en: "Negotiations without analytical preparation end with acceptance of supplier terms. The key tools are market benchmarks, should-cost modeling, and purchase history analysis. In this context, the right starting point is [Negotiation Preparation](/services/negotiation-preparation) or [Should-Cost Analysis](/services/should-cost-analysis).\n\nWhen are the negotiations planned? Share the timeline and we will define the right preparation scope.",
+    pl: `Negocjacje bez przygotowania analitycznego kończą się akceptacją warunków dostawcy. Kluczowe narzędzia to benchmarki rynkowe, should-cost i analiza historii zakupowej. W tym kontekście właściwym punktem startu jest [Negotiation Preparation](${getCapabilityPath('service', 'negotiation-preparation', 'pl')}) lub [Should-Cost Analysis](${getCapabilityPath('service', 'should-cost-analysis', 'pl')}).\n\nKiedy planowane są negocjacje? Proszę podać termin - dobierzemy właściwy zakres przygotowania.`,
+    en: `Negotiations without analytical preparation end with acceptance of supplier terms. The key tools are market benchmarks, should-cost modeling, and purchase history analysis. In this context, the right starting point is [Negotiation Preparation](${getCapabilityPath('service', 'negotiation-preparation', 'en')}) or [Should-Cost Analysis](${getCapabilityPath('service', 'should-cost-analysis', 'en')}).\n\nWhen are the negotiations planned? Share the timeline and we will define the right preparation scope.`,
   },
   I5_SOURCING: {
-    pl: "Budowa strategii zakupowej zaczyna się od segmentacji kategorii — które wymagają pełnego sourcingu, które renegocjacji, a które są poza zakresem wpływu. [Procurement Transformation](/services/procurement-transformation) zapewnia strukturę metodyczną i wsparcie wdrożeniowe.\n\nIle kategorii zakupowych obejmuje Państwa firma i które są priorytetem?",
-    en: "Building a procurement strategy starts with category segmentation — which require full sourcing, which renegotiation, and which are outside your influence. [Procurement Transformation](/services/procurement-transformation) provides the methodical framework and implementation support.\n\nHow many spend categories does your company cover and which are the priority?",
+    pl: `Budowa strategii zakupowej zaczyna się od segmentacji kategorii - które wymagają pełnego sourcingu, które renegocjacji, a które są poza zakresem wpływu. [Procurement Transformation](${getCapabilityPath('service', 'procurement-transformation', 'pl')}) zapewnia strukturę metodyczną i wsparcie wdrożeniowe.\n\nIle kategorii zakupowych obejmuje Państwa firma i które są priorytetem?`,
+    en: `Building a procurement strategy starts with category segmentation - which require full sourcing, which renegotiation, and which are outside your influence. [Procurement Transformation](${getCapabilityPath('service', 'procurement-transformation', 'en')}) provides the methodical framework and implementation support.\n\nHow many spend categories does your company cover and which are the priority?`,
   },
   I6_EDUCATION: {
-    pl: "Warsztaty negocjacyjne oparte na metodyce Harvardzkiej skupiają się na przygotowaniu opartym na danych — BATNA, should-cost, benchmarki — zamiast technikach perswazji. [Negotiation Workshops](/services/warsztaty-negocjacji) dostępne jako in-company, od 1 do 3 dni, dopasowane do kontekstu branżowego.\n\nIlu uczestników i jaki poziom doświadczenia zakupowego?",
-    en: "Negotiation workshops based on the Harvard methodology focus on data-based preparation — BATNA, should-cost, benchmarks — rather than persuasion techniques. [Negotiation Workshops](/services/warsztaty-negocjacji) available as in-company, 1-3 days, adapted to industry context.\n\nHow many participants and what procurement experience level?",
+    pl: `Warsztaty negocjacyjne oparte na metodyce Harvardzkiej skupiają się na przygotowaniu opartym na danych - BATNA, should-cost, benchmarki - zamiast technikach perswazji. [Negotiation Workshops](${getCapabilityPath('education', 'warsztaty-negocjacyjne', 'pl')}) dostępne jako in-company, od 1 do 3 dni, dopasowane do kontekstu branżowego.\n\nIlu uczestników i jaki poziom doświadczenia zakupowego?`,
+    en: `Negotiation workshops based on the Harvard methodology focus on data-based preparation - BATNA, should-cost, benchmarks - rather than persuasion techniques. [Negotiation Workshops](${getCapabilityPath('education', 'warsztaty-negocjacyjne', 'en')}) available as in-company, 1-3 days, adapted to industry context.\n\nHow many participants and what procurement experience level?`,
   },
   UNKNOWN: {
-    pl: "Profitia Management Consultants specjalizuje się w doradztwie zakupowym, negocjacjach i analityce spend. Najszybszą ścieżką do rozmowy jest [kontakt bezpośredni](/contact) lub umówienie spotkania przez formularz.\n\nCo jest głównym wyzwaniem zakupowym Państwa firmy?",
-    en: "Profitia Management Consultants specializes in procurement advisory, negotiations, and spend analytics. The fastest path to a conversation is [direct contact](/contact) or scheduling via the form.\n\nWhat is your company's primary procurement challenge?",
+    pl: `Profitia Management Consultants specjalizuje się w doradztwie zakupowym, negocjacjach i analityce spend. Najszybszą ścieżką do rozmowy jest [kontakt bezpośredni](${getPublicPath('contact', 'pl')}) lub umówienie spotkania przez formularz.\n\nCo jest głównym wyzwaniem zakupowym Państwa firmy?`,
+    en: `Profitia Management Consultants specializes in procurement advisory, negotiations, and spend analytics. The fastest path to a conversation is [direct contact](${getPublicPath('contact', 'en')}) or scheduling via the form.\n\nWhat is your company's primary procurement challenge?`,
   },
 };
 
@@ -129,15 +130,15 @@ export function getStaticRecommendations(intent: string, locale: "pl" | "en") {
   return recs.map((r) => ({
     slug: r.slug,
     title: r.title[locale],
-    href: `/services/${r.slug}`,
+    href: getCapabilityPath("service", r.slug, locale),
   }));
 }
 
 // ── CTA Fallback ──────────────────────────────────────────
 export function getFallbackCTA(locale: "pl" | "en"): { label: string; href: string } {
   return locale === "pl"
-    ? { label: "Umów rozmowę", href: "/contact" }
-    : { label: "Schedule a conversation", href: "/en/contact" };
+    ? { label: "Umów rozmowę", href: getPublicPath('contact', 'pl') }
+    : { label: "Schedule a conversation", href: getPublicPath('contact', 'en') };
 }
 
 // ── Degradation Status ────────────────────────────────────

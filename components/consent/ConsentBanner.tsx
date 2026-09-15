@@ -16,6 +16,7 @@
 
 import { useEffect, useState } from 'react'
 import { useConsent } from './ConsentProvider'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 const COPY = {
   pl: {
@@ -53,7 +54,7 @@ export function ConsentBanner({ locale = 'pl' }: ConsentBannerProps) {
   }, [])
 
   const t = locale === 'en' ? COPY.en : COPY.pl
-  const prefix = locale === 'en' ? '/en' : ''
+  const privacyHref = getPublicPath('privacy', locale === 'en' ? 'en' : 'pl')
 
   return (
     <div
@@ -87,7 +88,7 @@ export function ConsentBanner({ locale = 'pl' }: ConsentBannerProps) {
             <p className="text-sm text-gray-500 leading-[1.65] max-w-[52ch]">
               {t.body}{' '}
               <a
-                href={`${prefix}/privacy`}
+                href={privacyHref}
                 className="underline text-gray-500 hover:text-brand-blue transition-colors duration-200 ease-out whitespace-nowrap"
               >
                 {t.privacyLink} ↗

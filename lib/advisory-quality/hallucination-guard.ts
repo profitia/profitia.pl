@@ -3,36 +3,13 @@
 // Validates advisory responses before delivery.
 // ─────────────────────────────────────────────────────────
 
+import { getCanonicalPublicPaths } from '@/lib/routing/public-routes'
+
 // ── Known Profitia service slugs (authoritative) ──────────
 const VALID_SERVICE_SLUGS = new Set([
-  "/services/projekty-doradcze",
-  "/services/interim-management",
-  "/services/procurement-transformation",
-  "/services/category-strategy",
-  "/services/operating-model-design",
-  "/services/procurement-pmo",
-  "/services/analiza-spot",
-  "/services/should-cost-analysis",
-  "/services/negotiation-preparation",
-  "/services/supplier-benchmarking",
-  "/services/supplier-negotiation-support",
-  "/services/spend-cube",
-  "/services/spend-analytics",
-  "/services/procurement-dashboards",
-  "/services/supplier-intelligence",
-  "/services/procurement-kpi-systems",
-  "/education/akademia-zakupow",
-  "/education/procurement-excellence",
-  "/education/warsztaty-negocjacyjne",
-  "/education/fact-based-negotiation",
-  "/education/in-company-workshops",
-  "/education/procurement-mentoring",
-  "/contact",
-  "/",
-  "/services",
-  "/education",
-  "/about",
+  ...getCanonicalPublicPaths().map((entry) => entry.path),
   "/blog",
+  "/en/blog",
 ]);
 
 // ── Known hallucinated / non-existent patterns ───────────

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Locale } from '@/lib/capabilities'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 interface Props {
   locale: Locale
@@ -27,8 +28,8 @@ const COPY = {
 }
 
 const CONTACT_HREF: Record<Locale, string> = {
-  pl: '/contact',
-  en: '/en/contact',
+  pl: getPublicPath('contact', 'pl'),
+  en: getPublicPath('contact', 'en'),
 }
 
 /**

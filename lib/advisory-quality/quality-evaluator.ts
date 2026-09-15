@@ -90,7 +90,7 @@ function scoreEscalationQuality(
   let score = 5;
 
   const hasEscalationCTA =
-    /\/contact|\/services\/analiza-spot|rozmow[ęa]|conversation|20.minut/i.test(response);
+    /\/kontakt|\/en\/contact|\/uslugi\/analiza-spot|\/en\/services\/spot-analysis|rozmow[ęa]|conversation|20.minut/i.test(response);
   const hasEscalationPhrasing =
     /(?:porozmawiajmy|zapraszam|skontaktuj|let's talk|get in touch|next step|kolejny krok)/i.test(response);
 

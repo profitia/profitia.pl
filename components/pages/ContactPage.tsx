@@ -17,6 +17,7 @@
 
 import { ProtectedEmail, ProtectedPhone } from '@/components/security'
 import { ContactForm } from '@/components/forms'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import type { Locale } from '@/lib/forms/types'
 
 interface ContactPageProps {
@@ -66,11 +67,24 @@ const COPY = {
   },
 } as const
 
+const SEO = {
+  pl: {
+    title: 'Kontakt',
+    description: 'Skontaktuj się z Profitia - doradztwo zakupowe, SpendGuru, szkolenia CIPS. Odpowiadamy w ciągu jednego dnia roboczego.',
+  },
+  en: {
+    title: 'Contact',
+    description: 'Contact Profitia - procurement advisory, SpendGuru, CIPS training. We respond within one business day.',
+  },
+} as const
+
 export function ContactPage({ locale = 'pl' }: ContactPageProps) {
   const t = COPY[locale]
+  const seo = SEO[locale]
 
   return (
     <div>
+      <PublicJsonLd routeId="contact" locale={locale} title={seo.title} description={seo.description} />
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <div className="container-base pt-20 pb-16 lg:pt-36 lg:pb-20 border-b border-gray-100">
         <div className="max-w-[40rem]">

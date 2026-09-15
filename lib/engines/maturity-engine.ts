@@ -14,6 +14,7 @@ import type {
   ProcurementMaturity,
   SessionIntelligence,
 } from "@/types";
+import { getStablePublicRoutePath } from '@/lib/routing/public-routes'
 
 // ── Language sophistication patterns ─────────────────────
 // Score 0 = reactive, 4 = transformation leader
@@ -155,9 +156,10 @@ function scoreMessages(messages: Message[]): number {
 function scorePages(visitedPages: PageSlug[]): number {
   let pageScore = 30; // baseline
   for (const page of visitedPages) {
-    if (HIGH_MATURITY_PAGES.includes(page)) {
+    const stablePage = (getStablePublicRoutePath(page) ?? page) as PageSlug
+    if (HIGH_MATURITY_PAGES.includes(stablePage)) {
       pageScore = Math.min(90, pageScore + 20);
-    } else if (MEDIUM_MATURITY_PAGES.includes(page)) {
+    } else if (MEDIUM_MATURITY_PAGES.includes(stablePage)) {
       pageScore = Math.min(70, pageScore + 10);
     }
   }

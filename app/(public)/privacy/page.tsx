@@ -6,17 +6,12 @@ import {
   LegalContent,
 } from '@/components/legal'
 import type { TOCItem } from '@/components/legal'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
+import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPublicMetadata('privacy', 'pl', {
   title: 'Polityka prywatności | Profitia',
-  alternates: {
-    canonical: 'https://www.profitia.pl/privacy',
-    languages: {
-      pl: 'https://www.profitia.pl/privacy',
-      en: 'https://www.profitia.pl/en/privacy',
-    },
-  },
-}
+})
 
 const TOC: TOCItem[] = [
   { id: 'administrator',    label: '1. Administrator danych' },
@@ -32,6 +27,7 @@ const TOC: TOCItem[] = [
 export default function PrivacyPage() {
   return (
     <LegalLayout toc={TOC}>
+      <PublicJsonLd routeId="privacy" locale="pl" title="Polityka prywatności | Profitia" />
       <LegalHero
         eyebrow="Dokument prawny"
         title="Polityka prywatności"

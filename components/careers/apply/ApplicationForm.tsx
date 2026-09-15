@@ -23,6 +23,7 @@ import { ApplicationConsent } from './ApplicationConsent'
 import { ApplicationSuccess } from './ApplicationSuccess'
 import { SubmitButton } from '@/components/forms/SubmitButton'
 import { TurnstileWidget, type TurnstileWidgetHandle, type TurnstileWidgetStatus } from '@/components/forms/TurnstileWidget'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Copy
@@ -59,7 +60,7 @@ const COPY = {
       appliedLabel: 'Złożono na stanowisko',
       body: 'Weryfikujemy każdą aplikację indywidualnie. Skontaktujemy się z Tobą, jeśli Twój profil będzie odpowiadał naszym wymaganiom.',
       backLabel: 'Wróć do strony Kariera',
-      backHref: '/career',
+      backHref: getPublicPath('career:index', 'pl'),
     },
     legalNote: 'Administratorem Państwa danych osobowych jest Profitia Management Consultants Mazurowski i Wspólnicy Sp. J. Dane przetwarzane są wyłącznie w celu prowadzenia procesu rekrutacyjnego.',
     selectPrompt: 'Wybierz stanowisko, aby zobaczyć pełny formularz.',
@@ -95,7 +96,7 @@ const COPY = {
       appliedLabel: 'Applied for',
       body: 'We review each application individually and will be in touch if your profile matches our requirements.',
       backLabel: 'Back to Career',
-      backHref: '/en/career',
+      backHref: getPublicPath('career:index', 'en'),
     },
     legalNote: 'The data controller is Profitia Management Consultants Mazurowski i Wspólnicy Sp. J. Data is processed solely for the purpose of the recruitment process.',
     selectPrompt: 'Select a role to see the full form.',

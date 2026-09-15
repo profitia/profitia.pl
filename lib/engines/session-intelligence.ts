@@ -13,6 +13,7 @@ import type {
   SessionDepth,
   SessionHealth,
 } from "@/types";
+import { isPublicPathOfKind } from '@/lib/routing/public-routes'
 
 // ── Session Depth ─────────────────────────────────────────
 
@@ -149,7 +150,7 @@ export function aggregateBehavioralPatterns(
   const isComparing =
     counts.comparison_trigger >= 1 ||
     session.intelligence.pagesVisited.filter((p) =>
-      typeof p === "string" && p.startsWith("/services/")
+      typeof p === "string" && isPublicPathOfKind(p, "service")
     ).length >= 3;
 
   const isPricingHesitant =

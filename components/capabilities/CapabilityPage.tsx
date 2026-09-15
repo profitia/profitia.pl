@@ -6,6 +6,8 @@ import CapabilityMethodology from './CapabilityMethodology'
 import CapabilityEngagement from './CapabilityEngagement'
 import CapabilityRelated from './CapabilityRelated'
 import CapabilityCTA from './CapabilityCTA'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 interface Props {
   capability: Capability
@@ -78,9 +80,14 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
   const related = getRelatedCapabilities(capability.slug)
   const ctaLabel = t(capability.ctaLabel, locale)
   const thesis = CAPABILITY_THESIS[capability.slug]
+  const contactHref = getPublicPath('contact', locale)
+  const routeId = `${capability.type}:${capability.slug}`
+  const title = t(capability.metadata.title, locale)
+  const description = t(capability.metadata.description, locale)
 
   return (
     <>
+      <PublicJsonLd routeId={routeId} locale={locale} title={title} description={description} />
       <CapabilityDetail capability={capability} locale={locale} prefix={prefix} />
 
       <div className="container-base">
@@ -156,7 +163,7 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
           locale={locale}
           note={c.cta.note}
           label={ctaLabel}
-          href={c.cta.href}
+          href={contactHref}
         />
 
       </div>

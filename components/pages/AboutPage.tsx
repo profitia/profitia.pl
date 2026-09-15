@@ -26,6 +26,8 @@ import { RevealWrapper } from '@/components/ui'
 import MobileHeroImage from '@/components/ui/MobileHeroImage'
 import { LeadershipSection } from '@/components/team/LeadershipSection'
 import { FEATURED_TEAM } from '@/lib/team/data'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 // ─── Copy ─────────────────────────────────────────────────────
 
@@ -127,7 +129,7 @@ const COPY = {
       subtitle:
         'Nie o demo, nie o ofercie handlowej. O Twoich kategoriach, Twoich dostawcach i tym, gdzie leży największy potencjał.',
       link: 'Napisz do nas',
-      href: '/contact',
+      href: getPublicPath('contact', 'pl'),
     },
   },
   en: {
@@ -227,7 +229,7 @@ const COPY = {
       subtitle:
         'Not about a demo or a sales pitch. About your categories, your suppliers, and where the biggest opportunity lies.',
       link: 'Get in touch',
-      href: '/en/contact',
+      href: getPublicPath('contact', 'en'),
     },
   },
 } as const
@@ -238,6 +240,17 @@ const HERO_IMAGE = {
 
 const separatorColor = 'border-[rgba(149,166,199,0.35)]'
 const rowSeparatorColor = 'divide-[rgba(149,166,199,0.3)]'
+
+const SEO = {
+  pl: {
+    title: 'O nas | Profitia',
+    description: 'Profitia to centrum kompetencji zakupowych dla liderów biznesu w Polsce. Doradztwo zakupowe, przygotowanie do negocjacji i analityka zakupowa od 2010 roku.',
+  },
+  en: {
+    title: 'About | Profitia',
+    description: 'Profitia is the procurement competence hub for business leaders in Poland. Procurement advisory, negotiation preparation and spend analytics since 2010.',
+  },
+} as const
 
 function renderCredentialText(text: string) {
   const parts = text.split(/(CIPS|MCIPS|Certyfikacja|Certyfikacje|Certification|Certifications)/g)
@@ -263,9 +276,11 @@ interface AboutPageProps {
 
 export function AboutPage({ locale }: AboutPageProps) {
   const t = COPY[locale]
+  const seo = SEO[locale]
 
   return (
     <div>
+      <PublicJsonLd routeId="about" locale={locale} title={seo.title} description={seo.description} />
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
       <section className={`relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] border-b ${separatorColor}`}>
         <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
