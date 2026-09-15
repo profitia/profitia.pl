@@ -326,13 +326,13 @@ export const CAPABILITIES: Capability[] = [
     },
     whatItSolves: [
       { pl: 'Niejasny punkt startu dla usprawnień zakupowych', en: 'Unclear starting point for procurement improvement' },
-      { pl: 'Reaktywny model pracy zakupów i trudność w ustaleniu priorytetów', en: 'Reactive procurement operating model and difficulty setting priorities' },
+      { pl: 'Reaktywny model pracy zakupów i trudność w ustaleniu priorytetów', en: 'A reactive way of working and difficulty setting priorities' },
       { pl: 'Brak obiektywnej oceny luk procesowych, organizacyjnych i narzędziowych', en: 'Lack of an objective assessment of process, organisation, and tooling gaps' },
       { pl: 'Niewystarczająca informacja zarządcza do uzasadnienia dalszych działań', en: 'Insufficient management information to justify the next steps' },
     ],
     outcomes: [
       { pl: 'Ocena dojrzałości zakupów przedstawiona liczbowo i opisowo', en: 'A procurement maturity assessment presented numerically and descriptively' },
-      { pl: 'Raport luk względem dobrych praktyk rynkowych', en: 'A gap report against market good practices' },
+      { pl: 'Raport luk względem dobrych praktyk rynkowych', en: 'A gap report against market best practices' },
       { pl: 'Priorytety usprawnień wraz z rekomendowaną kolejnością działań', en: 'Improvement priorities with a recommended sequence of actions' },
       { pl: 'Propozycja kierunku docelowego i planu dalszych działań', en: 'A proposed target direction and plan for the next actions' },
     ],
@@ -344,13 +344,13 @@ export const CAPABILITIES: Capability[] = [
     ],
     engagement: {
       pl: 'Format 3–4 tygodni; diagnoza, raport rekomendacyjny i omówienie priorytetów. Wdrożenie stanowi odrębny etap.',
-      en: '3–4 week format; diagnosis, recommendation report, and priority review. Implementation is a separate follow-on phase.',
+      en: '3–4 week format; diagnosis, recommendation report, and priority review. The engagement ends with the diagnosis and recommendations. Implementation is agreed separately as a follow-on phase.',
     },
     relatedCapabilities: ['procurement-transformation', 'operating-model-design', 'spend-analytics'],
     relatedInsights: [],
     ctaLabel: { pl: 'Porozmawiajmy o SPOT', en: 'Let\'s talk about SPOT' },
     metadata: {
-      title: { pl: 'Analiza dojrzałości zakupów SPOT | Profitia', en: 'SPOT Procurement Maturity Assessment | Profitia' },
+      title: { pl: 'Analiza dojrzałości zakupów SPOT', en: 'SPOT Procurement Maturity Assessment' },
       description: {
         pl: 'Kompleksowa diagnoza dojrzałości funkcji zakupowej. Ponad 80 badanych aspektów, raport luk i priorytety działań w ciągu 3–4 tygodni.',
         en: 'A comprehensive procurement maturity assessment. 80+ aspects assessed, a gap report, and action priorities delivered over 3–4 weeks.',

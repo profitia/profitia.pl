@@ -1,9 +1,19 @@
-import { CapabilityCTA, CapabilityHero } from '@/components/capabilities'
-import { PremiumCard, RevealWrapper } from '@/components/ui'
+import Image from 'next/image'
+import { CapabilityCTA } from '@/components/capabilities'
 import type { Locale } from '@/lib/capabilities'
 
 interface Props {
   locale: Locale
+}
+
+interface StaticWrapperProps {
+  children: React.ReactNode
+  className?: string
+  delay?: 0 | 1 | 2 | 3 | 4
+}
+
+function RevealWrapper({ children, className = '' }: StaticWrapperProps) {
+  return <div className={className}>{children}</div>
 }
 
 const COPY = {
@@ -134,13 +144,13 @@ const COPY = {
       eyebrow: 'Starting point',
       title: 'You know something needs to improve, but it is hard to pinpoint why?',
       paragraphs: [
-        'The signals may include prolonged processes, a reactive team operating model, underused supplier potential, or a lack of reliable management information. The issues are visible, but their root causes often remain unclear.',
+        'The signals may include prolonged processes, a reactive way of working, untapped supplier potential, or a lack of reliable management information. The issues are visible, but their root causes often remain unclear.',
         'Sometimes the problem has already been named, but there is still no objective assessment of its scale, causes, or possible remedies. Without that diagnosis, it is difficult to choose the right starting point and justify priorities to the board or the business.',
       ],
       signals: [
         'Prolonged processes',
-        'Reactive team operations',
-        'Underused supplier potential',
+        'A reactive way of working',
+        'Untapped supplier potential',
         'Lack of reliable management information',
       ],
     },
@@ -198,7 +208,7 @@ const COPY = {
         {
           title: 'Analysis and benchmarking',
           description:
-            'We assess procurement maturity and compare the organisation against market good practices and reference companies.',
+            'We assess procurement maturity and compare the organisation against market best practices and peer organisations.',
         },
         {
           title: 'Findings and priorities',
@@ -212,7 +222,7 @@ const COPY = {
       title: 'What do you receive?',
       items: [
         'An assessment of current procurement maturity, presented both numerically and descriptively.',
-        'A gap report against market good practices.',
+        'A gap report against market best practices.',
         'A clear indication of the areas with the greatest improvement potential.',
         'A list of short-term improvements together with an assessment of their likely benefits.',
         'A proposed target direction and a roadmap for the next actions.',
@@ -220,11 +230,11 @@ const COPY = {
       highlight:
         'By the end of SPOT, it is clear where to focus resources, which initiatives to launch first, and where to look for business impact.',
       boundary:
-        'The scope ends with diagnosis and recommendations. Implementation of improvements is a separate phase agreed independently afterwards.',
+        'The engagement ends with the diagnosis and recommendations. Implementation is agreed separately as a follow-on phase.',
     },
     credibility: {
       eyebrow: 'Experience',
-      title: 'Experience you can base decisions on',
+      title: 'Experience you can rely on when making decisions',
       description:
         'For over 15 years, Profitia has helped organisations strengthen procurement functions and improve cost efficiency. We work with 8 out of 10 of the largest companies in Poland and are a certified CIPS partner.',
       proof: [
@@ -234,7 +244,7 @@ const COPY = {
       ],
     },
     cta: {
-      invitation: 'Start with an objective diagnosis of your procurement situation.',
+      invitation: 'Start with an objective assessment of your procurement function.',
       label: 'Let’s talk about SPOT',
       href: '/en/contact',
     },
@@ -250,13 +260,49 @@ export default function SpotAnalysisPage({ locale }: Props) {
 
   return (
     <>
-      <CapabilityHero
-        locale={locale}
-        eyebrow={c.hero.eyebrow}
-        title={c.hero.title}
-        subtitle={c.hero.subtitle}
-        variant="services"
-      />
+      <section className="relative min-h-[620px] overflow-hidden bg-white lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
+        <div className="container-base relative z-10 py-16 lg:flex lg:min-h-[calc(100vh-140px)] lg:flex-col lg:justify-center lg:py-10 2xl:min-h-[calc(100vh-80px)] 2xl:py-20">
+          <div className="lg:max-w-[52%] lg:pr-16">
+            <div className="space-y-8 md:space-y-5 2xl:space-y-8">
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-[rgba(0,109,158,0.8)]">
+                {c.hero.eyebrow}
+              </p>
+              <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.05em] text-[rgb(36,47,68)] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
+                {c.hero.title}
+              </h1>
+              <p className="text-lg leading-relaxed text-[rgb(59,56,56)] md:text-[0.92rem] md:leading-[1.55] lg:text-[0.96rem] 2xl:text-lg 2xl:leading-relaxed">
+                {c.hero.subtitle}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute right-0 top-0 hidden h-full w-[48%] lg:block" aria-hidden="true">
+          <Image
+            src="/images/website/Profitia_10.jpg"
+            alt="Profitia services advisory hero"
+            fill
+            className="object-cover"
+            sizes="48vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
+        </div>
+
+        <div className="relative lg:hidden" aria-hidden="true">
+          <div className="relative h-[280px] w-full overflow-hidden">
+            <Image
+              src="/images/website/Profitia_10.jpg"
+              alt="Profitia services advisory hero"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
+          </div>
+        </div>
+      </section>
 
       <div className="container-base pb-20">
         <section className="border-t border-gray-100 pt-24 pb-20">
@@ -307,13 +353,17 @@ export default function SpotAnalysisPage({ locale }: Props) {
 
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {c.scope.areas.map((area, index) => (
-              <PremiumCard
+              <div
                 key={area.title}
-                title={area.title}
-                description={area.description}
-                delay={((index % 4) as 0 | 1 | 2 | 3)}
-                className="h-full rounded-[24px] p-7"
-              />
+                className="group h-full rounded-[24px] border border-gray-200 p-7 transition-all duration-300 hover:border-[rgba(0,109,158,0.18)] hover:bg-[rgba(0,109,158,0.03)] hover:shadow-lg"
+              >
+                <h3 className="mb-3 text-lg font-semibold tracking-tight text-gray-900 transition-colors">
+                  {area.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-gray-600 transition-colors">
+                  {area.description}
+                </p>
+              </div>
             ))}
           </div>
         </section>
@@ -341,7 +391,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
                 </div>
 
                 <div className="flex justify-center text-[rgb(72,94,136)]" aria-hidden="true">
-                  <svg viewBox="0 0 40 16" fill="none" className="h-4 w-10 lg:h-5 lg:w-12">
+                  <svg viewBox="0 0 40 16" fill="none" className="h-4 w-10 rotate-90 transform lg:h-5 lg:w-12 lg:rotate-0">
                     <path d="M1 8h34" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     <path d="M28 2l8 6-8 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -364,7 +414,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
                 </div>
 
                 <div className="flex justify-center text-[rgb(72,94,136)]" aria-hidden="true">
-                  <svg viewBox="0 0 40 16" fill="none" className="h-4 w-10 lg:h-5 lg:w-12">
+                  <svg viewBox="0 0 40 16" fill="none" className="h-4 w-10 rotate-90 transform lg:h-5 lg:w-12 lg:rotate-0">
                     <path d="M1 8h34" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     <path d="M28 2l8 6-8 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -394,19 +444,21 @@ export default function SpotAnalysisPage({ locale }: Props) {
 
           <ol className="mt-12 grid gap-5 lg:grid-cols-4">
             {c.process.steps.map((step, index) => (
-              <RevealWrapper key={step.title} delay={((index % 4) as 0 | 1 | 2 | 3)}>
-                <li className="flex h-full flex-col rounded-[28px] border border-[rgba(149,166,199,0.28)] bg-white px-6 py-7 shadow-[0_16px_40px_rgba(15,23,42,0.05)]">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[rgb(0,109,158)]">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="mt-5 text-lg font-semibold tracking-tight text-[rgb(36,47,68)]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-[1.75] text-[rgb(59,56,56)]">
-                    {step.description}
-                  </p>
-                </li>
-              </RevealWrapper>
+              <li key={step.title} className="list-none">
+                <RevealWrapper delay={((index % 4) as 0 | 1 | 2 | 3)} className="h-full">
+                  <div className="flex h-full flex-col rounded-[28px] border border-[rgba(149,166,199,0.28)] bg-white px-6 py-7 shadow-[0_16px_40px_rgba(15,23,42,0.05)]">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[rgb(0,109,158)]">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-5 text-lg font-semibold tracking-tight text-[rgb(36,47,68)]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-[1.75] text-[rgb(59,56,56)]">
+                      {step.description}
+                    </p>
+                  </div>
+                </RevealWrapper>
+              </li>
             ))}
           </ol>
         </section>
