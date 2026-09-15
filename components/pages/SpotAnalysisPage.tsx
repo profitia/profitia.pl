@@ -1,19 +1,9 @@
-import Image from 'next/image'
-import { CapabilityCTA } from '@/components/capabilities'
+import { CapabilityCTA, CapabilityHero } from '@/components/capabilities'
+import { PremiumCard, RevealWrapper } from '@/components/ui'
 import type { Locale } from '@/lib/capabilities'
 
 interface Props {
   locale: Locale
-}
-
-interface StaticWrapperProps {
-  children: React.ReactNode
-  className?: string
-  delay?: 0 | 1 | 2 | 3 | 4
-}
-
-function RevealWrapper({ children, className = '' }: StaticWrapperProps) {
-  return <div className={className}>{children}</div>
 }
 
 const COPY = {
@@ -260,49 +250,13 @@ export default function SpotAnalysisPage({ locale }: Props) {
 
   return (
     <>
-      <section className="relative min-h-[620px] overflow-hidden bg-white lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
-        <div className="container-base relative z-10 py-16 lg:flex lg:min-h-[calc(100vh-140px)] lg:flex-col lg:justify-center lg:py-10 2xl:min-h-[calc(100vh-80px)] 2xl:py-20">
-          <div className="lg:max-w-[52%] lg:pr-16">
-            <div className="space-y-8 md:space-y-5 2xl:space-y-8">
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-[rgba(0,109,158,0.8)]">
-                {c.hero.eyebrow}
-              </p>
-              <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.05em] text-[rgb(36,47,68)] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
-                {c.hero.title}
-              </h1>
-              <p className="text-lg leading-relaxed text-[rgb(59,56,56)] md:text-[0.92rem] md:leading-[1.55] lg:text-[0.96rem] 2xl:text-lg 2xl:leading-relaxed">
-                {c.hero.subtitle}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="absolute right-0 top-0 hidden h-full w-[48%] lg:block" aria-hidden="true">
-          <Image
-            src="/images/website/Profitia_10.jpg"
-            alt="Profitia services advisory hero"
-            fill
-            className="object-cover"
-            sizes="48vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
-        </div>
-
-        <div className="relative lg:hidden" aria-hidden="true">
-          <div className="relative h-[280px] w-full overflow-hidden">
-            <Image
-              src="/images/website/Profitia_10.jpg"
-              alt="Profitia services advisory hero"
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
-          </div>
-        </div>
-      </section>
+      <CapabilityHero
+        locale={locale}
+        eyebrow={c.hero.eyebrow}
+        title={c.hero.title}
+        subtitle={c.hero.subtitle}
+        variant="services"
+      />
 
       <div className="container-base pb-20">
         <section className="border-t border-gray-100 pt-24 pb-20">
@@ -353,17 +307,13 @@ export default function SpotAnalysisPage({ locale }: Props) {
 
           <div className="mt-12 grid gap-5 md:grid-cols-2">
             {c.scope.areas.map((area, index) => (
-              <div
+              <PremiumCard
                 key={area.title}
-                className="group h-full rounded-[24px] border border-gray-200 p-7 transition-all duration-300 hover:border-[rgba(0,109,158,0.18)] hover:bg-[rgba(0,109,158,0.03)] hover:shadow-lg"
-              >
-                <h3 className="mb-3 text-lg font-semibold tracking-tight text-gray-900 transition-colors">
-                  {area.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-gray-600 transition-colors">
-                  {area.description}
-                </p>
-              </div>
+                title={area.title}
+                description={area.description}
+                delay={((index % 4) as 0 | 1 | 2 | 3)}
+                className="h-full rounded-[24px] p-7"
+              />
             ))}
           </div>
         </section>
