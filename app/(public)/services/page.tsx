@@ -1,13 +1,6 @@
-import type { Metadata } from 'next'
-import ServicesPage from '@/components/pages/ServicesPage'
-import { buildPublicMetadata } from '@/lib/routing/public-seo'
-
-export const metadata: Metadata = buildPublicMetadata('services:index', 'pl', {
-  title: 'Usługi | Profitia',
-  description:
-    'Doradztwo zakupowe, negocjacje, analityka spend i transformacja funkcji zakupowej. Advisory capabilities dla organizacji budujących trwałą przewagę kosztową.',
-})
+import { permanentRedirect } from 'next/navigation'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 export default function Page() {
-  return <ServicesPage locale="pl" />
+  permanentRedirect(getPublicPath('services:index', 'pl'))
 }

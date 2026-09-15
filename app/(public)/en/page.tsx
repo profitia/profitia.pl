@@ -17,7 +17,7 @@ export default async function EnHomePage() {
   return (
     <>
       <PublicJsonLd routeId="home" locale="en" title={dict.homepage.meta.title} description={dict.homepage.meta.description} />
-      <HomePageContent dict={dict} />
+      <HomePageContent dict={dict} locale="en" />
     </>
   )
 }

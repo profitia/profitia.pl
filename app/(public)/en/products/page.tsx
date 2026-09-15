@@ -1,13 +1,6 @@
-import type { Metadata } from 'next'
-import ProductsPage from '@/components/pages/ProductsPage'
-import { buildPublicMetadata } from '@/lib/routing/public-seo'
-
-export const metadata: Metadata = buildPublicMetadata('products:index', 'en', {
-  title: 'Products | Profitia',
-  description:
-    'Rent an Expert / Buyer and SPOT Check - Profitia products supporting savings, sourcing, organisation, processes, tools and procurement maturity assessment.',
-})
+import { permanentRedirect } from 'next/navigation'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 export default function Page() {
-  return <ProductsPage locale="en" />
+  permanentRedirect(getPublicPath('products:index', 'en'))
 }
