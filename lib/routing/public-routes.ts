@@ -163,7 +163,7 @@ const CAPABILITY_ROUTE_SEEDS: CapabilityRouteSeed[] = [
   { entityId: 'procurement-dashboards', kind: 'service', plSlug: 'dashboardy-zakupowe', enSlug: 'procurement-dashboards', legacyPaths: ['/services/procurement-dashboards'] },
   { entityId: 'supplier-intelligence', kind: 'service', plSlug: 'analiza-dostawcow', enSlug: 'supplier-intelligence', legacyPaths: ['/services/supplier-intelligence'] },
   { entityId: 'procurement-kpi-systems', kind: 'service', plSlug: 'systemy-kpi-zakupow', enSlug: 'procurement-kpi-systems', legacyPaths: ['/services/procurement-kpi-systems'] },
-  { entityId: 'coaching-zakupowy', kind: 'service', plSlug: 'coaching-zakupowy', enSlug: 'procurement-coaching', legacyPaths: ['/en/services/coaching-zakupowy'] },
+  { entityId: 'coaching-zakupowy', kind: 'service', plSlug: 'coaching-zakupowy', enSlug: 'procurement-coaching', legacyPaths: ['/services/coaching-zakupowy', '/en/services/coaching-zakupowy'] },
   { entityId: 'akademia-zakupow', kind: 'education', plSlug: 'akademia-zakupow', enSlug: 'procurement-academy', legacyPaths: ['/education/akademia-zakupow', '/en/education/akademia-zakupow'] },
   { entityId: 'procurement-excellence', kind: 'education', plSlug: 'doskonalosc-zakupowa', enSlug: 'procurement-excellence', legacyPaths: ['/education/procurement-excellence'] },
   { entityId: 'strategic-sourcing', kind: 'education', plSlug: 'strategiczny-sourcing', enSlug: 'strategic-sourcing', legacyPaths: ['/education/strategic-sourcing'] },

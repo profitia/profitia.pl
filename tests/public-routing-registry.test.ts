@@ -51,6 +51,7 @@ function run(): void {
   const redirectMap = new Map(redirects.map((entry) => [entry.source, entry.destination]))
   assertEqual(redirectMap.get('/services'), '/uslugi', 'Legacy services listing redirects directly')
   assertEqual(redirectMap.get('/services/subpage-services-1'), '/uslugi/projekty-doradcze', 'Legacy technical PL service path redirects directly')
+  assertEqual(redirectMap.get('/services/coaching-zakupowy'), '/uslugi/coaching-zakupowy', 'Legacy PL procurement coaching path redirects directly')
   assertEqual(redirectMap.get('/en/services/subpage-services-1'), '/en/services/advisory-projects', 'Legacy technical EN service path redirects directly')
   assertEqual(redirectMap.get('/career/apply'), '/kariera/aplikuj', 'Legacy application path redirects directly')
 
