@@ -7,12 +7,14 @@
 /** Current consent schema version - bump when consent copy changes. */
 export const CONSENT_VERSION = '2026-05-07'
 
+import { getPublicPath } from '@/lib/routing/public-routes'
+
 /** Privacy policy snapshot version used by the current form bundle. */
 export const PRIVACY_POLICY_VERSION = '2026-05-07'
 
 export const PRIVACY_POLICY_PATHS = {
-  pl: '/privacy',
-  en: '/en/privacy',
+  pl: getPublicPath('privacy', 'pl'),
+  en: getPublicPath('privacy', 'en'),
 } as const
 
 export const CONTACT_CONSENT_COPY = {

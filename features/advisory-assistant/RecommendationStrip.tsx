@@ -7,6 +7,7 @@ import { useAdvisorySession } from "@/stores/advisory-session.store";
 import { getRecommendationsForIntent } from "@/lib/recommendation-registry";
 import { track } from "@/lib/analytics";
 import type { IntentCode, UrgencyLevel, Locale, RecommendationCard } from "@/types";
+import { localizePublicHref } from '@/lib/routing/public-routes'
 
 interface RecommendationStripProps {
   intent: IntentCode;
@@ -70,8 +71,10 @@ function RecommendationCardItem({
   index: number;
   locale: Locale;
 }) {
+  const localizedUrl = localizePublicHref(rec.url, locale)
+
   const handleClick = () => {
-    track.recommendationClicked(rec.id, rec.url);
+    track.recommendationClicked(rec.id, localizedUrl);
   };
 
   return (
@@ -81,7 +84,7 @@ function RecommendationCardItem({
       transition={{ delay: index * 0.06, duration: 0.2 }}
     >
       <Link
-        href={rec.url}
+        href={localizedUrl}
         onClick={handleClick}
         className="rec-card flex items-start gap-3 group block"
       >

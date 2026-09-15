@@ -4,6 +4,7 @@
 // ─────────────────────────────────────────────────────────
 
 import type { PageContext, PageSlug } from "@/types";
+import { getStablePublicRoutePath } from '@/lib/routing/public-routes'
 
 export const PAGE_GRAPH: Record<string, PageContext> = {
   "/": {
@@ -244,9 +245,10 @@ export const PAGE_GRAPH: Record<string, PageContext> = {
 };
 
 export function getPageContext(slug: string): PageContext {
+  const stableSlug = getStablePublicRoutePath(slug) ?? slug
   return (
-    PAGE_GRAPH[slug] ?? {
-      slug: slug as PageSlug,
+    PAGE_GRAPH[stableSlug] ?? {
+      slug: stableSlug as PageSlug,
       primaryIntent: "I7_EXPLORATORY",
       secondaryIntents: [],
       conversionTier: 4,

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { AdvisoryBlock, Locale } from "@/types";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
+import { localizePublicHref } from '@/lib/routing/public-routes'
 
 interface InlineAdvisoryBlockProps {
   block: AdvisoryBlock;
@@ -16,6 +17,7 @@ export function InlineAdvisoryBlock({
   variant = "default",
 }: InlineAdvisoryBlockProps) {
   const { markRecommendationShown, markCTAShown } = useAdvisorySession();
+  const ctaHref = localizePublicHref(block.cta.url, locale)
 
   const handleCTAClick = () => {
     markCTAShown(block.id + "-cta");
@@ -55,7 +57,7 @@ export function InlineAdvisoryBlock({
           {block.body}
         </p>
         <a
-          href={block.cta.url}
+          href={ctaHref}
           onClick={handleCTAClick}
           className="mt-2 inline-block text-xs font-semibold text-advisory-700 hover:text-advisory-900 dark:text-advisory-400 transition-colors"
         >
@@ -90,7 +92,7 @@ export function InlineAdvisoryBlock({
           </div>
         )}
         <a
-          href={block.cta.url}
+          href={ctaHref}
           onClick={handleCTAClick}
           className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-advisory-700 px-4 py-2 text-sm font-semibold text-white hover:bg-advisory-800 transition-colors"
         >
@@ -126,7 +128,7 @@ export function InlineAdvisoryBlock({
         </p>
       )}
       <a
-        href={block.cta.url}
+        href={ctaHref}
         onClick={handleCTAClick}
         className="mt-3 inline-block text-sm font-semibold text-advisory-700 hover:text-advisory-900 dark:text-advisory-400 transition-colors"
       >

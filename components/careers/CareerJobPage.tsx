@@ -2,6 +2,8 @@ import type { JobPost, CareerLocale } from '@/lib/careers'
 import { tCareer } from '@/lib/careers'
 import CareerJobDetail from './CareerJobDetail'
 import CareerCTA from './CareerCTA'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
+import { getCareerRouteId, getPublicPath } from '@/lib/routing/public-routes'
 
 interface Props {
   job: JobPost
@@ -54,9 +56,13 @@ const COPY = {
  */
 export default function CareerJobPage({ job, locale }: Props) {
   const c = COPY[locale]
+  const applyHref = `${getPublicPath('career:apply', locale)}?role=${job.slug}`
+  const title = tCareer(job.metadata.title, locale)
+  const description = tCareer(job.metadata.description, locale)
 
   return (
     <>
+      <PublicJsonLd routeId={getCareerRouteId(job.slug)} locale={locale} title={title} description={description} />
       <CareerJobDetail job={job} locale={locale} />
 
       <div className="container-base">
@@ -180,7 +186,7 @@ export default function CareerJobPage({ job, locale }: Props) {
           locale={locale}
           invitation={c.cta.invitation}
           label={c.cta.label}
-          href={`${locale === 'en' ? '/en' : ''}/career/apply?role=${job.slug}`}
+          href={applyHref}
         />
 
       </div>

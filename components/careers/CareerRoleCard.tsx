@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { JobPost, CareerLocale } from '@/lib/careers'
 import { tCareer } from '@/lib/careers'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 interface Props {
   job: JobPost
@@ -35,7 +36,7 @@ export default function CareerRoleCard({
   requirementsLabel,
 }: Props) {
   const [open, setOpen] = useState(false)
-  const applyHref = `${locale === 'en' ? '/en' : ''}/career/apply?role=${job.slug}`
+  const applyHref = `${getPublicPath('career:apply', locale)}?role=${job.slug}`
 
   const title = tCareer(job.title, locale)
   const department = tCareer(job.department, locale)

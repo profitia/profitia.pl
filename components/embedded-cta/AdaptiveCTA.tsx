@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { AdaptiveCTAConfig, Locale } from "@/types";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
+import { localizePublicHref } from '@/lib/routing/public-routes'
 
 interface AdaptiveCTAProps {
   cta: AdaptiveCTAConfig;
@@ -31,7 +32,8 @@ export function AdaptiveCTA({
   };
 
   const isPhone = cta.type === "phone";
-  const href = cta.url;
+  const href = localizePublicHref(cta.url, locale);
+  const secondaryHref = secondary ? localizePublicHref(secondary.url, locale) : null
 
   return (
     <motion.div
@@ -65,7 +67,7 @@ export function AdaptiveCTA({
       {/* Secondary CTA */}
       {secondary && (
         <a
-          href={secondary.url}
+          href={secondaryHref ?? secondary.url}
           onClick={() => handleClick(secondary.id)}
           className="inline-flex items-center gap-1.5 text-sm font-medium text-advisory-700 hover:text-advisory-900 dark:text-advisory-400 dark:hover:text-advisory-300 transition-colors"
         >
@@ -89,6 +91,8 @@ export function CTABar({ cta, secondary, locale, context }: CTABarProps) {
   const label = cta.label[locale];
   const subLabel = cta.subLabel?.[locale];
   const { markCTAShown, markCTAClicked } = useAdvisorySession();
+  const href = localizePublicHref(cta.url, locale)
+  const secondaryHref = secondary ? localizePublicHref(secondary.url, locale) : null
 
   return (
     <motion.div
@@ -109,7 +113,7 @@ export function CTABar({ cta, secondary, locale, context }: CTABarProps) {
       </div>
       <div className="flex items-center gap-3 flex-shrink-0">
         <a
-          href={cta.url}
+          href={href}
           onClick={() => {
             markCTAShown(cta.id);
             markCTAClicked(cta.id);
@@ -121,7 +125,7 @@ export function CTABar({ cta, secondary, locale, context }: CTABarProps) {
         </a>
         {secondary && (
           <a
-            href={secondary.url}
+            href={secondaryHref ?? secondary.url}
             onClick={() => {
               markCTAShown(secondary.id);
               markCTAClicked(secondary.id);

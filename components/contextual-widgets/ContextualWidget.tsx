@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import type { ContextualWidget, Locale } from "@/types";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
+import { localizePublicHref } from '@/lib/routing/public-routes'
 
 interface ContextualWidgetCardProps {
   widget: ContextualWidget;
@@ -36,6 +37,7 @@ export function ContextualWidgetCard({
   };
 
   const accentColor = widgetAccent[widget.type] ?? "bg-advisory-600";
+  const ctaHref = widget.cta ? localizePublicHref(widget.cta.url, locale) : null
 
   return (
     <motion.div
@@ -87,7 +89,7 @@ export function ContextualWidgetCard({
         {/* CTA */}
         {widget.cta && (
           <a
-            href={widget.cta.url}
+            href={ctaHref ?? widget.cta.url}
             onClick={handleCTAClick}
             className={`mt-3 inline-flex items-center gap-1.5 font-semibold text-advisory-700 hover:text-advisory-900 dark:text-advisory-400 dark:hover:text-advisory-300 transition-colors ${compact ? "text-xs" : "text-sm"}`}
           >

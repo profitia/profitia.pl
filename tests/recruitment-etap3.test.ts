@@ -111,7 +111,7 @@ async function createStoredApplication(
     consentCurrent: true,
     consentFuture: true,
     locale,
-    sourcePage: overrides.sourcePage ?? (locale === 'en' ? '/en/career/apply' : '/career/apply'),
+    sourcePage: overrides.sourcePage ?? (locale === 'en' ? '/en/career/apply' : '/kariera/aplikuj'),
   } as const
 
   const normalized = normalizeJobApplicationInput(transport)
@@ -565,7 +565,7 @@ async function main() {
         consentCurrent: 'true',
         consentFuture: 'false',
         locale: 'pl',
-        sourcePage: '/career/apply',
+        sourcePage: '/kariera/aplikuj',
         ...buildValidSecurityFields(stamp),
       }, new File([createPdfBytes()], 'route.pdf', { type: 'application/pdf' })))
 

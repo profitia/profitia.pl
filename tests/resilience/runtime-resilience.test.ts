@@ -396,7 +396,7 @@ async function testGracefulDegradation(): Promise<void> {
   await test("Returns PL fallback response", "degradation", () => {
     const response = getFallbackResponse("I8_NEGOTIATIONS", "pl", "degraded");
     assert(response.length > 50, "Fallback should have substantial content");
-    assert(response.includes("/services/"), "Fallback should include service links");
+    assert(response.includes("/uslugi/"), "Fallback should include localized service links");
   });
 
   await test("Returns EN fallback response", "degradation", () => {
@@ -413,7 +413,7 @@ async function testGracefulDegradation(): Promise<void> {
   await test("Static recommendations for PL", "degradation", () => {
     const recs = getStaticRecommendations("I8_NEGOTIATIONS", "pl");
     assert(recs.length > 0, "Should have recommendations");
-    assert(recs[0].href.startsWith("/services/"), "Should have valid hrefs");
+    assert(recs[0].href.startsWith("/uslugi/"), "Should have valid localized hrefs");
   });
 
   await test("Recovers to healthy after successes", "degradation", () => {

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { Capability, Locale } from '@/lib/capabilities'
 import { t } from '@/lib/capabilities'
+import { getCapabilityPath } from '@/lib/routing/public-routes'
 
 interface Props {
   capability: Capability
@@ -27,8 +28,6 @@ const NAV_LABEL: Record<'service' | 'education', { pl: string; en: string }> = {
   education: { pl: 'Zobacz program', en: 'Explore programme' },
 }
 
-const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
-
 /**
  * CapabilityCard
  * ─────────────────────────────────────────────────────────────
@@ -39,7 +38,7 @@ const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
  * card - contained tile for Related section and grids.
  */
 export default function CapabilityCard({ capability, locale, prefix, variant = 'row', isFirst = false }: Props) {
-  const href = `${LOCALE_PREFIX[locale]}/${prefix}/${capability.slug}`
+  const href = getCapabilityPath(prefix === 'services' ? 'service' : 'education', capability.slug, locale)
   const title = t(capability.title, locale)
   const eyebrow = t(capability.eyebrow, locale)
   // Navigation label - derived from type, not ctaLabel.

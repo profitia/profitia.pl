@@ -2,18 +2,12 @@ import type { Capability, Locale } from '@/lib/capabilities'
 import { t } from '@/lib/capabilities'
 import CapabilityMeta from './CapabilityMeta'
 import Link from 'next/link'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 const BREADCRUMB_COPY = {
   pl: { home: 'Strona główna', services: 'Usługi', education: 'Edukacja' },
   en: { home: 'Home', services: 'Services', education: 'Education' },
 }
-
-const ROOT_HREFS: Record<Locale, Record<'services' | 'education', string>> = {
-  pl: { services: '/services', education: '/education' },
-  en: { services: '/en/services', education: '/en/education' },
-}
-
-const HOME_HREFS: Record<Locale, string> = { pl: '/', en: '/en' }
 
 interface Props {
   capability: Capability
@@ -32,6 +26,8 @@ interface Props {
  */
 export default function CapabilityDetail({ capability, locale, prefix }: Props) {
   const c = BREADCRUMB_COPY[locale]
+  const homeHref = getPublicPath('home', locale)
+  const rootHref = getPublicPath(prefix === 'services' ? 'services:index' : 'education:index', locale)
 
   return (
     <section className="pt-20 pb-16 border-b border-gray-100">
@@ -42,11 +38,11 @@ export default function CapabilityDetail({ capability, locale, prefix }: Props) 
           className="flex items-center gap-2 text-xs text-gray-400 mb-12"
           aria-label={locale === 'en' ? 'Breadcrumb' : 'Ścieżka nawigacji'}
         >
-          <Link href={HOME_HREFS[locale]} className="hover:text-brand-blue transition-colors duration-200">
+          <Link href={homeHref} className="hover:text-brand-blue transition-colors duration-200">
             {c.home}
           </Link>
           <span aria-hidden="true">/</span>
-          <Link href={ROOT_HREFS[locale][prefix]} className="hover:text-brand-blue transition-colors duration-200">
+          <Link href={rootHref} className="hover:text-brand-blue transition-colors duration-200">
             {c[prefix]}
           </Link>
           <span aria-hidden="true">/</span>

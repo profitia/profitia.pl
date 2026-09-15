@@ -12,6 +12,7 @@ import type {
   ProactiveTrigger,
   ProactiveTriggerType,
 } from "@/types";
+import { getStablePublicRoutePath, isPublicPathOfKind } from '@/lib/routing/public-routes'
 
 // ── Trigger definitions ───────────────────────────────────
 
@@ -107,8 +108,9 @@ export function evaluateProactiveTriggers(
   const candidates: TriggerCandidate[] = [];
   const { intelligence, state, pageContext } = session;
   const userMessageCount = session.messages.filter((m) => m.role === "user").length;
-  const isHighIntentPage = HIGH_INTENT_PAGES.includes(pageContext.slug);
-  const isEducationPage = EDUCATION_INTENT_PAGES.includes(pageContext.slug);
+  const stablePageSlug = (getStablePublicRoutePath(pageContext.slug) ?? pageContext.slug) as PageSlug
+  const isHighIntentPage = HIGH_INTENT_PAGES.includes(stablePageSlug);
+  const isEducationPage = EDUCATION_INTENT_PAGES.includes(stablePageSlug);
 
   // --- Repeated visit ---
   if (intelligence.pagesVisited.filter((p) => p === pageContext.slug).length >= 2) {
@@ -147,7 +149,7 @@ export function evaluateProactiveTriggers(
 
   // --- Comparison behavior: visited 2+ service pages ---
   const servicePageCount = intelligence.pagesVisited.filter((p) =>
-    typeof p === "string" && p.startsWith("/services/")
+    typeof p === "string" && isPublicPathOfKind(p, "service")
   ).length;
   if (servicePageCount >= 3 && userMessageCount === 0) {
     candidates.push({

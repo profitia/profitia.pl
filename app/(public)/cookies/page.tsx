@@ -6,17 +6,12 @@ import {
   LegalContent,
 } from '@/components/legal'
 import type { TOCItem } from '@/components/legal'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
+import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPublicMetadata('cookies', 'pl', {
   title: 'Polityka cookies | Profitia',
-  alternates: {
-    canonical: 'https://www.profitia.pl/cookies',
-    languages: {
-      pl: 'https://www.profitia.pl/cookies',
-      en: 'https://www.profitia.pl/en/cookies',
-    },
-  },
-}
+})
 
 const TOC: TOCItem[] = [
   { id: 'czym-sa',          label: '1. Czym są pliki cookies' },
@@ -30,6 +25,7 @@ const TOC: TOCItem[] = [
 export default function CookiesPage() {
   return (
     <LegalLayout toc={TOC}>
+      <PublicJsonLd routeId="cookies" locale="pl" title="Polityka cookies | Profitia" />
       <LegalHero
         eyebrow="Dokument prawny"
         title="Polityka plików cookies"

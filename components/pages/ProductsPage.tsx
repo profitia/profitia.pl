@@ -1,7 +1,9 @@
 import type { Locale } from '@/lib/capabilities'
 import { CapabilityCTA, CapabilityHero } from '@/components/capabilities'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import ServicesContainer from './ServicesContainer'
 import { PRODUCTS_CATALOG } from './productsCatalog'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 interface Props {
   locale: Locale
@@ -23,7 +25,7 @@ const COPY = {
     cta: {
       note: 'Następny krok',
       label: 'Umów rozmowę',
-      href: '/contact',
+      href: getPublicPath('contact', 'pl'),
     },
   },
   en: {
@@ -41,16 +43,29 @@ const COPY = {
     cta: {
       note: 'Next step',
       label: 'Schedule a conversation',
-      href: '/en/contact',
+      href: getPublicPath('contact', 'en'),
     },
+  },
+} as const
+
+const SEO = {
+  pl: {
+    title: 'Produkty | Profitia',
+    description: 'Rent an Expert / Buyer i SPOT Check - produkty Profitia wspierające oszczędności, sourcing, organizację, procesy, narzędzia oraz diagnozę dojrzałości funkcji zakupowej.',
+  },
+  en: {
+    title: 'Products | Profitia',
+    description: 'Rent an Expert / Buyer and SPOT Check - Profitia products supporting savings, sourcing, organisation, processes, tools, and procurement maturity diagnosis.',
   },
 } as const
 
 export default function ProductsPage({ locale }: Props) {
   const c = COPY[locale]
+  const seo = SEO[locale]
 
   return (
     <>
+      <PublicJsonLd routeId="products:index" locale={locale} title={seo.title} description={seo.description} />
       <CapabilityHero
         locale={locale}
         eyebrow={c.hero.eyebrow}

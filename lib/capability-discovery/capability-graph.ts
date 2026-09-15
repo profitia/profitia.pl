@@ -6,6 +6,7 @@
 // ─────────────────────────────────────────────────────────
 
 import type { CapabilityEdge, CapabilityNode } from "@/types";
+import { getStablePublicRoutePath } from '@/lib/routing/public-routes'
 
 export const CAPABILITY_NODES: CapabilityNode[] = [
 
@@ -316,7 +317,8 @@ export function getCapabilityNodeById(id: string): CapabilityNode | null {
 
 // ── Helper: Get node by page slug ─────────────────────────
 export function getCapabilityNodeBySlug(slug: string): CapabilityNode | null {
-  return CAPABILITY_NODES.find((n) => n.slug === slug) ?? null;
+  const stableSlug = getStablePublicRoutePath(slug) ?? slug
+  return CAPABILITY_NODES.find((n) => n.slug === stableSlug) ?? null;
 }
 
 // ── Helper: Get related nodes ─────────────────────────────

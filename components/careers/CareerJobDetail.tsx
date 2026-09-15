@@ -1,14 +1,12 @@
 import Link from 'next/link'
 import type { JobPost, CareerLocale } from '@/lib/careers'
 import { tCareer } from '@/lib/careers'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 const BREADCRUMB = {
   pl: { home: 'Strona główna', career: 'Kariera' },
   en: { home: 'Home', career: 'Career' },
 }
-
-const HOME_HREFS: Record<CareerLocale, string> = { pl: '/', en: '/en' }
-const CAREER_HREFS: Record<CareerLocale, string> = { pl: '/career', en: '/en/career' }
 
 interface Props {
   job: JobPost
@@ -29,6 +27,8 @@ export default function CareerJobDetail({ job, locale }: Props) {
   const location = tCareer(job.location, locale)
   const employmentType = tCareer(job.employmentType, locale)
   const summary = tCareer(job.summary, locale)
+  const homeHref = getPublicPath('home', locale)
+  const careerHref = getPublicPath('career:index', locale)
 
   return (
     <section className="pt-20 pb-16 border-b border-gray-100">
@@ -39,11 +39,11 @@ export default function CareerJobDetail({ job, locale }: Props) {
           className="flex items-center gap-2 text-xs text-gray-400 mb-12"
           aria-label={locale === 'en' ? 'Breadcrumb' : 'Ścieżka nawigacji'}
         >
-          <Link href={HOME_HREFS[locale]} className="hover:text-brand-blue transition-colors duration-200">
+          <Link href={homeHref} className="hover:text-brand-blue transition-colors duration-200">
             {c.home}
           </Link>
           <span aria-hidden="true">/</span>
-          <Link href={CAREER_HREFS[locale]} className="hover:text-brand-blue transition-colors duration-200">
+          <Link href={careerHref} className="hover:text-brand-blue transition-colors duration-200">
             {c.career}
           </Link>
           <span aria-hidden="true">/</span>

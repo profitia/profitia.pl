@@ -8,6 +8,7 @@ import plDict from '@/dictionaries/pl.json'
 import enDict from '@/dictionaries/en.json'
 import { useLanguageNavigation } from './LanguageNavigationProvider'
 import { resolveLanguageSwitchPath } from '@/lib/articles/language-navigation'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 const LOCALE_COOKIE = 'PROFITIA_LOCALE'
 
@@ -23,24 +24,30 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const isEN = localeOverride ? localeOverride === 'en' : pathname.startsWith('/en')
   const currentLocale = isEN ? 'en' : 'pl'
   const dict = isEN ? enDict : plDict
-  const prefix = isEN ? '/en' : ''
+  const servicesHref = getPublicPath('services:index', currentLocale)
+  const productsHref = getPublicPath('products:index', currentLocale)
+  const educationHref = getPublicPath('education:index', currentLocale)
+  const careerHref = getPublicPath('career:index', currentLocale)
+  const aboutHref = getPublicPath('about', currentLocale)
+  const contactHref = getPublicPath('contact', currentLocale)
+  const spotHref = getPublicPath('service:analiza-spot', currentLocale)
+  const homeHref = getPublicPath('home', currentLocale)
+  const blogHref = isEN ? '/en/blog' : '/blog'
   const advisoryLinks = [
-    { href: `${prefix}/services/analiza-spot`, label: dict.nav.startWithAssessment },
-    { href: `${prefix}/services`, label: dict.nav.services },
-    { href: `${prefix}/products`, label: dict.nav.products },
+    { href: spotHref, label: dict.nav.startWithAssessment },
+    { href: servicesHref, label: dict.nav.services },
+    { href: productsHref, label: dict.nav.products },
   ]
   const isAdvisoryLinkActive = (href: string) => {
-    const spotHref = `${prefix}/services/analiza-spot`
-
     if (href === spotHref) {
       return pathname === spotHref
     }
 
-    if (href === `${prefix}/services`) {
+    if (href === servicesHref) {
       return pathname === href || (pathname.startsWith(`${href}/`) && pathname !== spotHref)
     }
 
-    if (href === `${prefix}/products`) {
+    if (href === productsHref) {
       return pathname === href || pathname.startsWith(`${href}/`)
     }
 
@@ -49,9 +56,14 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const isAdvisoryActive = advisoryLinks.some((link) => isAdvisoryLinkActive(link.href))
 
   // ── Legal pages always show the scrolled (stable) header ──────
-  const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
-    (p) => pathname === p || pathname === `/en${p}`
-  )
+  const isLegalPage = [
+    getPublicPath('privacy', 'pl'),
+    getPublicPath('privacy', 'en'),
+    getPublicPath('cookies', 'pl'),
+    getPublicPath('cookies', 'en'),
+    getPublicPath('terms', 'pl'),
+    getPublicPath('terms', 'en'),
+  ].includes(pathname)
   const showScrolled = scrolled || isLegalPage
 
   // ── Scroll detection ──────────────────────────────────────────
@@ -115,13 +127,13 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   // ── Navigation structure ──────────────────────────────────────
   // Primary order requested by design pass.
   const primaryNav = [
-    { href: `${prefix}/education`, label: dict.nav.education },
-    { href: `${prefix}/career`, label: dict.nav.career },
-    { href: `${prefix}/blog`, label: dict.nav.blog },
-    { href: `${prefix}/about`, label: dict.nav.about },
+    { href: educationHref, label: dict.nav.education },
+    { href: careerHref, label: dict.nav.career },
+    { href: blogHref, label: dict.nav.blog },
+    { href: aboutHref, label: dict.nav.about },
   ]
   const secondaryNav = [
-    { href: `${prefix}/contact`, label: dict.nav.contact },
+    { href: contactHref, label: dict.nav.contact },
   ]
 
   return (
@@ -143,7 +155,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
         >
           {/* Logo */}
           <Link
-            href={isEN ? '/en' : '/'}
+            href={homeHref}
             className="flex items-center flex-shrink-0 opacity-100 hover:opacity-70 transition-opacity duration-200"
             aria-label={isEN ? 'Profitia - home' : 'Profitia - strona główna'}
           >
@@ -295,7 +307,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
 
             {/* CTA - advisory dark graphite */}
             <Link
-              href={`${prefix}/contact`}
+              href={getPublicPath('contact', currentLocale)}
               className="hidden md:inline-flex items-center justify-center rounded-lg bg-gray-900 px-3 py-[9px] text-[12.5px] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:bg-brand-blue lg:px-4 lg:text-[13px]"
             >
               {dict.nav.cta}
@@ -431,7 +443,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
 
             {/* CTA */}
             <Link
-              href={`${prefix}/contact`}
+              href={getPublicPath('contact', currentLocale)}
               onClick={() => setMobileOpen(false)}
               className="flex items-center justify-center w-full py-4 text-sm font-medium text-white bg-gray-900 hover:bg-brand-blue rounded-xl transition-colors duration-200"
             >

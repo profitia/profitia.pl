@@ -9,10 +9,23 @@ import {
   CareerFAQ,
   CareerCTA,
 } from '@/components/careers'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 interface Props {
   locale: CareerLocale
 }
+
+const SEO = {
+  pl: {
+    title: 'Kariera | Profitia',
+    description: 'Praca w Profitia - środowisko dla osób, które chcą pracować na realnych problemach zakupowych. Analityka, negocjacje, doradztwo.',
+  },
+  en: {
+    title: 'Career | Profitia',
+    description: 'Working at Profitia - a professional environment for people who want to work on real procurement problems. Analytics, negotiations, advisory.',
+  },
+} as const
 
 const COPY = {
   pl: {
@@ -151,7 +164,7 @@ const COPY = {
     cta: {
       invitation: 'Dołącz do zespołu, który łączy analitykę, negocjacje i doradztwo zakupowe. Pracuj przy projektach mających realny wpływ na decyzje i wyniki organizacji.',
       label: 'Aplikuj teraz',
-      href: '/career/apply',
+      href: getPublicPath('career:apply', 'pl'),
     },
   },
   en: {
@@ -290,7 +303,7 @@ const COPY = {
     cta: {
       invitation: 'Join a team that combines analytics, negotiations and procurement advisory. Work on projects that have a real impact on organisational decisions and outcomes.',
       label: 'Apply now',
-      href: '/en/career/apply',
+      href: getPublicPath('career:apply', 'en'),
     },
   },
 }
@@ -308,9 +321,11 @@ const COPY = {
 export default function CareerListingPage({ locale }: Props) {
   const c = COPY[locale]
   const jobs = getAllJobs()
+  const seo = SEO[locale]
 
   return (
     <>
+      <PublicJsonLd routeId="career:index" locale={locale} title={seo.title} description={seo.description} />
       <CareerHero
         eyebrow={c.hero.eyebrow}
         title={c.hero.title}

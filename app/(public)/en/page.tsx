@@ -1,24 +1,23 @@
 import type { Metadata } from 'next'
+import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import { getDictionary } from '@/lib/i18n'
 import HomePageContent from '@/components/pages/HomePageContent'
+import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary('en')
-  return {
+  return buildPublicMetadata('home', 'en', {
     title: dict.homepage.meta.title,
     description: dict.homepage.meta.description,
-    alternates: {
-      canonical: 'https://www.profitia.pl/en',
-      languages: {
-        'pl': 'https://www.profitia.pl',
-        'en': 'https://www.profitia.pl/en',
-        'x-default': 'https://www.profitia.pl',
-      },
-    },
-  }
+  })
 }
 
 export default async function EnHomePage() {
   const dict = await getDictionary('en')
-  return <HomePageContent dict={dict} />
+  return (
+    <>
+      <PublicJsonLd routeId="home" locale="en" title={dict.homepage.meta.title} description={dict.homepage.meta.description} />
+      <HomePageContent dict={dict} />
+    </>
+  )
 }

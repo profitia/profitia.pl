@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { Capability, Locale } from '@/lib/capabilities'
 import { t } from '@/lib/capabilities'
+import { getCapabilityPath } from '@/lib/routing/public-routes'
 
 interface Props {
   capabilities: Capability[]
@@ -10,8 +11,6 @@ interface Props {
   eyebrow: string
   title: string
 }
-
-const LOCALE_PREFIX: Record<Locale, string> = { pl: '', en: '/en' }
 
 /**
  * Navigation labels - type-derived, not ctaLabel.
@@ -47,8 +46,7 @@ export default function CapabilityRelated({ capabilities, locale, eyebrow, title
       </h2>
       <div>
         {capabilities.slice(0, 3).map((cap) => {
-          const capType = cap.type === 'service' ? 'services' : 'education'
-          const href = `${LOCALE_PREFIX[locale]}/${capType}/${cap.slug}`
+          const href = getCapabilityPath(cap.type, cap.slug, locale)
           const capTitle = t(cap.title, locale)
           const capEyebrow = t(cap.eyebrow, locale)
           const navLabel = NAV_LABEL[cap.type][locale]

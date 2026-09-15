@@ -25,6 +25,7 @@ import { submitNewsletterForm } from '@/lib/forms/submission'
 import type { NewsletterFormValues, FieldErrors, FormSubmitState, Locale } from '@/lib/forms/types'
 import { getNewsletterConsentContent } from '@/lib/newsletter/consent'
 import { TurnstileWidget, type TurnstileWidgetHandle, type TurnstileWidgetStatus } from './TurnstileWidget'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
 export type NewsletterVariant = 'footer' | 'inline' | 'compact'
 
@@ -69,7 +70,7 @@ const INITIAL: NewsletterFormValues = { email: '', consentGdpr: false }
 export function NewsletterForm({ locale = 'pl', variant = 'inline' }: NewsletterFormProps) {
   const t = COPY[locale]
   const pathname = usePathname()
-  const privacyHref = locale === 'pl' ? '/privacy' : '/en/privacy'
+  const privacyHref = getPublicPath('privacy', locale)
   const consentContent = getNewsletterConsentContent(locale)
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || (
     process.env.NODE_ENV === 'development' ? 'newsletter-local-dev-site-key' : ''
