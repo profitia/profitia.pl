@@ -40,15 +40,17 @@ function joinPath(...parts: string[]): string {
 }
 
 const PL_LISTING_PATHS = {
-  services: '/uslugi',
-  products: '/produkty',
+  advisory: '/doradztwo',
+  services: '/doradztwo/uslugi',
+  products: '/doradztwo/produkty',
   education: '/rozwoj-kompetencji',
   career: '/kariera',
 } as const
 
 const EN_LISTING_PATHS = {
-  services: '/en/services',
-  products: '/en/products',
+  advisory: '/en/advisory',
+  services: '/en/advisory/services',
+  products: '/en/advisory/products',
   education: '/en/education',
   career: '/en/career',
 } as const
@@ -63,15 +65,15 @@ const STATIC_ROUTE_ENTRIES: PublicRouteEntry[] = [
   {
     id: 'services:index',
     kind: 'static',
-    paths: { pl: '/uslugi', en: '/en/services' },
-    legacyPaths: ['/services'],
+    paths: { pl: '/doradztwo/uslugi', en: '/en/advisory/services' },
+    legacyPaths: ['/services', '/uslugi', '/en/services'],
     indexable: true,
   },
   {
     id: 'products:index',
     kind: 'static',
-    paths: { pl: '/produkty', en: '/en/products' },
-    legacyPaths: ['/products'],
+    paths: { pl: '/doradztwo/produkty', en: '/en/advisory/products' },
+    legacyPaths: ['/products', '/produkty', '/en/products'],
     indexable: true,
   },
   {
@@ -137,6 +139,7 @@ type CapabilityRouteSeed = {
   plSlug: string
   enSlug: string
   kind: 'service' | 'education'
+  placement?: 'listing' | 'advisory-root'
   legacyPaths?: string[]
 }
 
@@ -146,24 +149,24 @@ const CAPABILITY_ROUTE_SEEDS: CapabilityRouteSeed[] = [
     kind: 'service',
     plSlug: 'projekty-doradcze',
     enSlug: 'advisory-projects',
-    legacyPaths: ['/services/projekty-doradcze', '/services/subpage-services-1', '/en/services/projekty-doradcze', '/en/services/subpage-services-1'],
+    legacyPaths: ['/services/projekty-doradcze', '/services/subpage-services-1', '/uslugi/projekty-doradcze', '/en/services/projekty-doradcze', '/en/services/subpage-services-1', '/en/advisory-projects'],
   },
-  { entityId: 'interim-management', kind: 'service', plSlug: 'zarzadzanie-tymczasowe-zakupami', enSlug: 'interim-management', legacyPaths: ['/services/interim-management'] },
-  { entityId: 'procurement-transformation', kind: 'service', plSlug: 'transformacja-funkcji-zakupowej', enSlug: 'procurement-transformation', legacyPaths: ['/services/procurement-transformation'] },
-  { entityId: 'category-strategy', kind: 'service', plSlug: 'strategia-kategorii-zakupowej', enSlug: 'category-strategy', legacyPaths: ['/services/category-strategy'] },
-  { entityId: 'operating-model-design', kind: 'service', plSlug: 'model-operacyjny-zakupow', enSlug: 'operating-model-design', legacyPaths: ['/services/operating-model-design'] },
-  { entityId: 'procurement-pmo', kind: 'service', plSlug: 'pmo-zakupowe', enSlug: 'procurement-pmo', legacyPaths: ['/services/procurement-pmo'] },
-  { entityId: 'analiza-spot', kind: 'service', plSlug: 'analiza-spot', enSlug: 'spot-analysis', legacyPaths: ['/services/analiza-spot', '/en/services/analiza-spot'] },
-  { entityId: 'should-cost-analysis', kind: 'service', plSlug: 'analiza-kosztow-should-cost', enSlug: 'should-cost-analysis', legacyPaths: ['/services/should-cost-analysis'] },
-  { entityId: 'negotiation-preparation', kind: 'service', plSlug: 'przygotowanie-do-negocjacji', enSlug: 'negotiation-preparation', legacyPaths: ['/services/negotiation-preparation'] },
-  { entityId: 'supplier-benchmarking', kind: 'service', plSlug: 'benchmarking-dostawcow', enSlug: 'supplier-benchmarking', legacyPaths: ['/services/supplier-benchmarking'] },
-  { entityId: 'supplier-negotiation-support', kind: 'service', plSlug: 'wsparcie-negocjacji-z-dostawcami', enSlug: 'supplier-negotiation-support', legacyPaths: ['/services/supplier-negotiation-support'] },
-  { entityId: 'spend-cube', kind: 'service', plSlug: 'analiza-wydatkow-spend-cube', enSlug: 'spend-cube', legacyPaths: ['/services/spend-cube'] },
-  { entityId: 'spend-analytics', kind: 'service', plSlug: 'analityka-wydatkow', enSlug: 'spend-analytics', legacyPaths: ['/services/spend-analytics'] },
-  { entityId: 'procurement-dashboards', kind: 'service', plSlug: 'dashboardy-zakupowe', enSlug: 'procurement-dashboards', legacyPaths: ['/services/procurement-dashboards'] },
-  { entityId: 'supplier-intelligence', kind: 'service', plSlug: 'analiza-dostawcow', enSlug: 'supplier-intelligence', legacyPaths: ['/services/supplier-intelligence'] },
-  { entityId: 'procurement-kpi-systems', kind: 'service', plSlug: 'systemy-kpi-zakupow', enSlug: 'procurement-kpi-systems', legacyPaths: ['/services/procurement-kpi-systems'] },
-  { entityId: 'coaching-zakupowy', kind: 'service', plSlug: 'coaching-zakupowy', enSlug: 'procurement-coaching', legacyPaths: ['/services/coaching-zakupowy', '/en/services/coaching-zakupowy'] },
+  { entityId: 'interim-management', kind: 'service', plSlug: 'zarzadzanie-tymczasowe-zakupami', enSlug: 'interim-management', legacyPaths: ['/services/interim-management', '/uslugi/zarzadzanie-tymczasowe-zakupami', '/en/services/interim-management'] },
+  { entityId: 'procurement-transformation', kind: 'service', plSlug: 'transformacja-funkcji-zakupowej', enSlug: 'procurement-transformation', legacyPaths: ['/services/procurement-transformation', '/uslugi/transformacja-funkcji-zakupowej', '/en/services/procurement-transformation'] },
+  { entityId: 'category-strategy', kind: 'service', plSlug: 'strategia-kategorii-zakupowej', enSlug: 'category-strategy', legacyPaths: ['/services/category-strategy', '/uslugi/strategia-kategorii-zakupowej', '/en/services/category-strategy'] },
+  { entityId: 'operating-model-design', kind: 'service', plSlug: 'model-operacyjny-zakupow', enSlug: 'operating-model-design', legacyPaths: ['/services/operating-model-design', '/uslugi/model-operacyjny-zakupow', '/en/services/operating-model-design'] },
+  { entityId: 'procurement-pmo', kind: 'service', plSlug: 'pmo-zakupowe', enSlug: 'procurement-pmo', legacyPaths: ['/services/procurement-pmo', '/uslugi/pmo-zakupowe', '/en/services/procurement-pmo'] },
+  { entityId: 'analiza-spot', kind: 'service', placement: 'advisory-root', plSlug: 'analiza-spot', enSlug: 'spot-analysis', legacyPaths: ['/services/analiza-spot', '/uslugi/analiza-spot', '/en/services/analiza-spot', '/en/services/spot-analysis'] },
+  { entityId: 'should-cost-analysis', kind: 'service', plSlug: 'analiza-kosztow-should-cost', enSlug: 'should-cost-analysis', legacyPaths: ['/services/should-cost-analysis', '/uslugi/analiza-kosztow-should-cost', '/en/services/should-cost-analysis'] },
+  { entityId: 'negotiation-preparation', kind: 'service', plSlug: 'przygotowanie-do-negocjacji', enSlug: 'negotiation-preparation', legacyPaths: ['/services/negotiation-preparation', '/uslugi/przygotowanie-do-negocjacji', '/en/services/negotiation-preparation'] },
+  { entityId: 'supplier-benchmarking', kind: 'service', plSlug: 'benchmarking-dostawcow', enSlug: 'supplier-benchmarking', legacyPaths: ['/services/supplier-benchmarking', '/uslugi/benchmarking-dostawcow', '/en/services/supplier-benchmarking'] },
+  { entityId: 'supplier-negotiation-support', kind: 'service', plSlug: 'wsparcie-negocjacji-z-dostawcami', enSlug: 'supplier-negotiation-support', legacyPaths: ['/services/supplier-negotiation-support', '/uslugi/wsparcie-negocjacji-z-dostawcami', '/en/services/supplier-negotiation-support'] },
+  { entityId: 'spend-cube', kind: 'service', plSlug: 'analiza-wydatkow-spend-cube', enSlug: 'spend-cube', legacyPaths: ['/services/spend-cube', '/uslugi/analiza-wydatkow-spend-cube', '/en/services/spend-cube'] },
+  { entityId: 'spend-analytics', kind: 'service', plSlug: 'analityka-wydatkow', enSlug: 'spend-analytics', legacyPaths: ['/services/spend-analytics', '/uslugi/analityka-wydatkow', '/en/services/spend-analytics'] },
+  { entityId: 'procurement-dashboards', kind: 'service', plSlug: 'dashboardy-zakupowe', enSlug: 'procurement-dashboards', legacyPaths: ['/services/procurement-dashboards', '/uslugi/dashboardy-zakupowe', '/en/services/procurement-dashboards'] },
+  { entityId: 'supplier-intelligence', kind: 'service', plSlug: 'analiza-dostawcow', enSlug: 'supplier-intelligence', legacyPaths: ['/services/supplier-intelligence', '/uslugi/analiza-dostawcow', '/en/services/supplier-intelligence'] },
+  { entityId: 'procurement-kpi-systems', kind: 'service', plSlug: 'systemy-kpi-zakupow', enSlug: 'procurement-kpi-systems', legacyPaths: ['/services/procurement-kpi-systems', '/uslugi/systemy-kpi-zakupow', '/en/services/procurement-kpi-systems'] },
+  { entityId: 'coaching-zakupowy', kind: 'service', plSlug: 'coaching-zakupowy', enSlug: 'procurement-coaching', legacyPaths: ['/services/coaching-zakupowy', '/uslugi/coaching-zakupowy', '/en/services/coaching-zakupowy', '/en/services/procurement-coaching'] },
   { entityId: 'akademia-zakupow', kind: 'education', plSlug: 'akademia-zakupow', enSlug: 'procurement-academy', legacyPaths: ['/education/akademia-zakupow', '/en/education/akademia-zakupow'] },
   { entityId: 'procurement-excellence', kind: 'education', plSlug: 'doskonalosc-zakupowa', enSlug: 'procurement-excellence', legacyPaths: ['/education/procurement-excellence'] },
   { entityId: 'strategic-sourcing', kind: 'education', plSlug: 'strategiczny-sourcing', enSlug: 'strategic-sourcing', legacyPaths: ['/education/strategic-sourcing'] },
@@ -197,13 +200,20 @@ const JOB_ROUTE_ENTRIES: PublicRouteEntry[] = [
 
 function buildCapabilityRouteEntry(seed: CapabilityRouteSeed): PublicRouteEntry {
   const isService = seed.kind === 'service'
+  const servicePlacement = seed.placement ?? 'listing'
+  const plBasePath = isService
+    ? (servicePlacement === 'advisory-root' ? PL_LISTING_PATHS.advisory : PL_LISTING_PATHS.services)
+    : PL_LISTING_PATHS.education
+  const enBasePath = isService
+    ? (servicePlacement === 'advisory-root' ? EN_LISTING_PATHS.advisory : EN_LISTING_PATHS.services)
+    : EN_LISTING_PATHS.education
   return {
     id: `${seed.kind}:${seed.entityId}`,
     kind: seed.kind,
     entityId: seed.entityId,
     paths: {
-      pl: joinPath(isService ? PL_LISTING_PATHS.services : PL_LISTING_PATHS.education, seed.plSlug),
-      en: joinPath(isService ? EN_LISTING_PATHS.services : EN_LISTING_PATHS.education, seed.enSlug),
+      pl: joinPath(plBasePath, seed.plSlug),
+      en: joinPath(enBasePath, seed.enSlug),
     },
     legacyPaths: seed.legacyPaths,
     indexable: true,
@@ -362,7 +372,12 @@ export function getDynamicStaticParams(
 ): Array<{ slug: string }> {
   const sourceEntries = PUBLIC_ROUTE_ENTRIES.filter((entry) => {
     if (kind === 'career') return entry.kind === 'career' && Boolean(entry.entityId) && entry.id.startsWith('job:')
-    return entry.kind === kind && Boolean(entry.entityId)
+    if (entry.kind !== kind || !entry.entityId) return false
+    if (kind !== 'service') return true
+
+    const path = entry.paths[locale]
+    const listingBase = locale === 'pl' ? PL_LISTING_PATHS.services : EN_LISTING_PATHS.services
+    return Boolean(path) && normalizePath(path!).startsWith(`${listingBase}/`)
   })
 
   return sourceEntries.flatMap((entry) => {
