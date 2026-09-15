@@ -1820,9 +1820,12 @@ The Legal System is composed of 8 canonical components:
 
 **Layout behavior:**
 
-- **Desktop:** Two-column grid - `240px` sticky sidebar + fluid content column (`max-w-[65ch]`)
-- **Mobile:** Single column - collapsible TOC above content
-- **Sidebar:** `sticky top-28 self-start` on desktop; accordion pattern on mobile
+- **Desktop:** Two-column grid - `240px` sidebar column + fluid content column (`max-w-[65ch]`)
+- **Desktop sticky authority - canonical and locked:** the outer `aside` in `ArticleTOCSidebar` owns `lg:sticky lg:top-28 lg:self-start`; the inner desktop `nav` is visual-only and must not carry `sticky`, `fixed`, manual `left`, or manual `width` positioning
+- **Desktop sticky boundary - canonical and locked:** the sticky constraint is the `ArticleLayout` grid row stretched by the article content column, so the TOC stays anchored while reading middle and lower sections, then releases naturally with the end of the main article content
+- **Desktop overlap guard - canonical and locked:** the sidebar must never overlap the author block, newsletter, related articles, or footer
+- **Mobile and tablet:** Single column - collapsible TOC in normal document flow with no sticky or fixed positioning
+- **Prohibited implementation:** never replace this pattern with global `position: fixed` or manual scroll listeners for TOC positioning
 - **Content width:** Constrained to `max-w-[65ch]` - optimal for long-form reading
 - **Spacing:** Deep decompression at page bottom (`pb-32 lg:pb-44`) - reading should end with calm, not collision with footer
 
@@ -2895,7 +2898,7 @@ All components are in `components/blog/`. Barrel export via `components/blog/ind
 | `ReadingProgress` | **Client** | Fixed `2px` top progress bar - scroll-driven |
 | `ArticleHero` | Server | back link + metadata row + H1 + subtitle + author + cover image |
 | `ArticleLayout` | **Server** | Server-side TOC extraction + prose render via `dangerouslySetInnerHTML` |
-| `ArticleTOCSidebar` | **Client** | TOC UI + IntersectionObserver for active section tracking |
+| `ArticleTOCSidebar` | **Client** | TOC UI + IntersectionObserver for active section tracking; desktop `aside` owns `lg:sticky lg:top-28 lg:self-start`, mobile/tablet stay in normal flow |
 | `ArticleAuthor` | Server | Author credential block - name, role, bio, initial avatar |
 | `ArticleNewsletter` | **Client** | Inline Intelligence Brief subscription form |
 | `ArticleRelated` | Server | Up to 3 related articles from `relatedSlugs` |

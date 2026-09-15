@@ -11,6 +11,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import type { ArticleTOCItem } from '@/lib/content/types'
 
+const TOC_SCROLL_OFFSET = 112
+
 interface Props {
   locale: 'pl' | 'en'
   tocItems: ArticleTOCItem[]
@@ -41,7 +43,8 @@ function TOCItem({
           const el = document.getElementById(item.id)
           if (el) {
             const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' })
+            const targetTop = Math.max(0, el.getBoundingClientRect().top + window.scrollY - TOC_SCROLL_OFFSET)
+            window.scrollTo({ top: targetTop, behavior: prefersReduced ? 'auto' : 'smooth' })
             window.history.pushState(null, '', `#${item.id}`)
           }
         }}
@@ -91,7 +94,7 @@ export function ArticleTOCSidebar({ locale, tocItems }: Props) {
   const navigationLabel = locale === 'en' ? 'Article table of contents' : 'Spis treści artykułu'
 
   return (
-    <aside>
+    <aside className="lg:sticky lg:top-28 lg:self-start">
       {/* Mobile: collapsible */}
       <div className="lg:hidden mb-8 border border-gray-100 rounded-lg overflow-hidden">
         <button
@@ -138,7 +141,7 @@ export function ArticleTOCSidebar({ locale, tocItems }: Props) {
       {/* Desktop: sticky */}
       <nav
         aria-label={navigationLabel}
-        className="hidden lg:block sticky top-28 self-start"
+        className="hidden lg:block"
       >
         <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-5">
           {label}
