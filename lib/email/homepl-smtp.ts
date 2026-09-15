@@ -15,6 +15,7 @@ export interface HomeplSmtpEmailInput {
   text?: string
   html: string
   replyTo?: string
+  messageId?: string
   attachments?: Array<{
     filename: string
     content: Buffer
@@ -324,6 +325,7 @@ export async function sendHomeplSmtpEmail(
       ...(ccRecipients.length ? { cc: ccRecipients } : {}),
       ...(bccRecipients.length ? { bcc: bccRecipients } : {}),
       ...(replyTo ? { replyTo } : {}),
+      ...(input.messageId ? { messageId: input.messageId } : {}),
       subject: input.subject.trim(),
       ...(input.text ? { text: input.text } : {}),
       html: input.html,

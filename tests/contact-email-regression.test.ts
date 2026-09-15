@@ -57,4 +57,15 @@ assert.equal(confirmationEmail.replyTo, 'kontakt@profitia.pl')
 assert.equal(confirmationEmail.subject, 'Dziękujemy za kontakt z Profitia')
 assert.equal(confirmationEmail.attachments, undefined)
 
+const enConfirmationEmail = buildContactConfirmationEmail({
+  ...submission,
+  locale: 'en',
+} as ContactSubmission, env)
+assert.equal(enConfirmationEmail.to, submission.email)
+assert.equal(enConfirmationEmail.replyTo, 'kontakt@profitia.pl')
+assert.equal(enConfirmationEmail.subject, 'Thank you for contacting Profitia')
+assert.equal(enConfirmationEmail.attachments, undefined)
+assert.match(String(confirmationEmail.html), /Otrzymaliśmy Twoją wiadomość/)
+assert.match(String(enConfirmationEmail.html), /We have received your message/)
+
 console.log('PASS contact email regression preserves routing and remains attachment-free')
