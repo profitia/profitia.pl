@@ -159,7 +159,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
 
           {/* Desktop nav */}
           <nav
-            className="hidden md:flex items-center gap-6"
+            className="hidden md:flex items-center gap-4 lg:gap-6"
             aria-label={isEN ? 'Main navigation' : 'Nawigacja główna'}
           >
             <div
@@ -175,7 +175,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             >
               <button
                 type="button"
-                className={`relative inline-flex items-center gap-1 text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
+                className={`relative inline-flex items-center gap-1 text-[13px] lg:text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isAdvisoryActive || advisoryOpen ? 'text-brand-blue' : 'text-gray-500 hover:text-brand-blue'
                 } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-md`}
                 aria-haspopup="menu"
@@ -222,7 +222,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
+                className={`relative text-[13px] lg:text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isActive(link.href)
                     ? 'text-brand-blue'
                     : 'text-gray-500 hover:text-brand-blue'
@@ -239,14 +239,14 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             ))}
 
             {/* Visual separator */}
-            <span className="w-px h-3.5 bg-gray-200 mx-0.5" aria-hidden="true" />
+            <span className="mx-0 h-3.5 w-px bg-gray-200 lg:mx-0.5" aria-hidden="true" />
 
             {/* Secondary links */}
             {secondaryNav.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[13.5px] tracking-[-0.01em] transition-colors duration-200 ease-out ${
+                className={`text-[13px] lg:text-[13.5px] tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isActive(link.href)
                     ? 'text-brand-blue font-medium'
                     : 'text-gray-500 hover:text-brand-blue font-normal'
@@ -258,7 +258,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
           </nav>
 
           {/* Right: lang switcher + CTA + hamburger */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 lg:gap-4">
 
             {/* Language switcher - desktop */}
             <div
@@ -296,7 +296,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             {/* CTA - advisory dark graphite */}
             <Link
               href={`${prefix}/contact`}
-              className="hidden md:inline-flex items-center justify-center px-4 py-[9px] text-[13px] font-medium text-white bg-gray-900 hover:bg-brand-blue rounded-lg transition-colors duration-200 tracking-[-0.01em]"
+              className="hidden md:inline-flex items-center justify-center rounded-lg bg-gray-900 px-3 py-[9px] text-[12.5px] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:bg-brand-blue lg:px-4 lg:text-[13px]"
             >
               {dict.nav.cta}
             </Link>
