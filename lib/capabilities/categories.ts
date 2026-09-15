@@ -16,8 +16,8 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
       en: 'Advisory & Transformation',
     },
     description: {
-      pl: 'Budujemy funkcje zakupowe, które dostarczają powtarzalne i mierzalne wyniki. Dokumentowalne oszczędności, decyzje oparte na danych i procesy, które można skalować.',
-      en: 'We build procurement functions that deliver consistent and measurable results. Documented savings, data-grounded decisions and processes that scale.',
+      pl: 'Budujemy funkcje zakupowe, które dostarczają powtarzalne i mierzalne wyniki. Diagnoza dojrzałości, decyzje oparte na danych i procesy, które można skalować.',
+      en: 'We build procurement functions that deliver consistent and measurable results. Maturity diagnosis, data-grounded decisions, and processes that scale.',
     },
   },
   {
@@ -31,8 +31,8 @@ export const SERVICE_SECTIONS: CapabilitySectionDef[] = [
       en: 'Negotiation & Cost Intelligence',
     },
     description: {
-      pl: 'Przygotowanie negocjacyjne oparte na danych, should-cost, analizie SPOT i benchmarkach rynkowych.',
-      en: 'Data-driven negotiation preparation: should-cost, SPOT analysis and market benchmarking.',
+      pl: 'Przygotowanie negocjacyjne oparte na danych, should-cost i benchmarkach rynkowych.',
+      en: 'Data-driven negotiation preparation built on should-cost analysis and market benchmarking.',
     },
   },
   {

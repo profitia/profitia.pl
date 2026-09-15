@@ -68,7 +68,7 @@ export const TONE_SYSTEM_HINTS: Record<string, Record<SupportedLocale, string>> 
 // ── CTA labels ────────────────────────────────────────────
 export const CTA_LABELS: Record<string, Record<SupportedLocale, string>> = {
   contact_form: { pl: "Porozmawiajmy", en: "Let's talk" },
-  spot_analysis: { pl: "Zamów Analizę SPOT", en: "Request SPOT Analysis" },
+  spot_analysis: { pl: "Zacznij od Analizy SPOT", en: "Start with SPOT Analysis" },
   workshop: { pl: "Dowiedz się o warsztatach", en: "Learn about workshops" },
   phone: { pl: "Zadzwoń do nas", en: "Call us" },
   email: { pl: "Napisz do nas", en: "Email us" },

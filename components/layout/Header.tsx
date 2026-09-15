@@ -25,10 +25,28 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const dict = isEN ? enDict : plDict
   const prefix = isEN ? '/en' : ''
   const advisoryLinks = [
+    { href: `${prefix}/services/analiza-spot`, label: dict.nav.startWithAssessment },
     { href: `${prefix}/services`, label: dict.nav.services },
     { href: `${prefix}/products`, label: dict.nav.products },
   ]
-  const isAdvisoryActive = advisoryLinks.some((link) => pathname === link.href || pathname.startsWith(`${link.href}/`))
+  const isAdvisoryLinkActive = (href: string) => {
+    const spotHref = `${prefix}/services/analiza-spot`
+
+    if (href === spotHref) {
+      return pathname === spotHref
+    }
+
+    if (href === `${prefix}/services`) {
+      return pathname === href || (pathname.startsWith(`${href}/`) && pathname !== spotHref)
+    }
+
+    if (href === `${prefix}/products`) {
+      return pathname === href || pathname.startsWith(`${href}/`)
+    }
+
+    return pathname === href || pathname.startsWith(`${href}/`)
+  }
+  const isAdvisoryActive = advisoryLinks.some((link) => isAdvisoryLinkActive(link.href))
 
   // ── Legal pages always show the scrolled (stable) header ──────
   const isLegalPage = ['/privacy', '/cookies', '/terms'].some(
@@ -159,7 +177,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                 type="button"
                 className={`relative inline-flex items-center gap-1 text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isAdvisoryActive || advisoryOpen ? 'text-brand-blue' : 'text-gray-500 hover:text-brand-blue'
-                }`}
+                } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-md`}
                 aria-haspopup="menu"
                 aria-expanded={advisoryOpen}
                 onClick={() => setAdvisoryOpen((current) => !current)}
@@ -186,10 +204,10 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                         href={link.href}
                         role="menuitem"
                         className={`flex items-center rounded-xl px-3 py-2 text-[13.5px] transition-colors duration-200 ${
-                          isActive(link.href)
+                          isAdvisoryLinkActive(link.href)
                             ? 'bg-[rgba(199,237,251,0.45)] text-brand-blue font-medium'
                             : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
-                        }`}
+                        } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
                       >
                         {link.label}
                       </Link>
@@ -356,10 +374,10 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
                       className={`block py-2 text-lg font-medium tracking-tight leading-tight transition-colors duration-150 ease-out ${
-                        isActive(link.href)
+                        isAdvisoryLinkActive(link.href)
                           ? 'text-brand-blue'
                           : 'text-gray-600 hover:text-brand-blue'
-                      }`}
+                      } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-md`}
                     >
                       {link.label}
                     </Link>

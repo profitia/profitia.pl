@@ -142,6 +142,7 @@ function buildRecommendationItem(
 
 // ── Build primary CTA ─────────────────────────────────────
 function buildPrimaryCTA(
+  intent: string,
   urgency: string,
   locale: "pl" | "en",
   escalationScore: number,
@@ -155,13 +156,17 @@ function buildPrimaryCTA(
     return {
       id: "CTA-URGENT",
       label: getCTALabel("contact_form", locale),
-      url: "/contact",
+      url: locale === "pl" ? "/contact" : "/en/contact",
       type: "contact_form",
       strength,
     };
   }
 
-  if (urgency === "U2" || escalationScore >= 50) {
+  const shouldOfferSpot =
+    ["I7_EXPLORATORY", "I5_SOURCING", "I1_SAVINGS"].includes(intent) &&
+    (urgency === "U2" || escalationScore >= 50);
+
+  if (shouldOfferSpot) {
     return {
       id: "CTA-SPOT",
       label: getCTALabel("spot_analysis", locale),
@@ -170,15 +175,15 @@ function buildPrimaryCTA(
       strength,
       subtext:
         locale === "pl"
-          ? "Diagnoza w 5-10 dni. Bez zobowiązań."
-          : "Diagnosis in 5-10 days. No commitment.",
+          ? "Kompleksowa diagnoza dojrzałości w 3-4 tygodnie."
+          : "Comprehensive maturity assessment in 3-4 weeks.",
     };
   }
 
   return {
     id: "CTA-SOFT",
     label: getCTALabel("contact_form", locale),
-    url: "/contact",
+    url: locale === "pl" ? "/contact" : "/en/contact",
     type: "contact_form",
     strength,
   };
@@ -226,6 +231,7 @@ export function runRecommendationRuntime(
     ["CFO", "CEO", "CPO"].includes(context.executiveRole);
 
   const cta = buildPrimaryCTA(
+    context.intent,
     context.urgency,
     locale,
     context.engagementScore, // proxy for escalation score

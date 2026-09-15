@@ -197,7 +197,7 @@ export interface RecommendationCard {
 // ── CTA System ────────────────────────────────────────────
 export type CTAType =
   | "contact_form"      // EP-1: /contact
-  | "spot_analysis"     // EP-2: fast diagnostic
+  | "spot_analysis"     // EP-2: procurement maturity assessment
   | "workshop"          // EP-3: education enquiry
   | "phone"             // EP-4: direct call
   | "email"             // EP-5: direct email

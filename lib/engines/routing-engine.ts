@@ -59,20 +59,20 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
         stepIndex: 0,
         type: "question",
         content:
-          "Where is the largest cost pressure right now — specific categories, a supplier, or overall spend visibility?",
+          "Is the savings issue tied to a specific category or supplier, or is the wider procurement function still too unclear to set priorities?",
       },
       {
         stepIndex: 1,
         type: "recommendation",
         recommendationId: "REC-SAV-01",
         content:
-          "A SPOT Analysis delivers an actionable savings map in 5–10 days — focused on the specific categories where margin is leaking most.",
+          "When the symptoms are visible but the root cause is still unclear, a SPOT Analysis assesses procurement maturity across sourcing, processes, organisation, and tools — so you know where savings work should begin.",
       },
       {
         stepIndex: 2,
         type: "escalation",
         ctaId: "CTA-02",
-        content: "Ready to quantify the opportunity? Let's scope a SPOT Analysis together.",
+        content: "If you need an objective starting point, we can scope a SPOT Analysis together.",
       },
     ],
   },
@@ -110,7 +110,7 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
     journeyId: "J-DATA-01",
     intent: "I2_FORECASTING",
     entryPoint: "/services/spend-analytics",
-    escalationCTA: "spot_analysis",
+    escalationCTA: "contact_form",
     estimatedSteps: 3,
     steps: [
       {
@@ -129,8 +129,8 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
       {
         stepIndex: 2,
         type: "escalation",
-        ctaId: "CTA-02",
-        content: "We can start with a SPOT Analysis to quickly map your spend landscape.",
+        ctaId: "CTA-01",
+        content: "The next step is to review your data landscape and define the right analytics scope together.",
       },
     ],
   },

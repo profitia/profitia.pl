@@ -35,14 +35,14 @@ export const ADAPTIVE_CTA_REGISTRY: AdaptiveCTAConfig[] = [
       en: "Start with a SPOT Analysis",
     },
     subLabel: {
-      pl: "5–10 dni roboczych do rekomendacji",
-      en: "5–10 working days to recommendations",
+      pl: "Kompleksowa diagnoza dojrzałości w 3–4 tygodnie",
+      en: "Comprehensive maturity assessment in 3–4 weeks",
     },
     url: "/services/analiza-spot",
     type: "spot_analysis",
-    urgencyFit: ["U1", "U2"],
+    urgencyFit: ["U2", "U3"],
     maturityPersonas: ["operational_buyer", "reactive_buyer"],
-    intents: ["I1_SAVINGS", "I8_NEGOTIATIONS"],
+    intents: ["I1_SAVINGS", "I5_SOURCING", "I7_EXPLORATORY"],
     strength: 8,
   },
 

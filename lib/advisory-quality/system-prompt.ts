@@ -21,13 +21,13 @@ const SERVICE_CATALOG = {
   advisory: [
     { name: "Projekty Doradcze", slug: "/services/projekty-doradcze" },
     { name: "Interim Management", slug: "/services/interim-management" },
+    { name: "Analiza SPOT", slug: "/services/analiza-spot" },
     { name: "Procurement Transformation", slug: "/services/procurement-transformation" },
     { name: "Category Strategy", slug: "/services/category-strategy" },
     { name: "Operating Model Design", slug: "/services/operating-model-design" },
     { name: "Procurement PMO", slug: "/services/procurement-pmo" },
   ],
   negotiation: [
-    { name: "Analiza SPOT", slug: "/services/analiza-spot" },
     { name: "Should-Cost Analysis", slug: "/services/should-cost-analysis" },
     { name: "Przygotowanie do Negocjacji", slug: "/services/negotiation-preparation" },
     { name: "Benchmarking Dostawców", slug: "/services/supplier-benchmarking" },
@@ -53,12 +53,12 @@ const SERVICE_CATALOG = {
 const INTENT_PRIORITY_SERVICES: Record<string, string[]> = {
   I1_SAVINGS: ["/services/analiza-spot", "/services/supplier-benchmarking", "/services/should-cost-analysis"],
   I2_FORECASTING: ["/services/spend-cube", "/services/spend-analytics", "/services/procurement-dashboards"],
-  I3_SUPPLIER_RISK: ["/services/supplier-intelligence", "/services/supplier-benchmarking", "/services/analiza-spot"],
+  I3_SUPPLIER_RISK: ["/services/supplier-intelligence", "/services/supplier-benchmarking", "/services/procurement-transformation"],
   I4_DIGITALIZATION: ["/services/spend-analytics", "/services/procurement-dashboards", "/services/procurement-kpi-systems"],
-  I5_SOURCING: ["/services/procurement-transformation", "/services/category-strategy", "/services/projekty-doradcze"],
+  I5_SOURCING: ["/services/analiza-spot", "/services/procurement-transformation", "/services/category-strategy"],
   I6_EDUCATION: ["/education/warsztaty-negocjacyjne", "/education/akademia-zakupow", "/education/fact-based-negotiation"],
   I7_EXPLORATORY: ["/services/analiza-spot", "/services/projekty-doradcze"],
-  I8_NEGOTIATIONS: ["/services/negotiation-preparation", "/services/supplier-negotiation-support", "/services/analiza-spot"],
+  I8_NEGOTIATIONS: ["/services/negotiation-preparation", "/services/should-cost-analysis", "/services/supplier-negotiation-support"],
   UNKNOWN: ["/services/analiza-spot", "/contact"],
 };
 
@@ -75,7 +75,7 @@ Jesteś doradcą zakupowym — jak senior konsultant, który jest dostępny na s
 TWOJE MYŚLENIE:
 - Myślisz w kategoriach: marża, EBIT, cash flow, ryzyko, pozycja negocjacyjna, dojrzałość zakupowa
 - Rozumiesz cost drivers, should-cost, spend visibility, category management, sourcing strategy
-- Wiesz, kiedy problem jest naprawdę pilny, kiedy wymaga transformacji, kiedy wystarczy szybka diagnostyka
+- Wiesz, kiedy problem jest naprawdę pilny, kiedy wymaga transformacji, a kiedy najpierw trzeba uporządkować punkt startu diagnozą dojrzałości
 - Reagujesz na sygnały: brak benchmarków, jedna podwyżka, firefighting, brak strategii kategorii, słaba widoczność wydatków`
     : `You are a procurement advisor at Profitia Management Consultants — a consultancy specializing in strategic procurement, negotiations, and procurement transformation in Poland and the CEE region.
 
@@ -86,7 +86,7 @@ You are a procurement advisor — like a senior consultant available on the webs
 YOUR THINKING:
 - You think in terms of: margin, EBIT, cash flow, risk, negotiating position, procurement maturity
 - You understand cost drivers, should-cost, spend visibility, category management, sourcing strategy
-- You know when a problem is genuinely urgent, when it requires transformation, when a quick diagnostic is enough
+- You know when a problem is genuinely urgent, when it requires transformation, and when the right first step is a maturity assessment
 - You respond to signals: no benchmarks, a single price increase, firefighting, no category strategy, poor spend visibility`;
 }
 

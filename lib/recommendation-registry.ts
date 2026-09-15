@@ -40,14 +40,14 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "SPOT Analysis",
     description:
-      "Fast diagnostic: 5-10 days from your data to a clear picture of where savings and negotiation leverage are.",
+      "Comprehensive 3-4 week procurement maturity assessment for teams that need an objective starting point before deciding what to improve.",
     url: "/services/analiza-spot",
     cta: "Explore service",
-    intentFit: ["I8_NEGOTIATIONS", "I1_SAVINGS"],
-    urgencyFit: ["U1"],
+    intentFit: ["I7_EXPLORATORY", "I5_SOURCING"],
+    urgencyFit: ["U2", "U3"],
     priority: "HIGH",
     confidenceThreshold: 0.6,
-    tags: ["fast track", "diagnostic", "spot"],
+    tags: ["maturity", "diagnostic", "starting point"],
   },
   {
     id: "R-I8-04",
@@ -111,14 +111,14 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "SPOT Analysis",
     description:
-      "Start here: fast spend diagnostic to surface the biggest savings opportunities in your top categories.",
+      "Start here when the procurement problem is visible but the root cause is still unclear — SPOT structures the situation and sets priorities.",
     url: "/services/analiza-spot",
     cta: "Explore service",
-    intentFit: ["I1_SAVINGS"],
-    urgencyFit: ["U1", "U2"],
+    intentFit: ["I1_SAVINGS", "I7_EXPLORATORY", "I5_SOURCING"],
+    urgencyFit: ["U2", "U3"],
     priority: "HIGH",
     confidenceThreshold: 0.6,
-    tags: ["savings", "quick win", "diagnostic"],
+    tags: ["savings", "maturity", "diagnostic"],
   },
   // ── Forecasting / Analytics (I2) ─────────────────────
   {
