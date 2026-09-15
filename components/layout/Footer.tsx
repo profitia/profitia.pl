@@ -63,8 +63,8 @@ export default function Footer({
   const isAboutPage = pathname === getPublicPath('about', 'pl') || pathname === getPublicPath('about', 'en')
   // Capability pages (services/education - both listing and detail): no newsletter.
   // Detail pages already close with CapabilityCTA; stacking newsletter creates too many endings.
-  const isCapabilityPage = /^(\/uslugi|\/rozwoj-kompetencji)(\/[^/]+)?\/?$/.test(pathname)
-    || /^(\/en)\/(services|education)(\/[^/]+)?\/?$/.test(pathname)
+  const isCapabilityPage = /^(\/doradztwo\/(analiza-spot|uslugi(?:\/[^/]+)?)|\/doradztwo\/produkty|\/rozwoj-kompetencji)(\/[^/]+)?\/?$/.test(pathname)
+    || /^(\/en)\/(advisory\/(spot-analysis|services(?:\/[^/]+)?|products)|education)(\/[^/]+)?\/?$/.test(pathname)
   // Career pages: close with institutional CTA - suppress newsletter for same reason.
   const isCareerPage = /^(\/kariera)(\/[^/]+)?\/?$/.test(pathname)
     || /^(\/en)\/career(\/[^/]+)?\/?$/.test(pathname)

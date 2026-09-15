@@ -6,8 +6,9 @@ import HomePillars from '@/components/home/HomePillars'
 import InteractiveTestimonials from '@/components/home/InteractiveTestimonials'
 import { RevealWrapper } from '@/components/ui'
 import MobileHeroImage from '@/components/ui/MobileHeroImage'
+import { getPublicPath } from '@/lib/routing/public-routes'
 
-export default function HomePageContent({ dict }: { dict: Dictionary }) {
+export default function HomePageContent({ dict, locale }: { dict: Dictionary; locale: 'pl' | 'en' }) {
   const d = dict.homepage
   const heroTitleParts = d.hero.h1.split('. ')
   const heroTitleLead = heroTitleParts[0]
@@ -18,6 +19,17 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
   const separatorFill = 'bg-[rgba(149,166,199,0.35)]'
   const cipsBrochureHref = '/cips/Brochure_CIPS_FUTURES_EUROPE_CONFERENCE_AND_AWARDS.pdf'
   const cipsRegisterHref = 'https://events.cips.org/CIPSFuturesEuropeConferenceAwards2026?lang=en#/buyTickets/selectTickets?lang=en'
+  const pillarItems = d.pillars.items.map((item) => {
+    if (item.n === '01') {
+      return { ...item, href: getPublicPath('services:index', locale) }
+    }
+
+    if (item.n === '03') {
+      return { ...item, href: getPublicPath('education:index', locale) }
+    }
+
+    return item
+  })
 
   return (
     <>
@@ -272,7 +284,7 @@ export default function HomePageContent({ dict }: { dict: Dictionary }) {
       {/* ════════════════════════════════════
           PILLARS
           ════════════════════════════════════ */}
-      <HomePillars items={d.pillars.items} seeMore={d.pillars.seeMore} />
+      <HomePillars items={pillarItems} seeMore={d.pillars.seeMore} />
 
       {/* ════════════════════════════════════
           PROCESS
