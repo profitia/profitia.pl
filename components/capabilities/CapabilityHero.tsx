@@ -8,6 +8,8 @@ interface Props {
   eyebrow: string
   title: string
   subtitle?: string
+  imageSrc?: string
+  imageAlt?: string
   /**
    * Controls pacing and subtitle width.
    * services - commanding pause, terse subtitle (strategic manifesto)
@@ -23,7 +25,14 @@ interface Props {
  * Canonical editorial hero for listing pages (Services, Education).
  * Variant controls pacing - not visual language.
  */
-export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Props) {
+export default function CapabilityHero({
+  eyebrow,
+  title,
+  subtitle,
+  variant,
+  imageSrc = '/images/website/Profitia_10.jpg',
+  imageAlt = 'Profitia services advisory hero',
+}: Props) {
   if (variant === 'services') {
     return (
       <section className="relative bg-white overflow-hidden min-h-[620px] lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)]">
@@ -47,8 +56,8 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
 
         <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%]" aria-hidden="true">
           <Image
-            src="/images/website/Profitia_10.jpg"
-            alt="Profitia services advisory hero"
+            src={imageSrc}
+            alt={imageAlt}
             fill
             className="object-cover"
             sizes="48vw"
@@ -58,8 +67,8 @@ export default function CapabilityHero({ eyebrow, title, subtitle, variant }: Pr
         </div>
 
         <MobileHeroImage
-          src="/images/website/Profitia_10.jpg"
-          alt="Profitia services advisory hero"
+          src={imageSrc}
+          alt={imageAlt}
           priority
           overlayClassName="bg-gradient-to-l from-black/40 to-transparent"
         />
