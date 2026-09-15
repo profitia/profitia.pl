@@ -256,6 +256,12 @@ export default function SpotAnalysisPage({ locale }: Props) {
         title={c.hero.title}
         subtitle={c.hero.subtitle}
         variant="services"
+        imageSrc="/images/website/Profitia_17.jpg"
+        imageAlt={
+          locale === 'pl'
+            ? 'Konsultanci Profitia podczas spotkania roboczego'
+            : 'Profitia consultants during a working session'
+        }
       />
 
       <div className="container-base pb-20">
@@ -277,14 +283,17 @@ export default function SpotAnalysisPage({ locale }: Props) {
               </div>
             </RevealWrapper>
 
-            <RevealWrapper delay={1} className="lg:pt-24">
-              <ul className="grid gap-4 sm:grid-cols-2" aria-label={c.problem.eyebrow}>
+            <RevealWrapper delay={1} className="h-full lg:pt-24">
+              <ul className="flex flex-col gap-5 lg:h-full lg:justify-between" aria-label={c.problem.eyebrow}>
                 {c.problem.signals.map((signal) => (
                   <li
                     key={signal}
-                    className="rounded-2xl border border-[rgba(149,166,199,0.28)] bg-[rgba(247,249,252,0.92)] px-5 py-5 text-sm font-medium leading-relaxed text-[rgb(36,47,68)] shadow-[0_18px_45px_rgba(15,23,42,0.04)]"
+                    className="flex items-start gap-4 text-base font-medium leading-relaxed text-[rgb(36,47,68)]"
                   >
-                    {signal}
+                    <span className="mt-1.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full ring-4 ring-[rgba(0,109,158,0.14)]" aria-hidden="true">
+                      <span className="h-2.5 w-2.5 rounded-full bg-[rgb(0,109,158)]" />
+                    </span>
+                    <span>{signal}</span>
                   </li>
                 ))}
               </ul>
@@ -331,7 +340,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
           </RevealWrapper>
 
           <RevealWrapper delay={1} className="mt-12">
-            <figure className="overflow-hidden rounded-[32px] border border-[rgba(149,166,199,0.28)] bg-[linear-gradient(180deg,rgba(248,250,252,0.96)_0%,rgba(255,255,255,0.98)_100%)] p-6 shadow-[0_24px_64px_rgba(15,23,42,0.06)] sm:p-8">
+            <figure>
               <figcaption className="sr-only">{c.graphic.caption}</figcaption>
               <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.1fr)_auto_minmax(0,0.8fr)] lg:items-center">
                 <div className="rounded-[24px] border border-[rgba(0,109,158,0.16)] bg-white px-5 py-6 text-center shadow-[0_10px_30px_rgba(0,109,158,0.08)]">
