@@ -11,6 +11,7 @@ import { resolveLanguageSwitchPath } from '@/lib/articles/language-navigation'
 import { getPublicPath } from '@/lib/routing/public-routes'
 
 const LOCALE_COOKIE = 'PROFITIA_LOCALE'
+const HEADER_SURFACE_CLASS = 'bg-[rgba(255,255,255,0.96)] backdrop-blur-md'
 
 export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en' } = {}) {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -19,6 +20,8 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const pathname = usePathname()
   const router = useRouter()
   const advisoryMenuRef = useRef<HTMLDivElement | null>(null)
+  const firstAdvisoryLinkRef = useRef<HTMLAnchorElement | null>(null)
+  const shouldFocusAdvisoryFirstItemRef = useRef(false)
   const { languagePaths } = useLanguageNavigation()
 
   const isEN = localeOverride ? localeOverride === 'en' : pathname.startsWith('/en')
@@ -100,6 +103,13 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
     }
   }, [advisoryOpen])
 
+  useEffect(() => {
+    if (!advisoryOpen || !shouldFocusAdvisoryFirstItemRef.current) return
+
+    shouldFocusAdvisoryFirstItemRef.current = false
+    firstAdvisoryLinkRef.current?.focus()
+  }, [advisoryOpen])
+
   // ── Lock body scroll when menu open ──────────────────────────
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -135,6 +145,9 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const secondaryNav = [
     { href: contactHref, label: dict.nav.contact },
   ]
+  const focusFirstAdvisoryLink = () => {
+    shouldFocusAdvisoryFirstItemRef.current = true
+  }
 
   return (
     <>
@@ -144,7 +157,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
       <header
         className={`sticky top-0 z-50 transition-all duration-[260ms] ease-out ${
           showScrolled
-            ? 'bg-white/96 backdrop-blur-md border-b border-gray-100/80 shadow-[0_1px_16px_0_rgba(0,0,0,0.04)]'
+            ? `${HEADER_SURFACE_CLASS} border-b border-gray-100/80 shadow-[0_1px_16px_0_rgba(0,0,0,0.04)]`
             : 'bg-white/0 backdrop-blur-[2px] border-b border-transparent'
         }`}
       >
@@ -193,6 +206,29 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                 aria-haspopup="menu"
                 aria-expanded={advisoryOpen}
                 onClick={() => setAdvisoryOpen((current) => !current)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Escape') {
+                    setAdvisoryOpen(false)
+                    return
+                  }
+
+                  if (event.key === 'ArrowDown') {
+                    event.preventDefault()
+                    setAdvisoryOpen(true)
+                    focusFirstAdvisoryLink()
+                    return
+                  }
+
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault()
+                    if (advisoryOpen) {
+                      setAdvisoryOpen(false)
+                    } else {
+                      setAdvisoryOpen(true)
+                      focusFirstAdvisoryLink()
+                    }
+                  }
+                }}
               >
                 {dict.nav.advisory}
                 <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className={`h-3.5 w-3.5 transition-transform duration-200 ${advisoryOpen ? 'rotate-180' : ''}`}>
@@ -208,11 +244,12 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                   <div
                     role="menu"
                     aria-label={dict.nav.advisory}
-                    className="min-w-[220px] rounded-xl bg-white p-2 shadow-[0_20px_45px_rgba(15,23,42,0.08)]"
+                    className={`min-w-[220px] rounded-xl ${HEADER_SURFACE_CLASS} p-2 shadow-[0_20px_45px_rgba(15,23,42,0.08)]`}
                   >
                     {advisoryLinks.map((link) => (
                       <Link
                         key={link.href}
+                        ref={link.href === advisoryLinks[0]?.href ? firstAdvisoryLinkRef : undefined}
                         href={link.href}
                         role="menuitem"
                         className={`flex items-center rounded-xl px-3 py-2 text-[13.5px] transition-colors duration-200 ${
