@@ -1,6 +1,20 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
 const LOCALE_COOKIE = 'PROFITIA_LOCALE'
+const PRODUCTION_ORIGIN = 'https://profitia-pl.onrender.com'
+
+const PREVIEW_PRODUCTION_PATHS = [
+  '/blog',
+  '/kontakt',
+  '/en/blog',
+  '/en/contact',
+] as const
+
+function shouldUseProductionService(pathname: string): boolean {
+  return PREVIEW_PRODUCTION_PATHS.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  )
+}
 
 function detectBrowserLocale(acceptLanguage: string): 'pl' | 'en' {
   const langs = acceptLanguage
@@ -15,6 +29,18 @@ function detectBrowserLocale(acceptLanguage: string): 'pl' | 'en' {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  // The V1 service is an isolated homepage preview without production data or
+  // form secrets. Keep its existing blog and contact links useful by handing
+  // those routes back to the canonical production service.
+  if (
+    process.env.PROFITIA_PREVIEW_SITE === 'true' &&
+    shouldUseProductionService(pathname)
+  ) {
+    const productionUrl = new URL(pathname, PRODUCTION_ORIGIN)
+    productionUrl.search = request.nextUrl.search
+    return NextResponse.redirect(productionUrl)
+  }
 
   // /en/* - serve as-is, ensure locale cookie is set to 'en'
   if (pathname === '/en' || pathname.startsWith('/en/')) {
