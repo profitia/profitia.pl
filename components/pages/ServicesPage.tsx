@@ -3,10 +3,22 @@ import { CapabilityCTA, CapabilityHero } from '@/components/capabilities'
 import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import ServicesContainer from './ServicesContainer'
 import { SERVICES_CATALOG } from './servicesCatalog'
-import { getPublicPath } from '@/lib/routing/public-routes'
+import { getPublicPath, type PublicRouteId } from '@/lib/routing/public-routes'
+import type { CatalogDomain } from './catalogTypes'
 
 interface Props {
   locale: Locale
+  routeId?: PublicRouteId
+  hero?: {
+    eyebrow: string
+    title: string
+    subtitle: string
+  }
+  seo?: {
+    title: string
+    description: string
+  }
+  domains?: CatalogDomain[]
 }
 
 const COPY = {
@@ -49,29 +61,31 @@ const SEO = {
   },
 } as const
 
-export default function ServicesPage({ locale }: Props) {
-  const c = COPY[locale]
-  const seo = SEO[locale]
+export default function ServicesPage({ locale, routeId = 'services:index', hero, seo, domains }: Props) {
+  const defaultCopy = COPY[locale]
+  const copy = hero ? { ...defaultCopy, hero } : defaultCopy
+  const resolvedSeo = seo ?? SEO[locale]
+  const resolvedDomains = domains ?? SERVICES_CATALOG[locale]
 
   return (
     <>
-      <PublicJsonLd routeId="services:index" locale={locale} title={seo.title} description={seo.description} />
+      <PublicJsonLd routeId={routeId} locale={locale} title={resolvedSeo.title} description={resolvedSeo.description} />
       <CapabilityHero
         locale={locale}
-        eyebrow={c.hero.eyebrow}
-        title={c.hero.title}
-        subtitle={c.hero.subtitle}
+        eyebrow={copy.hero.eyebrow}
+        title={copy.hero.title}
+        subtitle={copy.hero.subtitle}
         variant="services"
       />
 
       <div className="container-base pb-20">
-        <ServicesContainer domains={SERVICES_CATALOG[locale]} />
+        <ServicesContainer domains={resolvedDomains} />
 
         <CapabilityCTA
           locale={locale}
-          note={c.cta.note}
-          label={c.cta.label}
-          href={c.cta.href}
+          note={defaultCopy.cta.note}
+          label={defaultCopy.cta.label}
+          href={defaultCopy.cta.href}
         />
       </div>
     </>

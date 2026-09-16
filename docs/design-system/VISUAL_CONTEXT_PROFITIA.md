@@ -17,6 +17,15 @@
 
 For all capability platform work (Services, Education, detail pages), **CAPABILITY_EDITORIAL_SYSTEM.md** takes precedence on editorial and rhythm decisions. For all recruitment and application surfaces, **RECRUITMENT_EDITORIAL_SYSTEM.md** takes precedence. This document governs global visual language.
 
+## CANONICAL DIGITAL SERVICES RULE
+
+- The Digital Services family includes exactly four areas: Digital Consulting, Spend Analytics, Dedykowane aplikacje and Agenci AI.
+- These pages must reuse the same composition as the Advisory services surface: CapabilityHero, ServicesContainer, CapabilityCTA and PublicJsonLd.
+- Preserve the domain -> product -> expandable description structure.
+- Do not duplicate this layout into dedicated page-specific UI components.
+- The header dropdown for Digital Services must reuse the same submenu mechanism as Advisory. Do not introduce a second dropdown system.
+- Digital Services use a separate routing namespace from Advisory services, even when slugs overlap.
+
 ---
 
 ## JAK UŻYWAĆ TEGO DOKUMENTU
