@@ -12,7 +12,16 @@ import { getPublicPath } from '@/lib/routing/public-routes'
 
 const LOCALE_COOKIE = 'PROFITIA_LOCALE'
 const HEADER_SURFACE_CLASS = 'bg-[rgba(255,255,255,0.96)] backdrop-blur-md'
-const DESKTOP_NAV_BREAKPOINT = 'lg'
+const HEADER_RESPONSIVE_CLASSES = {
+  desktopNav: 'hidden lg:flex items-center gap-4 lg:gap-6',
+  desktopLanguage: 'hidden lg:flex items-center gap-[2px] text-[11.5px]',
+  desktopCta:
+    'hidden lg:inline-flex items-center justify-center rounded-lg bg-gray-900 px-3 py-[9px] text-[12.5px] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:bg-brand-blue lg:px-4 lg:text-[13px]',
+  mobileToggle:
+    'lg:hidden relative flex items-center justify-center w-8 h-8 text-gray-700 hover:text-brand-blue transition-colors duration-200',
+  mobilePanel:
+    'fixed inset-0 z-40 lg:hidden flex flex-col bg-white transition-all duration-300 ease-out',
+} as const
 
 type DesktopMenuId = 'advisory' | 'digital-services' | null
 
@@ -226,7 +235,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
 
           {/* Desktop nav */}
           <nav
-            className={`hidden ${DESKTOP_NAV_BREAKPOINT}:flex items-center gap-4 ${DESKTOP_NAV_BREAKPOINT}:gap-6`}
+            className={HEADER_RESPONSIVE_CLASSES.desktopNav}
             aria-label={isEN ? 'Main navigation' : 'Nawigacja główna'}
           >
             {desktopMenus.map((menu) => {
@@ -361,7 +370,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
 
             {/* Language switcher - desktop */}
             <div
-              className={`hidden ${DESKTOP_NAV_BREAKPOINT}:flex items-center gap-[2px] text-[11.5px]`}
+              className={HEADER_RESPONSIVE_CLASSES.desktopLanguage}
               role="group"
               aria-label={isEN ? 'Language selection' : 'Wybór języka'}
             >
@@ -395,7 +404,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             {/* CTA - advisory dark graphite */}
             <Link
               href={getPublicPath('contact', currentLocale)}
-              className={`hidden ${DESKTOP_NAV_BREAKPOINT}:inline-flex items-center justify-center rounded-lg bg-gray-900 px-3 py-[9px] text-[12.5px] font-medium tracking-[-0.01em] text-white transition-colors duration-200 hover:bg-brand-blue lg:px-4 lg:text-[13px]`}
+              className={HEADER_RESPONSIVE_CLASSES.desktopCta}
             >
               {dict.nav.cta}
             </Link>
@@ -403,7 +412,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             {/* Hamburger / close toggle */}
             <button
               type="button"
-              className={`${DESKTOP_NAV_BREAKPOINT}:hidden relative flex items-center justify-center w-8 h-8 text-gray-700 hover:text-brand-blue transition-colors duration-200`}
+              className={HEADER_RESPONSIVE_CLASSES.mobileToggle}
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav-panel"
@@ -445,7 +454,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
         aria-modal="true"
         aria-label={isEN ? 'Navigation menu' : 'Menu nawigacyjne'}
         aria-hidden={!mobileOpen}
-        className={`fixed inset-0 z-40 ${DESKTOP_NAV_BREAKPOINT}:hidden flex flex-col bg-white transition-all duration-300 ease-out ${
+        className={`${HEADER_RESPONSIVE_CLASSES.mobilePanel} ${
           mobileOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
