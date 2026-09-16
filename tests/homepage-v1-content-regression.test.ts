@@ -4,6 +4,8 @@ import { test } from 'node:test'
 
 const homePageSource = readFileSync('components/pages/HomePageContent.tsx', 'utf8')
 const v1Source = readFileSync('components/pages/HomePageV1Sections.tsx', 'utf8')
+const rootLayoutSource = readFileSync('app/layout.tsx', 'utf8')
+const robotsSource = readFileSync('app/robots.ts', 'utf8')
 
 test('Polish homepage V1 starts after the unchanged hero and CIPS modules', () => {
   const heroIndex = homePageSource.indexOf('HERO')
@@ -46,4 +48,13 @@ test('V1 contains the presentation-backed identity, operating model and proof', 
   assert.match(v1Source, /val: '15\+'/)
   assert.match(v1Source, /val: '>7 mln EUR'/)
   assert.match(v1Source, /val: '~2 mln EUR'/)
+})
+
+test('the public V1 service can block duplicate-content indexing without changing production defaults', () => {
+  assert.match(rootLayoutSource, /process\.env\.PROFITIA_PREVIEW_SITE === 'true'/)
+  assert.match(rootLayoutSource, /index: false/)
+  assert.match(rootLayoutSource, /follow: false/)
+  assert.match(robotsSource, /process\.env\.PROFITIA_PREVIEW_SITE === 'true'/)
+  assert.match(robotsSource, /disallow: '\/'/)
+  assert.match(robotsSource, /allow: '\/'/)
 })
