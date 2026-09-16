@@ -3,6 +3,7 @@ export type PublicLocale = 'pl' | 'en'
 export type PublicRouteKind =
   | 'static'
   | 'service'
+  | 'digital-service'
   | 'education'
   | 'career'
   | 'legal'
@@ -42,6 +43,7 @@ function joinPath(...parts: string[]): string {
 const PL_LISTING_PATHS = {
   advisory: '/doradztwo',
   services: '/doradztwo/uslugi',
+  digitalServices: '/uslugi-digital',
   products: '/doradztwo/produkty',
   education: '/rozwoj-kompetencji',
   career: '/kariera',
@@ -50,6 +52,7 @@ const PL_LISTING_PATHS = {
 const EN_LISTING_PATHS = {
   advisory: '/en/advisory',
   services: '/en/advisory/services',
+  digitalServices: '/en/digital-services',
   products: '/en/advisory/products',
   education: '/en/education',
   career: '/en/career',
@@ -138,7 +141,7 @@ type CapabilityRouteSeed = {
   entityId: string
   plSlug: string
   enSlug: string
-  kind: 'service' | 'education'
+  kind: 'service' | 'education' | 'digital-service'
   placement?: 'listing' | 'advisory-root'
   legacyPaths?: string[]
 }
@@ -177,6 +180,10 @@ const CAPABILITY_ROUTE_SEEDS: CapabilityRouteSeed[] = [
   { entityId: 'supplier-financial-analysis', kind: 'education', plSlug: 'analiza-finansowa-dostawcow', enSlug: 'supplier-financial-analysis', legacyPaths: ['/education/supplier-financial-analysis'] },
   { entityId: 'in-company-workshops', kind: 'education', plSlug: 'warsztaty-dla-firm', enSlug: 'in-company-workshops', legacyPaths: ['/education/in-company-workshops'] },
   { entityId: 'procurement-mentoring', kind: 'education', plSlug: 'mentoring-zakupowy', enSlug: 'procurement-mentoring', legacyPaths: ['/education/procurement-mentoring'] },
+  { entityId: 'digital-consulting', kind: 'digital-service', plSlug: 'digital-consulting', enSlug: 'digital-consulting' },
+  { entityId: 'spend-analytics', kind: 'digital-service', plSlug: 'spend-analytics', enSlug: 'spend-analytics' },
+  { entityId: 'custom-applications', kind: 'digital-service', plSlug: 'dedykowane-aplikacje', enSlug: 'custom-applications' },
+  { entityId: 'ai-agents', kind: 'digital-service', plSlug: 'agenci-ai', enSlug: 'ai-agents' },
 ]
 
 const JOB_ROUTE_ENTRIES: PublicRouteEntry[] = [
@@ -200,11 +207,16 @@ const JOB_ROUTE_ENTRIES: PublicRouteEntry[] = [
 
 function buildCapabilityRouteEntry(seed: CapabilityRouteSeed): PublicRouteEntry {
   const isService = seed.kind === 'service'
+  const isDigitalService = seed.kind === 'digital-service'
   const servicePlacement = seed.placement ?? 'listing'
-  const plBasePath = isService
+  const plBasePath = isDigitalService
+    ? PL_LISTING_PATHS.digitalServices
+    : isService
     ? (servicePlacement === 'advisory-root' ? PL_LISTING_PATHS.advisory : PL_LISTING_PATHS.services)
     : PL_LISTING_PATHS.education
-  const enBasePath = isService
+  const enBasePath = isDigitalService
+    ? EN_LISTING_PATHS.digitalServices
+    : isService
     ? (servicePlacement === 'advisory-root' ? EN_LISTING_PATHS.advisory : EN_LISTING_PATHS.services)
     : EN_LISTING_PATHS.education
   return {
@@ -263,7 +275,7 @@ export function getPublicRouteById(id: PublicRouteId): PublicRouteEntry | undefi
   return ENTRIES_BY_ID.get(id)
 }
 
-export function getCapabilityRouteId(kind: 'service' | 'education', entityId: string): PublicRouteId {
+export function getCapabilityRouteId(kind: 'service' | 'education' | 'digital-service', entityId: string): PublicRouteId {
   return `${kind}:${entityId}`
 }
 
@@ -286,7 +298,7 @@ export function getPublicPath(id: PublicRouteId, locale: PublicLocale): string {
 }
 
 export function getCapabilityPath(
-  kind: 'service' | 'education',
+  kind: 'service' | 'education' | 'digital-service',
   entityId: string,
   locale: PublicLocale,
 ): string {
@@ -346,7 +358,7 @@ export function localizePublicHref(href: string, locale: PublicLocale): string {
 }
 
 export function resolveCapabilityIdFromSlug(
-  kind: 'service' | 'education',
+  kind: 'service' | 'education' | 'digital-service',
   locale: PublicLocale,
   slug: string,
 ): string | undefined {
@@ -367,7 +379,7 @@ export function resolveCareerIdFromSlug(locale: PublicLocale, slug: string): str
 }
 
 export function getDynamicStaticParams(
-  kind: 'service' | 'education' | 'career',
+  kind: 'service' | 'education' | 'digital-service' | 'career',
   locale: PublicLocale,
 ): Array<{ slug: string }> {
   const sourceEntries = PUBLIC_ROUTE_ENTRIES.filter((entry) => {

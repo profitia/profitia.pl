@@ -40,6 +40,13 @@ const PL_SERVICE_PATHS = [
   ['coaching-zakupowy', '/doradztwo/uslugi/coaching-zakupowy', '/services/coaching-zakupowy', '/en/advisory/services/procurement-coaching'],
 ] as const
 
+const DIGITAL_SERVICE_PATHS = [
+  ['digital-consulting', '/uslugi-digital/digital-consulting', '/en/digital-services/digital-consulting'],
+  ['spend-analytics', '/uslugi-digital/spend-analytics', '/en/digital-services/spend-analytics'],
+  ['custom-applications', '/uslugi-digital/dedykowane-aplikacje', '/en/digital-services/custom-applications'],
+  ['ai-agents', '/uslugi-digital/agenci-ai', '/en/digital-services/ai-agents'],
+] as const
+
 function run(): void {
   const validation = validatePublicRouteRegistry()
 
@@ -56,6 +63,8 @@ function run(): void {
 
   assertEqual(getPublicPath('services:index', 'pl'), '/doradztwo/uslugi', 'PL services listing path')
   assertEqual(getPublicPath('services:index', 'en'), '/en/advisory/services', 'EN services listing path')
+  assertEqual(getPublicPath('digital-service:digital-consulting', 'pl'), '/uslugi-digital/digital-consulting', 'PL digital consulting path')
+  assertEqual(getPublicPath('digital-service:ai-agents', 'en'), '/en/digital-services/ai-agents', 'EN AI agents path')
   assertEqual(getPublicPath('products:index', 'pl'), '/doradztwo/produkty', 'PL products listing path')
   assertEqual(getPublicPath('products:index', 'en'), '/en/advisory/products', 'EN products listing path')
   assertEqual(getPublicPath('service:analiza-spot', 'pl'), '/doradztwo/analiza-spot', 'PL SPOT path')
@@ -70,6 +79,13 @@ function run(): void {
     assertEqual(getStablePublicRoutePath(enPath), stablePath, `Stable key from EN path for ${entityId}`)
   }
 
+  for (const [entityId, plPath, enPath] of DIGITAL_SERVICE_PATHS) {
+    assertEqual(getPublicPath(`digital-service:${entityId}`, 'pl'), plPath, `PL digital service path for ${entityId}`)
+    assertEqual(getPublicPath(`digital-service:${entityId}`, 'en'), enPath, `EN digital service path for ${entityId}`)
+    assertEqual(getLocalizedSiblingPath(plPath, 'en'), enPath, `Digital service PL maps to EN sibling for ${entityId}`)
+    assertEqual(getLocalizedSiblingPath(enPath, 'pl'), plPath, `Digital service EN maps to PL sibling for ${entityId}`)
+  }
+
   assertEqual(getLocalizedSiblingPath('/doradztwo/analiza-spot', 'en'), '/en/advisory/spot-analysis', 'SPOT PL maps to EN sibling')
   assertEqual(getLocalizedSiblingPath('/en/advisory/spot-analysis', 'pl'), '/doradztwo/analiza-spot', 'SPOT EN maps to PL sibling')
   assertEqual(getLocalizedSiblingPath('/doradztwo/uslugi/projekty-doradcze', 'en'), '/en/advisory/services/advisory-projects', 'Service PL maps to EN sibling')
@@ -81,6 +97,8 @@ function run(): void {
   assertEqual(resolveCapabilityIdFromSlug('service', 'en', 'procurement-coaching'), 'coaching-zakupowy', 'EN coaching slug resolves to stable ID')
   assertEqual(resolveCapabilityIdFromSlug('education', 'pl', 'negocjacje-zakupowe'), 'warsztaty-negocjacyjne', 'PL education slug resolves to stable ID')
   assertEqual(resolveCapabilityIdFromSlug('education', 'en', 'procurement-academy'), 'akademia-zakupow', 'EN education slug resolves to stable ID')
+  assertEqual(resolveCapabilityIdFromSlug('digital-service', 'pl', 'agenci-ai'), 'ai-agents', 'PL AI agents slug resolves to stable ID')
+  assertEqual(resolveCapabilityIdFromSlug('digital-service', 'en', 'spend-analytics'), 'spend-analytics', 'EN digital spend analytics slug resolves to stable ID')
   assertEqual(resolveCareerIdFromSlug('pl', 'konsultant-zakupowy'), 'procurement-consultant', 'PL job slug resolves to stable ID')
   assertEqual(resolveCareerIdFromSlug('en', 'procurement-consultant'), 'procurement-consultant', 'EN job slug resolves to stable ID')
 
@@ -99,6 +117,8 @@ function run(): void {
   assertEqual(redirectMap.get('/uslugi/analiza-spot'), '/doradztwo/analiza-spot', 'Current PL SPOT path redirects directly')
   assertEqual(redirectMap.get('/en/services/spot-analysis'), '/en/advisory/spot-analysis', 'Current EN SPOT path redirects directly')
   assertEqual(redirectMap.get('/career/apply'), '/kariera/aplikuj', 'Legacy application path redirects directly')
+  assert(!redirectMap.has('/uslugi-digital'), 'PL digital services parent does not redirect because it is not registered')
+  assert(!redirectMap.has('/en/digital-services'), 'EN digital services parent does not redirect because it is not registered')
 
   assertEqual(getStablePublicRoutePath('/doradztwo/analiza-spot'), '/services/analiza-spot', 'Stable key preserved for PL SPOT')
   assertEqual(getStablePublicRoutePath('/en/advisory/spot-analysis'), '/services/analiza-spot', 'Stable key preserved for EN SPOT')
@@ -112,22 +132,30 @@ function run(): void {
 
   const serviceParamsPl = getDynamicStaticParams('service', 'pl')
   const serviceParamsEn = getDynamicStaticParams('service', 'en')
+  const digitalServiceParamsPl = getDynamicStaticParams('digital-service', 'pl')
+  const digitalServiceParamsEn = getDynamicStaticParams('digital-service', 'en')
   const educationParamsPl = getDynamicStaticParams('education', 'pl')
   const careerParamsPl = getDynamicStaticParams('career', 'pl')
   assertEqual(serviceParamsPl.length, 16, 'PL service params contain only regular services')
   assertEqual(serviceParamsEn.length, 16, 'EN service params contain only regular services')
+  assertEqual(digitalServiceParamsPl.length, 4, 'PL digital service params contain all digital services')
+  assertEqual(digitalServiceParamsEn.length, 4, 'EN digital service params contain all digital services')
   assert(!serviceParamsPl.some((entry) => entry.slug === 'analiza-spot'), 'PL service params exclude SPOT slug')
   assert(!serviceParamsEn.some((entry) => entry.slug === 'spot-analysis'), 'EN service params exclude SPOT slug')
   assert(serviceParamsPl.some((entry) => entry.slug === 'projekty-doradcze'), 'PL service params include regular service slug')
   assert(serviceParamsEn.some((entry) => entry.slug === 'advisory-projects'), 'EN service params include regular service slug')
+  assert(digitalServiceParamsPl.some((entry) => entry.slug === 'agenci-ai'), 'PL digital service params include AI agents slug')
+  assert(digitalServiceParamsEn.some((entry) => entry.slug === 'ai-agents'), 'EN digital service params include AI agents slug')
   assert(educationParamsPl.some((entry) => entry.slug === 'negocjacje-zakupowe'), 'PL education params include localized slug')
   assert(careerParamsPl.some((entry) => entry.slug === 'konsultant-zakupowy'), 'PL career params include localized job slug')
 
   assert(PUBLIC_ROUTE_ENTRIES.every((entry) => entry.kind !== 'article'), 'Blog/article routes must not be part of this migration registry')
 
   const canonicalPaths = getCanonicalPublicPaths()
-  assertEqual(canonicalPaths.length, 80, 'Canonical route count stays unchanged')
+  assertEqual(canonicalPaths.length, 88, 'Canonical route count includes digital services')
   assert(canonicalPaths.some((entry) => entry.path === '/doradztwo/uslugi'), 'Canonical routes include PL services listing')
+  assert(canonicalPaths.some((entry) => entry.path === '/uslugi-digital/digital-consulting'), 'Canonical routes include PL digital consulting path')
+  assert(canonicalPaths.some((entry) => entry.path === '/en/digital-services/ai-agents'), 'Canonical routes include EN AI agents path')
   assert(canonicalPaths.some((entry) => entry.path === '/doradztwo/produkty'), 'Canonical routes include PL products listing')
   assert(canonicalPaths.some((entry) => entry.path === '/doradztwo/analiza-spot'), 'Canonical routes include PL SPOT path')
   assert(canonicalPaths.some((entry) => entry.path === '/en/advisory/services'), 'Canonical routes include EN services listing')
@@ -135,8 +163,12 @@ function run(): void {
   assert(canonicalPaths.some((entry) => entry.path === '/en/advisory/spot-analysis'), 'Canonical routes include EN SPOT path')
   assert(!canonicalPaths.some((entry) => entry.path === '/doradztwo'), 'Canonical routes exclude advisory namespace root in PL')
   assert(!canonicalPaths.some((entry) => entry.path === '/en/advisory'), 'Canonical routes exclude advisory namespace root in EN')
+  assert(!canonicalPaths.some((entry) => entry.path === '/uslugi-digital'), 'Canonical routes exclude digital services namespace root in PL')
+  assert(!canonicalPaths.some((entry) => entry.path === '/en/digital-services'), 'Canonical routes exclude digital services namespace root in EN')
   assert(!canonicalPaths.some((entry) => entry.path === '/doradztwo/uslugi/analiza-spot'), 'Canonical routes exclude nested SPOT duplicate in PL')
   assert(!canonicalPaths.some((entry) => entry.path === '/en/advisory/services/spot-analysis'), 'Canonical routes exclude nested SPOT duplicate in EN')
+  assert(canonicalPaths.some((entry) => entry.path === '/en/advisory/services/spend-analytics'), 'Canonical routes keep advisory spend analytics path')
+  assert(canonicalPaths.some((entry) => entry.path === '/en/digital-services/spend-analytics'), 'Canonical routes add digital spend analytics path without collision')
   assert(canonicalPaths.every((entry) => !entry.path.startsWith('/blog') && !entry.path.startsWith('/en/blog')), 'Canonical route feed excludes blog paths')
   assertEqual(redirects.length, 84, 'Redirect count reflects previous legacy plus moved canonicals')
 
