@@ -4,10 +4,16 @@ interface MobileHeroImageProps {
   src: string
   alt: string
   priority?: boolean
+  hideFrom?: 'md' | 'lg'
   overlayClassName?: string
   imageClassName?: string
   imageStyle?: React.CSSProperties
 }
+
+const HIDE_FROM_CLASS = {
+  md: 'md:hidden',
+  lg: 'lg:hidden',
+} as const
 
 /**
  * Canonical mobile hero image frame.
@@ -17,12 +23,13 @@ export default function MobileHeroImage({
   src,
   alt,
   priority = false,
+  hideFrom = 'md',
   overlayClassName,
   imageClassName,
   imageStyle,
 }: MobileHeroImageProps) {
   return (
-    <div className="relative w-full aspect-[3/2] overflow-hidden bg-gray-100 md:hidden">
+    <div className={`relative w-full aspect-[3/2] overflow-hidden bg-gray-100 ${HIDE_FROM_CLASS[hideFrom]}`}>
       <Image
         src={src}
         alt={alt}

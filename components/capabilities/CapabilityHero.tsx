@@ -70,6 +70,7 @@ export default function CapabilityHero({
           src={imageSrc}
           alt={imageAlt}
           priority
+          hideFrom="lg"
           overlayClassName="bg-gradient-to-l from-black/40 to-transparent"
         />
       </section>

@@ -319,6 +319,7 @@ export default function EducationPage({ locale }: Props) {
           src={HERO_IMAGE.src}
           alt={HERO_IMAGE.alt}
           priority
+          hideFrom="lg"
           overlayClassName="bg-[#f3e8dc]/18"
         />
       </section>

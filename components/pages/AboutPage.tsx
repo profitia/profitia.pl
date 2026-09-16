@@ -311,11 +311,12 @@ export function AboutPage({ locale }: AboutPageProps) {
           <div className="absolute inset-0 bg-[#ece7df]/18" />
         </RevealWrapper>
 
-        <RevealWrapper delay={1} className="md:hidden">
+        <RevealWrapper delay={1} className="lg:hidden">
           <MobileHeroImage
             src={HERO_IMAGE.src}
             alt={t.hero.imageAlt}
             priority
+            hideFrom="lg"
             overlayClassName="bg-[#ece7df]/18"
           />
         </RevealWrapper>

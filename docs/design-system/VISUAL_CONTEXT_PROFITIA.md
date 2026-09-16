@@ -573,6 +573,7 @@ py-20 lg:py-0  // split-screen: content ma py-20 na mobile
 
 - Gridy zawsze `grid-cols-1` jako base → `md:grid-cols-2` lub `lg:grid-cols-2`
 - Split-screen: image na mobile jest `h-[60vh]` PRZED contentem
+- Split-screen hero z prawym bleed image nie może mieć luki `768-1023px`: mobilny obraz zostaje aktywny do `lg`, a desktopowy wchodzi od `lg`
 - Nav mobile: hamburger lub uproszczony - nie `hidden` bez zastępnika
 
 ### Touch areas
