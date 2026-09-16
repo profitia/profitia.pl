@@ -105,6 +105,7 @@ export default function HomePageContent({ dict, locale }: { dict: Dictionary; lo
           src="/images/website/Profitia_26.jpg"
           alt={d.hero.imgAlt}
           priority
+          hideFrom="lg"
           overlayClassName="bg-gradient-to-l from-black/40 to-transparent"
         />
       </section>

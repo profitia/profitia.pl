@@ -105,6 +105,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
           src="/images/website/Profitia_36.jpg"
           alt="Zespół Profitia w pracy"
           priority
+          hideFrom="lg"
           overlayClassName="bg-white/8"
         />
       </motion.div>
