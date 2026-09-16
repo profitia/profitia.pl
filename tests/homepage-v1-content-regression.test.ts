@@ -6,6 +6,7 @@ const homePageSource = readFileSync('components/pages/HomePageContent.tsx', 'utf
 const v1Source = readFileSync('components/pages/HomePageV1Sections.tsx', 'utf8')
 const rootLayoutSource = readFileSync('app/layout.tsx', 'utf8')
 const robotsSource = readFileSync('app/robots.ts', 'utf8')
+const middlewareSource = readFileSync('middleware.ts', 'utf8')
 
 test('Polish homepage V1 starts after the unchanged hero and CIPS modules', () => {
   const heroIndex = homePageSource.indexOf('HERO')
@@ -57,4 +58,16 @@ test('the public V1 service can block duplicate-content indexing without changin
   assert.match(robotsSource, /process\.env\.PROFITIA_PREVIEW_SITE === 'true'/)
   assert.match(robotsSource, /disallow: '\/'/)
   assert.match(robotsSource, /allow: '\/'/)
+})
+
+test('preview hands data-backed blog and contact routes to production', () => {
+  assert.match(middlewareSource, /PROFITIA_PREVIEW_SITE === 'true'/)
+  assert.match(middlewareSource, /https:\/\/profitia-pl\.onrender\.com/)
+  for (const path of ['/blog', '/kontakt', '/en/blog', '/en/contact']) {
+    assert.ok(
+      middlewareSource.includes(`'${path}'`),
+      `preview production handoff should cover ${path}`,
+    )
+  }
+  assert.match(middlewareSource, /productionUrl\.search = request\.nextUrl\.search/)
 })
