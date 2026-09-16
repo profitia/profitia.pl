@@ -7,6 +7,7 @@ import InteractiveTestimonials from '@/components/home/InteractiveTestimonials'
 import { RevealWrapper } from '@/components/ui'
 import MobileHeroImage from '@/components/ui/MobileHeroImage'
 import { getPublicPath } from '@/lib/routing/public-routes'
+import HomePageV1Sections from '@/components/pages/HomePageV1Sections'
 
 export default function HomePageContent({ dict, locale }: { dict: Dictionary; locale: 'pl' | 'en' }) {
   const d = dict.homepage
@@ -206,6 +207,10 @@ export default function HomePageContent({ dict, locale }: { dict: Dictionary; lo
         </div>
       </section>
 
+      {locale === 'pl' ? (
+        <HomePageV1Sections dict={dict} />
+      ) : (
+      <>
       {/* ════════════════════════════════════
           PROBLEM
           ════════════════════════════════════ */}
@@ -483,6 +488,8 @@ export default function HomePageContent({ dict, locale }: { dict: Dictionary; lo
           </a>
         </div>
       </section>
+      </>
+      )}
     </>
   )
 }
