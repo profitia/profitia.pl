@@ -18,6 +18,7 @@ interface TeamMetaProps {
   areas?: string[]
   size?: 'sm' | 'md' | 'lg'
   showAreas?: boolean
+  locale?: 'pl' | 'en'
 }
 
 export function TeamMeta({
@@ -28,6 +29,7 @@ export function TeamMeta({
   areas = [],
   size = 'md',
   showAreas = true,
+  locale = 'pl',
 }: TeamMetaProps) {
   const nameCls =
     size === 'lg'
@@ -43,7 +45,7 @@ export function TeamMeta({
 
   return (
     <div>
-      <div className="flex items-baseline gap-2.5">
+      <div className="flex flex-wrap items-baseline gap-2.5">
         <span className={nameCls}>{name}</span>
         {credentials && (
           <span className="text-[10px] font-medium tracking-[0.15em] uppercase text-[rgb(72,94,136)] border border-[rgba(149,166,199,0.35)] px-1.5 py-0.5 rounded">
@@ -56,7 +58,7 @@ export function TeamMeta({
         {role}
         {yearsExperience && (
           <span className="ml-3 text-[rgba(72,94,136,0.65)] font-normal normal-case tracking-normal">
-            · {yearsExperience} lat
+            · {yearsExperience} {locale === 'pl' ? 'lat' : 'years'}
           </span>
         )}
       </p>

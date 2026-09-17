@@ -15,6 +15,11 @@ export function getRole(member: TeamMember, locale: 'pl' | 'en'): string {
   return locale === 'en' && member.roleEN ? member.roleEN : member.role
 }
 
+/** Localized credentials and qualification line */
+export function getCredentials(member: TeamMember, locale: 'pl' | 'en'): string | undefined {
+  return locale === 'en' && member.credentialsEN ? member.credentialsEN : member.credentials
+}
+
 /** Localized bio */
 export function getBio(member: TeamMember, locale: 'pl' | 'en'): string | undefined {
   return locale === 'en' && member.bioEN ? member.bioEN : member.bio
@@ -23,6 +28,24 @@ export function getBio(member: TeamMember, locale: 'pl' | 'en'): string | undefi
 /** Localized expertise areas */
 export function getAreas(member: TeamMember, locale: 'pl' | 'en'): string[] {
   return (locale === 'en' && member.areasEN ? member.areasEN : member.areas) ?? []
+}
+
+/** Localized selected project experience */
+export function getSelectedExperience(member: TeamMember, locale: 'pl' | 'en'): string[] {
+  return (
+    locale === 'en' && member.selectedExperienceEN
+      ? member.selectedExperienceEN
+      : member.selectedExperience
+  ) ?? []
+}
+
+/** Localized professional background when project achievements are not supplied */
+export function getProfessionalBackground(member: TeamMember, locale: 'pl' | 'en'): string[] {
+  return (
+    locale === 'en' && member.professionalBackgroundEN
+      ? member.professionalBackgroundEN
+      : member.professionalBackground
+  ) ?? []
 }
 
 /** Sort by order field */
