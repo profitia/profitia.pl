@@ -7,7 +7,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: 'Łukasz Mazurowski',
     role: 'Partner Zarządzający',
     roleEN: 'Managing Partner',
-    imageUrl: '/images/website/Łukasz Mazurowski.png',
+    imageUrl: '/images/website/Lukasz Mazurowski.png',
     imagePosition: '50% 12%',
     linkedin: 'https://www.linkedin.com/in/lukasz-mazurowski-149276/',
     bio: 'Doświadczenie zawodowe w krajowych i międzynarodowych firmach w sektorze doradztwa zakupowego i strategicznego.',
@@ -82,7 +82,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: 'rafal-gilatowski', slug: 'rafal-gilatowski', name: 'Rafał Gilatowski', role: 'Director / Head of Digital', roleEN: 'Director / Head of Digital',
-    imageUrl: '/images/website/Rafał Gilatowski.png', imagePosition: '50% 12%', linkedin: 'https://www.linkedin.com/in/rafal-gilatowski/',
+    imageUrl: '/images/website/Rafal Gilatowski.png', imagePosition: '50% 12%', linkedin: 'https://www.linkedin.com/in/rafal-gilatowski/',
     bio: 'Doświadczenie zawodowe w krajowych i międzynarodowych przedsiębiorstwach w obszarach audytu finansowego i konsultingu.',
     bioEN: 'Professional experience with Polish and international organisations in financial audit and consulting.',
     areas: ['Branża produkcyjna', 'Branża usługowa', 'Motoryzacja', 'FMCG', 'Budownictwo', 'Budowa modeli kosztowych kategorii zakupowych', 'Budowa strategii zakupowych', 'Strategie negocjacyjne', 'Restrukturyzacja organizacji i procesów zakupowych', 'Sourcing'],
@@ -111,7 +111,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: 'krzysztof-soltys', slug: 'krzysztof-soltys', name: 'Krzysztof Sołtys', role: 'Director', roleEN: 'Director', yearsExperience: '15+',
-    imageUrl: '/images/website/Krzysztof Sołtys bz.png', imagePosition: '50% 12%', linkedin: 'https://www.linkedin.com/in/krzysztof-so%C5%82tys/',
+    imageUrl: '/images/website/Krzysztof Soltys bz.png', imagePosition: '50% 12%', linkedin: 'https://www.linkedin.com/in/krzysztof-so%C5%82tys/',
     bio: 'Ponad 15 lat doświadczenia zawodowego, m.in. w Ministerstwie Spraw Wewnętrznych i Administracji oraz Przedsiębiorstwie Państwowym „Porty Lotnicze” / Lotnisku Chopina.',
     bioEN: 'Over 15 years of professional experience, including roles at the Ministry of the Interior and Administration and Polish Airports State Enterprises / Warsaw Chopin Airport.',
     areas: ['Zakupy CAPEX i OPEX', 'Sektor produkcyjny', 'Sektor usługowy', 'Wdrażanie usprawnień w zakupach', 'Budowa strategii zakupowych', 'Kompleksowa realizacja procesów zakupowych', 'Szkolenia'],
