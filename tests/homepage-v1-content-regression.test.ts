@@ -7,6 +7,10 @@ const v1Source = readFileSync('components/pages/HomePageV1Sections.tsx', 'utf8')
 const rootLayoutSource = readFileSync('app/layout.tsx', 'utf8')
 const robotsSource = readFileSync('app/robots.ts', 'utf8')
 const middlewareSource = readFileSync('middleware.ts', 'utf8')
+const originalDraftSource = readFileSync(
+  'app/(public)/draft/homepage-original/page.tsx',
+  'utf8',
+)
 
 test('Polish homepage V1 starts after the unchanged hero and CIPS modules', () => {
   const heroIndex = homePageSource.indexOf('HERO')
@@ -20,10 +24,19 @@ test('Polish homepage V1 starts after the unchanged hero and CIPS modules', () =
 })
 
 test('English homepage remains on the existing content path', () => {
-  assert.match(homePageSource, /locale === 'pl' \? \([\s\S]*<HomePageV1Sections[\s\S]*\) : \([\s\S]*PROBLEM/)
+  assert.match(homePageSource, /locale === 'pl' && variant === 'current' \? \([\s\S]*<HomePageV1Sections[\s\S]*\) : \([\s\S]*PROBLEM/)
   assert.match(homePageSource, /d\.problem\.items/)
   assert.match(homePageSource, /d\.process\.steps/)
   assert.match(homePageSource, /d\.impact\.cards/)
+})
+
+test('the original Polish homepage remains available as a noindex draft', () => {
+  assert.match(homePageSource, /variant = 'current'/)
+  assert.match(homePageSource, /locale === 'pl' && variant === 'current'/)
+  assert.match(originalDraftSource, /variant="original"/)
+  assert.match(originalDraftSource, /index: false/)
+  assert.match(originalDraftSource, /follow: false/)
+  assert.match(originalDraftSource, /nocache: true/)
 })
 
 test('V1 reuses the existing offer, blog and testimonial components', () => {
