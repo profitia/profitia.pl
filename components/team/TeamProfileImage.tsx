@@ -19,6 +19,7 @@ interface TeamProfileImageProps {
   imageUrl?: string
   size?: 'sm' | 'md' | 'lg'
   className?: string
+  imagePosition?: string
 }
 
 const SIZE_CLASSES: Record<string, string> = {
@@ -32,6 +33,7 @@ export function TeamProfileImage({
   imageUrl,
   size = 'lg',
   className = '',
+  imagePosition = '50% 12%',
 }: TeamProfileImageProps) {
   const initials = getInitials(name)
 
@@ -40,9 +42,9 @@ export function TeamProfileImage({
       <div
         className={`
           ${SIZE_CLASSES[size]}
-          ${size === 'lg' ? 'aspect-[3/4]' : 'rounded-full'}
+          ${size === 'lg' ? 'aspect-[3/4] rounded-none' : 'rounded-full'}
           bg-gray-100 flex items-center justify-center
-          rounded-2xl select-none ${className}
+          select-none ${className}
         `}
         aria-label={name}
       >
@@ -57,7 +59,7 @@ export function TeamProfileImage({
     <div
       className={`
         ${size === 'lg' ? 'w-full aspect-[3/4]' : SIZE_CLASSES[size]}
-        relative overflow-hidden rounded-2xl bg-gray-100
+        relative overflow-hidden ${size === 'lg' ? 'rounded-none' : 'rounded-full'} bg-gray-100
         group ${className}
       `}
     >
@@ -66,9 +68,10 @@ export function TeamProfileImage({
         alt={name}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 280px, 240px"
+        style={{ objectPosition: imagePosition }}
         className="
           hover-safe-image-target
-          object-cover object-[50%_12%]
+          object-cover
           [filter:grayscale(10%)_contrast(1.03)]
           transition-[transform,filter] duration-[250ms] ease-out
         "
