@@ -111,7 +111,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: 'krzysztof-soltys', slug: 'krzysztof-soltys', name: 'Krzysztof Sołtys', role: 'Director', roleEN: 'Director', yearsExperience: '15+',
-    imageUrl: '/images/website/Krzysztof Soltys bz.png', imagePosition: '50% 12%', linkedin: 'https://www.linkedin.com/in/krzysztof-so%C5%82tys/',
+    imageUrl: '/images/website/KrzysztofSoltys.png', imagePosition: '50% 12%', linkedin: 'https://www.linkedin.com/in/krzysztof-so%C5%82tys/',
     bio: 'Ponad 15 lat doświadczenia zawodowego, m.in. w Ministerstwie Spraw Wewnętrznych i Administracji oraz Przedsiębiorstwie Państwowym „Porty Lotnicze” / Lotnisku Chopina.',
     bioEN: 'Over 15 years of professional experience, including roles at the Ministry of the Interior and Administration and Polish Airports State Enterprises / Warsaw Chopin Airport.',
     areas: ['Zakupy CAPEX i OPEX', 'Sektor produkcyjny', 'Sektor usługowy', 'Wdrażanie usprawnień w zakupach', 'Budowa strategii zakupowych', 'Kompleksowa realizacja procesów zakupowych', 'Szkolenia'],
