@@ -9,6 +9,8 @@ const inter = Inter({
   display: 'swap',
 })
 
+const isPreviewSite = process.env.PROFITIA_PREVIEW_SITE === 'true'
+
 export const metadata: Metadata = {
   title: {
     template: '%s | Profitia',
@@ -16,6 +18,15 @@ export const metadata: Metadata = {
   },
   description: 'Profitia to firma doradcza specjalizująca się w optymalizacji zakupów, negocjacjach z dostawcami i budowaniu przewagi kosztowej.',
   metadataBase: new URL('https://profitia.pl'),
+  ...(isPreviewSite
+    ? {
+        robots: {
+          index: false,
+          follow: false,
+          nocache: true,
+        },
+      }
+    : {}),
 }
 
 export default function RootLayout({

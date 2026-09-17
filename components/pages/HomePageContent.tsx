@@ -7,8 +7,19 @@ import InteractiveTestimonials from '@/components/home/InteractiveTestimonials'
 import { RevealWrapper } from '@/components/ui'
 import MobileHeroImage from '@/components/ui/MobileHeroImage'
 import { getPublicPath } from '@/lib/routing/public-routes'
+import HomePageV1Sections from '@/components/pages/HomePageV1Sections'
 
-export default function HomePageContent({ dict, locale }: { dict: Dictionary; locale: 'pl' | 'en' }) {
+type HomePageVariant = 'current' | 'original'
+
+export default function HomePageContent({
+  dict,
+  locale,
+  variant = 'current',
+}: {
+  dict: Dictionary
+  locale: 'pl' | 'en'
+  variant?: HomePageVariant
+}) {
   const d = dict.homepage
   const heroTitleParts = d.hero.h1.split('. ')
   const heroTitleLead = heroTitleParts[0]
@@ -206,6 +217,10 @@ export default function HomePageContent({ dict, locale }: { dict: Dictionary; lo
         </div>
       </section>
 
+      {locale === 'pl' && variant === 'current' ? (
+        <HomePageV1Sections dict={dict} />
+      ) : (
+      <>
       {/* ════════════════════════════════════
           PROBLEM
           ════════════════════════════════════ */}
@@ -483,6 +498,8 @@ export default function HomePageContent({ dict, locale }: { dict: Dictionary; lo
           </a>
         </div>
       </section>
+      </>
+      )}
     </>
   )
 }
