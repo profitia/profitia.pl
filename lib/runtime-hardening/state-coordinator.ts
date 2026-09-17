@@ -111,7 +111,7 @@ export function filterRecommendations(sessionId: string, proposedSlugs: string[]
     coordinator.conflictCount++;
     return {
       allowed: true,
-      reason: "Recommendation loop detected — showing same recommendations",
+      reason: "Recommendation loop detected - showing same recommendations",
       filteredSlugs: proposedSlugs.slice(0, 2),
     };
   }

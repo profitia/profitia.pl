@@ -92,7 +92,7 @@ export function buildCompressionDirective(profile: CompressionProfile, locale: "
       : "Give 1 concrete recommendation with business justification. End with a clear next step or CTA. Maximum 3 short paragraphs.",
     concise: isPL
       ? "Odpowiedz zwięźle, jedno zdanie insightu + jedno pytanie lub next step. Bez elaboracji."
-      : "Respond concisely — one insight sentence + one question or next step. No elaboration.",
+      : "Respond concisely - one insight sentence + one question or next step. No elaboration.",
     escalation: isPL
       ? "Potwierdź problem, daj 1 rekomendację, natychmiast zaproponuj rozmowę. Maks 2 zdania + CTA."
       : "Acknowledge the problem, give 1 recommendation, immediately propose a call. Max 2 sentences + CTA.",
@@ -106,8 +106,8 @@ export function buildCompressionDirective(profile: CompressionProfile, locale: "
 
   const questionRule = profile.requiresQuestion
     ? isPL
-      ? "\nZakończ jednym ostrym pytaniem diagnostycznym — konkretnym, nie ogólnym."
-      : "\nEnd with one sharp diagnostic question — specific, not generic."
+      ? "\nZakończ jednym ostrym pytaniem diagnostycznym - konkretnym, nie ogólnym."
+      : "\nEnd with one sharp diagnostic question - specific, not generic."
     : "";
 
   const escalationRule = profile.requiresEscalation
@@ -117,8 +117,8 @@ export function buildCompressionDirective(profile: CompressionProfile, locale: "
     : "";
 
   const recRule = isPL
-    ? `\nMaksymalnie ${profile.maxRecommendations} rekomendacja(e) — najlepiej dopasowana do sytuacji, nie lista wszystkich możliwości.`
-    : `\nMaximum ${profile.maxRecommendations} recommendation(s) — best fit for the situation, not a list of all options.`;
+    ? `\nMaksymalnie ${profile.maxRecommendations} rekomendacja(e) - najlepiej dopasowana do sytuacji, nie lista wszystkich możliwości.`
+    : `\nMaximum ${profile.maxRecommendations} recommendation(s) - best fit for the situation, not a list of all options.`;
 
   return [
     `RESPONSE STYLE: ${profile.responseStyle.toUpperCase()}`,
@@ -136,20 +136,20 @@ export function buildAntiPatternGuard(locale: "pl" | "en"): string {
   return isPL
     ? `ZAKAZANE ZACHOWANIA (nigdy nie rób):
 - Nie mów "Jak mogę pomóc?", "Chętnie pomogę", "Świetne pytanie", "Rozumiem Twoje potrzeby"
-- Nie twórz list 5+ elementów — max 2 punkty jeśli musisz
+- Nie twórz list 5+ elementów - max 2 punkty jeśli musisz
 - Nie używaj ogólnych słów: "zoptymalizować", "usprawnić", "poprawić efektywność" bez konkretnego kontekstu
 - Nie zaczynaj od opisywania siebie ani Profitia
 - Nie powtarzaj pytania użytkownika
 - Nie pisz disclaimerów ani ostrzeżeń
 - Nie używaj emotikonów
-- Nie linkuj metodą breadcrumb (Usługi > Kategoria > Podkategoria) — tylko naturalne linki`
+- Nie linkuj metodą breadcrumb (Usługi > Kategoria > Podkategoria) - tylko naturalne linki`
     : `FORBIDDEN BEHAVIORS (never do):
 - Do not say "How can I help?", "Happy to help", "Great question", "I understand your needs"
-- Do not create lists of 5+ items — max 2 bullet points if necessary
+- Do not create lists of 5+ items - max 2 bullet points if necessary
 - Do not use generic words: "optimize", "improve", "enhance efficiency" without concrete context
 - Do not start by describing yourself or Profitia
 - Do not repeat the user's question
 - Do not write disclaimers or caveats
 - Do not use emojis
-- Do not use breadcrumb links (Services > Category > Subcategory) — natural links only`;
+- Do not use breadcrumb links (Services > Category > Subcategory) - natural links only`;
 }

@@ -235,7 +235,7 @@ export function computeMaturityScore(
 export function getMaturitySystemHint(score: MaturityScore): string {
   switch (score.persona) {
     case "reactive_buyer":
-      return "The user appears to be in a reactive situation — they have an immediate problem without a clear framework. Diagnose first. Be empathetic but precise. Explain business consequences clearly without assuming procurement expertise.";
+      return "The user appears to be in a reactive situation - they have an immediate problem without a clear framework. Diagnose first. Be empathetic but precise. Explain business consequences clearly without assuming procurement expertise.";
     case "operational_buyer":
       return "The user has basic procurement awareness and process orientation. Use concrete examples and step-by-step logic. Reference their procurement process as a starting point.";
     case "advanced_analyst":

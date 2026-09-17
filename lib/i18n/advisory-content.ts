@@ -11,21 +11,21 @@ export const EXECUTIVE_PROFILES: Record<ExecutiveRole, ExecutiveProfile> = {
   CFO: {
     role: "CFO",
     kpis: ["EBIT impact", "Working capital", "Cost predictability", "Procurement ROI", "Risk-adjusted spend"],
-    messagingAngle: "Procurement as a direct EBIT lever — cost reduction with verifiable ROI",
+    messagingAngle: "Procurement as a direct EBIT lever - cost reduction with verifiable ROI",
     tone: "executive",
     priorityIntents: ["I1_SAVINGS", "I8_NEGOTIATIONS", "I3_SUPPLIER_RISK"],
   },
   CEO: {
     role: "CEO",
     kpis: ["Competitive advantage", "Revenue enablement", "Strategic risk", "Growth capacity", "Market position"],
-    messagingAngle: "Procurement as strategic capability — competitive differentiation and risk management",
+    messagingAngle: "Procurement as strategic capability - competitive differentiation and risk management",
     tone: "executive",
     priorityIntents: ["I5_SOURCING", "I1_SAVINGS", "I3_SUPPLIER_RISK"],
   },
   CPO: {
     role: "CPO",
     kpis: ["Procurement maturity", "Category excellence", "Team capability", "Savings delivery", "Supplier intelligence"],
-    messagingAngle: "Building procurement into a strategic function — maturity, analytics and supplier development",
+    messagingAngle: "Building procurement into a strategic function - maturity, analytics and supplier development",
     tone: "peer",
     priorityIntents: ["I5_SOURCING", "I2_FORECASTING", "I6_EDUCATION"],
   },
@@ -82,8 +82,8 @@ export const EXECUTIVE_HEADLINES: Record<ExecutiveRole, Record<Locale, string>> 
     en: "Procurement as strategic competitive advantage",
   },
   CPO: {
-    pl: "Budowanie doskonałości zakupowej — od strategii do egzekucji",
-    en: "Building procurement excellence — from strategy to execution",
+    pl: "Budowanie doskonałości zakupowej - od strategii do egzekucji",
+    en: "Building procurement excellence - from strategy to execution",
   },
   procurement_director: {
     pl: "Fact-based negocjacje i strategic sourcing w Twojej organizacji",

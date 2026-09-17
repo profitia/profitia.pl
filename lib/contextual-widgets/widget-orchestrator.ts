@@ -147,7 +147,7 @@ function buildWidgetRationale(
   primary: ContextualWidget | null
 ): string {
   if (!primary) return "no_widget_selected";
-  return `${primary.type}:${primary.id} — intent=${decision.intent.primary}(${Math.round(decision.intent.primaryConfidence * 100)}%) persona=${decision.maturity.persona}`;
+  return `${primary.type}:${primary.id} - intent=${decision.intent.primary}(${Math.round(decision.intent.primaryConfidence * 100)}%) persona=${decision.maturity.persona}`;
 }
 
 // ── Get a single widget by type for specific placement ────

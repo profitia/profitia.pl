@@ -116,8 +116,8 @@ function evaluateProactive(
       trigger: true,
       type: "escalation_ready",
       message: {
-        pl: "Na podstawie Twojej aktywności — myślę, że warto porozmawiać. Umów 20 minut?",
-        en: "Based on your activity — I think it's worth a conversation. Book 20 minutes?",
+        pl: "Na podstawie Twojej aktywności - myślę, że warto porozmawiać. Umów 20 minut?",
+        en: "Based on your activity - I think it's worth a conversation. Book 20 minutes?",
       },
     };
   }

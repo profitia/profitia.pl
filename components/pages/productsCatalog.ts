@@ -223,28 +223,28 @@ export const PRODUCTS_CATALOG: Record<Locale, CatalogDomain[]> = {
         },
         {
           id: 'spot-check-sourcing',
-          title: 'Zakres — Zarządzanie zakupami (Sourcing)',
+          title: 'Zakres - Zarządzanie zakupami (Sourcing)',
           sections: [
             { items: ['kategorie zakupowe', 'baza dostawców', 'kontraktowanie', 'negocjacje', 'realizacja strategii zakupowych'] },
           ],
         },
         {
           id: 'spot-check-process',
-          title: 'Zakres — Procesy',
+          title: 'Zakres - Procesy',
           sections: [
             { items: ['budżetowanie', 'planowanie zakupów', 'wybór dostawców', 'płatności', 'powiązanie procesów z celami biznesowymi'] },
           ],
         },
         {
           id: 'spot-check-organization',
-          title: 'Zakres — Organizacja',
+          title: 'Zakres - Organizacja',
           sections: [
             { items: ['rola zakupów w organizacji', 'zakres wpływu na wydatki', 'struktura organizacyjna', 'kompetencje zespołu zakupowego'] },
           ],
         },
         {
           id: 'spot-check-tools',
-          title: 'Zakres — Narzędzia',
+          title: 'Zakres - Narzędzia',
           sections: [
             { items: ['e-sourcing', 'aukcje elektroniczne', 'onboarding dostawców', 'zarządzanie zamówieniami', 'zarządzanie umowami', 'KPI i raportowanie'] },
           ],

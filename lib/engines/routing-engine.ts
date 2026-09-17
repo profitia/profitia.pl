@@ -29,14 +29,14 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
         stepIndex: 0,
         type: "question",
         content:
-          "What's the timeline on this negotiation — do you have a deadline, or are you in early preparation?",
+          "What's the timeline on this negotiation - do you have a deadline, or are you in early preparation?",
       },
       {
         stepIndex: 1,
         type: "recommendation",
         recommendationId: "REC-NEG-01",
         content:
-          "Our Negotiation Preparation service builds your cost position using market data and should-cost modeling, so you enter the table with facts — not just instincts.",
+          "Our Negotiation Preparation service builds your cost position using market data and should-cost modeling, so you enter the table with facts - not just instincts.",
       },
       {
         stepIndex: 2,
@@ -66,7 +66,7 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
         type: "recommendation",
         recommendationId: "REC-SAV-01",
         content:
-          "When the symptoms are visible but the root cause is still unclear, a SPOT Analysis assesses procurement maturity across sourcing, processes, organisation, and tools — so you know where savings work should begin.",
+          "When the symptoms are visible but the root cause is still unclear, a SPOT Analysis assesses procurement maturity across sourcing, processes, organisation, and tools - so you know where savings work should begin.",
       },
       {
         stepIndex: 2,
@@ -95,7 +95,7 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
         type: "recommendation",
         recommendationId: "REC-RISK-01",
         content:
-          "Supplier Intelligence monitoring gives you early warning on financial health, market signals, and concentration risk — before a disruption becomes a crisis.",
+          "Supplier Intelligence monitoring gives you early warning on financial health, market signals, and concentration risk - before a disruption becomes a crisis.",
       },
       {
         stepIndex: 2,
@@ -124,7 +124,7 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
         type: "recommendation",
         recommendationId: "REC-DATA-01",
         content:
-          "A Spend Cube gives you a clean, categorized spend map — the foundation for savings identification, supplier consolidation, and negotiation leverage.",
+          "A Spend Cube gives you a clean, categorized spend map - the foundation for savings identification, supplier consolidation, and negotiation leverage.",
       },
       {
         stepIndex: 2,
@@ -153,13 +153,13 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
         type: "recommendation",
         recommendationId: "REC-TRANS-01",
         content:
-          "Procurement Transformation engagements typically start with operating model diagnosis — understanding what's working, what's not, and where the value gap is.",
+          "Procurement Transformation engagements typically start with operating model diagnosis - understanding what's working, what's not, and where the value gap is.",
       },
       {
         stepIndex: 2,
         type: "escalation",
         ctaId: "CTA-01",
-        content: "Let's have a scoping conversation — usually 30 minutes is enough to align on approach.",
+        content: "Let's have a scoping conversation - usually 30 minutes is enough to align on approach.",
       },
     ],
   },
@@ -182,7 +182,7 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
         type: "recommendation",
         recommendationId: "REC-EDU-01",
         content:
-          "Our Negotiation Workshops (Harvard methodology) are designed for procurement teams who need practical, deal-ready skills — not theory.",
+          "Our Negotiation Workshops (Harvard methodology) are designed for procurement teams who need practical, deal-ready skills - not theory.",
       },
       {
         stepIndex: 2,
@@ -227,7 +227,7 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
         stepIndex: 0,
         type: "question",
         content:
-          "What's the procurement challenge closest to you right now — cost pressure, supplier risk, team capability, or visibility?",
+          "What's the procurement challenge closest to you right now - cost pressure, supplier risk, team capability, or visibility?",
       },
       {
         stepIndex: 1,
@@ -321,7 +321,7 @@ export function computeRoutingDecision(
     ? `escalation_score=${escalationScore}, urgency=${intentScore.urgency}`
     : shouldShowRecommendation
     ? `confidence=${intentScore.primaryConfidence.toFixed(2)}, intent=${intentScore.primary}`
-    : `discovery — confidence=${intentScore.primaryConfidence.toFixed(2)}`;
+    : `discovery - confidence=${intentScore.primaryConfidence.toFixed(2)}`;
 
   return {
     route: journey,

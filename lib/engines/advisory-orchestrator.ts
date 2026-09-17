@@ -130,8 +130,8 @@ function buildSystemPromptContext(
   // Escalation message
   const escalationMessage = shouldEscalate
     ? locale === "pl"
-      ? "Następnym krokiem jest krótka rozmowa — bez zobowiązań. Czy możemy umówić 20 minut?"
-      : "The next step is a short conversation — no commitment. Can we set up 20 minutes?"
+      ? "Następnym krokiem jest krótka rozmowa - bez zobowiązań. Czy możemy umówić 20 minut?"
+      : "The next step is a short conversation - no commitment. Can we set up 20 minutes?"
     : null;
 
   return {
@@ -180,7 +180,7 @@ export function serializeDecisionForPrompt(decision: AdvisoryDecision): string {
 
   if (decision.fatigue.level !== "none") {
     lines.push(
-      `Advisory fatigue: ${decision.fatigue.level} — ${decision.fatigue.recoveryAction}`
+      `Advisory fatigue: ${decision.fatigue.level} - ${decision.fatigue.recoveryAction}`
     );
   }
 

@@ -107,7 +107,7 @@ export function checkGlobalRateLimit(): RateLimitResult {
   if (count >= GLOBAL_MAX_REQUESTS) {
     return {
       allowed: false,
-      reason: "Platform at capacity — please retry shortly",
+      reason: "Platform at capacity - please retry shortly",
       retryAfterMs: GLOBAL_WINDOW_MS,
     };
   }

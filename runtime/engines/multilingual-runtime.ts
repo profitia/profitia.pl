@@ -91,16 +91,16 @@ export function getMultilingualInstruction(locale: SupportedLocale): string {
 // ── Locale-aware urgency messaging ────────────────────────
 export const URGENCY_MESSAGES: Record<string, Record<SupportedLocale, string>> = {
   U1: {
-    pl: "Sytuacja wymaga działania — zaproponuj rozmowę w tym tygodniu.",
-    en: "The situation requires action — suggest a conversation this week.",
+    pl: "Sytuacja wymaga działania - zaproponuj rozmowę w tym tygodniu.",
+    en: "The situation requires action - suggest a conversation this week.",
   },
   U2: {
-    pl: "Temat jest aktywny — zaproponuj konkretny następny krok.",
-    en: "The topic is active — propose a concrete next step.",
+    pl: "Temat jest aktywny - zaproponuj konkretny następny krok.",
+    en: "The topic is active - propose a concrete next step.",
   },
   U3: {
-    pl: "Faza eksploracji — edukuj, nie sprzedawaj.",
-    en: "Exploration phase — educate, don't sell.",
+    pl: "Faza eksploracji - edukuj, nie sprzedawaj.",
+    en: "Exploration phase - educate, don't sell.",
   },
 };
 

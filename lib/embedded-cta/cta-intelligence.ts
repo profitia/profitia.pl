@@ -109,5 +109,5 @@ function buildCTARationale(
   decision: AdvisoryDecision,
   primary: AdaptiveCTAConfig
 ): string {
-  return `${primary.id}:${primary.type} — urgency=${decision.intent.urgency} intent=${decision.intent.primary} persona=${decision.maturity.persona}`;
+  return `${primary.id}:${primary.type} - urgency=${decision.intent.urgency} intent=${decision.intent.primary} persona=${decision.maturity.persona}`;
 }

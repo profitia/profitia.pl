@@ -62,7 +62,7 @@ const PROCESS_STEPS = [
   {
     n: '02',
     title: 'Projektujemy właściwe rozwiązanie',
-    desc: 'Łączymy dane klienta, wiedzę rynkową, benchmarki i doświadczenie projektowe. Budujemy rekomendację dopasowaną do organizacji — nie do katalogu usług.',
+    desc: 'Łączymy dane klienta, wiedzę rynkową, benchmarki i doświadczenie projektowe. Budujemy rekomendację dopasowaną do organizacji - nie do katalogu usług.',
   },
   {
     n: '03',
@@ -163,7 +163,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
                   Wywodzimy się z międzynarodowego doradztwa zarządczego i od ponad 15 lat koncentrujemy się na zakupach. Łączymy doświadczenie strategiczne i sourcingowe z elastycznością wyspecjalizowanego zespołu.
                 </p>
                 <p>
-                  Nie wdrażamy gotowych recept. Projektujemy rozwiązania pod realia klienta i pracujemy ramię w ramię z jego zespołem — od diagnozy i business case&apos;u po wdrożenie, transfer kompetencji i pomiar efektów.
+                  Nie wdrażamy gotowych recept. Projektujemy rozwiązania pod realia klienta i pracujemy ramię w ramię z jego zespołem - od diagnozy i business case&apos;u po wdrożenie, transfer kompetencji i pomiar efektów.
                 </p>
               </div>
             </RevealWrapper>
@@ -188,7 +188,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
           </p>
           <div className="grid gap-7 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20 lg:items-end">
             <h2 className="max-w-2xl text-3xl md:text-4xl font-semibold tracking-tight leading-tight text-gray-900">
-              Pomagamy organizacjom lepiej kupować — i utrzymać osiągnięty efekt
+              Pomagamy organizacjom lepiej kupować - i utrzymać osiągnięty efekt
             </h2>
             <p className="max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
               Łączymy doradztwo, technologię i rozwój kompetencji. Dzięki temu możemy rozwiązać konkretny problem zakupowy albo przeprowadzić szerszą transformację całej funkcji.
@@ -270,7 +270,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
               </h2>
             </div>
             <p className="max-w-2xl text-base md:text-lg leading-relaxed text-white/72">
-              Wspieraliśmy firmy z wielu sektorów w Polsce, regionie CEE i Europie Zachodniej — od pojedynczych kategorii zakupowych po kompleksowe programy transformacyjne.
+              Wspieraliśmy firmy z wielu sektorów w Polsce, regionie CEE i Europie Zachodniej - od pojedynczych kategorii zakupowych po kompleksowe programy transformacyjne.
             </p>
           </div>
 
@@ -364,7 +364,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
         copy={{
           eyebrow: 'Wiedza',
           h2: 'Analizy dla ludzi, którzy odpowiadają za wynik zakupów',
-          body: 'Rynek dostawców, struktura kosztów, negocjacje, dane i technologia — dzielimy się wiedzą, którą wykorzystujemy również w pracy projektowej.',
+          body: 'Rynek dostawców, struktura kosztów, negocjacje, dane i technologia - dzielimy się wiedzą, którą wykorzystujemy również w pracy projektowej.',
         }}
         articles={d.insights.articles}
       />

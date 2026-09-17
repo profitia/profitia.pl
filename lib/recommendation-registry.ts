@@ -12,7 +12,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Negotiation Preparation",
     description:
-      "Build the full negotiation playbook — cost position, supplier profile, argumentation strategy, and team briefing.",
+      "Build the full negotiation playbook - cost position, supplier profile, argumentation strategy, and team briefing.",
     url: "/services/negotiation-preparation",
     cta: "Explore service",
     intentFit: ["I8_NEGOTIATIONS", "I1_SAVINGS"],
@@ -26,7 +26,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Should-Cost Analysis",
     description:
-      "Understand the true cost structure of what you buy — and know exactly where the negotiation margin is.",
+      "Understand the true cost structure of what you buy - and know exactly where the negotiation margin is.",
     url: "/services/should-cost-analysis",
     cta: "Explore service",
     intentFit: ["I8_NEGOTIATIONS", "I1_SAVINGS", "I3_SUPPLIER_RISK"],
@@ -54,7 +54,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Supplier Negotiation Support",
     description:
-      "Hands-on support during the negotiation — position coaching, real-time advisory, concession management.",
+      "Hands-on support during the negotiation - position coaching, real-time advisory, concession management.",
     url: "/services/supplier-negotiation-support",
     cta: "Explore service",
     intentFit: ["I8_NEGOTIATIONS"],
@@ -68,7 +68,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "education",
     title: "Procurement Negotiations Workshop",
     description:
-      "Harvard-methodology workshop — practical negotiation technique grounded in real case studies.",
+      "Harvard-methodology workshop - practical negotiation technique grounded in real case studies.",
     url: "/education/warsztaty-negocjacyjne",
     cta: "Explore programme",
     intentFit: ["I8_NEGOTIATIONS", "I6_EDUCATION"],
@@ -83,7 +83,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Should-Cost Analysis",
     description:
-      "Identify the real cost gap between what you pay and what you should pay — across any category.",
+      "Identify the real cost gap between what you pay and what you should pay - across any category.",
     url: "/services/should-cost-analysis",
     cta: "Explore service",
     intentFit: ["I1_SAVINGS", "I8_NEGOTIATIONS"],
@@ -97,7 +97,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Supplier Benchmarking",
     description:
-      "Know what the market pays. Close the gap between your current terms and market rates — with data, not guesswork.",
+      "Know what the market pays. Close the gap between your current terms and market rates - with data, not guesswork.",
     url: "/services/supplier-benchmarking",
     cta: "Explore service",
     intentFit: ["I1_SAVINGS", "I8_NEGOTIATIONS", "I3_SUPPLIER_RISK"],
@@ -111,7 +111,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "SPOT Analysis",
     description:
-      "Start here when the procurement problem is visible but the root cause is still unclear — SPOT structures the situation and sets priorities.",
+      "Start here when the procurement problem is visible but the root cause is still unclear - SPOT structures the situation and sets priorities.",
     url: "/services/analiza-spot",
     cta: "Explore service",
     intentFit: ["I1_SAVINGS", "I7_EXPLORATORY", "I5_SOURCING"],
@@ -126,7 +126,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Spend Cube",
     description:
-      "The foundation: understand what you buy, from whom, at what price — across every category and entity.",
+      "The foundation: understand what you buy, from whom, at what price - across every category and entity.",
     url: "/services/spend-cube",
     cta: "Explore service",
     intentFit: ["I2_FORECASTING", "I1_SAVINGS"],
@@ -140,7 +140,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Spend Analytics",
     description:
-      "Turn procurement data into decision intelligence — category trends, supplier concentration, cost drivers.",
+      "Turn procurement data into decision intelligence - category trends, supplier concentration, cost drivers.",
     url: "/services/spend-analytics",
     cta: "Explore service",
     intentFit: ["I2_FORECASTING", "I1_SAVINGS"],
@@ -155,7 +155,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Supplier Intelligence",
     description:
-      "Financial health, concentration risk, dependency mapping — know where your supply chain is exposed before it costs you.",
+      "Financial health, concentration risk, dependency mapping - know where your supply chain is exposed before it costs you.",
     url: "/services/supplier-intelligence",
     cta: "Explore service",
     intentFit: ["I3_SUPPLIER_RISK", "I8_NEGOTIATIONS", "I2_FORECASTING"],
@@ -170,7 +170,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "service",
     title: "Advisory Projects",
     description:
-      "End-to-end advisory engagement — from situation diagnosis to concrete recommendations, implemented with your team.",
+      "End-to-end advisory engagement - from situation diagnosis to concrete recommendations, implemented with your team.",
     url: "/services/projekty-doradcze",
     cta: "Explore service",
     intentFit: ["I5_SOURCING", "I1_SAVINGS"],
@@ -199,7 +199,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "education",
     title: "Procurement Academy",
     description:
-      "Executive programme for procurement directors — strategy, transformation, decision-making under pressure.",
+      "Executive programme for procurement directors - strategy, transformation, decision-making under pressure.",
     url: "/education/akademia-zakupow",
     cta: "Explore programme",
     intentFit: ["I6_EDUCATION", "I5_SOURCING"],
@@ -213,7 +213,7 @@ export const RECOMMENDATION_REGISTRY: RecommendationCard[] = [
     type: "education",
     title: "In-Company Workshops",
     description:
-      "Custom programme designed for your team's specific challenges — any topic, any format, delivered on-site.",
+      "Custom programme designed for your team's specific challenges - any topic, any format, delivered on-site.",
     url: "/education/in-company-workshops",
     cta: "Explore programme",
     intentFit: ["I6_EDUCATION"],

@@ -146,8 +146,8 @@ export const REASONING_PATTERNS: ReasoningPattern[] = [
       en: "The company wants to improve negotiation outcomes with suppliers.",
     },
     businessConsequence: {
-      pl: "Słabe przygotowanie do negocjacji to bezpośredni koszt marży — średnio 8-15% nieodzyskanych oszczędności.",
-      en: "Poor negotiation preparation is a direct margin cost — on average 8-15% in unrecovered savings.",
+      pl: "Słabe przygotowanie do negocjacji to bezpośredni koszt marży - średnio 8-15% nieodzyskanych oszczędności.",
+      en: "Poor negotiation preparation is a direct margin cost - on average 8-15% in unrecovered savings.",
     },
     diagnosticQuestion: {
       pl: "Jak wygląda dziś Wasze przygotowanie do negocjacji z kluczowymi dostawcami?",
@@ -255,7 +255,7 @@ export function buildProcurementContext(
   if (impacts.length > 0) {
     const primary = impacts[0]!;
     lines.push(
-      `BUSINESS IMPACT REFERENCE: ${primary.kpi} — ${primary.typicalRange} (${primary.timeToValue})`
+      `BUSINESS IMPACT REFERENCE: ${primary.kpi} - ${primary.typicalRange} (${primary.timeToValue})`
     );
   }
 
