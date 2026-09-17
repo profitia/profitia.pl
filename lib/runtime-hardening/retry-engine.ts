@@ -110,7 +110,7 @@ export function evaluateRetry(ctx: RetryContext): RetryDecision {
 
   // Hard limits
   if (failureClass === "non_retryable" || failureClass === "budget_exceeded") {
-    return { shouldRetry: false, delayMs: 0, degradeMode: true, reason: `${failureClass} — not retryable` };
+    return { shouldRetry: false, delayMs: 0, degradeMode: true, reason: `${failureClass} - not retryable` };
   }
   if (attempt >= maxAttempts) {
     return { shouldRetry: false, delayMs: 0, degradeMode: true, reason: `Max attempts (${maxAttempts}) reached` };

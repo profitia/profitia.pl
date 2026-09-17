@@ -70,9 +70,9 @@ function scoreRecommendationQuality(response: string): QualityDimension {
   const links = (response.match(/\[([^\]]+)\]\(\/[^)]+\)/g) ?? []);
   const linkCount = links.length;
 
-  if (linkCount === 0) { score -= 3; notes.push("No service links — recommendation not actionable"); }
+  if (linkCount === 0) { score -= 3; notes.push("No service links - recommendation not actionable"); }
   else if (linkCount === 1 || linkCount === 2) { score += 3; notes.push(`${linkCount} focused recommendation(s)`); }
-  else if (linkCount > 3) { score -= 1; notes.push("Too many recommendations (>3) — loses focus"); }
+  else if (linkCount > 3) { score -= 1; notes.push("Too many recommendations (>3) - loses focus"); }
 
   const hasJustification = /(?:bo|dlatego|ponieważ|because|since|as|given that|pozwala|allows|enables)/i.test(response);
   if (hasJustification) { score += 1; notes.push("Recommendation includes justification"); }
@@ -96,7 +96,7 @@ function scoreEscalationQuality(
 
   if (urgency === "U1") {
     if (hasEscalationCTA) { score += 4; notes.push("Correct escalation for U1 urgency"); }
-    else { score -= 3; notes.push("Missing escalation for U1 — should push to contact"); }
+    else { score -= 3; notes.push("Missing escalation for U1 - should push to contact"); }
   } else if (urgency === "U2") {
     if (hasEscalationCTA || hasEscalationPhrasing) { score += 2; notes.push("Appropriate soft escalation for U2"); }
   } else {
@@ -137,7 +137,7 @@ function scoreExecutiveTone(response: string, locale: "pl" | "en"): QualityDimen
     ? ["jak mogę pomóc", "chętnie pomogę", "świetne pytanie", "rozumiem twoje", "oczywiście!", "z przyjemnością"]
     : ["how can i help", "happy to help", "great question", "i understand your", "of course!", "certainly!"];
   const hasChatbot = chatbotPhrases.some((p) => response.toLowerCase().includes(p.toLowerCase()));
-  if (hasChatbot) { score -= 4; notes.push("Chatbot phrases detected — kills advisory credibility"); }
+  if (hasChatbot) { score -= 4; notes.push("Chatbot phrases detected - kills advisory credibility"); }
 
   const advisoryIndicators = locale === "pl"
     ? ["warto sprawdzić", "kluczowe pytanie", "zależy od", "rekomend", "typowy błąd", "w praktyce"]
@@ -157,7 +157,7 @@ function scoreAdvisoryConfidence(response: string, locale: "pl" | "en"): Quality
   const hedging = locale === "pl"
     ? /(?:być może|możliwe że|nie jestem pewien|trudno powiedzieć|zależy od wielu czynników)/i
     : /(?:perhaps|possibly|i'm not sure|hard to say|it depends on many factors|might be|could be)/i;
-  if (hedging.test(response)) { score -= 2; notes.push("Excessive hedging — weakens advisory confidence"); }
+  if (hedging.test(response)) { score -= 2; notes.push("Excessive hedging - weakens advisory confidence"); }
 
   const directStatements = locale === "pl"
     ? /(?:to jest|oznacza to|wynika z tego|kluczowe jest|fundamentalne|błąd polega)/i
@@ -174,7 +174,7 @@ function scoreHallucinationRisk(issueCount: number): QualityDimension {
 
   if (issueCount === 0) { notes.push("No hallucination issues"); }
   else if (issueCount === 1) { score -= 3; notes.push("1 potential hallucination issue"); }
-  else { score -= issueCount * 2; notes.push(`${issueCount} hallucination issues — review needed`); }
+  else { score -= issueCount * 2; notes.push(`${issueCount} hallucination issues - review needed`); }
 
   return { score: Math.max(0, Math.min(10, score)), passed: score >= 6, notes };
 }
@@ -209,9 +209,9 @@ export function evaluateAdvisoryQuality(params: {
   if (!dimensions.procurementReasoning.passed) suggestions.push("Add specific procurement terminology and business consequence");
   if (!dimensions.recommendationQuality.passed) suggestions.push("Include 1–2 specific service links with justification");
   if (!dimensions.escalationQuality.passed) suggestions.push("Adjust escalation CTA to match urgency level");
-  if (!dimensions.responseCompression.passed) suggestions.push("Compress response — target 150–400 chars visible content");
-  if (!dimensions.executiveTone.passed) suggestions.push("Remove chatbot phrases — adopt advisory/consulting tone");
-  if (!dimensions.advisoryConfidence.passed) suggestions.push("Reduce hedging — make direct statements");
+  if (!dimensions.responseCompression.passed) suggestions.push("Compress response - target 150–400 chars visible content");
+  if (!dimensions.executiveTone.passed) suggestions.push("Remove chatbot phrases - adopt advisory/consulting tone");
+  if (!dimensions.advisoryConfidence.passed) suggestions.push("Reduce hedging - make direct statements");
 
   return {
     overallScore,

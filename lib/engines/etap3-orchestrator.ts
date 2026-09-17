@@ -67,18 +67,18 @@ export function runETAP3Orchestrator(
 export function serializeETAP3ForPrompt(etap3: ETAP3Decision): string {
   const lines: string[] = [];
 
-  lines.push("[ETAP3 — Embedded Advisory Context]");
+  lines.push("[ETAP3 - Embedded Advisory Context]");
 
   // Primary widget context
   if (etap3.widgets.primaryWidget) {
     const w = etap3.widgets.primaryWidget;
-    lines.push(`Active widget: ${w.type} — "${w.title}"`);
+    lines.push(`Active widget: ${w.type} - "${w.title}"`);
   }
 
   // Primary inline block
   if (etap3.inlineBlocks.primary) {
     const b = etap3.inlineBlocks.primary;
-    lines.push(`Inline block (${b.section}): ${b.type} — "${b.headline}"`);
+    lines.push(`Inline block (${b.section}): ${b.type} - "${b.headline}"`);
   }
 
   // Navigation hint

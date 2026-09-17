@@ -3,7 +3,7 @@ import HomePageContent from '@/components/pages/HomePageContent'
 import { getDictionary } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'Oryginalna strona główna — archiwum',
+  title: 'Oryginalna strona główna - archiwum',
   description: 'Zachowana wersja strony głównej Profitia sprzed wdrożenia wariantu V1.',
   robots: {
     index: false,

@@ -132,8 +132,8 @@ export const ADAPTIVE_CTA_REGISTRY: AdaptiveCTAConfig[] = [
       en: "Check your supplier health",
     },
     subLabel: {
-      pl: "Supplier Intelligence — scoring i wczesne ostrzeżenia",
-      en: "Supplier Intelligence — scoring and early warnings",
+      pl: "Supplier Intelligence - scoring i wczesne ostrzeżenia",
+      en: "Supplier Intelligence - scoring and early warnings",
     },
     url: "/services/supplier-intelligence",
     type: "service_order",

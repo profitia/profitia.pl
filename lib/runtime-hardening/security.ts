@@ -230,7 +230,7 @@ export function runSecurityCheck(userMessage: string, sessionId: string): Securi
   // 2. PII detection — sanitize rather than block
   const piiResult = detectAndMaskPii(userMessage);
   if (piiResult.hasPii) {
-    reasons.push(`PII detected (${piiResult.types.join(", ")}) — masked`);
+    reasons.push(`PII detected (${piiResult.types.join(", ")}) - masked`);
   }
 
   // 3. Empty after sanitization

@@ -178,7 +178,7 @@ export function computeRecommendationPacing(
       canShowRecommendation: false,
       canShowCTA: state.phase === "capability_recommendation" || state.phase === "escalation",
       delayMs: 1500,
-      reason: `pacing — need ${expectedMessagesForNextRec} messages, have ${userCount}`,
+      reason: `pacing - need ${expectedMessagesForNextRec} messages, have ${userCount}`,
     };
   }
 

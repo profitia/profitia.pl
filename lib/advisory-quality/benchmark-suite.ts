@@ -30,7 +30,7 @@ export const BENCHMARK_SUITE: BenchmarkScenario[] = [
   // ── B1: Supplier Price Increase (PL, U1) ───────────────
   {
     id: "B1",
-    name: "Supplier Price Increase — Urgent",
+    name: "Supplier Price Increase - Urgent",
     category: "supplier_increase",
     locale: "pl",
     urgency: "U1",
@@ -53,7 +53,7 @@ export const BENCHMARK_SUITE: BenchmarkScenario[] = [
   // ── B2: No Benchmarks (PL, U2) ────────────────────────
   {
     id: "B2",
-    name: "No Pricing Benchmarks — Active Planning",
+    name: "No Pricing Benchmarks - Active Planning",
     category: "spend_visibility",
     locale: "pl",
     urgency: "U2",
@@ -122,7 +122,7 @@ export const BENCHMARK_SUITE: BenchmarkScenario[] = [
   // ── B5: Supplier Risk (EN, U2) ────────────────────────
   {
     id: "B5",
-    name: "Supplier Dependency Risk — English",
+    name: "Supplier Dependency Risk - English",
     category: "supplier_risk",
     locale: "en",
     urgency: "U2",
@@ -145,7 +145,7 @@ export const BENCHMARK_SUITE: BenchmarkScenario[] = [
   // ── B6: Negotiation Preparation (EN, U1) ──────────────
   {
     id: "B6",
-    name: "Negotiation Preparation — Urgent English",
+    name: "Negotiation Preparation - Urgent English",
     category: "negotiation",
     locale: "en",
     urgency: "U1",
@@ -191,7 +191,7 @@ export const BENCHMARK_SUITE: BenchmarkScenario[] = [
   // ── B8: Procurement Transformation (EN, U2) ───────────
   {
     id: "B8",
-    name: "Procurement Transformation — Executive",
+    name: "Procurement Transformation - Executive",
     category: "transformation",
     locale: "en",
     urgency: "U2",
@@ -214,7 +214,7 @@ export const BENCHMARK_SUITE: BenchmarkScenario[] = [
   // ── B9: Education / Workshop Need (PL, U3) ────────────
   {
     id: "B9",
-    name: "Education — Negotiation Skills",
+    name: "Education - Negotiation Skills",
     category: "education",
     locale: "pl",
     urgency: "U3",
@@ -237,7 +237,7 @@ export const BENCHMARK_SUITE: BenchmarkScenario[] = [
   // ── B10: Margin Erosion Executive (EN, U1) ────────────
   {
     id: "B10",
-    name: "Margin Erosion — CFO Executive Framing",
+    name: "Margin Erosion - CFO Executive Framing",
     category: "executive",
     locale: "en",
     urgency: "U1",
