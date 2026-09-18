@@ -33,6 +33,10 @@ test('homepage imagery, process layout and next-step copy follow the approved sc
   assert.match(en, /\/images\/website\/Profitia_40\.jpg/)
   assert.match(v1, /\/images\/website\/Profitia_25\.jpg/)
   assert.match(home, /\/images\/website\/Profitia_25\.jpg/)
+  assert.match(v1, /lg:items-stretch/)
+  assert.match(v1, /lg:aspect-auto lg:self-stretch/)
+  assert.match(home, /lg:items-stretch/)
+  assert.match(home, /lg:aspect-auto lg:self-stretch/)
   assert.match(v1, /problem z dostawcą/)
   assert.match(v1, /najszybsze mierzalne rezultaty/)
   assert.match(en, /fastest measurable results/)
@@ -49,6 +53,9 @@ test('education CIPS narrative is bilingual and reuses the project-section layou
   assert.match(education, /CIPS Corporate Certification/)
   assert.match(education, /MCIPS and the Procurement Executive Development Programme/)
   assert.match(education, /lg:grid-cols-\[minmax\(0,0\.92fr\)_minmax\(0,1\.08fr\)\]/)
+  assert.match(education, /lg:items-stretch/)
+  assert.match(education, /lg:aspect-auto lg:self-stretch/)
+  assert.match(education, /className="object-cover object-center"/)
 })
 
 test('career gallery contains the nine approved unique local images', () => {
