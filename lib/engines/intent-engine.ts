@@ -54,14 +54,14 @@ const INTENT_PATTERNS: Record<IntentCode, { keywords: string[]; weight: number }
     keywords: [
       "procurement function", "transformation", "operating model",
       "sourcing strategy", "category management", "struktura zakupów",
-      "procurement team", "capability", "reorganiz", "pmo", "interim",
+      "procurement team structure", "capability model", "reorganiz", "pmo", "interim",
       "procurement director", "cpо", "transformacja",
     ],
     weight: 0.85,
   },
   I6_EDUCATION: {
     keywords: [
-      "training", "workshop", "szkoleni", "workshop", "akademia",
+      "training", "negotiation training", "procurement team", "workshop", "szkoleni", "akademia",
       "develop", "learn", "skill", "competence", "coaching", "mentoring",
       "kurs", "programme", "team development", "edukacj", "kompetenc",
       "rozw", "zespo", "umiejętno",
