@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import type { CareerLocale } from '@/lib/careers'
-import { JOB_POSTS, tCareer } from '@/lib/careers'
+import { getAllJobs, tCareer } from '@/lib/careers'
 import { RECRUITMENT_TURNSTILE_ACTION } from '@/lib/forms/constants'
 import { RECRUITMENT_CONSENT_COPY } from '@/lib/recruitment/consent'
 import {
@@ -135,7 +135,7 @@ export default function ApplicationForm({ locale }: Props) {
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
 
   // ── Role options ─────────────────────────────────────────────
-  const roleOptions = JOB_POSTS.map((job) => ({
+  const roleOptions = getAllJobs().map((job) => ({
     value: job.slug,
     label: tCareer(job.title, locale),
   }))

@@ -406,10 +406,12 @@ async function main() {
     })
 
     await test('role labels are frozen server-side', () => {
-      assert.equal(JOB_POSITION_LABELS.PROCUREMENT_CONSULTANT.pl, 'Konsultant Zakupowy')
-      assert.equal(JOB_POSITION_LABELS.PROCUREMENT_CONSULTANT.en, 'Procurement Consultant')
-      assert.equal(JOB_POSITION_LABELS.JUNIOR_BUSINESS_ANALYST.pl, 'Młodszy Analityk Biznesowy')
-      assert.equal(JOB_POSITION_LABELS.JUNIOR_BUSINESS_ANALYST.en, 'Junior Business Analyst')
+      assert.equal(JOB_POSITION_LABELS.PROCUREMENT_CONSULTANT.pl, 'Consultant / Senior Consultant')
+      assert.equal(JOB_POSITION_LABELS.PROCUREMENT_CONSULTANT.en, 'Consultant / Senior Consultant')
+      assert.equal(JOB_POSITION_LABELS.JUNIOR_BUSINESS_ANALYST.pl, 'Junior Analyst / Analyst')
+      assert.equal(JOB_POSITION_LABELS.JUNIOR_BUSINESS_ANALYST.en, 'Junior Analyst / Analyst')
+      assert.equal(JOB_POSITION_LABELS.MANAGER.pl, 'Manager')
+      assert.equal(JOB_POSITION_LABELS.MANAGER.en, 'Manager')
     })
   } finally {
     await prisma.jobApplication.deleteMany({ where: { email: { startsWith: cleanupPrefix } } })

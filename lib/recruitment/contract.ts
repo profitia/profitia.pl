@@ -27,16 +27,21 @@ export const RECRUITMENT_FIELD_LIMITS = {
 export const JOB_POSITION_BY_ROLE_SLUG = {
   'procurement-consultant': 'PROCUREMENT_CONSULTANT',
   'junior-business-analyst': 'JUNIOR_BUSINESS_ANALYST',
+  'manager': 'MANAGER',
 } as const
 
 export const JOB_POSITION_LABELS = {
   PROCUREMENT_CONSULTANT: {
-    pl: 'Konsultant Zakupowy',
-    en: 'Procurement Consultant',
+    pl: 'Consultant / Senior Consultant',
+    en: 'Consultant / Senior Consultant',
   },
   JUNIOR_BUSINESS_ANALYST: {
-    pl: 'Młodszy Analityk Biznesowy',
-    en: 'Junior Business Analyst',
+    pl: 'Junior Analyst / Analyst',
+    en: 'Junior Analyst / Analyst',
+  },
+  MANAGER: {
+    pl: 'Manager',
+    en: 'Manager',
   },
 } as const
 
@@ -88,7 +93,7 @@ export const RECRUITMENT_ALLOWED_MULTIPART_FIELDS = [
 ] as const
 
 export const RecruitmentTransportSchema = z.object({
-  roleSlug: z.enum(['procurement-consultant', 'junior-business-analyst']),
+  roleSlug: z.enum(['procurement-consultant', 'junior-business-analyst', 'manager']),
   fullName: z.string(),
   email: z.string(),
   phone: z.string(),

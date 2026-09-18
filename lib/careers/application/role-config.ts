@@ -123,7 +123,7 @@ const Q_ENGLISH: FormQuestion = {
 export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
   {
     roleSlug: 'procurement-consultant',
-    title: { pl: 'Konsultant Zakupowy', en: 'Procurement Consultant' },
+    title: { pl: 'Consultant / Senior Consultant', en: 'Consultant / Senior Consultant' },
     questions: [
       Q_START_DATE,
       Q_HYBRID,
@@ -162,7 +162,7 @@ export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
   },
   {
     roleSlug: 'junior-business-analyst',
-    title: { pl: 'Młodszy Analityk Biznesowy', en: 'Junior Business Analyst' },
+    title: { pl: 'Junior Analyst / Analyst', en: 'Junior Analyst / Analyst' },
     questions: [
       Q_START_DATE,
       {
@@ -208,6 +208,45 @@ export const ROLE_FORM_CONFIGS: RoleFormConfig[] = [
         placeholder: {
           pl: 'maks. 4–5 zdań',
           en: 'max. 4–5 sentences',
+        },
+        rows: 5,
+        maxLength: 2000,
+      },
+    ],
+  },
+  {
+    roleSlug: 'manager',
+    title: { pl: 'Manager', en: 'Manager' },
+    questions: [
+      Q_START_DATE,
+      Q_HYBRID,
+      Q_TRAVEL,
+      Q_EXCEL,
+      Q_ENGLISH,
+      {
+        id: 'salaryExpectation',
+        type: 'text',
+        label: {
+          pl: 'Jakie są Twoje oczekiwania finansowe (stawka miesięczna brutto)?',
+          en: 'What are your salary expectations (monthly gross)?',
+        },
+        required: false,
+        placeholder: {
+          pl: 'np. oczekiwana stawka miesięczna brutto',
+          en: 'e.g. expected monthly gross rate',
+        },
+      },
+      {
+        id: 'motivation',
+        type: 'textarea',
+        label: {
+          pl: 'Dlaczego interesuje Cię rola Managera w Profitia?',
+          en: 'Why are you interested in the Manager role at Profitia?',
+        },
+        required: true,
+        placeholder: {
+          pl: 'maks. 4-5 zdań',
+          en: 'max. 4-5 sentences',
         },
         rows: 5,
         maxLength: 2000,

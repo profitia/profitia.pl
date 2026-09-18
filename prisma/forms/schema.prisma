@@ -36,6 +36,7 @@ enum ContactEmailJobStatus {
 enum JobPosition {
   PROCUREMENT_CONSULTANT
   JUNIOR_BUSINESS_ANALYST
+  MANAGER
 }
 
 enum WeeklyAvailability {

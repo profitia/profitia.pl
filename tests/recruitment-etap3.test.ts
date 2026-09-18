@@ -241,7 +241,7 @@ async function main() {
 
       assert.equal(recruiterEmail.to, 'tomasz.uscinski@profitia.pl')
       assert.equal(recruiterEmail.replyTo, application.email)
-      assert.equal(recruiterEmail.subject, 'Nowa aplikacja na: Konsultant Zakupowy')
+      assert.equal(recruiterEmail.subject, 'Nowa aplikacja na: Consultant / Senior Consultant')
       assert.equal(recruiterEmail.attachments?.length, 1)
       assert.equal(recruiterEmail.attachments?.[0]?.filename, 'candidate-safe.pdf')
       assert.equal(recruiterEmail.attachments?.[0]?.contentType, 'application/pdf')
@@ -255,12 +255,12 @@ async function main() {
       assert.equal(candidatePl.subject, 'Dziękujemy za przesłanie aplikacji do Profitia')
       assert.equal(candidatePl.replyTo, resolveRecruitmentMailboxReplyTo(env))
       assert.equal(candidatePl.attachments, undefined)
-      assert.match(candidatePl.text ?? '', /dziękujemy za przesłanie aplikacji na stanowisko "Konsultant Zakupowy"\./)
+      assert.match(candidatePl.text ?? '', /dziękujemy za przesłanie aplikacji na stanowisko "Consultant \/ Senior Consultant"\./)
 
       const candidateEn = buildCandidateConfirmationEmail(application, env)
       assert.equal(candidateEn.subject, 'Thank you for applying to Profitia')
       assert.equal(candidateEn.attachments, undefined)
-      assert.match(candidateEn.text ?? '', /Thank you for applying for the position of "Procurement Consultant"\./)
+      assert.match(candidateEn.text ?? '', /Thank you for applying for the position of "Consultant \/ Senior Consultant"\./)
       assert.equal(resolveRecruitmentNotificationRecipient(env), 'tomasz.uscinski@profitia.pl')
     })
 

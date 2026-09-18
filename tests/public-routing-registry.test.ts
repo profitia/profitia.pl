@@ -71,6 +71,8 @@ function run(): void {
   assertEqual(getPublicPath('service:analiza-spot', 'en'), '/en/advisory/spot-analysis', 'EN SPOT path')
   assertEqual(getPublicPath('education:akademia-zakupow', 'en'), '/en/education/procurement-academy', 'EN academy path')
   assertEqual(getPublicPath('job:procurement-consultant', 'pl'), '/kariera/konsultant-zakupowy', 'PL job path')
+  assertEqual(getPublicPath('job:manager', 'pl'), '/kariera/manager', 'PL manager path')
+  assertEqual(getPublicPath('job:manager', 'en'), '/en/career/manager', 'EN manager path')
 
   for (const [entityId, plPath, stablePath, enPath] of PL_SERVICE_PATHS) {
     assertEqual(getPublicPath(`service:${entityId}`, 'pl'), plPath, `PL service path for ${entityId}`)
@@ -101,6 +103,8 @@ function run(): void {
   assertEqual(resolveCapabilityIdFromSlug('digital-service', 'en', 'spend-analytics'), 'spend-analytics', 'EN digital spend analytics slug resolves to stable ID')
   assertEqual(resolveCareerIdFromSlug('pl', 'konsultant-zakupowy'), 'procurement-consultant', 'PL job slug resolves to stable ID')
   assertEqual(resolveCareerIdFromSlug('en', 'procurement-consultant'), 'procurement-consultant', 'EN job slug resolves to stable ID')
+  assertEqual(resolveCareerIdFromSlug('pl', 'manager'), 'manager', 'PL manager slug resolves to stable ID')
+  assertEqual(resolveCareerIdFromSlug('en', 'manager'), 'manager', 'EN manager slug resolves to stable ID')
 
   const redirects = getRedirectEntries()
   const redirectMap = new Map(redirects.map((entry) => [entry.source, entry.destination]))
@@ -148,11 +152,12 @@ function run(): void {
   assert(digitalServiceParamsEn.some((entry) => entry.slug === 'ai-agents'), 'EN digital service params include AI agents slug')
   assert(educationParamsPl.some((entry) => entry.slug === 'negocjacje-zakupowe'), 'PL education params include localized slug')
   assert(careerParamsPl.some((entry) => entry.slug === 'konsultant-zakupowy'), 'PL career params include localized job slug')
+  assert(careerParamsPl.some((entry) => entry.slug === 'manager'), 'PL career params include manager slug')
 
   assert(PUBLIC_ROUTE_ENTRIES.every((entry) => entry.kind !== 'article'), 'Blog/article routes must not be part of this migration registry')
 
   const canonicalPaths = getCanonicalPublicPaths()
-  assertEqual(canonicalPaths.length, 88, 'Canonical route count includes digital services')
+  assertEqual(canonicalPaths.length, 90, 'Canonical route count includes digital services and manager role')
   assert(canonicalPaths.some((entry) => entry.path === '/doradztwo/uslugi'), 'Canonical routes include PL services listing')
   assert(canonicalPaths.some((entry) => entry.path === '/uslugi-digital/digital-consulting'), 'Canonical routes include PL digital consulting path')
   assert(canonicalPaths.some((entry) => entry.path === '/en/digital-services/ai-agents'), 'Canonical routes include EN AI agents path')
