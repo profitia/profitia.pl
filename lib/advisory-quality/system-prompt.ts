@@ -47,6 +47,12 @@ const SERVICE_CATALOG = {
     { name: "In-Company Workshops", slug: "/education/in-company-workshops" },
     { name: "Procurement Mentoring", slug: "/education/procurement-mentoring" },
   ],
+  digital: [
+    { name: "Digital Consulting", slug: "/uslugi-digital/digital-consulting" },
+    { name: "Spend Analytics", slug: "/uslugi-digital/spend-analytics" },
+    { name: "Dedykowane aplikacje", slug: "/uslugi-digital/dedykowane-aplikacje" },
+    { name: "Agenci AI", slug: "/uslugi-digital/agenci-ai" },
+  ],
 };
 
 // ── Intent → Priority Services mapping ───────────────────
@@ -54,7 +60,7 @@ const INTENT_PRIORITY_SERVICES: Record<string, string[]> = {
   I1_SAVINGS: ["/services/analiza-spot", "/services/supplier-benchmarking", "/services/should-cost-analysis"],
   I2_FORECASTING: ["/services/spend-cube", "/services/spend-analytics", "/services/procurement-dashboards"],
   I3_SUPPLIER_RISK: ["/services/supplier-intelligence", "/services/supplier-benchmarking", "/services/procurement-transformation"],
-  I4_DIGITALIZATION: ["/services/spend-analytics", "/services/procurement-dashboards", "/services/procurement-kpi-systems"],
+  I4_DIGITALIZATION: ["/uslugi-digital/digital-consulting", "/uslugi-digital/dedykowane-aplikacje", "/uslugi-digital/agenci-ai"],
   I5_SOURCING: ["/services/analiza-spot", "/services/procurement-transformation", "/services/category-strategy"],
   I6_EDUCATION: ["/education/warsztaty-negocjacyjne", "/education/akademia-zakupow", "/education/fact-based-negotiation"],
   I7_EXPLORATORY: ["/services/analiza-spot", "/services/projekty-doradcze"],
@@ -94,21 +100,22 @@ YOUR THINKING:
 function buildContextBlock(
   locale: string,
   pageContext: PageContext,
-  sessionState: SessionState
+  sessionState: SessionState,
+  userMessageCount: number,
 ): string {
   const priorityServices = INTENT_PRIORITY_SERVICES[sessionState.detectedIntent] ?? INTENT_PRIORITY_SERVICES.UNKNOWN;
   const allServices = Object.values(SERVICE_CATALOG).flat();
   const priorityList = priorityServices
     .map((slug) => allServices.find((s) => s.slug === slug))
     .filter(Boolean)
-    .map((s) => `  - [${s!.name}](${s!.slug})`)
+    .map((s) => `  - ${s!.name}`)
     .join("\n");
 
   return `KONTEKST SESJI:
 - Strona: ${pageContext.slug}
 - Wykryty intent: ${sessionState.detectedIntent} (pewność: ${Math.round(sessionState.intentConfidence * 100)}%)
 - Pilność: ${sessionState.urgency} | Etap: ${sessionState.buyingStage} | Dojrzałość: ${sessionState.maturity}
-- Faza rozmowy: ${sessionState.phase} | Liczba wiadomości: ${sessionState.ctaFatigue}
+- Faza rozmowy: ${sessionState.phase} | Liczba odpowiedzi użytkownika: ${userMessageCount}
 
 PRIORYTETOWE USŁUGI DLA TEGO KONTEKSTU:
 ${priorityList}
@@ -140,8 +147,16 @@ export function buildAdvisorySystemPrompt(params: {
   sessionState: SessionState;
   decision: AdvisoryDecision | null;
   messageCount: number;
+  userMessageCount: number;
 }): string {
-  const { locale, pageContext, sessionState, decision, messageCount } = params;
+  const {
+    locale,
+    pageContext,
+    sessionState,
+    decision,
+    messageCount,
+    userMessageCount,
+  } = params;
   const l = (locale === "pl" || locale === "en") ? locale : "pl";
 
   const compressionProfile = getCompressionProfile({
@@ -153,7 +168,7 @@ export function buildAdvisorySystemPrompt(params: {
   });
 
   const identity = buildIdentityBlock(l);
-  const context = buildContextBlock(l, pageContext, sessionState);
+  const context = buildContextBlock(l, pageContext, sessionState, userMessageCount);
   const reasoningSnippet = buildReasoningBlock(l, sessionState, messageCount);
   const compressionDirective = buildCompressionDirective(compressionProfile, l);
   const antiPatterns = buildAntiPatternGuard(l);
@@ -184,6 +199,18 @@ export function buildAdvisorySystemPrompt(params: {
     ? "JĘZYK: Odpowiadaj po polsku. Jeśli użytkownik pisze po angielsku, przełącz się na angielski."
     : "LANGUAGE: Respond in English. If the user writes in Polish, switch to Polish.";
 
+  const conversationRule = l === "pl"
+    ? `ZASADY PROWADZENIA ROZMOWY:
+- Zadaj najwyżej jedno krótkie pytanie w jednej odpowiedzi.
+- Nie umieszczaj linków ani adresów stron w treści. Interfejs pokaże właściwe, zweryfikowane CTA.
+- Nie powtarzaj pytania, na które użytkownik już odpowiedział.
+- Po najpóźniej czwartej odpowiedzi użytkownika podsumuj potrzebę i wskaż jeden rekomendowany kierunek. Nie rozpoczynaj kolejnej diagnozy.`
+    : `CONVERSATION RULES:
+- Ask at most one short question in each response.
+- Do not include links or page addresses in the response. The interface provides the verified CTA.
+- Do not repeat a question the user has already answered.
+- By the user's fourth answer at the latest, summarise the need and name one recommended direction. Do not start another diagnostic loop.`;
+
   // Metadata block instruction
   const metadataInstruction = `
 Na końcu odpowiedzi (niewidoczne dla użytkownika) dołącz blok JSON:
@@ -202,6 +229,8 @@ Na końcu odpowiedzi (niewidoczne dla użytkownika) dołącz blok JSON:
     toneGuidance,
     "\n",
     langRule,
+    "\n---\n",
+    conversationRule,
     "\n---\n",
     compressionDirective,
     "\n---\n",

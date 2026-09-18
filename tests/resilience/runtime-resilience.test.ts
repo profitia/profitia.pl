@@ -170,13 +170,14 @@ async function testStreamingRecovery(): Promise<void> {
     assert(state.accumulatedContent.length > 0, "Content should accumulate");
   });
 
-  await test("Deduplicates identical chunks", "streaming", () => {
+  await test("Preserves repeated text chunks", "streaming", () => {
     const state = createStreamState("stream-3", "session-3");
-    const chunk = "Duplicate chunk content here.";
+    const chunk = "nie ";
     processChunk(state, chunk);
-    const result = processChunk(state, chunk); // same chunk
-    assert(result.deduplicated, "Should detect duplicate chunk");
-    assert(state.chunkCount === 1, "Chunk count should not increment for duplicate");
+    const result = processChunk(state, chunk);
+    assert(result.accepted, "Repeated language fragments are valid stream deltas");
+    assert(state.chunkCount === 2, "Every ordered delta should be counted");
+    assert(state.accumulatedContent === "nie nie ", "Repeated text must remain intact");
   });
 
   await test("Detects stale stream", "streaming", () => {

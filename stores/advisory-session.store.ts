@@ -180,8 +180,33 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
 
     const decision = runAdvisoryOrchestrator(session);
 
-    // Apply orchestrator output back to session state
-    const nextPhase = computeNextPhase(session);
+    const userMessageCount = session.messages.filter((message) => message.role === "user").length;
+    const nextBuyingStage: BuyingStage = session.intelligence.ctaClicked
+      ? "S5"
+      : decision.routing.shouldEscalateNow
+      ? "S4"
+      : userMessageCount >= 2
+      ? "S3"
+      : userMessageCount >= 1
+      ? "S2"
+      : "S1";
+
+    // Compute the phase from the same fresh decision that will be committed.
+    const decisionSession: AdvisorySession = {
+      ...session,
+      state: {
+        ...session.state,
+        detectedIntent: decision.intent.primary,
+        intentConfidence: decision.intent.primaryConfidence,
+        urgency: decision.intent.urgency,
+        maturity: decision.maturity.level,
+        buyingStage: nextBuyingStage,
+        escalationReady: decision.routing.shouldEscalateNow,
+        journeyId: decision.routing.route?.journeyId ?? null,
+        journeyStep: decision.routing.nextStep?.stepIndex ?? session.state.journeyStep,
+      },
+    };
+    const nextPhase = computeNextPhase(decisionSession);
 
     set((state) => {
       if (!state.session) return {};
@@ -193,6 +218,7 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
           intentConfidence: decision.intent.primaryConfidence,
           urgency: decision.intent.urgency,
           maturity: decision.maturity.level,
+          buyingStage: nextBuyingStage,
           phase: nextPhase,
           escalationReady: decision.routing.shouldEscalateNow,
           journeyId: decision.routing.route?.journeyId ?? null,
@@ -246,11 +272,6 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
         },
       },
     });
-
-    // Re-run orchestration after each user message
-    if (role === "user") {
-      setTimeout(() => get().runOrchestration(), 50);
-    }
 
     return id;
   },
@@ -510,5 +531,4 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
 
 // ── Backward-compat alias ─────────────────────────────────
 export const useAdvisoryStore = useAdvisorySession;
-
 

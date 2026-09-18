@@ -28,6 +28,7 @@
     "test:contact-regression": "tsx tests/contact-abuse-regression.test.ts && tsx tests/contact-email-regression.test.ts && tsx tests/contact-email-outbox.test.ts",
     "test:office365": "tsx scripts/test-office365-email.ts",
     "test:contact-abuse": "tsx scripts/test-contact-rate-limit.ts",
+    "test:advisory-stage1": "tsx tests/advisory-chat-stage1.test.ts && tsx tests/advisory-chat-ui-stage1.test.ts",
     "test:blog-phase1": "tsx tests/blog-cms-phase1.test.ts",
     "test:blog-phase2": "tsx tests/blog-cms-phase2.test.ts",
     "test:blog-phase3": "tsx tests/blog-cms-phase3.test.ts",

@@ -6,6 +6,7 @@ import { useAdvisorySession } from "@/stores/advisory-session.store";
 import { AssistantTrigger } from "./AssistantTrigger";
 import { AssistantPanel } from "./AssistantPanel";
 import { ProactivePrompt } from "./ProactivePrompt";
+import { usePageContext } from "@/hooks/usePageContext";
 import type { Locale } from "@/lib/i18n";
 
 interface AdvisoryAssistantProps {
@@ -15,6 +16,7 @@ interface AdvisoryAssistantProps {
 export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
   const { isOpen, isInitialized, initSession } = useAdvisorySession();
   const initialized = useRef(false);
+  usePageContext(locale);
 
   useEffect(() => {
     if (initialized.current) return;
