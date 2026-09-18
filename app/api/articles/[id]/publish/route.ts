@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { isSameOriginRequest, verifyActiveAdminToken } from '@/lib/auth'
 import { ArticleServiceError, publishArticle } from '@/lib/articles/article-service'
+import { revalidatePublishedArticlePages } from '@/lib/articles/cache'
 
 type RouteContext = { params: Promise<{ id: string }> }
 
@@ -15,6 +16,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     }
     const { id } = await params
     const article = await publishArticle(id)
+    revalidatePublishedArticlePages()
     return NextResponse.json({ success: true, article })
   } catch (error) {
     if (error instanceof z.ZodError) {

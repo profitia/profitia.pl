@@ -1,12 +1,13 @@
 import sharp from 'sharp'
 
 export const MAX_MEDIA_BYTES = 8 * 1024 * 1024
+export const MAX_MEDIA_DIMENSION = 1920
 const MAX_MEDIA_PIXELS = 40_000_000
 
 export type ProcessedImage = {
   body: Buffer
-  mimeType: 'image/jpeg' | 'image/png' | 'image/webp'
-  extension: 'jpg' | 'png' | 'webp'
+  mimeType: 'image/webp'
+  extension: 'webp'
   width: number
   height: number
   byteSize: number
@@ -32,24 +33,20 @@ export async function processImageUpload(input: Buffer): Promise<ProcessedImage>
       throw new MediaValidationError('Animated images are not supported')
     }
 
-    let body: Buffer
-    let mimeType: ProcessedImage['mimeType']
-    let extension: ProcessedImage['extension']
-    if (metadata.format === 'jpeg') {
-      body = await image.rotate().jpeg({ quality: 88, mozjpeg: true }).toBuffer()
-      mimeType = 'image/jpeg'
-      extension = 'jpg'
-    } else if (metadata.format === 'png') {
-      body = await image.rotate().png({ compressionLevel: 9 }).toBuffer()
-      mimeType = 'image/png'
-      extension = 'png'
-    } else if (metadata.format === 'webp') {
-      body = await image.rotate().webp({ quality: 88 }).toBuffer()
-      mimeType = 'image/webp'
-      extension = 'webp'
-    } else {
+    if (!['jpeg', 'png', 'webp'].includes(metadata.format ?? '')) {
       throw new MediaValidationError('Use a JPEG, PNG or WebP image')
     }
+
+    const body = await image
+      .rotate()
+      .resize({
+        width: MAX_MEDIA_DIMENSION,
+        height: MAX_MEDIA_DIMENSION,
+        fit: 'inside',
+        withoutEnlargement: true,
+      })
+      .webp({ quality: 82, effort: 4, smartSubsample: true })
+      .toBuffer()
 
     if (body.length > MAX_MEDIA_BYTES) {
       throw new MediaValidationError('Processed image must not exceed 8 MB')
@@ -61,8 +58,8 @@ export async function processImageUpload(input: Buffer): Promise<ProcessedImage>
 
     return {
       body,
-      mimeType,
-      extension,
+      mimeType: 'image/webp',
+      extension: 'webp',
       width: normalized.width,
       height: normalized.height,
       byteSize: body.length,

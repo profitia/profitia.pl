@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
     }))
   },
   images: {
+    minimumCacheTTL: 604800,
     remotePatterns: [
       ...configuredMediaPattern(),
       {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isSameOriginRequest, verifyActiveAdminToken } from '@/lib/auth'
 import { ArticleServiceError, unpublishArticle } from '@/lib/articles/article-service'
+import { revalidatePublishedArticlePages } from '@/lib/articles/cache'
 
 type RouteContext = { params: Promise<{ id: string }> }
 
@@ -14,6 +15,7 @@ export async function POST(request: NextRequest, { params }: RouteContext) {
     }
     const { id } = await params
     const article = await unpublishArticle(id)
+    revalidatePublishedArticlePages()
     return NextResponse.json({ success: true, article })
   } catch (error) {
     if (error instanceof ArticleServiceError) {

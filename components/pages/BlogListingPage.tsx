@@ -61,7 +61,7 @@ export default function BlogListingPage({ locale, articles }: Props) {
                 {copy.gridLabel}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-                {rest.map((article, index) => (
+                {rest.map((article) => (
                   <ArticleCard
                     key={article.id}
                     article={article}

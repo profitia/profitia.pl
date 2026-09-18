@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import { isSameOriginRequest, verifyActiveAdminToken } from '@/lib/auth'
 import { updateArticleDraftSchema } from '@/lib/articles/article-validation'
 import { ArticleServiceError, updateArticleDraft } from '@/lib/articles/article-service'
+import { revalidatePublishedArticlePages } from '@/lib/articles/cache'
 
 type RouteContext = { params: Promise<{ id: string }> }
 
@@ -43,6 +44,7 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
     const { id } = await params
     const data = updateArticleDraftSchema.parse(await request.json())
     const article = await updateArticleDraft(id, data)
+    if (article.published) revalidatePublishedArticlePages()
     return NextResponse.json({ success: true, article })
   } catch (error) {
     if (error instanceof z.ZodError) {

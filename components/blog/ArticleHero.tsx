@@ -18,6 +18,7 @@ import type { ArticleDetailData } from '@/lib/content/types'
 import { CategoryBadge } from './CategoryBadge'
 import { formatPublishDate, formatReadingTime } from '@/lib/content/utils'
 import MobileHeroImage from '@/components/ui/MobileHeroImage'
+import { getOptimizedArticleImageSrc } from '@/lib/articles/images'
 
 interface ArticleHeroProps {
   article: ArticleDetailData
@@ -28,7 +29,7 @@ const BACK = { pl: 'Wszystkie materiały', en: 'All articles' }
 
 export function ArticleHero({ article, locale }: ArticleHeroProps) {
   const prefix = locale === 'en' ? '/en' : ''
-  const coverImage = article.coverImage
+  const coverImage = getOptimizedArticleImageSrc(article.coverImage)
 
   return (
     <header className="pt-14 pb-12 lg:pt-24 lg:pb-16">
