@@ -33,7 +33,8 @@
     "test:blog-phase3": "tsx tests/blog-cms-phase3.test.ts",
     "test:blog-phase4": "tsx tests/blog-cms-phase4.test.ts",
     "test:blog-phase5": "tsx tests/blog-cms-phase5.test.ts",
-    "test:blog-phase5a": "tsx tests/blog-cms-phase5a.test.ts"
+    "test:blog-phase5a": "tsx tests/blog-cms-phase5a.test.ts",
+    "blog:images:optimize": "node --import tsx scripts/optimize-blog-covers.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1106.0",

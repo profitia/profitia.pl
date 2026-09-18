@@ -12,6 +12,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ArticlePreviewData } from '@/lib/content/types'
+import { getOptimizedArticleImageSrc } from '@/lib/articles/images'
 import { CategoryBadge } from './CategoryBadge'
 import { formatPublishDate, formatReadingTime } from '@/lib/content/utils'
 
@@ -26,6 +27,7 @@ const FEATURED = { pl: 'Materiał wiodący', en: 'Featured' }
 export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
   const prefix = locale === 'en' ? '/en' : ''
   const href = `${prefix}/blog/${article.slug}`
+  const coverImage = getOptimizedArticleImageSrc(article.coverImage)
 
   return (
     <section className="container-base py-20 lg:py-28">
@@ -91,12 +93,12 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
 
           {/* ── Image column ─────────────────────────────────── */}
           <div className="order-1 lg:order-2 overflow-hidden rounded-2xl aspect-[16/9] bg-gray-100 relative">
-            {article.coverImage ? (
+            {coverImage ? (
               <Image
-                src={article.coverImage}
+                src={coverImage}
                 alt={article.coverImageAlt ?? article.title}
                 fill
-                sizes="(max-width: 1024px) 100vw, 58vw"
+                sizes="(max-width: 1024px) 100vw, 720px"
                 className="object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
                 priority
               />

@@ -10,6 +10,7 @@ import Image from 'next/image'
 import type { ArticlePreviewData } from '@/lib/content/types'
 import { CategoryBadge } from './CategoryBadge'
 import { formatReadingTime } from '@/lib/content/utils'
+import { getOptimizedArticleImageSrc } from '@/lib/articles/images'
 
 interface ArticleRelatedProps {
   articles: ArticlePreviewData[]
@@ -30,38 +31,42 @@ export function ArticleRelated({ articles, locale }: ArticleRelatedProps) {
           {LABEL[locale]}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.slice(0, 3).map((article) => (
-            <Link
-              key={article.id}
-              href={`${prefix}/blog/${article.slug}`}
-              className="group block"
-            >
-              <div className="overflow-hidden rounded-lg aspect-[16/9] bg-gray-100 relative mb-4">
-                {article.coverImage ? (
-                  <Image
-                    src={article.coverImage}
-                    alt={article.coverImageAlt ?? article.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200" />
-                )}
-              </div>
-              <div className="flex items-center gap-3 mb-2">
-                <CategoryBadge category={article.category} locale={locale} />
-                {article.readingTime && (
-                  <span className="text-[11px] text-gray-500">
-                    {formatReadingTime(article.readingTime, locale)}
-                  </span>
-                )}
-              </div>
-              <h4 className="text-base font-semibold tracking-tight text-gray-900 leading-snug group-hover:text-brand-blue transition-colors duration-200 ease-out">
-                {article.title}
-              </h4>
-            </Link>
-          ))}
+          {articles.slice(0, 3).map((article) => {
+            const coverImage = getOptimizedArticleImageSrc(article.coverImage)
+
+            return (
+              <Link
+                key={article.id}
+                href={`${prefix}/blog/${article.slug}`}
+                className="group block"
+              >
+                <div className="overflow-hidden rounded-lg aspect-[16/9] bg-gray-100 relative mb-4">
+                  {coverImage ? (
+                    <Image
+                      src={coverImage}
+                      alt={article.coverImageAlt ?? article.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+                      className="object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200" />
+                  )}
+                </div>
+                <div className="flex items-center gap-3 mb-2">
+                  <CategoryBadge category={article.category} locale={locale} />
+                  {article.readingTime && (
+                    <span className="text-[11px] text-gray-500">
+                      {formatReadingTime(article.readingTime, locale)}
+                    </span>
+                  )}
+                </div>
+                <h4 className="text-base font-semibold tracking-tight text-gray-900 leading-snug group-hover:text-brand-blue transition-colors duration-200 ease-out">
+                  {article.title}
+                </h4>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>

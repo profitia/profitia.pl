@@ -8,7 +8,7 @@ import { TableKit } from '@tiptap/extension-table'
 import { articleContentExtensions } from '../components/admin/RichTextEditor'
 import { sanitizeArticleHtml } from '../lib/articles/article-content'
 import { publishableArticleSchema } from '../lib/articles/article-validation'
-import { MAX_MEDIA_BYTES, MediaValidationError, processImageUpload } from '../lib/media/image'
+import { MAX_MEDIA_BYTES, MAX_MEDIA_DIMENSION, MediaValidationError, processImageUpload } from '../lib/media/image'
 import { uploadMedia, type CreateMediaRecord } from '../lib/media/media-service'
 import { createMediaPostHandler } from '../lib/media/route-handler'
 import type { MediaStorage } from '../lib/media/storage'
@@ -99,14 +99,25 @@ async function main() {
   })
 
   try {
-  await test('JPEG PNG and WebP are detected from bytes and normalized', async () => {
+  await test('JPEG PNG and WebP are detected from bytes and canonically normalized to WebP', async () => {
     for (const format of ['jpeg', 'png', 'webp'] as const) {
       const processed = await processImageUpload(await image(format))
-      assert(processed.mimeType === `image/${format}`, `Unexpected ${format} MIME type`)
+      assert(processed.mimeType === 'image/webp', `Unexpected ${format} output MIME type`)
+      assert(processed.extension === 'webp', `Unexpected ${format} output extension`)
       assert(processed.width === 24 && processed.height === 16, `${format} dimensions changed`)
       const metadata = await sharp(processed.body).metadata()
+      assert(metadata.format === 'webp', `${format} was not converted to WebP`)
       assert(!metadata.exif, `${format} EXIF metadata survived normalization`)
     }
+  })
+
+  await test('oversized image dimensions are capped without changing aspect ratio', async () => {
+    const oversized = await sharp({
+      create: { width: 2400, height: 1200, channels: 3, background: '#176B87' },
+    }).jpeg().toBuffer()
+    const processed = await processImageUpload(oversized)
+    assert(processed.width === MAX_MEDIA_DIMENSION, 'Image width was not capped')
+    assert(processed.height === MAX_MEDIA_DIMENSION / 2, 'Image aspect ratio changed')
   })
 
   await test('extension MIME spoofing and unsupported content are irrelevant', async () => {
@@ -147,7 +158,7 @@ async function main() {
     }))
     assert(response.status === 201, `Expected 201, received ${response.status}`)
     assert(fake.puts.length === 1, 'Object storage did not receive exactly one object')
-    assert(fake.puts[0].contentType === 'image/png', 'Detected MIME type was not stored')
+    assert(fake.puts[0].contentType === 'image/webp', 'Canonical WebP MIME type was not stored')
     assert(records.length === 1 && records[0].uploadedById === testAdminId, 'Media ownership was not stored')
     assert(records[0].publicUrl.startsWith('https://media.example.com/blog/'), 'Public URL is unexpected')
   })

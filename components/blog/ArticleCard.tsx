@@ -10,20 +10,21 @@
  */
 
 import Link from 'next/link'
-import Image from 'next/image'
 import type { ArticlePreviewData } from '@/lib/content/types'
 import { CategoryBadge } from './CategoryBadge'
+import { DeferredArticleImage } from './DeferredArticleImage'
+import { getOptimizedArticleImageSrc } from '@/lib/articles/images'
 import { formatPublishDate, formatReadingTime } from '@/lib/content/utils'
 
 interface ArticleCardProps {
   article: ArticlePreviewData
   locale: 'pl' | 'en'
-  priority?: boolean
 }
 
-export function ArticleCard({ article, locale, priority = false }: ArticleCardProps) {
+export function ArticleCard({ article, locale }: ArticleCardProps) {
   const prefix = locale === 'en' ? '/en' : ''
   const href = `${prefix}/blog/${article.slug}`
+  const coverImage = getOptimizedArticleImageSrc(article.coverImage)
 
   return (
     <article>
@@ -31,14 +32,12 @@ export function ArticleCard({ article, locale, priority = false }: ArticleCardPr
 
         {/* Image */}
         <div className="overflow-hidden rounded-lg aspect-[16/10] bg-gray-100 relative mb-6">
-          {article.coverImage ? (
-            <Image
-              src={article.coverImage}
+          {coverImage ? (
+            <DeferredArticleImage
+              src={coverImage}
               alt={article.coverImageAlt ?? article.title}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
               className="object-cover group-hover:scale-[1.015] transition-transform duration-500 ease-out"
-              priority={priority}
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200" />

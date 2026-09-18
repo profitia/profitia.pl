@@ -1,5 +1,6 @@
 import type { ArticleLocale } from '@prisma/client'
 import type { Metadata, MetadataRoute } from 'next'
+import { getOptimizedArticleImageSrc } from './images'
 
 const DEFAULT_SITE_URL = 'https://profitia.pl'
 
@@ -53,7 +54,7 @@ export function getArticleCanonical(locale: ArticleLocale, slug: string): string
 }
 
 export function getAbsoluteArticleImage(image: string | null): string | undefined {
-  const value = nonEmpty(image)
+  const value = nonEmpty(getOptimizedArticleImageSrc(image))
   if (!value) return undefined
   try {
     return new URL(value, `${getSiteUrl()}/`).toString()

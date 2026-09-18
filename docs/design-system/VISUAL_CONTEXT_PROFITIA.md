@@ -2529,6 +2529,16 @@ Order of visual weight:
 - Footer also shows newsletter section on `/blog` - this is intentional and correct
 - **ONLY on article pages** is footer newsletter suppressed (see §29.G - Newsletter Policy)
 
+#### Image delivery and listing performance (CANONICAL + LOCKED)
+
+- Existing repository-backed covers keep their stored legacy path, but every `cover.png`, `cover.jpg` or `cover.jpeg` must have a generated sibling `cover.webp`; all public editorial surfaces resolve those legacy covers through the WebP sibling.
+- New CMS image uploads are normalized server-side to WebP, stripped of metadata and constrained to a maximum width or height of `1920px`. This policy applies to covers and rich-text images so new publications inherit the same performance standard automatically.
+- The featured cover is the only listing image with `priority`; article-grid images use proximity-based deferred mounting and low fetch priority. Never mark the whole article grid as eager or priority-loaded.
+- Responsive `sizes` must describe the real capped content width: `720px` for the featured cover and `384px` for three-column editorial cards. Do not use unbounded desktop viewport percentages for these surfaces.
+- PL and EN article listings use the shared tagged cache with a five-minute safety revalidation. Publishing, unpublishing or editing a published article must invalidate the listing tag, both blog paths and the sitemap immediately.
+- Next image derivatives retain a seven-day minimum cache TTL. Do not lower it without performance evidence and a documented migration reason.
+- `scripts/optimize-blog-covers.ts` is the canonical migration tool for repository-backed legacy covers; `tests/blog-performance-regression.test.ts` guards both historical assets and the future upload/rendering contract.
+
 ---
 
 ### C. ARTICLE PAGE ARCHITECTURE
@@ -3719,4 +3729,3 @@ On pages where the footer newsletter section is suppressed (legal, article, abou
 ---
 
 *Sekcja dodana: May 2026 - ETAP 8 homepage discoverability pass. Component: `components/layout/NewsletterStrip.tsx`.*
-
