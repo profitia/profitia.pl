@@ -28,8 +28,6 @@ import { track } from "@/lib/analytics";
 import { runAdvisoryOrchestrator } from "@/lib/engines/advisory-orchestrator";
 import { computeNextPhase } from "@/lib/engines/advisory-state-machine";
 import { runETAP3Orchestrator } from "@/lib/engines/etap3-orchestrator";
-import { cicRuntimeClient } from "@/services/cic-runtime-client";
-import type { OrchestrationResponse } from "@/runtime/schemas/orchestration.schema";
 
 // ── State shape ───────────────────────────────────────────
 interface AdvisorySessionStore {
@@ -49,15 +47,10 @@ interface AdvisorySessionStore {
   // ETAP 3: Embedded advisory state
   lastETAP3Decision: ETAP3Decision | null;
 
-  // ETAP 4: Remote runtime state
-  lastOrchestrationResponse: OrchestrationResponse | null;
-  isLoading: boolean;
-
   // Actions — Session
   initSession: (locale: Locale, slug: string) => void;
   updatePageContext: (slug: string) => void;
   runOrchestration: () => AdvisoryDecision | null;
-  runRemoteOrchestration: () => Promise<OrchestrationResponse | null>;
 
   // Actions — Messages
   addMessage: (role: Message["role"], content: string, metadata?: MessageMetadata) => string;
@@ -143,8 +136,6 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
   lastDecision: null,
   proactiveState: INITIAL_PROACTIVE,
   lastETAP3Decision: null,
-  lastOrchestrationResponse: null,
-  isLoading: false,
 
   initSession: (locale, slug) => {
     const session = createSession(locale, slug);
@@ -475,60 +466,4 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
 
   setTyping: (typing) => set({ isTyping: typing }),
   setStreaming: (streaming) => set({ isStreaming: streaming }),
-
-  runRemoteOrchestration: async () => {
-    const { session } = get();
-    if (!session) return null;
-    set({ isLoading: true });
-    try {
-      const s = session;
-      const pageSlug = s.pageContext.slug;
-      const request = {
-        sessionId: s.id,
-        locale: s.locale,
-        deploymentId: "ci-profitia-website",
-        pageSlug,
-        messages: s.messages.map((m) => ({ role: m.role, content: m.content })),
-        sessionState: {
-          phase: s.state.phase,
-          detectedIntent: s.state.detectedIntent,
-          intentConfidence: s.state.intentConfidence,
-          urgency: s.state.urgency,
-          buyingStage: s.state.buyingStage,
-          maturity: s.state.maturity,
-          journeyId: s.state.journeyId ?? null,
-          journeyStep: s.state.journeyStep,
-          escalationReady: s.state.escalationReady,
-          ctaFatigue: s.state.ctaFatigue,
-          engagementScore: s.state.engagementScore,
-        },
-        intelligence: {
-          pagesVisited: s.intelligence.pagesVisited as string[],
-          scrollDepth: s.intelligence.scrollDepth as Record<string, number>,
-          timeOnPage: s.intelligence.timeOnPage as Record<string, number>,
-          behavioralSignals: s.intelligence.behavioralSignals.map((sig) => ({
-            type: sig.type,
-            pageSlug: sig.pageSlug as string,
-            timestamp: sig.timestamp,
-            metadata: sig.metadata,
-          })),
-          recommendationsShown: s.intelligence.recommendationsShown,
-          ctasShown: s.intelligence.ctasShown,
-          ctaClicked: s.intelligence.ctaClicked ?? null,
-        },
-      };
-      const response = await cicRuntimeClient.orchestrate(request);
-      set({ lastOrchestrationResponse: response });
-      return response;
-    } catch (err) {
-      console.error("[advisory-store] Remote orchestration failed:", err);
-      return null;
-    } finally {
-      set({ isLoading: false });
-    }
-  },
 }));
-
-// ── Backward-compat alias ─────────────────────────────────
-export const useAdvisoryStore = useAdvisorySession;
-
