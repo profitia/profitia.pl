@@ -32,10 +32,10 @@ export default function CareerRow({ job, locale, isFirst = false }: Props) {
   return (
     <div className={`group border-b border-gray-100 flex items-start justify-between gap-6 ${isFirst ? 'pt-6 pb-9' : 'py-6'}`}>
       <div className="min-w-0">
-        <h3 className={`text-[15px] tracking-tight text-gray-900 leading-snug ${isFirst ? 'font-semibold' : 'font-medium'}`}>
+        <h3 className={`editorial-box-title text-gray-900 ${isFirst ? 'font-semibold' : 'font-medium'}`}>
           {title}
         </h3>
-        <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400 mt-1">
+        <p className="editorial-label text-gray-400 mt-1">
           {department} · {location}
         </p>
       </div>

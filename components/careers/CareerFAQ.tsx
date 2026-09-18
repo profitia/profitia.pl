@@ -32,7 +32,7 @@ export default function CareerFAQ({ eyebrow, title, items }: Props) {
 
           {/* Left label column */}
           <div className="mb-12 lg:mb-0 lg:pt-1">
-            <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-5">
+            <p className="editorial-label text-gray-400 mb-5">
               {eyebrow}
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-snug">

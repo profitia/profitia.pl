@@ -91,7 +91,7 @@ function ProductDescription({ description, sections }: { description?: string[];
       {sections?.map((section, sectionIndex) => (
         <div key={`${section.title ?? 'section'}-${sectionIndex}`} className="space-y-3">
           {section.title ? (
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[rgb(0,109,158)]">
+            <p className="editorial-label text-[rgb(0,109,158)]">
               {section.title}
             </p>
           ) : null}

@@ -39,7 +39,7 @@ export default function CapabilityHero({
         <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
           <RevealWrapper delay={0} className="lg:max-w-[52%] lg:pr-16">
             <div className="space-y-8 md:space-y-5 2xl:space-y-8">
-              <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">
+              <p className="editorial-label text-[rgba(0,109,158,0.8)]">
                 {eyebrow}
               </p>
               <h1 className="font-semibold text-[rgb(36,47,68)] tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
@@ -89,7 +89,7 @@ export default function CapabilityHero({
       <div className="container-base">
         <RevealWrapper delay={0}>
           <div className="space-y-8 md:space-y-5 2xl:space-y-8">
-            <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+            <p className="editorial-label text-gray-400">
               {eyebrow}
             </p>
             <h1 className="font-semibold text-gray-900 tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem] max-w-[42rem]">

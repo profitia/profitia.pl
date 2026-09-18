@@ -24,7 +24,7 @@ export default function CareerExposure({ eyebrow, title, items }: Props) {
 
           {/* Left - label column */}
           <div className="mb-10 lg:mb-0 lg:pt-1">
-            <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-4">
+            <p className="editorial-label text-gray-400 mb-4">
               {eyebrow}
             </p>
             <h2 className="text-lg font-semibold tracking-tight text-gray-900 leading-snug">

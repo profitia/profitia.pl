@@ -34,7 +34,7 @@ export default function CareerHero({ eyebrow, title, subtitle, cta1, cta2 }: Pro
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400"
+            className="editorial-label text-gray-400"
           >
             {eyebrow}
           </motion.p>

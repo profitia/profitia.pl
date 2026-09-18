@@ -72,7 +72,7 @@ export function ComparisonGrid({
                     key={`aspect-${i}`}
                     className="p-5 bg-gray-50 border-b border-gray-200 last-of-type:border-0 flex items-start"
                   >
-                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{row.aspect}</span>
+                    <span className="editorial-label text-gray-500">{row.aspect}</span>
                   </div>
                   <div
                     key={`before-${i}`}

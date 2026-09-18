@@ -29,7 +29,7 @@ export function TeamSection({
       {(eyebrow || heading || description) && (
         <div className="mb-14">
           {eyebrow && (
-            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-4">
+            <p className="editorial-label text-gray-500 mb-4">
               {eyebrow}
             </p>
           )}

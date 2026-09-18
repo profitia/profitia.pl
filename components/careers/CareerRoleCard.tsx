@@ -55,7 +55,7 @@ export default function CareerRoleCard({
         aria-expanded={open}
       >
         <div className="min-w-0">
-          <h3 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-snug mb-2 group-hover:text-brand-blue transition-colors duration-200">
+          <h3 className="editorial-box-title text-gray-900 mb-2 group-hover:text-brand-blue transition-colors duration-200">
             {title}
           </h3>
           {subtitle && (
@@ -64,17 +64,17 @@ export default function CareerRoleCard({
             </p>
           )}
           <div className="flex flex-wrap gap-x-4 gap-y-1">
-            <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400">
+            <span className="editorial-label text-gray-400">
               {department}
             </span>
             <span className="text-[11px] text-gray-300" aria-hidden="true">·</span>
-            <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400">
+            <span className="editorial-label text-gray-400">
               {location}
             </span>
           </div>
         </div>
         <div className="flex-shrink-0 pt-1 flex items-center gap-3">
-          <span className="text-[13px] text-gray-400 group-hover:text-brand-blue transition-colors duration-200">
+          <span className="editorial-action text-gray-400 group-hover:text-brand-blue transition-colors duration-200">
             {open ? collapseLabel : expandLabel}
           </span>
           <motion.span
@@ -119,7 +119,7 @@ export default function CareerRoleCard({
                 {/* Responsibilities */}
                 {job.workItems && job.workItems.length > 0 && (
                   <div>
-                    <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-300 mb-5">
+                    <p className="editorial-label text-gray-300 mb-5">
                       {responsibilitiesLabel}
                     </p>
                     <ul className="space-y-4">
@@ -138,7 +138,7 @@ export default function CareerRoleCard({
                 {/* Requirements */}
                 {job.requirements && job.requirements.length > 0 && (
                   <div>
-                    <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-300 mb-5">
+                    <p className="editorial-label text-gray-300 mb-5">
                       {requirementsLabel}
                     </p>
                     <ul className="space-y-4">

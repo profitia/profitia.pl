@@ -130,7 +130,7 @@ export default function HomePageContent({
             <RevealWrapper delay={0} className="min-w-0">
               <div className="space-y-6 lg:space-y-7 max-w-[44rem]">
                 <div className="space-y-3">
-                  <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-400">
+                  <p className="editorial-label text-gray-400">
                     {d.cips.eyebrow}
                   </p>
                   <h2 className="text-[2rem] md:text-[2.2rem] lg:text-[2.25rem] font-semibold tracking-tight leading-[1.03] text-[#242F44] whitespace-pre-line max-w-[12ch]">
@@ -149,7 +149,7 @@ export default function HomePageContent({
 
                 <div className="space-y-5 pt-1">
                   <div className="space-y-2">
-                    <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-[rgba(0,109,158,0.8)]">
+                    <p className="editorial-label text-[rgba(0,109,158,0.8)]">
                       {d.cips.conferenceLabel}
                     </p>
                     <p className="text-gray-600 leading-relaxed md:text-[0.97rem] lg:text-base">
@@ -158,7 +158,7 @@ export default function HomePageContent({
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-[rgba(0,109,158,0.8)]">
+                    <p className="editorial-label text-[rgba(0,109,158,0.8)]">
                       {d.cips.awardsLabel}
                     </p>
                     <p className="text-gray-600 leading-relaxed md:text-[0.97rem] lg:text-base">
@@ -228,7 +228,7 @@ export default function HomePageContent({
         <div className="max-w-7xl mx-auto px-6">
 
           <div className="mb-16">
-            <p className={`text-xs font-medium tracking-[0.25em] uppercase mb-5 ${eyebrowTone}`}>{d.problem.eyebrow}</p>
+            <p className={`editorial-label mb-5 ${eyebrowTone}`}>{d.problem.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight text-gray-900">
               {d.problem.h2}
             </h2>
@@ -269,7 +269,7 @@ export default function HomePageContent({
       <section id="3hhwq4" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">
 
-          <p className={`text-xs font-medium tracking-[0.25em] uppercase mb-5 ${eyebrowTone}`}>{d.insight.eyebrow}</p>
+          <p className={`editorial-label mb-5 ${eyebrowTone}`}>{d.insight.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-16 leading-tight text-gray-900">
             {d.insight.h2}
           </h2>
@@ -308,7 +308,7 @@ export default function HomePageContent({
       <section id="b5xg0q" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowTone}`}>{d.process.eyebrow}</p>
+            <p className={`editorial-label mb-5 ${eyebrowTone}`}>{d.process.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
               {d.process.h2}
             </h2>
@@ -318,7 +318,7 @@ export default function HomePageContent({
               <div key={step.n} className="grid md:grid-cols-[100px_1fr] gap-6 md:gap-10 py-10 group hover:bg-gray-50 rounded-xl px-4 -mx-4 transition-colors duration-200">
                 <div className="text-5xl font-thin text-gray-100 group-hover:text-gray-200 transition-colors leading-none pt-1 select-none">{step.n}</div>
                 <div>
-                  <h3 className="font-semibold text-lg text-gray-900 mb-2">{step.title}</h3>
+                  <h3 className="editorial-box-title text-gray-900 mb-2">{step.title}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed max-w-xl">{step.desc}</p>
                 </div>
               </div>
@@ -339,7 +339,7 @@ export default function HomePageContent({
       <section id="vqj89m" className="py-28 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowToneOnDark}`}>{d.impact.eyebrow}</p>
+            <p className={`editorial-label mb-5 ${eyebrowToneOnDark}`}>{d.impact.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
               {d.impact.h2}
             </h2>
@@ -362,7 +362,7 @@ export default function HomePageContent({
       <section id="p8800w" className="py-28 bg-[rgba(199,237,251,0.24)]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowTone}`}>{d.usecases.eyebrow}</p>
+            <p className={`editorial-label mb-5 ${eyebrowTone}`}>{d.usecases.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl leading-tight">
               {d.usecases.h2}
             </h2>
@@ -370,8 +370,8 @@ export default function HomePageContent({
           <div className="grid md:grid-cols-2 gap-5">
             {d.usecases.items.map((uc) => (
               <div key={uc.n} className="group border border-gray-200 rounded-xl p-8 transition-all duration-300 hover:bg-[rgba(0,109,158,0.03)] hover:border-[rgba(0,109,158,0.18)] hover:shadow-lg">
-                <p className="text-xs font-medium tracking-[0.2em] uppercase text-gray-500 group-hover:text-brand-blue mb-5 transition-colors">{uc.n}</p>
-                <h3 className="font-semibold text-xl text-gray-900 mb-4 transition-colors tracking-tight">{uc.title}</h3>
+                <p className="editorial-index text-gray-500 group-hover:text-brand-blue mb-5 transition-colors">{uc.n}</p>
+                <h3 className="editorial-box-title text-gray-900 mb-4 transition-colors">{uc.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed transition-colors">{uc.desc}</p>
               </div>
             ))}
@@ -405,7 +405,7 @@ export default function HomePageContent({
       <section id="d31qlk" className="py-28 bg-[rgba(199,237,251,0.18)]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowTone}`}>{d.proof.eyebrow}</p>
+            <p className={`editorial-label mb-5 ${eyebrowTone}`}>{d.proof.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
               {d.proof.h2}
             </h2>
@@ -419,7 +419,7 @@ export default function HomePageContent({
             ))}
           </div>
           <div>
-            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-8 ${eyebrowTone}`}>
+            <p className={`editorial-label mb-8 ${eyebrowTone}`}>
               {d.proof.sectorsLabel}
             </p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
@@ -439,7 +439,7 @@ export default function HomePageContent({
       <section id="io58to" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
-            <p className={`text-xs font-semibold tracking-[0.2em] uppercase mb-5 ${eyebrowTone}`}>{d.cases.eyebrow}</p>
+            <p className={`editorial-label mb-5 ${eyebrowTone}`}>{d.cases.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
               {d.cases.h2}
             </h2>
@@ -458,7 +458,7 @@ export default function HomePageContent({
             <div className="space-y-10 pt-4">
               {d.cases.blocks.map((item, idx) => (
                 <div key={item.label} className={idx > 0 ? `border-t ${separatorBorder} pt-10` : ''}>
-                  <p className={`text-[10px] font-bold tracking-[0.25em] uppercase mb-3 ${eyebrowTone}`}>{item.label}</p>
+                  <p className={`editorial-label mb-3 ${eyebrowTone}`}>{item.label}</p>
                   <p className="text-gray-700 leading-relaxed text-sm">{item.text}</p>
                 </div>
               ))}
@@ -480,7 +480,7 @@ export default function HomePageContent({
           ════════════════════════════════════ */}
       <section id="g6lvxh" className="py-24 lg:py-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-white/56 mb-7">{d.cta.eyebrow}</p>
+          <p className="editorial-label text-white/56 mb-7">{d.cta.eyebrow}</p>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-7 max-w-2xl mx-auto leading-tight">
             {d.cta.h2}
           </h2>

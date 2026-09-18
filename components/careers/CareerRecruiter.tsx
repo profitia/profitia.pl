@@ -36,7 +36,7 @@ export default function CareerRecruiter({ locale, eyebrow, title, body, emailLab
           </div>
 
           <div className="max-w-[42rem]">
-            <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.28em] text-gray-400">{eyebrow}</p>
+            <p className="mb-5 editorial-label text-gray-400">{eyebrow}</p>
             <h2 className="mb-6 text-2xl font-semibold leading-snug tracking-tight text-gray-900 md:text-3xl">{title}</h2>
             <p className="mb-7 text-[16px] leading-[1.8] text-gray-600">{body}</p>
             <div className="mb-8">

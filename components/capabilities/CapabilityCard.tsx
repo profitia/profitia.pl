@@ -50,10 +50,10 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
     return (
       <div className={`group border-b border-[rgba(149,166,199,0.3)] flex items-start justify-between gap-6 rounded-xl px-4 -mx-4 transition-colors duration-200 hover-safe-surface-20 ${isFirst ? 'pt-6 pb-9' : 'py-6'}`}>
         <div className="min-w-0">
-          <h3 className={`text-[15px] tracking-tight text-[rgb(36,47,68)] leading-snug ${isFirst ? 'font-semibold' : 'font-medium'}`}>
+          <h3 className={`editorial-box-title text-[rgb(36,47,68)] ${isFirst ? 'font-semibold' : 'font-medium'}`}>
             {title}
           </h3>
-          <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-[rgb(72,94,136)] mt-1">
+          <p className="editorial-label text-[rgb(72,94,136)] mt-1">
             {eyebrow}
           </p>
         </div>
@@ -76,10 +76,10 @@ export default function CapabilityCard({ capability, locale, prefix, variant = '
       href={href}
       className="group block border border-gray-100 rounded-2xl p-7 transition-colors duration-200"
     >
-      <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400 mb-4">
+      <p className="editorial-label text-gray-400 mb-4">
         {eyebrow}
       </p>
-      <h3 className="text-base font-semibold tracking-tight text-gray-900 mb-2 leading-snug transition-colors duration-200 hover-safe-text-brand">
+      <h3 className="editorial-box-title text-gray-900 mb-2 transition-colors duration-200 hover-safe-text-brand">
         {title}
       </h3>
       <p className="text-sm text-gray-500 leading-relaxed">

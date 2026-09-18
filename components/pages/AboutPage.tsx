@@ -286,7 +286,7 @@ export function AboutPage({ locale }: AboutPageProps) {
         <div className="container-base relative z-10 py-16 lg:py-10 2xl:py-20 lg:min-h-[calc(100vh-140px)] 2xl:min-h-[calc(100vh-80px)] lg:flex lg:flex-col lg:justify-center">
           <RevealWrapper delay={0} className="lg:max-w-[52%] lg:pr-16">
             <div className="space-y-8 md:space-y-5 2xl:space-y-8">
-              <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">
+              <p className="editorial-label text-[rgba(0,109,158,0.8)]">
                 {t.hero.eyebrow}
               </p>
               <h1 className="font-semibold text-[rgb(36,47,68)] tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
@@ -327,7 +327,7 @@ export function AboutPage({ locale }: AboutPageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20">
           {/* Stats column */}
           <RevealWrapper delay={0} className="lg:pt-1">
-            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-[rgba(0,109,158,0.8)] mb-10">
+            <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-10">
               {t.foundation.eyebrow}
             </p>
             <div className={`border-t ${separatorColor} pt-8 grid grid-cols-2 gap-x-8 gap-y-8`}>
@@ -336,7 +336,7 @@ export function AboutPage({ locale }: AboutPageProps) {
                   <div className="text-[2.5rem] font-semibold tracking-tight text-[rgb(0,109,158)] leading-none mb-3">
                     {stat.value}
                   </div>
-                  <div className="text-[10px] font-semibold tracking-[0.22em] uppercase text-[rgb(72,94,136)]">
+                  <div className="editorial-label text-[rgb(72,94,136)]">
                     {stat.label}
                   </div>
                 </div>
@@ -364,7 +364,7 @@ export function AboutPage({ locale }: AboutPageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 lg:gap-20">
           {/* Left: heading */}
           <RevealWrapper delay={0} className="lg:pt-1">
-            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
+            <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
               {t.capabilities.eyebrow}
             </p>
             <h2 className="text-3xl md:text-[2.25rem] font-semibold tracking-tight text-[rgb(36,47,68)] leading-[1.1]">
@@ -378,10 +378,10 @@ export function AboutPage({ locale }: AboutPageProps) {
               <div key={item.num} className="hover-safe-row group relative py-10 lg:py-12 first:pt-0 last:pb-0 px-4 -mx-4 transition-colors duration-[250ms] hover-safe-surface-20">
                 <div className="hover-safe-row-bar absolute left-0 top-0 bottom-0 w-[3px] bg-[rgb(0,109,158)] opacity-0 transition-opacity duration-[250ms]" />
                 <div className="flex gap-5 items-baseline mb-3">
-                  <span className="text-[10px] font-semibold tracking-[0.18em] text-[rgb(72,94,136)] tabular-nums">
+                  <span className="editorial-index text-[rgb(72,94,136)]">
                     {item.num}
                   </span>
-                  <h3 className="text-base font-semibold tracking-tight text-[rgb(36,47,68)]">
+                  <h3 className="editorial-box-title text-[rgb(36,47,68)]">
                     {item.name}
                   </h3>
                 </div>
@@ -396,7 +396,7 @@ export function AboutPage({ locale }: AboutPageProps) {
 
       {/* ── 4. PHILOSOPHY ────────────────────────────────────────── */}
       <section className={`container-base py-20 sm:py-28 lg:py-36 border-b ${separatorColor}`}>
-        <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-[rgba(0,109,158,0.8)] mb-10">
+        <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-10">
           {t.philosophy.eyebrow}
         </p>
 
@@ -419,7 +419,7 @@ export function AboutPage({ locale }: AboutPageProps) {
           <div className={`divide-y ${rowSeparatorColor}`}>
             {t.philosophy.principles.map((p) => (
               <div key={p.name} className="px-4 -mx-4 py-8 lg:py-9 first:pt-0 last:pb-0 transition-colors duration-[250ms] hover-safe-surface-15">
-                <h3 className="text-[13.5px] font-semibold text-[rgb(36,47,68)] mb-2.5 leading-snug">
+                <h3 className="editorial-box-title text-[rgb(36,47,68)] mb-2.5">
                   {p.name}
                 </h3>
                 <p className="text-[14px] text-[rgb(59,56,56)] leading-[1.8]">
@@ -434,7 +434,7 @@ export function AboutPage({ locale }: AboutPageProps) {
       {/* ── 5. LEADERSHIP ────────────────────────────────────────── */}
       <section className={`container-base py-24 lg:py-32 border-b ${separatorColor}`}>
         <div className="mb-16 lg:mb-20">
-          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
+          <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
             {t.leadership.eyebrow}
           </p>
           <h2 className="text-3xl md:text-[2.25rem] font-semibold tracking-tight text-[rgb(36,47,68)] leading-[1.1] max-w-lg">
@@ -450,7 +450,7 @@ export function AboutPage({ locale }: AboutPageProps) {
 
       {/* ── 6. CREDENTIALS ───────────────────────────────────────── */}
       <section className={`container-base py-16 lg:py-24 border-b ${separatorColor}`}>
-        <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-[rgba(0,109,158,0.8)] mb-10">
+        <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-10">
           {t.credentials.eyebrow}
         </p>
 
@@ -479,7 +479,7 @@ export function AboutPage({ locale }: AboutPageProps) {
           <div className={`divide-y ${rowSeparatorColor}`}>
             {t.credentials.points.map((point) => (
               <div key={point.label} className="py-8 lg:py-10 first:pt-0 last:pb-0">
-                <h3 className="text-[13px] font-semibold text-[rgb(36,47,68)] mb-2.5 tracking-tight">
+                <h3 className="editorial-box-title text-[rgb(36,47,68)] mb-2.5">
                   {renderCredentialText(point.label)}
                 </h3>
                 <p className="text-[14px] text-[rgb(59,56,56)] leading-[1.8]">

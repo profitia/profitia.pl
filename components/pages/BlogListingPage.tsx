@@ -37,7 +37,7 @@ export default function BlogListingPage({ locale, articles }: Props) {
 
       {articles.length === 0 ? (
         <div className="container-base py-24">
-          <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-5">
+          <p className="editorial-label text-gray-400 mb-5">
             {copy.comingSoon}
           </p>
           <h2 className="text-2xl font-semibold tracking-tight text-gray-900 mb-3">
@@ -57,7 +57,7 @@ export default function BlogListingPage({ locale, articles }: Props) {
 
           {rest.length > 0 && (
             <section className="container-base py-16 lg:py-20">
-              <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-10">
+              <p className="editorial-label text-gray-400 mb-10">
                 {copy.gridLabel}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">

@@ -34,7 +34,7 @@ export function StatsStrip({ stats, dark = false }: StatsStripProps) {
                 <div className={`text-3xl md:text-4xl font-semibold tracking-tight ${valueCls} mb-1`}>
                   {stat.value}
                 </div>
-                <div className={`text-xs tracking-wide uppercase ${labelCls}`}>
+                <div className={`editorial-label ${labelCls}`}>
                   {stat.label}
                 </div>
               </div>

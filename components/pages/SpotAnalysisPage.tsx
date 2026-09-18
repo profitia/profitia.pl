@@ -279,7 +279,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:gap-16">
             <RevealWrapper>
               <div className="space-y-6">
-                <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+                <p className="editorial-label text-gray-400">
                   {c.problem.eyebrow}
                 </p>
                 <h2 className="max-w-[14ch] text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
@@ -314,7 +314,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
         <section className="border-t border-gray-100 py-24">
           <RevealWrapper>
             <div className="max-w-[50rem] space-y-5">
-              <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+              <p className="editorial-label text-gray-400">
                 {c.scope.eyebrow}
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
@@ -340,7 +340,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
         <section className="border-t border-gray-100 py-24">
           <RevealWrapper>
             <div className="space-y-5">
-              <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+              <p className="editorial-label text-gray-400">
                 {c.graphic.eyebrow}
               </p>
               <h2 className="max-w-[28ch] text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
@@ -354,7 +354,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
               <figcaption className="sr-only">{c.graphic.caption}</figcaption>
               <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_auto_minmax(0,1.1fr)_auto_minmax(0,0.8fr)] lg:items-center">
                 <div className="rounded-[24px] border border-[rgba(0,109,158,0.16)] bg-white px-5 py-6 text-center shadow-[0_10px_30px_rgba(0,109,158,0.08)]">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[rgb(0,109,158)]">
+                  <p className="editorial-label text-[rgb(0,109,158)]">
                     {c.graphic.input}
                   </p>
                 </div>
@@ -367,7 +367,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
                 </div>
 
                 <div className="rounded-[28px] border border-[rgba(149,166,199,0.32)] bg-white px-5 py-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
-                  <p className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[rgb(72,94,136)]">
+                  <p className="text-center editorial-label text-[rgb(72,94,136)]">
                     {c.graphic.center}
                   </p>
                   <ul className="mt-5 grid gap-3 sm:grid-cols-2" aria-label={c.graphic.center}>
@@ -390,7 +390,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
                 </div>
 
                 <div className="rounded-[24px] border border-[rgba(36,47,68,0.12)] bg-[rgb(36,47,68)] px-5 py-6 text-center text-white shadow-[0_16px_36px_rgba(15,23,42,0.18)]">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[rgba(199,237,251,0.88)]">
+                  <p className="editorial-label text-[rgba(199,237,251,0.88)]">
                     {c.graphic.output}
                   </p>
                 </div>
@@ -402,7 +402,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
         <section className="border-t border-gray-100 py-24">
           <RevealWrapper>
             <div className="max-w-[42rem] space-y-5">
-              <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+              <p className="editorial-label text-gray-400">
                 {c.process.eyebrow}
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
@@ -416,10 +416,10 @@ export default function SpotAnalysisPage({ locale }: Props) {
               <li key={step.title} className="list-none">
                 <RevealWrapper delay={((index % 4) as 0 | 1 | 2 | 3)} className="h-full">
                   <div className="flex h-full flex-col rounded-[28px] border border-[rgba(149,166,199,0.28)] bg-white px-6 py-7 shadow-[0_16px_40px_rgba(15,23,42,0.05)]">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[rgb(0,109,158)]">
+                    <span className="editorial-index text-[rgb(0,109,158)]">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <h3 className="mt-5 text-lg font-semibold tracking-tight text-[rgb(36,47,68)]">
+                    <h3 className="editorial-box-title mt-5 text-[rgb(36,47,68)]">
                       {step.title}
                     </h3>
                     <p className="mt-4 text-sm leading-[1.75] text-[rgb(59,56,56)]">
@@ -436,7 +436,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
           <RevealWrapper>
             <div className="rounded-[36px] bg-[rgb(36,47,68)] px-6 py-14 text-white sm:px-8 lg:px-12 lg:py-16">
               <div className="max-w-[48rem] space-y-6">
-                <p className="text-xs font-medium uppercase tracking-[0.25em] text-[rgba(199,237,251,0.7)]">
+                <p className="editorial-label text-[rgba(199,237,251,0.7)]">
                   {c.results.eyebrow}
                 </p>
                 <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
@@ -467,7 +467,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
         <section className="border-t border-gray-100 py-24">
           <RevealWrapper>
             <div className="max-w-[44rem] space-y-5">
-              <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+              <p className="editorial-label text-gray-400">
                 {c.credibility.eyebrow}
               </p>
               <h2 className="text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">

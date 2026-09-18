@@ -77,7 +77,7 @@ export default function ProductsPage({ locale }: Props) {
       <div className="container-base pb-20">
         <section className="py-14 border-b border-gray-100">
           <div className="max-w-[52rem] space-y-4">
-            <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">
+            <p className="editorial-label text-[rgba(0,109,158,0.8)]">
               {c.intro.heading}
             </p>
             <p className="text-[15px] text-[rgb(59,56,56)] leading-relaxed">

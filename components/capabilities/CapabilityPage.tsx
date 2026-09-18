@@ -105,7 +105,7 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
         <div className="border-t border-gray-100 pt-24 pb-14">
           <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-16">
             <div className="lg:pt-1">
-              <p className="text-[9px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-3">
+              <p className="editorial-label text-gray-400 mb-3">
                 {c.whatItSolves.eyebrow}
               </p>
               <h2 className="text-[15px] font-medium text-gray-800 leading-snug">
@@ -116,7 +116,7 @@ export default function CapabilityPage({ capability, locale, prefix }: Props) {
               {capability.whatItSolves.map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
                   <span
-                    className="flex-shrink-0 text-[9px] font-semibold text-gray-200 tabular-nums mt-[6px] w-5 text-right"
+                    className="editorial-index flex-shrink-0 text-gray-200 mt-[6px] w-5 text-right"
                     aria-hidden="true"
                   >
                     {String(i + 1).padStart(2, '0')}

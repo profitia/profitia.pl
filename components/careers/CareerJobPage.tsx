@@ -69,7 +69,7 @@ export default function CareerJobPage({ job, locale }: Props) {
 
         {/* ── Role context ──────────────────────────────────── */}
         <div className="pt-16 pb-14 border-b border-gray-100">
-          <p className="text-[9px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-3">
+          <p className="editorial-label text-gray-400 mb-3">
             {c.roleContext.eyebrow}
           </p>
           <p className="text-[15px] text-gray-600 leading-relaxed max-w-[42rem]">
@@ -81,7 +81,7 @@ export default function CareerJobPage({ job, locale }: Props) {
         <div className="pt-24 pb-14 border-b border-gray-100">
           <div className="lg:grid lg:grid-cols-[180px_1fr] lg:gap-16">
             <div className="mb-8 lg:mb-0">
-              <p className="text-[9px] font-medium tracking-[0.2em] uppercase text-gray-400 mb-3">
+              <p className="editorial-label text-gray-400 mb-3">
                 {c.workItems.eyebrow}
               </p>
               <h2 className="text-[15px] font-medium text-gray-800 leading-snug">
@@ -91,7 +91,7 @@ export default function CareerJobPage({ job, locale }: Props) {
             <ol className="space-y-5">
               {job.workItems.map((item, i) => (
                 <li key={i} className="flex gap-4">
-                  <span className="text-[11px] text-gray-300 font-medium tabular-nums mt-0.5 flex-shrink-0 w-5">
+                  <span className="editorial-index text-gray-300 mt-0.5 flex-shrink-0 w-5">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <p className="text-[15px] text-gray-600 leading-[1.65]">
@@ -107,7 +107,7 @@ export default function CareerJobPage({ job, locale }: Props) {
         <div className="pt-20 pb-14 border-b border-gray-100">
           <div className="lg:grid lg:grid-cols-[180px_1fr] lg:gap-16">
             <div className="mb-8 lg:mb-0">
-              <p className="text-[9px] font-medium tracking-[0.2em] uppercase text-gray-300 mb-3">
+              <p className="editorial-label text-gray-300 mb-3">
                 {c.requirements.eyebrow}
               </p>
               <h2 className="text-base font-medium text-gray-700 leading-snug">
@@ -130,7 +130,7 @@ export default function CareerJobPage({ job, locale }: Props) {
         <div className="pt-16 pb-14 border-b border-gray-100">
           <div className="lg:grid lg:grid-cols-[180px_1fr] lg:gap-16">
             <div className="mb-8 lg:mb-0">
-              <p className="text-[9px] font-medium tracking-[0.2em] uppercase text-gray-300 mb-3">
+              <p className="editorial-label text-gray-300 mb-3">
                 {c.profile.eyebrow}
               </p>
               <h2 className="text-base font-medium text-gray-600 leading-snug">
@@ -151,7 +151,7 @@ export default function CareerJobPage({ job, locale }: Props) {
         <div className="pt-16 pb-14 border-b border-gray-100">
           <div className="lg:grid lg:grid-cols-[180px_1fr] lg:gap-16">
             <div className="mb-4 lg:mb-0">
-              <p className="text-[9px] font-medium tracking-[0.2em] uppercase text-gray-200 mb-3">
+              <p className="editorial-label text-gray-200 mb-3">
                 {c.workingModel.eyebrow}
               </p>
               <h2 className="text-base font-medium text-gray-600 leading-snug">
@@ -168,7 +168,7 @@ export default function CareerJobPage({ job, locale }: Props) {
         <div className="pt-16 pb-14 border-b border-gray-100">
           <div className="lg:grid lg:grid-cols-[180px_1fr] lg:gap-16">
             <div className="mb-4 lg:mb-0">
-              <p className="text-[9px] font-medium tracking-[0.2em] uppercase text-gray-200 mb-3">
+              <p className="editorial-label text-gray-200 mb-3">
                 {c.development.eyebrow}
               </p>
               <h2 className="text-base font-medium text-gray-600 leading-snug">

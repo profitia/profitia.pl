@@ -149,7 +149,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-20">
             <RevealWrapper delay={0}>
-              <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
+              <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
                 Profitia w skrócie
               </p>
               <h2 className="max-w-xl text-3xl md:text-4xl lg:text-[2.7rem] font-semibold tracking-[-0.035em] leading-[1.08] text-gray-900">
@@ -172,8 +172,8 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
           <div className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-gray-200 sm:grid-cols-2 lg:grid-cols-4">
             {IDENTITY_POINTS.map((item) => (
               <div key={item.n} className="bg-gray-50 p-7 lg:p-8">
-                <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-brand-blue">{item.n}</p>
-                <h3 className="mt-8 text-xl font-semibold tracking-tight text-gray-900">{item.title}</h3>
+                <p className="editorial-index text-brand-blue">{item.n}</p>
+                <h3 className="editorial-box-title mt-8 text-gray-900">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-gray-600">{item.desc}</p>
               </div>
             ))}
@@ -183,7 +183,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
 
       <section className="bg-gray-50 pt-24 lg:pt-28">
         <div className="max-w-7xl mx-auto px-6 pb-14">
-          <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
+          <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
             Zakres wsparcia
           </p>
           <div className="grid gap-7 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20 lg:items-end">
@@ -201,7 +201,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
       <section className="bg-white py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
+            <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
               Nasza perspektywa
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight text-gray-900">
@@ -218,7 +218,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
                 <div className="flex items-start gap-5">
                   <span className="shrink-0 text-sm font-semibold text-brand-blue">{area.n}</span>
                   <div>
-                    <h3 className="text-xl font-semibold tracking-tight text-gray-900">{area.title}</h3>
+                    <h3 className="editorial-box-title text-gray-900">{area.title}</h3>
                     <p className="mt-3 text-sm md:text-base leading-relaxed text-gray-600">{area.desc}</p>
                   </div>
                 </div>
@@ -232,7 +232,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-24">
             <div>
-              <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
+              <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
                 Sposób działania
               </p>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight text-gray-900">
@@ -248,7 +248,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
                 <div key={step.n} className="grid gap-4 py-8 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-7">
                   <p className="text-3xl font-light tracking-tight text-gray-300">{step.n}</p>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{step.title}</h3>
+                    <h3 className="editorial-box-title text-gray-900">{step.title}</h3>
                     <p className="mt-3 text-sm md:text-base leading-relaxed text-gray-600">{step.desc}</p>
                   </div>
                 </div>
@@ -262,7 +262,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end lg:gap-20">
             <div>
-              <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[rgba(199,237,251,0.82)] mb-5">
+              <p className="editorial-label text-[rgba(199,237,251,0.82)] mb-5">
                 Wiarygodność
               </p>
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
@@ -288,7 +288,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
       <section className="bg-white py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-14 max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
+            <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
               Przykład projektu
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight text-gray-900">
@@ -309,19 +309,19 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
 
             <div className="divide-y divide-gray-200 border-y border-gray-200">
               <div className="py-7">
-                <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-brand-blue">Sytuacja</p>
+                <p className="editorial-label text-brand-blue">Sytuacja</p>
                 <p className="mt-3 text-base leading-relaxed text-gray-700">
                   Duża firma logistyczna potrzebowała zwiększyć przejrzystość wydatków i zbudować spójne podejście do strategicznych kategorii zakupowych.
                 </p>
               </div>
               <div className="py-7">
-                <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-brand-blue">Działanie</p>
+                <p className="editorial-label text-brand-blue">Działanie</p>
                 <p className="mt-3 text-base leading-relaxed text-gray-700">
                   Przeprowadziliśmy analizę wydatków, opracowaliśmy strategie sourcingowe i zaangażowaliśmy zespoły biznesowe w przygotowanie planów działań dla poszczególnych kategorii.
                 </p>
               </div>
               <div className="py-7">
-                <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-brand-blue">Rezultat</p>
+                <p className="editorial-label text-brand-blue">Rezultat</p>
                 <p className="mt-3 text-base leading-relaxed text-gray-700">
                   Zidentyfikowaliśmy ponad 7 mln EUR potencjalnych korzyści w 21 kategoriach i przygotowaliśmy plany sourcingowe umożliwiające ich wdrożenie.
                 </p>
@@ -336,7 +336,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
       <section className="bg-[rgba(199,237,251,0.24)] py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.24em] uppercase text-[rgba(0,109,158,0.8)] mb-5">
+            <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
               Kiedy pomagamy
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight text-gray-900">
@@ -347,8 +347,8 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
           <div className="mt-14 grid gap-5 md:grid-cols-2">
             {WHEN_WE_HELP.map((item) => (
               <div key={item.n} className="rounded-2xl border border-[rgba(0,109,158,0.12)] bg-white/72 p-7 md:p-9">
-                <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-brand-blue">{item.n}</p>
-                <h3 className="mt-6 text-xl font-semibold tracking-tight text-gray-900">{item.title}</h3>
+                <p className="editorial-index text-brand-blue">{item.n}</p>
+                <h3 className="editorial-box-title mt-6 text-gray-900">{item.title}</h3>
                 <p className="mt-3 text-sm md:text-base leading-relaxed text-gray-600">{item.desc}</p>
               </div>
             ))}
@@ -371,7 +371,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
 
       <section id="g6lvxh" className="bg-gradient-to-br from-gray-900 to-gray-800 py-24 text-white lg:py-32">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-white/56 mb-7">Następny krok</p>
+          <p className="editorial-label text-white/56 mb-7">Następny krok</p>
           <h2 className="max-w-3xl mx-auto text-4xl md:text-5xl font-semibold tracking-tight leading-tight">
             Zacznijmy od problemu, który dziś najbardziej wpływa na wynik zakupów
           </h2>

@@ -198,10 +198,23 @@ colors: {
 
 ### Hierarchy Rules
 
+#### Canonical editorial labels, numbering, box titles and disclosure actions — locked
+
+The public website uses four shared component classes defined in `styles/globals.css`. These classes are the single authority for recurring editorial hierarchy across PL and EN pages. Local `text-[9px]`, `text-[10px]`, `text-[11px]`, `text-xs`, or one-off card-title sizes must not replace them.
+
+```
+editorial-label      // 15px, Inter medium, uppercase, 0.22em tracking
+editorial-index      // 15px, Inter medium, uppercase, tabular numerals
+editorial-box-title  // 18px, Inter semibold, tight tracking
+editorial-action     // 15px, Inter medium; e.g. Expand / Collapse
+```
+
+Colors remain context-owned and are added next to the canonical class. This preserves the established light, dark and brand-blue palette while locking font family, size, weight and rhythm. Section labels, card labels and box numbering use the same scale on every public page. Forms, legal long-form content, navigation, footer metadata and article body typography are separate semantic systems and must not inherit these classes automatically.
+
 #### Labels (section openers)
 
 ```
-text-xs font-medium tracking-[0.25em] uppercase text-gray-400
+editorial-label text-gray-400
 ```
 Przykład: `"O firmie"`, `"Jak działamy"`, `"Wyniki"` - zawsze nad H2.
 
@@ -222,7 +235,7 @@ text-gray-900 leading-tight
 #### H3 - Card / feature titles
 
 ```
-text-lg font-semibold text-gray-900 tracking-tight
+editorial-box-title text-gray-900
 ```
 
 #### H4 - Minor titles
@@ -3706,5 +3719,4 @@ On pages where the footer newsletter section is suppressed (legal, article, abou
 ---
 
 *Sekcja dodana: May 2026 - ETAP 8 homepage discoverability pass. Component: `components/layout/NewsletterStrip.tsx`.*
-
 
