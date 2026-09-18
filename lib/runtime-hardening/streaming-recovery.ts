@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────
 // ETAP 5 — Streaming Recovery Engine
-// Handles interrupted streams, chunk dedup, timeout
-// detection, degraded streaming mode, stream state.
+// Handles interrupted streams, timeout detection, degraded
+// streaming mode, and stream state.
 // ─────────────────────────────────────────────────────────
 
 // ── Stream State ───────────────────────────────────────────
@@ -24,7 +24,6 @@ export interface StreamState {
   chunkCount: number;
   totalBytes: number;
   accumulatedContent: string;
-  seenChunkHashes: Set<string>;
   errors: string[];
   retryCount: number;
   degradedAt?: number;
@@ -34,28 +33,6 @@ export interface StreamState {
 const STREAM_STALE_THRESHOLD_MS = 8000;   // No chunks for 8s = stale
 const STREAM_MAX_DURATION_MS = 45000;     // Hard cap: 45s
 const STREAM_CONNECT_TIMEOUT_MS = 6000;  // Connection must start within 6s
-
-// ── Chunk Deduplication ────────────────────────────────────
-function hashChunk(chunk: string): string {
-  // Fast 32-bit hash (djb2) — no crypto needed for dedup
-  let h = 5381;
-  for (let i = 0; i < chunk.length; i++) {
-    h = ((h << 5) + h) ^ chunk.charCodeAt(i);
-  }
-  return (h >>> 0).toString(36);
-}
-
-export function isDuplicateChunk(state: StreamState, chunk: string): boolean {
-  const h = hashChunk(chunk);
-  if (state.seenChunkHashes.has(h)) return true;
-  state.seenChunkHashes.add(h);
-  // Prune hash set to prevent memory growth
-  if (state.seenChunkHashes.size > 2000) {
-    const keys = [...state.seenChunkHashes];
-    for (let i = 0; i < 500; i++) state.seenChunkHashes.delete(keys[i]);
-  }
-  return false;
-}
 
 // ── Stream State Factory ───────────────────────────────────
 export function createStreamState(streamId: string, sessionId: string): StreamState {
@@ -68,7 +45,6 @@ export function createStreamState(streamId: string, sessionId: string): StreamSt
     chunkCount: 0,
     totalBytes: 0,
     accumulatedContent: "",
-    seenChunkHashes: new Set(),
     errors: [],
     retryCount: 0,
   };
@@ -91,7 +67,6 @@ export function hasConnectionTimedOut(state: StreamState): boolean {
 // ── Process Incoming Chunk ─────────────────────────────────
 export interface ChunkResult {
   accepted: boolean;
-  deduplicated: boolean;
   stale: boolean;
 }
 
@@ -99,20 +74,19 @@ export function processChunk(state: StreamState, chunk: string): ChunkResult {
   if (isStreamExpired(state)) {
     state.status = "failed";
     state.errors.push("Stream expired (>45s)");
-    return { accepted: false, deduplicated: false, stale: true };
+    return { accepted: false, stale: true };
   }
 
-  if (isDuplicateChunk(state, chunk)) {
-    return { accepted: false, deduplicated: true, stale: false };
-  }
-
+  // OpenAI deltas are ordered text fragments. Repeated fragments are valid
+  // language (for example spaces, punctuation or the same short word) and
+  // must never be deduplicated by their textual value.
   state.lastChunkAt = Date.now();
   state.chunkCount++;
   state.totalBytes += chunk.length;
   state.accumulatedContent += chunk;
   state.status = "streaming";
 
-  return { accepted: true, deduplicated: false, stale: false };
+  return { accepted: true, stale: false };
 }
 
 // ── Stream Recovery Logic ──────────────────────────────────

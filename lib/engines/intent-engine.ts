@@ -63,7 +63,8 @@ const INTENT_PATTERNS: Record<IntentCode, { keywords: string[]; weight: number }
     keywords: [
       "training", "workshop", "szkoleni", "workshop", "akademia",
       "develop", "learn", "skill", "competence", "coaching", "mentoring",
-      "kurs", "programme", "team development", "edukacj",
+      "kurs", "programme", "team development", "edukacj", "kompetenc",
+      "rozw", "zespo", "umiejętno",
     ],
     weight: 0.8,
   },
@@ -145,11 +146,14 @@ export function extractIntentSignalsFromMessage(
  */
 export function extractIntentSignalsFromPage(page: PageContext): IntentSignal[] {
   const signals: IntentSignal[] = [];
+  const isGenericPage = page.primaryIntent === "I7_EXPLORATORY";
 
   signals.push({
     source: "page",
     intentCode: page.primaryIntent,
-    weight: 0.4,
+    // Page context guides an ambiguous conversation but must not outweigh an
+    // explicit need stated by the user, especially on generic landing pages.
+    weight: isGenericPage ? 0.08 : 0.25,
     timestamp: Date.now(),
   });
 
@@ -157,7 +161,7 @@ export function extractIntentSignalsFromPage(page: PageContext): IntentSignal[] 
     signals.push({
       source: "page",
       intentCode: secondary,
-      weight: 0.2,
+      weight: isGenericPage ? 0.04 : 0.1,
       timestamp: Date.now(),
     });
   }

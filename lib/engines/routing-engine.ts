@@ -196,7 +196,7 @@ const JOURNEY_REGISTRY: Record<IntentCode, AdvisoryRoute> = {
   I4_DIGITALIZATION: {
     journeyId: "J-DIG-01",
     intent: "I4_DIGITALIZATION",
-    entryPoint: "/services/projekty-doradcze",
+    entryPoint: "/uslugi-digital/digital-consulting",
     escalationCTA: "contact_form",
     estimatedSteps: 2,
     steps: [
@@ -275,10 +275,15 @@ export function computeEscalationScore(state: SessionState): number {
  * Determine the next journey step for the current session.
  */
 export function getNextRouteStep(
-  session: AdvisorySession
+  session: AdvisorySession,
+  intent: IntentCode = session.state.detectedIntent,
 ): AdvisoryRouteStep | null {
-  const journey = JOURNEY_REGISTRY[session.state.detectedIntent] ?? JOURNEY_REGISTRY["UNKNOWN"];
-  const currentStep = session.state.journeyStep;
+  const journey = JOURNEY_REGISTRY[intent] ?? JOURNEY_REGISTRY["UNKNOWN"];
+  const userMessageCount = session.messages.filter((message) => message.role === "user").length;
+  const currentStep = Math.min(
+    Math.max(userMessageCount - 1, 0),
+    journey.steps.length - 1,
+  );
   return journey.steps[currentStep] ?? null;
 }
 
@@ -298,10 +303,13 @@ export function computeRoutingDecision(
 ): RoutingDecision {
   const journey = getJourneyForIntent(intentScore.primary);
   const escalationScore = computeEscalationScore(session.state);
-  const nextStep = getNextRouteStep(session);
   const userMessageCount = session.messages.filter((m) => m.role === "user").length;
+  const nextStep = getNextRouteStep(session, intentScore.primary);
+  const reachedTurnLimit = userMessageCount >= 4;
 
   const shouldEscalateNow =
+    reachedTurnLimit ||
+    nextStep?.type === "escalation" ||
     escalationScore >= 70 ||
     session.state.escalationReady ||
     (intentScore.urgency === "U1" && userMessageCount >= 2);
@@ -315,10 +323,11 @@ export function computeRoutingDecision(
   const shouldAskQuestion =
     !shouldEscalateNow &&
     !shouldShowRecommendation &&
-    (intentScore.primaryConfidence < 0.6 || userMessageCount === 0);
+    nextStep?.type === "question" &&
+    (intentScore.primaryConfidence < 0.6 || userMessageCount <= 1);
 
   const reason = shouldEscalateNow
-    ? `escalation_score=${escalationScore}, urgency=${intentScore.urgency}`
+    ? `escalation_score=${escalationScore}, urgency=${intentScore.urgency}, turn_limit=${reachedTurnLimit}`
     : shouldShowRecommendation
     ? `confidence=${intentScore.primaryConfidence.toFixed(2)}, intent=${intentScore.primary}`
     : `discovery - confidence=${intentScore.primaryConfidence.toFixed(2)}`;

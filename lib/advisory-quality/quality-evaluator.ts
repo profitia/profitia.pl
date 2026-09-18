@@ -63,14 +63,18 @@ function scoreProcurementReasoning(response: string, locale: "pl" | "en"): Quali
 }
 
 // ── Recommendation Quality Scorer ─────────────────────────
-function scoreRecommendationQuality(response: string): QualityDimension {
+function scoreRecommendationQuality(
+  response: string,
+  hasDeterministicCTA: boolean,
+): QualityDimension {
   const notes: string[] = [];
   let score = 5;
 
   const links = (response.match(/\[([^\]]+)\]\(\/[^)]+\)/g) ?? []);
   const linkCount = links.length;
 
-  if (linkCount === 0) { score -= 3; notes.push("No service links - recommendation not actionable"); }
+  if (linkCount === 0 && !hasDeterministicCTA) { score -= 3; notes.push("No actionable destination"); }
+  else if (linkCount === 0) { score += 3; notes.push("Action is provided by the deterministic UI CTA"); }
   else if (linkCount === 1 || linkCount === 2) { score += 3; notes.push(`${linkCount} focused recommendation(s)`); }
   else if (linkCount > 3) { score -= 1; notes.push("Too many recommendations (>3) - loses focus"); }
 
@@ -84,7 +88,8 @@ function scoreRecommendationQuality(response: string): QualityDimension {
 function scoreEscalationQuality(
   response: string,
   urgency: "U1" | "U2" | "U3",
-  phase: string
+  phase: string,
+  hasDeterministicCTA: boolean,
 ): QualityDimension {
   const notes: string[] = [];
   let score = 5;
@@ -95,7 +100,7 @@ function scoreEscalationQuality(
     /(?:porozmawiajmy|zapraszam|skontaktuj|let's talk|get in touch|next step|kolejny krok)/i.test(response);
 
   if (urgency === "U1") {
-    if (hasEscalationCTA) { score += 4; notes.push("Correct escalation for U1 urgency"); }
+    if (hasEscalationCTA || hasDeterministicCTA) { score += 4; notes.push("Correct escalation for U1 urgency"); }
     else { score -= 3; notes.push("Missing escalation for U1 - should push to contact"); }
   } else if (urgency === "U2") {
     if (hasEscalationCTA || hasEscalationPhrasing) { score += 2; notes.push("Appropriate soft escalation for U2"); }
@@ -186,13 +191,21 @@ export function evaluateAdvisoryQuality(params: {
   urgency: "U1" | "U2" | "U3";
   phase: string;
   hallucinationIssueCount: number;
+  hasDeterministicCTA?: boolean;
 }): AdvisoryQualityReport {
-  const { response, locale, urgency, phase, hallucinationIssueCount } = params;
+  const {
+    response,
+    locale,
+    urgency,
+    phase,
+    hallucinationIssueCount,
+    hasDeterministicCTA = false,
+  } = params;
 
   const dimensions = {
     procurementReasoning: scoreProcurementReasoning(response, locale),
-    recommendationQuality: scoreRecommendationQuality(response),
-    escalationQuality: scoreEscalationQuality(response, urgency, phase),
+    recommendationQuality: scoreRecommendationQuality(response, hasDeterministicCTA),
+    escalationQuality: scoreEscalationQuality(response, urgency, phase, hasDeterministicCTA),
     responseCompression: scoreResponseCompression(response),
     executiveTone: scoreExecutiveTone(response, locale),
     advisoryConfidence: scoreAdvisoryConfidence(response, locale),

@@ -2,17 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { nanoid } from 'nanoid'
 import type { AdvisoryDecision, PageContext, SessionState } from '@/types'
-import {
-  parseAdvisoryMetadata,
-  stripMetadataBlock,
-} from '@/runtime/schemas/advisory-output.schema'
 import { buildAdvisorySystemPrompt } from '@/lib/advisory-quality/system-prompt'
-import {
-  applyHallucinationGuardrails,
-  evaluateResponseQuality,
-} from '@/lib/advisory-quality/hallucination-guard'
 import { getCompressionProfile } from '@/lib/advisory-quality/advisory-compression'
 import { evaluateAdvisoryQuality } from '@/lib/advisory-quality/quality-evaluator'
+import { finalizeAdvisoryResponse } from '@/lib/advisory-chat/finalize-response'
 // ETAP 5 — Runtime Hardening
 import { obs } from '@/lib/runtime-hardening/observability'
 import {
@@ -22,7 +15,6 @@ import {
 import {
   runSecurityCheck,
   validateChatRequestSchema,
-  sanitizeOutput,
 } from '@/lib/runtime-hardening/security'
 import {
   selectModel,
@@ -124,23 +116,29 @@ export async function POST(req: NextRequest) {
     }
 
     // ── 4. Security Check ─────────────────────────────────
-    const secCheck = runSecurityCheck(lastUserMessage, sessionId)
-    if (!secCheck.passed) {
-      obs.securityBlock(sessionId, secCheck.reasons.join('; '))
-      return NextResponse.json(
-        { error: 'Request blocked', reason: secCheck.reasons[0] },
-        { status: 422 },
-      )
-    }
+    // Every user turn is sent back to the model as conversation history, so
+    // every user turn must pass the same security and PII gate.
+    const sanitizedMessages: typeof messages = []
+    for (const message of messages) {
+      if (message.role !== 'user') {
+        sanitizedMessages.push(message)
+        continue
+      }
 
-    // Sanitize if PII detected
-    const sanitizedMessages = secCheck.action === 'sanitize' && secCheck.sanitizedMessage
-      ? messages.map((m, i) =>
-          i === messages.length - 1 && m.role === 'user'
-            ? { ...m, content: secCheck.sanitizedMessage! }
-            : m,
+      const securityCheck = runSecurityCheck(message.content, sessionId)
+      if (!securityCheck.passed) {
+        obs.securityBlock(sessionId, securityCheck.reasons.join('; '))
+        return NextResponse.json(
+          { error: 'Request blocked', reason: securityCheck.reasons[0] },
+          { status: 422 },
         )
-      : messages
+      }
+
+      sanitizedMessages.push({
+        ...message,
+        content: securityCheck.sanitizedMessage ?? message.content,
+      })
+    }
 
     // ── 5. Concurrent Request Guard ────────────────────────
     if (hasActiveStream(sessionId)) {
@@ -203,6 +201,7 @@ export async function POST(req: NextRequest) {
       sessionState,
       decision: advisoryDecision ?? null,
       messageCount,
+      userMessageCount: messages.filter((message) => message.role === 'user').length,
     })
 
     const compressionProfile = getCompressionProfile({
@@ -244,68 +243,51 @@ export async function POST(req: NextRequest) {
 
             obs.streamEvent(sessionId, 'start', { model: selectedModel, maxTokens })
             let fullContent = ''
-            let metadataStarted = false
-            const visibleBuffer: string[] = []
 
             for await (const chunk of completion) {
               const delta = chunk.choices[0]?.delta?.content ?? ''
               if (!delta) continue
 
               const chunkResult = processChunk(streamState, delta)
-              if (!chunkResult.accepted) continue // dedup
+              if (!chunkResult.accepted) continue
 
               fullContent += delta
-
-              if (!metadataStarted) {
-                const metaIndex = fullContent.indexOf('```metadata')
-                if (metaIndex !== -1) {
-                  metadataStarted = true
-                  const visiblePart = fullContent.slice(0, metaIndex)
-                  const alreadySent = visibleBuffer.join('')
-                  const toFlush = visiblePart.slice(alreadySent.length)
-                  if (toFlush) {
-                    controller.enqueue(
-                      encoder.encode(encodeSSE({ type: 'text', content: toFlush })),
-                    )
-                  }
-                  continue
-                }
-              }
-
-              if (!metadataStarted) {
-                visibleBuffer.push(delta)
-                controller.enqueue(
-                  encoder.encode(encodeSSE({ type: 'text', content: delta })),
-                )
-              }
             }
 
-            // ── Post-stream processing ───────────────────
+            // ── Validated response gate ──────────────────
+            // Buffer the upstream model stream and release content only after
+            // metadata removal and output guardrails. This prevents partial
+            // metadata, unsafe content, or retry fragments reaching the UI.
+            const finalized = finalizeAdvisoryResponse(fullContent)
+            if (finalized.issues.length > 0) {
+              obs.hallucinationDetected(sessionId, finalized.issues)
+            }
+
+            const visibleContent = finalized.content || getFallbackResponse(
+              sessionState.detectedIntent ?? 'UNKNOWN',
+              l,
+            )
+
             // Rough token count from characters (avg 4 chars/token)
             const approxTokens = Math.ceil(fullContent.length / 4) + 500 // +500 for system prompt
             recordTokenSpend(approxTokens, selectedModel)
             recordTokenUsage(sessionId, approxTokens)
             obs.tokenUsage(sessionId, 500, Math.ceil(fullContent.length / 4), selectedModel)
 
-            // Output sanitization
-            const outputSanitized = sanitizeOutput(fullContent)
-            const workingContent = outputSanitized.sanitized
-
-            // Hallucination guard
-            const guardrail = applyHallucinationGuardrails(workingContent)
-            if (guardrail.issues.length > 0) {
-              obs.hallucinationDetected(sessionId, guardrail.issues)
-            }
-
             // Quality evaluation
             const qualityReport = evaluateAdvisoryQuality({
-              response: guardrail.sanitizedContent,
+              response: visibleContent,
               locale: l,
               urgency: sessionState.urgency,
               phase: sessionState.phase,
-              hallucinationIssueCount: guardrail.issues.length,
+              hallucinationIssueCount: finalized.issues.length,
+              hasDeterministicCTA: Boolean(advisoryDecision?.routing.route),
             })
             obs.qualityScore(sessionId, qualityReport.overallScore, l)
+
+            controller.enqueue(
+              encoder.encode(encodeSSE({ type: 'text', content: visibleContent })),
+            )
 
             // Dev-mode quality warning
             if (process.env.NODE_ENV !== 'production' && !qualityReport.passed) {
@@ -321,13 +303,11 @@ export async function POST(req: NextRequest) {
             }
 
             // Advisory metadata
-            const advisoryMeta = parseAdvisoryMetadata(fullContent)
-            if (advisoryMeta) {
+            if (finalized.metadata) {
               controller.enqueue(
-                encoder.encode(encodeSSE({ type: 'metadata', ...advisoryMeta })),
+                encoder.encode(encodeSSE({ type: 'metadata', ...finalized.metadata })),
               )
             }
-            stripMetadataBlock(fullContent)
 
             controller.enqueue(encoder.encode('data: [DONE]\n\n'))
             obs.requestComplete(sessionId, Date.now() - requestStart, approxTokens)

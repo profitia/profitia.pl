@@ -6,8 +6,8 @@ import { ASSISTANT_STRINGS } from "@/lib/i18n";
 import { MessageList } from "./MessageList";
 import { MessageInput } from "./MessageInput";
 import { RecommendationStrip } from "./RecommendationStrip";
+import { SSEDataParser } from "@/lib/advisory-chat/sse-data-parser";
 import type { Locale } from "@/lib/i18n";
-import type { Message } from "@/types";
 
 interface AssistantPanelProps {
   locale: Locale;
@@ -29,6 +29,8 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
   const {
     session,
     lastDecision,
+    isTyping,
+    isStreaming,
     closeAssistant,
     addMessage,
     setTyping,
@@ -61,22 +63,22 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
 
       // Run orchestration before sending to get fresh decision
       const freshDecision = runOrchestration();
+      const currentSession = useAdvisorySession.getState().session;
+      if (!currentSession) return;
 
       try {
         const response = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            messages: [
-              ...session.messages.map((m) => ({
-                role: m.role,
-                content: m.content,
-              })),
-              { role: "user", content },
-            ],
+            sessionId: currentSession.id,
+            messages: currentSession.messages.map((message) => ({
+              role: message.role,
+              content: message.content,
+            })),
             locale,
-            pageContext: session.pageContext,
-            sessionState: session.state,
+            pageContext: currentSession.pageContext,
+            sessionState: currentSession.state,
             advisoryDecision: freshDecision ?? lastDecision,
           }),
           signal: abortRef.current.signal,
@@ -84,38 +86,58 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
 
         if (!response.ok) throw new Error("API error");
 
-        setTyping(false);
-        setStreaming(true);
-
-        const reader = response.body?.getReader();
-        const decoder = new TextDecoder();
         let accumulated = "";
+        const contentType = response.headers.get("content-type") ?? "";
 
-        if (reader) {
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
+        if (contentType.includes("application/json")) {
+          const payload = await response.json();
+          if (typeof payload.content === "string") {
+            accumulated = payload.content;
+          }
+        } else {
+          setTyping(false);
+          setStreaming(true);
 
-            const chunk = decoder.decode(value, { stream: true });
-            const lines = chunk.split("\n");
-            for (const line of lines) {
-              if (line.startsWith("data: ")) {
-                const data = line.slice(6);
-                if (data === "[DONE]") break;
-                try {
-                  const parsed = JSON.parse(data);
-                  if (parsed.type === "text") {
-                    accumulated += parsed.content;
-                    setStreamingContent(accumulated);
-                  } else if (parsed.type === "metadata") {
-                    if (parsed.intent) updateIntent(parsed.intent, parsed.confidence ?? 0.7);
-                    if (parsed.urgency) updateUrgency(parsed.urgency);
-                    if (parsed.phase) setPhase(parsed.phase);
-                  }
-                } catch {
-                  // Not JSON — ignore
-                }
+          const reader = response.body?.getReader();
+          const decoder = new TextDecoder();
+          const parser = new SSEDataParser();
+          let streamDone = false;
+
+          const consumePayload = (data: string) => {
+            if (data === "[DONE]") {
+              streamDone = true;
+              return;
+            }
+
+            const parsed = JSON.parse(data);
+            if (parsed.type === "text" && typeof parsed.content === "string") {
+              accumulated += parsed.content;
+              setStreamingContent(accumulated);
+            } else if (parsed.type === "metadata") {
+              if (parsed.intent) updateIntent(parsed.intent, parsed.confidence ?? 0.7);
+              if (parsed.urgency) updateUrgency(parsed.urgency);
+              if (parsed.phase) setPhase(parsed.phase);
+            }
+          };
+
+          if (reader) {
+            while (!streamDone) {
+              const { done, value } = await reader.read();
+              if (done) break;
+
+              for (const data of parser.push(decoder.decode(value, { stream: true }))) {
+                consumePayload(data);
+                if (streamDone) break;
               }
+            }
+
+            if (!streamDone) {
+              const finalText = decoder.decode();
+              const finalPayloads = [
+                ...parser.push(finalText),
+                ...parser.finish(),
+              ];
+              for (const data of finalPayloads) consumePayload(data);
             }
           }
         }
@@ -124,8 +146,7 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
           addMessage("assistant", accumulated);
           setStreamingContent("");
           incrementEngagement(10);
-          // Re-run orchestration after getting response
-          setTimeout(() => runOrchestration(), 100);
+          runOrchestration();
         }
       } catch (err: unknown) {
         if (err instanceof Error && err.name !== "AbortError") {
@@ -137,8 +158,20 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
         setStreaming(false);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [session, locale, addMessage, setTyping, setStreaming, updateIntent, updateUrgency, setPhase, incrementEngagement, strings, lastDecision]
+    [
+      session,
+      locale,
+      addMessage,
+      setTyping,
+      setStreaming,
+      updateIntent,
+      updateUrgency,
+      setPhase,
+      incrementEngagement,
+      runOrchestration,
+      strings,
+      lastDecision,
+    ]
   );
 
   useEffect(() => {
@@ -150,9 +183,11 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
 
   // Use orchestrator decision for recommendation visibility
   const showRecommendations =
-    session &&
-    lastDecision?.recommendations.shouldShow &&
-    session.intelligence.recommendationsShown.length === 0;
+    Boolean(session && lastDecision && (
+      lastDecision.recommendations.shouldShow ||
+      lastDecision.routing.shouldShowRecommendation ||
+      lastDecision.routing.shouldEscalateNow
+    ));
 
   // Urgency indicator color
   const urgencyColor =
@@ -207,12 +242,9 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
       />
 
       {/* Recommendation strip — orchestrator-driven */}
-      {showRecommendations && (
+      {showRecommendations && session && (
         <RecommendationStrip
           intent={session.state.detectedIntent}
-          urgency={session.state.urgency}
-          confidence={session.state.intentConfidence}
-          shownIds={session.intelligence.recommendationsShown}
           locale={locale}
         />
       )}
@@ -221,9 +253,8 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
       <MessageInput
         onSend={handleSend}
         placeholder={strings.placeholder}
-        disabled={false}
+        disabled={isTyping || isStreaming}
       />
     </div>
   );
 }
-

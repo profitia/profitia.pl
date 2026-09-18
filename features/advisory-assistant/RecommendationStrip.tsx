@@ -4,109 +4,70 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
-import { getRecommendationsForIntent } from "@/lib/recommendation-registry";
+import { getAdvisoryDestination } from "@/lib/advisory-chat/destination-registry";
 import { track } from "@/lib/analytics";
-import type { IntentCode, UrgencyLevel, Locale, RecommendationCard } from "@/types";
-import { localizePublicHref } from '@/lib/routing/public-routes'
+import type { IntentCode, Locale } from "@/types";
 
 interface RecommendationStripProps {
   intent: IntentCode;
-  urgency: UrgencyLevel;
-  confidence: number;
-  shownIds: string[];
   locale: Locale;
 }
 
 export function RecommendationStrip({
   intent,
-  urgency,
-  confidence,
-  shownIds,
   locale,
 }: RecommendationStripProps) {
   const { markRecommendationShown } = useAdvisorySession();
-
-  const recommendations = getRecommendationsForIntent(
-    intent,
-    urgency,
-    confidence,
-    shownIds
-  ).slice(0, 2);
+  const destination = getAdvisoryDestination(intent, locale);
 
   useEffect(() => {
-    recommendations.forEach((r) => {
-      markRecommendationShown(r.id);
-      track.recommendationShown(r.id, r.title);
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (recommendations.length === 0) return null;
+    markRecommendationShown(destination.analyticsId);
+    track.recommendationShown(destination.analyticsId, destination.title);
+  }, [destination.analyticsId, destination.title, markRecommendationShown]);
 
   return (
     <div className="px-4 py-3 border-t border-gray-100 flex-shrink-0 space-y-2">
       <p className="advisory-label">
-        {locale === "pl" ? "Rekomendowane" : "Relevant for your situation"}
+        {locale === "pl" ? "Rekomendowany kierunek" : "Recommended direction"}
       </p>
-      <div className="space-y-2">
-        {recommendations.map((rec, i) => (
-          <RecommendationCardItem
-            key={rec.id}
-            rec={rec}
-            index={i}
-            locale={locale}
-          />
-        ))}
-      </div>
+      <DestinationCard destination={destination} />
     </div>
   );
 }
 
-function RecommendationCardItem({
-  rec,
-  index,
-  locale,
+function DestinationCard({
+  destination,
 }: {
-  rec: RecommendationCard;
-  index: number;
-  locale: Locale;
+  destination: ReturnType<typeof getAdvisoryDestination>;
 }) {
-  const localizedUrl = localizePublicHref(rec.url, locale)
-
   const handleClick = () => {
-    track.recommendationClicked(rec.id, localizedUrl);
+    track.recommendationClicked(destination.analyticsId, destination.href);
   };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.06, duration: 0.2 }}
+      transition={{ duration: 0.2 }}
     >
       <Link
-        href={localizedUrl}
+        href={destination.href}
         onClick={handleClick}
         className="rec-card flex items-start gap-3 group block"
       >
-        {/* Priority indicator */}
         <div
-          className="w-1 rounded-full flex-shrink-0 mt-1 self-stretch"
-          style={{
-            background:
-              rec.priority === "HIGHEST"
-                ? "#242F44"
-                : rec.priority === "HIGH"
-                ? "#006D9E"
-                : "#9CA3AF",
-            minHeight: "2rem",
-          }}
+          className="w-1 rounded-full flex-shrink-0 mt-1 self-stretch bg-[#242F44]"
+          style={{ minHeight: "2rem" }}
         />
         <div className="flex-1 min-w-0">
           <p className="text-xs font-semibold text-gray-900 leading-snug group-hover:text-[#006D9E] transition-colors">
-            {rec.title}
+            {destination.title}
           </p>
           <p className="text-2xs text-gray-500 mt-0.5 leading-snug line-clamp-2">
-            {rec.description}
+            {destination.description}
+          </p>
+          <p className="text-2xs font-semibold text-[#006D9E] mt-1">
+            {destination.action}
           </p>
         </div>
         <span className="text-gray-300 group-hover:text-gray-500 transition-colors flex-shrink-0 mt-1">

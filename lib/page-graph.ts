@@ -242,6 +242,63 @@ export const PAGE_GRAPH: Record<string, PageContext> = {
     conversionTier: 3,
     escalationReadiness: "medium",
   },
+  // Digital services
+  "/uslugi-digital/digital-consulting": {
+    slug: "/uslugi-digital/digital-consulting",
+    primaryIntent: "I4_DIGITALIZATION",
+    secondaryIntents: ["I5_SOURCING"],
+    conversionTier: 2,
+    escalationReadiness: "high",
+  },
+  "/uslugi-digital/spend-analytics": {
+    slug: "/uslugi-digital/spend-analytics",
+    primaryIntent: "I2_FORECASTING",
+    secondaryIntents: ["I4_DIGITALIZATION", "I1_SAVINGS"],
+    conversionTier: 2,
+    escalationReadiness: "high",
+  },
+  "/uslugi-digital/dedykowane-aplikacje": {
+    slug: "/uslugi-digital/dedykowane-aplikacje",
+    primaryIntent: "I4_DIGITALIZATION",
+    secondaryIntents: ["I2_FORECASTING"],
+    conversionTier: 2,
+    escalationReadiness: "high",
+  },
+  "/uslugi-digital/agenci-ai": {
+    slug: "/uslugi-digital/agenci-ai",
+    primaryIntent: "I4_DIGITALIZATION",
+    secondaryIntents: ["I2_FORECASTING"],
+    conversionTier: 2,
+    escalationReadiness: "high",
+  },
+  "/en/digital-services/digital-consulting": {
+    slug: "/en/digital-services/digital-consulting",
+    primaryIntent: "I4_DIGITALIZATION",
+    secondaryIntents: ["I5_SOURCING"],
+    conversionTier: 2,
+    escalationReadiness: "high",
+  },
+  "/en/digital-services/spend-analytics": {
+    slug: "/en/digital-services/spend-analytics",
+    primaryIntent: "I2_FORECASTING",
+    secondaryIntents: ["I4_DIGITALIZATION", "I1_SAVINGS"],
+    conversionTier: 2,
+    escalationReadiness: "high",
+  },
+  "/en/digital-services/custom-applications": {
+    slug: "/en/digital-services/custom-applications",
+    primaryIntent: "I4_DIGITALIZATION",
+    secondaryIntents: ["I2_FORECASTING"],
+    conversionTier: 2,
+    escalationReadiness: "high",
+  },
+  "/en/digital-services/ai-agents": {
+    slug: "/en/digital-services/ai-agents",
+    primaryIntent: "I4_DIGITALIZATION",
+    secondaryIntents: ["I2_FORECASTING"],
+    conversionTier: 2,
+    escalationReadiness: "high",
+  },
 };
 
 export function getPageContext(slug: string): PageContext {
