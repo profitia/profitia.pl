@@ -21,6 +21,7 @@ import {
 } from "./advisory-state-machine";
 import { evaluateProactiveTriggers } from "./proactive-engine";
 import { computeRecommendationDecision } from "./recommendation-intelligence";
+import { computeConversationDecision } from "./conversation-controller";
 import {
   computeSessionHealth,
   aggregateBehavioralPatterns,
@@ -55,6 +56,14 @@ export function runAdvisoryOrchestrator(session: AdvisorySession): AdvisoryDecis
   // 3. Routing Engine
   const routingDecision = computeRoutingDecision(session, intentScore);
 
+  // 3a. Stable product-facing contract. This is the only decision consumers
+  // use for question limits, CTA visibility and destination selection.
+  const conversation = computeConversationDecision(
+    session,
+    intentScore,
+    routingDecision,
+  );
+
   // 4. Advisory State Machine
   const fatigue = detectAdvisoryFatigue(session);
   const pacing = computeRecommendationPacing(session, fatigue);
@@ -86,6 +95,7 @@ export function runAdvisoryOrchestrator(session: AdvisorySession): AdvisoryDecis
   );
 
   return {
+    conversation,
     intent: intentScore,
     maturity: maturityScore,
     routing: routingDecision,
@@ -155,7 +165,7 @@ function buildSystemPromptContext(
  * The API route injects this to make the LLM context-aware.
  */
 export function serializeDecisionForPrompt(decision: AdvisoryDecision): string {
-  const { intent, maturity, routing, systemPromptContext } = decision;
+  const { conversation, intent, maturity, routing, systemPromptContext } = decision;
 
   const lines: string[] = [
     `ADVISORY INTELLIGENCE CONTEXT:`,
@@ -165,6 +175,8 @@ export function serializeDecisionForPrompt(decision: AdvisoryDecision): string {
     `Advisory tone: ${systemPromptContext.maturityTone}`,
     `Should educate: ${systemPromptContext.shouldEducate}`,
     `Routing: ${routing.shouldEscalateNow ? "ESCALATE NOW" : routing.shouldAskQuestion ? "ASK QUESTION" : "RECOMMEND"}`,
+    `Conversation contract: v${conversation.contractVersion} | action=${conversation.action} | question_limit=${conversation.questionLimit}`,
+    `Destination: ${conversation.destinationId ?? "none"} | user_turn=${conversation.userTurnCount}/${conversation.maxUserTurns}`,
     `Journey step: ${systemPromptContext.journeyStep}`,
     `Session depth: ${decision.sessionHealth.depth} | Engagement trend: ${decision.sessionHealth.engagementTrend}`,
     `Escalation likelihood: ${(decision.sessionHealth.escalationLikelihood * 100).toFixed(0)}%`,

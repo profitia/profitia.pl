@@ -182,12 +182,9 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
   const phaseLabel = PHASE_LABELS[phase]?.[locale] ?? PHASE_LABELS.idle[locale];
 
   // Use orchestrator decision for recommendation visibility
-  const showRecommendations =
-    Boolean(session && lastDecision && (
-      lastDecision.recommendations.shouldShow ||
-      lastDecision.routing.shouldShowRecommendation ||
-      lastDecision.routing.shouldEscalateNow
-    ));
+  const destinationId = lastDecision?.conversation.action === "recommend"
+    ? lastDecision.conversation.destinationId
+    : null;
 
   // Urgency indicator color
   const urgencyColor =
@@ -242,9 +239,9 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
       />
 
       {/* Recommendation strip — orchestrator-driven */}
-      {showRecommendations && session && (
+      {destinationId && session && (
         <RecommendationStrip
-          intent={session.state.detectedIntent}
+          destinationId={destinationId}
           locale={locale}
         />
       )}

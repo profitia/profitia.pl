@@ -93,6 +93,7 @@ export async function POST(req: NextRequest) {
     const sessionId: string =
       (body as Record<string, unknown>).sessionId as string ?? nanoid()
     const messageCount = messages.length
+    const userMessageCount = messages.filter((message) => message.role === 'user').length
     const l = locale === 'en' ? 'en' : 'pl'
 
     // ── 3. Rate Limiting + Spam ───────────────────────────
@@ -201,7 +202,7 @@ export async function POST(req: NextRequest) {
       sessionState,
       decision: advisoryDecision ?? null,
       messageCount,
-      userMessageCount: messages.filter((message) => message.role === 'user').length,
+      userMessageCount,
     })
 
     const compressionProfile = getCompressionProfile({
@@ -258,7 +259,21 @@ export async function POST(req: NextRequest) {
             // Buffer the upstream model stream and release content only after
             // metadata removal and output guardrails. This prevents partial
             // metadata, unsafe content, or retry fragments reaching the UI.
-            const finalized = finalizeAdvisoryResponse(fullContent)
+            // The server owns the hard four-turn limit. A client-provided
+            // contract may only make the output stricter (zero questions),
+            // never relax the server-side limit.
+            const questionLimit: 0 | 1 =
+              userMessageCount >= 4 ||
+              (advisoryDecision?.conversation?.contractVersion === '1' &&
+                advisoryDecision.conversation.questionLimit === 0)
+                ? 0
+                : 1
+            const finalized = finalizeAdvisoryResponse(fullContent, {
+              questionLimit,
+              emptyContentFallback: l === 'pl'
+                ? 'Na podstawie rozmowy rekomenduję przejście do wskazanego kierunku.'
+                : 'Based on our conversation, I recommend proceeding to the indicated direction.',
+            })
             if (finalized.issues.length > 0) {
               obs.hallucinationDetected(sessionId, finalized.issues)
             }
@@ -281,7 +296,9 @@ export async function POST(req: NextRequest) {
               urgency: sessionState.urgency,
               phase: sessionState.phase,
               hallucinationIssueCount: finalized.issues.length,
-              hasDeterministicCTA: Boolean(advisoryDecision?.routing.route),
+              hasDeterministicCTA:
+                advisoryDecision?.conversation?.action === 'recommend' &&
+                advisoryDecision.conversation.destinationId !== null,
             })
             obs.qualityScore(sessionId, qualityReport.overallScore, l)
 
