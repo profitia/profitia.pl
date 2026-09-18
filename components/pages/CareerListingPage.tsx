@@ -398,6 +398,7 @@ export default function CareerListingPage({ locale }: Props) {
       />
 
       <CareerLife
+        locale={locale}
         eyebrow={c.life.eyebrow}
         title={c.life.title}
         introduction={c.life.introduction}
