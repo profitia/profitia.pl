@@ -1,6 +1,17 @@
 // Shared TypeScript types for the Profitia application
 
 import type { Locale } from '@/lib/i18n'
+import type {
+  ConversationAction as CicConversationAction,
+  ConversationDecision as CicConversationDecision,
+} from "@profitia/cic-core";
+import type {
+  IntentCode as CicIntentCode,
+  IntentScore as CicIntentScore,
+  IntentSignal as CicIntentSignal,
+  UrgencyLevel as CicUrgencyLevel,
+} from "@profitia/cic-procurement";
+import type { ProfitiaDestinationId } from "@profitia/cic-profitia";
 
 // Re-export for convenience
 export type { Locale }
@@ -15,19 +26,10 @@ export interface ApiSuccess<T = undefined> {
 }
 
 // ── Intent System (mirrors CIC I1–I8) ─────────────────────
-export type IntentCode =
-  | "I1_SAVINGS"
-  | "I2_FORECASTING"
-  | "I3_SUPPLIER_RISK"
-  | "I4_DIGITALIZATION"
-  | "I5_SOURCING"
-  | "I6_EDUCATION"
-  | "I7_EXPLORATORY"
-  | "I8_NEGOTIATIONS"
-  | "UNKNOWN";
+export type IntentCode = CicIntentCode;
 
 // ── Urgency Levels ────────────────────────────────────────
-export type UrgencyLevel = "U1" | "U2" | "U3"; // U1=urgent, U2=active, U3=exploratory
+export type UrgencyLevel = CicUrgencyLevel; // U1=urgent, U2=active, U3=exploratory
 
 // ── Buying Stage ──────────────────────────────────────────
 export type BuyingStage = "S1" | "S2" | "S3" | "S4" | "S5"; // S1=awareness → S5=decision
@@ -268,25 +270,9 @@ export interface AssistantWidgetConfig {
 // ═══════════════════════════════════════════════════════════
 
 // ── Intent Intelligence ───────────────────────────────────
-export interface IntentSignal {
-  source: "message" | "page" | "behavioral" | "cta" | "visit_pattern";
-  intentCode: IntentCode;
-  weight: number; // 0–1
-  timestamp: number;
-  raw?: string;
-}
+export type IntentSignal = CicIntentSignal;
 
-export interface IntentScore {
-  primary: IntentCode;
-  primaryConfidence: number; // 0–1
-  secondary: IntentCode | null;
-  secondaryConfidence: number;
-  urgency: UrgencyLevel;
-  businessImpact: "critical" | "high" | "medium" | "low";
-  escalationProbability: number; // 0–1
-  workshopProbability: number; // 0–1
-  signals: IntentSignal[];
-}
+export type IntentScore = CicIntentScore;
 
 // ── Maturity Engine ───────────────────────────────────────
 export type MaturityPersona =
@@ -364,21 +350,14 @@ export interface RoutingDecision {
 // This is the small, product-facing projection of the broader intelligence
 // decision. Consumers should use it instead of recomputing CTA visibility or
 // destination selection from individual engine flags.
-export type AdvisoryDestinationId = "services" | "competence" | "digital";
+export type AdvisoryDestinationId = ProfitiaDestinationId;
 
-export type ConversationAction = "wait" | "ask" | "recommend";
+export type ConversationAction = CicConversationAction;
 
-export interface ConversationDecision {
-  contractVersion: "1";
-  action: ConversationAction;
-  intent: IntentCode;
-  destinationId: AdvisoryDestinationId | null;
-  userTurnCount: number;
-  maxUserTurns: 4;
-  remainingUserTurns: number;
-  questionLimit: 0 | 1;
-  reason: string;
-}
+export type ConversationDecision = CicConversationDecision<
+  IntentCode,
+  AdvisoryDestinationId
+>;
 
 // ── Advisory State Machine ────────────────────────────────
 export type AdvisoryFatigueLevel = "none" | "mild" | "moderate" | "high";

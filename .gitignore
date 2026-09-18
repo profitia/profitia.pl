@@ -7,6 +7,9 @@ node_modules/
 .next/
 out/
 
+# Generated Prisma clients
+prisma/generated/
+
 # Environment variables — NEVER commit these
 .env
 .env.local
