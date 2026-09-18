@@ -4,10 +4,12 @@ import type {
   IntentScore,
   RoutingDecision,
 } from "@/types";
-import { getAdvisoryDestinationId } from "@/lib/advisory-chat/destination-registry";
+import {
+  computeConversationDecision as computeCicConversationDecision,
+} from "@profitia/cic-core";
+import { getProfitiaDestinationId } from "@profitia/cic-profitia";
 
-export const CONVERSATION_CONTRACT_VERSION = "1" as const;
-export const MAX_USER_TURNS = 4 as const;
+export { CONVERSATION_CONTRACT_VERSION, MAX_USER_TURNS } from "@profitia/cic-core";
 
 /**
  * Convert the detailed intelligence output into the single product contract
@@ -25,50 +27,11 @@ export function computeConversationDecision(
   const userTurnCount = session.messages.filter(
     (message) => message.role === "user",
   ).length;
-  const remainingUserTurns = Math.max(0, MAX_USER_TURNS - userTurnCount);
 
-  if (userTurnCount === 0) {
-    return {
-      contractVersion: CONVERSATION_CONTRACT_VERSION,
-      action: "wait",
-      intent: intent.primary,
-      destinationId: null,
-      userTurnCount,
-      maxUserTurns: MAX_USER_TURNS,
-      remainingUserTurns,
-      questionLimit: 0,
-      reason: "waiting_for_first_user_message",
-    };
-  }
-
-  const mustRecommend =
-    userTurnCount >= MAX_USER_TURNS ||
-    routing.shouldEscalateNow ||
-    routing.shouldShowRecommendation;
-
-  if (mustRecommend) {
-    return {
-      contractVersion: CONVERSATION_CONTRACT_VERSION,
-      action: "recommend",
-      intent: intent.primary,
-      destinationId: getAdvisoryDestinationId(intent.primary),
-      userTurnCount,
-      maxUserTurns: MAX_USER_TURNS,
-      remainingUserTurns,
-      questionLimit: 0,
-      reason: routing.reason,
-    };
-  }
-
-  return {
-    contractVersion: CONVERSATION_CONTRACT_VERSION,
-    action: "ask",
-    intent: intent.primary,
-    destinationId: null,
+  return computeCicConversationDecision({
     userTurnCount,
-    maxUserTurns: MAX_USER_TURNS,
-    remainingUserTurns,
-    questionLimit: 1,
-    reason: routing.reason,
-  };
+    intent: intent.primary,
+    routing,
+    resolveDestination: getProfitiaDestinationId,
+  });
 }

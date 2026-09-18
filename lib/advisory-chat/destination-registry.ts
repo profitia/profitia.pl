@@ -1,5 +1,6 @@
 import type { AdvisoryDestinationId, IntentCode, Locale } from "@/types";
 import { getPublicPath, type PublicRouteId } from "@/lib/routing/public-routes";
+import { getProfitiaDestinationId } from "@profitia/cic-profitia";
 
 export type { AdvisoryDestinationId } from "@/types";
 
@@ -77,18 +78,6 @@ const DESTINATIONS: Record<AdvisoryDestinationId, AdvisoryDestinationDefinition>
   },
 };
 
-const DESTINATION_BY_INTENT: Record<IntentCode, AdvisoryDestinationId> = {
-  I1_SAVINGS: "services",
-  I2_FORECASTING: "digital",
-  I3_SUPPLIER_RISK: "services",
-  I4_DIGITALIZATION: "digital",
-  I5_SOURCING: "services",
-  I6_EDUCATION: "competence",
-  I7_EXPLORATORY: "services",
-  I8_NEGOTIATIONS: "services",
-  UNKNOWN: "services",
-};
-
 export function getAdvisoryDestination(
   intent: IntentCode,
   locale: Locale,
@@ -99,7 +88,7 @@ export function getAdvisoryDestination(
 export function getAdvisoryDestinationId(
   intent: IntentCode,
 ): AdvisoryDestinationId {
-  return DESTINATION_BY_INTENT[intent];
+  return getProfitiaDestinationId(intent);
 }
 
 export function getAdvisoryDestinationById(

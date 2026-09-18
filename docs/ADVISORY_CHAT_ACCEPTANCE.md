@@ -4,6 +4,12 @@ The Stage 3 acceptance suite verifies the product-facing conversation contract
 on the same controller, prompt builder, output gate and destination registry
 used by the website chat.
 
+The conversation contract, procurement scoring, destination identifiers and
+reference journeys come from exact `@profitia/cic-*` package versions. This
+application retains ownership of UI copy and public URLs. Updating CIC behavior
+therefore requires an explicit dependency version change and this acceptance
+suite; copying an engine into the website is not an accepted integration path.
+
 ## Reference journeys
 
 Run the deterministic suite before merging any chat change:

@@ -12,6 +12,8 @@ services:
         value: production
       - key: NODE_VERSION
         value: 20
+      - key: NPM_TOKEN
+        sync: false
       - key: DATABASE_URL
         sync: false
       - key: DATABASE_FORMS_URL
