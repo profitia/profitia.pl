@@ -4,21 +4,21 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
-import { getAdvisoryDestination } from "@/lib/advisory-chat/destination-registry";
+import { getAdvisoryDestinationById } from "@/lib/advisory-chat/destination-registry";
 import { track } from "@/lib/analytics";
-import type { IntentCode, Locale } from "@/types";
+import type { AdvisoryDestinationId, Locale } from "@/types";
 
 interface RecommendationStripProps {
-  intent: IntentCode;
+  destinationId: AdvisoryDestinationId;
   locale: Locale;
 }
 
 export function RecommendationStrip({
-  intent,
+  destinationId,
   locale,
 }: RecommendationStripProps) {
   const { markRecommendationShown } = useAdvisorySession();
-  const destination = getAdvisoryDestination(intent, locale);
+  const destination = getAdvisoryDestinationById(destinationId, locale);
 
   useEffect(() => {
     markRecommendationShown(destination.analyticsId);
@@ -38,7 +38,7 @@ export function RecommendationStrip({
 function DestinationCard({
   destination,
 }: {
-  destination: ReturnType<typeof getAdvisoryDestination>;
+  destination: ReturnType<typeof getAdvisoryDestinationById>;
 }) {
   const handleClick = () => {
     track.recommendationClicked(destination.analyticsId, destination.href);

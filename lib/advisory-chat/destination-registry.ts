@@ -1,7 +1,7 @@
-import type { IntentCode, Locale } from "@/types";
+import type { AdvisoryDestinationId, IntentCode, Locale } from "@/types";
 import { getPublicPath, type PublicRouteId } from "@/lib/routing/public-routes";
 
-export type AdvisoryDestinationId = "services" | "competence" | "digital";
+export type { AdvisoryDestinationId } from "@/types";
 
 interface LocalizedCopy {
   title: string;
@@ -93,7 +93,20 @@ export function getAdvisoryDestination(
   intent: IntentCode,
   locale: Locale,
 ): AdvisoryDestination {
-  const definition = DESTINATIONS[DESTINATION_BY_INTENT[intent]];
+  return getAdvisoryDestinationById(getAdvisoryDestinationId(intent), locale);
+}
+
+export function getAdvisoryDestinationId(
+  intent: IntentCode,
+): AdvisoryDestinationId {
+  return DESTINATION_BY_INTENT[intent];
+}
+
+export function getAdvisoryDestinationById(
+  destinationId: AdvisoryDestinationId,
+  locale: Locale,
+): AdvisoryDestination {
+  const definition = DESTINATIONS[destinationId];
 
   return {
     id: definition.id,

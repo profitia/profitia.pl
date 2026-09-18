@@ -360,6 +360,26 @@ export interface RoutingDecision {
   reason: string;
 }
 
+// ── Stable conversation contract ──────────────────────────
+// This is the small, product-facing projection of the broader intelligence
+// decision. Consumers should use it instead of recomputing CTA visibility or
+// destination selection from individual engine flags.
+export type AdvisoryDestinationId = "services" | "competence" | "digital";
+
+export type ConversationAction = "wait" | "ask" | "recommend";
+
+export interface ConversationDecision {
+  contractVersion: "1";
+  action: ConversationAction;
+  intent: IntentCode;
+  destinationId: AdvisoryDestinationId | null;
+  userTurnCount: number;
+  maxUserTurns: 4;
+  remainingUserTurns: number;
+  questionLimit: 0 | 1;
+  reason: string;
+}
+
 // ── Advisory State Machine ────────────────────────────────
 export type AdvisoryFatigueLevel = "none" | "mild" | "moderate" | "high";
 
@@ -468,6 +488,7 @@ export interface AdvisoryReadiness {
 
 // ── Orchestrator Output ───────────────────────────────────
 export interface AdvisoryDecision {
+  conversation: ConversationDecision;
   intent: IntentScore;
   maturity: MaturityScore;
   routing: RoutingDecision;

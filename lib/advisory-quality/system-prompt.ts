@@ -172,7 +172,14 @@ export function buildAdvisorySystemPrompt(params: {
   const reasoningSnippet = buildReasoningBlock(l, sessionState, messageCount);
   const compressionDirective = buildCompressionDirective(compressionProfile, l);
   const antiPatterns = buildAntiPatternGuard(l);
-  const intelligenceContext = decision ? `\n${serializeDecisionForPrompt(decision)}` : "";
+  // advisoryDecision arrives over the public request boundary. Ignore older
+  // client projections so they cannot control the current prompt contract.
+  const trustedDecision = decision?.conversation?.contractVersion === "1"
+    ? decision
+    : null;
+  const intelligenceContext = trustedDecision
+    ? `\n${serializeDecisionForPrompt(trustedDecision)}`
+    : "";
 
   // Tone calibration by maturity
   const toneMap: Record<string, string> = {
@@ -196,8 +203,8 @@ export function buildAdvisorySystemPrompt(params: {
 
   // Language rule
   const langRule = l === "pl"
-    ? "JĘZYK: Odpowiadaj po polsku. Jeśli użytkownik pisze po angielsku, przełącz się na angielski."
-    : "LANGUAGE: Respond in English. If the user writes in Polish, switch to Polish.";
+    ? "JĘZYK: Odpowiadaj naturalną, poprawną polszczyzną. Przed zwróceniem odpowiedzi wykonaj cichą korektę składni, odmiany, zgodności gramatycznej, interpunkcji i ortografii. Unikaj kalek z angielskiego. Jeśli użytkownik pisze po angielsku, przełącz się na angielski."
+    : "LANGUAGE: Respond in natural, correct English. Before returning the response, silently proofread its grammar, syntax, punctuation and spelling. If the user writes in Polish, switch to Polish and use natural Polish rather than English calques.";
 
   const conversationRule = l === "pl"
     ? `ZASADY PROWADZENIA ROZMOWY:
@@ -210,6 +217,16 @@ export function buildAdvisorySystemPrompt(params: {
 - Do not include links or page addresses in the response. The interface provides the verified CTA.
 - Do not repeat a question the user has already answered.
 - By the user's fourth answer at the latest, summarise the need and name one recommended direction. Do not start another diagnostic loop.`;
+
+  const controllerDirective = trustedDecision?.conversation.action === "recommend"
+    ? l === "pl"
+      ? `DECYZJA KONTROLERA: REKOMENDACJA. Nie zadawaj żadnego pytania. Krótko podsumuj rozpoznaną potrzebę i uzasadnij wskazany kierunek: ${trustedDecision.conversation.destinationId}.`
+      : `CONTROLLER DECISION: RECOMMEND. Do not ask a question. Briefly summarise the identified need and justify the selected direction: ${trustedDecision.conversation.destinationId}.`
+    : trustedDecision?.conversation.action === "ask"
+    ? l === "pl"
+      ? "DECYZJA KONTROLERA: DIAGNOZA. Zadaj dokładnie jedno krótkie pytanie, które rozróżni dalszy kierunek."
+      : "CONTROLLER DECISION: DISCOVERY. Ask exactly one short question that distinguishes the next direction."
+    : "";
 
   // Metadata block instruction
   const metadataInstruction = `
@@ -231,6 +248,7 @@ Na końcu odpowiedzi (niewidoczne dla użytkownika) dołącz blok JSON:
     langRule,
     "\n---\n",
     conversationRule,
+    controllerDirective,
     "\n---\n",
     compressionDirective,
     "\n---\n",

@@ -12,6 +12,11 @@ export interface FinalizedAdvisoryResponse {
   issues: string[];
 }
 
+interface FinalizeAdvisoryResponseOptions {
+  questionLimit?: 0 | 1;
+  emptyContentFallback?: string;
+}
+
 /**
  * The single output gate for model-generated advisory content.
  * Nothing is sent to the browser before this function removes private
@@ -19,6 +24,7 @@ export interface FinalizedAdvisoryResponse {
  */
 export function finalizeAdvisoryResponse(
   rawContent: string,
+  options: FinalizeAdvisoryResponseOptions = {},
 ): FinalizedAdvisoryResponse {
   const metadata = parseAdvisoryMetadata(rawContent);
   const withoutMetadata = stripMetadataBlock(rawContent);
@@ -26,13 +32,32 @@ export function finalizeAdvisoryResponse(
   const guarded = applyHallucinationGuardrails(sanitized.sanitized);
 
   return {
-    content: enforceSingleQuestion(guarded.sanitizedContent),
+    content: enforceQuestionLimit(
+      guarded.sanitizedContent,
+      options.questionLimit ?? 1,
+      options.emptyContentFallback ?? "",
+    ),
     metadata,
     issues: [...sanitized.issues, ...guarded.issues],
   };
 }
 
-function enforceSingleQuestion(content: string): string {
+function enforceQuestionLimit(
+  content: string,
+  questionLimit: 0 | 1,
+  emptyContentFallback: string,
+): string {
+  if (questionLimit === 0) {
+    const statements = content
+      .match(/[^.!?]+[.!?]+|[^.!?]+$/g)
+      ?.map((sentence) => sentence.trim())
+      .filter((sentence) => sentence.length > 0 && !sentence.includes("?"))
+      .join(" ")
+      .trim();
+
+    return statements || emptyContentFallback.trim();
+  }
+
   const firstQuestionMark = content.indexOf("?");
   if (firstQuestionMark === -1) return content.trim();
 
