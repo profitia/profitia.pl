@@ -375,13 +375,13 @@ export default function EducationPage({ locale }: Props) {
             </h2>
           </div>
 
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-20">
-            <div className="relative aspect-[4/3] w-full overflow-hidden shadow-sm">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-stretch lg:gap-20">
+            <div className="relative aspect-[4/3] w-full overflow-hidden shadow-sm lg:aspect-auto lg:self-stretch">
               <Image
                 src="/images/website/Profitia_38.jpg"
                 alt={cips.imageAlt}
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 46vw"
               />
             </div>
