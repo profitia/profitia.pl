@@ -2,6 +2,18 @@ import assert from "node:assert/strict";
 import { finalizeAdvisoryResponse } from "@/lib/advisory-chat/finalize-response";
 import { buildAdvisorySystemPrompt } from "@/lib/advisory-quality/system-prompt";
 import { runAdvisoryOrchestrator } from "@/lib/engines/advisory-orchestrator";
+import {
+  BUSINESS_IMPACT_FRAMING,
+  ESCALATION_FRAMING,
+  NEGOTIATION_REASONING,
+  NO_BENCHMARK_REASONING,
+  PROCUREMENT_STRATEGY_REASONING,
+  REACTIVE_PROCUREMENT_REASONING,
+  SPEND_VISIBILITY_REASONING,
+  SUPPLIER_INCREASE_REASONING,
+  SUPPLIER_RISK_REASONING,
+  TRANSFORMATION_REASONING,
+} from "@/lib/advisory-quality/procurement-reasoning";
 import type { AdvisorySession, Message } from "@/types";
 
 function createSession(userMessages: string[]): AdvisorySession {
@@ -160,6 +172,46 @@ function testUnversionedClientDecisionIsIgnored(): void {
   assert.doesNotMatch(prompt, /DECYZJA KONTROLERA/);
 }
 
+function testPolishReasoningDoesNotTeachEnglishCalques(): void {
+  const polishGuidance = [
+    ...SUPPLIER_INCREASE_REASONING.pl,
+    ...NO_BENCHMARK_REASONING.pl,
+    ...PROCUREMENT_STRATEGY_REASONING.pl,
+    ...SPEND_VISIBILITY_REASONING.pl,
+    ...NEGOTIATION_REASONING.pl,
+    ...SUPPLIER_RISK_REASONING.pl,
+    ...TRANSFORMATION_REASONING.pl,
+    ...BUSINESS_IMPACT_FRAMING.pl,
+    ...REACTIVE_PROCUREMENT_REASONING.pl,
+    ...ESCALATION_FRAMING.pl,
+  ].join(" ");
+
+  assert.doesNotMatch(
+    polishGuidance,
+    /\b(cost breakdown|input costs?|sourcing decision|pilne sourcing|pricing volatility|maturity assessment zakupów|SPOT Analysis|firefighting)\b/i,
+  );
+  assert.match(polishGuidance, /cost drivers/);
+  assert.match(polishGuidance, /struktury kosztów/);
+}
+
+function testAcceptedProcurementTermsRemainAvailableInPolish(): void {
+  const session = createSession(["Potrzebujemy wsparcia w procurement i sourcingu."]);
+  const decision = runAdvisoryOrchestrator(session);
+  const prompt = buildAdvisorySystemPrompt({
+    locale: "pl",
+    pageContext: session.pageContext,
+    sessionState: session.state,
+    decision,
+    messageCount: session.messages.length,
+    userMessageCount: 1,
+  });
+
+  assert.match(
+    prompt,
+    /„cost drivers”, „sourcing”, „procurement”, „savings” i „spend”/,
+  );
+}
+
 function testInitialStateDoesNotInventDestination(): void {
   const decision = runAdvisoryOrchestrator(createSession([]));
   assert.equal(decision.conversation.action, "wait");
@@ -172,6 +224,8 @@ testControllerOwnsTurnLimit();
 testDiscoveryContractBeforeTurnLimit();
 testNoQuestionAfterRecommendation();
 testUnversionedClientDecisionIsIgnored();
+testPolishReasoningDoesNotTeachEnglishCalques();
+testAcceptedProcurementTermsRemainAvailableInPolish();
 testInitialStateDoesNotInventDestination();
 
 console.log("Advisory chat stage 2: stable conversation contract tests passed");
