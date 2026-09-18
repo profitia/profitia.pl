@@ -203,6 +203,13 @@ const JOB_ROUTE_ENTRIES: PublicRouteEntry[] = [
     legacyPaths: ['/career/junior-business-analyst'],
     indexable: true,
   },
+  {
+    id: 'job:manager',
+    kind: 'career',
+    entityId: 'manager',
+    paths: { pl: '/kariera/manager', en: '/en/career/manager' },
+    indexable: true,
+  },
 ]
 
 function buildCapabilityRouteEntry(seed: CapabilityRouteSeed): PublicRouteEntry {

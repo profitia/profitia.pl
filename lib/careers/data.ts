@@ -9,13 +9,17 @@ import type { JobPost } from './types'
 export const JOB_POSTS: JobPost[] = [
 
   // ══════════════════════════════════════════════════════════════
-  // 1. Procurement Consultant / Konsultant Zakupowy
+  // 1. Consultant / Senior Consultant
   // ══════════════════════════════════════════════════════════════
   {
     slug: 'procurement-consultant',
     title: {
-      pl: 'Konsultant Zakupowy',
-      en: 'Procurement Consultant',
+      pl: 'Consultant / Senior Consultant',
+      en: 'Consultant / Senior Consultant',
+    },
+    subtitle: {
+      pl: 'W zależności od Twojej wiedzy i doświadczenia',
+      en: 'Depending on your knowledge and experience',
     },
     department: {
       pl: 'Doradztwo',
@@ -30,12 +34,12 @@ export const JOB_POSTS: JobPost[] = [
       en: 'Employment contract or B2B',
     },
     summary: {
-      pl: 'Praca bezpośrednio przy projektach doradczych - analiza, przygotowanie negocjacji, rekomendacje dla dyrektorów zakupów i CFO.',
-      en: 'Working directly on advisory projects - analysis, negotiation preparation and recommendations for procurement directors and CFOs.',
+      pl: 'Praca bezpośrednio przy projektach doradczych - od analizy i przygotowania negocjacji po prowadzenie strumieni projektowych i rekomendacje dla kadry zarządzającej.',
+      en: 'Direct involvement in advisory projects - from analysis and negotiation preparation to leading project workstreams and developing recommendations for senior management.',
     },
     roleContext: {
-      pl: 'Konsultant Zakupowy pracuje bezpośrednio przy projektach klientów. Rola obejmuje analizę danych zakupowych, budowanie strategii negocjacyjnej, przygotowanie benchmarków rynkowych i współtworzenie rekomendacji, które trafiają do zarządów i dyrektorów zakupów. Projekty są zróżnicowane kategoriowo i sektorowo - od dóbr pośrednich przez logistykę po usługi profesjonalne. Praca ma realny wpływ na decyzje zakupowe organizacji o obrotach nawet kilku miliardów złotych.',
-      en: 'The Procurement Consultant works directly on client projects. The role covers procurement data analysis, negotiation strategy development, market benchmarking and contributing to recommendations that reach boards and procurement directors. Projects span a wide range of categories and sectors - from indirect spend through logistics to professional services. The work has direct influence on procurement decisions in organisations with revenues of up to several billion PLN.',
+      pl: 'Zakres odpowiedzialności dopasowujemy do doświadczenia. Consultant pracuje bezpośrednio przy analizach, strategiach i wdrożeniach dla klientów, a Senior Consultant przejmuje odpowiedzialność za wybrane strumienie projektu, jakość rekomendacji oraz rozwój młodszych członków zespołu. Projekty obejmują różne kategorie i sektory - od dóbr pośrednich przez logistykę po usługi profesjonalne.',
+      en: 'We tailor the scope of responsibility to experience. A Consultant works directly on client analyses, strategies and implementation, while a Senior Consultant takes ownership of selected project workstreams, recommendation quality and the development of junior team members. Projects cover a broad range of categories and sectors - from indirect spend and logistics to professional services.',
     },
     workItems: [
       {
@@ -113,8 +117,8 @@ export const JOB_POSTS: JobPost[] = [
     },
     metadata: {
       title: {
-        pl: 'Konsultant Zakupowy | Kariera | Profitia',
-        en: 'Procurement Consultant | Career | Profitia',
+        pl: 'Consultant / Senior Consultant | Kariera | Profitia',
+        en: 'Consultant / Senior Consultant | Career | Profitia',
       },
       description: {
         pl: 'Rola konsultanta zakupowego w Profitia - praca przy projektach doradczych, negocjacyjnych i analitycznych dla organizacji zakupowych.',
@@ -124,13 +128,17 @@ export const JOB_POSTS: JobPost[] = [
   },
 
   // ══════════════════════════════════════════════════════════════
-  // 2. Junior Business Analyst / Młodszy Analityk Biznesowy
+  // 2. Junior Analyst / Analyst
   // ══════════════════════════════════════════════════════════════
   {
     slug: 'junior-business-analyst',
     title: {
-      pl: 'Młodszy Analityk Biznesowy',
-      en: 'Junior Business Analyst',
+      pl: 'Junior Analyst / Analyst',
+      en: 'Junior Analyst / Analyst',
+    },
+    subtitle: {
+      pl: 'W zależności od Twojej wiedzy i doświadczenia',
+      en: 'Depending on your knowledge and experience',
     },
     department: {
       pl: 'Analityka i Dane',
@@ -145,12 +153,12 @@ export const JOB_POSTS: JobPost[] = [
       en: 'Civil contract (zlecenie)',
     },
     summary: {
-      pl: 'Punkt wejścia do pracy analitycznej i doradczej Profitia - analiza danych zakupowych, intelligence rynkowy, przygotowanie materiałów dla klientów.',
-      en: 'Entry point into Profitia analytical and advisory work - procurement data analysis, market intelligence and client material preparation.',
+      pl: 'Rozwój w analityce i doradztwie zakupowym - analiza danych, market intelligence, modele kosztowe i przygotowanie materiałów dla klientów.',
+      en: 'Development in procurement analytics and advisory - data analysis, market intelligence, cost modelling and preparation of client materials.',
     },
     roleContext: {
-      pl: 'Rola Młodszego Analityka Biznesowego to rzeczywisty punkt wejścia do pracy doradczej Profitia. Rola skupia się na rozwijaniu kompetencji analitycznych, które stanowią fundament pracy z klientami - analiza danych zakupowych, strukturyzacja informacji rynkowych, budowanie modeli i wspieranie przygotowania materiałów projektowych. Praca jest realizowana w bezpośrednim kontakcie z projektami i danymi klientów, pod mentoringiem doświadczonych konsultantów.',
-      en: 'The Junior Business Analyst role is a genuine entry point into Profitia advisory work. It focuses on developing the analytical skills that underpin client work - procurement data analysis, market intelligence structuring, model building and supporting project material preparation. The work takes place in direct contact with client projects and data, under the mentoring of experienced consultants.',
+      pl: 'Zakres odpowiedzialności dopasowujemy do wiedzy i doświadczenia. Junior Analyst rozwija warsztat analityczny pod opieką bardziej doświadczonych osób, a Analyst samodzielnie prowadzi uzgodnione analizy i odpowiada za wybrane części materiałów projektowych. Fundamentem obu poziomów są dane zakupowe, informacje rynkowe, modele i rzetelne wnioski.',
+      en: 'We tailor the scope of responsibility to knowledge and experience. A Junior Analyst develops analytical skills with support from more experienced colleagues, while an Analyst independently delivers agreed analyses and owns selected parts of project materials. Both levels are grounded in procurement data, market intelligence, modelling and well-supported conclusions.',
     },
     workItems: [
       {
@@ -244,12 +252,67 @@ export const JOB_POSTS: JobPost[] = [
     },
     metadata: {
       title: {
-        pl: 'Młodszy Analityk Biznesowy | Kariera | Profitia',
-        en: 'Junior Business Analyst | Career | Profitia',
+        pl: 'Junior Analyst / Analyst | Kariera | Profitia',
+        en: 'Junior Analyst / Analyst | Career | Profitia',
       },
       description: {
         pl: 'Rola analityczna w Profitia - praca z danymi zakupowymi, analityka spend, wsparcie projektów doradczych i negocjacyjnych.',
         en: 'Analytical role at Profitia - procurement data work, spend analytics, support for advisory and negotiation projects.',
+      },
+    },
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // 3. Manager
+  // ══════════════════════════════════════════════════════════════
+  {
+    slug: 'manager',
+    title: { pl: 'Manager', en: 'Manager' },
+    department: { pl: 'Doradztwo', en: 'Advisory' },
+    location: { pl: 'Warszawa (Villa Metro) · praca hybrydowa', en: 'Warsaw (Villa Metro) · hybrid work' },
+    employmentType: { pl: '', en: '' },
+    summary: {
+      pl: 'Odpowiedzialność za prowadzenie projektów doradczych, relacje z klientami, jakość rekomendacji i rozwój zespołu.',
+      en: 'Responsibility for leading advisory projects, client relationships, recommendation quality and team development.',
+    },
+    roleContext: {
+      pl: 'Manager prowadzi projekty od diagnozy do wdrożenia. Łączy odpowiedzialność merytoryczną i komercyjną: porządkuje problem klienta, buduje plan pracy, koordynuje zespół, dba o jakość rezultatów i prowadzi komunikację z interesariuszami po stronie klienta. To rola dla osoby, która potrafi połączyć wiedzę zakupową z zarządzaniem projektem i rozwojem ludzi.',
+      en: 'A Manager leads projects from diagnosis through implementation. The role combines subject-matter and commercial responsibility: structuring the client problem, defining the workplan, coordinating the team, assuring deliverable quality and managing communication with client stakeholders. It suits someone who can combine procurement expertise with project leadership and people development.',
+    },
+    workItems: [
+      { pl: 'Prowadzenie projektów i strumieni doradczych od ustalenia zakresu po wdrożenie rekomendacji', en: 'Leading advisory projects and workstreams from scoping through implementation of recommendations' },
+      { pl: 'Zarządzanie relacją z klientem oraz komunikacją z kadrą zarządzającą i liderami funkcji zakupowej', en: 'Managing client relationships and communication with senior management and procurement leaders' },
+      { pl: 'Zapewnianie jakości analiz, rekomendacji, prezentacji i pozostałych rezultatów projektu', en: 'Assuring the quality of analyses, recommendations, presentations and other project deliverables' },
+      { pl: 'Planowanie pracy zespołu, delegowanie odpowiedzialności i bieżące zarządzanie ryzykiem projektu', en: 'Planning team delivery, delegating ownership and managing project risks' },
+      { pl: 'Rozwijanie konsultantów i analityków poprzez mentoring, feedback i wspólną pracę projektową', en: 'Developing consultants and analysts through mentoring, feedback and joint project work' },
+      { pl: 'Współtworzenie ofert i rozwijanie relacji biznesowych Profitii', en: 'Contributing to proposals and developing Profitia’s business relationships' },
+    ],
+    requirements: [
+      { pl: 'Doświadczenie w prowadzeniu projektów doradczych, zakupowych, transformacyjnych lub optymalizacyjnych', en: 'Experience leading advisory, procurement, transformation or optimisation projects' },
+      { pl: 'Umiejętność prowadzenia klienta od niejednoznacznego problemu do konkretnej decyzji i planu wdrożenia', en: 'Ability to guide a client from an ambiguous problem to a clear decision and implementation plan' },
+      { pl: 'Bardzo dobre rozumienie procesów zakupowych, strategii kategorii, negocjacji lub transformacji funkcji zakupowej', en: 'Strong understanding of procurement processes, category strategy, negotiations or procurement transformation' },
+      { pl: 'Doświadczenie w zarządzaniu zespołem i rozwijaniu mniej doświadczonych współpracowników', en: 'Experience managing teams and developing less experienced colleagues' },
+      { pl: 'Swoboda komunikacji biznesowej w języku polskim i angielskim', en: 'Confident business communication in Polish and English' },
+    ],
+    profile: [
+      { pl: 'Łączysz myślenie strategiczne z odpowiedzialnością za dowiezienie rezultatu', en: 'You combine strategic thinking with accountability for delivery' },
+      { pl: 'Potrafisz podejmować decyzje przy niepełnych danych i jasno komunikować ich uzasadnienie', en: 'You can make decisions with incomplete information and communicate the rationale clearly' },
+      { pl: 'Budujesz autorytet poprzez wiedzę, jakość pracy i partnerskie podejście', en: 'You build authority through expertise, quality and a collaborative approach' },
+      { pl: 'Rozwój ludzi traktujesz jako część odpowiedzialności za projekt', en: 'You see people development as part of project leadership' },
+    ],
+    workingModel: {
+      pl: 'Praca projektowa w modelu hybrydowym. Biuro w Warszawie (Villa Metro, ul. Puławska 145), praca zdalna oraz spotkania i wyjazdy do klientów zależnie od etapu projektu.',
+      en: 'Hybrid project work based in our Warsaw office (Villa Metro, 145 Puławska Street), combined with remote work and client meetings or travel depending on the project stage.',
+    },
+    development: {
+      pl: 'Rozwój w kierunku odpowiedzialności za portfel klientów, budowania specjalizacji eksperckiej oraz współtworzenia praktyki doradczej Profitii.',
+      en: 'Development towards ownership of a client portfolio, a distinct expert specialism and a role in shaping Profitia’s advisory practice.',
+    },
+    metadata: {
+      title: { pl: 'Manager | Kariera | Profitia', en: 'Manager | Career | Profitia' },
+      description: {
+        pl: 'Rola Managera w Profitia - prowadzenie projektów doradczych, relacji z klientami i rozwoju zespołu.',
+        en: 'Manager role at Profitia - leading advisory projects, client relationships and team development.',
       },
     },
   },

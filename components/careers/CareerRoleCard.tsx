@@ -39,9 +39,9 @@ export default function CareerRoleCard({
   const applyHref = `${getPublicPath('career:apply', locale)}?role=${job.slug}`
 
   const title = tCareer(job.title, locale)
+  const subtitle = job.subtitle ? tCareer(job.subtitle, locale) : null
   const department = tCareer(job.department, locale)
   const location = tCareer(job.location, locale)
-  const type = tCareer(job.employmentType, locale)
   const summary = tCareer(job.summary, locale)
   const roleContext = tCareer(job.roleContext, locale)
 
@@ -58,6 +58,11 @@ export default function CareerRoleCard({
           <h3 className="text-[20px] font-semibold tracking-tight text-gray-900 leading-snug mb-2 group-hover:text-brand-blue transition-colors duration-200">
             {title}
           </h3>
+          {subtitle && (
+            <p className="mb-3 text-[13px] leading-relaxed text-gray-500">
+              {subtitle}
+            </p>
+          )}
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400">
               {department}
@@ -65,10 +70,6 @@ export default function CareerRoleCard({
             <span className="text-[11px] text-gray-300" aria-hidden="true">·</span>
             <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400">
               {location}
-            </span>
-            <span className="text-[11px] text-gray-300" aria-hidden="true">·</span>
-            <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-gray-400">
-              {type}
             </span>
           </div>
         </div>

@@ -10,7 +10,8 @@ export function getAllJobSlugs(): string[] {
 }
 
 export function getAllJobs(): JobPost[] {
-  return JOB_POSTS
+  const order = ['junior-business-analyst', 'procurement-consultant', 'manager']
+  return [...JOB_POSTS].sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug))
 }
 
 export function tCareer<T extends { pl: string; en: string }>(

@@ -8,6 +8,8 @@ import {
   CareerProcess,
   CareerFAQ,
   CareerCTA,
+  CareerLife,
+  CareerRecruiter,
 } from '@/components/careers'
 import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import { getPublicPath } from '@/lib/routing/public-routes'
@@ -38,32 +40,46 @@ const COPY = {
     },
     values: {
       eyebrow: 'Dlaczego warto',
-      title: 'Co zyskujesz pracując w Profitia',
+      title: 'Co zyskujemy, pracując w Profitia',
       items: [
         {
           label: 'Wpływ na realne decyzje biznesowe',
-          body: 'Projekty dotyczą realnych kategorii zakupowych i wyzwań klientów - z wymiernym wpływem na wyniki biznesowe. Praca daje bezpośrednią sprawczość: na rekomendacje, przebieg negocjacji i decyzje zakupowe.',
+          body: 'Pracujemy nad realnymi kategoriami zakupowymi i wyzwaniami klientów, wpływając na rekomendacje, przebieg negocjacji oraz decyzje biznesowe.',
         },
         {
           label: 'Różnorodność kategorii zakupowych',
-          body: 'Pracujesz z wieloma kategoriami - od surowców przez logistykę po usługi profesjonalne. Budujesz rozumienie zakupów jako strategicznej funkcji organizacji, nie tylko jednej kategorii.',
+          body: 'Poznajemy wiele kategorii - od surowców i logistyki po usługi profesjonalne. Dzięki temu rozwijamy szerokie rozumienie zakupów jako strategicznej funkcji organizacji.',
         },
         {
           label: 'Uczestnictwo w negocjacjach',
-          body: 'Konsultanci uczestniczą w przygotowaniu i bezpośrednim wsparciu negocjacji - rzadka ekspozycja, szczególnie na wczesnym etapie kariery.',
+          body: 'Przygotowujemy negocjacje i bezpośrednio wspieramy ich prowadzenie. Takie doświadczenie zdobywamy również na wcześniejszych etapach kariery.',
         },
         {
-          label: 'Dane na poziomie organizacji',
-          body: 'Dane zakupowe klientów dają wgląd w strukturę kosztów i decyzji niedostępny dla większości pracowników - nawet w organizacjach z własnymi systemami analitycznymi.',
+          label: 'Rozwijamy marki osobiste',
+          body: 'Wizerunek Profitii tworzymy wspólnie. Dzielimy się wiedzą, publikujemy artykuły i posty, występujemy na konferencjach oraz rozwijamy kompetencje trenerskie i własne marki eksperckie.',
         },
         {
           label: 'Mentoring jako standard',
-          body: 'Mentoring to ciągły element pracy - regularne spotkania, plan rozwoju, macierz kompetencji i bieżący feedback. Nie jednorazowe zdarzenie raz w roku.',
+          body: 'Rozwijamy się poprzez regularne spotkania, plany rozwoju, macierz kompetencji i bieżący feedback. Mentoring jest stałą częścią naszej pracy.',
         },
         {
           label: 'Rozwój przez projekty',
-          body: 'Kompetencje budujemy przez realną pracę projektową. Każde zadanie to inne pytanie biznesowe, inny kontekst, inny zestaw zmiennych - różnorodność jest stałą cechą tej pracy.',
+          body: 'Budujemy kompetencje w realnej pracy projektowej. Każde zadanie przynosi inne pytania biznesowe, kontekst i zestaw zmiennych, dlatego stale uczymy się czegoś nowego.',
         },
+      ],
+    },
+    life: {
+      eyebrow: 'Na co dzień',
+      title: 'Dobrze pracuje się tam, gdzie dobrze jest być',
+      introduction: 'Łączymy wymagającą pracę projektową z atmosferą opartą na współpracy, zaufaniu i wzajemnym wsparciu. Dbamy o warunki, w których możemy rozwijać się zawodowo, dzielić wiedzą i po prostu dobrze funkcjonować jako zespół.',
+      imageAlt: 'Zespół Profitia podczas wspólnego spotkania',
+      items: [
+        { title: 'Biuro przy metrze', description: 'Pracujemy w Villa Metro przy ul. Puławskiej 145 w Warszawie - kilka kroków od stacji Metro Wilanowska.' },
+        { title: 'Praca hybrydowa', description: 'Łączymy pracę w biurze, zdalnie i u klientów. Model dopasowujemy do fazy projektu i potrzeb zespołu.' },
+        { title: 'Benefity', description: 'Oferujemy rozwiązania wspierające zdrowie, aktywność i codzienny komfort pracy. Szczegóły przedstawiamy podczas rozmowy rekrutacyjnej.' },
+        { title: 'Zgrany zespół', description: 'Pracujemy blisko siebie, dzielimy się wiedzą i pomagamy sobie w rozwiązywaniu problemów projektowych.' },
+        { title: 'Integracje', description: 'Spotykamy się także poza projektami - podczas wspólnych śniadań, wyjazdów, wydarzeń branżowych i zespołowych inicjatyw.' },
+        { title: 'Program poleceń', description: 'Doceniamy osoby, które pomagają nam budować zespół i polecają kandydatów pasujących do kultury oraz sposobu pracy Profitii.' },
       ],
     },
     workStyle: {
@@ -161,6 +177,13 @@ const COPY = {
         },
       ],
     },
+    recruiter: {
+      eyebrow: 'Porozmawiajmy',
+      title: 'Po drugiej stronie jest konkretna osoba',
+      body: 'Masz pytanie o rolę, zespół albo proces rekrutacji? Napisz do Moniki. Możesz skontaktować się mailowo lub odezwać się bezpośrednio na LinkedIn - jeszcze zanim zdecydujesz się wysłać aplikację.',
+      emailLabel: 'kariera@profitia.pl',
+      linkedinLabel: 'Napisz do Moniki na LinkedIn',
+    },
     cta: {
       invitation: 'Dołącz do zespołu, który łączy analitykę, negocjacje i doradztwo zakupowe. Pracuj przy projektach mających realny wpływ na decyzje i wyniki organizacji.',
       label: 'Aplikuj teraz',
@@ -177,32 +200,46 @@ const COPY = {
     },
     values: {
       eyebrow: 'Why it matters',
-      title: 'What you gain working at Profitia',
+      title: 'What we gain working at Profitia',
       items: [
         {
           label: 'Impact on real business decisions',
-          body: 'Projects concern real procurement categories and client challenges - with measurable business impact. The work gives direct influence on recommendations, the course of negotiations and procurement decisions.',
+          body: 'We work on real procurement categories and client challenges, contributing directly to recommendations, negotiations and business decisions.',
         },
         {
           label: 'Variety of procurement categories',
-          body: 'You work across many categories - from raw materials through logistics to professional services. You build understanding of procurement as a strategic organisational function, not just a single category.',
+          body: 'We work across categories ranging from raw materials and logistics to professional services, building a broad understanding of procurement as a strategic organisational function.',
         },
         {
           label: 'Participation in negotiations',
-          body: 'Consultants participate in preparing and directly supporting negotiations - rare exposure, particularly at an early career stage.',
+          body: 'We prepare negotiations and support them directly. Team members gain this experience from the earlier stages of their careers.',
         },
         {
-          label: 'Data at organisational depth',
-          body: 'Client procurement data provides insight into cost structure and decisions unavailable to most employees - even in organisations with their own analytics systems.',
+          label: 'We build personal brands',
+          body: 'Together, we shape how Profitia is seen. We share knowledge, publish articles and posts, speak at conferences, develop as trainers and build our individual expert profiles.',
         },
         {
           label: 'Mentoring as standard',
-          body: 'Mentoring is a continuous element of the role - regular meetings, a development plan, a competency framework and ongoing feedback. Not a once-a-year event.',
+          body: 'We grow through regular conversations, development plans, a competency framework and ongoing feedback. Mentoring is a continuous part of how we work.',
         },
         {
           label: 'Growth through projects',
-          body: 'We build skills through real project work. Each assignment brings a different business question, context and set of variables - variety of problems is a constant of this environment.',
+          body: 'We build our skills through real project work. Every assignment brings a different business question, context and set of variables, so we keep learning.',
         },
+      ],
+    },
+    life: {
+      eyebrow: 'Everyday life',
+      title: 'A good place to work should also be a good place to be',
+      introduction: 'We combine demanding project work with a culture built on collaboration, trust and mutual support. We create the conditions to grow professionally, share knowledge and work well together as a team.',
+      imageAlt: 'The Profitia team during a team gathering',
+      items: [
+        { title: 'A well-connected office', description: 'We work at Villa Metro, 145 Puławska Street in Warsaw, just a few steps from Wilanowska metro station.' },
+        { title: 'Hybrid work', description: 'We combine office work, remote work and time at client sites. The model follows the project phase and the needs of the team.' },
+        { title: 'Benefits', description: 'We offer solutions that support health, activity and everyday comfort. We share the details during the recruitment conversation.' },
+        { title: 'A close-knit team', description: 'We work closely, exchange knowledge and support one another in solving project challenges.' },
+        { title: 'Time together', description: 'We also meet beyond projects - at team breakfasts, trips, industry events and team initiatives.' },
+        { title: 'Referral programme', description: 'We appreciate people who help us grow the team and recommend candidates who fit Profitia’s culture and way of working.' },
       ],
     },
     workStyle: {
@@ -300,6 +337,13 @@ const COPY = {
         },
       ],
     },
+    recruiter: {
+      eyebrow: 'Let’s talk',
+      title: 'There is a real person on the other side',
+      body: 'Have a question about a role, the team or our recruitment process? Contact Monika by email or message her directly on LinkedIn - even before you decide to submit an application.',
+      emailLabel: 'kariera@profitia.pl',
+      linkedinLabel: 'Message Monika on LinkedIn',
+    },
     cta: {
       invitation: 'Join a team that combines analytics, negotiations and procurement advisory. Work on projects that have a real impact on organisational decisions and outcomes.',
       label: 'Apply now',
@@ -353,6 +397,14 @@ export default function CareerListingPage({ locale }: Props) {
         requirementsLabel={c.roles.requirementsLabel}
       />
 
+      <CareerLife
+        eyebrow={c.life.eyebrow}
+        title={c.life.title}
+        introduction={c.life.introduction}
+        items={c.life.items}
+        imageAlt={c.life.imageAlt}
+      />
+
       <CareerWorkStyle
         eyebrow={c.workStyle.eyebrow}
         title={c.workStyle.title}
@@ -364,6 +416,15 @@ export default function CareerListingPage({ locale }: Props) {
         title={c.process.title}
         subtitle={c.process.subtitle}
         steps={c.process.steps}
+      />
+
+      <CareerRecruiter
+        locale={locale}
+        eyebrow={c.recruiter.eyebrow}
+        title={c.recruiter.title}
+        body={c.recruiter.body}
+        emailLabel={c.recruiter.emailLabel}
+        linkedinLabel={c.recruiter.linkedinLabel}
       />
 
       <CareerFAQ

@@ -688,7 +688,7 @@ async function main() {
       assert.equal(row.internalEmailStatus, 'SENT')
       assert.equal(row.candidateEmailStatus, 'SENT')
       assert.equal(emailCalls.length, 2)
-      assert.equal(emailCalls[0]?.subject, 'Nowa aplikacja na: Konsultant Zakupowy')
+      assert.equal(emailCalls[0]?.subject, 'Nowa aplikacja na: Consultant / Senior Consultant')
       assert.equal(emailCalls[1]?.subject, 'Thank you for applying to Profitia')
     })
 

@@ -25,6 +25,8 @@ export interface JobPost {
   slug: string
   /** Role title */
   title: CareerLocalizedString
+  /** Optional seniority note shown directly below the role title */
+  subtitle?: CareerLocalizedString
   /** Department / practice label */
   department: CareerLocalizedString
   /** Location */

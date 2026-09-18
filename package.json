@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run db:forms:generate && next build",
+    "prestart": "npm run db:forms:migrate:deploy",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",

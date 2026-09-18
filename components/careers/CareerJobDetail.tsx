@@ -23,9 +23,9 @@ interface Props {
 export default function CareerJobDetail({ job, locale }: Props) {
   const c = BREADCRUMB[locale]
   const title = tCareer(job.title, locale)
+  const subtitle = job.subtitle ? tCareer(job.subtitle, locale) : null
   const department = tCareer(job.department, locale)
   const location = tCareer(job.location, locale)
-  const employmentType = tCareer(job.employmentType, locale)
   const summary = tCareer(job.summary, locale)
   const homeHref = getPublicPath('home', locale)
   const careerHref = getPublicPath('career:index', locale)
@@ -60,9 +60,15 @@ export default function CareerJobDetail({ job, locale }: Props) {
           {title}
         </h1>
 
-        {/* Location + employment type metadata */}
+        {subtitle && (
+          <p className="-mt-2 mb-6 text-[15px] leading-relaxed text-gray-500">
+            {subtitle}
+          </p>
+        )}
+
+        {/* Location metadata */}
         <p className="text-[13px] text-gray-400 mb-10">
-          {location} · {employmentType}
+          {location}
         </p>
 
         {/* Lede paragraph */}
