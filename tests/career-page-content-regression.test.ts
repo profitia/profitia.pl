@@ -49,8 +49,21 @@ assert.match(listing, /CareerRecruiter/)
 
 assert.doesNotMatch(roleCard, /tCareer\(job\.employmentType/)
 assert.doesNotMatch(roleDetail, /tCareer\(job\.employmentType/)
-assert.match(life, /Profitia_30\.jpg/)
-assert.match(life, /GALLERY_IMAGE_COUNT = 13/)
+for (const image of [
+  'Profitia_2.jpg',
+  'Profitia_25.jpg',
+  'Profitia_26.jpg',
+  'Profitia_29.jpg',
+  'Profitia_33.jpg',
+  'Profitia_34.jpg',
+  'Profitia_35.jpg',
+  'Profitia_7.jpg',
+  'Profitia_9.jpg',
+]) {
+  assert.match(life, new RegExp(image.replace('.', '\\.')))
+}
+assert.doesNotMatch(life, /Profitia_30\.jpg/)
+assert.match(life, /GALLERY_IMAGE_SOURCES/)
 assert.match(life, /hiddenImageCount/)
 assert.match(life, /\+\{hiddenImageCount\}/)
 assert.match(life, /ArrowLeft/)

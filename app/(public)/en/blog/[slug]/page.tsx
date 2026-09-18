@@ -4,6 +4,7 @@ import type { ArticleDetailData, ArticlePreviewData } from '@/lib/content/types'
 import BlogArticlePage from '@/components/pages/BlogArticlePage'
 import {
   findPublishedArticleBySlug,
+  findPublishedArticleNeighbors,
   findPublishedRelatedArticles,
   findPublishedTranslationSibling,
 } from '@/lib/articles/queries'
@@ -41,9 +42,10 @@ export default async function EnArticlePage({ params }: Props) {
   if (!row) notFound()
   const article = row as ArticleDetailData
 
-  const [related, sibling] = await Promise.all([
+  const [related, sibling, neighbors] = await Promise.all([
     getRelated(article.relatedSlugs ?? []),
     article.locale ? findPublishedTranslationSibling(article, 'PL') : null,
+    findPublishedArticleNeighbors(article.id, 'EN'),
   ])
   const languagePaths = article.locale
     ? { en: `/en/blog/${article.slug}`, ...(sibling && { pl: `/blog/${sibling.slug}` }) }
@@ -58,7 +60,7 @@ export default async function EnArticlePage({ params }: Props) {
           type="application/ld+json"
         />
       ) : null}
-      <BlogArticlePage locale="en" article={article} relatedArticles={related} languagePaths={languagePaths} />
+      <BlogArticlePage locale="en" article={article} relatedArticles={related} neighbors={neighbors} languagePaths={languagePaths} />
     </>
   )
 }

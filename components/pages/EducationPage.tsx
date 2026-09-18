@@ -63,6 +63,47 @@ const PAGE_COPY = {
   },
 } as const
 
+const CIPS_SECTION_COPY = {
+  pl: {
+    eyebrow: 'CIPS · ŚWIATOWY STANDARD ZAKUPÓW',
+    title: 'Rozwój kompetencji oparty na globalnych standardach profesji zakupowej',
+    imageAlt: 'Zespół Profitia podczas programu rozwoju kompetencji zakupowych',
+    blocks: [
+      {
+        title: 'CIPS wyznacza standard profesji zakupowej',
+        description: 'CIPS to największa na świecie organizacja zrzeszająca profesjonalistów zakupów i łańcucha dostaw. Działa jako organizacja non-profit od 1932 roku, a od 1992 roku na mocy Royal Charter. Nadaje kwalifikacje i akredytacje, rozwija kompetencje osób i organizacji oraz łączy globalną sieć ekspertów z najważniejszych branż gospodarki. Profitia jest wyłącznym partnerem CIPS w Polsce i Europie Środkowej.',
+      },
+      {
+        title: 'Certyfikacja Korporacyjna CIPS',
+        description: 'To jedyna globalnie rozpoznawalna akredytacja doskonałości w obszarze zakupów korporacyjnych i łańcucha dostaw. Potwierdza profesjonalne strategie, procesy i praktyki funkcji zakupowej, a jednocześnie wyznacza ścieżkę dojścia do światowej klasy. Proces wspiera obniżanie kosztów, zarządzanie ryzykiem, pomiar efektywności, budowanie silniejszych relacji z interesariuszami oraz rozwój etycznego i odpowiedzialnego modelu działania.',
+      },
+      {
+        title: 'MCIPS i Procurement Executive Development Programme',
+        description: 'MCIPS jest międzynarodowym potwierdzeniem najwyższego poziomu wiedzy zakupowej i doświadczenia menedżerskiego, porównywalnym z profesjonalnymi kwalifikacjami takimi jak CFA czy ACCA. Niezależne badania wskazują, że posiadacze MCIPS zarabiają około 15% więcej niż osoby na porównywalnych stanowiskach bez tej kwalifikacji. Program PEDP przygotowuje doświadczonych menedżerów zakupowych do ścieżki Management Entry Route prowadzącej do uzyskania tytułu MCIPS.',
+      },
+    ],
+  },
+  en: {
+    eyebrow: 'CIPS · THE GLOBAL PROCUREMENT STANDARD',
+    title: 'Capability development grounded in the global standard for the procurement profession',
+    imageAlt: 'The Profitia team delivering a procurement capability development programme',
+    blocks: [
+      {
+        title: 'CIPS sets the standard for the profession',
+        description: 'CIPS is the world’s largest professional body for procurement and supply chain professionals. Founded as a not-for-profit organisation in 1932 and granted a Royal Charter in 1992, it awards qualifications and accreditations, develops capability at both individual and organisational level, and brings together a global network of experts across major industries. Profitia is the exclusive CIPS partner in Poland and Central Europe.',
+      },
+      {
+        title: 'CIPS Corporate Certification',
+        description: 'This is the only globally recognised accreditation for excellence in corporate procurement and supply. It validates the strategies, processes and professional practices of the procurement function while providing a clear route towards world-class performance. The process supports cost reduction, risk management, performance measurement, stronger stakeholder relationships, and a more ethical and responsible operating model.',
+      },
+      {
+        title: 'MCIPS and the Procurement Executive Development Programme',
+        description: 'MCIPS is an internationally recognised mark of advanced procurement knowledge and management experience, comparable with professional qualifications such as CFA or ACCA. Independent research indicates that MCIPS holders earn around 15% more than peers in comparable roles without the qualification. PEDP prepares experienced procurement leaders for the Management Entry Route towards achieving MCIPS status.',
+      },
+    ],
+  },
+} as const
+
 const EDUCATION_CATALOGUE: EducationDomain[] = [
   {
     id: 'procurement-training',
@@ -256,6 +297,7 @@ function getLocalizedString(value: LocalizedString, locale: Locale) {
 
 export default function EducationPage({ locale }: Props) {
   const c = PAGE_COPY[locale]
+  const cips = CIPS_SECTION_COPY[locale]
   const seo = SEO[locale]
   const localizedCatalogue = EDUCATION_CATALOGUE.map((domain) => ({
     id: domain.id,
@@ -322,6 +364,38 @@ export default function EducationPage({ locale }: Props) {
           hideFrom="lg"
           overlayClassName="bg-[#f3e8dc]/18"
         />
+      </section>
+
+      <section className="bg-gray-50 py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-14 max-w-3xl">
+            <p className="editorial-label mb-5 text-[rgba(0,109,158,0.8)]">{cips.eyebrow}</p>
+            <h2 className="text-3xl font-semibold leading-tight tracking-tight text-gray-900 md:text-4xl">
+              {cips.title}
+            </h2>
+          </div>
+
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-20">
+            <div className="relative aspect-[4/3] w-full overflow-hidden shadow-sm">
+              <Image
+                src="/images/website/Profitia_38.jpg"
+                alt={cips.imageAlt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 46vw"
+              />
+            </div>
+
+            <div className="divide-y divide-gray-200 border-y border-gray-200">
+              {cips.blocks.map((block) => (
+                <div key={block.title} className="py-7">
+                  <h3 className="editorial-box-title text-brand-blue">{block.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-gray-700">{block.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       <div className="container-base">

@@ -190,7 +190,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const primaryNav = [
     { href: educationHref, label: dict.nav.education },
     { href: careerHref, label: dict.nav.career },
-    { href: blogHref, label: dict.nav.blog },
+    ...(!isEN ? [{ href: blogHref, label: dict.nav.blog }] : []),
     { href: aboutHref, label: dict.nav.about },
   ]
   const secondaryNav = [

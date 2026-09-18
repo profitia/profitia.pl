@@ -23,9 +23,18 @@ interface GalleryImage {
   position?: string
 }
 
-const PLACEHOLDER_IMAGE = '/images/website/Profitia_30.jpg'
 const VISIBLE_IMAGE_COUNT = 3
-const GALLERY_IMAGE_COUNT = 13
+const GALLERY_IMAGE_SOURCES = [
+  '/images/website/Profitia_2.jpg',
+  '/images/website/Profitia_25.jpg',
+  '/images/website/Profitia_26.jpg',
+  '/images/website/Profitia_29.jpg',
+  '/images/website/Profitia_33.jpg',
+  '/images/website/Profitia_34.jpg',
+  '/images/website/Profitia_35.jpg',
+  '/images/website/Profitia_7.jpg',
+  '/images/website/Profitia_9.jpg',
+] as const
 
 export default function CareerLife({ locale, eyebrow, title, introduction, items, imageAlt }: Props) {
   const [activeImage, setActiveImage] = useState<number | null>(null)
@@ -33,8 +42,8 @@ export default function CareerLife({ locale, eyebrow, title, introduction, items
   const triggerRef = useRef<HTMLButtonElement | null>(null)
   const galleryImages = useMemo<GalleryImage[]>(
     () =>
-      Array.from({ length: GALLERY_IMAGE_COUNT }, (_, index) => ({
-        src: PLACEHOLDER_IMAGE,
+      GALLERY_IMAGE_SOURCES.map((src, index) => ({
+        src,
         alt: `${imageAlt} - ${index + 1}`,
         position: index === 1 ? '35% center' : index === 2 ? '70% center' : 'center',
       })),
