@@ -1,8 +1,8 @@
-import type { AdvisoryMetadata } from "@/runtime/schemas/advisory-output.schema";
+import type { AdvisoryMetadata } from "./advisory-output";
 import {
   parseAdvisoryMetadata,
   stripMetadataBlock,
-} from "@/runtime/schemas/advisory-output.schema";
+} from "./advisory-output";
 import { applyHallucinationGuardrails } from "@/lib/advisory-quality/hallucination-guard";
 import { sanitizeOutput } from "@/lib/runtime-hardening/security";
 

@@ -18,6 +18,15 @@ Run the deterministic suite before merging any chat change:
 npm run test:advisory-stage3
 ```
 
+The architecture boundary and legacy-runtime removal are verified with:
+
+```bash
+npm run test:advisory-stage4
+```
+
+The Stage 4 command includes all product journeys and additionally fails if a
+parallel `/api/runtime` path or its client adapter is reintroduced.
+
 The scenarios in `tests/fixtures/advisory-chat-acceptance.ts` cover:
 
 - Polish and English conversations;

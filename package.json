@@ -31,6 +31,7 @@
     "test:advisory-stage1": "tsx tests/advisory-chat-stage1.test.ts && tsx tests/advisory-chat-ui-stage1.test.ts",
     "test:advisory-stage2": "tsx tests/advisory-chat-stage2.test.ts && tsx tests/advisory-chat-ui-stage1.test.ts",
     "test:advisory-stage3": "tsx tests/advisory-chat-stage3.test.ts && tsx tests/advisory-chat-stage2.test.ts && tsx tests/advisory-chat-ui-stage1.test.ts",
+    "test:advisory-stage4": "npm run test:advisory-stage3 && tsx tests/advisory-chat-stage4.test.ts",
     "test:advisory-stage3:live": "tsx scripts/run-advisory-acceptance.ts",
     "test:blog-phase1": "tsx tests/blog-cms-phase1.test.ts",
     "test:blog-phase2": "tsx tests/blog-cms-phase2.test.ts",
