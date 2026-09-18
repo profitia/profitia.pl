@@ -72,7 +72,7 @@ export default function Footer({
     { href: homeHref, label: dict.nav.home },
     { href: servicesHref, label: dict.nav.services },
     { href: educationHref, label: dict.nav.education },
-    { href: blogHref, label: dict.nav.blog },
+    ...(!isEN ? [{ href: blogHref, label: dict.nav.blog }] : []),
     { href: aboutHref, label: dict.nav.about },
     { href: careerHref, label: dict.nav.career },
     { href: contactHref, label: dict.nav.contact },
@@ -145,15 +145,15 @@ export default function Footer({
               href="https://cipsdistancelearning.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="CIPS Centre of Excellence"
+              aria-label="CIPS"
               className="inline-block opacity-75 hover:opacity-95 transition-opacity duration-200 ease-out"
             >
               <Image
-                src="/logo/cips-footer.png"
-                alt="CIPS Centre of Excellence"
-                width={96}
-                height={38}
-                className="h-9 w-auto grayscale"
+                src="/images/website/CIPS LOGO.png"
+                alt="CIPS"
+                width={466}
+                height={186}
+                className="h-9 w-auto"
               />
             </a>
           </div>

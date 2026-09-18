@@ -230,7 +230,17 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
 
       <section className="bg-gray-50 py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-24">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-20">
+            <div className="relative aspect-[4/3] w-full overflow-hidden shadow-sm">
+              <Image
+                src="/images/website/Profitia_25.jpg"
+                alt="Zespół Profitia podczas pracy projektowej"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 46vw"
+              />
+            </div>
+
             <div>
               <p className="editorial-label text-[rgba(0,109,158,0.8)] mb-5">
                 Sposób działania
@@ -241,18 +251,18 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
               <p className="mt-6 text-lg font-medium leading-relaxed text-gray-900">
                 Nie dostarczamy raportu o zmianie. Pomagamy tę zmianę przeprowadzić.
               </p>
-            </div>
 
-            <div className="divide-y divide-gray-200 border-y border-gray-200">
-              {PROCESS_STEPS.map((step) => (
-                <div key={step.n} className="grid gap-4 py-8 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-7">
-                  <p className="text-3xl font-light tracking-tight text-gray-300">{step.n}</p>
-                  <div>
-                    <h3 className="editorial-box-title text-gray-900">{step.title}</h3>
-                    <p className="mt-3 text-sm md:text-base leading-relaxed text-gray-600">{step.desc}</p>
+              <div className="mt-10 divide-y divide-gray-200 border-y border-gray-200">
+                {PROCESS_STEPS.map((step) => (
+                  <div key={step.n} className="grid gap-4 py-8 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-7">
+                    <p className="text-3xl font-light tracking-tight text-gray-300">{step.n}</p>
+                    <div>
+                      <h3 className="editorial-box-title text-gray-900">{step.title}</h3>
+                      <p className="mt-3 text-sm md:text-base leading-relaxed text-gray-600">{step.desc}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -376,7 +386,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
             Zacznijmy od problemu, który dziś najbardziej wpływa na wynik zakupów
           </h2>
           <p className="max-w-2xl mx-auto mt-7 text-base md:text-lg leading-relaxed text-white/72">
-            Może to być jedna kategoria, program oszczędnościowy, organizacja funkcji zakupowej, proces albo technologia. W pierwszej rozmowie porządkujemy punkt wyjścia i określamy, gdzie możemy wnieść największą wartość.
+            Może to być konkretna kategoria, problem z dostawcą, zmiana organizacji funkcji zakupowej, proces albo technologia. W pierwszej rozmowie ustalimy Twoje potrzeby i punkt wyjścia oraz zaproponujemy działania, które mogą wnieść największą wartość i najszybsze mierzalne rezultaty.
           </p>
           <Link
             href={getPublicPath('contact', 'pl')}

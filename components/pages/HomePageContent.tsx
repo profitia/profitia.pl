@@ -305,6 +305,43 @@ export default function HomePageContent({
       {/* ════════════════════════════════════
           PROCESS
           ════════════════════════════════════ */}
+      {locale === 'en' && variant === 'current' ? (
+      <section id="b5xg0q" className="bg-white py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-20">
+            <div className="relative aspect-[4/3] w-full overflow-hidden shadow-sm">
+              <Image
+                src="/images/website/Profitia_25.jpg"
+                alt="The Profitia team working on a client project"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 46vw"
+              />
+            </div>
+            <div>
+              <p className={`editorial-label mb-5 ${eyebrowTone}`}>{d.process.eyebrow}</p>
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight text-gray-900">
+                {d.process.h2}
+              </h2>
+              <p className="mt-6 text-lg font-medium leading-relaxed text-gray-900">
+                {d.process.footer1} {d.process.footer2}
+              </p>
+              <div className={`mt-10 divide-y border-y ${separatorBorder}`}>
+                {d.process.steps.slice(0, 4).map((step) => (
+                  <div key={step.n} className="grid gap-4 py-8 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-7">
+                    <p className="text-3xl font-light tracking-tight text-gray-300">{step.n}</p>
+                    <div>
+                      <h3 className="editorial-box-title text-gray-900">{step.title}</h3>
+                      <p className="mt-3 text-sm md:text-base leading-relaxed text-gray-600">{step.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      ) : (
       <section id="b5xg0q" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
@@ -332,6 +369,7 @@ export default function HomePageContent({
           </div>
         </div>
       </section>
+      )}
 
       {/* ════════════════════════════════════
           IMPACT

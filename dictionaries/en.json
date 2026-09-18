@@ -38,9 +38,9 @@
     "contactTraining": "Training & conferences",
     "contactSpendGuru": "SpendGuru",
     "newsletter": {
-      "eyebrow": "Insights",
-      "heading": "Receive analysis on procurement, negotiation and supplier markets.",
-      "sub": "No marketing. Only valuable perspectives for procurement and cost decision-makers.",
+      "eyebrow": "ProfiNews Newsletter",
+      "heading": "Receive the monthly ProfiNews newsletter with the latest news, analysis and educational content from across procurement.",
+      "sub": "No marketing. Just valuable, substantive content for procurement and supply chain professionals.",
       "placeholder": "Your email address",
       "button": "Subscribe"
     }
@@ -158,7 +158,7 @@
           "n": "01",
           "title": "Advisory",
           "desc": "Solving specific procurement challenges and implementing recommendations in practice.",
-          "img": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80",
+          "img": "/images/website/Profitia_8.jpg",
           "alt": "Procurement advisory - consulting meeting",
           "href": "/services"
         },
@@ -174,7 +174,7 @@
           "n": "03",
           "title": "Competencies Development",
           "desc": "We strengthen procurement teams so they make better decisions in real situations.",
-          "img": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+          "img": "/images/website/Profitia_40.jpg",
           "alt": "Procurement competence development - team training",
           "href": "/education"
         }
@@ -183,7 +183,7 @@
     },
     "process": {
       "eyebrow": "How we work",
-      "h2": "What better procurement decision-making looks like",
+      "h2": "From diagnosis to implemented results",
       "steps": [
         {
           "n": "01",
@@ -211,8 +211,8 @@
           "desc": "We measure what changed. Correction where needed - continuous improvement, not a one-off project with a final report."
         }
       ],
-      "footer1": "It's not about how much data -",
-      "footer2": "only how you use it."
+      "footer1": "We do not deliver a report about change.",
+      "footer2": "We help make that change happen."
     },
     "impact": {
       "eyebrow": "Effect",
@@ -323,10 +323,10 @@
     },
     "cta": {
       "eyebrow": "Next step",
-      "h2": "Start with one concrete case",
-      "sub1": "We can walk through one situation and show you a better approach - with no commitment and no generic proposals.",
-      "sub2a": "No commitment. No sales pitch.",
-      "sub2b": "A concrete conversation about your situation.",
+      "h2": "Let’s start with the issue that has the greatest impact on procurement performance today",
+      "sub1": "It may be a specific category, a supplier issue, a change to the procurement operating model, a process or a technology challenge. In our first conversation, we will clarify your needs and starting point, then propose actions capable of delivering the greatest value and the fastest measurable results.",
+      "sub2a": "No commitment. No generic sales pitch.",
+      "sub2b": "A focused conversation about your situation.",
       "button": "Schedule a conversation"
     },
     "insights": {

@@ -38,9 +38,9 @@
     "contactTraining": "Szkolenia i konferencje",
     "contactSpendGuru": "SpendGuru",
     "newsletter": {
-      "eyebrow": "Insights",
-      "heading": "Otrzymuj analizy dotyczące zakupów, negocjacji i rynku dostawców.",
-      "sub": "Bez marketingu. Tylko wartościowe obserwacje dla osób odpowiedzialnych za zakupy i koszty.",
+      "eyebrow": "Newsletter ProfiNews",
+      "heading": "Otrzymuj comiesięczny newsletter ProfiNews z najnowszymi informacjami, analizami oraz treściami edukacyjnymi z obszaru zakupów i procurementu.",
+      "sub": "Bez marketingu. Tylko wartościowe i merytoryczne treści dla profesjonalistów procurement i supply chain.",
       "placeholder": "Twój adres e-mail",
       "button": "Zapisz się"
     }
@@ -158,7 +158,7 @@
           "n": "01",
           "title": "Doradztwo",
           "desc": "Rozwiązanie konkretnych problemów zakupowych i wdrożenie rekomendacji w praktyce.",
-          "img": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80",
+          "img": "/images/website/Profitia_8.jpg",
           "alt": "Doradztwo zakupowe - spotkanie konsultacyjne",
           "href": "/services"
         },
@@ -174,7 +174,7 @@
           "n": "03",
           "title": "Rozwój kompetencji",
           "desc": "Wzmacniamy zespoły zakupowe, żeby podejmowały lepsze decyzje w realnych sytuacjach.",
-          "img": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+          "img": "/images/website/Profitia_40.jpg",
           "alt": "Rozwój kompetencji zakupowych - szkolenie zespołu",
           "href": "/education"
         }

@@ -18,6 +18,7 @@ export { ArticleTOCSidebar } from './ArticleTOCSidebar'
 export { ArticleAuthor } from './ArticleAuthor'
 export { ArticleNewsletter } from './ArticleNewsletter'
 export { ArticleRelated } from './ArticleRelated'
+export { ArticleNavigation } from './ArticleNavigation'
 export { ReadingProgress } from './ReadingProgress'
 
 // Shared

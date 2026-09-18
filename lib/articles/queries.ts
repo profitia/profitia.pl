@@ -101,3 +101,37 @@ export async function findPublishedRelatedArticles(
     return article ? [article] : []
   })
 }
+
+export async function findPublishedArticleNeighbors(
+  articleId: string,
+  locale: ArticleLocale,
+): Promise<{
+  previous: { slug: string; title: string } | null
+  next: { slug: string; title: string } | null
+}> {
+  const rows = await prisma.article.findMany({
+    where: publishedArticlesForLocaleWhere(locale),
+    orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+    select: {
+      id: true,
+      slug: true,
+      locale: true,
+      title: true,
+    },
+  })
+
+  const articles = preferLocalizedArticles(rows, locale)
+  const currentIndex = articles.findIndex((article) => article.id === articleId)
+
+  if (currentIndex === -1) {
+    return { previous: null, next: null }
+  }
+
+  const olderArticle = articles[currentIndex + 1]
+  const newerArticle = articles[currentIndex - 1]
+
+  return {
+    previous: olderArticle ? { slug: olderArticle.slug, title: olderArticle.title } : null,
+    next: newerArticle ? { slug: newerArticle.slug, title: newerArticle.title } : null,
+  }
+}

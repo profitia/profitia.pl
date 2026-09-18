@@ -19,6 +19,7 @@ import { ProtectedEmail, ProtectedPhone } from '@/components/security'
 import { ContactForm } from '@/components/forms'
 import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import type { Locale } from '@/lib/forms/types'
+import Image from 'next/image'
 
 interface ContactPageProps {
   locale?: Locale
@@ -86,17 +87,30 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
     <div>
       <PublicJsonLd routeId="contact" locale={locale} title={seo.title} description={seo.description} />
       {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <div className="container-base pt-20 pb-16 lg:pt-36 lg:pb-20 border-b border-gray-100">
-        <div className="max-w-[40rem]">
-          <p className="editorial-label text-gray-500 mb-7">
-            {t.hero.eyebrow}
-          </p>
-          <h1 className="text-[2.5rem] md:text-[3.25rem] lg:text-[4rem] font-semibold tracking-tight text-gray-900 leading-[1.04] mb-6">
-            {t.hero.h1}
-          </h1>
-          <p className="text-[1.125rem] text-gray-500 leading-[1.75]">
-            {t.hero.subtitle}
-          </p>
+      <div className="border-b border-gray-100">
+        <div className="container-base grid gap-12 py-16 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-center lg:gap-20 lg:py-24">
+          <div className="max-w-[40rem]">
+            <p className="editorial-label text-gray-500 mb-7">
+              {t.hero.eyebrow}
+            </p>
+            <h1 className="text-[2.5rem] md:text-[3.25rem] lg:text-[4rem] font-semibold tracking-tight text-gray-900 leading-[1.04] mb-6">
+              {t.hero.h1}
+            </h1>
+            <p className="text-[1.125rem] text-gray-500 leading-[1.75]">
+              {t.hero.subtitle}
+            </p>
+          </div>
+
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100 shadow-sm">
+            <Image
+              src="/images/website/Profitia_39.jpg"
+              alt={locale === 'pl' ? 'Rozmowa konsultacyjna z zespołem Profitia' : 'A consultation with the Profitia team'}
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 54vw"
+            />
+          </div>
         </div>
       </div>
 

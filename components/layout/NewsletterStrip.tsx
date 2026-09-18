@@ -18,12 +18,12 @@ import { usePathname } from 'next/navigation'
 
 const COPY = {
   pl: {
-    text: 'ProfiNews - miesięczny briefing zakupowy Profitii.',
-    cta: 'Zapisz się',
+    text: 'Zapisz się na ProfiNews - jedyny taki profesjonalny newsletter zakupowy',
+    cta: 'Chcę otrzymywać ProfiNews',
   },
   en: {
-    text: 'ProfiNews - Profitia monthly procurement briefing.',
-    cta: 'Subscribe',
+    text: 'Subscribe to ProfiNews - a one-of-a-kind professional procurement newsletter',
+    cta: 'Send me ProfiNews',
   },
 } as const
 
@@ -38,15 +38,14 @@ export default function NewsletterStrip({ localeOverride }: { localeOverride?: '
 
   return (
     <div
-      className="flex items-center justify-center gap-5 px-4 bg-gray-900"
-      style={{ height: '38px' }}
+      className="flex min-h-[57px] flex-wrap items-center justify-center gap-x-6 gap-y-2 bg-gray-900 px-4 py-3 text-center"
     >
-      <p className="text-[11px] text-white leading-none tracking-[0.01em] truncate min-w-0">
+      <p className="min-w-0 text-[14px] leading-snug tracking-[0.01em] text-white sm:text-[16.5px]">
         {t.text}
       </p>
       <Link
         href={newsletterHref}
-        className="text-[11px] font-semibold text-white hover:text-brand-blue transition-colors duration-200 shrink-0 underline underline-offset-2 decoration-white/40 leading-none"
+        className="shrink-0 text-[14px] font-semibold leading-snug text-white underline decoration-white/40 underline-offset-2 transition-colors duration-200 hover:text-brand-blue sm:text-[16.5px]"
       >
         {t.cta}
       </Link>
