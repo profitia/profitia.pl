@@ -20,7 +20,7 @@ const HEADER_RESPONSIVE_CLASSES = {
   mobileToggle:
     'lg:hidden relative flex items-center justify-center w-8 h-8 text-gray-700 hover:text-brand-blue transition-colors duration-200',
   mobilePanel:
-    'fixed inset-0 z-40 lg:hidden flex flex-col bg-white transition-all duration-300 ease-out',
+    'fixed inset-0 z-40 lg:hidden flex flex-col overflow-y-auto overscroll-contain touch-pan-y bg-white transition-all duration-300 ease-out [-webkit-overflow-scrolling:touch]',
 } as const
 
 type DesktopMenuId = 'advisory' | 'digital-services' | null
@@ -461,7 +461,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
         }`}
       >
         <div
-          className={`flex-1 flex flex-col px-6 pt-[100px] pb-10 transition-transform duration-300 ease-out ${
+          className={`min-h-full flex-none flex flex-col px-6 pt-[100px] pb-10 transition-transform duration-300 ease-out ${
             mobileOpen ? 'translate-y-0' : '-translate-y-3'
           }`}
         >
