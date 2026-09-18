@@ -26,7 +26,7 @@ export function ArticleRelated({ articles, locale }: ArticleRelatedProps) {
   return (
     <section className="container-base">
       <div className="border-t border-gray-100 pt-10 pb-20">
-        <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-500 mb-8">
+        <p className="editorial-label text-gray-500 mb-8">
           {LABEL[locale]}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

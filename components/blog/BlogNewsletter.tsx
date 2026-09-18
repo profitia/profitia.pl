@@ -38,7 +38,7 @@ export function BlogNewsletter({ locale }: BlogNewsletterProps) {
     <section className="border-t border-gray-100">
       <div className="container-base py-20 lg:py-24">
         <div className="max-w-[36rem]">
-          <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-5">
+          <p className="editorial-label text-gray-400 mb-5">
             {t.eyebrow}
           </p>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-snug mb-3">

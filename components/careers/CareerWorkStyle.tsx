@@ -30,7 +30,7 @@ export default function CareerWorkStyle({ eyebrow, title, steps }: Props) {
         {/* Header */}
         <div className="mb-16 lg:grid lg:grid-cols-[260px_1fr] lg:gap-20">
           <div>
-            <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-5">
+            <p className="editorial-label text-gray-400 mb-5">
               {eyebrow}
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-snug">
@@ -52,17 +52,17 @@ export default function CareerWorkStyle({ eyebrow, title, steps }: Props) {
             >
               {/* Left: phase label */}
               <div className="flex items-center gap-4 mb-5 lg:mb-0 lg:block">
-                <span className="text-[11px] font-medium tracking-[0.28em] uppercase text-gray-300">
+                <span className="editorial-index text-gray-300">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-400 lg:block lg:mt-2">
+                <span className="editorial-label text-gray-400 lg:block lg:mt-2">
                   {step.phase}
                 </span>
               </div>
 
               {/* Center: title + description */}
               <div>
-                <h3 className="text-[18px] font-semibold text-gray-900 tracking-tight mb-3">
+                <h3 className="editorial-box-title text-gray-900 mb-3">
                   {step.title}
                 </h3>
                 <p className="text-[14px] text-gray-500 leading-[1.8] max-w-[38rem]">
@@ -72,7 +72,7 @@ export default function CareerWorkStyle({ eyebrow, title, steps }: Props) {
 
               {/* Right: what you learn */}
               <div className="mt-5 lg:mt-0 pl-0 lg:pl-0 lg:border-l lg:border-gray-100 lg:pl-8">
-                <p className="text-[10px] font-medium tracking-[0.22em] uppercase text-gray-300 mb-3">
+                <p className="editorial-label text-gray-300 mb-3">
                   czego sie uczysz
                 </p>
                 <p className="text-[13px] text-gray-500 leading-[1.75]">

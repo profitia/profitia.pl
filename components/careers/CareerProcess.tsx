@@ -33,7 +33,7 @@ export default function CareerProcess({ eyebrow, title, subtitle, steps }: Props
         {/* Section header */}
         <div className="mb-20 lg:grid lg:grid-cols-[260px_1fr] lg:gap-20">
           <div>
-            <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-5">
+            <p className="editorial-label text-gray-400 mb-5">
               {eyebrow}
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-snug">
@@ -59,7 +59,7 @@ export default function CareerProcess({ eyebrow, title, subtitle, steps }: Props
             >
               {/* Number + connecting line */}
               <div className="flex items-center mb-8 lg:mb-10">
-                <span className="text-[2.75rem] font-extralight text-gray-200 leading-none tracking-tight flex-shrink-0 tabular-nums">
+                <span className="editorial-index text-gray-200 flex-shrink-0">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 {/* Line — extends to right edge of cell (visual connector) */}
@@ -67,12 +67,12 @@ export default function CareerProcess({ eyebrow, title, subtitle, steps }: Props
               </div>
 
               {/* Timing */}
-              <p className="text-[9px] font-semibold tracking-[0.32em] uppercase text-gray-400 mb-4">
+              <p className="editorial-label text-gray-400 mb-4">
                 {step.timing}
               </p>
 
               {/* Title */}
-              <h3 className="text-[15px] font-semibold text-gray-900 tracking-tight leading-snug mb-3">
+              <h3 className="editorial-box-title text-gray-900 mb-3">
                 {step.title}
               </h3>
 

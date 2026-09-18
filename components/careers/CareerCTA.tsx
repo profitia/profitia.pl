@@ -23,7 +23,7 @@ export default function CareerCTA({ locale, invitation, label, href }: Props) {
     <section className="bg-gray-950">
       <div className="container-base py-28 lg:py-36">
         <div className="max-w-[44rem]">
-          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-white/28 mb-8">
+          <p className="editorial-label text-white/28 mb-8">
             {locale === 'en' ? 'Next step' : 'Następny krok'}
           </p>
           <p className="text-3xl md:text-[2.2rem] font-semibold tracking-tight text-white leading-[1.1] mb-12">

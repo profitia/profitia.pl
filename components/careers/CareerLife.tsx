@@ -132,7 +132,7 @@ export default function CareerLife({ locale, eyebrow, title, introduction, items
       <div className="container-base">
         <div className="mb-14 grid gap-8 lg:grid-cols-[260px_1fr] lg:gap-20">
           <div>
-            <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.28em] text-gray-400">
+            <p className="mb-5 editorial-label text-gray-400">
               {eyebrow}
             </p>
             <h2 className="text-2xl font-semibold leading-snug tracking-tight text-gray-900 md:text-3xl">
@@ -161,7 +161,7 @@ export default function CareerLife({ locale, eyebrow, title, introduction, items
         <div className="grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
             <div key={item.title} className="border-t border-gray-200 pt-6">
-              <h3 className="mb-3 text-[16px] font-semibold tracking-tight text-gray-900">{item.title}</h3>
+              <h3 className="editorial-box-title mb-3 text-gray-900">{item.title}</h3>
               <p className="text-[14px] leading-[1.75] text-gray-600">{item.description}</p>
             </div>
           ))}

@@ -12,7 +12,7 @@ interface Props {
  */
 export default function CapabilityMeta({ capability, locale }: Props) {
   return (
-    <p className="text-xs font-medium tracking-[0.25em] uppercase text-gray-400">
+    <p className="editorial-label text-gray-400">
       {t(capability.eyebrow, locale)}
     </p>
   )

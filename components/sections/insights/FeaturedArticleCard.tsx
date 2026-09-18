@@ -32,11 +32,11 @@ export default function FeaturedArticleCard({ article }: Props) {
 
       {/* Content */}
       <div className="flex flex-col flex-1 pt-5">
-        <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-3">
+        <p className="editorial-label text-gray-400 mb-3">
           {article.meta}
         </p>
         <Link href={`/blog/${article.slug}`} className="group/title flex-1">
-          <h3 className="hover-safe-card-title text-xl font-semibold tracking-tight text-gray-900 leading-snug transition-colors duration-200">
+          <h3 className="editorial-box-title hover-safe-card-title text-gray-900 transition-colors duration-200">
             {article.title}
           </h3>
         </Link>

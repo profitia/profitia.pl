@@ -34,7 +34,7 @@ export default function InteractiveTestimonials({
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16 items-start">
           <div className="lg:pt-3">
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-gray-400 mb-8">
+            <p className="editorial-label text-gray-400 mb-8">
               {eyebrow}
             </p>
             <div className="border-t border-white/10">
@@ -56,7 +56,7 @@ export default function InteractiveTestimonials({
                     >
                       <p
                         className={[
-                          'text-[10px] font-semibold tracking-[0.22em] uppercase transition-colors duration-200',
+                          'editorial-label transition-colors duration-200',
                           isActive ? 'text-[#5fc2ff]' : 'hover-safe-testimonial-company text-gray-500',
                         ].join(' ')}
                       >

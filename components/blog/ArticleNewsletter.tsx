@@ -35,7 +35,7 @@ export function ArticleNewsletter({ locale }: ArticleNewsletterProps) {
   return (
     <div className="container-base">
       <div className="max-w-[68ch] border-t border-gray-100 pt-10 pb-16">
-        <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-4">
+        <p className="editorial-label text-gray-400 mb-4">
           {t.eyebrow}
         </p>
         <h3 className="text-xl font-semibold tracking-tight text-gray-900 mb-2">

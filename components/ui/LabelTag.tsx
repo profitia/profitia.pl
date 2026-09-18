@@ -12,5 +12,5 @@ interface Props {
 export default function LabelTag({ children, className = '', dark = false, as = 'p' }: Props) {
   const color = dark ? 'text-gray-500' : 'text-gray-400'
   const Component = as
-  return <Component className={`text-xs font-medium tracking-[0.25em] uppercase ${color} ${className}`.trim()}>{children}</Component>
+  return <Component className={`editorial-label ${color} ${className}`.trim()}>{children}</Component>
 }

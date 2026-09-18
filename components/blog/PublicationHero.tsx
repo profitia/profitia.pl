@@ -35,7 +35,7 @@ export function PublicationHero({ locale, articleCount }: PublicationHeroProps) 
     <div className="container-base pt-16 pb-14 lg:pt-24 lg:pb-20 border-b border-gray-100">
       <RevealWrapper delay={0}>
         <div className="max-w-[52rem]">
-          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-400 mb-6">
+          <p className="editorial-label text-gray-400 mb-6">
             {t.eyebrow}
             {articleCount > 0 && (
               <span className="ml-4 text-gray-300">

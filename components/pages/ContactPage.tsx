@@ -88,7 +88,7 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <div className="container-base pt-20 pb-16 lg:pt-36 lg:pb-20 border-b border-gray-100">
         <div className="max-w-[40rem]">
-          <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-7">
+          <p className="editorial-label text-gray-500 mb-7">
             {t.hero.eyebrow}
           </p>
           <h1 className="text-[2.5rem] md:text-[3.25rem] lg:text-[4rem] font-semibold tracking-tight text-gray-900 leading-[1.04] mb-6">
@@ -106,14 +106,14 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
 
           {/* ── LEFT: Contact info ─────────────────────────────────── */}
           <div className="lg:pt-1">
-            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-400 mb-8">
+            <p className="editorial-label text-gray-400 mb-8">
               {t.info.eyebrow}
             </p>
 
             <div className="space-y-7">
               {/* Email */}
               <div>
-                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
+                <p className="editorial-label text-gray-400 mb-1.5">
                   {t.info.emailLabel}
                 </p>
                 <ProtectedEmail
@@ -125,7 +125,7 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
 
               {/* Phone */}
               <div>
-                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
+                <p className="editorial-label text-gray-400 mb-1.5">
                   {t.info.phoneLabel}
                 </p>
                 <ProtectedPhone
@@ -137,7 +137,7 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
 
               {/* Address */}
               <div>
-                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
+                <p className="editorial-label text-gray-400 mb-1.5">
                   {t.info.addressLabel}
                 </p>
                 <p className="text-[15px] text-gray-700 leading-[1.7]">
@@ -150,7 +150,7 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
 
             {/* Response time promise */}
             <div className="mt-10 pt-8 border-t border-gray-100">
-              <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-1.5">
+              <p className="editorial-label text-gray-400 mb-1.5">
                 {t.info.responseLabel}
               </p>
               <p className="text-[15px] text-gray-600 leading-[1.7]">
@@ -161,7 +161,7 @@ export function ContactPage({ locale = 'pl' }: ContactPageProps) {
 
           {/* ── RIGHT: ContactForm ─────────────────────────────────── */}
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-400 mb-8">
+            <p className="editorial-label text-gray-400 mb-8">
               {t.form.eyebrow}
             </p>
             <ContactForm locale={locale} />

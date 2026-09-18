@@ -31,7 +31,7 @@ export default function CTASection({
     <section className="py-24 lg:py-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <div className="container-base text-center">
         <RevealWrapper>
-          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-white/56 mb-7">
+          <p className="editorial-label text-white/56 mb-7">
             {label}
           </p>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-7 max-w-2xl mx-auto leading-tight">

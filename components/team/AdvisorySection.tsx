@@ -31,7 +31,7 @@ export function AdvisorySection({
       {(eyebrow || heading) && (
         <div className="mb-10">
           {eyebrow && (
-            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-500 mb-3">
+            <p className="editorial-label text-gray-500 mb-3">
               {eyebrow}
             </p>
           )}

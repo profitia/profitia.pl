@@ -278,7 +278,7 @@ export default function EducationPage({ locale }: Props) {
           <div className="lg:max-w-[52%] lg:pr-16">
             <RevealWrapper delay={0}>
               <div className="space-y-8 md:space-y-5 2xl:space-y-8">
-                <p className="text-xs font-medium tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)]">{c.hero.label}</p>
+                <p className="editorial-label text-[rgba(0,109,158,0.8)]">{c.hero.label}</p>
                 <h1 className="font-semibold text-[rgb(36,47,68)] tracking-[-0.05em] leading-[1.02] text-[2.5rem] sm:text-[3rem] md:text-[2.85rem] lg:text-[3.05rem] 2xl:text-[3.9rem]">
                   {c.hero.headline}
                 </h1>

@@ -51,7 +51,7 @@ export default function CareerJobDetail({ job, locale }: Props) {
         </nav>
 
         {/* Department eyebrow */}
-        <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gray-400 mb-5">
+        <p className="editorial-label text-gray-400 mb-5">
           {department}
         </p>
 

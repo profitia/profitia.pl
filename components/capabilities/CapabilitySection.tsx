@@ -57,8 +57,8 @@ export default function CapabilitySection({ section, capabilities, locale, prefi
             <p
               className={
                 isDominant
-                  ? 'text-[10px] font-semibold tracking-[0.3em] uppercase text-[rgba(0,109,158,0.8)] mb-5'
-                  : 'text-[10px] font-semibold tracking-[0.25em] uppercase text-[rgba(0,109,158,0.8)] mb-4'
+                  ? 'editorial-label text-[rgba(0,109,158,0.8)] mb-5'
+                  : 'editorial-label text-[rgba(0,109,158,0.8)] mb-4'
               }
             >
               {t(section.eyebrow, locale)}

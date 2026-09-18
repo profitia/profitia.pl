@@ -29,6 +29,26 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
+  /* ─── Canonical editorial typography ─────────────────────── */
+
+  .editorial-label {
+    @apply text-[15px] font-medium uppercase leading-[1.35];
+    letter-spacing: 0.22em;
+  }
+
+  .editorial-index {
+    @apply text-[15px] font-medium uppercase leading-none tabular-nums;
+    letter-spacing: 0.22em;
+  }
+
+  .editorial-box-title {
+    @apply text-lg font-semibold leading-snug tracking-tight;
+  }
+
+  .editorial-action {
+    @apply text-[15px] font-medium leading-snug;
+  }
+
   .rich-text-editor .tiptap p {
     @apply mb-4;
   }

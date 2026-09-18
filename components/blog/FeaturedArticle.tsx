@@ -36,7 +36,7 @@ export function FeaturedArticle({ article, locale }: FeaturedArticleProps) {
           <div className="order-2 lg:order-1">
             {/* Eyebrow: featured label + category */}
             <div className="flex items-center gap-4 mb-6">
-              <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-gray-400">
+              <span className="editorial-label text-gray-400">
                 {FEATURED[locale]}
               </span>
               <CategoryBadge category={article.category} locale={locale} />

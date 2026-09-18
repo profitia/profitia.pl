@@ -38,7 +38,7 @@ export default function CareerValues({ eyebrow, title, items }: Props) {
         {/* Section header */}
         <div className="mb-16 lg:grid lg:grid-cols-[260px_1fr] lg:gap-20">
           <div>
-            <p className="text-[10px] font-medium tracking-[0.28em] uppercase text-gray-400 mb-5">
+            <p className="editorial-label text-gray-400 mb-5">
               {eyebrow}
             </p>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 leading-snug">
@@ -61,10 +61,10 @@ export default function CareerValues({ eyebrow, title, items }: Props) {
               variants={itemVariants}
               className="py-10 pr-8"
             >
-              <div className="text-[11px] font-medium tracking-[0.28em] uppercase text-gray-300 mb-5">
+              <div className="editorial-index text-gray-300 mb-5">
                 {String(i + 1).padStart(2, '0')}
               </div>
-              <h3 className="text-[17px] font-semibold text-gray-900 tracking-tight leading-snug mb-4">
+              <h3 className="editorial-box-title text-gray-900 mb-4">
                 {item.label}
               </h3>
               <div className="w-5 h-px bg-gray-200 mb-4" />
