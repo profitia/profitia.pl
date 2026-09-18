@@ -41,7 +41,7 @@ function scoreProcurementReasoning(response: string, locale: "pl" | "en"): Quali
   let score = 5; // baseline
 
   const procurementTerms = locale === "pl"
-    ? ["cost driver", "benchm", "should-cost", "marż", "EBIT", "cash flow", "dostawc", "negocj", "kategori", "sourcing", "spend", "category", "zakup", "KPI", "ryzyko"]
+    ? ["cost driver", "sourcing", "procurement", "savings", "spend", "czynnik koszt", "struktur", "benchm", "uzasadnion", "marż", "EBIT", "przepływ", "dostawc", "negocj", "kategori", "źródł", "wydatk", "zakup", "miernik", "ryzyko"]
     : ["cost driver", "benchmark", "should-cost", "margin", "EBIT", "cash flow", "supplier", "negotiat", "category", "sourcing", "spend", "procurement", "KPI", "risk"];
 
   const termCount = procurementTerms.filter((t) => response.toLowerCase().includes(t.toLowerCase())).length;

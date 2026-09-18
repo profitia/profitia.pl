@@ -6,11 +6,11 @@
 // ── Supplier Increase Reasoning ───────────────────────────
 export const SUPPLIER_INCREASE_REASONING = {
   pl: [
-    "Jeśli dostawca argumentuje podwyżkę wzrostem kosztów energii lub surowców, warto sprawdzić, czy realnie koreluje z cost drivers w jego kategorii.",
-    "Podwyżka 10–15% bez cost breakdown to często próba przeniesienia ogólnych kosztów operacyjnych, nie faktycznych input costs.",
+    "Jeśli dostawca argumentuje podwyżkę wzrostem kosztów energii lub surowców, warto sprawdzić, czy odpowiada ona rzeczywistym cost drivers danej kategorii.",
+    "Podwyżka 10–15% bez przedstawienia struktury kosztów to często próba przeniesienia ogólnych kosztów operacyjnych, a nie skutek faktycznych zmian cen materiałów i energii.",
     "Benchmark rynkowy dla tej kategorii powinien pokazać, czy podobni dostawcy utrzymali ceny - to fundament rozmowy negocjacyjnej.",
-    "Should-cost analysis pozwala oddzielić uzasadnioną zmianę kosztu wytworzenia od próby poprawy marży dostawcy.",
-    "Jeśli nie macie historii cenowej i cost breakdown od dostawcy, negocjacja często kończy się akceptacją jego narracji.",
+    "Analiza uzasadnionego kosztu pozwala oddzielić zmianę kosztu wytworzenia od próby poprawy marży dostawcy.",
+    "Jeśli nie macie historii cenowej ani struktury kosztów dostawcy, negocjacja często kończy się akceptacją jego narracji.",
   ],
   en: [
     "If the supplier justifies a price increase citing energy or raw material costs, verify whether the increase actually correlates with cost drivers in their category.",
@@ -25,10 +25,10 @@ export const SUPPLIER_INCREASE_REASONING = {
 export const NO_BENCHMARK_REASONING = {
   pl: [
     "Brak benchmarków cenowych w kategorii oznacza, że negocjujesz bez punktu odniesienia - to fundamentalna słabość pozycji zakupowej.",
-    "Spend Cube pozwala zobaczyć, co faktycznie kupujesz, od kogo i za ile - to punkt wyjścia do każdej analizy rynkowej.",
+    "Kostka wydatków pozwala zobaczyć, co faktycznie kupujesz, od kogo i za ile - to punkt wyjścia do każdej analizy rynkowej.",
     "Bez widoczności wydatków kategoriami trudno priorytetyzować, gdzie jest największy potencjał oszczędnościowy.",
-    "Category manager bez benchmarków to jak CFO bez P&L - decyzje opierają się na intuicji, nie na danych.",
-    "Supplier Intelligence daje widoczność, kto oferuje co i za ile - to fundament sourcing decision.",
+    "Menedżer kategorii bez benchmarków to jak dyrektor finansowy bez rachunku wyników - decyzje opierają się na intuicji, nie na danych.",
+    "Analiza rynku dostawców pokazuje, kto oferuje co i za ile - to fundament decyzji o wyborze źródła dostaw.",
   ],
   en: [
     "Without pricing benchmarks in a category, you're negotiating without a reference point - a fundamental weakness in the buying position.",
@@ -43,10 +43,10 @@ export const NO_BENCHMARK_REASONING = {
 export const PROCUREMENT_STRATEGY_REASONING = {
   pl: [
     "Strategia zakupowa bez segmentacji kategorii to plan bez priorytetów - nie wiadomo, gdzie skupić czas i zasoby.",
-    "Operating Model Design ustala, jak zakupy są zorganizowane: kto decyduje, kto doradza, kto operuje - to fundament skuteczności.",
-    "Category Strategy pozwala wyjść poza reaktywne kupowanie i zbudować długoterminową pozycję wobec dostawców.",
-    "Procurement PMO zapewnia, że inicjatywy zakupowe są egzekwowane, nie tylko zaplanowane.",
-    "Interim Management sprawdza się, gdy potrzebna jest natychmiastowa doświadczona obecność bez wielomiesięcznej rekrutacji.",
+    "Projekt modelu operacyjnego ustala, jak zakupy są zorganizowane: kto decyduje, kto doradza, a kto realizuje działania - to fundament skuteczności.",
+    "Strategia kategorii pozwala wyjść poza reaktywne kupowanie i zbudować długoterminową pozycję wobec dostawców.",
+    "Biuro zarządzania projektami zakupowymi zapewnia realizację inicjatyw, a nie tylko ich zaplanowanie.",
+    "Zarządzanie tymczasowe sprawdza się, gdy doświadczone wsparcie jest potrzebne natychmiast, bez wielomiesięcznej rekrutacji.",
   ],
   en: [
     "A procurement strategy without category segmentation is a plan without priorities - no clarity on where to focus time and resources.",
@@ -61,10 +61,10 @@ export const PROCUREMENT_STRATEGY_REASONING = {
 export const SPEND_VISIBILITY_REASONING = {
   pl: [
     "Jeśli nie wiesz, co kupujesz globalnie, nie możesz konsolidować, priorytetyzować ani negocjować z pozycji siły.",
-    "Spend Cube to nie narzędzie raportowe - to mapa decyzji zakupowych: gdzie skupia się ryzyko, marża i potencjał.",
+    "Kostka wydatków to nie tylko narzędzie raportowe - to mapa decyzji zakupowych pokazująca, gdzie skupiają się ryzyko, marża i potencjał.",
     "Bez widoczności wydatków każda inicjatywa oszczędnościowa zaczyna się od żmudnego zbierania danych zamiast od analizy.",
-    "Procurement Dashboards przekładają surowe dane transakcyjne na KPI, które CFO i CPO mogą śledzić.",
-    "Supplier Intelligence pozwala zrozumieć, czy Twoja baza dostawców jest skonsolidowana, zdywersyfikowana, czy przypadkowa.",
+    "Dashboardy zakupowe przekładają surowe dane transakcyjne na mierniki, które mogą śledzić dyrektorzy finansowi i zakupowi.",
+    "Analiza rynku dostawców pozwala zrozumieć, czy baza dostawców jest skonsolidowana, zdywersyfikowana czy przypadkowa.",
   ],
   en: [
     "If you don't know what you're buying globally, you can't consolidate, prioritize, or negotiate from a position of strength.",
@@ -79,9 +79,9 @@ export const SPEND_VISIBILITY_REASONING = {
 export const NEGOTIATION_REASONING = {
   pl: [
     "Skuteczna negocjacja zaczyna się przed spotkaniem - analiza kosztów, benchmarki rynkowe i BATNA są ważniejsze niż techniki negocjacyjne.",
-    "Harvard Negotiation methodology odróżnia pozycje od interesów - dostawca chce wyższej marży, ale może akceptować inne warunki.",
-    "Fact-Based Negotiation opiera argumenty na cost drivers, nie na narracji - to fundamentalna różnica w poziomie zaawansowania.",
-    "Supplier Negotiation Support daje zewnętrzny zespół analityczny, który przygotuje cost breakdown i benchmarki przed kluczową rozmową.",
+    "Metodyka negocjacji harvardzkich odróżnia pozycje od interesów - dostawca chce wyższej marży, ale może zaakceptować inne warunki.",
+    "Negocjacje oparte na faktach wykorzystują analizę cost drivers zamiast narracji - to fundamentalna różnica w poziomie zaawansowania.",
+    "Wsparcie negocjacyjne zapewnia zewnętrzny zespół analityczny, który przygotuje strukturę kosztów i benchmarki przed kluczową rozmową.",
     "Negocjacja bez przygotowania analitycznego to rozmowa, w której dostawca ma więcej danych niż kupiec.",
   ],
   en: [
@@ -97,7 +97,7 @@ export const NEGOTIATION_REASONING = {
 export const SUPPLIER_RISK_REASONING = {
   pl: [
     "Koncentracja na jednym dostawcy w kluczowej kategorii to ryzyko operacyjne i negocjacyjne jednocześnie.",
-    "Supplier Intelligence pozwala zidentyfikować alternatywnych dostawców zanim sytuacja wymusi pilne sourcing.",
+    "Analiza rynku pozwala zidentyfikować alternatywnych dostawców, zanim sytuacja wymusi pilne poszukiwanie nowego źródła dostaw.",
     "Ocena zdolności finansowej dostawcy to element zarządzania ryzykiem, nie opcja - szczególnie przy długich kontraktach.",
     "Dywersyfikacja bazy dostawców wymaga najpierw mapy obecnej zależności - bez tego nie wiadomo, gdzie jest rzeczywiste ryzyko.",
     "Zbyt wiele pojedynczych dostawców to ryzyko, ale zbyt szeroka baza to wyższe koszty zarządzania i słabsza pozycja w każdej relacji.",
@@ -115,10 +115,10 @@ export const SUPPLIER_RISK_REASONING = {
 export const TRANSFORMATION_REASONING = {
   pl: [
     "Transformacja zakupów to nie projekt IT ani wdrożenie systemu - to zmiana sposobu decydowania i zarządzania wartością.",
-    "Procurement Transformation zaczyna się od diagnozy: jak dojrzałe są procesy, gdzie są braki, co blokuje efektywność.",
-    "Interim Management w zakupach sprawdza się, gdy potrzebny jest doświadczony CPO lub Director na czas przejścia.",
-    "Category Management to nie segment - to model operacyjny, który wymaga zmiany odpowiedzialności, narzędzi i kultury.",
-    "Procurement PMO koordynuje inicjatywy, które bez zarządzania rozpadają się w operacyjnych priorytetach dnia codziennego.",
+    "Transformacja zakupów zaczyna się od diagnozy: jak dojrzałe są procesy, gdzie występują braki i co ogranicza efektywność.",
+    "Zarządzanie tymczasowe w zakupach sprawdza się, gdy w okresie przejściowym potrzebny jest doświadczony dyrektor zakupów.",
+    "Zarządzanie kategoriami to nie segment, lecz model operacyjny wymagający zmiany odpowiedzialności, narzędzi i kultury.",
+    "Biuro zarządzania projektami zakupowymi koordynuje inicjatywy, które bez takiego wsparcia przegrywają z codziennymi priorytetami operacyjnymi.",
   ],
   en: [
     "Procurement transformation is not an IT project or a system implementation - it's a change in how decisions are made and value is managed.",
@@ -133,10 +133,10 @@ export const TRANSFORMATION_REASONING = {
 export const BUSINESS_IMPACT_FRAMING = {
   pl: [
     "Każde 1% oszczędności na kosztach zakupów to bezpośredni wpływ na EBIT - często wyższy niż 1% wzrostu przychodów przy tej samej marży.",
-    "Warunki płatności to cash flow, nie tylko koszt - 30 vs 60 dni terminu to realna różnica w kapitale obrotowym.",
-    "Pricing volatility u dostawców bez hedgingu lub długoterminowych kontraktów to ryzyko marżowe, które trudno zaplanować.",
+    "Warunki płatności wpływają na przepływy pieniężne, nie tylko na koszt - termin 30 zamiast 60 dni oznacza realną różnicę w kapitale obrotowym.",
+    "Zmienność cen dostawców bez zabezpieczeń lub długoterminowych kontraktów tworzy ryzyko marżowe, które trudno zaplanować.",
     "Koszt zmiany dostawcy jest często niedoszacowany - to nie tylko cena, ale czas wdrożenia, jakość i ryzyko ciągłości.",
-    "Procurement compliance to nie tylko audyt - to mierzalne ryzyko finansowe w każdej transakcji poza procesem.",
+    "Zgodność z procesem zakupowym to nie tylko kwestia audytu - każda transakcja poza procesem tworzy mierzalne ryzyko finansowe.",
   ],
   en: [
     "Every 1% savings on procurement costs directly impacts EBIT - often more than 1% revenue growth at the same margin.",
@@ -150,11 +150,11 @@ export const BUSINESS_IMPACT_FRAMING = {
 // ── Reactive Procurement Reasoning ───────────────────────
 export const REACTIVE_PROCUREMENT_REASONING = {
   pl: [
-    "Reaktywne zakupy to zakupy, które zawsze zaczynają się za późno - za mało czasu na sourcing, za mało danych do negocjacji.",
-    "SPOT Analysis porządkuje obraz całej funkcji zakupowej - pokazuje, czy źródło problemu leży w sourcingu, procesach, organizacji czy narzędziach.",
+    "Reaktywne zakupy zawsze zaczynają się za późno - pozostaje za mało czasu na wybór źródła dostaw i za mało danych do negocjacji.",
+    "Analiza SPOT porządkuje obraz całej funkcji zakupowej - pokazuje, czy źródło problemu leży w wyborze źródeł dostaw, procesach, organizacji czy narzędziach.",
     "Kupowanie ad hoc bez konsolidacji to najdroższy model zakupów - każda transakcja jest jednorazowa i pozycja negocjacyjna słaba.",
-    "Category Strategy buduje długoterminową pozycję - nie rozwiązuje bieżących problemów, ale eliminuje ich powracanie.",
-    "Maturity assessment zakupów pokazuje, gdzie jest organizacja dziś i co realnie można osiągnąć w 12 miesiącach.",
+    "Strategia kategorii buduje długoterminową pozycję - nie tylko rozwiązuje bieżące problemy, ale również ogranicza ich powracanie.",
+    "Ocena dojrzałości zakupowej pokazuje, gdzie organizacja znajduje się dziś i co realnie może osiągnąć w ciągu 12 miesięcy.",
   ],
   en: [
     "Reactive procurement always starts too late - not enough time for sourcing, not enough data for negotiation.",
@@ -169,7 +169,7 @@ export const REACTIVE_PROCUREMENT_REASONING = {
 export const ESCALATION_FRAMING = {
   pl: [
     "Kolejny krok to 20-minutowa rozmowa - bez zobowiązań, tylko diagnoza sytuacji i ocena, co realnie można uzyskać.",
-    "SPOT Analysis to dobry pierwszy etap wtedy, gdy organizacja potrzebuje obiektywnej diagnozy i ustalenia priorytetów dalszych działań.",
+    "Analiza SPOT to dobry pierwszy etap wtedy, gdy organizacja potrzebuje obiektywnej diagnozy i ustalenia priorytetów dalszych działań.",
     "Możemy zacząć od diagnozy całej funkcji zakupowej - ogranicza to ryzyko źle ustawionego zakresu kolejnego etapu.",
     "Zanim zaangażujesz pełny projekt, warto uporządkować punkt startu diagnozą dojrzałości - to eliminuje większość niepewności co do priorytetów.",
   ],
