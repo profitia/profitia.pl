@@ -5,10 +5,20 @@ import { useRef, useState, useCallback } from "react";
 interface MessageInputProps {
   onSend: (content: string) => void;
   placeholder: string;
+  helperText?: string;
+  inputAriaLabel: string;
+  sendAriaLabel: string;
   disabled?: boolean;
 }
 
-export function MessageInput({ onSend, placeholder, disabled }: MessageInputProps) {
+export function MessageInput({
+  onSend,
+  placeholder,
+  helperText,
+  inputAriaLabel,
+  sendAriaLabel,
+  disabled,
+}: MessageInputProps) {
   const [value, setValue] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -48,7 +58,10 @@ export function MessageInput({ onSend, placeholder, disabled }: MessageInputProp
   const canSend = value.trim().length > 0 && !disabled;
 
   return (
-    <div className="px-4 pb-4 pt-3 border-t border-gray-100 flex-shrink-0">
+    <div className="px-4 pb-3 pt-3 border-t border-gray-100 flex-shrink-0">
+      {helperText && (
+        <p className="mb-1.5 px-1 text-[0.6875rem] text-gray-500">{helperText}</p>
+      )}
       <div className="flex items-end gap-2 bg-gray-50 rounded-xl border border-gray-200 px-3 py-2.5 focus-within:border-gray-400 transition-colors">
         <textarea
           ref={textareaRef}
@@ -60,12 +73,12 @@ export function MessageInput({ onSend, placeholder, disabled }: MessageInputProp
           rows={1}
           className="flex-1 bg-transparent text-sm text-gray-800 placeholder-gray-400 resize-none focus:outline-none leading-relaxed min-h-[1.25rem] max-h-[7.5rem]"
           style={{ height: "1.25rem" }}
-          aria-label="Your message"
+          aria-label={inputAriaLabel}
         />
         <button
           onClick={handleSend}
           disabled={!canSend}
-          aria-label="Send message"
+          aria-label={sendAriaLabel}
           className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-150
             disabled:opacity-30 disabled:cursor-not-allowed
             bg-[#242F44] text-white hover:bg-[#1a2235] disabled:bg-gray-300"

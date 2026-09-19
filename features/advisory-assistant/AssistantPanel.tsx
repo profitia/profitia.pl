@@ -2,13 +2,16 @@
 
 import { useCallback, useRef, useState, useEffect } from "react";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
-import { ASSISTANT_STRINGS } from "@/lib/i18n";
+import { WIDGET_COPY } from "@/lib/advisory-widget/config";
 import { MessageList } from "./MessageList";
 import { MessageInput } from "./MessageInput";
 import { RecommendationStrip } from "./RecommendationStrip";
 import { SSEDataParser } from "@/lib/advisory-chat/sse-data-parser";
 import type { Locale } from "@/lib/i18n";
 import type { ConversationRecoveryDecision } from "@profitia/cic-core";
+import { track } from "@/lib/analytics";
+import { AdvisorMenu } from "./AdvisorMenu";
+import { AssistantFooter } from "./AssistantFooter";
 
 interface AssistantPanelProps {
   locale: Locale;
@@ -46,16 +49,22 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
   } = useAdvisorySession();
 
   const conversationLocale = session?.state.conversationRecovery?.responseLanguage ?? locale;
-  const strings = ASSISTANT_STRINGS[conversationLocale];
+  const strings = WIDGET_COPY[conversationLocale];
   const [streamingContent, setStreamingContent] = useState("");
   const abortRef = useRef<AbortController | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   // Send message to advisory API
   const handleSend = useCallback(
-    async (content: string) => {
+    async (content: string, source: "prompt" | "custom" = "custom") => {
       if (!session || !content.trim()) return;
 
       // Add user message
+      track.messageSent(content, source);
+      if (source === "prompt") {
+        const promptIndex = strings.openingPrompts.indexOf(content);
+        track.openingPromptSelected(Math.max(0, promptIndex));
+      }
       addMessage("user", content);
       incrementEngagement(5);
       setTyping(true);
@@ -207,6 +216,15 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
     return () => abortRef.current?.abort();
   }, []);
 
+  useEffect(() => {
+    panelRef.current?.focus();
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeAssistant();
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [closeAssistant]);
+
   const phase = session?.state.phase ?? "idle";
   const phaseLabel = PHASE_LABELS[phase]?.[conversationLocale] ?? PHASE_LABELS.idle[conversationLocale];
 
@@ -224,39 +242,39 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
       : "bg-green-400";
 
   return (
-    <div className="flex flex-col flex-1 min-h-0">
+    <div
+      ref={panelRef}
+      tabIndex={-1}
+      className="flex flex-col flex-1 min-h-0 outline-none"
+    >
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 flex-shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="w-7 h-7 rounded-lg bg-[#242F44] flex items-center justify-center flex-shrink-0">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <circle cx="7" cy="7" r="2" fill="white" />
-              <path d="M7 1.5v2M7 10.5v2M1.5 7h2M10.5 7h2" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-gray-900 leading-none">
-              Profitia Advisory
+      <div className="flex flex-shrink-0 items-center justify-between bg-[#242F44] px-4 py-2.5 text-white">
+        <div>
+            <p id="profitia-advisory-title" className="text-xs font-semibold leading-none">
+              {strings.title}
             </p>
             <div className="flex items-center gap-1.5 mt-0.5">
               {session?.state.urgency && session.state.intentConfidence > 0.4 && (
                 <span className={`w-1.5 h-1.5 rounded-full ${urgencyColor}`} />
               )}
-              <p className="text-2xs text-gray-400 leading-none">
+              <p className="text-[0.625rem] text-white/60 leading-none">
                 {phaseLabel}
               </p>
             </div>
-          </div>
         </div>
-        <button
-          onClick={closeAssistant}
-          aria-label={strings.closeAriaLabel}
-          className="w-7 h-7 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M10.5 3.5L3.5 10.5M3.5 3.5l7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </button>
+        <div className="flex items-center gap-1">
+          <AdvisorMenu locale={conversationLocale} />
+          <button
+            type="button"
+            onClick={closeAssistant}
+            aria-label={strings.closeAriaLabel}
+            className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M10.5 3.5L3.5 10.5M3.5 3.5l7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Message list */}
@@ -264,7 +282,7 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
         messages={session?.messages ?? []}
         streamingContent={streamingContent}
         locale={conversationLocale}
-        onPromptSelect={handleSend}
+        onPromptSelect={(prompt) => handleSend(prompt, "prompt")}
       />
 
       {/* Recommendation strip — orchestrator-driven */}
@@ -273,15 +291,20 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
         <RecommendationStrip
           destinationId={destinationId}
           locale={conversationLocale}
+          messages={session.messages}
         />
       )}
 
       {/* Input */}
       <MessageInput
-        onSend={handleSend}
+        onSend={(content) => handleSend(content, "custom")}
         placeholder={strings.placeholder}
+        helperText={session?.messages.length ? undefined : strings.customMessageHint}
+        inputAriaLabel={strings.messageAriaLabel}
+        sendAriaLabel={strings.sendAriaLabel}
         disabled={isTyping || isStreaming}
       />
+      <AssistantFooter locale={conversationLocale} />
     </div>
   );
 }

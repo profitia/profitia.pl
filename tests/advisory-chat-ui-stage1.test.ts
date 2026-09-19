@@ -23,11 +23,23 @@ async function main(): Promise<void> {
 
   const renderDestination = (destinationId: AdvisoryDestinationId): string =>
     renderToStaticMarkup(
-      createElement(RecommendationStrip, { destinationId, locale: "pl" }),
+      createElement(RecommendationStrip, {
+        destinationId,
+        locale: "pl",
+        messages: [
+          {
+            id: "user-message",
+            role: "user",
+            content: "Potrzebujemy wsparcia w opisanym obszarze zakupowym.",
+            timestamp: 0,
+          },
+        ],
+      }),
     );
 
   const services = renderDestination("services");
-  assert.match(services, /Rekomendowany kierunek/);
+  assert.match(services, /Jako pierwszy krok proponuję/);
+  assert.match(services, /Potrzebujemy wsparcia w opisanym obszarze zakupowym/);
   assert.match(services, /Usługi doradcze/);
   assert.match(services, /href="\/doradztwo\/uslugi"/);
 

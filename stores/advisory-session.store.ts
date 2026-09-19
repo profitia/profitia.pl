@@ -33,6 +33,12 @@ import {
   toConversationRecoverySessionState,
 } from "@/lib/advisory-chat/conversation-recovery";
 import type { ConversationRecoveryDecision } from "@profitia/cic-core";
+import {
+  ADVISOR_PREFERENCE_KEY,
+  DEFAULT_ADVISOR,
+  isAdvisorId,
+  type AdvisorId,
+} from "@/lib/advisory-widget/config";
 
 // ── State shape ───────────────────────────────────────────
 interface AdvisorySessionStore {
@@ -44,6 +50,7 @@ interface AdvisorySessionStore {
   isOpen: boolean;
   isTyping: boolean;
   isStreaming: boolean;
+  advisor: AdvisorId;
 
   // ETAP 2: Orchestration state
   lastDecision: AdvisoryDecision | null;
@@ -86,6 +93,7 @@ interface AdvisorySessionStore {
   // Actions — UI
   openAssistant: () => void;
   closeAssistant: () => void;
+  setAdvisor: (advisor: AdvisorId) => void;
   setTyping: (typing: boolean) => void;
   setStreaming: (streaming: boolean) => void;
 }
@@ -144,13 +152,23 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
   isOpen: false,
   isTyping: false,
   isStreaming: false,
+  advisor: DEFAULT_ADVISOR,
   lastDecision: null,
   proactiveState: INITIAL_PROACTIVE,
   lastETAP3Decision: null,
 
   initSession: (locale, slug) => {
     const session = createSession(locale, slug);
-    set({ session, isInitialized: true });
+    let advisor = get().advisor;
+    if (typeof window !== "undefined") {
+      try {
+        const storedAdvisor = window.localStorage.getItem(ADVISOR_PREFERENCE_KEY);
+        if (isAdvisorId(storedAdvisor)) advisor = storedAdvisor;
+      } catch {
+        // Restricted storage must not prevent the assistant from starting.
+      }
+    }
+    set({ session, isInitialized: true, advisor });
     // Run initial orchestration
     setTimeout(() => get().runOrchestration(), 200);
   },
@@ -516,6 +534,20 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
   closeAssistant: () => {
     set({ isOpen: false });
     track.assistantClosed();
+  },
+
+  setAdvisor: (advisor) => {
+    const previousAdvisor = get().advisor;
+    if (previousAdvisor === advisor) return;
+    set({ advisor });
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.setItem(ADVISOR_PREFERENCE_KEY, advisor);
+      } catch {
+        // The selection remains active for the current page session.
+      }
+    }
+    track.advisorSelected(advisor);
   },
 
   setTyping: (typing) => set({ isTyping: typing }),

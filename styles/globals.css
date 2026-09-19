@@ -185,9 +185,8 @@
 @layer components {
   /* Floating trigger button */
   .advisory-trigger {
-    @apply fixed bottom-6 right-6 z-[9999] flex items-center gap-2
-           bg-[#242F44] text-white rounded-full
-           px-5 py-3
+    @apply fixed bottom-6 right-6 z-[9999] flex h-16 w-16 items-center justify-center
+           bg-[#242F44] text-white rounded-full p-1
            shadow-[0_20px_40px_rgba(0,0,0,0.12),0_8px_16px_rgba(0,0,0,0.06)]
            transition-all duration-200 ease-out
            hover:shadow-[0_32px_64px_rgba(0,0,0,0.14),0_16px_32px_rgba(0,0,0,0.08)] hover:scale-[1.02]
@@ -239,7 +238,7 @@
   /* Typing indicator */
   .typing-dot {
     @apply w-1.5 h-1.5 rounded-full bg-gray-400;
-    animation: indicator-blink 1.4s ease-in-out infinite;
+    animation: indicator-blink 1.2s ease-in-out infinite;
   }
   .typing-dot:nth-child(2) { animation-delay: 0.2s; }
   .typing-dot:nth-child(3) { animation-delay: 0.4s; }
@@ -263,4 +262,36 @@
 @keyframes indicator-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
+}
+
+@media (max-width: 640px) {
+  .advisory-trigger {
+    @apply bottom-4 right-4;
+  }
+
+  .advisory-panel {
+    bottom: 5.5rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    max-height: calc(100dvh - 6.75rem);
+  }
+
+  .advisory-panel textarea {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .advisory-trigger,
+  .rec-card,
+  .typing-dot {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .advisory-scroll {
+    scroll-behavior: auto;
+  }
 }

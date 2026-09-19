@@ -1,16 +1,20 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
 import { getAdvisoryDestinationById } from "@/lib/advisory-chat/destination-registry";
 import { track } from "@/lib/analytics";
-import type { AdvisoryDestinationId, Locale } from "@/types";
+import { buildRecommendationRationale } from "@/lib/advisory-widget/recommendation-rationale";
+import { WIDGET_MOTION } from "@/lib/advisory-widget/config";
+import { AssistantMessage } from "./AssistantMessage";
+import type { AdvisoryDestinationId, Locale, Message } from "@/types";
 
 interface RecommendationStripProps {
   destinationId: AdvisoryDestinationId;
   locale: Locale;
+  messages: readonly Message[];
 }
 
 export function handleRecommendationNavigation(
@@ -24,9 +28,11 @@ export function handleRecommendationNavigation(
 export function RecommendationStrip({
   destinationId,
   locale,
+  messages,
 }: RecommendationStripProps) {
-  const { markRecommendationShown, closeAssistant } = useAdvisorySession();
+  const { markRecommendationShown, closeAssistant, advisor } = useAdvisorySession();
   const destination = getAdvisoryDestinationById(destinationId, locale);
+  const rationale = buildRecommendationRationale(messages, destinationId, locale);
 
   useEffect(() => {
     markRecommendationShown(destination.analyticsId);
@@ -34,14 +40,18 @@ export function RecommendationStrip({
   }, [destination.analyticsId, destination.title, markRecommendationShown]);
 
   return (
-    <div className="px-4 py-3 border-t border-gray-100 flex-shrink-0 space-y-2">
-      <p className="advisory-label">
-        {locale === "pl" ? "Rekomendowany kierunek" : "Recommended direction"}
-      </p>
-      <DestinationCard
-        destination={destination}
-        onNavigate={closeAssistant}
-      />
+    <div className="px-4 py-3 border-t border-gray-100 flex-shrink-0 space-y-2.5">
+      <AssistantMessage advisor={advisor}>
+        <p>{rationale.context}</p>
+        <p className="mt-1 font-medium">{rationale.summary}</p>
+        <p className="mt-2 font-semibold">{rationale.lead}</p>
+      </AssistantMessage>
+      <div className="ml-11">
+        <DestinationCard
+          destination={destination}
+          onNavigate={closeAssistant}
+        />
+      </div>
     </div>
   );
 }
@@ -53,15 +63,18 @@ function DestinationCard({
   destination: ReturnType<typeof getAdvisoryDestinationById>;
   onNavigate: () => void;
 }) {
+  const reduceMotion = useReducedMotion();
   const handleClick = () => {
     handleRecommendationNavigation(destination, onNavigate);
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 4 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{
+        duration: reduceMotion ? 0 : WIDGET_MOTION.recommendationDurationSeconds,
+      }}
     >
       <Link
         href={destination.href}
