@@ -74,9 +74,11 @@ function log(level: LogLevel, message: string, ctx?: Record<string, unknown>): v
 
   if (process.env.NODE_ENV === "production") {
     // Structured JSON for log aggregators (Render logs → Papertrail/Datadog)
+    // eslint-disable-next-line no-console -- Console is the intentional transport for the runtime log collector.
     console[level === "debug" ? "log" : level](JSON.stringify(entry));
   } else {
     const prefix = { debug: "🔍", info: "ℹ️", warn: "⚠️", error: "🔴" }[level];
+    // eslint-disable-next-line no-console -- Keep the same structured logger visible during local diagnostics.
     console[level === "debug" ? "log" : level](`${prefix} [advisory] ${message}`, ctx ?? "");
   }
 }

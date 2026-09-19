@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
+import '@profitia/advisory-widget/styles.css'
+import '@profitia/advisory-widget/styles.css'
 import AdvisoryWidget from '@/components/AdvisoryWidget'
 
 const inter = Inter({
