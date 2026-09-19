@@ -28,6 +28,11 @@ import { track } from "@/lib/analytics";
 import { runAdvisoryOrchestrator } from "@/lib/engines/advisory-orchestrator";
 import { computeNextPhase } from "@/lib/engines/advisory-state-machine";
 import { runETAP3Orchestrator } from "@/lib/engines/etap3-orchestrator";
+import {
+  INITIAL_CONVERSATION_RECOVERY_STATE,
+  toConversationRecoverySessionState,
+} from "@/lib/advisory-chat/conversation-recovery";
+import type { ConversationRecoveryDecision } from "@profitia/cic-core";
 
 // ── State shape ───────────────────────────────────────────
 interface AdvisorySessionStore {
@@ -55,6 +60,8 @@ interface AdvisorySessionStore {
   // Actions — Messages
   addMessage: (role: Message["role"], content: string, metadata?: MessageMetadata) => string;
   clearMessages: () => void;
+  applyConversationRecovery: (decision: ConversationRecoveryDecision, userMessage: string) => void;
+  resetConversationRecovery: () => void;
 
   // Actions — Intelligence
   updateIntent: (intent: IntentCode, confidence: number) => void;
@@ -105,6 +112,10 @@ function createSession(locale: Locale, slug: string): AdvisorySession {
       escalationReady: false,
       ctaFatigue: 0,
       engagementScore: 0,
+      conversationRecovery: {
+        ...INITIAL_CONVERSATION_RECOVERY_STATE,
+        responseLanguage: locale,
+      },
     },
     intelligence: {
       pagesVisited: [slug as PageContext["slug"]],
@@ -270,7 +281,50 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
   clearMessages: () => {
     const { session } = get();
     if (!session) return;
-    set({ session: { ...session, messages: [] } });
+    set({
+      session: {
+        ...session,
+        messages: [],
+        state: {
+          ...session.state,
+          conversationRecovery: {
+            ...INITIAL_CONVERSATION_RECOVERY_STATE,
+            responseLanguage: session.locale,
+          },
+        },
+      },
+    });
+  },
+
+  applyConversationRecovery: (decision, userMessage) => {
+    const { session } = get();
+    if (!session) return;
+    set({
+      session: {
+        ...session,
+        state: {
+          ...session.state,
+          conversationRecovery: toConversationRecoverySessionState(decision, userMessage),
+        },
+      },
+    });
+  },
+
+  resetConversationRecovery: () => {
+    const { session } = get();
+    if (!session) return;
+    set({
+      session: {
+        ...session,
+        state: {
+          ...session.state,
+          conversationRecovery: {
+            ...INITIAL_CONVERSATION_RECOVERY_STATE,
+            responseLanguage: session.state.conversationRecovery?.responseLanguage ?? session.locale,
+          },
+        },
+      },
+    });
   },
 
   updateIntent: (intent, confidence) => {

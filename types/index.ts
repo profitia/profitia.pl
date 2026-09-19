@@ -108,6 +108,14 @@ export interface MessageMetadata {
   ctas?: CTAItem[];
   journeyStep?: number;
   behavioralSignal?: BehavioralSignal;
+  recovery?: {
+    primarySignal: import("@profitia/cic-core").ConversationSignalClass | null;
+    confidence: import("@profitia/cic-core").InterpretationConfidence;
+    strategy: import("@profitia/cic-core").RecoveryStrategy;
+    nextState: import("@profitia/cic-core").RecoveryConversationState;
+    terminal: boolean;
+    contact: { href: string; label: string } | null;
+  };
 }
 
 // ── Session ───────────────────────────────────────────────
@@ -134,6 +142,7 @@ export interface SessionState {
   escalationReady: boolean;
   ctaFatigue: number; // 0-3, how many CTAs shown
   engagementScore: number; // 0-100
+  conversationRecovery?: import("@/lib/advisory-chat/conversation-recovery").ConversationRecoverySessionState;
 }
 
 export type ConversationPhase =
