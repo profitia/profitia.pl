@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
+import { WIDGET_COPY, WIDGET_MOTION } from "@/lib/advisory-widget/config";
+import { track } from "@/lib/analytics";
+import { AssistantMessage } from "./AssistantMessage";
 import type { Message, Locale } from "@/types";
 
 interface MessageListProps {
@@ -15,77 +18,86 @@ interface MessageListProps {
 export function MessageList({ messages, streamingContent, locale, onPromptSelect }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const closeAssistant = useAdvisorySession((state) => state.closeAssistant);
+  const advisor = useAdvisorySession((state) => state.advisor);
+  const isTyping = useAdvisorySession((state) => state.isTyping);
+  const reduceMotion = useReducedMotion();
+  const copy = WIDGET_COPY[locale];
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, streamingContent]);
+    bottomRef.current?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+  }, [messages, streamingContent, reduceMotion]);
 
   const isEmpty = messages.length === 0 && !streamingContent;
 
   return (
-    <div className="flex-1 overflow-y-auto advisory-scroll px-4 py-4 space-y-3 min-h-0">
+    <div
+      className="flex-1 overflow-y-auto advisory-scroll px-4 py-4 space-y-3 min-h-0"
+      aria-live="polite"
+      aria-relevant="additions text"
+    >
       {isEmpty && (
         <EmptyState locale={locale} onSelect={onPromptSelect} />
       )}
 
       <AnimatePresence initial={false}>
-        {messages.map((msg) => (
-          <motion.div
-            key={msg.id}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-          >
-            <div
-              className={
-                msg.role === "user" ? "msg-user max-w-[85%]" : "msg-assistant max-w-[90%]"
-              }
+        {messages.map((msg) =>
+          msg.role === "user" ? (
+            <motion.div
+              key={msg.id}
+              initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: reduceMotion ? 0 : WIDGET_MOTION.messageDurationSeconds,
+                ease: "easeOut",
+              }}
+              className="flex justify-end"
             >
+              <div className="msg-user max-w-[85%]">{msg.content}</div>
+            </motion.div>
+          ) : msg.role === "assistant" ? (
+            <AssistantMessage key={msg.id} advisor={advisor}>
               {msg.content}
-              {msg.role === "assistant" && msg.metadata?.recovery?.contact && (
+              {msg.metadata?.recovery?.contact && (
                 <a
                   href={msg.metadata.recovery.contact.href}
-                  onClick={closeAssistant}
-                  className="mt-3 inline-flex rounded-lg bg-[#242F44] px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#33415c]"
+                  onClick={() => {
+                    track.contactClicked(
+                      msg.metadata!.recovery!.contact!.href,
+                      "conversation_recovery",
+                    );
+                    closeAssistant();
+                  }}
+                  className="mt-3 inline-flex rounded-lg bg-[#242F44] px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#33415c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006D9E]"
                 >
                   {msg.metadata.recovery.contact.label}
                 </a>
               )}
-            </div>
-          </motion.div>
-        ))}
+            </AssistantMessage>
+          ) : null,
+        )}
       </AnimatePresence>
 
       {/* Streaming content */}
       {streamingContent && (
-        <motion.div
-          initial={{ opacity: 0, y: 4 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex justify-start"
-        >
-          <div className="msg-assistant max-w-[90%]">
+        <AssistantMessage advisor={advisor}>
             {streamingContent}
             <span className="inline-block w-0.5 h-3.5 bg-gray-400 ml-0.5 animate-pulse" />
-          </div>
-        </motion.div>
+        </AssistantMessage>
       )}
 
       {/* Typing indicator */}
-      {!streamingContent && messages.length > 0 && messages[messages.length - 1]?.role === "user" && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex justify-start"
+      {!streamingContent && isTyping && (
+        <AssistantMessage
+          advisor={advisor}
+          className="flex items-center gap-1 py-3"
+          statusLabel={locale === "pl" ? "Asystent przygotowuje odpowiedź" : "Assistant is preparing a response"}
         >
-          <div className="msg-assistant flex items-center gap-1 py-3">
             <div className="flex gap-1">
               <span className="typing-dot" />
               <span className="typing-dot" />
               <span className="typing-dot" />
             </div>
-          </div>
-        </motion.div>
+        </AssistantMessage>
       )}
 
       <div ref={bottomRef} />
@@ -94,34 +106,13 @@ export function MessageList({ messages, streamingContent, locale, onPromptSelect
 }
 
 function EmptyState({ locale, onSelect }: { locale: Locale; onSelect?: (prompt: string) => void }) {
-  const openingPrompts =
-    locale === "pl"
-      ? [
-          "Dostawca zapowiedział podwyżkę o 12%",
-          "Nie mamy benchmarków cenowych",
-          "Chcemy zbudować strategię zakupową",
-          "Potrzebujemy lepszej widoczności wydatków",
-        ]
-      : [
-          "Our supplier announced a 12% price increase",
-          "We don't have any pricing benchmarks",
-          "We want to build a procurement strategy",
-          "We need better spend visibility",
-        ];
+  const copy = WIDGET_COPY[locale];
+  const advisor = useAdvisorySession((state) => state.advisor);
 
   return (
-    <div className="space-y-5 pt-2">
+    <div className="space-y-4 pt-1">
       {/* Advisory intro */}
-      <div className="space-y-1.5">
-        <p className="advisory-label">
-          {locale === "pl" ? "Doradca Zakupowy" : "Procurement Advisor"}
-        </p>
-        <p className="text-sm text-gray-700 leading-relaxed font-medium">
-          {locale === "pl"
-            ? "Opisz sytuację zakupową. Powiem Ci, co możemy zrobić."
-            : "Describe your procurement situation. I'll tell you what we can do."}
-        </p>
-      </div>
+      <AssistantMessage advisor={advisor}>{copy.intro}</AssistantMessage>
 
       {/* Situation prompts */}
       <div className="space-y-2">
@@ -129,7 +120,7 @@ function EmptyState({ locale, onSelect }: { locale: Locale; onSelect?: (prompt: 
           {locale === "pl" ? "Typowe sytuacje" : "Common situations"}
         </p>
         <div className="space-y-1.5">
-          {openingPrompts.map((prompt) => (
+          {copy.openingPrompts.map((prompt) => (
             <button
               key={prompt}
               onClick={() => onSelect?.(prompt)}

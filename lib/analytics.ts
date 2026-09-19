@@ -12,8 +12,6 @@ class AnalyticsEngine {
   private sessionId: string;
   private locale: Locale;
   private pageSlug: PageSlug;
-  private buffer: AnalyticsEvent[] = [];
-  private flushInterval: ReturnType<typeof setInterval> | null = null;
 
   constructor() {
     this.sessionId = nanoid();
@@ -25,11 +23,6 @@ class AnalyticsEngine {
     this.sessionId = sessionId;
     this.locale = locale;
     this.pageSlug = pageSlug;
-
-    // Auto-flush every 10 seconds
-    if (typeof window !== "undefined") {
-      this.flushInterval = setInterval(() => this.flush(), 10_000);
-    }
 
     this.track("session_start", {});
   }
@@ -50,47 +43,28 @@ class AnalyticsEngine {
       payload,
     };
 
-    this.buffer.push(event);
-    this.log(event);
-
-    // Critical events flush immediately
-    if (
-      ["cta_clicked", "escalation_triggered", "recommendation_clicked"].includes(type)
-    ) {
-      this.flush();
-    }
+    this.deliver(event);
   }
 
-  private log(event: AnalyticsEvent) {
-    if (process.env.NODE_ENV === "development") {
-      console.log(`[Analytics] ${event.type}`, event.payload);
-    }
+  private deliver(event: AnalyticsEvent) {
+    if (typeof window === "undefined") return;
+
+    window.dispatchEvent(
+      new CustomEvent("profitia:advisory-analytics", { detail: event }),
+    );
+
+    const analyticsWindow = window as typeof window & {
+      dataLayer?: Array<Record<string, unknown>>;
+    };
+    analyticsWindow.dataLayer?.push({
+      event: `profitia_${event.type}`,
+      advisorySessionId: event.sessionId,
+      advisoryLocale: event.locale,
+      advisoryPage: event.pageSlug,
+      ...event.payload,
+    });
   }
 
-  private async flush() {
-    if (this.buffer.length === 0) return;
-    const events = [...this.buffer];
-    this.buffer = [];
-
-    // Send to analytics endpoint (non-blocking)
-    try {
-      await fetch("/api/analytics", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ events }),
-        keepalive: true,
-      });
-    } catch {
-      // Silently fail — analytics should never break UX
-    }
-  }
-
-  destroy() {
-    if (this.flushInterval) {
-      clearInterval(this.flushInterval);
-    }
-    this.flush();
-  }
 }
 
 // Singleton — one engine per page session
@@ -100,14 +74,21 @@ export const analytics = new AnalyticsEngine();
 export const track = {
   assistantOpened: () => analytics.track("assistant_opened"),
   assistantClosed: () => analytics.track("assistant_closed"),
-  messageSent: (content: string) =>
-    analytics.track("message_sent", { contentLength: content.length }),
+  invitationShown: () => analytics.track("invitation_shown"),
+  advisorSelected: (advisor: string) =>
+    analytics.track("advisor_selected", { advisor }),
+  openingPromptSelected: (promptIndex: number) =>
+    analytics.track("opening_prompt_selected", { promptIndex }),
+  messageSent: (content: string, source: "prompt" | "custom") =>
+    analytics.track("message_sent", { contentLength: content.length, source }),
   intentDetected: (intent: string, confidence: number) =>
     analytics.track("intent_detected", { intent, confidence }),
   recommendationShown: (id: string, title: string) =>
     analytics.track("recommendation_shown", { id, title }),
   recommendationClicked: (id: string, url: string) =>
     analytics.track("recommendation_clicked", { id, url }),
+  contactClicked: (url: string, source: string) =>
+    analytics.track("contact_clicked", { url, source }),
   ctaShown: (id: string, type: string) =>
     analytics.track("cta_shown", { id, type }),
   ctaClicked: (id: string, type: string, url: string) =>
@@ -147,4 +128,3 @@ export const track = {
   stateTransition: (from: string, to: string, trigger: string) =>
     analytics.track("state_transition", { from, to, trigger }),
 };
-

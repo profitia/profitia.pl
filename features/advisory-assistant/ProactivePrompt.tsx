@@ -1,8 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useAdvisorySession } from "@/stores/advisory-session.store";
+import {
+  FIRST_CONTACT_SESSION_KEY,
+  WIDGET_COPY,
+  WIDGET_MOTION,
+} from "@/lib/advisory-widget/config";
+import { track } from "@/lib/analytics";
 import type { Locale } from "@/lib/i18n";
 
 interface ProactivePromptProps {
@@ -10,89 +16,95 @@ interface ProactivePromptProps {
 }
 
 export function ProactivePrompt({ locale }: ProactivePromptProps) {
-  const {
-    lastDecision,
-    proactiveState,
-    triggerProactive,
-    dismissProactive,
-    openAssistant,
-    convertProactive,
-  } = useAdvisorySession();
+  const openAssistant = useAdvisorySession((state) => state.openAssistant);
+  const reduceMotion = useReducedMotion();
+  const [isVisible, setIsVisible] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const copy = WIDGET_COPY[locale];
 
-  // Evaluate whether to trigger proactive prompt
   useEffect(() => {
-    if (proactiveState.triggered || proactiveState.dismissed) return;
-    if (!lastDecision?.proactive) return;
+    try {
+      if (window.sessionStorage.getItem(FIRST_CONTACT_SESSION_KEY)) return;
+    } catch {
+      // A restricted storage context should not prevent the invitation.
+    }
 
-    const { score, delay } = lastDecision.proactive;
-    if (score < 55) return; // minimum threshold
+    const timer = window.setTimeout(() => {
+      try {
+        window.sessionStorage.setItem(FIRST_CONTACT_SESSION_KEY, "shown");
+      } catch {
+        // The invitation still works without persistence.
+      }
+      setIsVisible(true);
+      track.invitationShown();
+    }, WIDGET_MOTION.invitationDelayMs);
 
-    const timer = setTimeout(() => {
-      triggerProactive();
-    }, delay);
+    return () => window.clearTimeout(timer);
+  }, []);
 
-    return () => clearTimeout(timer);
-  }, [lastDecision?.proactive, proactiveState.triggered, proactiveState.dismissed, triggerProactive]);
+  useEffect(() => {
+    if (!isVisible) return;
+    if (reduceMotion) {
+      setTypedText(copy.firstContact);
+      return;
+    }
 
-  const trigger = proactiveState.trigger;
-  const isVisible = proactiveState.triggered && !proactiveState.dismissed && !proactiveState.converted;
+    setTypedText("");
+    let index = 0;
+    const timer = window.setInterval(() => {
+      index += 1;
+      setTypedText(copy.firstContact.slice(0, index));
+      if (index >= copy.firstContact.length) window.clearInterval(timer);
+    }, WIDGET_MOTION.typewriterCharacterMs);
 
-  if (!trigger) return null;
+    return () => window.clearInterval(timer);
+  }, [copy.firstContact, isVisible, reduceMotion]);
 
-  const message = trigger.message[locale] ?? trigger.message["en"];
+  useEffect(() => {
+    if (!isVisible) return;
+    const timer = window.setTimeout(
+      () => setIsVisible(false),
+      WIDGET_MOTION.invitationVisibleMs,
+    );
+    return () => window.clearTimeout(timer);
+  }, [isVisible]);
 
   const handleOpen = () => {
-    convertProactive();
+    setIsVisible(false);
     openAssistant();
   };
 
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, y: 16, scale: 0.97 }}
+        <motion.aside
+          initial={reduceMotion ? false : { opacity: 0, y: 8, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 12, scale: 0.96 }}
-          transition={{ duration: 0.28, ease: "easeOut" }}
-          className="fixed bottom-28 right-6 z-[9998] max-w-xs"
+          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.98 }}
+          transition={{ duration: reduceMotion ? 0 : 0.2 }}
+          className="fixed bottom-24 right-4 z-[9998] w-[min(20rem,calc(100vw-2rem))] rounded-2xl border border-gray-200 bg-white p-4 pr-10 shadow-[0_18px_45px_rgba(23,32,51,0.18)] sm:right-6"
+          aria-label={copy.firstContact}
         >
-          <div className="bg-white rounded-2xl shadow-advisory-xl border border-gray-100 p-4 relative">
-            {/* Dismiss button */}
-            <button
-              onClick={dismissProactive}
-              className="absolute top-3 right-3 w-5 h-5 rounded-full flex items-center justify-center text-gray-300 hover:text-gray-500 transition-colors"
-              aria-label="Dismiss"
-            >
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                <path d="M7.5 2.5L2.5 7.5M2.5 2.5l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            </button>
-
-            {/* Advisor icon */}
-            <div className="flex items-start gap-3">
-              <div className="w-7 h-7 rounded-lg bg-[#242F44] flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <circle cx="6" cy="6" r="1.5" fill="white" />
-                  <path d="M6 1v1.5M6 9.5V11M1 6h1.5M9.5 6H11" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-                </svg>
-              </div>
-              <div className="flex-1 pr-4">
-                <p className="text-xs font-medium text-gray-500 mb-1">
-                  Profitia Advisory
-                </p>
-                <p className="text-sm text-gray-800 leading-snug">
-                  {message}
-                </p>
-                <button
-                  onClick={handleOpen}
-                  className="mt-3 text-xs font-semibold text-[#006D9E] hover:text-[#0092D9] transition-colors"
-                >
-                  {locale === "pl" ? "Odpowiedz →" : "Reply →"}
-                </button>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+          <button
+            type="button"
+            onClick={handleOpen}
+            className="block w-full text-left text-sm font-medium leading-relaxed text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006D9E] focus-visible:ring-offset-2"
+          >
+            <span aria-hidden="true">{typedText}</span>
+            <span className="sr-only">{copy.firstContact}</span>
+            {!reduceMotion && typedText.length < copy.firstContact.length && (
+              <span aria-hidden="true" className="ml-0.5 inline-block h-4 w-px animate-pulse bg-gray-500" />
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsVisible(false)}
+            aria-label={copy.dismissInvitation}
+            className="absolute right-2.5 top-2.5 flex h-7 w-7 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006D9E]"
+          >
+            ×
+          </button>
+        </motion.aside>
       )}
     </AnimatePresence>
   );
