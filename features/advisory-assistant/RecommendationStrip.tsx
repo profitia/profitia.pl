@@ -13,11 +13,19 @@ interface RecommendationStripProps {
   locale: Locale;
 }
 
+export function handleRecommendationNavigation(
+  destination: ReturnType<typeof getAdvisoryDestinationById>,
+  onNavigate: () => void,
+) {
+  track.recommendationClicked(destination.analyticsId, destination.href);
+  onNavigate();
+}
+
 export function RecommendationStrip({
   destinationId,
   locale,
 }: RecommendationStripProps) {
-  const { markRecommendationShown } = useAdvisorySession();
+  const { markRecommendationShown, closeAssistant } = useAdvisorySession();
   const destination = getAdvisoryDestinationById(destinationId, locale);
 
   useEffect(() => {
@@ -30,18 +38,23 @@ export function RecommendationStrip({
       <p className="advisory-label">
         {locale === "pl" ? "Rekomendowany kierunek" : "Recommended direction"}
       </p>
-      <DestinationCard destination={destination} />
+      <DestinationCard
+        destination={destination}
+        onNavigate={closeAssistant}
+      />
     </div>
   );
 }
 
 function DestinationCard({
   destination,
+  onNavigate,
 }: {
   destination: ReturnType<typeof getAdvisoryDestinationById>;
+  onNavigate: () => void;
 }) {
   const handleClick = () => {
-    track.recommendationClicked(destination.analyticsId, destination.href);
+    handleRecommendationNavigation(destination, onNavigate);
   };
 
   return (

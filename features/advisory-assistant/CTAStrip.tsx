@@ -15,7 +15,7 @@ interface CTAStripProps {
 }
 
 export function CTAStrip({ intent, urgency, locale }: CTAStripProps) {
-  const { session, markCTAShown, markCTAClicked } = useAdvisorySession();
+  const { session, markCTAShown, markCTAClicked, closeAssistant } = useAdvisorySession();
   const shownIds = session?.intelligence.ctasShown ?? [];
 
   const ctas = getPrioritizedCTAs(intent, urgency, shownIds, 2);
@@ -31,6 +31,7 @@ export function CTAStrip({ intent, urgency, locale }: CTAStripProps) {
           index={i}
           onShow={markCTAShown}
           onClick={markCTAClicked}
+          onNavigate={closeAssistant}
           locale={locale}
         />
       ))}
@@ -43,16 +44,18 @@ interface CTAButtonProps {
   index: number;
   onShow: (id: string) => void;
   onClick: (id: string) => void;
+  onNavigate: () => void;
   locale: Locale;
 }
 
-function CTAButton({ cta, index, onShow, onClick, locale }: CTAButtonProps) {
+function CTAButton({ cta, index, onShow, onClick, onNavigate, locale }: CTAButtonProps) {
   const isPrimary = index === 0;
   const localizedUrl = localizePublicHref(cta.url, locale)
 
   const handleClick = () => {
     onClick(cta.id);
     track.ctaClicked(cta.id, cta.type, localizedUrl);
+    onNavigate();
   };
 
   const isExternal = localizedUrl.startsWith("http") || localizedUrl.startsWith("tel:") || localizedUrl.startsWith("mailto:");

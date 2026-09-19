@@ -11,6 +11,15 @@ async function main(): Promise<void> {
   const { RecommendationStrip } = await import(
     "@/features/advisory-assistant/RecommendationStrip"
   );
+  const { handleRecommendationNavigation } = await import(
+    "@/features/advisory-assistant/RecommendationStrip"
+  );
+  const { getAdvisoryDestinationById } = await import(
+    "@/lib/advisory-chat/destination-registry"
+  );
+  const { useAdvisorySession } = await import(
+    "@/stores/advisory-session.store"
+  );
 
   const renderDestination = (destinationId: AdvisoryDestinationId): string =>
     renderToStaticMarkup(
@@ -33,6 +42,19 @@ async function main(): Promise<void> {
   // The destination is independent from the "already shown" analytics state,
   // so a rerender cannot make it disappear.
   assert.equal(renderDestination("digital"), digital);
+
+  useAdvisorySession.getState().openAssistant();
+  assert.equal(useAdvisorySession.getState().isOpen, true);
+
+  handleRecommendationNavigation(
+    getAdvisoryDestinationById("digital", "pl"),
+    useAdvisorySession.getState().closeAssistant,
+  );
+  assert.equal(
+    useAdvisorySession.getState().isOpen,
+    false,
+    "Recommendation navigation should collapse the advisory panel",
+  );
 
   console.log("Advisory chat stage 1 UI: all rendering tests passed");
 }
