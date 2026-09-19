@@ -8,6 +8,7 @@ import { MessageInput } from "./MessageInput";
 import { RecommendationStrip } from "./RecommendationStrip";
 import { SSEDataParser } from "@/lib/advisory-chat/sse-data-parser";
 import type { Locale } from "@/lib/i18n";
+import type { ConversationRecoveryDecision } from "@profitia/cic-core";
 
 interface AssistantPanelProps {
   locale: Locale;
@@ -40,9 +41,12 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
     setPhase,
     incrementEngagement,
     runOrchestration,
+    applyConversationRecovery,
+    resetConversationRecovery,
   } = useAdvisorySession();
 
-  const strings = ASSISTANT_STRINGS[locale];
+  const conversationLocale = session?.state.conversationRecovery?.responseLanguage ?? locale;
+  const strings = ASSISTANT_STRINGS[conversationLocale];
   const [streamingContent, setStreamingContent] = useState("");
   const abortRef = useRef<AbortController | null>(null);
 
@@ -76,7 +80,7 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
               role: message.role,
               content: message.content,
             })),
-            locale,
+            locale: currentSession.state.conversationRecovery?.responseLanguage ?? locale,
             pageContext: currentSession.pageContext,
             sessionState: currentSession.state,
             advisoryDecision: freshDecision ?? lastDecision,
@@ -87,12 +91,23 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
         if (!response.ok) throw new Error("API error");
 
         let accumulated = "";
+        let recoveryMetadata: {
+          decision: ConversationRecoveryDecision;
+          contact: { href: string; label: string } | null;
+        } | null = null;
         const contentType = response.headers.get("content-type") ?? "";
 
         if (contentType.includes("application/json")) {
           const payload = await response.json();
           if (typeof payload.content === "string") {
             accumulated = payload.content;
+          }
+          if (payload.type === "recovery" && payload.recovery) {
+            recoveryMetadata = {
+              decision: payload.recovery as ConversationRecoveryDecision,
+              contact: payload.contact ?? null,
+            };
+            applyConversationRecovery(recoveryMetadata.decision, content);
           }
         } else {
           setTyping(false);
@@ -143,7 +158,19 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
         }
 
         if (accumulated) {
-          addMessage("assistant", accumulated);
+          if (!recoveryMetadata) resetConversationRecovery();
+          addMessage("assistant", accumulated, recoveryMetadata
+            ? {
+                recovery: {
+                  primarySignal: recoveryMetadata.decision.primarySignal,
+                  confidence: recoveryMetadata.decision.confidence,
+                  strategy: recoveryMetadata.decision.strategy,
+                  nextState: recoveryMetadata.decision.nextState,
+                  terminal: recoveryMetadata.decision.terminal,
+                  contact: recoveryMetadata.contact,
+                },
+              }
+            : undefined);
           setStreamingContent("");
           incrementEngagement(10);
           runOrchestration();
@@ -171,6 +198,8 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
       runOrchestration,
       strings,
       lastDecision,
+      applyConversationRecovery,
+      resetConversationRecovery,
     ]
   );
 
@@ -179,7 +208,7 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
   }, []);
 
   const phase = session?.state.phase ?? "idle";
-  const phaseLabel = PHASE_LABELS[phase]?.[locale] ?? PHASE_LABELS.idle[locale];
+  const phaseLabel = PHASE_LABELS[phase]?.[conversationLocale] ?? PHASE_LABELS.idle[conversationLocale];
 
   // Use orchestrator decision for recommendation visibility
   const destinationId = lastDecision?.conversation.action === "recommend"
@@ -234,15 +263,16 @@ export function AssistantPanel({ locale }: AssistantPanelProps) {
       <MessageList
         messages={session?.messages ?? []}
         streamingContent={streamingContent}
-        locale={locale}
+        locale={conversationLocale}
         onPromptSelect={handleSend}
       />
 
       {/* Recommendation strip — orchestrator-driven */}
-      {destinationId && session && (
+      {destinationId && session &&
+        (session.state.conversationRecovery?.state ?? "normal") === "normal" && (
         <RecommendationStrip
           destinationId={destinationId}
-          locale={locale}
+          locale={conversationLocale}
         />
       )}
 

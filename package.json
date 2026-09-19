@@ -32,6 +32,8 @@
     "test:advisory-stage2": "tsx tests/advisory-chat-stage2.test.ts && tsx tests/advisory-chat-ui-stage1.test.ts",
     "test:advisory-stage3": "tsx tests/advisory-chat-stage3.test.ts && tsx tests/advisory-chat-stage2.test.ts && tsx tests/advisory-chat-ui-stage1.test.ts",
     "test:advisory-stage4": "npm run test:advisory-stage3 && tsx tests/advisory-chat-stage4.test.ts",
+    "test:conversation-recovery": "tsx tests/conversation-recovery.test.ts",
+    "report:conversation-recovery": "tsx scripts/generate-conversation-recovery-report.ts",
     "test:advisory-stage3:live": "tsx scripts/run-advisory-acceptance.ts",
     "test:blog-phase1": "tsx tests/blog-cms-phase1.test.ts",
     "test:blog-phase2": "tsx tests/blog-cms-phase2.test.ts",
@@ -42,9 +44,9 @@
     "blog:images:optimize": "node --import tsx scripts/optimize-blog-covers.ts"
   },
   "dependencies": {
-    "@profitia/cic-core": "1.0.0",
-    "@profitia/cic-procurement": "1.0.0",
-    "@profitia/cic-profitia": "1.0.0",
+    "@profitia/cic-core": "1.1.1",
+    "@profitia/cic-procurement": "1.1.1",
+    "@profitia/cic-profitia": "1.1.1",
     "@aws-sdk/client-s3": "^3.1106.0",
     "@azure/msal-node": "^5.5.0",
     "@prisma/client": "^5.22.0",
@@ -68,7 +70,7 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
-    "@profitia/cic-evals": "1.0.0",
+    "@profitia/cic-evals": "1.1.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20.16.11",

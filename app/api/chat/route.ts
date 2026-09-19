@@ -45,6 +45,8 @@ import {
   isDegraded,
   getCurrentDegradationLevel,
 } from '@/lib/runtime-hardening/graceful-degradation'
+import { buildConversationRecoveryPayload } from '@/lib/advisory-chat/conversation-recovery'
+import type { SecuritySignal } from '@profitia/cic-core'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -98,7 +100,12 @@ export async function POST(req: NextRequest) {
 
     // ── 3. Rate Limiting + Spam ───────────────────────────
     const lastUserMessage = messages.findLast((m) => m.role === 'user')?.content ?? ''
-    const rlCheck = compositeRateLimitCheck(ip, sessionId, lastUserMessage)
+    // Blank content still passes traffic throttles, but is handled as an
+    // explicit recoverable conversation signal rather than an HTTP error.
+    const rateLimitMessage = lastUserMessage.trim().length > 0
+      ? lastUserMessage
+      : '[empty-conversation-turn]'
+    const rlCheck = compositeRateLimitCheck(ip, sessionId, rateLimitMessage)
     if (!rlCheck.allowed) {
       obs.rateLimitHit(ip, sessionId)
       return NextResponse.json(
@@ -117,10 +124,14 @@ export async function POST(req: NextRequest) {
     }
 
     // ── 4. Security Check ─────────────────────────────────
-    // Every user turn is sent back to the model as conversation history, so
-    // every user turn must pass the same security and PII gate.
+    // Every user turn sent to the model passes the same security and PII gate.
+    // A previously blocked turn is omitted instead of poisoning all later
+    // requests. The current turn receives a deterministic recovery response.
     const sanitizedMessages: typeof messages = []
-    for (const message of messages) {
+    const lastUserIndex = messages.findLastIndex((message) => message.role === 'user')
+    let currentSecuritySignal: SecuritySignal | null = null
+
+    for (const [index, message] of messages.entries()) {
       if (message.role !== 'user') {
         sanitizedMessages.push(message)
         continue
@@ -129,15 +140,42 @@ export async function POST(req: NextRequest) {
       const securityCheck = runSecurityCheck(message.content, sessionId)
       if (!securityCheck.passed) {
         obs.securityBlock(sessionId, securityCheck.reasons.join('; '))
-        return NextResponse.json(
-          { error: 'Request blocked', reason: securityCheck.reasons[0] },
-          { status: 422 },
-        )
+        if (index === lastUserIndex) {
+          currentSecuritySignal = securityCheck.reasons.some((reason) =>
+            reason.toLocaleLowerCase().includes('injection'),
+          )
+            ? 'instruction_manipulation'
+            : null
+        }
+        continue
+      }
+
+      if (index === lastUserIndex && securityCheck.action === 'sanitize') {
+        currentSecuritySignal = 'personal_data'
       }
 
       sanitizedMessages.push({
         ...message,
         content: securityCheck.sanitizedMessage ?? message.content,
+      })
+    }
+
+    const recoveryPayload = buildConversationRecoveryPayload({
+      message: lastUserMessage,
+      locale: l,
+      userTurnCount: userMessageCount,
+      sessionState,
+      securitySignal: currentSecuritySignal,
+    })
+
+    if (recoveryPayload) {
+      obs.requestStart(sessionId, l, messageCount)
+      obs.requestComplete(sessionId, Date.now() - requestStart, 0)
+      return NextResponse.json({
+        type: 'recovery',
+        content: recoveryPayload.response.content,
+        recovery: recoveryPayload.decision,
+        contact: recoveryPayload.contact,
       })
     }
 
