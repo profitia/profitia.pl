@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useAdvisorySession } from "@/stores/advisory-session.store";
 import type { Message, Locale } from "@/types";
 
 interface MessageListProps {
@@ -13,6 +14,7 @@ interface MessageListProps {
 
 export function MessageList({ messages, streamingContent, locale, onPromptSelect }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
+  const closeAssistant = useAdvisorySession((state) => state.closeAssistant);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -44,6 +46,7 @@ export function MessageList({ messages, streamingContent, locale, onPromptSelect
               {msg.role === "assistant" && msg.metadata?.recovery?.contact && (
                 <a
                   href={msg.metadata.recovery.contact.href}
+                  onClick={closeAssistant}
                   className="mt-3 inline-flex rounded-lg bg-[#242F44] px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#33415c]"
                 >
                   {msg.metadata.recovery.contact.label}
