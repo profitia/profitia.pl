@@ -7,13 +7,14 @@
  */
 
 import Image from 'next/image'
+import type { ReactNode } from 'react'
 import { Button, RevealWrapper, SectionHeader } from '@/components/ui'
 
 export interface ContentSplitProps {
   label?: string
   headline: string
-  body: string
-  cta?: { label: string; href: string }
+  body: ReactNode
+  cta?: { label: string; href: string; target?: '_blank' }
   image: { src: string; alt: string }
   imagePosition?: 'right' | 'left'
   background?: 'white' | 'gray-50'
@@ -42,14 +43,21 @@ export function ContentSplit({
               <SectionHeader
                 label={label}
                 headline={headline}
-                body={body}
                 align="left"
               />
+              {typeof body === 'string' ? (
+                <p className="text-gray-600 leading-relaxed">{body}</p>
+              ) : body}
             </RevealWrapper>
             {cta && (
               <RevealWrapper delay={1}>
                 <div className="mt-10">
-                  <Button href={cta.href} variant="secondary">
+                  <Button
+                    href={cta.href}
+                    variant="secondary"
+                    target={cta.target}
+                    rel={cta.target === '_blank' ? 'noopener noreferrer' : undefined}
+                  >
                     {cta.label}
                   </Button>
                 </div>

@@ -37,7 +37,7 @@ const PAGE_COPY = {
       headline: 'Executive Development Programme w zakupach',
       subtitle:
         'Zdobądź prestiżowy certyfikat MCIPS i dołącz do globalnej sieci ponad 200 000 profesjonalistów zakupowych. Programy budowane na realiach rynkowych - nie teorii akademickiej.',
-      ctaPrimary: { label: 'Zobacz ofertę MCIPS', href: getPublicPath('contact', 'pl') },
+      ctaPrimary: { label: 'Zobacz ofertę MCIPS', href: '/docs/PEDP%202026.pdf' },
       ctaSecondary: { label: 'Bezpłatna konsultacja', href: getPublicPath('contact', 'pl') },
     },
     contactCta: {
@@ -332,7 +332,12 @@ export default function EducationPage({ locale }: Props) {
                   {c.hero.subtitle}
                 </p>
               <div className="flex flex-wrap items-center gap-4">
-                <Link href={c.hero.ctaPrimary.href} className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[rgb(36,47,68)] text-white text-sm font-medium transition-colors duration-[250ms] hover:bg-[rgb(72,94,136)]">
+                <Link
+                  href={c.hero.ctaPrimary.href}
+                  target={locale === 'pl' ? '_blank' : undefined}
+                  rel={locale === 'pl' ? 'noopener noreferrer' : undefined}
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[rgb(36,47,68)] text-white text-sm font-medium transition-colors duration-[250ms] hover:bg-[rgb(72,94,136)]"
+                >
                   {c.hero.ctaPrimary.label}
                 </Link>
                 <Link href={c.hero.ctaSecondary.href} className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border border-[rgb(0,109,158)] bg-white text-[rgb(0,109,158)] text-sm font-medium transition-colors duration-[250ms] hover:bg-[rgba(199,237,251,0.2)] hover:text-[rgb(0,109,158)]">

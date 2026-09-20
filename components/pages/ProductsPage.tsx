@@ -71,6 +71,8 @@ export default function ProductsPage({ locale }: Props) {
         eyebrow={c.hero.eyebrow}
         title={c.hero.title}
         subtitle={c.hero.subtitle}
+        imageSrc="/images/website/Profitia_27.jpg"
+        imageAlt={locale === 'pl' ? 'Produkty doradcze Profitia' : 'Profitia advisory products'}
         variant="services"
       />
 

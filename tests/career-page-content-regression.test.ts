@@ -41,9 +41,14 @@ const managerInput = RecruitmentTransportSchema.parse({
 })
 assert.equal(normalizeJobApplicationInput(managerInput).position, 'MANAGER')
 
-assert.match(listing, /Co zyskujemy, pracując w Profitia/)
+assert.match(listing, /Co zyskujesz pracując w Profitii\?/)
 assert.match(listing, /Rozwijamy marki osobiste/)
 assert.doesNotMatch(listing, /Dane na poziomie organizacji/)
+assert.match(listing, /Friendly Workplace® 2026/)
+assert.match(listing, /Friendly Workspace Profitia\.webp/)
+assert.match(listing, /markapracodawcy\.pl\/profitia-z-nagroda-friendly-workplace-2026/)
+assert.match(listing, /target: '_blank'/)
+assert.match(listing, /<ContentSplit/)
 assert.match(listing, /CareerLife/)
 assert.match(listing, /CareerRecruiter/)
 

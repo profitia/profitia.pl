@@ -14,6 +14,8 @@ interface Props {
   disabled?: boolean
   fullWidth?: boolean
   'aria-label'?: string
+  target?: '_blank' | '_self'
+  rel?: string
 }
 
 const VARIANTS: Record<Variant, string> = {
@@ -54,6 +56,8 @@ export default function Button({
   disabled,
   fullWidth = false,
   'aria-label': ariaLabel,
+  target,
+  rel,
 }: Props) {
   const base = 'inline-flex items-center justify-center font-medium rounded-xl transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
   const isBrand = variant === 'brand'
@@ -68,6 +72,8 @@ export default function Button({
         style={isBrand ? BRAND_BG : undefined}
         aria-label={ariaLabel}
         aria-disabled={disabled ? true : undefined}
+        target={target}
+        rel={rel}
       >
         {children}
       </Link>

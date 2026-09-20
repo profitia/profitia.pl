@@ -13,6 +13,8 @@ interface Props {
     eyebrow: string
     title: string
     subtitle: string
+    imageSrc?: string
+    imageAlt?: string
   }
   seo?: {
     title: string
@@ -28,6 +30,8 @@ const COPY = {
       title: 'Budujemy przewagę zakupową poprzez dane, negocjacje i transformację funkcji zakupowej.',
       subtitle:
         'Pracujemy z organizacjami, które chcą odzyskać kontrolę nad kosztami, poprawić pozycję negocjacyjną i budować decyzje zakupowe w oparciu o dane, a nie intuicję.',
+      imageSrc: '/images/website/Profitia_1.jpg',
+      imageAlt: 'Doradztwo zakupowe Profitia',
     },
     cta: {
       note: 'Następny krok',
@@ -41,6 +45,8 @@ const COPY = {
       title: 'We help procurement teams build leverage through intelligence, negotiations and operating transformation.',
       subtitle:
         'We work with organisations that want to regain control over costs, improve their negotiation position and build procurement decisions on data - not intuition.',
+      imageSrc: '/images/website/Profitia_1.jpg',
+      imageAlt: 'Profitia procurement advisory',
     },
     cta: {
       note: 'Next step',
@@ -75,6 +81,8 @@ export default function ServicesPage({ locale, routeId = 'services:index', hero,
         eyebrow={copy.hero.eyebrow}
         title={copy.hero.title}
         subtitle={copy.hero.subtitle}
+        imageSrc={copy.hero.imageSrc}
+        imageAlt={copy.hero.imageAlt}
         variant="services"
       />
 
