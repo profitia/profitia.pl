@@ -263,7 +263,9 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
 
   const copy = useMemo<AdvisoryWidgetCopy>(() => ({
     title: strings.advisorTitle(ADVISORS[advisor].name),
-    status: PHASE_LABELS[session?.state.phase ?? "idle"]?.[conversationLocale] ?? strings.ready,
+    status: quickReplyMessageId
+      ? PHASE_LABELS.opening[conversationLocale]
+      : PHASE_LABELS[session?.state.phase ?? "idle"]?.[conversationLocale] ?? strings.ready,
     moreOptions: strings.moreOptions,
     changeAdvisor: strings.changeAdvisor,
     changeTo: strings.changeTo,
@@ -282,7 +284,7 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
     contactLabel: strings.contactLabel,
     footerLabel: "Profitia Advisory · CIC",
     errorMessage: strings.errorMessage,
-  }), [advisor, conversationLocale, session?.state.phase, strings]);
+  }), [advisor, conversationLocale, quickReplyMessageId, session?.state.phase, strings]);
 
   const widgetMessages = useMemo<AdvisoryWidgetMessage[]>(() => (session?.messages ?? []).map((message) => ({
     id: message.id,

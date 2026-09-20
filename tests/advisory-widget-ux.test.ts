@@ -51,6 +51,7 @@ assert.match(adapterSource, /@profitia\/advisory-widget/);
 assert.match(adapterSource, /@profitia\/cic-core/);
 assert.match(adapterSource, /strings\.scenarioResolved/);
 assert.match(adapterSource, /initializedLocale\.current === locale/);
+assert.match(adapterSource, /quickReplyMessageId\s*\? PHASE_LABELS\.opening\[conversationLocale\]/);
 assert.doesNotMatch(adapterSource, /framer-motion/);
 
 for (const replacedFile of [
