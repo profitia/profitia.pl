@@ -117,12 +117,17 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
 
   const conversationLocale = session?.state.conversationRecovery?.responseLanguage ?? locale;
   const strings = WIDGET_COPY[conversationLocale];
+  const destinationId = quickReplyMessageId ? null : controlledDestinationId ?? (
+    lastDecision?.conversation.action === "recommend" ? lastDecision.conversation.destinationId : null
+  );
+  const recommendation = useMemo(() => (
+    destinationId && session && (session.state.conversationRecovery?.state ?? "normal") === "normal"
+      ? buildProfitiaWidgetRecommendation(destinationId, conversationLocale, session.messages)
+      : null
+  ), [conversationLocale, destinationId, session]);
 
   const persistConversation = useCallback(async () => {
     if (!session || session.messages.length === 0) return;
-    const destinationId = controlledDestinationId ?? (
-      lastDecision?.conversation.action === "recommend" ? lastDecision.conversation.destinationId : null
-    );
     await saveAdvisoryConversation({
       sessionId: session.id,
       locale: session.locale,
@@ -134,10 +139,11 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
       })),
       intentCode: session.state.detectedIntent === "UNKNOWN" ? null : session.state.detectedIntent,
       destinationId,
+      recommendation,
       startedAt: session.startedAt,
       lastActivityAt: session.lastActivityAt,
     });
-  }, [advisor, controlledDestinationId, lastDecision, session]);
+  }, [advisor, destinationId, recommendation, session]);
 
   useEffect(() => {
     if (!session || session.messages.length === 0) return;
@@ -152,14 +158,29 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
     setHistoryError(null);
     try {
       const conversations = await fetchAdvisoryHistory();
-      setHistoryEntries(conversations.map((conversation) => ({
-        id: conversation.id,
-        title: conversation.title,
-        startedAt: conversation.startedAt,
-        updatedAt: conversation.updatedAt,
-        advisorId: conversation.advisorId,
-        messages: conversation.messages,
-      })));
+      setHistoryEntries(conversations.map((conversation) => {
+        const historicalRecommendation = conversation.recommendation ?? (
+          conversation.destinationId
+            ? buildProfitiaWidgetRecommendation(
+                conversation.destinationId,
+                conversation.locale,
+                conversation.messages.map((message, index) => ({
+                  ...message,
+                  timestamp: Date.parse(conversation.startedAt) + index,
+                })),
+              )
+            : null
+        );
+        return {
+          id: conversation.id,
+          title: conversation.title,
+          startedAt: conversation.startedAt,
+          updatedAt: conversation.updatedAt,
+          advisorId: conversation.advisorId,
+          messages: conversation.messages,
+          recommendation: historicalRecommendation,
+        };
+      }));
     } catch {
       setHistoryError(strings.historyError);
     } finally {
@@ -376,13 +397,6 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
       ? { quickReplies: getOpeningScenario(conversationLocale, activeScenarioId)?.quickReplies }
       : {}),
   })), [activeScenarioId, conversationLocale, quickReplyMessageId, session?.messages]);
-
-  const destinationId = quickReplyMessageId ? null : controlledDestinationId ?? (
-    lastDecision?.conversation.action === "recommend" ? lastDecision.conversation.destinationId : null
-  );
-  const recommendation = destinationId && session && (session.state.conversationRecovery?.state ?? "normal") === "normal"
-    ? buildProfitiaWidgetRecommendation(destinationId, conversationLocale, session.messages)
-    : null;
 
   const handleEvent = useCallback((event: AdvisoryWidgetEvent) => {
     switch (event.type) {

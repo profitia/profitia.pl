@@ -47,7 +47,7 @@ assert.equal(rationale.lead, "Jako pierwszy krok proponuję:");
 assert.ok(buildRecommendationRationale([{ ...messages[0], content: "a".repeat(250) }], "services", "pl").summary.endsWith("…”"));
 
 const packageJson = JSON.parse(readFileSync(path.join(root, "package.json"), "utf8"));
-assert.equal(packageJson.dependencies["@profitia/advisory-widget"], "1.2.0");
+assert.equal(packageJson.dependencies["@profitia/advisory-widget"], "1.2.1");
 assert.equal(packageJson.dependencies["@profitia/cic-core"], "1.2.1");
 const adapterSource = readFileSync(path.join(root, "features/advisory-assistant/AdvisoryAssistant.tsx"), "utf8");
 assert.match(adapterSource, /@profitia\/advisory-widget/);
@@ -75,5 +75,7 @@ assert.match(packageStyles, /paw-quick-reply--selected/);
 assert.match(packageStyles, /--paw-panel-max-height: 700px/);
 assert.match(packageStyles, /paw-footer__reset/);
 assert.match(packageStyles, /paw-history-enter/);
+assert.match(packageStyles, /paw-history__recommendation/);
+assert.match(packageStyles, /paw-composer > p \{ width: 100%/);
 
 console.log("Advisory widget UX: package migration regression checks passed");

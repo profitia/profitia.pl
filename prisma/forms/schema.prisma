@@ -237,6 +237,7 @@ model AdvisoryConversation {
   messages       Json
   intentCode     String?  @map("intent_code")
   destinationId  String?  @map("destination_id")
+  recommendation Json?
   ipAddress      String?  @db.Inet @map("ip_address")
   startedAt      DateTime @map("started_at")
   lastActivityAt DateTime @map("last_activity_at")
