@@ -9,6 +9,12 @@ import enDict from '@/dictionaries/en.json'
 import { useLanguageNavigation } from './LanguageNavigationProvider'
 import { resolveLanguageSwitchPath } from '@/lib/articles/language-navigation'
 import { getPublicPath } from '@/lib/routing/public-routes'
+import {
+  HEADER_MENU_CONTENT,
+  type HeaderMenuContent,
+  type HeaderMenuId,
+  type HeaderMenuItemContent,
+} from '@/lib/navigation/header-menu-content'
 
 const LOCALE_COOKIE = 'PROFITIA_LOCALE'
 const HEADER_SURFACE_CLASS = 'bg-[rgba(255,255,255,0.96)] backdrop-blur-md'
@@ -23,16 +29,14 @@ const HEADER_RESPONSIVE_CLASSES = {
     'fixed inset-0 z-40 lg:hidden flex flex-col overflow-y-auto overscroll-contain touch-pan-y bg-white transition-all duration-300 ease-out [-webkit-overflow-scrolling:touch]',
 } as const
 
-type DesktopMenuId = 'advisory' | 'digital-services' | null
+type DesktopMenuId = HeaderMenuId | null
 
-type HeaderMenuLink = {
+type HeaderMenuLink = HeaderMenuItemContent & {
   href: string
-  label: string
 }
 
-type HeaderMenuDefinition = {
-  id: Exclude<DesktopMenuId, null>
-  label: string
+type HeaderMenuDefinition = Omit<HeaderMenuContent, 'items'> & {
+  id: HeaderMenuId
   links: HeaderMenuLink[]
   isLinkActive: (href: string, pathname: string) => boolean
 }
@@ -43,9 +47,10 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
-  const desktopMenuRefs = useRef<Record<Exclude<DesktopMenuId, null>, HTMLDivElement | null>>({ advisory: null, 'digital-services': null })
-  const firstDesktopLinkRefs = useRef<Record<Exclude<DesktopMenuId, null>, HTMLAnchorElement | null>>({ advisory: null, 'digital-services': null })
-  const menuToFocusRef = useRef<Exclude<DesktopMenuId, null> | null>(null)
+  const desktopNavRef = useRef<HTMLElement | null>(null)
+  const desktopMenuTriggerRefs = useRef<Record<HeaderMenuId, HTMLButtonElement | null>>({ advisory: null, 'digital-services': null })
+  const firstDesktopLinkRefs = useRef<Record<HeaderMenuId, HTMLAnchorElement | null>>({ advisory: null, 'digital-services': null })
+  const menuToFocusRef = useRef<HeaderMenuId | null>(null)
   const { languagePaths } = useLanguageNavigation()
 
   const isEN = localeOverride ? localeOverride === 'en' : pathname.startsWith('/en')
@@ -53,10 +58,6 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const dict = isEN ? enDict : plDict
   const servicesHref = getPublicPath('services:index', currentLocale)
   const productsHref = getPublicPath('products:index', currentLocale)
-  const digitalConsultingHref = getPublicPath('digital-service:digital-consulting', currentLocale)
-  const digitalSpendAnalyticsHref = getPublicPath('digital-service:spend-analytics', currentLocale)
-  const customApplicationsHref = getPublicPath('digital-service:custom-applications', currentLocale)
-  const aiAgentsHref = getPublicPath('digital-service:ai-agents', currentLocale)
   const educationHref = getPublicPath('education:index', currentLocale)
   const careerHref = getPublicPath('career:index', currentLocale)
   const aboutHref = getPublicPath('about', currentLocale)
@@ -64,17 +65,13 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const spotHref = getPublicPath('service:analiza-spot', currentLocale)
   const homeHref = getPublicPath('home', currentLocale)
   const blogHref = isEN ? '/en/blog' : '/blog'
-  const advisoryLinks = [
-    { href: spotHref, label: dict.nav.startWithAssessment },
-    { href: servicesHref, label: dict.nav.services },
-    { href: productsHref, label: dict.nav.products },
-  ]
-  const digitalServiceLinks = [
-    { href: digitalConsultingHref, label: dict.nav.digitalConsulting },
-    { href: digitalSpendAnalyticsHref, label: dict.nav.digitalSpendAnalytics },
-    { href: customApplicationsHref, label: dict.nav.customApplications },
-    { href: aiAgentsHref, label: dict.nav.aiAgents },
-  ]
+  const menuContent = HEADER_MENU_CONTENT[currentLocale]
+  const resolveMenuLinks = (menu: HeaderMenuContent): HeaderMenuLink[] => menu.items.map((item) => ({
+    ...item,
+    href: getPublicPath(item.routeId, currentLocale),
+  }))
+  const advisoryLinks = resolveMenuLinks(menuContent.advisory)
+  const digitalServiceLinks = resolveMenuLinks(menuContent['digital-services'])
   const isAdvisoryLinkActive = (href: string, currentPath: string) => {
     if (href === spotHref) {
       return currentPath === spotHref
@@ -94,19 +91,21 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const desktopMenus: HeaderMenuDefinition[] = [
     {
       id: 'advisory',
-      label: dict.nav.advisory,
+      ...menuContent.advisory,
       links: advisoryLinks,
       isLinkActive: isAdvisoryLinkActive,
     },
     {
       id: 'digital-services',
-      label: dict.nav.digitalServices,
+      ...menuContent['digital-services'],
       links: digitalServiceLinks,
       isLinkActive: isDigitalServiceLinkActive,
     },
   ]
   const isMenuActive = (menu: HeaderMenuDefinition) => menu.links.some((link) => menu.isLinkActive(link.href, pathname))
-  const isAdvisoryActive = isMenuActive(desktopMenus[0])
+  const activeDesktopMenu = openDesktopMenu
+    ? desktopMenus.find((menu) => menu.id === openDesktopMenu)
+    : undefined
 
   // ── Legal pages always show the scrolled (stable) header ──────
   const isLegalPage = [
@@ -138,11 +137,13 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   useEffect(() => {
     if (!openDesktopMenu) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpenDesktopMenu(null)
+      if (e.key === 'Escape') {
+        desktopMenuTriggerRefs.current[openDesktopMenu]?.focus()
+        setOpenDesktopMenu(null)
+      }
     }
     const onPointerDown = (event: MouseEvent) => {
-      const activeMenuRef = desktopMenuRefs.current[openDesktopMenu]
-      if (!activeMenuRef?.contains(event.target as Node)) {
+      if (!desktopNavRef.current?.contains(event.target as Node)) {
         setOpenDesktopMenu(null)
       }
     }
@@ -196,7 +197,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
   const secondaryNav = [
     { href: contactHref, label: dict.nav.contact },
   ]
-  const focusFirstDesktopLink = (menuId: Exclude<DesktopMenuId, null>) => {
+  const focusFirstDesktopLink = (menuId: HeaderMenuId) => {
     menuToFocusRef.current = menuId
   }
 
@@ -235,8 +236,15 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
 
           {/* Desktop nav */}
           <nav
-            className={HEADER_RESPONSIVE_CLASSES.desktopNav}
+            ref={desktopNavRef}
+            className={`${HEADER_RESPONSIVE_CLASSES.desktopNav} relative`}
             aria-label={isEN ? 'Main navigation' : 'Nawigacja główna'}
+            onMouseLeave={() => setOpenDesktopMenu(null)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                setOpenDesktopMenu(null)
+              }
+            }}
           >
             {desktopMenus.map((menu) => {
               const menuOpen = openDesktopMenu === menu.id
@@ -245,23 +253,18 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
               return (
                 <div
                   key={menu.id}
-                  ref={(node) => { desktopMenuRefs.current[menu.id] = node }}
-                  className="relative"
+                  className="flex items-center"
                   onMouseEnter={() => setOpenDesktopMenu(menu.id)}
-                  onMouseLeave={() => setOpenDesktopMenu(null)}
-                  onBlur={(event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                      setOpenDesktopMenu(null)
-                    }
-                  }}
                 >
                   <button
+                    ref={(node) => { desktopMenuTriggerRefs.current[menu.id] = node }}
+                    id={`desktop-menu-trigger-${menu.id}`}
                     type="button"
                     className={`relative inline-flex items-center gap-1 text-[13px] lg:text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
                       menuActive || menuOpen ? 'text-brand-blue' : 'text-gray-500 hover:text-brand-blue'
                     } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-md`}
-                    aria-haspopup="menu"
                     aria-expanded={menuOpen}
+                    aria-controls={`desktop-menu-${menu.id}`}
                     onClick={() => setOpenDesktopMenu((current) => current === menu.id ? null : menu.id)}
                     onKeyDown={(event) => {
                       if (event.key === 'Escape') {
@@ -295,41 +298,78 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                       <span className="absolute -bottom-1 left-0 right-0 h-px bg-brand-blue opacity-40 rounded-full" aria-hidden="true" />
                     )}
                   </button>
-
-                  {menuOpen && (
-                    <div className="absolute left-0 top-full z-50 pt-3">
-                      <div
-                        role="menu"
-                        aria-label={menu.label}
-                        className={`min-w-[220px] rounded-xl ${HEADER_SURFACE_CLASS} p-2 shadow-[0_20px_45px_rgba(15,23,42,0.08)]`}
-                      >
-                        {menu.links.map((link, index) => (
-                          <Link
-                            key={link.href}
-                            ref={index === 0 ? (node) => { firstDesktopLinkRefs.current[menu.id] = node } : undefined}
-                            href={link.href}
-                            role="menuitem"
-                            className={`flex items-center rounded-xl px-3 py-2 text-[13.5px] transition-colors duration-200 ${
-                              menu.isLinkActive(link.href, pathname)
-                                ? 'bg-[rgba(199,237,251,0.45)] text-brand-blue font-medium'
-                                : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
-                            } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
-                          >
-                            {link.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               )
             })}
+
+            {activeDesktopMenu && (
+              <div
+                id={`desktop-menu-${activeDesktopMenu.id}`}
+                className="absolute left-0 top-full z-50 pt-3"
+              >
+                <div
+                  role="group"
+                  aria-labelledby={`desktop-menu-trigger-${activeDesktopMenu.id}`}
+                  className={`w-[min(760px,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-gray-100 ${HEADER_SURFACE_CLASS} shadow-[0_24px_60px_rgba(15,23,42,0.14)]`}
+                >
+                  <div className="border-b border-gray-100 px-5 py-4">
+                    <p className="editorial-label text-[rgba(0,109,158,0.82)]">
+                      {activeDesktopMenu.label}
+                    </p>
+                    <p className="mt-1.5 text-[18px] font-medium tracking-[-0.025em] text-[rgb(36,47,68)]">
+                      {activeDesktopMenu.heading}
+                    </p>
+                  </div>
+
+                  <div className={`grid gap-1.5 p-2 ${
+                    activeDesktopMenu.desktopColumns === 3 ? 'grid-cols-3' : 'grid-cols-2'
+                  }`}>
+                    {activeDesktopMenu.links.map((link, index) => (
+                      <Link
+                        key={link.href}
+                        ref={index === 0 ? (node) => { firstDesktopLinkRefs.current[activeDesktopMenu.id] = node } : undefined}
+                        href={link.href}
+                        className={`group min-w-0 rounded-xl p-2.5 transition-colors duration-200 ${
+                          activeDesktopMenu.isLinkActive(link.href, pathname)
+                            ? 'bg-[rgba(199,237,251,0.45)]'
+                            : 'hover:bg-gray-50'
+                        } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
+                      >
+                        <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100">
+                          <Image
+                            src={link.imageSrc}
+                            alt={link.imageAlt}
+                            fill
+                            sizes={activeDesktopMenu.desktopColumns === 3 ? '220px' : '350px'}
+                            className="object-cover transition-opacity duration-200 group-hover:opacity-90"
+                          />
+                        </div>
+                        <div className="px-0.5 pb-0.5 pt-3">
+                          <div className={`flex items-center gap-2 text-[14px] font-medium tracking-[-0.015em] ${
+                            activeDesktopMenu.isLinkActive(link.href, pathname)
+                              ? 'text-brand-blue'
+                              : 'text-[rgb(36,47,68)] group-hover:text-brand-blue'
+                          }`}>
+                            <span>{link.label}</span>
+                            <span className="text-brand-blue transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+                          </div>
+                          <p className="mt-1.5 text-[12.5px] leading-[1.55] text-gray-500">
+                            {link.description}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Primary links */}
             {primaryNav.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
+                onMouseEnter={() => setOpenDesktopMenu(null)}
                 className={`relative text-[13px] lg:text-[13.5px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isActive(link.href)
                     ? 'text-brand-blue'
@@ -354,6 +394,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
               <Link
                 key={link.href}
                 href={link.href}
+                onMouseEnter={() => setOpenDesktopMenu(null)}
                 className={`text-[13px] lg:text-[13.5px] tracking-[-0.01em] transition-colors duration-200 ease-out ${
                   isActive(link.href)
                     ? 'text-brand-blue font-medium'
@@ -488,7 +529,14 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                             : 'text-gray-600 hover:text-brand-blue'
                         } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-md`}
                       >
-                        {link.label}
+                        <span className="block">{link.label}</span>
+                        <span className={`mt-1.5 block max-w-[30rem] text-[13px] font-normal leading-relaxed ${
+                          menu.isLinkActive(link.href, pathname)
+                            ? 'text-brand-blue/80'
+                            : 'text-gray-500'
+                        }`}>
+                          {link.description}
+                        </span>
                       </Link>
                     ))}
                   </div>

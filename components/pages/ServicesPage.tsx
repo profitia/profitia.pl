@@ -5,6 +5,7 @@ import ServicesContainer from './ServicesContainer'
 import { SERVICES_CATALOG } from './servicesCatalog'
 import { getPublicPath, type PublicRouteId } from '@/lib/routing/public-routes'
 import type { CatalogDomain } from './catalogTypes'
+import { PUBLIC_HERO_ASSETS } from '@/lib/presentation/public-hero-assets'
 
 interface Props {
   locale: Locale
@@ -30,7 +31,7 @@ const COPY = {
       title: 'Budujemy przewagę zakupową poprzez dane, negocjacje i transformację funkcji zakupowej.',
       subtitle:
         'Pracujemy z organizacjami, które chcą odzyskać kontrolę nad kosztami, poprawić pozycję negocjacyjną i budować decyzje zakupowe w oparciu o dane, a nie intuicję.',
-      imageSrc: '/images/website/Profitia_1.jpg',
+      imageSrc: PUBLIC_HERO_ASSETS.advisoryServices,
       imageAlt: 'Doradztwo zakupowe Profitia',
     },
     cta: {
@@ -45,7 +46,7 @@ const COPY = {
       title: 'We help procurement teams build leverage through intelligence, negotiations and operating transformation.',
       subtitle:
         'We work with organisations that want to regain control over costs, improve their negotiation position and build procurement decisions on data - not intuition.',
-      imageSrc: '/images/website/Profitia_1.jpg',
+      imageSrc: PUBLIC_HERO_ASSETS.advisoryServices,
       imageAlt: 'Profitia procurement advisory',
     },
     cta: {

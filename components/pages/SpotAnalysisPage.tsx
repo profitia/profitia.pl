@@ -3,6 +3,7 @@ import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import { PremiumCard, RevealWrapper } from '@/components/ui'
 import { getPublicPath } from '@/lib/routing/public-routes'
 import type { Locale } from '@/lib/capabilities'
+import { PUBLIC_HERO_ASSETS } from '@/lib/presentation/public-hero-assets'
 
 interface Props {
   locale: Locale
@@ -266,7 +267,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
         title={c.hero.title}
         subtitle={c.hero.subtitle}
         variant="services"
-        imageSrc="/images/website/Profitia_17.jpg"
+        imageSrc={PUBLIC_HERO_ASSETS.spotAnalysis}
         imageAlt={
           locale === 'pl'
             ? 'Konsultanci Profitia podczas spotkania roboczego'

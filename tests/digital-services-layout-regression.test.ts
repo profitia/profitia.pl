@@ -57,9 +57,11 @@ test('digital services catalog stays in shared accordion data model', () => {
 })
 
 test('header reuses one desktop menu mechanism for advisory and digital services', () => {
-  assert.match(headerSource, /type DesktopMenuId = 'advisory' \| 'digital-services' \| null/)
+  assert.match(headerSource, /type DesktopMenuId = HeaderMenuId \| null/)
+  assert.match(headerSource, /HEADER_MENU_CONTENT\[currentLocale\]/)
   assert.match(headerSource, /const desktopMenus: HeaderMenuDefinition\[] = \[/)
   assert.match(headerSource, /desktopMenus\.map\(\(menu\) => \{/)
+  assert.match(headerSource, /activeDesktopMenu\.links\.map\(\(link, index\) =>/)
   assert.doesNotMatch(headerSource, /const \[digitalServicesOpen, setDigitalServicesOpen\]/)
 })
 

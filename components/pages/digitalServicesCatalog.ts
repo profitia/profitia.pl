@@ -1,4 +1,5 @@
 import type { Locale } from '@/lib/capabilities'
+import { PUBLIC_HERO_ASSETS } from '@/lib/presentation/public-hero-assets'
 import type { CatalogDomain } from './catalogTypes'
 
 export type DigitalServicesPageContent = {
@@ -29,7 +30,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         eyebrow: 'Usługi Digital · Digital Consulting',
         title: 'Technologia zakupowa dopasowana do Twojej organizacji',
         subtitle: 'Oceniamy dojrzałość organizacji w zakresie automatyzacji procesów zakupowych, projektujemy docelowy stack technologiczny oraz wspieramy wybór dostawców, wdrożenie i zarządzanie zmianą.',
-        imageSrc: '/images/website/Digital Consulting Profitia.png',
+        imageSrc: PUBLIC_HERO_ASSETS.digitalConsulting,
         imageAlt: 'Digital Consulting Profitia',
       },
       seo: {
@@ -84,7 +85,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         eyebrow: 'Usługi Digital · Spend Analytics',
         title: 'Przejrzystość wydatków, która prowadzi do lepszych decyzji',
         subtitle: 'Porządkujemy dane zakupowe i tail spend, usprawniamy zarządzanie kluczowymi kategoriami oraz identyfikujemy realny potencjał oszczędności.',
-        imageSrc: '/images/website/Spend Analytics Profitia.png',
+        imageSrc: PUBLIC_HERO_ASSETS.digitalSpendAnalytics,
         imageAlt: 'Spend Analytics Profitia',
       },
       seo: {
@@ -116,7 +117,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         eyebrow: 'Usługi Digital · Dedykowane aplikacje',
         title: 'Aplikacje stworzone wokół Twoich procesów',
         subtitle: 'Projektujemy i wdrażamy dedykowane aplikacje dopasowane do istniejących procesów i procedur, aby zwiększyć automatyzację zakupów i zarządzania łańcuchem dostaw.',
-        imageSrc: '/images/website/Dedykowane aplikacje Profitia.png',
+        imageSrc: PUBLIC_HERO_ASSETS.digitalCustomApplications,
         imageAlt: 'Dedykowane aplikacje zakupowe Profitia',
       },
       seo: {
@@ -148,7 +149,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         eyebrow: 'Usługi Digital · Agenci AI',
         title: 'Agenci AI stworzeni do codziennej pracy zakupów',
         subtitle: 'Projektujemy spersonalizowanych agentów wspierających bieżącą pracę działu zakupów, podejmowanie decyzji i sprawniejszą realizację procesów.',
-        imageSrc: '/images/website/Agenci AI.png',
+        imageSrc: PUBLIC_HERO_ASSETS.digitalAiAgents,
         imageAlt: 'Agenci AI dla zakupów',
       },
       seo: {
@@ -182,7 +183,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         eyebrow: 'Digital Services · Digital Consulting',
         title: 'Procurement technology designed around your organisation',
         subtitle: 'We assess your organisation’s procurement automation maturity, define the target technology stack, and support supplier selection, implementation and change management.',
-        imageSrc: '/images/website/Digital Consulting Profitia.png',
+        imageSrc: PUBLIC_HERO_ASSETS.digitalConsulting,
         imageAlt: 'Profitia Digital Consulting',
       },
       seo: {
@@ -237,7 +238,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         eyebrow: 'Digital Services · Spend Analytics',
         title: 'Clear spend data for better decisions',
         subtitle: 'We structure procurement data and tail spend, improve the management of key categories, and identify tangible savings opportunities.',
-        imageSrc: '/images/website/Spend Analytics Profitia.png',
+        imageSrc: PUBLIC_HERO_ASSETS.digitalSpendAnalytics,
         imageAlt: 'Profitia Spend Analytics',
       },
       seo: {
@@ -269,7 +270,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         eyebrow: 'Digital Services · Custom Applications',
         title: 'Applications built around your processes',
         subtitle: 'We design and implement custom applications aligned with your existing processes and procedures to increase automation across procurement and supply chain management.',
-        imageSrc: '/images/website/Dedykowane aplikacje Profitia.png',
+        imageSrc: PUBLIC_HERO_ASSETS.digitalCustomApplications,
         imageAlt: 'Profitia custom procurement applications',
       },
       seo: {
@@ -301,7 +302,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         eyebrow: 'Digital Services · AI Agents',
         title: 'AI agents built for day-to-day procurement work',
         subtitle: 'We design tailored AI agents that support day-to-day procurement work, improve decision-making and accelerate key processes.',
-        imageSrc: '/images/website/Agenci AI.png',
+        imageSrc: PUBLIC_HERO_ASSETS.digitalAiAgents,
         imageAlt: 'Profitia AI agents for procurement',
       },
       seo: {

@@ -35,6 +35,7 @@
     "test:advisory-widget": "tsx tests/advisory-widget-ux.test.ts && tsx tests/advisory-chat-ui-stage1.test.ts",
     "test:advisory-history": "tsx tests/advisory-history.test.ts",
     "test:conversation-recovery": "tsx tests/conversation-recovery.test.ts",
+    "test:header-mega-menu": "tsx --test tests/header-mega-menu-regression.test.ts tests/digital-services-layout-regression.test.ts tests/mobile-menu-scroll-regression.test.ts tests/marketing-content-fixes-regression.test.ts",
     "report:conversation-recovery": "tsx scripts/generate-conversation-recovery-report.ts",
     "test:advisory-stage3:live": "tsx scripts/run-advisory-acceptance.ts",
     "test:blog-phase1": "tsx tests/blog-cms-phase1.test.ts",

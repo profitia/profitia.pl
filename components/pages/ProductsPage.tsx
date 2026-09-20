@@ -4,6 +4,7 @@ import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import ServicesContainer from './ServicesContainer'
 import { PRODUCTS_CATALOG } from './productsCatalog'
 import { getPublicPath } from '@/lib/routing/public-routes'
+import { PUBLIC_HERO_ASSETS } from '@/lib/presentation/public-hero-assets'
 
 interface Props {
   locale: Locale
@@ -71,7 +72,7 @@ export default function ProductsPage({ locale }: Props) {
         eyebrow={c.hero.eyebrow}
         title={c.hero.title}
         subtitle={c.hero.subtitle}
-        imageSrc="/images/website/Profitia_27.jpg"
+        imageSrc={PUBLIC_HERO_ASSETS.advisoryProducts}
         imageAlt={locale === 'pl' ? 'Produkty doradcze Profitia' : 'Profitia advisory products'}
         variant="services"
       />
