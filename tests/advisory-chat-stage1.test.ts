@@ -101,6 +101,12 @@ function testValidatedOutputGate(): void {
   assert.equal(result.content, "Krótka odpowiedź.");
   assert.equal(result.content.includes("metadata"), false);
   assert.equal(result.metadata?.intent, "I4_DIGITALIZATION");
+
+  const tokenMetadata = finalizeAdvisoryResponse(
+    'Krótka odpowiedź. <|metadata|>{"intent":"I4_DIGITALIZATION","confidence":0.9}',
+  );
+  assert.equal(tokenMetadata.content, "Krótka odpowiedź.");
+  assert.equal(tokenMetadata.issues.includes("metadata_token_block"), true);
 }
 
 function testSingleQuestionContract(): void {

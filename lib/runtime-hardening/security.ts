@@ -135,6 +135,7 @@ const OUTPUT_REDACT_PATTERNS: ReadonlyArray<{ name: string; pattern: RegExp; rep
   { name: "html_injection", pattern: /<(?:iframe|object|embed|form|input|button)[^>]*>/gi, replacement: "" },
   // Internal metadata leaks
   { name: "metadata_block", pattern: /```metadata[\s\S]*?```/g, replacement: "" },
+  { name: "metadata_token_block", pattern: /<\|metadata\|>\s*\{[\s\S]*$/g, replacement: "" },
 ];
 
 export interface OutputSanitizationResult {

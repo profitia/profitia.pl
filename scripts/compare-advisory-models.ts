@@ -47,6 +47,7 @@ const SCENARIOS: readonly ComparisonScenario[] = [
     id: "english-product-alternative",
     locale: "en",
     turns: [
+      "A strategic supplier is increasing prices and we need to manage the risk.",
       "We need market benchmarks before a supplier negotiation.",
       "Not advisory services. Show me a product or tool instead.",
     ],
