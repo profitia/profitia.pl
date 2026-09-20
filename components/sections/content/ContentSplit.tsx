@@ -18,6 +18,7 @@ export interface ContentSplitProps {
   image: { src: string; alt: string }
   imagePosition?: 'right' | 'left'
   background?: 'white' | 'gray-50'
+  imageLayout?: 'card' | 'stretch'
 }
 
 export function ContentSplit({
@@ -28,15 +29,17 @@ export function ContentSplit({
   image,
   imagePosition = 'right',
   background = 'white',
+  imageLayout = 'card',
 }: ContentSplitProps) {
   const bgCls = background === 'white' ? 'bg-white' : 'bg-gray-50'
   const contentOrder = imagePosition === 'left' ? 'lg:order-2' : 'lg:order-1'
   const imageOrder = imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2'
+  const isStretchImage = imageLayout === 'stretch'
 
   return (
     <section className={`py-28 ${bgCls} border-t border-gray-100`}>
       <div className="container mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 ${isStretchImage ? 'lg:items-stretch' : 'items-center'}`}>
 
           <div className={contentOrder}>
             <RevealWrapper delay={0}>
@@ -65,9 +68,9 @@ export function ContentSplit({
             )}
           </div>
 
-          <div className={imageOrder}>
-            <RevealWrapper delay={1}>
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
+          <div className={`${imageOrder} ${isStretchImage ? 'lg:self-stretch' : ''}`}>
+            <RevealWrapper delay={1} className={isStretchImage ? 'h-full' : undefined}>
+              <div className={`relative aspect-[4/3] overflow-hidden bg-gray-100 ${isStretchImage ? 'lg:aspect-auto lg:h-full lg:min-h-full' : 'rounded-2xl'}`}>
                 <Image
                   src={image.src}
                   alt={image.alt}

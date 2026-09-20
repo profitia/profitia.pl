@@ -247,7 +247,7 @@ const COPY = {
       lead: 'People. Culture. Trust. Everyday cooperation.',
       paragraphs: [
         'Friendly Workplace® recognises organisations that create modern, welcoming workplaces, invest in people, build relationships based on partnership and provide genuine employee support - the very qualities that should be everyday practice rather than polished statements on a website.',
-        'At PROFITIA, we have long believed that a strong consulting firm is defined not only by the quality of its recommendations, rigorous analysis and accountability for client outcomes. It also depends on a team whose members want to work together, trust one another, keep developing and deliver demanding projects without losing what matters most - positive energy and mutual respect.',
+        'At Profitia, we have long believed that a strong consulting firm is defined not only by the quality of its recommendations, rigorous analysis and accountability for client outcomes. It also depends on a team whose members want to work together, trust one another, keep developing and deliver demanding projects without losing what matters most - positive energy and mutual respect.',
         'Consulting is, of course, about projects, numbers, negotiations, transformations and measurable outcomes. Behind all of them are people - their expertise, character, commitment and everyday decisions, which shape a company’s culture far more than any HR document ever could.',
       ],
       linkLabel: 'Find out more',
@@ -423,6 +423,7 @@ export default function CareerListingPage({ locale }: Props) {
         }}
         imagePosition="left"
         background="gray-50"
+        imageLayout="stretch"
       />
 
       <CareerValues

@@ -49,6 +49,12 @@ test('Friendly Workplace section reuses ContentSplit and keeps an accessible ext
 
   assert.equal(existsSync(new URL('../public/images/website/Friendly Workspace Profitia.webp', import.meta.url)), true)
   assert.match(career, /<ContentSplit/)
+  assert.match(career, /imageLayout="stretch"/)
+  assert.doesNotMatch(career, /At PROFITIA/)
+  assert.match(career, /At Profitia/)
+  assert.match(contentSplit, /imageLayout\?: 'card' \| 'stretch'/)
+  assert.match(contentSplit, /lg:items-stretch/)
+  assert.match(contentSplit, /lg:aspect-auto lg:h-full lg:min-h-full/)
   assert.match(career, /imagePosition="left"/)
   assert.match(career, /target: '_blank'/)
   assert.match(contentSplit, /noopener noreferrer/)
