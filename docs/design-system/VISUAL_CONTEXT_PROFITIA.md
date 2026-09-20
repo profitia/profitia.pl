@@ -1416,6 +1416,14 @@ The background-fill restriction applies to top-level navigation links. Child pre
 - summaries are limited to three visible lines so copy length cannot resize the card,
 - grid columns arrange canonical cards; they must never stretch a card to fill the Parent panel.
 
+**Canonical panel geometry:**
+- the `Doradztwo` panel is the reference for outer spacing, header spacing, borders, radius, and shadow,
+- panel width fits its canonical card grid instead of leaving unused side space: `760 px` for three columns and `510 px` for two columns,
+- the Child grid always uses `8 px` outer padding and `6 px` gaps,
+- the editorial heading always uses `20 px` horizontal and `16 px` vertical padding,
+- two-column Parents must not inherit the three-column panel width or compensate with enlarged margins,
+- the viewport cap remains `calc(100vw - 2rem)`.
+
 **Image behavior:**
 - desktop only,
 - rendered only while the panel is open,
