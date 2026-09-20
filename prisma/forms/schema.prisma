@@ -226,3 +226,24 @@ model JobApplication {
   @@index([applicationStatus])
   @@index([submittedAt])
 }
+
+model AdvisoryConversation {
+  id             String   @id @default(cuid())
+  visitorKeyHash String   @map("visitor_key_hash")
+  sessionId      String   @map("session_id")
+  locale         String
+  advisorId      String   @map("advisor_id")
+  title          String
+  messages       Json
+  intentCode     String?  @map("intent_code")
+  destinationId  String?  @map("destination_id")
+  ipAddress      String?  @db.Inet @map("ip_address")
+  startedAt      DateTime @map("started_at")
+  lastActivityAt DateTime @map("last_activity_at")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@unique([visitorKeyHash, sessionId])
+  @@index([visitorKeyHash, lastActivityAt])
+  @@map("advisory_conversations")
+}
