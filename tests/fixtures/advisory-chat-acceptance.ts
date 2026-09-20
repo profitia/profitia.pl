@@ -3,6 +3,7 @@ import {
   PROFITIA_ADVISORY_ACCEPTANCE_SCENARIOS,
   type AdvisoryAcceptanceScenario as CicAcceptanceScenario,
 } from "@profitia/cic-evals";
+import { mergeProfitiaRoutingPreferences } from "@profitia/cic-profitia";
 
 export type { AdvisoryAcceptanceTurn } from "@profitia/cic-evals";
 
@@ -64,6 +65,7 @@ export function createAcceptanceSession(
       escalationReady: false,
       ctaFatigue: 0,
       engagementScore: 0,
+      routingPreferences: { excludedDestinationIds: [] },
     },
     intelligence: {
       pagesVisited: [slug],
@@ -88,4 +90,10 @@ export function appendAcceptanceMessage(
     content,
     timestamp: session.messages.length + 1,
   });
+  if (role === "user") {
+    session.state.routingPreferences = mergeProfitiaRoutingPreferences(
+      session.state.routingPreferences,
+      content,
+    );
+  }
 }

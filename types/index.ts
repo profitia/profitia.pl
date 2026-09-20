@@ -11,7 +11,10 @@ import type {
   IntentSignal as CicIntentSignal,
   UrgencyLevel as CicUrgencyLevel,
 } from "@profitia/cic-procurement";
-import type { ProfitiaDestinationId } from "@profitia/cic-profitia";
+import type {
+  ProfitiaDestinationId,
+  ProfitiaRoutingPreferences,
+} from "@profitia/cic-profitia";
 
 // Re-export for convenience
 export type { Locale }
@@ -142,6 +145,7 @@ export interface SessionState {
   escalationReady: boolean;
   ctaFatigue: number; // 0-3, how many CTAs shown
   engagementScore: number; // 0-100
+  routingPreferences?: ProfitiaRoutingPreferences;
   conversationRecovery?: import("@/lib/advisory-chat/conversation-recovery").ConversationRecoverySessionState;
 }
 

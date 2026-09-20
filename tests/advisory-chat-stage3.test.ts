@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { getAdvisoryDestinationById } from "@/lib/advisory-chat/destination-registry";
+import { buildConversationRecoveryPayload } from "@/lib/advisory-chat/conversation-recovery";
+import { buildRecommendationRationale } from "@/lib/advisory-widget/recommendation-rationale";
 import { finalizeAdvisoryResponse } from "@/lib/advisory-chat/finalize-response";
 import { buildAdvisorySystemPrompt } from "@/lib/advisory-quality/system-prompt";
 import { runAdvisoryOrchestrator } from "@/lib/engines/advisory-orchestrator";
@@ -128,8 +130,69 @@ function assertPolishLanguageContract(): void {
   );
 }
 
+function assertReportedConversationRegression(): void {
+  const basis = ADVISORY_ACCEPTANCE_SCENARIOS[0];
+  const session = createAcceptanceSession(basis, "regression-cmua47td10000dnwx2c8jotlu");
+  const turns = [
+    "w czym mi mozesz pomoc?",
+    "ryzyko zw z disrawcami",
+    "ryzyko zwiazane z dostawcami",
+    "benchmark",
+    "nie uslugi doradcze, cos innego",
+  ];
+
+  let decision = runAdvisoryOrchestrator(session);
+  for (const turn of turns) {
+    appendAcceptanceMessage(session, "user", turn);
+    const recovery = buildConversationRecoveryPayload({
+      message: turn,
+      locale: "pl",
+      userTurnCount: session.messages.filter(({ role }) => role === "user").length,
+      sessionState: session.state,
+    });
+    assert.equal(recovery, null, turn);
+    decision = runAdvisoryOrchestrator(session);
+    appendAcceptanceMessage(session, "assistant", "Odpowiedź testowa.");
+  }
+
+  assert.equal(decision.conversation.action, "recommend");
+  assert.equal(decision.conversation.intent, "I3_SUPPLIER_RISK");
+  assert.equal(decision.conversation.destinationId, "products");
+  assert.deepEqual(session.state.routingPreferences?.excludedDestinationIds, ["services"]);
+
+  const destination = getAdvisoryDestinationById("products", "pl");
+  assert.equal(destination.href, "/doradztwo/produkty");
+  assert.doesNotMatch(destination.title, /usługi doradcze/i);
+
+  const rationale = buildRecommendationRationale(
+    session.messages,
+    "products",
+    "pl",
+    decision.conversation.intent,
+  );
+  assert.match(rationale.summary, /ryzyko dostawców/);
+  assert.match(rationale.summary, /rynkiem/);
+  assert.doesNotMatch(rationale.summary, /nie usługi doradcze/i);
+
+  const prompt = buildAdvisorySystemPrompt({
+    locale: "pl",
+    pageContext: session.pageContext,
+    sessionState: {
+      ...session.state,
+      detectedIntent: decision.intent.primary,
+      intentConfidence: decision.intent.primaryConfidence,
+    },
+    decision,
+    messageCount: session.messages.length,
+    userMessageCount: turns.length,
+  });
+  assert.match(prompt, /użytkownik wykluczył usługi doradcze/i);
+  assert.match(prompt, /wskazany kierunek: products/i);
+}
+
 runReferenceJourneys();
 assertPolishLanguageContract();
+assertReportedConversationRegression();
 
 console.log(
   `Advisory chat stage 3: ${ADVISORY_ACCEPTANCE_SCENARIOS.length} reference journeys passed`,

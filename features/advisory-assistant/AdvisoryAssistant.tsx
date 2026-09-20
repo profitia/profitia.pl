@@ -25,7 +25,7 @@ import {
   type OpeningScenarioId,
 } from "@/lib/advisory-widget/scenarios";
 import { getPublicPath } from "@/lib/routing/public-routes";
-import type { Message } from "@/types";
+import type { AdvisoryDestinationId, IntentCode, Message } from "@/types";
 import type { Locale } from "@/lib/i18n";
 
 interface AdvisoryAssistantProps {
@@ -44,12 +44,13 @@ const PHASE_LABELS: Record<string, Record<Locale, string>> = {
 };
 
 export function buildProfitiaWidgetRecommendation(
-  destinationId: "services" | "competence" | "digital",
+  destinationId: AdvisoryDestinationId,
   locale: Locale,
   messages: readonly Message[],
+  intent: IntentCode = "UNKNOWN",
 ): AdvisoryWidgetRecommendation {
   const destination = getAdvisoryDestinationById(destinationId, locale);
-  const rationale = buildRecommendationRationale(messages, destinationId, locale);
+  const rationale = buildRecommendationRationale(messages, destinationId, locale, intent);
   return {
     id: destination.analyticsId,
     href: destination.href,
@@ -69,7 +70,7 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
   const [streamingContent, setStreamingContent] = useState("");
   const [activeScenarioId, setActiveScenarioId] = useState<OpeningScenarioId | null>(null);
   const [quickReplyMessageId, setQuickReplyMessageId] = useState<string | null>(null);
-  const [controlledDestinationId, setControlledDestinationId] = useState<"services" | "competence" | "digital" | null>(null);
+  const [controlledDestinationId, setControlledDestinationId] = useState<AdvisoryDestinationId | null>(null);
   const [historyEntries, setHistoryEntries] = useState<AdvisoryWidgetHistoryEntry[]>([]);
   const [historyLoading, setHistoryLoading] = useState(false);
   const [historyError, setHistoryError] = useState<string | null>(null);
@@ -122,7 +123,12 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
   );
   const recommendation = useMemo(() => (
     destinationId && session && (session.state.conversationRecovery?.state ?? "normal") === "normal"
-      ? buildProfitiaWidgetRecommendation(destinationId, conversationLocale, session.messages)
+      ? buildProfitiaWidgetRecommendation(
+          destinationId,
+          conversationLocale,
+          session.messages,
+          session.state.detectedIntent,
+        )
       : null
   ), [conversationLocale, destinationId, session]);
 
@@ -223,6 +229,9 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
     if (source === "prompt") {
       track.openingPromptSelected(Math.max(0, openingScenarios.findIndex(({ prompt }) => prompt.id === context?.promptId)));
     }
+    if (source === "custom" && controlledDestinationId) {
+      setControlledDestinationId(null);
+    }
     addMessage("user", content);
     incrementEngagement(5);
 
@@ -251,6 +260,7 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
       await new Promise((resolve) => window.setTimeout(resolve, 320));
       resetConversationRecovery();
       addMessage("assistant", strings.scenarioResolved);
+      setActiveScenarioId(null);
       setPhase("capability_recommendation");
       setTyping(false);
       runOrchestration();
@@ -354,7 +364,7 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
       setTyping(false);
       setStreaming(false);
     }
-  }, [activeScenarioId, addMessage, applyConversationRecovery, conversationLocale, incrementEngagement, lastDecision, locale, resetConversationRecovery, runOrchestration, session, setPhase, setStreaming, setTyping, strings, updateIntent, updateUrgency]);
+  }, [activeScenarioId, addMessage, applyConversationRecovery, controlledDestinationId, conversationLocale, incrementEngagement, lastDecision, locale, resetConversationRecovery, runOrchestration, session, setPhase, setStreaming, setTyping, strings, updateIntent, updateUrgency]);
 
   const copy = useMemo<AdvisoryWidgetCopy>(() => ({
     title: strings.advisorTitle(ADVISORS[advisor].name),

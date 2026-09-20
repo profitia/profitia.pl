@@ -41,6 +41,23 @@ const DESTINATIONS: Record<AdvisoryDestinationId, AdvisoryDestinationDefinition>
       },
     },
   },
+  products: {
+    id: "products",
+    analyticsId: "DEST-PRODUCTS",
+    routeId: "products:index",
+    copy: {
+      pl: {
+        title: "Produkty i rozwiązania zakupowe",
+        description: "Poznaj konkretne produkty, analitykę i narzędzia oparte na danych rynkowych.",
+        action: "Zobacz produkty",
+      },
+      en: {
+        title: "Procurement products and solutions",
+        description: "Explore concrete products, analytics and tools built on market data.",
+        action: "Explore products",
+      },
+    },
+  },
   competence: {
     id: "competence",
     analyticsId: "DEST-COMPETENCE",

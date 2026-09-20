@@ -95,6 +95,7 @@ export async function listAdvisoryHistory(
         })
       : [],
     destinationId: conversation.destinationId === "services"
+      || conversation.destinationId === "products"
       || conversation.destinationId === "competence"
       || conversation.destinationId === "digital"
       ? conversation.destinationId

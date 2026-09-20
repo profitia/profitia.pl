@@ -47,6 +47,10 @@ import {
 } from '@/lib/runtime-hardening/graceful-degradation'
 import { buildConversationRecoveryPayload } from '@/lib/advisory-chat/conversation-recovery'
 import type { SecuritySignal } from '@profitia/cic-core'
+import {
+  mergeProfitiaRoutingPreferences,
+  resolveProfitiaDestinationId,
+} from '@profitia/cic-profitia'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -160,11 +164,42 @@ export async function POST(req: NextRequest) {
       })
     }
 
+    const serverRoutingPreferences = sanitizedMessages
+      .filter((message) => message.role === 'user')
+      .reduce(
+        (preferences, message) => mergeProfitiaRoutingPreferences(preferences, message.content),
+        sessionState.routingPreferences ?? { excludedDestinationIds: [] },
+      )
+    const effectiveSessionState: SessionState = {
+      ...sessionState,
+      routingPreferences: serverRoutingPreferences,
+    }
+    const effectiveAdvisoryDecision = (() => {
+      if (advisoryDecision?.conversation?.contractVersion !== '1') return advisoryDecision ?? null
+      if (advisoryDecision.conversation.action !== 'recommend') return advisoryDecision
+      const resolvedDestination = resolveProfitiaDestinationId(
+        advisoryDecision.conversation.intent,
+        serverRoutingPreferences,
+      )
+      return {
+        ...advisoryDecision,
+        conversation: resolvedDestination
+          ? { ...advisoryDecision.conversation, destinationId: resolvedDestination }
+          : {
+              ...advisoryDecision.conversation,
+              action: 'ask' as const,
+              destinationId: null,
+              questionLimit: 1 as const,
+              reason: `${advisoryDecision.conversation.reason}:no_permitted_destination`,
+            },
+      }
+    })()
+
     const recoveryPayload = buildConversationRecoveryPayload({
       message: lastUserMessage,
       locale: l,
       userTurnCount: userMessageCount,
-      sessionState,
+      sessionState: effectiveSessionState,
       securitySignal: currentSecuritySignal,
     })
 
@@ -200,7 +235,7 @@ export async function POST(req: NextRequest) {
     const budgetMode = budgetStatus.budgetMode
     const selectedModel = selectModel({
       taskType: isDegraded() ? 'fallback' : 'advisory_chat',
-      urgency: sessionState.urgency,
+      urgency: effectiveSessionState.urgency,
       sessionDepth: messageCount,
       budgetMode,
       isDegraded: isDegraded(),
@@ -210,7 +245,7 @@ export async function POST(req: NextRequest) {
       releaseRequestLock(sessionId)
       obs.fallbackActivated(sessionId, 'Daily budget exceeded')
       const fallback = getFallbackResponse(
-        sessionState.detectedIntent ?? 'UNKNOWN',
+        effectiveSessionState.detectedIntent ?? 'UNKNOWN',
         l,
         'degraded',
       )
@@ -226,7 +261,7 @@ export async function POST(req: NextRequest) {
     if (getCurrentDegradationLevel() === 'emergency') {
       releaseRequestLock(sessionId)
       const fallback = getFallbackResponse(
-        sessionState.detectedIntent ?? 'UNKNOWN',
+        effectiveSessionState.detectedIntent ?? 'UNKNOWN',
         l,
         'emergency',
       )
@@ -237,18 +272,18 @@ export async function POST(req: NextRequest) {
     const systemPrompt = buildAdvisorySystemPrompt({
       locale: l,
       pageContext,
-      sessionState,
-      decision: advisoryDecision ?? null,
+      sessionState: effectiveSessionState,
+      decision: effectiveAdvisoryDecision,
       messageCount,
       userMessageCount,
     })
 
     const compressionProfile = getCompressionProfile({
-      urgency: sessionState.urgency,
-      buyingStage: sessionState.buyingStage,
-      maturity: sessionState.maturity,
+      urgency: effectiveSessionState.urgency,
+      buyingStage: effectiveSessionState.buyingStage,
+      maturity: effectiveSessionState.maturity,
       messageCount,
-      intentConfidence: sessionState.intentConfidence,
+      intentConfidence: effectiveSessionState.intentConfidence,
     })
 
     const maxTokens = adaptiveMaxTokens(compressionProfile.maxTokens, budgetMode)
@@ -300,10 +335,14 @@ export async function POST(req: NextRequest) {
             // The server owns the hard four-turn limit. A client-provided
             // contract may only make the output stricter (zero questions),
             // never relax the server-side limit.
-            const questionLimit: 0 | 1 =
-              userMessageCount >= 4 ||
-              (advisoryDecision?.conversation?.contractVersion === '1' &&
-                advisoryDecision.conversation.questionLimit === 0)
+            const noPermittedDestination = effectiveAdvisoryDecision?.conversation?.reason.endsWith(
+              ':no_permitted_destination',
+            ) ?? false
+            const questionLimit: 0 | 1 = noPermittedDestination
+              ? 1
+              : userMessageCount >= 4 ||
+              (effectiveAdvisoryDecision?.conversation?.contractVersion === '1' &&
+                effectiveAdvisoryDecision.conversation.questionLimit === 0)
                 ? 0
                 : 1
             const finalized = finalizeAdvisoryResponse(fullContent, {
@@ -317,7 +356,7 @@ export async function POST(req: NextRequest) {
             }
 
             const visibleContent = finalized.content || getFallbackResponse(
-              sessionState.detectedIntent ?? 'UNKNOWN',
+              effectiveSessionState.detectedIntent ?? 'UNKNOWN',
               l,
             )
 
@@ -331,12 +370,12 @@ export async function POST(req: NextRequest) {
             const qualityReport = evaluateAdvisoryQuality({
               response: visibleContent,
               locale: l,
-              urgency: sessionState.urgency,
-              phase: sessionState.phase,
+              urgency: effectiveSessionState.urgency,
+              phase: effectiveSessionState.phase,
               hallucinationIssueCount: finalized.issues.length,
               hasDeterministicCTA:
-                advisoryDecision?.conversation?.action === 'recommend' &&
-                advisoryDecision.conversation.destinationId !== null,
+                effectiveAdvisoryDecision?.conversation?.action === 'recommend' &&
+                effectiveAdvisoryDecision.conversation.destinationId !== null,
             })
             obs.qualityScore(sessionId, qualityReport.overallScore, l)
 
@@ -395,7 +434,7 @@ export async function POST(req: NextRequest) {
             obs.fallbackActivated(sessionId, `Retry exhausted (${failureClass})`)
 
             const fallbackContent = getFallbackResponse(
-              sessionState.detectedIntent ?? 'UNKNOWN',
+              effectiveSessionState.detectedIntent ?? 'UNKNOWN',
               l,
             )
             controller.enqueue(
