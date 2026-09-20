@@ -1359,9 +1359,10 @@ Restrained · Editorial · Strategic · Premium consulting · Calm · Non-startu
 **Nav structure - two tiers, one visual line:**
 
 ```
-primaryNav: Usługi · Blog          (font-medium, gray-500 → gray-900)
+parentNav: Doradztwo · Usługi Digital
+primaryNav: Rozwój kompetencji · Kariera · Blog · O nas
 ─── separator (w-px h-3.5 bg-gray-200) ───
-secondaryNav: O nas · Kontakt      (font-normal, gray-400 → gray-700)
+secondaryNav: Kontakt
 ```
 
 **Typography:**
@@ -1384,6 +1385,48 @@ secondaryNav: O nas · Kontakt      (font-normal, gray-400 → gray-700)
 - Underline on all states (only active)
 - Bright color transitions
 - Opacity jumps
+
+The background-fill restriction applies to top-level navigation links. Child preview cards use a restrained gray hover surface to communicate that the entire card is clickable.
+
+---
+
+### C1. CANONICAL PARENT MENU AND CHILD PREVIEW PANEL
+
+`Doradztwo`, `Usługi Digital`, and future Parent entries use one shared disclosure mechanism. A Parent is a button, not a destination link.
+
+**Open behavior:**
+- click toggles the panel,
+- pointer hover may open it as a desktop enhancement,
+- `ArrowDown` opens and focuses the first Child,
+- `Escape` closes the panel and restores focus to the Parent,
+- click outside and route change close the panel.
+
+**Panel content:**
+- one editorial heading for the Parent,
+- a responsive grid of fully clickable Child cards,
+- each card contains the page name, a manually written 2-3 line summary, an arrow, and the same image asset used by that page's hero,
+- three Child entries use a 3-column grid,
+- four Child entries use a 2-column grid.
+
+**Image behavior:**
+- desktop only,
+- rendered only while the panel is open,
+- fixed `16/9` frame with `object-cover`,
+- optimized through `next/image`,
+- asset paths come from `lib/presentation/public-hero-assets.ts`.
+
+**Content source:** `lib/navigation/header-menu-content.ts` is the single lightweight PL/EN registry for Parent headings and Child previews. The Header must not import full page catalogs.
+
+**Accessibility:**
+- use the disclosure navigation pattern with `aria-expanded` and `aria-controls`,
+- keep ordinary links inside the expanded navigation,
+- do not use application-style `role="menu"` or `role="menuitem"` semantics for rich navigation cards.
+
+**Locked:**
+- one shared renderer for every Parent,
+- no page-specific dropdown implementation,
+- summaries are editorial copy, never automatically truncated page body or SEO copy,
+- the whole Child card is the link.
 
 ---
 
@@ -1460,16 +1503,12 @@ secondaryNav: O nas · Kontakt      (font-normal, gray-400 → gray-700)
 - Body scroll locked (`document.body.style.overflow = 'hidden'`)
 
 **Nav links typography:**
-- All links (primary + secondary merged): `text-2xl font-medium tracking-tight`
-- Vertical rhythm: `py-3` per link, `space-y-0` container
-- Active: `text-gray-900` | Inactive: `text-gray-700 hover:text-gray-900`
-- Transition: `duration-150 ease-out`
-
-**Single link map (canonical):**
-```tsx
-[...primaryNav, ...secondaryNav].map(link => <Link ... />)
-```
-No separate primary/secondary rendering on mobile. Unified list.
+- Parent headings: `text-2xl font-medium tracking-tight`
+- Child names: `text-lg font-medium tracking-tight`
+- Child summaries: `text-[13px] font-normal leading-relaxed text-gray-500`
+- Child entries remain text-only on mobile; hero thumbnails are forbidden in the fullscreen overlay.
+- Primary links below Parent groups: `text-2xl font-medium tracking-tight`
+- Active state uses `text-brand-blue`; transitions remain restrained at `duration-150 ease-out`.
 
 **Bottom bar (below nav):**
 - `border-t border-gray-100`, `pt-8`
@@ -1489,10 +1528,10 @@ No separate primary/secondary rendering on mobile. Unified list.
 
 | Breakpoint | Nav | Lang Switcher | CTA | Hamburger |
 |------------|-----|--------------|-----|-----------|
-| `< md` (mobile) | Hidden | Hidden | Hidden | Visible |
-| `≥ md` (desktop) | Visible | Visible | Visible | Hidden |
+| `< lg` (mobile / tablet) | Hidden | Hidden | Hidden | Visible |
+| `≥ lg` (desktop) | Visible | Visible | Visible | Hidden |
 
-Mobile breakpoint: Tailwind `md` = 768px
+Desktop breakpoint: Tailwind `lg` = 1024px
 
 ---
 
@@ -1502,6 +1541,8 @@ Mobile breakpoint: Tailwind `md` = 768px
 - Two-state sticky behavior and timing (`260ms`)
 - Logo position (always left)
 - Nav structure (primary/separator/secondary split)
+- Shared Parent menu and Child preview renderer
+- Desktop hero thumbnails and text-only mobile Child previews
 - CTA color `#1C1C1E`
 - Mobile fullscreen overlay approach
 - Language switcher format (`PL · EN`)
@@ -1514,7 +1555,7 @@ Mobile breakpoint: Tailwind `md` = 768px
 - Header height values (if brand evolution requires)
 
 **FORBIDDEN:**
-- Dropdown mega-menu
+- Separate or page-specific Parent dropdown implementations
 - Animated logo
 - Bright/colored nav hover states
 - Nav underlines on all states (only active)
@@ -1525,6 +1566,8 @@ Mobile breakpoint: Tailwind `md` = 768px
 - Additional nav items without authorization
 
 *Cross-ref: Section 21 (CANONICAL INTERACTION SYSTEM)*
+
+*Sekcja zaktualizowana: September 2026 - autoryzowane rozszerzenie canonical header o wspólny Parent menu i Child preview panel.*
 
 ---
 
