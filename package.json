@@ -46,7 +46,7 @@
     "blog:images:optimize": "node --import tsx scripts/optimize-blog-covers.ts"
   },
   "dependencies": {
-    "@profitia/advisory-widget": "1.2.0",
+    "@profitia/advisory-widget": "1.2.1",
     "@profitia/cic-core": "1.2.1",
     "@profitia/cic-procurement": "1.2.1",
     "@profitia/cic-profitia": "1.2.1",

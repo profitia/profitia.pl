@@ -1,10 +1,11 @@
 import { createHash } from "node:crypto";
 import { isIP } from "node:net";
-import type { Prisma, PrismaClient } from "@/prisma/generated/forms-client";
+import { Prisma, type PrismaClient } from "@/prisma/generated/forms-client";
 import {
   ADVISORY_HISTORY_MAX_CONVERSATIONS,
   ADVISORY_HISTORY_VISIBLE_DAYS,
   advisoryHistoryMessageSchema,
+  advisoryHistoryRecommendationSchema,
   type AdvisoryHistoryRecord,
   type AdvisoryHistorySaveInput,
 } from "./contract";
@@ -36,6 +37,9 @@ export async function saveAdvisoryHistory(
   ipAddress: string | null,
 ) {
   const visitorKeyHash = hashAdvisoryHistoryKey(visitorKey);
+  const recommendation = input.recommendation
+    ? input.recommendation as Prisma.InputJsonValue
+    : Prisma.DbNull;
   await prisma.advisoryConversation.upsert({
     where: { visitorKeyHash_sessionId: { visitorKeyHash, sessionId: input.sessionId } },
     create: {
@@ -47,6 +51,7 @@ export async function saveAdvisoryHistory(
       messages: input.messages as Prisma.InputJsonValue,
       intentCode: input.intentCode ?? null,
       destinationId: input.destinationId ?? null,
+      recommendation,
       ipAddress,
       startedAt: new Date(input.startedAt),
       lastActivityAt: new Date(input.lastActivityAt),
@@ -58,6 +63,7 @@ export async function saveAdvisoryHistory(
       messages: input.messages as Prisma.InputJsonValue,
       intentCode: input.intentCode ?? null,
       destinationId: input.destinationId ?? null,
+      recommendation,
       ...(ipAddress ? { ipAddress } : {}),
       lastActivityAt: new Date(input.lastActivityAt),
     },
@@ -88,6 +94,15 @@ export async function listAdvisoryHistory(
           return parsed.success ? [parsed.data] : [];
         })
       : [],
+    destinationId: conversation.destinationId === "services"
+      || conversation.destinationId === "competence"
+      || conversation.destinationId === "digital"
+      ? conversation.destinationId
+      : null,
+    recommendation: (() => {
+      const parsed = advisoryHistoryRecommendationSchema.safeParse(conversation.recommendation);
+      return parsed.success ? parsed.data : null;
+    })(),
     startedAt: conversation.startedAt.toISOString(),
     updatedAt: conversation.lastActivityAt.toISOString(),
   }));

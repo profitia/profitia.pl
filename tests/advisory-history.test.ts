@@ -30,6 +30,17 @@ const valid = advisoryHistorySaveSchema.safeParse({
   locale: "pl",
   advisorId: "adam",
   messages: [{ id: "message-1", role: "user", content: "Potrzebuję benchmarków" }],
+  destinationId: "services",
+  recommendation: {
+    id: "DEST-SERVICES",
+    href: "/doradztwo/uslugi",
+    title: "Usługi doradcze",
+    description: "Zobacz, jak możemy pomóc.",
+    actionLabel: "Przejdź do usług",
+    contextLabel: "Rozumiem z tego, co piszesz, że:",
+    summary: "potrzebujesz benchmarków cenowych",
+    lead: "Jako pierwszy krok proponuję:",
+  },
   startedAt: Date.now(),
   lastActivityAt: Date.now(),
 });
@@ -52,7 +63,23 @@ async function testPersistenceContract() {
     advisoryConversation: {
       findMany: async (args: Record<string, unknown>) => {
         listCalls.push(args);
-        return [];
+        return [{
+          id: "db-1",
+          visitorKeyHash: hashAdvisoryHistoryKey(visitorKey),
+          sessionId: "session-123",
+          locale: "pl",
+          advisorId: "adam",
+          title: "Potrzebuję benchmarków",
+          messages: valid.success ? valid.data.messages : [],
+          intentCode: null,
+          destinationId: "services",
+          recommendation: valid.success ? valid.data.recommendation : null,
+          ipAddress: "203.0.113.8",
+          startedAt: now,
+          lastActivityAt: now,
+          createdAt: now,
+          updatedAt: now,
+        }];
       },
       upsert: async (args: Record<string, unknown>) => {
         upsertCalls.push(args);
@@ -62,16 +89,23 @@ async function testPersistenceContract() {
   } as unknown as PrismaClient;
 
   const now = new Date("2026-09-20T12:00:00.000Z");
-  await listAdvisoryHistory(fakePrisma, visitorKey, now);
+  const listed = await listAdvisoryHistory(fakePrisma, visitorKey, now);
   assert.equal(
     ((listCalls[0]?.where as { lastActivityAt: { gt: Date } }).lastActivityAt.gt).toISOString(),
     "2026-06-22T12:00:00.000Z",
   );
+  assert.equal(listed[0]?.destinationId, "services");
+  assert.equal(listed[0]?.recommendation?.href, "/doradztwo/uslugi");
+  assert.equal("ipAddress" in (listed[0] ?? {}), false);
 
   if (!valid.success) throw new Error("Expected valid history fixture");
   await saveAdvisoryHistory(fakePrisma, visitorKey, valid.data, "203.0.113.8");
   assert.equal((upsertCalls[0]?.create as { ipAddress: string }).ipAddress, "203.0.113.8");
   assert.equal((upsertCalls[0]?.update as { ipAddress: string }).ipAddress, "203.0.113.8");
+  assert.equal(
+    ((upsertCalls[0]?.create as { recommendation: { href: string } }).recommendation).href,
+    "/doradztwo/uslugi",
+  );
   assert.equal("deleteMany" in fakePrisma.advisoryConversation, false);
 }
 
