@@ -517,6 +517,7 @@ export type AnalyticsEventType =
   | "recommendation_shown"
   | "recommendation_clicked"
   | "contact_clicked"
+  | "conversation_reset"
   | "cta_shown"
   | "cta_clicked"
   | "journey_started"

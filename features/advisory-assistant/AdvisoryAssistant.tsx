@@ -110,6 +110,21 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
 
   useEffect(() => () => abortRef.current?.abort(), []);
 
+  const handleReset = useCallback(() => {
+    track.conversationReset();
+    abortRef.current?.abort();
+    setStreamingContent("");
+    setActiveScenarioId(null);
+    setQuickReplyMessageId(null);
+    setControlledDestinationId(null);
+    setTyping(false);
+    setStreaming(false);
+    const slug = window.location.pathname.replace(`/${locale}`, "") || "/";
+    initSession(locale, slug);
+    const nextSession = useAdvisorySession.getState().session;
+    if (nextSession) analytics.init(nextSession.id, locale, slug);
+  }, [initSession, locale, setStreaming, setTyping]);
+
   const conversationLocale = session?.state.conversationRecovery?.responseLanguage ?? locale;
   const strings = WIDGET_COPY[conversationLocale];
 
@@ -283,6 +298,7 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
     typingAriaLabel: conversationLocale === "pl" ? "Asystent przygotowuje odpowiedź" : "Assistant is preparing a response",
     contactLabel: strings.contactLabel,
     footerLabel: "Profitia Advisory · CIC",
+    resetLabel: strings.resetLabel,
     errorMessage: strings.errorMessage,
   }), [advisor, conversationLocale, quickReplyMessageId, session?.state.phase, strings]);
 
@@ -326,6 +342,7 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
       advisors={Object.values(ADVISORS)}
       activeAdvisorId={advisor}
       onAdvisorChange={(id) => setAdvisor(id === "anna" ? "anna" : "adam")}
+      onReset={handleReset}
       messages={widgetMessages}
       isTyping={isTyping}
       streamingContent={streamingContent}

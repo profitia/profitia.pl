@@ -89,6 +89,7 @@ export const track = {
     analytics.track("recommendation_clicked", { id, url }),
   contactClicked: (url: string, source: string) =>
     analytics.track("contact_clicked", { url, source }),
+  conversationReset: () => analytics.track("conversation_reset"),
   ctaShown: (id: string, type: string) =>
     analytics.track("cta_shown", { id, type }),
   ctaClicked: (id: string, type: string, url: string) =>
