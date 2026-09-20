@@ -30,15 +30,18 @@ test('header menu registry is bilingual and uses the canonical child counts', ()
   }
 })
 
-test('desktop mega menu uses disclosure navigation semantics and lazy-mounted hero previews', () => {
+test('desktop mega menu uses one canonical child card format and lazy-mounted hero previews', () => {
   const header = source('components/layout/Header.tsx')
 
   assert.match(header, /HEADER_MENU_CONTENT\[currentLocale\]/)
   assert.match(header, /aria-expanded=\{menuOpen\}/)
   assert.match(header, /aria-controls=\{`desktop-menu-\$\{menu\.id\}`\}/)
   assert.match(header, /activeDesktopMenu &&/)
-  assert.match(header, /activeDesktopMenu\.desktopColumns === 3 \? 'grid-cols-3' : 'grid-cols-2'/)
-  assert.match(header, /max-w-\[216px\]/)
+  assert.match(header, /grid-cols-\[repeat\(3,244px\)\]/)
+  assert.match(header, /grid-cols-\[repeat\(2,244px\)\]/)
+  assert.match(header, /h-\[244px\] w-\[244px\]/)
+  assert.match(header, /aspect-\[16\/9\] w-\[216px\]/)
+  assert.match(header, /line-clamp-3/)
   assert.match(header, /<Image[\s\S]*?src=\{link\.imageSrc\}[\s\S]*?fill[\s\S]*?sizes="216px"/)
   assert.doesNotMatch(header, /sizes=\{activeDesktopMenu\.desktopColumns/)
   assert.doesNotMatch(header, /role="menu"/)

@@ -1408,6 +1408,14 @@ The background-fill restriction applies to top-level navigation links. Child pre
 - three Child entries use a 3-column grid,
 - four Child entries use a 2-column grid.
 
+**Canonical Child card:**
+- the `Usługi` card under `Doradztwo` is the dimensional reference for every Child,
+- every desktop Child card is `244 × 244 px`, regardless of the Parent grid,
+- the preview is `216 px` wide in a fixed `16/9` frame,
+- padding, title row, summary area, and arrow placement are identical for every Child,
+- summaries are limited to three visible lines so copy length cannot resize the card,
+- grid columns arrange canonical cards; they must never stretch a card to fill the Parent panel.
+
 **Image behavior:**
 - desktop only,
 - rendered only while the panel is open,

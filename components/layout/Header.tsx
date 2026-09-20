@@ -321,21 +321,23 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                     </p>
                   </div>
 
-                  <div className={`grid gap-1.5 p-2 ${
-                    activeDesktopMenu.desktopColumns === 3 ? 'grid-cols-3' : 'grid-cols-2'
+                  <div className={`grid justify-center gap-1.5 p-2 ${
+                    activeDesktopMenu.desktopColumns === 3
+                      ? 'grid-cols-[repeat(3,244px)]'
+                      : 'grid-cols-[repeat(2,244px)]'
                   }`}>
                     {activeDesktopMenu.links.map((link, index) => (
                       <Link
                         key={link.href}
                         ref={index === 0 ? (node) => { firstDesktopLinkRefs.current[activeDesktopMenu.id] = node } : undefined}
                         href={link.href}
-                        className={`group min-w-0 rounded-xl p-2.5 transition-colors duration-200 ${
+                        className={`group flex h-[244px] w-[244px] min-w-0 flex-col rounded-xl p-2.5 transition-colors duration-200 ${
                           activeDesktopMenu.isLinkActive(link.href, pathname)
                             ? 'bg-[rgba(199,237,251,0.45)]'
                             : 'hover:bg-gray-50'
                         } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
                       >
-                        <div className="relative mx-auto aspect-[16/9] w-full max-w-[216px] overflow-hidden rounded-lg bg-gray-100">
+                        <div className="relative mx-auto aspect-[16/9] w-[216px] flex-none overflow-hidden rounded-lg bg-gray-100">
                           <Image
                             src={link.imageSrc}
                             alt={link.imageAlt}
@@ -344,16 +346,16 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                             className="object-cover transition-opacity duration-200 group-hover:opacity-90"
                           />
                         </div>
-                        <div className="px-0.5 pb-0.5 pt-3">
-                          <div className={`flex items-center gap-2 text-[14px] font-medium tracking-[-0.015em] ${
+                        <div className="flex min-h-0 flex-1 flex-col px-0.5 pb-0.5 pt-3">
+                          <div className={`flex min-h-[22px] items-center gap-2 text-[14px] font-medium tracking-[-0.015em] ${
                             activeDesktopMenu.isLinkActive(link.href, pathname)
                               ? 'text-brand-blue'
                               : 'text-[rgb(36,47,68)] group-hover:text-brand-blue'
                           }`}>
-                            <span>{link.label}</span>
+                            <span className="line-clamp-1">{link.label}</span>
                             <span className="text-brand-blue transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
                           </div>
-                          <p className="mt-1.5 text-[12.5px] leading-[1.55] text-gray-500">
+                          <p className="mt-1.5 line-clamp-3 text-[12.5px] leading-[1.55] text-gray-500">
                             {link.description}
                           </p>
                         </div>
