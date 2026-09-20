@@ -6,6 +6,7 @@ import {
   AdvisoryWidget,
   type AdvisoryWidgetCopy,
   type AdvisoryWidgetEvent,
+  type AdvisoryWidgetHistoryEntry,
   type AdvisoryWidgetMessage,
   type AdvisoryWidgetRecommendation,
 } from "@profitia/advisory-widget";
@@ -17,6 +18,7 @@ import { SSEDataParser } from "@/lib/advisory-chat/sse-data-parser";
 import { getAdvisoryDestinationById } from "@/lib/advisory-chat/destination-registry";
 import { buildRecommendationRationale } from "@/lib/advisory-widget/recommendation-rationale";
 import { ADVISORS, WIDGET_COPY } from "@/lib/advisory-widget/config";
+import { fetchAdvisoryHistory, saveAdvisoryConversation } from "@/lib/advisory-history/client";
 import {
   getOpeningScenario,
   getOpeningScenarios,
@@ -68,6 +70,9 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
   const [activeScenarioId, setActiveScenarioId] = useState<OpeningScenarioId | null>(null);
   const [quickReplyMessageId, setQuickReplyMessageId] = useState<string | null>(null);
   const [controlledDestinationId, setControlledDestinationId] = useState<"services" | "competence" | "digital" | null>(null);
+  const [historyEntries, setHistoryEntries] = useState<AdvisoryWidgetHistoryEntry[]>([]);
+  const [historyLoading, setHistoryLoading] = useState(false);
+  const [historyError, setHistoryError] = useState<string | null>(null);
   const {
     session,
     lastDecision,
@@ -110,8 +115,65 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
 
   useEffect(() => () => abortRef.current?.abort(), []);
 
-  const handleReset = useCallback(() => {
+  const conversationLocale = session?.state.conversationRecovery?.responseLanguage ?? locale;
+  const strings = WIDGET_COPY[conversationLocale];
+
+  const persistConversation = useCallback(async () => {
+    if (!session || session.messages.length === 0) return;
+    const destinationId = controlledDestinationId ?? (
+      lastDecision?.conversation.action === "recommend" ? lastDecision.conversation.destinationId : null
+    );
+    await saveAdvisoryConversation({
+      sessionId: session.id,
+      locale: session.locale,
+      advisorId: advisor,
+      messages: session.messages.map(({ id, role, content }) => ({
+        id,
+        role: role === "user" ? "user" : "assistant",
+        content,
+      })),
+      intentCode: session.state.detectedIntent === "UNKNOWN" ? null : session.state.detectedIntent,
+      destinationId,
+      startedAt: session.startedAt,
+      lastActivityAt: session.lastActivityAt,
+    });
+  }, [advisor, controlledDestinationId, lastDecision, session]);
+
+  useEffect(() => {
+    if (!session || session.messages.length === 0) return;
+    const timer = window.setTimeout(() => {
+      void persistConversation().catch(() => undefined);
+    }, 400);
+    return () => window.clearTimeout(timer);
+  }, [persistConversation, session]);
+
+  const loadHistory = useCallback(async () => {
+    setHistoryLoading(true);
+    setHistoryError(null);
+    try {
+      const conversations = await fetchAdvisoryHistory();
+      setHistoryEntries(conversations.map((conversation) => ({
+        id: conversation.id,
+        title: conversation.title,
+        startedAt: conversation.startedAt,
+        updatedAt: conversation.updatedAt,
+        advisorId: conversation.advisorId,
+        messages: conversation.messages,
+      })));
+    } catch {
+      setHistoryError(strings.historyError);
+    } finally {
+      setHistoryLoading(false);
+    }
+  }, [strings.historyError]);
+
+  const handleReset = useCallback(async () => {
     track.conversationReset();
+    try {
+      await persistConversation();
+    } catch {
+      // A history outage must not prevent the user from starting again.
+    }
     abortRef.current?.abort();
     setStreamingContent("");
     setActiveScenarioId(null);
@@ -123,10 +185,7 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
     initSession(locale, slug);
     const nextSession = useAdvisorySession.getState().session;
     if (nextSession) analytics.init(nextSession.id, locale, slug);
-  }, [initSession, locale, setStreaming, setTyping]);
-
-  const conversationLocale = session?.state.conversationRecovery?.responseLanguage ?? locale;
-  const strings = WIDGET_COPY[conversationLocale];
+  }, [initSession, locale, persistConversation, setStreaming, setTyping]);
 
   const handleSend = useCallback(async (
     content: string,
@@ -299,6 +358,12 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
     contactLabel: strings.contactLabel,
     footerLabel: "Profitia Advisory · CIC",
     resetLabel: strings.resetLabel,
+    historyLabel: strings.historyLabel,
+    historyTitle: strings.historyTitle,
+    historyEmpty: strings.historyEmpty,
+    historyLoading: strings.historyLoading,
+    historyCloseLabel: strings.historyCloseLabel,
+    historyBackLabel: strings.historyBackLabel,
     errorMessage: strings.errorMessage,
   }), [advisor, conversationLocale, quickReplyMessageId, session?.state.phase, strings]);
 
@@ -328,6 +393,9 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
         break;
       case "recommendation_click": track.recommendationClicked(event.recommendationId, event.href); break;
       case "contact_click": track.contactClicked(event.href, event.source === "footer" ? "widget_footer" : "conversation_recovery"); break;
+      case "history_open": track.historyOpened(); break;
+      case "history_close": track.historyClosed(); break;
+      case "history_select": track.historyConversationOpened(event.conversationId); break;
       default: break;
     }
   }, [markRecommendationShown, recommendation]);
@@ -343,6 +411,12 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
       activeAdvisorId={advisor}
       onAdvisorChange={(id) => setAdvisor(id === "anna" ? "anna" : "adam")}
       onReset={handleReset}
+      history={{
+        entries: historyEntries,
+        loading: historyLoading,
+        error: historyError,
+        onOpen: loadHistory,
+      }}
       messages={widgetMessages}
       isTyping={isTyping}
       streamingContent={streamingContent}

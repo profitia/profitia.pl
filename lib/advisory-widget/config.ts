@@ -67,6 +67,13 @@ export interface AdvisoryWidgetCopy {
   triggerAriaLabel: string;
   contactLabel: string;
   resetLabel: string;
+  historyLabel: string;
+  historyTitle: string;
+  historyEmpty: string;
+  historyLoading: string;
+  historyError: string;
+  historyCloseLabel: string;
+  historyBackLabel: string;
   recommendationLead: string;
   recommendationContext: string;
   recommendationFallback: Record<"services" | "competence" | "digital", string>;
@@ -95,6 +102,13 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
     triggerAriaLabel: "Otwórz doradcę zakupowego",
     contactLabel: "Wolę porozmawiać z człowiekiem",
     resetLabel: "Zacznij od nowa",
+    historyLabel: "Historia rozmów",
+    historyTitle: "Historia rozmów",
+    historyEmpty: "Nie masz jeszcze zapisanych rozmów.",
+    historyLoading: "Wczytuję historię…",
+    historyError: "Nie udało się wczytać historii. Spróbuj ponownie.",
+    historyCloseLabel: "Zamknij historię",
+    historyBackLabel: "Wróć do listy rozmów",
     recommendationLead: "Jako pierwszy krok proponuję:",
     recommendationContext: "Rozumiem z tego, co piszesz, że:",
     recommendationFallback: {
@@ -125,6 +139,13 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
     triggerAriaLabel: "Open procurement advisor",
     contactLabel: "I prefer to talk to a person",
     resetLabel: "Start again",
+    historyLabel: "Conversation history",
+    historyTitle: "Conversation history",
+    historyEmpty: "You do not have any saved conversations yet.",
+    historyLoading: "Loading history…",
+    historyError: "History could not be loaded. Please try again.",
+    historyCloseLabel: "Close history",
+    historyBackLabel: "Back to conversation list",
     recommendationLead: "As a first step, I recommend:",
     recommendationContext: "From what you have written, I understand that:",
     recommendationFallback: {

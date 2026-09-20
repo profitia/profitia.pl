@@ -90,6 +90,10 @@ export const track = {
   contactClicked: (url: string, source: string) =>
     analytics.track("contact_clicked", { url, source }),
   conversationReset: () => analytics.track("conversation_reset"),
+  historyOpened: () => analytics.track("history_opened"),
+  historyClosed: () => analytics.track("history_closed"),
+  historyConversationOpened: (conversationId: string) =>
+    analytics.track("history_conversation_opened", { conversationId }),
   ctaShown: (id: string, type: string) =>
     analytics.track("cta_shown", { id, type }),
   ctaClicked: (id: string, type: string, url: string) =>
