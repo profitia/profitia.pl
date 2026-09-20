@@ -17,6 +17,11 @@ import { SSEDataParser } from "@/lib/advisory-chat/sse-data-parser";
 import { getAdvisoryDestinationById } from "@/lib/advisory-chat/destination-registry";
 import { buildRecommendationRationale } from "@/lib/advisory-widget/recommendation-rationale";
 import { ADVISORS, WIDGET_COPY } from "@/lib/advisory-widget/config";
+import {
+  getOpeningScenario,
+  getOpeningScenarios,
+  type OpeningScenarioId,
+} from "@/lib/advisory-widget/scenarios";
 import { getPublicPath } from "@/lib/routing/public-routes";
 import type { Message } from "@/types";
 import type { Locale } from "@/lib/i18n";
@@ -26,8 +31,8 @@ interface AdvisoryAssistantProps {
 }
 
 const PHASE_LABELS: Record<string, Record<Locale, string>> = {
-  idle: { pl: "Gotowy do rozmowy", en: "Ready to advise" },
-  opening: { pl: "Słucham...", en: "Listening..." },
+  idle: { pl: "Czekam na wiadomość od Ciebie", en: "Waiting for your message" },
+  opening: { pl: "Czekam na wiadomość od Ciebie", en: "Waiting for your message" },
   intent_discovery: { pl: "Diagnozuję sytuację", en: "Understanding your situation" },
   problem_framing: { pl: "Precyzuję problem", en: "Framing the challenge" },
   capability_recommendation: { pl: "Rekomendacja gotowa", en: "Recommendation ready" },
@@ -57,9 +62,12 @@ export function buildProfitiaWidgetRecommendation(
 
 export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
   const router = useRouter();
-  const initialized = useRef(false);
+  const initializedLocale = useRef<Locale | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const [streamingContent, setStreamingContent] = useState("");
+  const [activeScenarioId, setActiveScenarioId] = useState<OpeningScenarioId | null>(null);
+  const [quickReplyMessageId, setQuickReplyMessageId] = useState<string | null>(null);
+  const [controlledDestinationId, setControlledDestinationId] = useState<"services" | "competence" | "digital" | null>(null);
   const {
     session,
     lastDecision,
@@ -87,8 +95,13 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
   usePageContext(locale);
 
   useEffect(() => {
-    if (initialized.current) return;
-    initialized.current = true;
+    if (initializedLocale.current === locale) return;
+    initializedLocale.current = locale;
+    abortRef.current?.abort();
+    setStreamingContent("");
+    setActiveScenarioId(null);
+    setQuickReplyMessageId(null);
+    setControlledDestinationId(null);
     const slug = window.location.pathname.replace(`/${locale}`, "") || "/";
     initSession(locale, slug);
     const currentSession = useAdvisorySession.getState().session;
@@ -100,13 +113,54 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
   const conversationLocale = session?.state.conversationRecovery?.responseLanguage ?? locale;
   const strings = WIDGET_COPY[conversationLocale];
 
-  const handleSend = useCallback(async (content: string, source: "prompt" | "custom") => {
+  const handleSend = useCallback(async (
+    content: string,
+    source: "prompt" | "custom",
+    context?: { promptId?: string },
+  ) => {
     if (!session || !content.trim()) return;
 
     track.messageSent(content, source);
-    if (source === "prompt") track.openingPromptSelected(Math.max(0, strings.openingPrompts.indexOf(content)));
+    const openingScenarios = getOpeningScenarios(conversationLocale);
+    const selectedScenario = source === "prompt"
+      ? getOpeningScenario(conversationLocale, context?.promptId)
+      : undefined;
+    if (source === "prompt") {
+      track.openingPromptSelected(Math.max(0, openingScenarios.findIndex(({ prompt }) => prompt.id === context?.promptId)));
+    }
     addMessage("user", content);
     incrementEngagement(5);
+
+    if (selectedScenario) {
+      setActiveScenarioId(selectedScenario.id);
+      setControlledDestinationId(null);
+      updateIntent(selectedScenario.intent, 0.98);
+      setPhase("intent_discovery");
+      setTyping(true);
+      await new Promise((resolve) => window.setTimeout(resolve, 320));
+      const messageId = addMessage("assistant", selectedScenario.question);
+      setQuickReplyMessageId(messageId);
+      setTyping(false);
+      runOrchestration();
+      return;
+    }
+
+    const activeScenario = activeScenarioId
+      ? getOpeningScenario(conversationLocale, activeScenarioId)
+      : undefined;
+    if (activeScenario) {
+      updateIntent(activeScenario.intent, 0.98);
+      setControlledDestinationId(activeScenario.destinationId);
+      setQuickReplyMessageId(null);
+      setTyping(true);
+      await new Promise((resolve) => window.setTimeout(resolve, 320));
+      resetConversationRecovery();
+      addMessage("assistant", strings.scenarioResolved);
+      setPhase("capability_recommendation");
+      setTyping(false);
+      runOrchestration();
+      return;
+    }
     setTyping(true);
     setStreamingContent("");
     abortRef.current?.abort();
@@ -205,10 +259,10 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
       setTyping(false);
       setStreaming(false);
     }
-  }, [addMessage, applyConversationRecovery, incrementEngagement, lastDecision, locale, resetConversationRecovery, runOrchestration, session, setPhase, setStreaming, setTyping, strings, updateIntent, updateUrgency]);
+  }, [activeScenarioId, addMessage, applyConversationRecovery, conversationLocale, incrementEngagement, lastDecision, locale, resetConversationRecovery, runOrchestration, session, setPhase, setStreaming, setTyping, strings, updateIntent, updateUrgency]);
 
   const copy = useMemo<AdvisoryWidgetCopy>(() => ({
-    title: strings.title,
+    title: strings.advisorTitle(ADVISORS[advisor].name),
     status: PHASE_LABELS[session?.state.phase ?? "idle"]?.[conversationLocale] ?? strings.ready,
     moreOptions: strings.moreOptions,
     changeAdvisor: strings.changeAdvisor,
@@ -216,8 +270,8 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
     firstContact: strings.firstContact,
     dismissInvitation: strings.dismissInvitation,
     intro: strings.intro,
-    promptsLabel: conversationLocale === "pl" ? "Typowe sytuacje" : "Common situations",
-    prompts: strings.openingPrompts,
+    promptsLabel: conversationLocale === "pl" ? "Wybierz swoją sytuację" : "Choose your situation",
+    prompts: getOpeningScenarios(conversationLocale).map(({ prompt }) => prompt),
     customMessageHint: strings.customMessageHint,
     placeholder: strings.placeholder,
     messageAriaLabel: strings.messageAriaLabel,
@@ -228,16 +282,21 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
     contactLabel: strings.contactLabel,
     footerLabel: "Profitia Advisory · CIC",
     errorMessage: strings.errorMessage,
-  }), [conversationLocale, session?.state.phase, strings]);
+  }), [advisor, conversationLocale, session?.state.phase, strings]);
 
   const widgetMessages = useMemo<AdvisoryWidgetMessage[]>(() => (session?.messages ?? []).map((message) => ({
     id: message.id,
     role: message.role === "user" ? "user" : "assistant",
     content: message.content,
     ...(message.metadata?.recovery?.contact ? { action: message.metadata.recovery.contact } : {}),
-  })), [session?.messages]);
+    ...(message.id === quickReplyMessageId && activeScenarioId
+      ? { quickReplies: getOpeningScenario(conversationLocale, activeScenarioId)?.quickReplies }
+      : {}),
+  })), [activeScenarioId, conversationLocale, quickReplyMessageId, session?.messages]);
 
-  const destinationId = lastDecision?.conversation.action === "recommend" ? lastDecision.conversation.destinationId : null;
+  const destinationId = quickReplyMessageId ? null : controlledDestinationId ?? (
+    lastDecision?.conversation.action === "recommend" ? lastDecision.conversation.destinationId : null
+  );
   const recommendation = destinationId && session && (session.state.conversationRecovery?.state ?? "normal") === "normal"
     ? buildProfitiaWidgetRecommendation(destinationId, conversationLocale, session.messages)
     : null;
@@ -272,6 +331,7 @@ export function AdvisoryAssistant({ locale }: AdvisoryAssistantProps) {
       recommendation={recommendation}
       contact={{ href: getPublicPath("contact", conversationLocale), label: strings.contactLabel }}
       onSend={handleSend}
+      onQuickReplySubmit={(values) => handleSend(values.join(", "), "custom")}
       onOpenChange={(open) => open ? openAssistant() : closeAssistant()}
       onNavigate={(href) => router.push(href)}
       onEvent={handleEvent}

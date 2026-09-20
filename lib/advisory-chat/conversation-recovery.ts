@@ -58,6 +58,7 @@ export function buildConversationRecoveryPayload(input: {
     previousRecoveryAttempt: previous?.attempt,
     previousPrimarySignal: previous?.primarySignal,
     previousUserMessage: previous?.previousUserMessage,
+    previousState: previous?.state,
     pendingEnglishConfirmation: previous?.pendingEnglishConfirmation,
     securitySignal: input.securitySignal,
     expectedAnswerKind: input.expectedAnswerKind,
