@@ -5,6 +5,7 @@ import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { AdvisoryWidget, type AdvisoryWidgetCopy } from "@profitia/advisory-widget";
 import { WIDGET_COPY, ADVISORS } from "@/lib/advisory-widget/config";
+import { getOpeningScenarios } from "@/lib/advisory-widget/scenarios";
 import { buildProfitiaWidgetRecommendation } from "@/features/advisory-assistant/AdvisoryAssistant";
 import type { AdvisoryDestinationId } from "@/types";
 
@@ -20,8 +21,8 @@ const copy: AdvisoryWidgetCopy = {
   firstContact: strings.firstContact,
   dismissInvitation: strings.dismissInvitation,
   intro: strings.intro,
-  promptsLabel: "Typowe sytuacje",
-  prompts: strings.openingPrompts,
+  promptsLabel: "Wybierz swoją sytuację",
+  prompts: getOpeningScenarios("pl").map(({ prompt }) => prompt),
   customMessageHint: strings.customMessageHint,
   placeholder: strings.placeholder,
   messageAriaLabel: strings.messageAriaLabel,

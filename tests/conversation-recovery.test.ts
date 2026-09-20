@@ -99,4 +99,24 @@ const stored = toConversationRecoverySessionState(contactExit, "Możliwe.");
 assert.equal(stored.attempt, 3);
 assert.equal(stored.state, "handoff");
 
+const changedMindPayload = buildConversationRecoveryPayload({
+  message: "ok - chodzi mi o nechmarki",
+  locale: "pl",
+  userTurnCount: 5,
+  sessionState: sessionState(stored),
+});
+assert.equal(changedMindPayload, null, "a substantive correction should resume the normal conversation");
+
+const resumed = computeConversationRecoveryDecision({
+  message: "ok - chodzi mi o nechmarki",
+  locale: "pl",
+  userTurnCount: 5,
+  containsBusinessIntent: true,
+  previousRecoveryAttempt: 3,
+  previousState: "handoff",
+});
+assert.equal(resumed.strategy, "continue_with_intent");
+assert.equal(resumed.nextState, "normal");
+assert.equal(resumed.terminal, false);
+
 console.log(`Conversation recovery: ${PROFITIA_RECOVERY_ACCEPTANCE_SCENARIOS.length} classes passed`);

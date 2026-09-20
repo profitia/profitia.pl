@@ -50,6 +50,7 @@ export const WIDGET_MOTION = {
 
 export interface AdvisoryWidgetCopy {
   title: string;
+  advisorTitle: (name: string) => string;
   ready: string;
   moreOptions: string;
   changeAdvisor: string;
@@ -57,8 +58,8 @@ export interface AdvisoryWidgetCopy {
   firstContact: string;
   dismissInvitation: string;
   intro: string;
-  openingPrompts: readonly string[];
   customMessageHint: string;
+  scenarioResolved: string;
   placeholder: string;
   messageAriaLabel: string;
   sendAriaLabel: string;
@@ -74,6 +75,7 @@ export interface AdvisoryWidgetCopy {
 export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
   pl: {
     title: "Profitia Advisory",
+    advisorTitle: (name) => `Profitia Advisory · Jestem ${name}, ${name === "Anna" ? "Twoja doradczyni" : "Twój doradca"}`,
     ready: "Gotowy do rozmowy",
     moreOptions: "Więcej opcji",
     changeAdvisor: "Zmień doradcę",
@@ -83,13 +85,8 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
     dismissInvitation: "Zamknij powitanie",
     intro:
       "Poniżej znajdziesz najczęstsze wyzwania zakupowe. Czy któreś z nich pasuje do Twojej sytuacji?",
-    openingPrompts: [
-      "Dostawca zapowiedział podwyżkę o 12%",
-      "Nie mamy benchmarków cenowych",
-      "Chcemy zbudować strategię zakupową",
-      "Potrzebujemy lepszej widoczności wydatków",
-    ],
     customMessageHint: "Inny temat? Opisz go własnymi słowami.",
+    scenarioResolved: "Dziękuję — to wystarczy, aby wskazać właściwy kierunek.",
     placeholder: "Napisz wiadomość…",
     messageAriaLabel: "Twoja wiadomość",
     sendAriaLabel: "Wyślij wiadomość",
@@ -107,6 +104,7 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
   },
   en: {
     title: "Profitia Advisory",
+    advisorTitle: (name) => `Profitia Advisory · I’m ${name}, your advisor`,
     ready: "Ready to talk",
     moreOptions: "More options",
     changeAdvisor: "Change advisor",
@@ -116,13 +114,8 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
     dismissInvitation: "Dismiss greeting",
     intro:
       "Below are the most common procurement challenges. Does one of them match your situation?",
-    openingPrompts: [
-      "A supplier announced a 12% price increase",
-      "We do not have reliable price benchmarks",
-      "We want to build a procurement strategy",
-      "We need better spend visibility",
-    ],
     customMessageHint: "Something else? Describe it in your own words.",
+    scenarioResolved: "Thank you — that is enough to identify the right direction.",
     placeholder: "Type your message…",
     messageAriaLabel: "Your message",
     sendAriaLabel: "Send message",
