@@ -335,12 +335,12 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                             : 'hover:bg-gray-50'
                         } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,109,158)] focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
                       >
-                        <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100">
+                        <div className="relative mx-auto aspect-[16/9] w-full max-w-[216px] overflow-hidden rounded-lg bg-gray-100">
                           <Image
                             src={link.imageSrc}
                             alt={link.imageAlt}
                             fill
-                            sizes={activeDesktopMenu.desktopColumns === 3 ? '220px' : '350px'}
+                            sizes="216px"
                             className="object-cover transition-opacity duration-200 group-hover:opacity-90"
                           />
                         </div>
