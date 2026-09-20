@@ -7,7 +7,7 @@ import type {
 import {
   computeConversationDecision as computeCicConversationDecision,
 } from "@profitia/cic-core";
-import { getProfitiaDestinationId } from "@profitia/cic-profitia";
+import { resolveProfitiaDestinationId } from "@profitia/cic-profitia";
 
 export { CONVERSATION_CONTRACT_VERSION, MAX_USER_TURNS } from "@profitia/cic-core";
 
@@ -32,6 +32,9 @@ export function computeConversationDecision(
     userTurnCount,
     intent: intent.primary,
     routing,
-    resolveDestination: getProfitiaDestinationId,
+    resolveDestination: (resolvedIntent) => resolveProfitiaDestinationId(
+      resolvedIntent,
+      session.state.routingPreferences,
+    ),
   });
 }

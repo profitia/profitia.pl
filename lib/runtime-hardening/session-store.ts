@@ -179,6 +179,7 @@ export function createEmptySession(sessionId: string, locale: "pl" | "en"): Pers
       escalationReady: false,
       ctaFatigue: 0,
       engagementScore: 0,
+      routingPreferences: { excludedDestinationIds: [] },
     } as SessionState,
     escalationHistory: [],
     recommendationsShown: [],

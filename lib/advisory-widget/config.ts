@@ -76,7 +76,7 @@ export interface AdvisoryWidgetCopy {
   historyBackLabel: string;
   recommendationLead: string;
   recommendationContext: string;
-  recommendationFallback: Record<"services" | "competence" | "digital", string>;
+  recommendationFallback: Record<"services" | "products" | "competence" | "digital", string>;
   errorMessage: string;
 }
 
@@ -113,6 +113,7 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
     recommendationContext: "Rozumiem z tego, co piszesz, że:",
     recommendationFallback: {
       services: "potrzebujesz wsparcia w rozwiązaniu konkretnego wyzwania zakupowego",
+      products: "szukasz produktu, danych rynkowych lub narzędzia zamiast usługi doradczej",
       competence: "chcesz rozwinąć kompetencje swoje lub zespołu zakupowego",
       digital: "szukasz lepszej widoczności danych lub wsparcia Digital i AI",
     },
@@ -150,6 +151,7 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
     recommendationContext: "From what you have written, I understand that:",
     recommendationFallback: {
       services: "you need support with a specific procurement challenge",
+      products: "you want a product, market data or a tool rather than advisory services",
       competence: "you want to develop your own or your procurement team's capabilities",
       digital: "you need better data visibility or Digital and AI support",
     },

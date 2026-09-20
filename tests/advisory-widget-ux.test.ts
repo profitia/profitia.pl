@@ -40,15 +40,23 @@ const messages: Message[] = [{
   content: "Dane pochodzą z kilku systemów i nie widzimy pełnej struktury wydatków.",
   timestamp: 1,
 }];
-const rationale = buildRecommendationRationale(messages, "digital", "pl");
+const rationale = buildRecommendationRationale(messages, "digital", "pl", "I2_FORECASTING");
 assert.equal(rationale.context, "Rozumiem z tego, co piszesz, że:");
-assert.match(rationale.summary, /Dane pochodzą z kilku systemów/);
+assert.match(rationale.summary, /widoczności wydatków/);
 assert.equal(rationale.lead, "Jako pierwszy krok proponuję:");
-assert.ok(buildRecommendationRationale([{ ...messages[0], content: "a".repeat(250) }], "services", "pl").summary.endsWith("…”"));
+assert.doesNotMatch(
+  buildRecommendationRationale(
+    [{ ...messages[0], content: "nie usługi doradcze, coś innego" }],
+    "products",
+    "pl",
+    "I8_NEGOTIATIONS",
+  ).summary,
+  /nie usługi doradcze/i,
+);
 
 const packageJson = JSON.parse(readFileSync(path.join(root, "package.json"), "utf8"));
-assert.equal(packageJson.dependencies["@profitia/advisory-widget"], "1.2.1");
-assert.equal(packageJson.dependencies["@profitia/cic-core"], "1.2.1");
+assert.equal(packageJson.dependencies["@profitia/advisory-widget"], "1.2.2");
+assert.equal(packageJson.dependencies["@profitia/cic-core"], "1.2.2");
 const adapterSource = readFileSync(path.join(root, "features/advisory-assistant/AdvisoryAssistant.tsx"), "utf8");
 assert.match(adapterSource, /@profitia\/advisory-widget/);
 assert.match(adapterSource, /@profitia\/cic-core/);

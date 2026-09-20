@@ -33,6 +33,7 @@ import {
   toConversationRecoverySessionState,
 } from "@/lib/advisory-chat/conversation-recovery";
 import type { ConversationRecoveryDecision } from "@profitia/cic-core";
+import { mergeProfitiaRoutingPreferences } from "@profitia/cic-profitia";
 import {
   ADVISOR_PREFERENCE_KEY,
   DEFAULT_ADVISOR,
@@ -120,6 +121,7 @@ function createSession(locale: Locale, slug: string): AdvisorySession {
       escalationReady: false,
       ctaFatigue: 0,
       engagementScore: 0,
+      routingPreferences: { excludedDestinationIds: [] },
       conversationRecovery: {
         ...INITIAL_CONVERSATION_RECOVERY_STATE,
         responseLanguage: locale,
@@ -280,6 +282,9 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
       timestamp: Date.now(),
       metadata,
     };
+    const routingPreferences = role === "user"
+      ? mergeProfitiaRoutingPreferences(session.state.routingPreferences, content)
+      : session.state.routingPreferences;
     set({
       session: {
         ...session,
@@ -289,6 +294,7 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
           ...session.state,
           phase: session.state.phase === "idle" ? "opening" : session.state.phase,
           engagementScore: Math.min(100, session.state.engagementScore + (role === "user" ? 8 : 3)),
+          routingPreferences,
         },
       },
     });
@@ -309,6 +315,7 @@ export const useAdvisorySession = create<AdvisorySessionStore>((set, get) => ({
             ...INITIAL_CONVERSATION_RECOVERY_STATE,
             responseLanguage: session.locale,
           },
+          routingPreferences: { excludedDestinationIds: [] },
         },
       },
     });

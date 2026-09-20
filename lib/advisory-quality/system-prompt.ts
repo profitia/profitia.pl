@@ -105,17 +105,24 @@ function buildContextBlock(
 ): string {
   const priorityServices = INTENT_PRIORITY_SERVICES[sessionState.detectedIntent] ?? INTENT_PRIORITY_SERVICES.UNKNOWN;
   const allServices = Object.values(SERVICE_CATALOG).flat();
-  const priorityList = priorityServices
+  const servicesExcluded = sessionState.routingPreferences?.excludedDestinationIds.includes("services") ?? false;
+  const priorityList = servicesExcluded
+    ? locale === "pl"
+      ? "  - pominięte: użytkownik wykluczył usługi doradcze"
+      : "  - omitted: the user excluded advisory services"
+    : priorityServices
     .map((slug) => allServices.find((s) => s.slug === slug))
     .filter(Boolean)
     .map((s) => `  - ${s!.name}`)
     .join("\n");
+  const excludedDestinations = sessionState.routingPreferences?.excludedDestinationIds.join(", ") || "none";
 
   return `KONTEKST SESJI:
 - Strona: ${pageContext.slug}
 - Wykryty intent: ${sessionState.detectedIntent} (pewność: ${Math.round(sessionState.intentConfidence * 100)}%)
 - Pilność: ${sessionState.urgency} | Etap: ${sessionState.buyingStage} | Dojrzałość: ${sessionState.maturity}
 - Faza rozmowy: ${sessionState.phase} | Liczba odpowiedzi użytkownika: ${userMessageCount}
+- Kierunki wykluczone przez użytkownika: ${excludedDestinations}
 
 PRIORYTETOWE USŁUGI DLA TEGO KONTEKSTU:
 ${priorityList}
@@ -211,11 +218,13 @@ export function buildAdvisorySystemPrompt(params: {
 - Zadaj najwyżej jedno krótkie pytanie w jednej odpowiedzi.
 - Nie umieszczaj linków ani adresów stron w treści. Interfejs pokaże właściwe, zweryfikowane CTA.
 - Nie powtarzaj pytania, na które użytkownik już odpowiedział.
+- Traktuj wykluczenia użytkownika jako wiążące. Nie proponuj ani nie uzasadniaj wykluczonego kierunku.
 - Po najpóźniej czwartej odpowiedzi użytkownika podsumuj potrzebę i wskaż jeden rekomendowany kierunek. Nie rozpoczynaj kolejnej diagnozy.`
     : `CONVERSATION RULES:
 - Ask at most one short question in each response.
 - Do not include links or page addresses in the response. The interface provides the verified CTA.
 - Do not repeat a question the user has already answered.
+- Treat the user's exclusions as binding. Do not propose or justify an excluded direction.
 - By the user's fourth answer at the latest, summarise the need and name one recommended direction. Do not start another diagnostic loop.`;
 
   const controllerDirective = trustedDecision?.conversation.action === "recommend"
