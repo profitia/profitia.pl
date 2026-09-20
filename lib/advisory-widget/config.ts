@@ -66,6 +66,7 @@ export interface AdvisoryWidgetCopy {
   closeAriaLabel: string;
   triggerAriaLabel: string;
   contactLabel: string;
+  resetLabel: string;
   recommendationLead: string;
   recommendationContext: string;
   recommendationFallback: Record<"services" | "competence" | "digital", string>;
@@ -75,7 +76,7 @@ export interface AdvisoryWidgetCopy {
 export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
   pl: {
     title: "Profitia Advisory",
-    advisorTitle: (name) => `Profitia Advisory · Jestem ${name}, ${name === "Anna" ? "Twoja doradczyni" : "Twój doradca"}`,
+    advisorTitle: (name) => `Jestem ${name}, ${name === "Anna" ? "Twoja doradczyni" : "Twój doradca"}`,
     ready: "Gotowy do rozmowy",
     moreOptions: "Więcej opcji",
     changeAdvisor: "Zmień doradcę",
@@ -93,6 +94,7 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
     closeAriaLabel: "Zamknij asystenta",
     triggerAriaLabel: "Otwórz doradcę zakupowego",
     contactLabel: "Wolę porozmawiać z człowiekiem",
+    resetLabel: "Zacznij od nowa",
     recommendationLead: "Jako pierwszy krok proponuję:",
     recommendationContext: "Rozumiem z tego, co piszesz, że:",
     recommendationFallback: {
@@ -104,7 +106,7 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
   },
   en: {
     title: "Profitia Advisory",
-    advisorTitle: (name) => `Profitia Advisory · I’m ${name}, your advisor`,
+    advisorTitle: (name) => `I’m ${name}, your advisor`,
     ready: "Ready to talk",
     moreOptions: "More options",
     changeAdvisor: "Change advisor",
@@ -122,6 +124,7 @@ export const WIDGET_COPY: Record<Locale, AdvisoryWidgetCopy> = {
     closeAriaLabel: "Close advisor",
     triggerAriaLabel: "Open procurement advisor",
     contactLabel: "I prefer to talk to a person",
+    resetLabel: "Start again",
     recommendationLead: "As a first step, I recommend:",
     recommendationContext: "From what you have written, I understand that:",
     recommendationFallback: {

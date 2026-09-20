@@ -22,6 +22,9 @@ for (const locale of ["pl", "en"] as const) {
 assert.equal(getOpeningScenarios("pl")[0]?.prompt.label, "Mój dostawca zamierza podnieść ceny.");
 assert.equal(getOpeningScenarios("pl")[1]?.question, "Które kategorie zakupowe generują największe wydatki?");
 assert.equal(getOpeningScenarios("pl")[2]?.question, "Co ma być najważniejszym celem strategii kategorii?");
+assert.equal(WIDGET_COPY.pl.advisorTitle("Adam"), "Jestem Adam, Twój doradca");
+assert.equal(WIDGET_COPY.pl.advisorTitle("Anna"), "Jestem Anna, Twoja doradczyni");
+assert.equal(WIDGET_COPY.pl.resetLabel, "Zacznij od nowa");
 
 for (const advisor of Object.values(ADVISORS)) {
   for (const density of [128, 256]) {
@@ -44,7 +47,7 @@ assert.equal(rationale.lead, "Jako pierwszy krok proponuję:");
 assert.ok(buildRecommendationRationale([{ ...messages[0], content: "a".repeat(250) }], "services", "pl").summary.endsWith("…”"));
 
 const packageJson = JSON.parse(readFileSync(path.join(root, "package.json"), "utf8"));
-assert.equal(packageJson.dependencies["@profitia/advisory-widget"], "1.1.2");
+assert.equal(packageJson.dependencies["@profitia/advisory-widget"], "1.1.3");
 assert.equal(packageJson.dependencies["@profitia/cic-core"], "1.2.1");
 const adapterSource = readFileSync(path.join(root, "features/advisory-assistant/AdvisoryAssistant.tsx"), "utf8");
 assert.match(adapterSource, /@profitia\/advisory-widget/);
@@ -52,6 +55,7 @@ assert.match(adapterSource, /@profitia\/cic-core/);
 assert.match(adapterSource, /strings\.scenarioResolved/);
 assert.match(adapterSource, /initializedLocale\.current === locale/);
 assert.match(adapterSource, /quickReplyMessageId\s*\? PHASE_LABELS\.opening\[conversationLocale\]/);
+assert.match(adapterSource, /onReset=\{handleReset\}/);
 assert.doesNotMatch(adapterSource, /framer-motion/);
 
 for (const replacedFile of [
@@ -68,5 +72,7 @@ assert.match(packageStyles, /@media \(max-width: 640px\)/);
 assert.match(packageStyles, /width: 100dvw/);
 assert.match(packageStyles, /height: 100dvh/);
 assert.match(packageStyles, /paw-quick-reply--selected/);
+assert.match(packageStyles, /--paw-panel-max-height: 700px/);
+assert.match(packageStyles, /paw-footer__reset/);
 
 console.log("Advisory widget UX: package migration regression checks passed");
