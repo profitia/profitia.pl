@@ -55,8 +55,8 @@ assert.doesNotMatch(
 );
 
 const packageJson = JSON.parse(readFileSync(path.join(root, "package.json"), "utf8"));
-assert.equal(packageJson.dependencies["@profitia/advisory-widget"], "1.2.2");
-assert.equal(packageJson.dependencies["@profitia/cic-core"], "1.2.2");
+assert.equal(packageJson.dependencies["@profitia/advisory-widget"], "1.2.3");
+assert.equal(packageJson.dependencies["@profitia/cic-core"], "1.2.3");
 const adapterSource = readFileSync(path.join(root, "features/advisory-assistant/AdvisoryAssistant.tsx"), "utf8");
 assert.match(adapterSource, /@profitia\/advisory-widget/);
 assert.match(adapterSource, /@profitia\/cic-core/);

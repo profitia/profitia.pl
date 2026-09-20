@@ -48,10 +48,10 @@
     "blog:images:optimize": "node --import tsx scripts/optimize-blog-covers.ts"
   },
   "dependencies": {
-    "@profitia/advisory-widget": "1.2.2",
-    "@profitia/cic-core": "1.2.2",
-    "@profitia/cic-procurement": "1.2.2",
-    "@profitia/cic-profitia": "1.2.2",
+    "@profitia/advisory-widget": "1.2.3",
+    "@profitia/cic-core": "1.2.3",
+    "@profitia/cic-procurement": "1.2.3",
+    "@profitia/cic-profitia": "1.2.3",
     "@aws-sdk/client-s3": "^3.1106.0",
     "@azure/msal-node": "^5.5.0",
     "@prisma/client": "^5.22.0",
@@ -75,7 +75,7 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
-    "@profitia/cic-evals": "1.2.2",
+    "@profitia/cic-evals": "1.2.3",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20.16.11",
