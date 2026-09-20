@@ -310,7 +310,9 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                 <div
                   role="group"
                   aria-labelledby={`desktop-menu-trigger-${activeDesktopMenu.id}`}
-                  className={`w-[min(760px,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-gray-100 ${HEADER_SURFACE_CLASS} shadow-[0_24px_60px_rgba(15,23,42,0.14)]`}
+                  className={`max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-gray-100 ${HEADER_SURFACE_CLASS} shadow-[0_24px_60px_rgba(15,23,42,0.14)] ${
+                    activeDesktopMenu.desktopColumns === 3 ? 'w-[760px]' : 'w-[510px]'
+                  }`}
                 >
                   <div className="border-b border-gray-100 px-5 py-4">
                     <p className="editorial-label text-[rgba(0,109,158,0.82)]">
