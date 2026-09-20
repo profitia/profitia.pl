@@ -1424,6 +1424,14 @@ The background-fill restriction applies to top-level navigation links. Child pre
 - two-column Parents must not inherit the three-column panel width or compensate with enlarged margins,
 - the viewport cap remains `calc(100vw - 2rem)`.
 
+**Canonical shared surface:**
+- the stabilized navigation bar and every open desktop Parent panel reuse the same `HEADER_SURFACE_CLASS`,
+- the shared surface is `rgba(255,255,255,0.96)` with `backdrop-blur-md` and `border-gray-100/80`,
+- opening a desktop Parent stabilizes the navigation bar surface even when the page is still at the top,
+- the panel must not add an independent background, gradient, transparency, or border color,
+- any future authorized surface or gradient change is made once in `HEADER_SURFACE_CLASS` and therefore applies to both the bar and Mega Menu,
+- panel geometry, radius, and elevation may remain distinct; the material surface must be identical so both elements read as one navigation layer.
+
 **Image behavior:**
 - desktop only,
 - rendered only while the panel is open,
