@@ -13,6 +13,7 @@ import {
 } from '@/components/careers'
 import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
 import { getPublicPath } from '@/lib/routing/public-routes'
+import { ContentSplit } from '@/components/sections'
 
 interface Props {
   locale: CareerLocale
@@ -40,7 +41,7 @@ const COPY = {
     },
     values: {
       eyebrow: 'Dlaczego warto',
-      title: 'Co zyskujemy, pracując w Profitia',
+      title: 'Co zyskujesz pracując w Profitii?',
       items: [
         {
           label: 'Wpływ na realne decyzje biznesowe',
@@ -67,6 +68,18 @@ const COPY = {
           body: 'Budujemy kompetencje w realnej pracy projektowej. Każde zadanie przynosi inne pytania biznesowe, kontekst i zestaw zmiennych, dlatego stale uczymy się czegoś nowego.',
         },
       ],
+    },
+    award: {
+      eyebrow: 'Friendly Workplace® 2026',
+      title: 'Profitia z nagrodą Friendly Workplace® 2026',
+      lead: 'People. Culture. Trust. Everyday cooperation.',
+      paragraphs: [
+        'Friendly Workplace® to wyróżnienie dla organizacji, które budują nowoczesne, przyjazne środowisko pracy, stawiają na rozwój ludzi, partnerskie relacje i realne wsparcie pracowników - czyli dokładnie te elementy, które nie powinny być tylko ładnym hasłem na stronie internetowej, ale codzienną praktyką.',
+        'W PROFITII od lat wierzymy, że dobra firma doradcza to nie tylko jakość rekomendacji, mocne analizy i odpowiedzialność za efekt u Klienta. To także zespół, który chce ze sobą pracować, ufa sobie, rozwija się i potrafi realizować wymagające projekty bez tracenia tego, co najważniejsze - dobrej energii i wzajemnego szacunku.',
+        'Bo consulting to oczywiście projekty, liczby, negocjacje, transformacje i konkretne efekty. Ale za tym wszystkim stoją ludzie - ich kompetencje, charakter, zaangażowanie i codzienne mikrodecyzje, które budują kulturę firmy dużo bardziej niż jakikolwiek dokument HR-owy.',
+      ],
+      linkLabel: 'Więcej informacji',
+      imageAlt: 'Zespół Profitia z nagrodą Friendly Workplace 2026',
     },
     life: {
       eyebrow: 'Na co dzień',
@@ -228,6 +241,18 @@ const COPY = {
         },
       ],
     },
+    award: {
+      eyebrow: 'Friendly Workplace® 2026',
+      title: 'Profitia receives the Friendly Workplace® 2026 award',
+      lead: 'People. Culture. Trust. Everyday cooperation.',
+      paragraphs: [
+        'Friendly Workplace® recognises organisations that create modern, welcoming workplaces, invest in people, build relationships based on partnership and provide genuine employee support - the very qualities that should be everyday practice rather than polished statements on a website.',
+        'At PROFITIA, we have long believed that a strong consulting firm is defined not only by the quality of its recommendations, rigorous analysis and accountability for client outcomes. It also depends on a team whose members want to work together, trust one another, keep developing and deliver demanding projects without losing what matters most - positive energy and mutual respect.',
+        'Consulting is, of course, about projects, numbers, negotiations, transformations and measurable outcomes. Behind all of them are people - their expertise, character, commitment and everyday decisions, which shape a company’s culture far more than any HR document ever could.',
+      ],
+      linkLabel: 'Find out more',
+      imageAlt: 'The Profitia team receiving the Friendly Workplace 2026 award',
+    },
     life: {
       eyebrow: 'Everyday life',
       title: 'A good place to work should also be a good place to be',
@@ -376,6 +401,28 @@ export default function CareerListingPage({ locale }: Props) {
         subtitle={c.hero.subtitle}
         cta1={c.hero.cta1}
         cta2={c.hero.cta2}
+      />
+
+      <ContentSplit
+        label={c.award.eyebrow}
+        headline={c.award.title}
+        body={(
+          <div className="space-y-5 text-[16px] leading-[1.8] text-gray-600">
+            <p className="font-semibold text-gray-900">{c.award.lead}</p>
+            {c.award.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+        )}
+        cta={{
+          label: c.award.linkLabel,
+          href: 'https://markapracodawcy.pl/profitia-z-nagroda-friendly-workplace-2026/',
+          target: '_blank',
+        }}
+        image={{
+          src: '/images/website/Friendly Workspace Profitia.webp',
+          alt: c.award.imageAlt,
+        }}
+        imagePosition="left"
+        background="gray-50"
       />
 
       <CareerValues

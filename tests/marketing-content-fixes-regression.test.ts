@@ -1,0 +1,57 @@
+import assert from 'node:assert/strict'
+import { existsSync, readFileSync } from 'node:fs'
+import { test } from 'node:test'
+
+const source = (path: string) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8')
+
+test('digital service heroes use the four approved local assets', () => {
+  const catalog = source('components/pages/digitalServicesCatalog.ts')
+  const servicesPage = source('components/pages/ServicesPage.tsx')
+  const assets = [
+    'Digital Consulting Profitia.png',
+    'Spend Analytics Profitia.png',
+    'Dedykowane aplikacje Profitia.png',
+    'Agenci AI.png',
+  ]
+
+  for (const asset of assets) {
+    assert.equal(existsSync(new URL(`../public/images/website/${asset}`, import.meta.url)), true, `Missing ${asset}`)
+    assert.match(catalog, new RegExp(asset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))
+  }
+
+  assert.match(servicesPage, /imageSrc=\{copy\.hero\.imageSrc/)
+  assert.match(servicesPage, /imageAlt=\{copy\.hero\.imageAlt/)
+})
+
+test('advisory services and products heroes use their approved local assets', () => {
+  const services = source('components/pages/ServicesPage.tsx')
+  const products = source('components/pages/ProductsPage.tsx')
+
+  assert.equal(existsSync(new URL('../public/images/website/Profitia_1.jpg', import.meta.url)), true)
+  assert.equal(existsSync(new URL('../public/images/website/Profitia_27.jpg', import.meta.url)), true)
+  assert.match(services, /Profitia_1\.jpg/)
+  assert.match(products, /Profitia_27\.jpg/)
+})
+
+test('the Polish MCIPS hero button opens the approved PEDP document', () => {
+  const education = source('components/pages/EducationPage.tsx')
+
+  assert.equal(existsSync(new URL('../public/docs/PEDP 2026.pdf', import.meta.url)), true)
+  assert.match(education, /Zobacz ofertę MCIPS[\s\S]*?\/docs\/PEDP%202026\.pdf/)
+  assert.match(education, /target=\{locale === 'pl' \? '_blank'/)
+  assert.match(education, /rel=\{locale === 'pl' \? 'noopener noreferrer'/)
+})
+
+test('Friendly Workplace section reuses ContentSplit and keeps an accessible external link', () => {
+  const career = source('components/pages/CareerListingPage.tsx')
+  const contentSplit = source('components/sections/content/ContentSplit.tsx')
+  const button = source('components/ui/Button.tsx')
+
+  assert.equal(existsSync(new URL('../public/images/website/Friendly Workspace Profitia.webp', import.meta.url)), true)
+  assert.match(career, /<ContentSplit/)
+  assert.match(career, /imagePosition="left"/)
+  assert.match(career, /target: '_blank'/)
+  assert.match(contentSplit, /noopener noreferrer/)
+  assert.match(button, /target=\{target\}/)
+  assert.match(button, /rel=\{rel\}/)
+})
