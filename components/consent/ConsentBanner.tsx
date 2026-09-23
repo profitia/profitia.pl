@@ -25,7 +25,7 @@ const COPY = {
     body: 'Google Analytics mierzy odsłony bez analitycznych plików cookie także przed Twoją decyzją. Po zgodzie włączamy pełny pomiar z plikami cookie. Pozostałe opcjonalne pliki wymagają zgody.',
     acceptAll: 'Zaakceptuj wszystkie',
     customize: 'Dostosuj ustawienia',
-    rejectAll: 'Odrzuć niezbędne',
+    rejectAll: 'Odrzuć opcjonalne',
     privacyLink: 'Polityka prywatności',
   },
   en: {
