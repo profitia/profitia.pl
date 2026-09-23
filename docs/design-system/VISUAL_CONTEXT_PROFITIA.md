@@ -1440,6 +1440,7 @@ The background-fill restriction applies to top-level navigation links. Child pre
 - every open desktop Parent panel uses the single opaque `MEGA_MENU_SURFACE_CLASS` (`bg-white`) so content underneath cannot tint separate parts of the panel,
 - the Parent heading and Child grid inherit that one panel surface; they must not introduce nested backgrounds, transparency, gradients, or a separator border between them,
 - panel geometry, bottom radius, and elevation may remain distinct, while the entire panel must read as one continuous extension of the navigation layer,
+- the panel shadow is clipped at its top boundary so it may remain visible only on the left, right, and bottom edges; it must never cast a glow onto the navigation bar,
 - these rules are canonical and locked for every current and future Parent rendered from `HEADER_MENU_CONTENT`; do not add per-menu surface variants.
 
 **Image behavior:**

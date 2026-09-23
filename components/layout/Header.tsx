@@ -306,7 +306,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             {activeDesktopMenu && (
               <div
                 id={`desktop-menu-${activeDesktopMenu.id}`}
-                className="absolute left-0 top-full z-50"
+                className="absolute left-0 top-full z-50 [-webkit-clip-path:inset(0_-80px_-80px_-80px)] [clip-path:inset(0_-80px_-80px_-80px)]"
               >
                 <div
                   role="group"

@@ -10,8 +10,12 @@ test('desktop submenu is flush with the header and uses one canonical opaque sur
   assert.match(header, /const MEGA_MENU_SURFACE_CLASS = 'bg-white'/)
   assert.match(header, /desktopNav} relative h-full/)
   assert.match(header, /className="flex h-full items-center"/)
-  assert.match(header, /className="absolute left-0 top-full z-50"/)
+  assert.match(
+    header,
+    /className="absolute left-0 top-full z-50 \[-webkit-clip-path:inset\(0_-80px_-80px_-80px\)\] \[clip-path:inset\(0_-80px_-80px_-80px\)\]"/,
+  )
   assert.match(header, /overflow-hidden rounded-b-2xl \$\{MEGA_MENU_SURFACE_CLASS\}/)
+  assert.match(header, /shadow-\[0_24px_60px_rgba\(15,23,42,0\.14\)\]/)
   assert.match(header, /<div className="px-5 py-4">/)
   assert.doesNotMatch(header, /top-full z-50 pt-/)
   assert.doesNotMatch(header, /overflow-hidden rounded-b-2xl \$\{HEADER_SURFACE_CLASS\}/)
