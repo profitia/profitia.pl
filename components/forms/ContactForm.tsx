@@ -14,6 +14,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { trackGa4FormSuccess } from '@/lib/ga4-form-events'
 
 import { validateContactForm, hasErrors } from '@/lib/forms/validation'
 import { buildContactPayload } from '@/lib/forms/payload'
@@ -295,6 +296,7 @@ export function ContactForm({ locale = 'pl' }: ContactFormProps) {
       const result = await submitContactForm(payload)
 
       if (result.success) {
+        trackGa4FormSuccess('generate_lead', locale, 'contact')
         resetSecurityTransport()
         setTurnstileToken(null)
         setValues(INITIAL_VALUES)
