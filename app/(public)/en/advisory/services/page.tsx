@@ -3,9 +3,9 @@ import ServicesPage from '@/components/pages/ServicesPage'
 import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
 export const metadata: Metadata = buildPublicMetadata('services:index', 'en', {
-  title: 'Services | Profitia',
+  title: 'Procurement Advisory',
   description:
-    'Procurement advisory, negotiations, spend analytics and procurement transformation. Advisory capabilities for organisations building lasting cost advantage.',
+    'Profitia procurement advisory: negotiations, spend analytics and procurement transformation. Explore our advisory services for businesses.',
 })
 
 export default function Page() {
