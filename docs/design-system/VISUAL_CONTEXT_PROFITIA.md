@@ -1435,12 +1435,12 @@ The background-fill restriction applies to top-level navigation links. Child pre
 - the viewport cap remains `calc(100vw - 2rem)`.
 
 **Canonical shared surface:**
-- the stabilized navigation bar and every open desktop Parent panel reuse the same `HEADER_SURFACE_CLASS`,
-- the shared surface is `rgba(255,255,255,0.96)` with `backdrop-blur-md` and `border-gray-100/80`,
-- opening a desktop Parent stabilizes the navigation bar surface even when the page is still at the top,
-- the panel must not add an independent background, gradient, transparency, or border color,
-- any future authorized surface or gradient change is made once in `HEADER_SURFACE_CLASS` and therefore applies to both the bar and Mega Menu,
-- panel geometry, radius, and elevation may remain distinct; the material surface must be identical so both elements read as one navigation layer.
+- the navigation bar state is controlled only by scroll position or the legal-page exception; opening a desktop Parent must never change the bar background, blur, border, or shadow,
+- the stabilized navigation bar keeps `HEADER_SURFACE_CLASS`: `rgba(255,255,255,0.96)` with `backdrop-blur-md` and `border-gray-100/80`,
+- every open desktop Parent panel uses the single opaque `MEGA_MENU_SURFACE_CLASS` (`bg-white`) so content underneath cannot tint separate parts of the panel,
+- the Parent heading and Child grid inherit that one panel surface; they must not introduce nested backgrounds, transparency, gradients, or a separator border between them,
+- panel geometry, bottom radius, and elevation may remain distinct, while the entire panel must read as one continuous extension of the navigation layer,
+- these rules are canonical and locked for every current and future Parent rendered from `HEADER_MENU_CONTENT`; do not add per-menu surface variants.
 
 **Image behavior:**
 - desktop only,
