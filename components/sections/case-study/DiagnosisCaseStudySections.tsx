@@ -38,7 +38,7 @@ export function CaseStudyStartingPoint({ content }: { content: CaseStudyStarting
         <RevealWrapper>
           <div className="space-y-6">
             <p className="editorial-label text-gray-400">{content.eyebrow}</p>
-            <h2 className="max-w-[14ch] text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
+            <h2 className="w-full text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
               {content.title}
             </h2>
             <div className="max-w-[43rem] space-y-5 text-[15px] leading-[1.75] text-[rgb(59,56,56)]">
