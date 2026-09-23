@@ -22,7 +22,7 @@ const COPY = {
   pl: {
     eyebrow: 'Prywatność',
     heading: 'Używamy plików cookie.',
-    body: 'Niektóre z nich są niezbędne do działania serwisu. Pozostałe - analityczne i marketingowe - aktywujemy tylko za Twoją zgodą.',
+    body: 'Google Analytics mierzy odsłony bez analitycznych plików cookie także przed Twoją decyzją. Po zgodzie włączamy pełny pomiar z plikami cookie. Pozostałe opcjonalne pliki wymagają zgody.',
     acceptAll: 'Zaakceptuj wszystkie',
     customize: 'Dostosuj ustawienia',
     rejectAll: 'Odrzuć niezbędne',
@@ -31,7 +31,7 @@ const COPY = {
   en: {
     eyebrow: 'Privacy',
     heading: 'We use cookies.',
-    body: 'Some are essential for the site to work. Others - analytics and marketing - are only activated with your consent.',
+    body: 'Google Analytics measures page views without analytics cookies before you decide. Consent enables full measurement with cookies. Other optional cookies require your consent.',
     acceptAll: 'Accept all',
     customize: 'Customise settings',
     rejectAll: 'Reject non-essential',
