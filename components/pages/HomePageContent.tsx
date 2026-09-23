@@ -232,6 +232,28 @@ export default function HomePageContent({
         </div>
       </section>
 
+      <nav
+        aria-label={locale === 'pl' ? 'Odkryj Profitia' : 'Explore Profitia'}
+        className="border-y border-gray-100 bg-gray-50/70"
+      >
+        <div className="container-base py-8">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
+            {locale === 'pl' ? 'Poznaj Profitia' : 'Explore Profitia'}
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {quickLinks.map((item) => (
+              <Link
+                key={item.routeId}
+                href={getPublicPath(item.routeId, locale)}
+                className="rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-800 transition-colors hover:border-brand-blue hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+              >
+                {item.label} <span aria-hidden="true">→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
+
       {locale === 'pl' && variant === 'current' ? (
         <HomePageV1Sections dict={dict} />
       ) : (
@@ -317,27 +339,7 @@ export default function HomePageContent({
           ════════════════════════════════════ */}
       <HomePillars items={pillarItems} seeMore={d.pillars.seeMore} />
 
-      <nav
-        aria-label={locale === 'pl' ? 'Odkryj Profitia' : 'Explore Profitia'}
-        className="border-y border-gray-100 bg-gray-50/70"
-      >
-        <div className="container-base py-8">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
-            {locale === 'pl' ? 'Poznaj Profitia' : 'Explore Profitia'}
-          </p>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {quickLinks.map((item) => (
-              <Link
-                key={item.routeId}
-                href={getPublicPath(item.routeId, locale)}
-                className="rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-800 transition-colors hover:border-brand-blue hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-              >
-                {item.label} <span aria-hidden="true">→</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </nav>
+
 
       {/* ════════════════════════════════════
           PROCESS
