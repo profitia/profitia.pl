@@ -31,8 +31,8 @@ export default function CookiesPage() {
         title="Polityka plików cookies"
         intro="Informacje o tym, jak serwis profitia.pl korzysta z plików cookies oraz jak możesz zarządzać swoimi preferencjami."
         meta={[
-          { label: 'Ostatnia aktualizacja', value: 'Maj 2026' },
-          { label: 'Wersja', value: '1.0' },
+          { label: 'Ostatnia aktualizacja', value: 'Wrzesień 2026' },
+          { label: 'Wersja', value: '1.1' },
         ]}
       />
 
@@ -85,6 +85,9 @@ export default function CookiesPage() {
             <li>Platform do zarządzania treścią i formularzami.</li>
             <li>Integracji z portalami społecznościowymi.</li>
           </ul>
+          <p>
+            Google Analytics 4 jest ładowany przy wejściu na serwis. Przed wyrażeniem zgody na pliki analityczne otrzymuje pomiary odsłon bez analitycznych plików cookie. Po wyrażeniu zgody może używać analitycznych plików cookie do pełniejszego pomiaru. Odmowa lub cofnięcie zgody wyłącza ten pełny pomiar, ale nie pomiary bez plików cookie.
+          </p>
           <p>
             Zasady przetwarzania danych przez podmioty trzecie regulują ich własne polityki prywatności i pliki cookies.
           </p>
