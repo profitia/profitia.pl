@@ -404,7 +404,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         imageAlt: 'Profitia Digital Consulting',
       },
       seo: {
-        title: 'Digital Consulting | Profitia',
+        title: 'Digital Consulting',
         description: 'Profitia Digital Consulting: assess procurement digital maturity, select technology and implement tools and automation.',
       },
       domains: [
