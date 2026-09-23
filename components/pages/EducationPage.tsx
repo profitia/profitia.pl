@@ -282,12 +282,12 @@ const HERO_IMAGE = {
 
 const SEO = {
   pl: {
-    title: 'Edukacja | Profitia',
-    description: 'Programy executive, warsztaty negocjacyjne i szkolenia zakupowe. Rozwijamy kompetencje zakupowe poprzez praktyczną edukację opartą na realnych negocjacjach.',
+    title: 'Szkolenia zakupowe',
+    description: 'Szkolenia zakupowe Profitia: warsztaty negocjacyjne, programy rozwojowe i certyfikacja CIPS. Rozwijaj kompetencje zespołu w praktyce.',
   },
   en: {
-    title: 'Education | Profitia',
-    description: 'Executive programmes, negotiation workshops, and procurement training. We develop procurement capabilities through practical education grounded in real negotiations.',
+    title: 'Procurement Training',
+    description: 'Profitia procurement training: negotiation workshops, development programmes and CIPS qualifications. Build practical skills across your team.',
   },
 } as const
 
