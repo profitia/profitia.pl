@@ -238,7 +238,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
           {/* Desktop nav */}
           <nav
             ref={desktopNavRef}
-            className={`${HEADER_RESPONSIVE_CLASSES.desktopNav} relative`}
+            className={`${HEADER_RESPONSIVE_CLASSES.desktopNav} relative h-full`}
             aria-label={isEN ? 'Main navigation' : 'Nawigacja główna'}
             onMouseLeave={() => setOpenDesktopMenu(null)}
             onBlur={(event) => {
@@ -254,7 +254,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
               return (
                 <div
                   key={menu.id}
-                  className="flex items-center"
+                  className="flex h-full items-center"
                   onMouseEnter={() => setOpenDesktopMenu(menu.id)}
                 >
                   <button
@@ -306,12 +306,12 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
             {activeDesktopMenu && (
               <div
                 id={`desktop-menu-${activeDesktopMenu.id}`}
-                className="absolute left-0 top-full z-50 pt-3"
+                className="absolute left-0 top-full z-50"
               >
                 <div
                   role="group"
                   aria-labelledby={`desktop-menu-trigger-${activeDesktopMenu.id}`}
-                  className={`max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border ${HEADER_SURFACE_CLASS} shadow-[0_24px_60px_rgba(15,23,42,0.14)] ${
+                  className={`max-w-[calc(100vw-2rem)] overflow-hidden rounded-b-2xl ${HEADER_SURFACE_CLASS} shadow-[0_24px_60px_rgba(15,23,42,0.14)] ${
                     activeDesktopMenu.desktopColumns === 3 ? 'w-[760px]' : 'w-[510px]'
                   }`}
                 >

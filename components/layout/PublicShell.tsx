@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer'
 import NewsletterStrip from '@/components/layout/NewsletterStrip'
 import { ConsentProvider } from '@/components/consent'
 import { LanguageNavigationProvider } from '@/components/layout/LanguageNavigationProvider'
+import SectionRevealController from '@/components/layout/SectionRevealController'
 
 interface PublicShellProps {
   articlePage?: boolean
@@ -16,7 +17,10 @@ export default function PublicShell({ articlePage = false, children, locale }: P
       <LanguageNavigationProvider>
         <NewsletterStrip localeOverride={locale} />
         <Header localeOverride={locale} />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen" data-section-reveal-root>
+          <SectionRevealController />
+          {children}
+        </main>
         <Footer articlePage={articlePage} localeOverride={locale} />
       </LanguageNavigationProvider>
     </ConsentProvider>
