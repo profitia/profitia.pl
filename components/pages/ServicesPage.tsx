@@ -6,6 +6,12 @@ import { SERVICES_CATALOG } from './servicesCatalog'
 import { getPublicPath, type PublicRouteId } from '@/lib/routing/public-routes'
 import type { CatalogDomain } from './catalogTypes'
 import { PUBLIC_HERO_ASSETS } from '@/lib/presentation/public-hero-assets'
+import {
+  CaseStudyResult,
+  CaseStudyScope,
+  CaseStudyStartingPoint,
+  type DiagnosisCaseStudyContent,
+} from '@/components/sections/case-study/DiagnosisCaseStudySections'
 
 interface Props {
   locale: Locale
@@ -22,6 +28,7 @@ interface Props {
     description: string
   }
   domains?: CatalogDomain[]
+  caseStudy?: DiagnosisCaseStudyContent
 }
 
 const COPY = {
@@ -68,7 +75,7 @@ const SEO = {
   },
 } as const
 
-export default function ServicesPage({ locale, routeId = 'services:index', hero, seo, domains }: Props) {
+export default function ServicesPage({ locale, routeId = 'services:index', hero, seo, domains, caseStudy }: Props) {
   const defaultCopy = COPY[locale]
   const copy = hero ? { ...defaultCopy, hero } : defaultCopy
   const resolvedSeo = seo ?? SEO[locale]
@@ -89,6 +96,14 @@ export default function ServicesPage({ locale, routeId = 'services:index', hero,
 
       <div className="container-base pb-20">
         <ServicesContainer domains={resolvedDomains} />
+
+        {caseStudy ? (
+          <>
+            <CaseStudyStartingPoint content={caseStudy.startingPoint} />
+            <CaseStudyScope content={caseStudy.scope} />
+            <CaseStudyResult content={caseStudy.result} />
+          </>
+        ) : null}
 
         <CapabilityCTA
           locale={locale}

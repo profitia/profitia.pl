@@ -1,6 +1,11 @@
 import { CapabilityCTA, CapabilityHero } from '@/components/capabilities'
 import { PublicJsonLd } from '@/components/seo/PublicJsonLd'
-import { PremiumCard, RevealWrapper } from '@/components/ui'
+import { RevealWrapper } from '@/components/ui'
+import {
+  CaseStudyResult,
+  CaseStudyScope,
+  CaseStudyStartingPoint,
+} from '@/components/sections/case-study/DiagnosisCaseStudySections'
 import { getPublicPath } from '@/lib/routing/public-routes'
 import type { Locale } from '@/lib/capabilities'
 import { PUBLIC_HERO_ASSETS } from '@/lib/presentation/public-hero-assets'
@@ -276,67 +281,8 @@ export default function SpotAnalysisPage({ locale }: Props) {
       />
 
       <div className="container-base pb-20">
-        <section className="border-t border-gray-100 pt-24 pb-20">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:gap-16">
-            <RevealWrapper>
-              <div className="space-y-6">
-                <p className="editorial-label text-gray-400">
-                  {c.problem.eyebrow}
-                </p>
-                <h2 className="max-w-[14ch] text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
-                  {c.problem.title}
-                </h2>
-                <div className="max-w-[43rem] space-y-5 text-[15px] leading-[1.75] text-[rgb(59,56,56)]">
-                  {c.problem.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-            </RevealWrapper>
-
-            <RevealWrapper delay={1} className="h-full lg:pt-24">
-              <ul className="flex flex-col gap-5 lg:h-full lg:justify-between" aria-label={c.problem.eyebrow}>
-                {c.problem.signals.map((signal) => (
-                  <li
-                    key={signal}
-                    className="flex items-start gap-4 text-base font-medium leading-relaxed text-[rgb(36,47,68)]"
-                  >
-                    <span className="mt-1.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full ring-4 ring-[rgba(0,109,158,0.14)]" aria-hidden="true">
-                      <span className="h-2.5 w-2.5 rounded-full bg-[rgb(0,109,158)]" />
-                    </span>
-                    <span>{signal}</span>
-                  </li>
-                ))}
-              </ul>
-            </RevealWrapper>
-          </div>
-        </section>
-
-        <section className="border-t border-gray-100 py-24">
-          <RevealWrapper>
-            <div className="max-w-[50rem] space-y-5">
-              <p className="editorial-label text-gray-400">
-                {c.scope.eyebrow}
-              </p>
-              <h2 className="text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
-                {c.scope.title}
-              </h2>
-              <p className="text-[15px] leading-[1.75] text-[rgb(59,56,56)]">{c.scope.intro}</p>
-            </div>
-          </RevealWrapper>
-
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {c.scope.areas.map((area, index) => (
-              <PremiumCard
-                key={area.title}
-                title={area.title}
-                description={area.description}
-                delay={((index % 4) as 0 | 1 | 2 | 3)}
-                className="h-full rounded-[24px] p-7"
-              />
-            ))}
-          </div>
-        </section>
+        <CaseStudyStartingPoint content={c.problem} />
+        <CaseStudyScope content={c.scope} />
 
         <section className="border-t border-gray-100 py-24">
           <RevealWrapper>
@@ -433,37 +379,7 @@ export default function SpotAnalysisPage({ locale }: Props) {
           </ol>
         </section>
 
-        <section className="py-10">
-          <RevealWrapper>
-            <div className="rounded-[36px] bg-[rgb(36,47,68)] px-6 py-14 text-white sm:px-8 lg:px-12 lg:py-16">
-              <div className="max-w-[48rem] space-y-6">
-                <p className="editorial-label text-[rgba(199,237,251,0.7)]">
-                  {c.results.eyebrow}
-                </p>
-                <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                  {c.results.title}
-                </h2>
-              </div>
-
-              <ul className="mt-10 space-y-4 text-[15px] leading-[1.75] text-[rgba(255,255,255,0.84)]">
-                {c.results.items.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-[9px] h-2 w-2 flex-shrink-0 rounded-full bg-[rgb(0,146,217)]" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-10 max-w-[44rem] rounded-[28px] border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.06)] px-6 py-6">
-                <p className="text-lg font-medium leading-relaxed text-white">{c.results.highlight}</p>
-              </div>
-
-              <p className="mt-8 max-w-[42rem] text-sm leading-[1.75] text-[rgba(255,255,255,0.68)]">
-                {c.results.boundary}
-              </p>
-            </div>
-          </RevealWrapper>
-        </section>
+        <CaseStudyResult content={c.results} />
 
         <section className="border-t border-gray-100 py-24">
           <RevealWrapper>

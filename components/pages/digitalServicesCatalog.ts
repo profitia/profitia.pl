@@ -1,6 +1,7 @@
 import type { Locale } from '@/lib/capabilities'
 import { PUBLIC_HERO_ASSETS } from '@/lib/presentation/public-hero-assets'
 import type { CatalogDomain } from './catalogTypes'
+import type { DiagnosisCaseStudyContent } from '@/components/sections/case-study/DiagnosisCaseStudySections'
 
 export type DigitalServicesPageContent = {
   hero: {
@@ -15,6 +16,7 @@ export type DigitalServicesPageContent = {
     description: string
   }
   domains: CatalogDomain[]
+  caseStudy?: DiagnosisCaseStudyContent
 }
 
 export type DigitalServiceId =
@@ -79,6 +81,60 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
           ],
         },
       ],
+      caseStudy: {
+        startingPoint: {
+          eyebrow: 'Punkt wyjścia',
+          title: 'Rosnąca organizacja potrzebowała uporządkować zakupy i przygotować je do dalszej skali',
+          paragraphs: [
+            'Dynamicznie rozwijająca się organizacja wchodziła na rynki zagraniczne, a dedykowany dział zakupów został w niej powołany dopiero niedawno. Szybka ekspansja stworzyła silną presję na automatyzację oraz uporządkowanie procesów w całej firmie.',
+            'Organizacja potrzebowała przejść od działań opartych na komunikacji mailowej do spójnego środowiska narzędziowego, które zapewni przejrzystość procesów i będzie gotowe na dalszy wzrost.',
+          ],
+          signals: [
+            'Brak narzędzi systemowych - działania zakupowe opierały się wyłącznie na komunikacji mailowej',
+            'Brak przejrzystości - organizacja nie miała pełnego obrazu obszaru zakupowego ani kontroli nad procesami',
+            'Niski poziom wiedzy technologicznej - ograniczona znajomość rynkowych rozwiązań IT dla zakupów',
+            'Wsparcie od zera - potrzeba ustrukturyzowania całego obszaru zakupowego w odpowiedzi na rosnącą skalę biznesu',
+          ],
+        },
+        scope: {
+          eyebrow: 'Zakres diagnozy',
+          title: 'Od diagnozy potrzeb do wyboru platformy zakupowej',
+          intro: 'Celem projektu było przeprowadzenie Klienta przez pełny proces wyboru optymalnej platformy zakupowej oraz automatyzacja procesów Source-to-Contract (S2C). Projekt został zrealizowany w pięciu głównych etapach:',
+          areas: [
+            {
+              title: 'Diagnoza potrzeb',
+              description: 'Szczegółowa analiza i zmapowanie wymagań funkcjonalnych w obszarze narzędziowym.',
+            },
+            {
+              title: 'Opracowanie drzewa zakupowego',
+              description: 'Stworzenie spójnej struktury kategorii zakupowych na trzech poziomach.',
+            },
+            {
+              title: 'Analiza i dopasowanie funkcjonalności',
+              description: 'Weryfikacja rozwiązań pod kątem skali, profilu działalności, procedur Klienta oraz możliwości integracji z istniejącą infrastrukturą IT.',
+            },
+            {
+              title: 'RFP i dialog techniczny',
+              description: 'Przeprowadzenie zapytania ofertowego połączonego z dialogiem technicznym oraz negocjacjami cenowymi z dostawcami IT.',
+            },
+            {
+              title: 'Wybór dostawcy',
+              description: 'Wyłonienie partnera technologicznego oraz ustalenie ścieżki i kolejności wdrażania modułów.',
+            },
+          ],
+        },
+        result: {
+          eyebrow: 'Rezultat',
+          title: 'Od procesów manualnych do skalowalnego środowiska S2C',
+          items: [
+            'Dopasowanie do potrzeb i skali - wybrano dostawcę oraz zestaw funkcjonalności odpowiadający specyfice i rzeczywistym potrzebom Klienta, bez ponoszenia kosztów zbędnych modułów.',
+            'Terminowość i sprawny start - precyzyjny harmonogram oraz właściwa kolejność wdrażania modułów umożliwiły szybkie uruchomienie narzędzia i terminową realizację projektu.',
+            'Automatyzacja i cyfryzacja - rozproszoną komunikację e-mail zastąpiono spójnym, cyfrowym procesem S2C w całej organizacji.',
+            'Skalowalność - powstał stabilny fundament narzędziowy i procesowy, gotowy na dalszą dynamiczną ekspansję zagraniczną firmy.',
+          ],
+          highlight: 'Projekt umożliwił organizacji sprawne przejście od procesów manualnych do nowoczesnego, zautomatyzowanego środowiska zakupowego S2C.',
+        },
+      },
     },
     'spend-analytics': {
       hero: {
@@ -232,6 +288,60 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
           ],
         },
       ],
+      caseStudy: {
+        startingPoint: {
+          eyebrow: 'Starting point',
+          title: 'A growing organisation needed to structure procurement and prepare it to scale',
+          paragraphs: [
+            'A fast-growing organisation was expanding into international markets, having only recently established a dedicated procurement function. Rapid expansion created significant pressure to automate and structure processes across the business.',
+            'The organisation needed to move from email-based procurement activities to a coherent technology environment that would provide process transparency and support further growth.',
+          ],
+          signals: [
+            'No system support - procurement activities relied entirely on email communication',
+            'Limited transparency - the organisation lacked a complete view of procurement and control over its processes',
+            'Limited technology knowledge - there was little familiarity with procurement-specific IT solutions available on the market',
+            'Building from scratch - the procurement function needed to be structured in response to the growing scale of the business',
+          ],
+        },
+        scope: {
+          eyebrow: 'Assessment scope',
+          title: 'From needs assessment to procurement platform selection',
+          intro: 'The project was designed to guide the client through the complete process of selecting the right procurement platform and automating Source-to-Contract (S2C) processes. The work was delivered in five main stages:',
+          areas: [
+            {
+              title: 'Needs assessment',
+              description: 'A detailed analysis and mapping of functional requirements for the technology environment.',
+            },
+            {
+              title: 'Procurement taxonomy design',
+              description: 'Development of a coherent three-level procurement category structure.',
+            },
+            {
+              title: 'Solution and functionality fit assessment',
+              description: 'Evaluation of solutions against the client’s scale, business profile, procedures and integration requirements for the existing IT infrastructure.',
+            },
+            {
+              title: 'RFP and technical dialogue',
+              description: 'Delivery of an RFP process combined with technical dialogue and commercial negotiations with technology providers.',
+            },
+            {
+              title: 'Provider selection',
+              description: 'Selection of the technology partner and definition of the implementation path and module sequence.',
+            },
+          ],
+        },
+        result: {
+          eyebrow: 'Outcome',
+          title: 'From manual processes to a scalable S2C environment',
+          items: [
+            'Fit to needs and scale - the selected provider and functionality set matched the client’s specific requirements without the cost of unnecessary modules.',
+            'On-time delivery and an efficient start - a precise schedule and the right module sequence enabled a rapid launch and timely project delivery.',
+            'Automation and digitalisation - fragmented email communication was replaced with a coherent digital S2C process across the organisation.',
+            'Scalability - the project established a stable technology and process foundation ready to support the company’s continued international expansion.',
+          ],
+          highlight: 'The project enabled the organisation to move efficiently from manual processes to a modern, automated S2C procurement environment.',
+        },
+      },
     },
     'spend-analytics': {
       hero: {
