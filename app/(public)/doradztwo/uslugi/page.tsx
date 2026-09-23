@@ -3,9 +3,9 @@ import ServicesPage from '@/components/pages/ServicesPage'
 import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
 export const metadata: Metadata = buildPublicMetadata('services:index', 'pl', {
-  title: 'Usługi | Profitia',
+  title: 'Doradztwo zakupowe',
   description:
-    'Doradztwo zakupowe, negocjacje, analityka spend i transformacja funkcji zakupowej. Advisory capabilities dla organizacji budujących trwałą przewagę kosztową.',
+    'Doradztwo zakupowe Profitia: negocjacje, analityka wydatków i transformacja zakupów. Poznaj usługi doradcze dla firm.',
 })
 
 export default function Page() {
