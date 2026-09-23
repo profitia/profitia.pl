@@ -21,12 +21,12 @@ interface Props {
 
 const SEO = {
   pl: {
-    title: 'Kariera | Profitia',
-    description: 'Praca w Profitia - środowisko dla osób, które chcą pracować na realnych problemach zakupowych. Analityka, negocjacje, doradztwo.',
+    title: 'Praca i kariera',
+    description: 'Zacznij pracę w Profitia. Poznaj oferty pracy, zespół i proces rekrutacji w doradztwie zakupowym, analityce i negocjacjach.',
   },
   en: {
-    title: 'Career | Profitia',
-    description: 'Working at Profitia - a professional environment for people who want to work on real procurement problems. Analytics, negotiations, advisory.',
+    title: 'Careers',
+    description: 'Start your career at Profitia. Explore open roles, our team and recruitment process in procurement advisory, analytics and negotiations.',
   },
 } as const
 
