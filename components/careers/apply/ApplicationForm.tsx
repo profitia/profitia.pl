@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
+import { trackGa4FormSuccess } from '@/lib/ga4-form-events'
 import type { CareerLocale } from '@/lib/careers'
 import { getAllJobs, tCareer } from '@/lib/careers'
 import { RECRUITMENT_TURNSTILE_ACTION } from '@/lib/forms/constants'
@@ -385,6 +386,7 @@ export default function ApplicationForm({ locale }: Props) {
       }
 
       if (response.ok && payload?.success) {
+        trackGa4FormSuccess('job_application_submit', locale, 'career_apply')
         resetSecurityTransport()
         setTurnstileToken(null)
         setSubmittedRoleName(roleConfig?.title[locale] ?? '')
