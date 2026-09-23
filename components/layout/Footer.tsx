@@ -39,6 +39,7 @@ export default function Footer({
   const currentLocale = isEN ? 'en' : 'pl'
   const homeHref = getPublicPath('home', currentLocale)
   const servicesHref = getPublicPath('services:index', currentLocale)
+  const digitalServicesHref = getPublicPath('digital-service:digital-consulting', currentLocale)
   const educationHref = getPublicPath('education:index', currentLocale)
   const aboutHref = getPublicPath('about', currentLocale)
   const careerHref = getPublicPath('career:index', currentLocale)
@@ -71,6 +72,7 @@ export default function Footer({
   const NAV_LINKS = [
     { href: homeHref, label: dict.nav.home },
     { href: servicesHref, label: dict.nav.services },
+    { href: digitalServicesHref, label: dict.nav.digitalServices },
     { href: educationHref, label: dict.nav.education },
     ...(!isEN ? [{ href: blogHref, label: dict.nav.blog }] : []),
     { href: aboutHref, label: dict.nav.about },
@@ -252,20 +254,12 @@ export default function Footer({
             </p>
             <div className="space-y-3 mb-10">
               <a
-                href="https://profitia.pl/images/pedp/PEDP-2026-CIPS.pdf"
+                href="/docs/PEDP%202026.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-sm text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
               >
-                PEDP - broszura informacyjna ↗
-              </a>
-              <a
-                href="https://profitia.pl/images/profitia/cips-globalstandard_2017_pl.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out leading-snug"
-              >
-                Globalny Standard w Zakupach i Łańcuchu Dostaw ↗
+                {isEN ? 'PEDP - information brochure ↗' : 'PEDP - broszura informacyjna ↗'}
               </a>
             </div>
 
