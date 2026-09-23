@@ -10,6 +10,7 @@ interface Props {
   delay?: 0 | 1 | 2 | 3 | 4
   className?: string
   children?: React.ReactNode
+  interactive?: boolean
 }
 
 /**
@@ -26,10 +27,14 @@ export default function PremiumCard({
   delay = 0,
   className = '',
   children,
+  interactive = true,
 }: Props) {
+  const interactionClasses = interactive
+    ? 'group transition-all duration-300 hover:bg-[rgba(0,109,158,0.03)] hover:border-[rgba(0,109,158,0.18)] hover:shadow-lg'
+    : ''
   const inner = (
     <div
-      className={`group h-full border border-gray-200 rounded-xl p-8 transition-all duration-300 hover:bg-[rgba(0,109,158,0.03)] hover:border-[rgba(0,109,158,0.18)] hover:shadow-lg ${className}`}
+      className={`h-full border border-gray-200 rounded-xl p-8 ${interactionClasses} ${className}`}
     >
       {icon && (
         <div className="mb-5 text-gray-700 group-hover:text-brand-blue transition-colors">

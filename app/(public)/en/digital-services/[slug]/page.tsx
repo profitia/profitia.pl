@@ -35,6 +35,7 @@ export default async function Page({ params }: Props) {
       hero={content.hero}
       seo={content.seo}
       domains={content.domains}
+      caseStudy={content.caseStudy}
     />
   )
 }
