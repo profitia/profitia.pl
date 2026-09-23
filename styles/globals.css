@@ -110,21 +110,26 @@
     @apply mt-2 text-sm text-gray-500;
   }
 
-  /* ─── Scroll reveal — IntersectionObserver-driven ─────────── */
+  /* ─── Canonical section reveal — one motion unit per section ─ */
 
-  .reveal {
+  .section-reveal > * {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    transition: opacity 0.55s ease-out, transform 0.55s ease-out;
   }
-  .reveal.active {
+
+  .section-reveal.section-reveal-active > * {
     opacity: 1;
     transform: translateY(0);
   }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-reveal > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
