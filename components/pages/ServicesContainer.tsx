@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { RevealWrapper } from '@/components/ui'
 import type { CatalogContentSection, CatalogDomain, CatalogProduct } from './catalogTypes'
 
 type Props = {
   domains: CatalogDomain[]
+  variant?: 'accordion' | 'process'
 }
 
 function ChevronIcon({ expanded }: { expanded: boolean }) {
@@ -131,13 +133,48 @@ function ServicesDomainSection({
   activeItemId,
   onToggle,
   isFirst,
+  variant,
 }: {
   domain: CatalogDomain
   openItems: Record<string, boolean>
   activeItemId: string | null
   onToggle: (itemId: string) => void
   isFirst: boolean
+  variant: NonNullable<Props['variant']>
 }) {
+  if (variant === 'process') {
+    return (
+      <section className="border-t border-gray-100 py-24">
+        <RevealWrapper>
+          <h2 className="text-3xl font-semibold tracking-tight text-[rgb(36,47,68)] md:text-4xl">
+            {domain.title}
+          </h2>
+        </RevealWrapper>
+
+        <ol className="mt-12 grid gap-5 lg:grid-cols-3">
+          {domain.products.map((product, index) => (
+            <li key={`${domain.id}-${product.id}`} className="list-none">
+              <RevealWrapper delay={((index % 3) as 0 | 1 | 2)} className="h-full">
+                <div className="flex h-full flex-col rounded-[28px] border border-[rgba(149,166,199,0.28)] bg-white px-6 py-7 shadow-[0_16px_40px_rgba(15,23,42,0.05)]">
+                  <span className="editorial-index text-[rgb(0,109,158)]">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="editorial-box-title mt-5 text-[rgb(36,47,68)]">
+                    {product.title}
+                  </h3>
+                  <div className="mt-4">
+                    <ProductDescription description={product.description} sections={product.sections} />
+                  </div>
+                  {product.action ? <ProductAction action={product.action} /> : null}
+                </div>
+              </RevealWrapper>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )
+  }
+
   return (
     <section className={isFirst ? 'border-t border-[rgba(149,166,199,0.3)] pt-28 pb-12' : 'border-t border-[rgba(149,166,199,0.3)] pt-12 pb-12'}>
       <div className="grid gap-8 lg:grid-cols-[320px_1fr] lg:gap-16">
@@ -184,7 +221,7 @@ function ServicesDomainSection({
   )
 }
 
-export default function ServicesContainer({ domains }: Props) {
+export default function ServicesContainer({ domains, variant = 'accordion' }: Props) {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({})
   const [activeItemId, setActiveItemId] = useState<string | null>(null)
   const [openOrder, setOpenOrder] = useState<string[]>([])
@@ -223,6 +260,7 @@ export default function ServicesContainer({ domains }: Props) {
       activeItemId={activeItemId}
       onToggle={toggleItem}
       isFirst={index === 0}
+      variant={variant}
     />
   ))
 }
