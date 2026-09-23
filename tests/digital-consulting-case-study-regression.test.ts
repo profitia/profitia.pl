@@ -43,3 +43,25 @@ test('diagnosis scope cards are explicitly static without hover affordance', () 
   assert.match(premiumCard, /interactive[\s\S]*hover:bg-/)
   assert.match(premiumCard, /: ''/)
 })
+
+test('technology advisory sits between assessment scope and outcome in static process cards', () => {
+  const services = source('components/pages/ServicesPage.tsx')
+  const container = source('components/pages/ServicesContainer.tsx')
+  const catalog = source('components/pages/digitalServicesCatalog.ts')
+
+  assert.match(
+    services,
+    /<CaseStudyScope[\s\S]*<ServicesContainer domains=\{resolvedDomains\} variant="process" \/>[\s\S]*<CaseStudyResult/,
+  )
+  assert.match(container, /variant\?: 'accordion' \| 'process'/)
+  assert.match(container, /variant === 'process'/)
+  assert.match(container, /lg:grid-cols-3/)
+  assert.match(container, /editorial-index/)
+
+  const processVariant = container.match(/if \(variant === 'process'\)[\s\S]*?\n  return \(/)?.[0] ?? ''
+  assert.doesNotMatch(processVariant, /<button/)
+
+  for (const title of ['Przegląd', 'Strategie', 'Wdrożenie', 'Review', 'Strategy', 'Implementation']) {
+    assert.match(catalog, new RegExp(`title: '${title}'`))
+  }
+})
