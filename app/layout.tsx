@@ -59,7 +59,7 @@ export default function RootLayout({
             `,
           }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TQDR26KT5" />
+        <script defer src="https://www.googletagmanager.com/gtag/js?id=G-5TQDR26KT5" />
       </head>
       <body className="font-sans antialiased">
         {children}
