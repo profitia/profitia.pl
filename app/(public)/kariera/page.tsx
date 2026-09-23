@@ -3,9 +3,9 @@ import CareerListingPage from '@/components/pages/CareerListingPage'
 import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
 export const metadata: Metadata = buildPublicMetadata('career:index', 'pl', {
-  title: 'Kariera | Profitia',
+  title: 'Praca i kariera',
   description:
-    'Praca w Profitia - środowisko dla osób, które chcą pracować na realnych problemach zakupowych. Analityka, negocjacje, doradztwo.',
+    'Zacznij pracę w Profitia. Poznaj oferty pracy, zespół i proces rekrutacji w doradztwie zakupowym, analityce i negocjacjach.',
 })
 
 export default function Page() {

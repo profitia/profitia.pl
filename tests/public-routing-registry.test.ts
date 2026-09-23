@@ -120,6 +120,8 @@ function run(): void {
   assertEqual(redirectMap.get('/en/services/subpage-services-1'), '/en/advisory/services/advisory-projects', 'Legacy technical EN service path redirects directly')
   assertEqual(redirectMap.get('/uslugi/analiza-spot'), '/doradztwo/analiza-spot', 'Current PL SPOT path redirects directly')
   assertEqual(redirectMap.get('/en/services/spot-analysis'), '/en/advisory/spot-analysis', 'Current EN SPOT path redirects directly')
+  assertEqual(redirectMap.get('/oferta/szkolenia'), '/rozwoj-kompetencji', 'Legacy Polish training page redirects directly')
+  assertEqual(redirectMap.get('/en/oferta/szkolenia'), '/en/education', 'Legacy English training page redirects directly')
   assertEqual(redirectMap.get('/career/apply'), '/kariera/aplikuj', 'Legacy application path redirects directly')
   assert(!redirectMap.has('/uslugi-digital'), 'PL digital services parent does not redirect because it is not registered')
   assert(!redirectMap.has('/en/digital-services'), 'EN digital services parent does not redirect because it is not registered')
@@ -175,7 +177,7 @@ function run(): void {
   assert(canonicalPaths.some((entry) => entry.path === '/en/advisory/services/spend-analytics'), 'Canonical routes keep advisory spend analytics path')
   assert(canonicalPaths.some((entry) => entry.path === '/en/digital-services/spend-analytics'), 'Canonical routes add digital spend analytics path without collision')
   assert(canonicalPaths.every((entry) => !entry.path.startsWith('/blog') && !entry.path.startsWith('/en/blog')), 'Canonical route feed excludes blog paths')
-  assertEqual(redirects.length, 84, 'Redirect count reflects previous legacy plus moved canonicals')
+  assertEqual(redirects.length, 86, 'Redirect count reflects previous legacy plus moved canonicals')
 
   console.log('PUBLIC_ROUTING_REGISTRY=PASS')
 }

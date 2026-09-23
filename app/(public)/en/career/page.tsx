@@ -3,9 +3,9 @@ import CareerListingPage from '@/components/pages/CareerListingPage'
 import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
 export const metadata: Metadata = buildPublicMetadata('career:index', 'en', {
-  title: 'Career | Profitia',
+  title: 'Careers',
   description:
-    'Working at Profitia - a professional environment for people who want to work on real procurement problems. Analytics, negotiations, advisory.',
+    'Start your career at Profitia. Explore open roles, our team and recruitment process in procurement advisory, analytics and negotiations.',
 })
 
 export default function Page() {

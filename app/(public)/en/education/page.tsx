@@ -3,9 +3,9 @@ import EducationPage from '@/components/pages/EducationPage'
 import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
 export const metadata: Metadata = buildPublicMetadata('education:index', 'en', {
-  title: 'Education | Profitia',
+  title: 'Procurement Training',
   description:
-    'Executive programmes, negotiation workshops and procurement training. We develop procurement capabilities through practical, negotiation-based learning.',
+    'Profitia procurement training: negotiation workshops, development programmes and CIPS qualifications. Build practical skills across your team.',
 })
 
 export default function Page() {
