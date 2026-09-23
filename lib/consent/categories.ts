@@ -47,12 +47,12 @@ export const CONSENT_CATEGORIES: ConsentCategoryDefinition[] = [
       en: 'Analytics',
     },
     description: {
-      pl: 'Pomagają nam rozumieć, jak użytkownicy korzystają z serwisu. Dane są agregowane i anonimowe - nie identyfikują konkretnych osób.',
-      en: 'Help us understand how visitors use the site. Data is aggregated and anonymous - no individual is identified.',
+      pl: 'Zgoda włącza pełny pomiar Google Analytics z plikami cookie. Bez zgody Google otrzymuje pomiary odsłon bez analitycznych plików cookie.',
+      en: 'Consent enables full Google Analytics measurement with cookies. Without consent, Google receives page-view measurements without analytics cookies.',
     },
     examples: {
-      pl: 'Google Analytics, Hotjar, Microsoft Clarity',
-      en: 'Google Analytics, Hotjar, Microsoft Clarity',
+      pl: 'Google Analytics',
+      en: 'Google Analytics',
     },
   },
   {
