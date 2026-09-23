@@ -31,8 +31,8 @@ export default function CookiesPageEN() {
         title="Cookie Policy"
         intro="Information about how profitia.pl uses cookies and how you can manage your preferences."
         meta={[
-          { label: 'Last updated', value: 'May 2026' },
-          { label: 'Version', value: '1.0' },
+          { label: 'Last updated', value: 'September 2026' },
+          { label: 'Version', value: '1.1' },
         ]}
       />
 
@@ -72,6 +72,7 @@ export default function CookiesPageEN() {
       <LegalSection id="third-party" title="4. Third-party cookies">
         <LegalContent>
           <p>We may use third-party services that place their own cookies, including analytics platforms and social media integrations. Their data practices are governed by their own privacy and cookie policies.</p>
+          <p>Google Analytics 4 loads when you visit the site. Before you consent to analytics cookies, it receives page-view measurements without analytics cookies. After you consent, it may use analytics cookies for fuller measurement. Refusing or withdrawing consent turns off that fuller measurement, but measurements without cookies continue.</p>
         </LegalContent>
       </LegalSection>
 

@@ -38,6 +38,29 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <script
+          id="ga4-consent-default"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('consent', 'default', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                analytics_storage: 'denied'
+              });
+              gtag('js', new Date());
+              if ((location.hostname === 'profitia.pl' || location.hostname === 'www.profitia.pl') && !location.pathname.startsWith('/admin')) {
+                gtag('config', 'G-5TQDR26KT5', { send_page_view: false });
+              }
+            `,
+          }}
+        />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TQDR26KT5" />
+      </head>
       <body className="font-sans antialiased">
         {children}
         <AdvisoryWidget />

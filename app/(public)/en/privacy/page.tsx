@@ -33,8 +33,8 @@ export default function PrivacyPageEN() {
         title="Privacy Policy"
         intro="This privacy policy describes how Profitia Management Consultants collects, uses and protects personal data of users of profitia.pl."
         meta={[
-          { label: 'Last updated', value: 'May 2026' },
-          { label: 'Version', value: '1.0' },
+          { label: 'Last updated', value: 'September 2026' },
+          { label: 'Version', value: '1.1' },
           { label: 'Jurisdiction', value: 'Poland / EU' },
         ]}
       />
@@ -83,6 +83,9 @@ export default function PrivacyPageEN() {
             <li>Website analytics and optimisation - based on legitimate interest.</li>
             <li>Fulfilling accounting and tax obligations - based on legal requirement.</li>
           </ul>
+          <p>
+            We record page views in Google Analytics 4 even before you consent to analytics cookies, using a mode without those cookies. Consent enables fuller measurement. See the Cookie Policy for details.
+          </p>
         </LegalContent>
       </LegalSection>
 
