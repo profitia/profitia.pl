@@ -18,6 +18,7 @@ import {
 
 const LOCALE_COOKIE = 'PROFITIA_LOCALE'
 const HEADER_SURFACE_CLASS = 'bg-[rgba(255,255,255,0.96)] backdrop-blur-md border-gray-100/80'
+const MEGA_MENU_SURFACE_CLASS = 'bg-white'
 const HEADER_RESPONSIVE_CLASSES = {
   desktopNav: 'hidden lg:flex items-center gap-4 lg:gap-6',
   desktopLanguage: 'hidden lg:flex items-center gap-[2px] text-[11.5px]',
@@ -117,7 +118,6 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
     getPublicPath('terms', 'en'),
   ].includes(pathname)
   const showScrolled = scrolled || isLegalPage
-  const showStableHeaderSurface = showScrolled || Boolean(activeDesktopMenu)
 
   // ── Scroll detection ──────────────────────────────────────────
   useEffect(() => {
@@ -209,7 +209,7 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
           ══════════════════════════════════════════════════ */}
       <header
         className={`sticky top-0 z-50 transition-all duration-[260ms] ease-out ${
-          showStableHeaderSurface
+          showScrolled
             ? `${HEADER_SURFACE_CLASS} border-b shadow-[0_1px_16px_0_rgba(0,0,0,0.04)]`
             : 'bg-white/0 backdrop-blur-[2px] border-b border-transparent'
         }`}
@@ -311,11 +311,11 @@ export default function Header({ localeOverride }: { localeOverride?: 'pl' | 'en
                 <div
                   role="group"
                   aria-labelledby={`desktop-menu-trigger-${activeDesktopMenu.id}`}
-                  className={`max-w-[calc(100vw-2rem)] overflow-hidden rounded-b-2xl ${HEADER_SURFACE_CLASS} shadow-[0_24px_60px_rgba(15,23,42,0.14)] ${
+                  className={`max-w-[calc(100vw-2rem)] overflow-hidden rounded-b-2xl ${MEGA_MENU_SURFACE_CLASS} shadow-[0_24px_60px_rgba(15,23,42,0.14)] ${
                     activeDesktopMenu.desktopColumns === 3 ? 'w-[760px]' : 'w-[510px]'
                   }`}
                 >
-                  <div className="border-b border-gray-100 px-5 py-4">
+                  <div className="px-5 py-4">
                     <p className="editorial-label text-[rgba(0,109,158,0.82)]">
                       {activeDesktopMenu.label}
                     </p>
