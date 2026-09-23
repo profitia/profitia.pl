@@ -16,6 +16,18 @@ test('SPOT and Digital Consulting reuse the same three case-study sections', () 
   }
 })
 
+test('starting-point title uses the full width of its content column', () => {
+  const sharedSections = source('components/sections/case-study/DiagnosisCaseStudySections.tsx')
+  const startingPoint = sharedSections.match(
+    /export function CaseStudyStartingPoint[\s\S]*?export function CaseStudyScope/,
+  )?.[0] ?? ''
+
+  const titleTag = startingPoint.match(/<h2 className="[^"]+">/)?.[0] ?? ''
+
+  assert.match(titleTag, /className="w-full /)
+  assert.doesNotMatch(titleTag, /max-w-\[/)
+})
+
 test('Digital Consulting alone receives the bilingual case study', () => {
   const catalog = source('components/pages/digitalServicesCatalog.ts')
   const plPage = source('app/(public)/uslugi-digital/[slug]/page.tsx')
