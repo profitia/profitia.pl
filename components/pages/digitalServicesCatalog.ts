@@ -167,6 +167,56 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
           ],
         },
       ],
+      caseStudy: {
+        startingPoint: {
+          eyebrow: 'Punkt wyjścia',
+          title: 'Rozproszone dane nie dawały Grupie pełnego obrazu wydatków',
+          paragraphs: [
+            'Grupa Kapitałowa składająca się z ponad 10 spółek zależnych mierzyła się z mocno rozproszonymi i niespójnymi danymi zakupowymi.',
+            'Poszczególne podmioty korzystały z różnych systemów źródłowych i nie miały jednolitej struktury danych. W efekcie kadra zarządzająca nie dysponowała pełnym obrazem całkowitych wydatków Grupy.',
+          ],
+          signals: [
+            'Ponad 10 spółek zależnych pracujących na rozproszonych danych zakupowych',
+            'Różne systemy ERP wykorzystywane przez poszczególne podmioty',
+            'Brak jednolitej struktury, terminologii i klasyfikacji wydatków',
+            'Brak pełnego wglądu w całkowite wydatki całej Grupy Kapitałowej',
+          ],
+        },
+        scope: {
+          eyebrow: 'Zakres diagnozy',
+          title: 'Od konsolidacji danych do jednolitego Spend Cube',
+          intro: 'Celem projektu było uporządkowanie historycznych wydatków zakupowych oraz stworzenie scentralizowanego narzędzia wspierającego decyzje zakupowe w całej organizacji. Prace objęły cztery główne obszary:',
+          areas: [
+            {
+              title: 'Konsolidacja baz danych',
+              description: 'Połączenie informacji pochodzących z wielu niezależnych systemów ERP w jeden spójny zbiór danych.',
+            },
+            {
+              title: 'Oczyszczenie i standaryzacja danych',
+              description: 'Usunięcie duplikatów, korekta błędnych wartości oraz ujednolicenie indeksów i nazw dostawców.',
+            },
+            {
+              title: 'Budowa drzewa kategorii',
+              description: 'Opracowanie spójnego, trzystopniowego drzewa kategorii zakupowych obowiązującego w całej Grupie Kapitałowej.',
+            },
+            {
+              title: 'Wdrożenie Spend Cube',
+              description: 'Budowa Spend Cube z zaawansowanymi wymiarami, takimi jak terminy płatności oraz podział wydatków na CAPEX i OPEX.',
+            },
+          ],
+        },
+        result: {
+          eyebrow: 'Rezultat',
+          title: 'Jedno źródło danych dla decyzji zakupowych całej Grupy',
+          items: [
+            'Pełna przejrzystość wydatków - zidentyfikowano rozproszony tail spend oraz obszary nieefektywności w wydatkach nieprodukcyjnych.',
+            'Identyfikacja potencjału oszczędnościowego - różnice w cenach i umowach pomiędzy spółkami wskazały obszary do natychmiastowej standaryzacji i renegocjacji.',
+            'Synergia i efekt skali - przygotowano rekomendacje dotyczące budowy umów centralnych, pozwalające wykorzystać siłę zakupową całej Grupy.',
+            'Spójność procesowa - ujednolicono terminologię oraz klasyfikację wydatków we wszystkich podmiotach zależnych.',
+          ],
+          highlight: 'Spend Cube zapewnił Grupie Kapitałowej wspólny, wiarygodny obraz wydatków i podstawę do podejmowania decyzji zakupowych w skali całej organizacji.',
+        },
+      },
     },
     'custom-applications': {
       hero: {
@@ -199,6 +249,60 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
           ],
         },
       ],
+      caseStudy: {
+        startingPoint: {
+          eyebrow: 'Punkt wyjścia',
+          title: 'Gdy standardowy system nie odpowiada na lokalne potrzeby organizacji',
+          paragraphs: [
+            'Standardowe platformy zakupowe klasy Enterprise, takie jak ERP, P2P i S2C, dobrze obsługują powtarzalne, globalne procesy. Nie zawsze jednak odpowiadają na specyficzne, lokalne wyzwania organizacji.',
+            'Kosztowne i czasochłonne dostosowania gotowych systemów pozostawiają luki w ekosystemie IT. W tych miejscach procesy nadal opierają się na arkuszach Excel, wiadomościach e-mail i papierowych formularzach.',
+          ],
+          signals: [
+            'Procesy rozproszone pomiędzy arkusze Excel, e-maile i formularze papierowe',
+            'Gotowe platformy wymagające kosztownych i czasochłonnych dostosowań',
+            'Konieczność dopasowywania organizacji do sztywnej logiki standardowego systemu',
+            'Koszty licencji obejmujące rozbudowane moduły, z których zespół nie korzysta',
+          ],
+        },
+        scope: {
+          eyebrow: 'Zakres diagnozy',
+          title: 'Od odkrycia potrzeby do skalowalnej aplikacji',
+          intro: 'Dedykowana aplikacja powstaje wokół rzeczywistego procesu i jest rozwijana etapami - od zdefiniowania celu, przez działający prototyp, po bezpieczne uruchomienie produkcyjne.',
+          areas: [
+            {
+              title: 'Discovery',
+              description: 'Analiza potrzeb, mapowanie procesu i zdefiniowanie celu biznesowego aplikacji.',
+            },
+            {
+              title: 'Prototyp UX',
+              description: 'Przygotowanie makiet interfejsu i ich testowanie bezpośrednio z zespołem zakupowym.',
+            },
+            {
+              title: 'Wdrożenie MVP',
+              description: 'Dostarczenie w pełni funkcjonalnej wersji aplikacji gotowej do testów w ciągu kilku tygodni.',
+            },
+            {
+              title: 'Integracja IT',
+              description: 'Bezpieczne połączenie z systemami ERP, bazami danych oraz firmowym logowaniem SSO.',
+            },
+            {
+              title: 'Skalowanie',
+              description: 'Uruchomienie produkcyjne, szkolenie użytkowników oraz dalszy rozwój aplikacji o nowe moduły.',
+            },
+          ],
+        },
+        result: {
+          eyebrow: 'Rezultat',
+          title: 'Rozwiązanie dopasowane do procesu, gotowe w kilka tygodni',
+          items: [
+            'Wypełnienie luk w ekosystemie IT - rozproszone działania zostają połączone w jeden spójny proces cyfrowy.',
+            'Krótki czas wdrożenia - funkcjonalny prototyp MVP rozwiązuje palący problem biznesowy bez wielomiesięcznego projektu korporacyjnego.',
+            'Pełne dopasowanie do procedur - aplikacja odwzorowuje specyfikę organizacji bez wymuszania zmiany procesu pod logikę gotowego oprogramowania.',
+            'Optymalizacja kosztów licencyjnych - organizacja płaci za funkcjonalności, których rzeczywiście potrzebuje, bez zbędnych modułów.',
+          ],
+          highlight: 'Dedykowana aplikacja zamienia lokalną lukę procesową w bezpieczne, zintegrowane i skalowalne rozwiązanie cyfrowe.',
+        },
+      },
     },
     'ai-agents': {
       hero: {
@@ -231,6 +335,63 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
           ],
         },
       ],
+      caseStudy: {
+        startingPoint: {
+          eyebrow: 'Punkt wyjścia',
+          title: 'Dedykowani Agenci AI zamiast kolejnego ogólnego chatbota',
+          paragraphs: [
+            'Nie wdrażamy powtarzalnych chatbotów. Tworzymy wyspecjalizowane cyfrowe mikro-role, które przejmują najbardziej czasochłonne, analityczne i żmudne zadania w zespole zakupowym.',
+            'Agent działa w kontekście organizacji: wykorzystuje jej procedury, szablony, historię zakupów i umowy, a jego logika jest ograniczona do zweryfikowanej firmowej bazy wiedzy.',
+          ],
+          signals: [
+            'RFP & Spec Agent przekształca wymagania biznesu w dokumentację RFP/RFI, specyfikacje techniczne i matryce oceny ofert',
+            'Contract Review Agent analizuje projekty umów, wykrywa ryzykowne klauzule i porównuje zapisy z firmowym wzorcem',
+            'Wiedza i kontekst pochodzą z procedur, szablonów, historii zakupów i umów organizacji dzięki architekturze RAG',
+            'Dane pozostają w prywatnym środowisku korporacyjnym, na przykład Azure lub AWS, i nie uczą modeli zewnętrznych',
+            'Agent wykonuje zadania: generuje pliki Excel, przygotowuje projekty e-maili i łączy się z ERP oraz API',
+            'Guardrails ograniczają logikę do zweryfikowanej bazy wiedzy firmy i minimalizują ryzyko halucynacji',
+          ],
+        },
+        scope: {
+          eyebrow: 'Zakres diagnozy',
+          title: 'Pięć kroków do inteligentnej automatyzacji zakupów',
+          intro: 'Wdrożenie Agenta AI zaczyna się od wyboru właściwego procesu, a kończy kontrolowanym uruchomieniem, szkoleniem zespołu i skalowaniem rozwiązania.',
+          areas: [
+            {
+              title: 'Diagnoza i wybór procesów',
+              description: 'Analiza codziennych zadań kupców i wybór jednego lub dwóch procesów o najwyższym potencjale szybkiego zwrotu z inwestycji.',
+            },
+            {
+              title: 'Przygotowanie bazy wiedzy',
+              description: 'Bezpieczne podłączenie procedur zakupowych, wzorców umów, szablonów zapytań i słowników kategorii.',
+            },
+            {
+              title: 'Konfiguracja i kalibracja logiki',
+              description: 'Dostosowanie języka, terminologii i kryteriów decyzyjnych Agenta do branży, wymogów compliance i zasad organizacji.',
+            },
+            {
+              title: 'Testy i bezpieczeństwo',
+              description: 'Weryfikacja odpowiedzi w bezpiecznym środowisku testowym z zachowaniem kontroli człowieka w modelu Human-in-the-Loop.',
+            },
+            {
+              title: 'Wdrożenie i skalowanie',
+              description: 'Uruchomienie produkcyjne, szkolenie zespołu z efektywnej współpracy z AI oraz stopniowe dodawanie kolejnych modułów.',
+            },
+          ],
+        },
+        result: {
+          eyebrow: 'Rezultat',
+          title: 'Bezpieczna automatyzacja, która odciąża zespół zakupowy',
+          items: [
+            'Szybsze procesy i oszczędność czasu dzięki przejęciu powtarzalnych zadań analitycznych i dokumentacyjnych.',
+            'Lepsze decyzje i niższe koszty dzięki pracy na uporządkowanej, firmowej bazie wiedzy.',
+            'Bezpieczeństwo danych i zgodność z wymaganiami organizacji dzięki prywatnemu środowisku i kontroli Human-in-the-Loop.',
+            'Większa satysfakcja zespołu kupców, który może koncentrować się na zadaniach wymagających oceny i relacji biznesowych.',
+            'Skalowalna przewaga konkurencyjna dzięki stopniowemu rozwijaniu kolejnych wyspecjalizowanych Agentów AI.',
+          ],
+          highlight: 'Agent AI nie zastępuje decyzji kupca - przygotowuje rekomendacje i wykonuje zadania, pozostawiając człowiekowi kontrolę nad ostatecznym wyborem.',
+        },
+      },
     },
   },
   en: {
@@ -374,6 +535,56 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
           ],
         },
       ],
+      caseStudy: {
+        startingPoint: {
+          eyebrow: 'Starting point',
+          title: 'Fragmented data prevented the Group from seeing its total spend',
+          paragraphs: [
+            'A corporate group comprising more than ten subsidiaries was working with highly fragmented and inconsistent procurement data.',
+            'Individual companies used different source systems and lacked a common data structure. As a result, management did not have a complete view of total Group spend.',
+          ],
+          signals: [
+            'More than ten subsidiaries working with fragmented procurement data',
+            'Different ERP systems used across individual entities',
+            'No common structure, terminology or spend classification',
+            'No complete view of total spend across the corporate group',
+          ],
+        },
+        scope: {
+          eyebrow: 'Assessment scope',
+          title: 'From data consolidation to a single Spend Cube',
+          intro: 'The project set out to organise historical procurement spend and create a centralised analytics tool that would support procurement decisions across the organisation. The work covered four core areas:',
+          areas: [
+            {
+              title: 'Data consolidation',
+              description: 'Combining information from multiple independent ERP systems into one consistent dataset.',
+            },
+            {
+              title: 'Data cleansing and standardisation',
+              description: 'Removing duplicates, correcting inaccurate values, and standardising item codes and supplier names.',
+            },
+            {
+              title: 'Category taxonomy design',
+              description: 'Developing a consistent three-level procurement category tree for the entire corporate group.',
+            },
+            {
+              title: 'Spend Cube implementation',
+              description: 'Building a Spend Cube with advanced dimensions including payment terms and CAPEX/OPEX spend classification.',
+            },
+          ],
+        },
+        result: {
+          eyebrow: 'Outcome',
+          title: 'One source of data for procurement decisions across the Group',
+          items: [
+            'Full spend visibility - the analysis exposed fragmented tail spend and inefficiencies across non-production spend.',
+            'Savings opportunities - differences in prices and contracts between subsidiaries revealed immediate areas for standardisation and renegotiation.',
+            'Synergy and scale - recommendations for central agreements enabled the organisation to use the combined purchasing power of the Group.',
+            'Process consistency - terminology and spend classification were standardised across all subsidiaries.',
+          ],
+          highlight: 'The Spend Cube gave the corporate group a shared, reliable view of spend and a sound basis for procurement decisions across the entire organisation.',
+        },
+      },
     },
     'custom-applications': {
       hero: {
@@ -406,6 +617,60 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
           ],
         },
       ],
+      caseStudy: {
+        startingPoint: {
+          eyebrow: 'Starting point',
+          title: 'When a standard system does not address local business needs',
+          paragraphs: [
+            'Enterprise procurement platforms such as ERP, P2P and S2C systems work well for repeatable global processes. They do not always address an organisation’s specific local challenges.',
+            'Costly and time-consuming customisation leaves gaps in the technology landscape. These gaps are often filled with spreadsheets, email exchanges and paper-based forms.',
+          ],
+          signals: [
+            'Processes fragmented across spreadsheets, email and paper forms',
+            'Off-the-shelf platforms requiring costly and time-consuming customisation',
+            'The organisation having to adapt its processes to rigid software logic',
+            'Licence costs covering complex modules that the team never uses',
+          ],
+        },
+        scope: {
+          eyebrow: 'Assessment scope',
+          title: 'From discovery to a scalable application',
+          intro: 'A custom application is designed around the real process and developed in stages - from defining the objective and testing a working prototype to secure production deployment.',
+          areas: [
+            {
+              title: 'Discovery',
+              description: 'Needs assessment, process mapping and definition of the application’s business objective.',
+            },
+            {
+              title: 'UX prototype',
+              description: 'Preparation of interface mock-ups tested directly with the procurement team.',
+            },
+            {
+              title: 'MVP delivery',
+              description: 'Delivery of a fully functional application version ready for testing within a matter of weeks.',
+            },
+            {
+              title: 'IT integration',
+              description: 'Secure integration with ERP systems, databases and the organisation’s SSO environment.',
+            },
+            {
+              title: 'Scaling',
+              description: 'Production launch, user training and continued development of additional modules.',
+            },
+          ],
+        },
+        result: {
+          eyebrow: 'Outcome',
+          title: 'A process-fit solution delivered within weeks',
+          items: [
+            'Closing gaps in the technology landscape - fragmented activities are brought together in one coherent digital process.',
+            'Rapid implementation - a functional MVP addresses an urgent business problem without a lengthy corporate deployment programme.',
+            'Complete process fit - the application reflects the organisation’s specific requirements instead of forcing the process into off-the-shelf software logic.',
+            'Optimised licence costs - the organisation pays for the capabilities it actually needs rather than unused modules.',
+          ],
+          highlight: 'A custom application turns a local process gap into a secure, integrated and scalable digital solution.',
+        },
+      },
     },
     'ai-agents': {
       hero: {
@@ -438,6 +703,63 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
           ],
         },
       ],
+      caseStudy: {
+        startingPoint: {
+          eyebrow: 'Starting point',
+          title: 'Purpose-built AI agents instead of another generic chatbot',
+          paragraphs: [
+            'We do not deploy repetitive chatbots. We build specialist digital micro-roles that take on the most time-consuming, analytical and repetitive tasks within a procurement team.',
+            'Each agent works in the organisation’s own context, using its procedures, templates, procurement history and contracts, with logic constrained to a verified internal knowledge base.',
+          ],
+          signals: [
+            'The RFP & Spec Agent converts business requirements into RFP/RFI documentation, technical specifications and objective bid evaluation matrices',
+            'The Contract Review Agent reviews draft agreements, identifies risky clauses and compares their terms with the organisation’s approved template',
+            'Knowledge and context come from the organisation’s procedures, templates, procurement history and contracts through a RAG architecture',
+            'Data remains within a private corporate environment, such as Azure or AWS, and is not used to train external models',
+            'The agent performs tasks: it generates Excel files, prepares email drafts and connects to ERP systems and APIs',
+            'Guardrails constrain the agent to the company’s verified knowledge base and minimise hallucination risk',
+          ],
+        },
+        scope: {
+          eyebrow: 'Assessment scope',
+          title: 'Five steps towards intelligent procurement automation',
+          intro: 'An AI agent implementation begins by selecting the right process and ends with controlled deployment, team training and the gradual scaling of the solution.',
+          areas: [
+            {
+              title: 'Process assessment and selection',
+              description: 'Reviewing buyers’ day-to-day tasks and selecting one or two processes with the strongest potential for rapid return on investment.',
+            },
+            {
+              title: 'Knowledge base preparation',
+              description: 'Securely connecting procurement procedures, contract templates, sourcing documents and category dictionaries.',
+            },
+            {
+              title: 'Logic configuration and calibration',
+              description: 'Adapting the agent’s language, terminology and decision criteria to the industry, compliance requirements and organisational rules.',
+            },
+            {
+              title: 'Testing and security',
+              description: 'Validating outputs in a secure test environment while preserving human control through a Human-in-the-Loop model.',
+            },
+            {
+              title: 'Deployment and scaling',
+              description: 'Production launch, training the team to work effectively with AI, and gradually adding further modules.',
+            },
+          ],
+        },
+        result: {
+          eyebrow: 'Outcome',
+          title: 'Secure automation that gives procurement teams time back',
+          items: [
+            'Faster processes and time savings as repetitive analytical and documentation tasks are automated.',
+            'Better decisions and lower costs through structured use of the organisation’s own knowledge base.',
+            'Data security and compliance through a private environment and Human-in-the-Loop controls.',
+            'Greater buyer satisfaction as the team can focus on work that requires judgement and business relationships.',
+            'Scalable competitive advantage through the gradual development of further specialist AI agents.',
+          ],
+          highlight: 'An AI agent does not replace the buyer’s decision - it prepares recommendations and performs tasks while leaving the final choice under human control.',
+        },
+      },
     },
   },
 }

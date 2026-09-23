@@ -28,12 +28,12 @@ test('starting-point title uses the full width of its content column', () => {
   assert.doesNotMatch(titleTag, /max-w-\[/)
 })
 
-test('Digital Consulting alone receives the bilingual case study', () => {
+test('all Digital Services pages receive the bilingual case-study structure', () => {
   const catalog = source('components/pages/digitalServicesCatalog.ts')
   const plPage = source('app/(public)/uslugi-digital/[slug]/page.tsx')
   const enPage = source('app/(public)/en/digital-services/[slug]/page.tsx')
 
-  assert.equal((catalog.match(/caseStudy:\s*\{/g) ?? []).length, 2)
+  assert.equal((catalog.match(/caseStudy:\s*\{/g) ?? []).length, 8)
   assert.match(catalog, /Punkt wyjścia/)
   assert.match(catalog, /Zakres diagnozy/)
   assert.match(catalog, /Rezultat/)
@@ -41,6 +41,18 @@ test('Digital Consulting alone receives the bilingual case study', () => {
   assert.match(catalog, /Assessment scope/)
   assert.match(catalog, /Outcome/)
   assert.match(catalog, /Source-to-Contract \(S2C\)/)
+
+  for (const title of [
+    'Rozproszone dane nie dawały Grupie pełnego obrazu wydatków',
+    'Gdy standardowy system nie odpowiada na lokalne potrzeby organizacji',
+    'Dedykowani Agenci AI zamiast kolejnego ogólnego chatbota',
+    'Fragmented data prevented the Group from seeing its total spend',
+    'When a standard system does not address local business needs',
+    'Purpose-built AI agents instead of another generic chatbot',
+  ]) {
+    assert.match(catalog, new RegExp(title))
+  }
+
   assert.match(plPage, /caseStudy=\{content\.caseStudy\}/)
   assert.match(enPage, /caseStudy=\{content\.caseStudy\}/)
 })
