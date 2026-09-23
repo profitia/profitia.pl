@@ -3,9 +3,9 @@ import EducationPage from '@/components/pages/EducationPage'
 import { buildPublicMetadata } from '@/lib/routing/public-seo'
 
 export const metadata: Metadata = buildPublicMetadata('education:index', 'pl', {
-  title: 'Edukacja | Profitia',
+  title: 'Szkolenia zakupowe',
   description:
-    'Programy executive, warsztaty negocjacyjne i szkolenia zakupowe. Rozwijamy kompetencje zakupowe poprzez praktyczną edukację opartą na realnych negocjacjach.',
+    'Szkolenia zakupowe Profitia: warsztaty negocjacyjne, programy rozwojowe i certyfikacja CIPS. Rozwijaj kompetencje zespołu w praktyce.',
 })
 
 export default function Page() {
