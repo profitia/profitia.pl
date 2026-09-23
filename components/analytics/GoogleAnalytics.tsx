@@ -5,11 +5,13 @@ import { usePathname } from 'next/navigation'
 import { useConsent } from '@/components/consent'
 
 const MEASUREMENT_ID = 'G-5TQDR26KT5'
+const DISABLE_KEY = `ga-disable-${MEASUREMENT_ID}` as const
 
 type AnalyticsWindow = Window & {
   dataLayer?: unknown[][]
   gtag?: (...args: unknown[]) => void
-} & Record<string, unknown>
+  [DISABLE_KEY]?: boolean
+}
 
 export default function GoogleAnalytics() {
   const pathname = usePathname()
@@ -21,7 +23,7 @@ export default function GoogleAnalytics() {
     if (!isLoaded || !['profitia.pl', 'www.profitia.pl'].includes(window.location.hostname)) return
 
     const gaWindow = window as AnalyticsWindow
-    gaWindow[`ga-disable-${MEASUREMENT_ID}`] = !allowed
+    gaWindow[DISABLE_KEY] = !allowed
 
     if (!allowed) {
       gaWindow.gtag?.('consent', 'update', { analytics_storage: 'denied' })
