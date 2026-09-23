@@ -83,7 +83,7 @@ const STATIC_ROUTE_ENTRIES: PublicRouteEntry[] = [
     id: 'education:index',
     kind: 'static',
     paths: { pl: '/rozwoj-kompetencji', en: '/en/education' },
-    legacyPaths: ['/education'],
+    legacyPaths: ['/education', '/oferta/szkolenia', '/en/oferta/szkolenia'],
     indexable: true,
   },
   {
