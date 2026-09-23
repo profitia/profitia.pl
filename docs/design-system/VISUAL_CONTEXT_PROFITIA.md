@@ -1223,6 +1223,16 @@ Canonical token mapping:
 > Każdy nowy komponent MUSI używać kanonicznych timing/easing z tej sekcji.
 > Komponenty z niezgodnym hover są traktowane jako defekt, nie feature.
 
+#### Section entrance - canonical and locked
+
+- Public-page scroll entrance is owned only by `SectionRevealController` in `PublicShell`.
+- Every semantic `section` enters once as one visual unit: its direct content moves together from bottom to top.
+- Child columns, cards, statistics and list items must not run separate or staggered entrance animations.
+- `RevealWrapper` is structural-only and must not create an independent `IntersectionObserver`, delay cascade or reveal class.
+- Section backgrounds remain stationary; only the direct section content is animated.
+- The pattern applies automatically to existing and future public-page sections.
+- `prefers-reduced-motion: reduce` disables translation and transition while keeping all content visible.
+
 Przed commitowaniem nowego komponentu:
 - [ ] Hover timing: 150-220ms (micro) lub 260-320ms (card)?
 - [ ] Easing: ease-out?
