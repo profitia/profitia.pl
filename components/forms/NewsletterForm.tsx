@@ -17,6 +17,7 @@
 
 import { useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { trackGa4FormSuccess } from '@/lib/ga4-form-events'
 
 import { NEWSLETTER_TURNSTILE_ACTION } from '@/lib/forms/constants'
 import { validateNewsletterForm, hasErrors } from '@/lib/forms/validation'
@@ -166,6 +167,7 @@ export function NewsletterForm({ locale = 'pl', variant = 'inline' }: Newsletter
       const result = await submitNewsletterForm(payload)
 
       if (result.success) {
+        trackGa4FormSuccess('newsletter_signup', locale, variant)
         resetSecurityTransport()
         setTurnstileToken(null)
         setValues(INITIAL)
