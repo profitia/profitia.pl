@@ -66,12 +66,12 @@ const COPY = {
 
 const SEO = {
   pl: {
-    title: 'Usługi | Profitia',
-    description: 'Doradztwo zakupowe, negocjacje, analityka spend i transformacja funkcji zakupowej. Advisory capabilities dla organizacji budujących trwałą przewagę kosztową.',
+    title: 'Doradztwo zakupowe',
+    description: 'Doradztwo zakupowe Profitia: negocjacje, analityka wydatków i transformacja zakupów. Poznaj usługi doradcze dla firm.',
   },
   en: {
-    title: 'Services | Profitia',
-    description: 'Procurement advisory, negotiations, spend analytics and procurement transformation. Advisory capabilities for organisations building lasting cost advantage.',
+    title: 'Procurement Advisory',
+    description: 'Profitia procurement advisory: negotiations, spend analytics and procurement transformation. Explore our advisory services for businesses.',
   },
 } as const
 
