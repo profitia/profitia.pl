@@ -42,6 +42,21 @@ export default function HomePageContent({
     return item
   })
 
+  const quickLinks = {
+    pl: [
+      { label: 'Digital Consulting', routeId: 'digital-service:digital-consulting' },
+      { label: 'Doradztwo zakupowe', routeId: 'services:index' },
+      { label: 'Szkolenia zakupowe', routeId: 'education:index' },
+      { label: 'Zacznij pracę w Profitia', routeId: 'career:index' },
+    ],
+    en: [
+      { label: 'Digital Consulting', routeId: 'digital-service:digital-consulting' },
+      { label: 'Procurement Advisory', routeId: 'services:index' },
+      { label: 'Procurement Training', routeId: 'education:index' },
+      { label: 'Start a career at Profitia', routeId: 'career:index' },
+    ],
+  }[locale]
+
   return (
     <>
       {/* ════════════════════════════════════
@@ -301,6 +316,28 @@ export default function HomePageContent({
           PILLARS
           ════════════════════════════════════ */}
       <HomePillars items={pillarItems} seeMore={d.pillars.seeMore} />
+
+      <nav
+        aria-label={locale === 'pl' ? 'Odkryj Profitia' : 'Explore Profitia'}
+        className="border-y border-gray-100 bg-gray-50/70"
+      >
+        <div className="container-base py-8">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
+            {locale === 'pl' ? 'Poznaj Profitia' : 'Explore Profitia'}
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {quickLinks.map((item) => (
+              <Link
+                key={item.routeId}
+                href={getPublicPath(item.routeId, locale)}
+                className="rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-800 transition-colors hover:border-brand-blue hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+              >
+                {item.label} <span aria-hidden="true">→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
 
       {/* ════════════════════════════════════
           PROCESS
