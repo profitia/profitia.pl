@@ -36,8 +36,8 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
         imageAlt: 'Digital Consulting Profitia',
       },
       seo: {
-        title: 'Digital Consulting | Profitia',
-        description: 'Oceniamy dojrzałość cyfrową zakupów, projektujemy docelowy stack technologiczny i wspieramy wybór oraz wdrożenie narzędzi.',
+        title: 'Digital Consulting',
+        description: 'Digital Consulting Profitia: ocena dojrzałości cyfrowej zakupów, wybór technologii oraz wsparcie wdrożenia narzędzi i automatyzacji.',
       },
       domains: [
         {
@@ -405,7 +405,7 @@ const DIGITAL_SERVICES_CATALOG: Record<Locale, Record<DigitalServiceId, DigitalS
       },
       seo: {
         title: 'Digital Consulting | Profitia',
-        description: 'We assess procurement digital maturity, define the target technology stack, and support technology selection and implementation.',
+        description: 'Profitia Digital Consulting: assess procurement digital maturity, select technology and implement tools and automation.',
       },
       domains: [
         {
