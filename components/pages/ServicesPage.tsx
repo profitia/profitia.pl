@@ -95,15 +95,16 @@ export default function ServicesPage({ locale, routeId = 'services:index', hero,
       />
 
       <div className="container-base pb-20">
-        <ServicesContainer domains={resolvedDomains} />
-
         {caseStudy ? (
           <>
             <CaseStudyStartingPoint content={caseStudy.startingPoint} />
             <CaseStudyScope content={caseStudy.scope} />
+            <ServicesContainer domains={resolvedDomains} variant="process" />
             <CaseStudyResult content={caseStudy.result} />
           </>
-        ) : null}
+        ) : (
+          <ServicesContainer domains={resolvedDomains} />
+        )}
 
         <CapabilityCTA
           locale={locale}
