@@ -33,8 +33,8 @@ export default function PrivacyPage() {
         title="Polityka prywatności"
         intro="Niniejsza polityka prywatności opisuje sposób, w jaki Profitia Management Consultants zbiera, wykorzystuje i chroni dane osobowe użytkowników serwisu profitia.pl."
         meta={[
-          { label: 'Ostatnia aktualizacja', value: 'Maj 2026' },
-          { label: 'Wersja', value: '1.0' },
+          { label: 'Ostatnia aktualizacja', value: 'Wrzesień 2026' },
+          { label: 'Wersja', value: '1.1' },
           { label: 'Jurysdykcja', value: 'Polska / UE' },
         ]}
       />
@@ -92,6 +92,9 @@ export default function PrivacyPage() {
             <li>Analiza ruchu na stronie i optymalizacja serwisu - na podstawie uzasadnionego interesu.</li>
             <li>Wypełnienie obowiązków księgowych i podatkowych - na podstawie prawa.</li>
           </ul>
+          <p>
+            W Google Analytics 4 rejestrujemy odsłony również przed udzieleniem zgody na analityczne pliki cookie, w trybie bez tych plików. Po wyrażeniu zgody włączany jest pełniejszy pomiar. Szczegóły znajdują się w polityce plików cookies.
+          </p>
         </LegalContent>
       </LegalSection>
 
