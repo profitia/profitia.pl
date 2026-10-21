@@ -20,8 +20,8 @@ const PRIVACY_CONSENT_TEXT =
   'Wyrażam zgodę na przetwarzanie moich danych osobowych przez Profitia w celu kontaktu w sprawie badania i dopasowania rozwiązania AI.'
 const MARKETING_CONSENT_TEXT =
   'Zgadzam się na przesyłanie informacji o usługach, publikacjach i wydarzeniach Profitia. Zgodę mogę wycofać w dowolnym momencie.'
-const INTERNAL_TO = 'kontakt@profitia.pl'
-const INTERNAL_BCC = 'tomasz.uscinski@profitia.pl'
+const DIGITAL_SURVEY_NOTIFICATION_TO = 'mariusz.turek@profitia.pl'
+const CONTACT_REPLY_TO = 'kontakt@profitia.pl'
 
 const globalStore = globalThis as typeof globalThis & {
   __digitalSurveyLimiter?: ReturnType<typeof createInMemoryRateLimiter>
@@ -149,10 +149,9 @@ export async function POST(request: NextRequest) {
 
     const fullName = `${lead.firstName} ${lead.lastName}`
     const internal = await sendHomeplSmtpEmail({
-      to: process.env.CONTACT_NOTIFICATION_EMAIL?.trim().toLowerCase() || INTERNAL_TO,
-      bcc: process.env.CONTACT_NOTIFICATION_BCC?.trim().toLowerCase() || INTERNAL_BCC,
+      to: process.env.DIGITAL_SURVEY_NOTIFICATION_TO?.trim().toLowerCase() || DIGITAL_SURVEY_NOTIFICATION_TO,
       replyTo: lead.email,
-      subject: 'Nowe zgłoszenie - Ankieta Digital',
+      subject: 'Nowe zgłoszenie ze strony Profitia - Ankieta Digital',
       text: [
         'Nowe zgłoszenie z formularza Ankieta Digital',
         `Imię i nazwisko: ${fullName}`,
@@ -164,7 +163,8 @@ export async function POST(request: NextRequest) {
       ].join('\n'),
       html: [
         '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.6;color:#1f2937;">',
-        '<h2 style="margin:0 0 16px;">Nowe zgłoszenie - Ankieta Digital</h2>',
+        '<h2 style="margin:0 0 16px;font-size:20px;color:#111827;">Nowe zgłoszenie - Ankieta Digital</h2>',
+        '<p style="margin:0 0 16px;">Na stronie Profitia pojawiło się nowe zgłoszenie z formularza Ankieta Digital.</p>',
         '<table style="border-collapse:collapse;width:100%;max-width:720px;">',
         `<tr><td style="padding:6px 0;font-weight:600;width:180px;">Imię i nazwisko</td><td>${escapeHtml(fullName)}</td></tr>`,
         `<tr><td style="padding:6px 0;font-weight:600;">Organizacja</td><td>${escapeHtml(lead.organization)}</td></tr>`,
@@ -193,7 +193,7 @@ export async function POST(request: NextRequest) {
 
     const confirmation = await sendHomeplSmtpEmail({
       to: lead.email,
-      replyTo: process.env.CONTACT_NOTIFICATION_EMAIL?.trim().toLowerCase() || INTERNAL_TO,
+      replyTo: process.env.CONTACT_NOTIFICATION_EMAIL?.trim().toLowerCase() || CONTACT_REPLY_TO,
       subject: 'Dziękujemy za zgłoszenie udziału w badaniu Profitia',
       text: [
         `Dzień dobry ${lead.firstName},`,
