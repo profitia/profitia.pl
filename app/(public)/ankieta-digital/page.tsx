@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-
 import { DigitalSurveyForm } from '@/components/forms/DigitalSurveyForm'
 
 export const metadata: Metadata = {
@@ -33,22 +31,8 @@ const services = [
 
 export default function DigitalSurveyPage() {
   return (
-    <main className="min-h-screen bg-[rgb(247,250,252)] text-[rgb(36,47,68)]">
-      <div className="mx-auto max-w-[1440px] px-5 py-6 sm:px-8 sm:py-8 lg:px-12 lg:py-10">
-        <div className="mb-8 flex items-center justify-between lg:mb-12">
-          <Image
-            src="/logo/profitia-default.svg"
-            alt="Profitia"
-            width={192}
-            height={53}
-            priority
-            className="h-[46px] w-auto sm:h-[52px]"
-          />
-          <span className="hidden text-[11px] font-semibold uppercase tracking-[0.2em] text-[rgb(0,109,158)] sm:block">
-            Digital Procurement
-          </span>
-        </div>
-
+    <div className="min-h-screen bg-[rgb(247,250,252)] text-[rgb(36,47,68)]">
+      <div className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)] lg:gap-14 xl:gap-20">
           <section className="pt-2 lg:pt-5">
             <div className="max-w-3xl">
@@ -90,7 +74,7 @@ export default function DigitalSurveyPage() {
             </div>
           </section>
 
-          <section className="lg:sticky lg:top-8 lg:self-start">
+          <section className="lg:sticky lg:top-28 lg:self-start">
             <div className="rounded-[28px] border border-[rgb(226,232,240)] bg-white p-6 shadow-[0_24px_70px_rgba(36,47,68,0.10)] sm:p-8 lg:p-9">
               <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[rgb(0,109,158)]">
                 Zgłoś udział w badaniu
@@ -108,6 +92,6 @@ export default function DigitalSurveyPage() {
           </section>
         </div>
       </div>
-    </main>
+    </div>
   )
 }
