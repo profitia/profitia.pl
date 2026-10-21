@@ -227,6 +227,41 @@ model JobApplication {
   @@index([submittedAt])
 }
 
+model DigitalSurveyLead {
+  id                         String              @id @default(cuid())
+  firstName                  String
+  lastName                   String
+  organization               String
+  jobTitle                   String
+  email                      String
+  phone                      String
+  privacyConsent             Boolean
+  privacyConsentText         String              @db.Text
+  privacyConsentVersion      String
+  marketingConsent           Boolean
+  marketingConsentText       String              @db.Text
+  marketingConsentVersion    String
+  locale                     String
+  sourcePage                 String?
+  internalEmailStatus        EmailDeliveryStatus @default(PENDING)
+  internalEmailSentAt        DateTime?
+  internalEmailMessageId     String?
+  internalEmailError         String?             @db.Text
+  confirmationEmailStatus    EmailDeliveryStatus @default(PENDING)
+  confirmationEmailSentAt    DateTime?
+  confirmationEmailMessageId String?
+  confirmationEmailError     String?             @db.Text
+  submittedAt                DateTime            @default(now())
+  createdAt                  DateTime            @default(now())
+  updatedAt                  DateTime            @updatedAt
+
+  @@map("digital_survey_leads")
+  @@index([email])
+  @@index([submittedAt])
+  @@index([internalEmailStatus])
+  @@index([confirmationEmailStatus])
+}
+
 model AdvisoryConversation {
   id             String   @id @default(cuid())
   visitorKeyHash String   @map("visitor_key_hash")
