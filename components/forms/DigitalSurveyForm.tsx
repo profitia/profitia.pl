@@ -49,7 +49,7 @@ function validate(values: Values): Errors {
   return errors
 }
 
-export function DigitalSurveyForm() {
+export function DigitalSurveyForm({ onSuccess }: { onSuccess?: () => void } = {}) {
   const [values, setValues] = useState(INITIAL)
   const [errors, setErrors] = useState<Errors>({})
   const [state, setState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -133,6 +133,7 @@ export function DigitalSurveyForm() {
         return
       }
 
+      onSuccess?.()
       setState('success')
       setValues(INITIAL)
       setWebsite('')
