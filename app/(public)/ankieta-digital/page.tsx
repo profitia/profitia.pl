@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { DigitalSurveyForm } from '@/components/forms/DigitalSurveyForm'
+import { DigitalSurveyCard } from '@/components/forms/DigitalSurveyCard'
 
 export const metadata: Metadata = {
   title: 'Otrzymaj agenta AI dopasowanego do potrzeb Twojej firmy',
@@ -75,20 +75,7 @@ export default function DigitalSurveyPage() {
           </section>
 
           <section className="lg:sticky lg:top-28 lg:self-start">
-            <div className="rounded-[28px] border border-[rgb(226,232,240)] bg-white p-6 shadow-[0_24px_70px_rgba(36,47,68,0.10)] sm:p-8 lg:p-9">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[rgb(0,109,158)]">
-                Zgłoś udział w badaniu
-              </p>
-              <h2 className="mt-3 text-[30px] font-semibold tracking-[-0.035em] text-[rgb(36,47,68)]">
-                Zostaw dane kontaktowe
-              </h2>
-              <p className="mt-3 text-[14px] leading-6 text-[rgb(72,94,136)]">
-                Odezwiemy się z krótkim kwestionariuszem dopasowanym do Twojej organizacji.
-              </p>
-              <div className="mt-7">
-                <DigitalSurveyForm />
-              </div>
-            </div>
+            <DigitalSurveyCard />
           </section>
         </div>
       </div>
