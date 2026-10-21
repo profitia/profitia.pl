@@ -70,6 +70,8 @@ services:
         value: kontakt@profitia.pl
       - key: CONTACT_NOTIFICATION_BCC
         value: tomasz.uscinski@profitia.pl
+      - key: DIGITAL_SURVEY_NOTIFICATION_TO
+        value: mariusz.turek@profitia.pl
       - key: AZURE_TENANT_ID
         sync: false
       - key: AZURE_CLIENT_ID
