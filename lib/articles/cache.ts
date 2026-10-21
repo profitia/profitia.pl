@@ -30,7 +30,9 @@ function createCachedArticleListing(locale: ArticleLocale) {
     async (): Promise<ArticlePreviewData[]> => {
       const rows = await prisma.article.findMany({
         where: publishedArticlesForLocaleWhere(locale),
-        orderBy: [{ featured: 'desc' }, { publishedAt: 'desc' }, { createdAt: 'desc' }],
+        // PostgreSQL sorts NULL values first for DESC unless nulls: 'last' is explicit.
+        // Legacy articles have no publishedAt and must follow recently published CMS posts.
+        orderBy: [{ featured: 'desc' }, { publishedAt: { sort: 'desc', nulls: 'last' } }, { createdAt: 'desc' }],
         select: articlePreviewSelect,
       })
 

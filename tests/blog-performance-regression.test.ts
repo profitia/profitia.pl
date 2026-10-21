@@ -103,6 +103,8 @@ test('article listings use bounded tagged cache with publication invalidation', 
 
   assert.match(cache, /ARTICLE_LIST_REVALIDATE_SECONDS = 300/)
   assert.match(cache, /unstable_cache/)
+  assert.match(cache, /publishedAt: \{ sort: 'desc', nulls: 'last' \}/)
+  assert.match(cache, /featured: 'desc'/)
   assert.match(cache, /revalidateTag\(ARTICLE_LIST_CACHE_TAG\)/)
   assert.match(pl, /getPublishedPolishArticles/)
   assert.match(en, /getPublishedEnglishArticles/)
