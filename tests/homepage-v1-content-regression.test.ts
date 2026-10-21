@@ -42,7 +42,10 @@ test('the original Polish homepage remains available as a noindex draft', () => 
 test('V1 reuses the existing offer, blog and testimonial components', () => {
   assert.match(v1Source, /<HomePillars /)
   assert.match(v1Source, /<FeaturedArticles/)
-  assert.match(v1Source, /articles=\{d\.insights\.articles\}/)
+  assert.match(v1Source, /articles=\{latestArticles\}/)
+  assert.match(v1Source, /getPublishedPolishArticles\(\)/)
+  assert.match(v1Source, /\.slice\(0, 3\)/)
+  assert.match(v1Source, /bDate - aDate/)
   assert.match(v1Source, /<InteractiveTestimonials/)
   assert.match(v1Source, /items=\{d\.testimonial\.items\}/)
 })
