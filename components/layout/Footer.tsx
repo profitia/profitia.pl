@@ -254,7 +254,7 @@ export default function Footer({
             </p>
             <div className="space-y-3 mb-10">
               <a
-                href="/docs/PEDP%202026.pdf"
+                href="https://github.com/profitia/profitia.pl/blob/main/docs/PEDP%202027%20%E2%80%93%20CIPS.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-sm text-white/72 hover:text-[rgb(0,109,158)] transition-colors duration-200 ease-out"
