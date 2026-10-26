@@ -40,8 +40,7 @@ test('advisory services and products heroes use their approved local assets', ()
 test('the Polish MCIPS hero button opens the approved PEDP document', () => {
   const education = source('components/pages/EducationPage.tsx')
 
-  assert.equal(existsSync(new URL('../public/docs/PEDP 2026.pdf', import.meta.url)), true)
-  assert.match(education, /Zobacz ofertę MCIPS[\s\S]*?\/docs\/PEDP%202026\.pdf/)
+  assert.match(education, /Zobacz ofertę MCIPS[\s\S]*?github\.com\/profitia\/profitia\.pl\/blob\/main\/docs\/PEDP%202027%20%E2%80%93%20CIPS\.pdf/)
   assert.match(education, /target=\{locale === 'pl' \? '_blank'/)
   assert.match(education, /rel=\{locale === 'pl' \? 'noopener noreferrer'/)
 })
