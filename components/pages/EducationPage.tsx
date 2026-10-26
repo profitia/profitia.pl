@@ -37,7 +37,7 @@ const PAGE_COPY = {
       headline: 'Executive Development Programme w zakupach',
       subtitle:
         'Zdobądź prestiżowy certyfikat MCIPS i dołącz do globalnej sieci ponad 200 000 profesjonalistów zakupowych. Programy budowane na realiach rynkowych - nie teorii akademickiej.',
-      ctaPrimary: { label: 'Zobacz ofertę MCIPS', href: '/docs/PEDP%202026.pdf' },
+      ctaPrimary: { label: 'Zobacz ofertę MCIPS', href: 'https://github.com/profitia/profitia.pl/blob/main/docs/PEDP%202027%20%E2%80%93%20CIPS.pdf' },
       ctaSecondary: { label: 'Bezpłatna konsultacja', href: getPublicPath('contact', 'pl') },
     },
     contactCta: {
