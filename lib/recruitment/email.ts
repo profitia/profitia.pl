@@ -11,7 +11,7 @@ import type {
 import type { HomeplSmtpEmailInput, HomeplSmtpFailure } from '@/lib/email/homepl-smtp'
 import { JOB_POSITION_LABELS } from '@/lib/recruitment/contract'
 
-const DEFAULT_RECRUITMENT_NOTIFICATION_TO = 'monika.osiecka@profitia.pl'
+const DEFAULT_RECRUITMENT_NOTIFICATION_TO = 'kariera@profitia.pl'
 const DEFAULT_RECRUITMENT_MAILBOX_REPLY_TO = 'kontakt@profitia.pl'
 const MAX_RECRUITMENT_EMAIL_ERROR_LENGTH = 300
 
