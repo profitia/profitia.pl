@@ -6,6 +6,8 @@ import HomePillars from '@/components/home/HomePillars'
 import InteractiveTestimonials from '@/components/home/InteractiveTestimonials'
 import { RevealWrapper } from '@/components/ui'
 import { getCapabilityPath, getPublicPath } from '@/lib/routing/public-routes'
+import { getPublishedPolishArticles } from '@/lib/articles/cache'
+import { getOptimizedArticleImageSrc } from '@/lib/articles/images'
 
 const IDENTITY_POINTS = [
   {
@@ -114,8 +116,24 @@ const WHEN_WE_HELP = [
   },
 ] as const
 
-export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
+export default async function HomePageV1Sections({ dict }: { dict: Dictionary }) {
   const d = dict.homepage
+  const publishedArticles = await getPublishedPolishArticles()
+  const latestArticles = [...publishedArticles]
+    .sort((a, b) => {
+      const aDate = a.publishedAt ? new Date(a.publishedAt).getTime() : 0
+      const bDate = b.publishedAt ? new Date(b.publishedAt).getTime() : 0
+      return bDate - aDate
+    })
+    .slice(0, 3)
+    .map((article) => ({
+      slug: article.slug,
+      meta: article.readingTime ? `${article.readingTime} MIN CZYTANIA` : 'ARTYKUŁ',
+      title: article.title,
+      cta: 'Czytaj analizę →',
+      img: getOptimizedArticleImageSrc(article.coverImage) ?? '/images/website/Profitia_25.jpg',
+      imgAlt: article.coverImageAlt ?? article.title,
+    }))
   const pillarItems = d.pillars.items.map((item, index) => {
     if (index === 0) {
       return {
@@ -376,7 +394,7 @@ export default function HomePageV1Sections({ dict }: { dict: Dictionary }) {
           h2: 'Analizy dla ludzi, którzy odpowiadają za wynik zakupów',
           body: 'Rynek dostawców, struktura kosztów, negocjacje, dane i technologia - dzielimy się wiedzą, którą wykorzystujemy również w pracy projektowej.',
         }}
-        articles={d.insights.articles}
+        articles={latestArticles}
       />
 
       <section id="g6lvxh" className="bg-gradient-to-br from-gray-900 to-gray-800 py-24 text-white lg:py-32">
